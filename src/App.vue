@@ -1,0 +1,33 @@
+<template>
+  <div>
+    <navi></navi>
+    <router-view
+    transition
+    transition-mode="out-in"></router-view>
+  </div>
+</template>
+
+<script>
+import store from 'vuex/store'
+import Navi from 'components/Navi'
+export default {
+  name: 'App',
+  store,
+  // data () {
+  //   return {
+  //     authenticating: false
+  //   }
+  // },
+  components: {
+    Navi
+  }
+}
+</script>
+
+<style>
+body {
+  font-family: Helvetica, sans-serif;
+  background-color: #fbf9fe;
+  padding-bottom:50px;
+}
+</style>

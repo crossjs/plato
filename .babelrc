@@ -1,0 +1,16 @@
+{
+  "env": {
+    "development": {
+      "presets": ["es2015-node5", "es2015", "stage-0"],
+      "plugins": ["add-module-exports", "transform-async-to-generator",
+        "transform-runtime"
+      ],
+      "comments": false
+    },
+    "production": {
+      "presets": ["es2015-node5", "es2015", "stage-0"],
+      "plugins": ["add-module-exports", "transform-runtime"],
+      "comments": false
+    }
+  }
+}
