@@ -17,6 +17,9 @@ const schema = new mongoose.Schema({
   salt: {
     type: String
   },
+  updated: {
+    type: Number
+  },
   created: {
     type: Number
   },
@@ -25,7 +28,7 @@ const schema = new mongoose.Schema({
     index: true,
     unique: true
   },
-  updated: {
+  expires: {
     type: Number
   }
 })

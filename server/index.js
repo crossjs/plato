@@ -22,10 +22,8 @@ const debug = _debug('koa:server')
 const paths = config.utils_paths
 
 const {
-  NODE_ENV = 'production'
-  ,MONGODB_URI = 'localhost:27017'
-  // ,SECRET_PASS_1 = '39u29fojfojf'
-  // ,SECRET_PASS_2 = 'feifif902i39f'
+  NODE_ENV = 'production',
+  MONGODB_URI = 'localhost:27017'
 } = process.env
 
 // MongoDB

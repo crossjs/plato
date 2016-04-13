@@ -1,16 +1,19 @@
 // import _debug from 'debug'
+import only from 'only'
 import User from '../models/user'
 
 export default (app, router) => {
   // const debug = _debug('koa:routes:user')
 
-  const authCheck = (ctx, next) => {
-    if (ctx.isAuthenticated()) {
-      return next()
-    }
-    ctx.body = { message: 'Unauthorized' }
-    ctx.status = 401
-  }
+  // const authCheck = (ctx, next) => {
+  //   if (ctx.isAuthenticated()) {
+  //     return next()
+  //   }
+  //   ctx.body = { message: 'Unauthorized' }
+  //   ctx.status = 401
+  // }
+
+  const whiteProps = 'username token expires'
 
   router.get('/users'/*, authCheck*/, async ctx => {
     User.remove({})
@@ -31,6 +34,6 @@ export default (app, router) => {
       password
     } = ctx.request.body
     const user = await User.create({ username, password })
-    ctx.body = user
+    ctx.body = only(user.toJSON(), whiteProps)
   })
 }

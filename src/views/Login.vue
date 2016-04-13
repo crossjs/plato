@@ -43,7 +43,7 @@ export default {
   },
 
   created () {
-    this.check()
+    this.check(sessionStorage.token, sessionStorage.expires)
   },
 
   // computed property for form validation state
@@ -65,32 +65,37 @@ export default {
   // methods
   methods: {
     login () {
-      if (this.isValid) {
-        fetch('/apis/login', {
-          method: 'POST',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            username: this.username,
-            password: this.password
-          })
-        })
-        .then(res => {
-          return res.json()
-        })
-        .then(json => {
-          sessionStorage.token = json.token
-        })
+      if (!this.isValid) {
+        return
       }
+      fetch('/apis/login', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          username: this.username,
+          password: this.password
+        })
+      })
+      .then(res => {
+        return res.json()
+      })
+      .then(json => {
+        sessionStorage.token = json.token
+        sessionStorage.expires = json.expires
+      })
     },
-    check () {
+    check (token, expires) {
+      if (!token || expires < Date.now()) {
+        return
+      }
       fetch('/apis/check', {
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer ' + sessionStorage.token
+          'Authorization': 'Bearer ' + token
         }
       })
       .then(res => {
@@ -98,6 +103,8 @@ export default {
       })
       .then(json => {
         sessionStorage.token = json.token
+        sessionStorage.expires = json.expires
+        this.$route.router.go('/users')
       })
     }
   }

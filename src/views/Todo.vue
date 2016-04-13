@@ -1,4 +1,4 @@
-<style src="todomvc-app-css/index.css"></style>
+<style></style>
 
 <template>
   <section class="todoapp">

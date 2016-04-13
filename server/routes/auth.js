@@ -1,5 +1,6 @@
 // import _debug from 'debug'
 // import passport from 'passport'
+import only from 'only'
 import passport from 'koa-passport'
 import { Strategy as LocalStrategy } from 'passport-local'
 import { Strategy as BearerStrategy } from 'passport-http-bearer'
@@ -11,19 +12,30 @@ export default (app, router) => {
   // const debug = _debug('koa:routes:auth')
 
   app.use(passport.initialize())
-  app.use(passport.session())
+  // app.use(passport.session())
+
+  const expires = 60 * 60 * 1000
+  const whiteProps = 'username token expires'
+
+  function data () {
+    return {
+      token: salt(),
+      expires: Date.now() + expires
+    }
+  }
 
   router.post('/login', (ctx, next) => {
     return passport.authenticate('local', {
       failWithError: true
     }, async (user, info, status) => {
-      ctx.body = info
       if (user === false) {
+        ctx.body = info
         ctx.status = 401
       } else {
-        const token = {token: salt()}
-        await user.update(token)
-        ctx.body = token
+        const _d = data()
+        await user.update(_d).exec()
+        ctx.body = { ...only(user.toJSON(), whiteProps), ..._d }
+        ctx.status = 201
       }
     })(ctx, next)
   })
@@ -46,20 +58,23 @@ export default (app, router) => {
   router.get('/check', (ctx, next) => {
     return passport.authenticate('bearer', {
       session: false
-    }, (user, info, status) => {
-      ctx.body = info
+    }, async (user, info, status) => {
       if (user === false) {
+        ctx.body = info
         ctx.status = 401
       } else {
-        ctx.status = 200
-        return ctx.login(user)
+        const _d = data()
+        await user.update(_d).exec()
+        ctx.body = { ...only(user.toJSON(), whiteProps), ..._d }
+        ctx.status = 201
       }
     })(ctx, next)
   })
 
   passport.use(new BearerStrategy((token, done) => {
+    console.log(token)
     // todo: refresh token?
-    User.findOne(token).exec((err, user) => {
+    User.findOne({ token, expires: { $gte: Date.now() } }).exec((err, user) => {
       if (err) {
         return done(null, false, { message: 'An error occurred.' })
       }
