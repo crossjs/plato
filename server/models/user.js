@@ -1,5 +1,6 @@
 import mongoose from 'mongoose'
-import crypto from 'crypto'
+import hash from '../utils/hash'
+import salt from '../utils/salt'
 
 const schema = new mongoose.Schema({
   username: {
@@ -18,6 +19,14 @@ const schema = new mongoose.Schema({
   },
   created: {
     type: Number
+  },
+  token: {
+    type: String,
+    index: true,
+    unique: true
+  },
+  updated: {
+    type: Number
   }
 })
 
@@ -26,13 +35,21 @@ const schema = new mongoose.Schema({
 
 schema.pre('save', function (next) {
   if (!this.salt) {
-    this.salt = crypto.randomBytes(32).toString('base64')
+    this.salt = salt()
   }
 
-  this.password = crypto.pbkdf2Sync(this.password, this.salt, 12000, 32, 'sha256').toString('base64')
+  this.password = hash(this.password, this.salt)
 
   if (!this.created) {
     this.created = Date.now()
+  }
+
+  next()
+})
+
+schema.pre('update', function (next) {
+  if (!this.updated) {
+    this.updated = Date.now()
   }
 
   next()

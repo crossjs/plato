@@ -1,6 +1,6 @@
 import Koa from 'koa'
 import mongoose from 'mongoose'
-import convert from 'koa-convert'
+// import convert from 'koa-convert'
 // // import historyApiFallback from 'koa-connect-history-api-fallback'
 import conditional from 'koa-conditional-get'
 import etag from 'koa-etag'
@@ -11,8 +11,8 @@ import error from 'koa-error'
 import mongoError from 'koa-mongo-error'
 import bodyParser from 'koa-bodyparser'
 // import json from 'koa-json'
-import session from 'koa-generic-session'
-import MongoStore from 'koa-generic-session-mongo'
+// import session from 'koa-generic-session'
+// import MongoStore from 'koa-generic-session-mongo'
 import _debug from 'debug'
 import config from '../config'
 import routes from './routes'
@@ -22,17 +22,13 @@ const debug = _debug('koa:server')
 const paths = config.utils_paths
 
 const {
-  NODE_ENV = 'production',
-  MONGODB_URI = 'localhost:27017',
-  SECRET_PASS_1 = '39u29fojfojf',
-  SECRET_PASS_2 = 'feifif902i39f'
+  NODE_ENV = 'production'
+  ,MONGODB_URI = 'localhost:27017'
+  // ,SECRET_PASS_1 = '39u29fojfojf'
+  // ,SECRET_PASS_2 = 'feifif902i39f'
 } = process.env
 
-const {
-  server_host,
-  server_port
-} = config
-
+// MongoDB
 mongoose.set('debug', NODE_ENV === 'development')
 // this is the initial connection by Mongoose to MongoDB
 mongoose.connect(MONGODB_URI)
@@ -60,6 +56,12 @@ const app = new Koa()
   // verbose: false
 // })))
 
+// sessions
+// app.keys = [SECRET_PASS_1, SECRET_PASS_2]
+// app.use(convert(session({
+//   store: new MongoStore()
+// })))
+
 // bodyParser && json
 app.use(bodyParser())
 // app.use(json())
@@ -71,11 +73,6 @@ app.use(etag())
 // error
 app.use(error())
 app.use(mongoError())
-
-app.keys = [SECRET_PASS_1, SECRET_PASS_2]
-app.use(convert(session({
-  store: new MongoStore()
-})))
 
 routes(app)
 
@@ -93,6 +90,11 @@ if (NODE_ENV === 'development') {
     maxAge: 365 * 24 * 60 * 60
   }))
 }
+
+const {
+  server_host,
+  server_port
+} = config
 
 app.listen(server_port, server_host, err => {
   if (err) {

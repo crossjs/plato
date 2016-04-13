@@ -37,9 +37,13 @@ const passwordRE = /^[0-9A-Za-z]{8,20}$/
 export default {
   data () {
     return {
-      username: '',
-      password: ''
+      username: 'username',
+      password: 'password'
     }
+  },
+
+  created () {
+    this.check()
   },
 
   // computed property for form validation state
@@ -77,12 +81,24 @@ export default {
           return res.json()
         })
         .then(json => {
-          console.log(json)
-          // this.users = json
+          sessionStorage.token = json.token
         })
-        this.username = ''
-        this.password = ''
       }
+    },
+    check () {
+      fetch('/apis/check', {
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + sessionStorage.token
+        }
+      })
+      .then(res => {
+        return res.json()
+      })
+      .then(json => {
+        sessionStorage.token = json.token
+      })
     }
   }
 }

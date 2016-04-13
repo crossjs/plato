@@ -4,13 +4,13 @@ import User from '../models/user'
 export default (app, router) => {
   // const debug = _debug('koa:routes:user')
 
-  // const authCheck = (ctx, next) => {
-  //   if (ctx.isAuthenticated()) {
-  //     return next()
-  //   }
-  //   ctx.body = { message: 'Unauthorized' }
-  //   ctx.status = 401
-  // }
+  const authCheck = (ctx, next) => {
+    if (ctx.isAuthenticated()) {
+      return next()
+    }
+    ctx.body = { message: 'Unauthorized' }
+    ctx.status = 401
+  }
 
   router.get('/users'/*, authCheck*/, async ctx => {
     User.remove({})
