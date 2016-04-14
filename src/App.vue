@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import store from 'vuex/store'
+import store from 'vx/store'
 import Navi from 'components/Navi'
 export default {
   name: 'App',

@@ -14,32 +14,6 @@ export default (app, router) => {
   app.use(passport.initialize())
   // app.use(passport.session())
 
-  const expires = 60 * 60 * 1000
-  const whiteProps = 'username token expires'
-
-  function data () {
-    return {
-      token: salt(),
-      expires: Date.now() + expires
-    }
-  }
-
-  router.post('/login', (ctx, next) => {
-    return passport.authenticate('local', {
-      failWithError: true
-    }, async (user, info, status) => {
-      if (user === false) {
-        ctx.body = info
-        ctx.status = 401
-      } else {
-        const _d = data()
-        await user.update(_d).exec()
-        ctx.body = { ...only(user.toJSON(), whiteProps), ..._d }
-        ctx.status = 201
-      }
-    })(ctx, next)
-  })
-
   passport.use(new LocalStrategy((username, password, done) => {
     User.findOne({ username }).exec((err, user) => {
       if (err) {
@@ -55,25 +29,7 @@ export default (app, router) => {
     })
   }))
 
-  router.get('/check', (ctx, next) => {
-    return passport.authenticate('bearer', {
-      session: false
-    }, async (user, info, status) => {
-      if (user === false) {
-        ctx.body = info
-        ctx.status = 401
-      } else {
-        const _d = data()
-        await user.update(_d).exec()
-        ctx.body = { ...only(user.toJSON(), whiteProps), ..._d }
-        ctx.status = 201
-      }
-    })(ctx, next)
-  })
-
   passport.use(new BearerStrategy((token, done) => {
-    console.log(token)
-    // todo: refresh token?
     User.findOne({ token, expires: { $gte: Date.now() } }).exec((err, user) => {
       if (err) {
         return done(null, false, { message: 'An error occurred.' })
@@ -91,5 +47,50 @@ export default (app, router) => {
 
   passport.deserializeUser((id, done) => {
     User.findById(id, done)
+  })
+
+  const expires = 60 * 60 * 1000
+  const whiteProps = 'username token expires'
+
+  function data () {
+    return {
+      token: salt(),
+      expires: Date.now() + expires
+    }
+  }
+
+  async function refresh (user, ctx) {
+    const _d = data()
+    // refresh token
+    await user.update(_d).exec()
+    await ctx.logIn(user, { session: false })
+    ctx.body = { ...only(user.toJSON(), whiteProps), ..._d }
+    ctx.status = 201
+  }
+
+  router.post('/login', (ctx, next) => {
+    return passport.authenticate('local', {
+      failWithError: true
+    }, async (user, info, status) => {
+      if (user === false) {
+        ctx.body = info
+        ctx.status = 401
+      } else {
+        await refresh(user, ctx)
+      }
+    })(ctx, next)
+  })
+
+  router.get('/check', (ctx, next) => {
+    return passport.authenticate('bearer', {
+      session: false
+    }, async (user, info, status) => {
+      if (user === false) {
+        ctx.body = info
+        ctx.status = 401
+      } else {
+        await refresh(user, ctx)
+      }
+    })(ctx, next)
   })
 }

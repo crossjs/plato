@@ -20,10 +20,6 @@ import webpack from './tools/webpack'
 const debug = _debug('koa:server')
 const paths = config.utils_paths
 
-const {
-  NODE_ENV
-} = process.env
-
 // Koa application is now a class and requires the new operator.
 const app = new Koa()
 
@@ -57,7 +53,7 @@ routes(app)
 // ------------------------------------
 // Apply Webpack DEV/HMR Middleware
 // ------------------------------------
-if (NODE_ENV === 'development') {
+if (app.env === 'development') {
   webpack(app)
 } else {
   // favicon

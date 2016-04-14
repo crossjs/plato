@@ -21,9 +21,11 @@
 </template>
 
 <script>
-import 'whatwg-fetch'
+import ajax from 'utils/ajax'
+import { setBearer } from 'vx/actions'
+import { bearer } from 'vx/getters'
 const usernameRE = /^[a-z]{4,20}$/
-const passwordRE = /^[0-9A-Za-z]{8,20}$/
+const passwordRE = /^[0-9A-Za-z]{4,20}$/
 // http://stackoverflow.com/questions/3802192/regexp-java-for-password-validation
 // ^                 # start-of-string
 // (?=.*[0-9])       # a digit must occur at least once
@@ -43,7 +45,7 @@ export default {
   },
 
   created () {
-    this.check(sessionStorage.token, sessionStorage.expires)
+    this.check()
   },
 
   // computed property for form validation state
@@ -68,44 +70,39 @@ export default {
       if (!this.isValid) {
         return
       }
-      fetch('/apis/login', {
+      ajax('/apis/login', {
         method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
         body: JSON.stringify({
           username: this.username,
           password: this.password
         })
       })
-      .then(res => {
-        return res.json()
-      })
       .then(json => {
-        sessionStorage.token = json.token
-        sessionStorage.expires = json.expires
+        this.setBearer(json)
       })
     },
-    check (token, expires) {
+    check () {
+      if (!this.bearer) {
+        return
+      }
+      const { token, expires } = this.bearer
       if (!token || expires < Date.now()) {
         return
       }
-      fetch('/apis/check', {
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer ' + token
-        }
-      })
-      .then(res => {
-        return res.json()
-      })
+      ajax('/apis/check')
       .then(json => {
-        sessionStorage.token = json.token
-        sessionStorage.expires = json.expires
+        this.setBearer(json)
         this.$route.router.go('/users')
       })
+    }
+  },
+
+  vuex: {
+    getters: {
+      bearer
+    },
+    actions: {
+      setBearer
     }
   }
 }

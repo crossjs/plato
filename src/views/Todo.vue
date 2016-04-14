@@ -51,7 +51,7 @@ import {
   addTodo,
   toggleAll,
   clearCompleted
-} from '../vuex/actions'
+} from '../vx/actions'
 const filters = {
   all: todos => todos,
   active: todos => todos.filter(todo => !todo.done),

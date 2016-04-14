@@ -2,63 +2,20 @@
   "name": "plat",
   "version": "1.0.0",
   "description": "promotion platform",
+  "license": "ISC",
   "main": "index.js",
   "scripts": {
     "lint": "eslint --max-warnings 10 .",
     "lint:fix": "npm run lint -- --fix",
     "start": "better-npm-run start",
     "dev": "better-npm-run dev",
+    "debug": "better-npm-run debug",
     "clean": "better-npm-run clean",
     "compile": "better-npm-run compile",
     "test": "better-npm-run test",
     "test:dev": "npm test -- --watch",
     "deploy": "better-npm-run deploy"
   },
-  "betterScripts": {
-    "compile": {
-      "command": "node .bin/compile",
-      "env": {
-        "NODE_ENV": "production",
-        "DEBUG": "koa*"
-      }
-    },
-    "start": {
-      "command": "nodemon .bin/start",
-      "env": {
-        "NODE_ENV": "production",
-        "DEBUG": "koa*"
-      }
-    },
-    "dev": {
-      "command": "nodemon --debug .bin/start",
-      "env": {
-        "NODE_ENV": "development",
-        "DEBUG": "koa*"
-      }
-    },
-    "clean": {
-      "command": "nodemon .bin/clean",
-      "env": {
-        "DEBUG": "koa*"
-      }
-    },
-    "deploy": {
-      "command": "npm run lint && npm run clean && npm run compile",
-      "env": {
-        "NODE_ENV": "production",
-        "DEBUG": "koa*"
-      }
-    },
-    "test": {
-      "command": "node ./node_modules/karma/bin/karma start .bin/karma",
-      "env": {
-        "NODE_ENV": "test",
-        "DEBUG": "koa*"
-      }
-    }
-  },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "koa": "^2.0.0",
     "koa-bodyparser": "^3.0.0",
@@ -159,5 +116,53 @@
   "engines": {
     "node": ">= 5.7.0",
     "npm": ">= 3.6.0"
+  },
+  "betterScripts": {
+    "compile": {
+      "command": "node .bin/compile",
+      "env": {
+        "NODE_ENV": "production",
+        "DEBUG": "koa*"
+      }
+    },
+    "start": {
+      "command": "nodemon --harmony .bin/start",
+      "env": {
+        "NODE_ENV": "production",
+        "DEBUG": "koa*"
+      }
+    },
+    "dev": {
+      "command": "nodemon --harmony .bin/start",
+      "env": {
+        "DEBUG": "koa*"
+      }
+    },
+    "debug": {
+      "command": "nodemon --harmony --debug .bin/start",
+      "env": {
+        "DEBUG": "koa*"
+      }
+    },
+    "clean": {
+      "command": "node .bin/clean",
+      "env": {
+        "DEBUG": "koa*"
+      }
+    },
+    "deploy": {
+      "command": "npm run lint && npm run clean && npm run compile",
+      "env": {
+        "NODE_ENV": "production",
+        "DEBUG": "koa*"
+      }
+    },
+    "test": {
+      "command": "node ./node_modules/karma/bin/karma start .bin/karma",
+      "env": {
+        "NODE_ENV": "test",
+        "DEBUG": "koa*"
+      }
+    }
   }
 }

@@ -23,7 +23,7 @@ import {
   toggleTodo,
   deleteTodo,
   editTodo
-} from '../vuex/actions'
+} from '../vx/actions'
 export default {
   props: ['todo'],
   vuex: {

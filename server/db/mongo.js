@@ -6,12 +6,11 @@ export default app => {
   const debug = _debug('koa:db:mongo')
 
   const {
-    NODE_ENV,
     MONGODB_URI = 'localhost:27017'
   } = process.env
 
   // MongoDB
-  mongoose.set('debug', NODE_ENV === 'development')
+  mongoose.set('debug', app.env === 'development')
   // this is the initial connection by Mongoose to MongoDB
   mongoose.connect(MONGODB_URI)
   mongoose.connection.on('error', debug)

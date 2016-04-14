@@ -1,14 +1,16 @@
 <template>
-  <ul v-for="user in users" track-by="_id">
-    <li>username: <br> {{user.username}}</li>
-    <li>password: <br> {{user.password}}</li>
-    <li>token: <br> {{user.token}}</li>
-    <li>expires: <br> {{user.expires}}</li>
-  </ul>
+  <div>
+    <ul v-for="user in users" track-by="_id">
+      <li>username: <br> {{user.username}}</li>
+      <li>password: <br> {{user.password}}</li>
+      <li>token: <br> {{user.token}}</li>
+      <li>expires: <br> {{user.expires}}</li>
+    </ul>
+  </div>
 </template>
 
 <script>
-import 'whatwg-fetch'
+import ajax from 'utils/ajax'
 export default {
   data () {
     return {
@@ -20,10 +22,7 @@ export default {
   },
   methods: {
     fetchData () {
-      fetch('/apis/users')
-      .then(res => {
-        return res.json()
-      })
+      ajax('/apis/users')
       .then(json => {
         this.users = json
       })

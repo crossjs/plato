@@ -10,7 +10,7 @@
       <div>
         <label>密码</label>
         <input type="password" name="password" v-model="password">
-        <div class="desc">8-20 个数字或大小写字母</div>
+        <div class="desc">4-20 个数字或大小写字母</div>
       </div>
       <div>
         <input type="submit" value="Sign Up">
@@ -22,7 +22,7 @@
 <script>
 import 'whatwg-fetch'
 const usernameRE = /^[a-z]{4,20}$/
-const passwordRE = /^[0-9A-Za-z]{8,20}$/
+const passwordRE = /^[0-9A-Za-z]{4,20}$/
 // http://stackoverflow.com/questions/3802192/regexp-java-for-password-validation
 // ^                 # start-of-string
 // (?=.*[0-9])       # a digit must occur at least once
