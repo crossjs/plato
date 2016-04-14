@@ -1,5 +1,4 @@
 import Koa from 'koa'
-import mongoose from 'mongoose'
 // import convert from 'koa-convert'
 // // import historyApiFallback from 'koa-connect-history-api-fallback'
 import conditional from 'koa-conditional-get'
@@ -8,13 +7,13 @@ import etag from 'koa-etag'
 import favicon from 'koa-favicon'
 import serve from 'koa-static'
 import error from 'koa-error'
-import mongoError from 'koa-mongo-error'
 import bodyParser from 'koa-bodyparser'
 // import json from 'koa-json'
 // import session from 'koa-generic-session'
 // import MongoStore from 'koa-generic-session-mongo'
 import _debug from 'debug'
 import config from '../config'
+import mongo from './db/mongo'
 import routes from './routes'
 import webpack from './tools/webpack'
 
@@ -22,27 +21,8 @@ const debug = _debug('koa:server')
 const paths = config.utils_paths
 
 const {
-  NODE_ENV = 'production',
-  MONGODB_URI = 'localhost:27017'
+  NODE_ENV
 } = process.env
-
-// MongoDB
-mongoose.set('debug', NODE_ENV === 'development')
-// this is the initial connection by Mongoose to MongoDB
-mongoose.connect(MONGODB_URI)
-mongoose.connection.on('error', debug)
-// mongoose.connection.db.dropDatabase((err, result) => {
-//   console.log(err, result)
-// })
-// mongoose.connection.db.dropCollection('users', (err, result) => {
-//   console.log(err, result)
-// })
-// mongoose.connection.collections.users.drop((err, result) => {
-//   console.log(err, result)
-// })
-// mongoose.connection.collections.users.reIndex((err, result) => {
-//   console.log(err, result)
-// })
 
 // Koa application is now a class and requires the new operator.
 const app = new Koa()
@@ -70,8 +50,8 @@ app.use(etag())
 
 // error
 app.use(error())
-app.use(mongoError())
 
+mongo(app)
 routes(app)
 
 // ------------------------------------
