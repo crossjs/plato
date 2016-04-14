@@ -72,13 +72,14 @@ export default {
       }
       ajax('/apis/login', {
         method: 'POST',
-        body: JSON.stringify({
+        body: {
           username: this.username,
           password: this.password
-        })
+        }
       })
       .then(json => {
         this.setBearer(json)
+        this.$route.router.go('/users')
       })
     },
     check () {

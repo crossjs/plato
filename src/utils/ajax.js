@@ -6,7 +6,7 @@ const defaultHeaders = {
   'Content-Type': 'application/json'
 }
 
-function setHeaders (options) {
+function modify (options) {
   options.headers = { ...defaultHeaders, ...options.headers }
 
   const bearerToken = getBearerToken()
@@ -14,11 +14,17 @@ function setHeaders (options) {
     options.headers['Authorization'] = 'Bearer ' + bearerToken
   }
 
+  if (options.body) {
+    if (typeof options.body === 'object') {
+      options.body = JSON.stringify(options.body)
+    }
+  }
+
   return options
 }
 
 export default (url, options = {}) => {
-  return fetch(url, setHeaders(options))
+  return fetch(url, modify(options))
   .then(res => {
     return res.json()
   })

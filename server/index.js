@@ -65,6 +65,11 @@ if (app.env === 'development') {
   }))
 }
 
+// app.use((ctx, next) => {
+//   debug(ctx.status)
+//   next()
+// })
+
 const {
   server_host,
   server_port

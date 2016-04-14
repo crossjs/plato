@@ -15,15 +15,13 @@ export default (app, router) => {
     // }
     // ctx.body = { message: 'Unauthorized' }
     // ctx.status = 401
-    debug('check')
     await passport.authenticate('bearer', {
       session: false
     }, async (user, info, status) => {
       if (user === false) {
-        ctx.body = info
-        ctx.status = status || 401
+        debug(info)
+        ctx.status = 401
       } else {
-        debug('check ok')
         await next()
       }
     })(ctx, next)
@@ -32,8 +30,6 @@ export default (app, router) => {
   const whiteProps = 'username token expires'
 
   router.get('/users', authCheck, async ctx => {
-    debug('get /users')
-    // User.remove({})
     // .find({}) returns all data about all users
     const users = await User.find({}).exec()
     ctx.body = users
@@ -45,7 +41,8 @@ export default (app, router) => {
     ctx.body = user
   })
 
-  router.post('/users', authCheck, async ctx => {
+  // todo: move to auth
+  router.post('/users'/*, authCheck*/, async ctx => {
     const {
       username,
       password
