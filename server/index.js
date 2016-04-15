@@ -1,21 +1,20 @@
 import Koa from 'koa'
 // import convert from 'koa-convert'
-// // import historyApiFallback from 'koa-connect-history-api-fallback'
+// import historyApiFallback from 'koa-connect-history-api-fallback'
 import conditional from 'koa-conditional-get'
 import etag from 'koa-etag'
-// // import csrf from 'koa-csrf'
+// import csrf from 'koa-csrf'
 import favicon from 'koa-favicon'
 import serve from 'koa-static'
-import error from 'koa-error'
+// import error from 'koa-error'
 import bodyParser from 'koa-bodyparser'
 // import json from 'koa-json'
-// import session from 'koa-generic-session'
-// import MongoStore from 'koa-generic-session-mongo'
 import _debug from 'debug'
 import config from '../config'
 import mongo from './db/mongo'
 import routes from './routes'
 import webpack from './tools/webpack'
+import error from './tools/error'
 
 const debug = _debug('koa:server')
 const paths = config.utils_paths
@@ -44,11 +43,14 @@ app.use(bodyParser())
 app.use(conditional())
 app.use(etag())
 
-// error
+// last
 app.use(error())
 
 mongo(app)
 routes(app)
+
+// error
+// app.use(error())
 
 // ------------------------------------
 // Apply Webpack DEV/HMR Middleware
@@ -64,11 +66,6 @@ if (app.env === 'development') {
     maxAge: 365 * 24 * 60 * 60
   }))
 }
-
-// app.use((ctx, next) => {
-//   debug(ctx.status)
-//   next()
-// })
 
 const {
   server_host,

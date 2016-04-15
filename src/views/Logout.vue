@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import ajax from 'utils/ajax'
+import { DELETE } from 'utils/ajax'
 import { setBearer } from 'vx/actions'
 import { bearer } from 'vx/getters'
 export default {
@@ -32,9 +32,7 @@ export default {
         this.$route.router.go('/')
         return
       }
-      ajax('/apis/logout', {
-        method: 'DELETE'
-      })
+      DELETE('/apis/logout')
       .then(json => {
         this.setBearer(null)
         this.$route.router.go('/')

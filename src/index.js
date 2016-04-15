@@ -8,7 +8,6 @@ import About from 'views/About'
 import Login from 'views/Login'
 import Signup from 'views/Signup'
 import Logout from 'views/Logout'
-import Todo from 'views/Todo'
 
 if (module.hot) {
   module.hot.accept()
@@ -25,23 +24,20 @@ router.map({
   '/': {
     component: Home
   },
-  '/users': {
-    component: User
-  },
   '/about': {
     component: About
+  },
+  '/users': {
+    component: User
   },
   '/login': {
     component: Login
   },
-  '/signup': {
-    component: Signup
-  },
   '/logout': {
     component: Logout
   },
-  '/todos': {
-    component: Todo
+  '/signup': {
+    component: Signup
   }
 })
 

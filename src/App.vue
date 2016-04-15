@@ -1,5 +1,6 @@
 <template>
   <div>
+    <toast></toast>
     <navi></navi>
     <router-view
     transition
@@ -9,6 +10,7 @@
 
 <script>
 import store from 'vx/store'
+import Toast from 'components/Toast'
 import Navi from 'components/Navi'
 export default {
   name: 'App',
@@ -19,6 +21,7 @@ export default {
   //   }
   // },
   components: {
+    Toast,
     Navi
   }
 }

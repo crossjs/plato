@@ -19,5 +19,7 @@ export default app => {
 
   // support different functions for different pages on the server
   app.use(router.routes())
-  app.use(router.allowedMethods())
+  app.use(router.allowedMethods({
+    throw: true
+  }))
 }

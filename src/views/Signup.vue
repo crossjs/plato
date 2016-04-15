@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import 'whatwg-fetch'
+import ajax from 'utils/ajax'
 const usernameRE = /^[a-z]{4,20}$/
 const passwordRE = /^[0-9A-Za-z]{4,20}$/
 // http://stackoverflow.com/questions/3802192/regexp-java-for-password-validation
@@ -61,44 +61,23 @@ export default {
   // methods
   methods: {
     signup () {
-      if (this.isValid) {
-        fetch('/apis/users', {
-          method: 'POST',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            username: this.username,
-            password: this.password
-          })
-        })
-        .then(res => {
-          if (res.status >= 200 && res.status < 300) {
-            return res
-          } else {
-            const error = new Error(res.statusText)
-            error.response = res.json()
-            throw error
-          }
-        })
-        .then(res => {
-          return res.json()
-        })
-        .then(json => {
-          console.log('1', json)
-        })
-        .catch(err => {
-          console.log('2', err)
-          return err.response
-        })
-        .then(err => {
-          console.log('3', err)
-          this.message = err.error
-        })
-      } else {
+      if (!this.isValid) {
         this.message = '请输入账号与密码'
+        return
       }
+      ajax('/apis/signup', {
+        method: 'POST',
+        body: {
+          username: this.username,
+          password: this.password
+        }
+      })
+      .then(json => {
+        console.log('1', json)
+      })
+      .catch(err => {
+        console.log('2', err)
+      })
     }
   }
 }

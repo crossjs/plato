@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import ajax from 'utils/ajax'
+import { GET, POST } from 'utils/ajax'
 import { setBearer } from 'vx/actions'
 import { bearer } from 'vx/getters'
 const usernameRE = /^[a-z]{4,20}$/
@@ -70,8 +70,7 @@ export default {
       if (!this.isValid) {
         return
       }
-      ajax('/apis/login', {
-        method: 'POST',
+      POST('/apis/login', {
         body: {
           username: this.username,
           password: this.password
@@ -80,6 +79,9 @@ export default {
       .then(json => {
         this.setBearer(json)
         this.$route.router.go('/users')
+      })
+      .catch(err => {
+        console.log(err)
       })
     },
     check () {
@@ -90,10 +92,13 @@ export default {
       if (!token || expires < Date.now()) {
         return
       }
-      ajax('/apis/check')
+      GET('/apis/check')
       .then(json => {
         this.setBearer(json)
         this.$route.router.go('/users')
+      })
+      .catch(err => {
+        console.log(err)
       })
     }
   },

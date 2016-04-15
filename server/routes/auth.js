@@ -1,9 +1,9 @@
-import _debug from 'debug'
-// import passport from 'passport'
-import only from 'only'
+import { STATUS_CODES } from 'http'
 import passport from 'koa-passport'
 import { Strategy as LocalStrategy } from 'passport-local'
 import { Strategy as BearerStrategy } from 'passport-http-bearer'
+import only from 'only'
+import _debug from 'debug'
 import User from '../models/user'
 import hash from '../utils/hash'
 import salt from '../utils/salt'
@@ -12,7 +12,6 @@ export default (app, router) => {
   const debug = _debug('koa:routes:auth')
 
   app.use(passport.initialize())
-  // app.use(passport.session())
 
   passport.use(new LocalStrategy((username, password, done) => {
     User.findOne({ username }).exec((err, user) => {
@@ -52,44 +51,62 @@ export default (app, router) => {
   const expires = 60 * 60 * 1000
   const whiteProps = 'username token expires'
 
+  // refresh token
   async function refresh (user, ctx) {
     const _d = {
       token: salt(),
       expires: Date.now() + expires
     }
-    // refresh token
     await user.update(_d).exec()
-    // await ctx.logIn(user, { session: false })
     ctx.body = { ...only(user.toJSON(), whiteProps), ..._d }
     ctx.status = 201
   }
 
+  function respond (status, body, ctx) {
+    body.code = STATUS_CODES[400]
+    ctx.body = body
+    ctx.status = status || 500
+  }
+
+  // login
   router.post('/login', (ctx, next) => {
     return passport.authenticate('local', {
       failWithError: true
-    }, async (user, info, status) => {
+    }, (user, info, status) => {
       if (user === false) {
         debug(info)
-        ctx.status = 401
+        respond(400, info, ctx)
       } else {
-        await refresh(user, ctx)
+        return refresh(user, ctx)
       }
     })(ctx, next)
   })
 
+  // check
   router.get('/check', (ctx, next) => {
     return passport.authenticate('bearer', {
       session: false
     }, async (user, info, status) => {
       if (user === false) {
         debug(info)
-        ctx.status = 401
+        respond(400, info, ctx)
       } else {
         await refresh(user, ctx)
       }
     })(ctx, next)
   })
 
+  // signup
+  router.post('/signup', async ctx => {
+    const {
+      username,
+      password
+    } = ctx.request.body
+    const user = await User.create({ username, password })
+    ctx.body = only(user.toJSON(), whiteProps)
+  })
+
+  // logout
   router.del('/logout', async (ctx, next) => {
     let token
 
@@ -104,42 +121,46 @@ export default (app, router) => {
         }
       } else {
         ctx.throw(400)
-        return
       }
     }
 
     if (ctx.body && ctx.body.access_token) {
       if (token) {
-        ctx.throw(400)
-        return
+        return respond(400, {
+          message: 'Multiple tokens found.'
+        }, ctx)
       }
       token = ctx.body.access_token
     }
 
     if (ctx.query && ctx.query.access_token) {
       if (token) {
-        ctx.throw(400)
-        return
+        return respond(400, {
+          message: 'Multiple tokens found.'
+        }, ctx)
       }
       token = ctx.query.access_token
     }
 
     if (!token) {
-      ctx.throw(400)
-      return
+      return respond(400, {
+        message: 'Token not found.'
+      }, ctx)
     }
 
-    const user = await User.findOne({ token }).exec((err, user) => {
+    const user = await User.findOne({ token }).exec((err, doc) => {
       if (err) {
-        ctx.throw(err)
-        return
+        return respond(400, {
+          message: err.errmsg
+        }, ctx)
       }
-      if (!user) {
-        ctx.throw(404)
-        return
+      if (!doc) {
+        return respond(404, {
+          message: 'Token not found.'
+        }, ctx)
       }
 
-      return user
+      return doc
     })
 
     await user.update({
@@ -147,7 +168,7 @@ export default (app, router) => {
       expires: 0
     }).exec()
 
-    ctx.body = { message: 'OK' }
+    ctx.body = {}
     ctx.status = 200
   })
 }

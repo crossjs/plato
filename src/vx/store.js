@@ -1,7 +1,13 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import middlewares from './middlewares'
-import { BEARER_KEY, SET_BEARER } from './constants'
+import {
+  BEARER_KEY,
+  SET_BEARER,
+  ADD_TOAST,
+  DELETE_TOAST,
+  CLEAR_TOAST
+} from './constants'
 
 Vue.use(Vuex)
 
@@ -11,13 +17,35 @@ if (navigator.userAgent.indexOf('PhantomJS') > -1) {
 }
 
 const state = {
-  bearer: JSON.parse(localStorage.getItem(BEARER_KEY) || '[]')
+  toasts: [],
+  bearer: (function () {
+    try {
+      return JSON.parse(localStorage.getItem(BEARER_KEY) || '[]')
+    } catch (e) {
+      // log e
+      return []
+    }
+  })()
 }
 
 const mutations = {
+
   [SET_BEARER] (state, bearer) {
     state.bearer = bearer
+  },
+
+  [ADD_TOAST] (state, toast) {
+    state.toasts.push(toast)
+  },
+
+  [DELETE_TOAST] (state, toast) {
+    state.toasts.$remove(toast)
+  },
+
+  [CLEAR_TOAST] (state, toast) {
+    state.toasts = []
   }
+
 }
 
 export default new Vuex.Store({
