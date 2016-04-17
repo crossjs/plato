@@ -6,7 +6,8 @@ import {
   SET_BEARER,
   ADD_TOAST,
   DELETE_TOAST,
-  CLEAR_TOAST
+  CLEAR_TOAST,
+  SET_USERS
 } from './constants'
 
 Vue.use(Vuex)
@@ -17,6 +18,7 @@ if (navigator.userAgent.indexOf('PhantomJS') > -1) {
 }
 
 const state = {
+  users: [],
   toasts: [],
   bearer: (function () {
     try {
@@ -44,6 +46,11 @@ const mutations = {
 
   [CLEAR_TOAST] (state, toast) {
     state.toasts = []
+  },
+
+  [SET_USERS] (state, users) {
+    console.log(users)
+    state.users = users
   }
 
 }

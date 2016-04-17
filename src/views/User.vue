@@ -1,31 +1,41 @@
 <template>
   <div>
-    <ul v-for="user in users" track-by="_id">
-      <li>username: <br> {{user.username}}</li>
-      <li>password: <br> {{user.password}}</li>
-      <li>token: <br> {{user.token}}</li>
-      <li>expires: <br> {{user.expires}}</li>
-    </ul>
+    <pre v-for="user in users" track-by="_id"><code>{{user | json}}</code></pre>
   </div>
 </template>
 
 <script>
-import ajax from 'utils/ajax'
+import { GET } from 'utils/ajax'
+import { bearer, users } from 'vx/getters'
+import { setUsers } from 'vx/actions'
 export default {
-  data () {
-    return {
-      users: []
+  // data () {
+  //   return {
+  //     users: []
+  //   }
+  // },
+  created () {
+    if (this.bearer) {
+      this.fetchUsers()
+    } else {
+      this.$route.router.go('/')
     }
   },
-  created () {
-    this.fetchData()
-  },
   methods: {
-    fetchData () {
-      ajax('/apis/users')
+    fetchUsers () {
+      GET('/apis/users')
       .then(json => {
-        this.users = json
+        this.setUsers(json)
       })
+    }
+  },
+  vuex: {
+    getters: {
+      bearer,
+      users
+    },
+    actions: {
+      setUsers
     }
   }
 }

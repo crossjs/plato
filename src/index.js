@@ -5,6 +5,7 @@ import App from 'App'
 import Home from 'views/Home'
 import User from 'views/User'
 import About from 'views/About'
+import Profile from 'views/Profile'
 import Login from 'views/Login'
 import Signup from 'views/Signup'
 import Logout from 'views/Logout'
@@ -12,6 +13,9 @@ import Logout from 'views/Logout'
 if (module.hot) {
   module.hot.accept()
 }
+
+// process.env.NODE_ENV === 'developmemnt'
+Vue.config.debug = true
 
 Vue.use(Router)
 
@@ -32,6 +36,9 @@ router.map({
   },
   '/login': {
     component: Login
+  },
+  '/profile': {
+    component: Profile
   },
   '/logout': {
     component: Logout

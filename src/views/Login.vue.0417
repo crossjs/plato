@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { POST } from 'utils/ajax'
+import { GET, POST } from 'utils/ajax'
 import { bearer } from 'vx/getters'
 import { setBearer } from 'vx/actions'
 const usernameRE = /^[a-z]{4,20}$/
@@ -45,8 +45,17 @@ export default {
   },
 
   created () {
-    this.bearer && this.goProfile()
+    console.log('0')
+    this.bearer && this.check()
   },
+
+  // compiled () {
+  //   console.log('1')
+  // },
+  //
+  // ready () {
+  //   console.log('2')
+  // },
 
   // computed property for form validation state
   computed: {
@@ -78,21 +87,30 @@ export default {
       })
       .then(json => {
         this.setBearer(json)
-        this.goProfile()
+        this.$route.router.go('/')
       })
       .catch(err => {
         console.log(err)
       })
     },
-    goProfile () {
-      this.$route.router.go('/profile')
+    check () {
+      GET('/apis/check')
+      .then(json => {
+        this.setBearer(json)
+        this.$route.router.go('/')
+      })
+      .catch(err => {
+        console.log(err)
+      })
     }
   },
 
   route: {
     activate (transition) {
       transition.next()
-      this.bearer && this.goProfile()
+    },
+    deactivate (transition) {
+      transition.next()
     }
   },
 

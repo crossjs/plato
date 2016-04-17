@@ -7,6 +7,7 @@ import _debug from 'debug'
 import User from '../models/user'
 import hash from '../utils/hash'
 import salt from '../utils/salt'
+import { expires } from '../utils/bearer'
 
 export default (app, router) => {
   const debug = _debug('koa:routes:auth')
@@ -48,7 +49,6 @@ export default (app, router) => {
     User.findById(id, done)
   })
 
-  const expires = 60 * 60 * 1000
   const whiteProps = 'username token expires'
 
   // refresh token
@@ -62,38 +62,35 @@ export default (app, router) => {
     ctx.status = 201
   }
 
-  function respond (status, body, ctx) {
-    body.code = STATUS_CODES[400]
-    ctx.body = body
+  function respond (status, { message }, ctx) {
+    ctx.body = {
+      code: STATUS_CODES[status],
+      message
+    }
     ctx.status = status || 500
+  }
+
+  function callback (user, info, status) {
+    if (user === false) {
+      debug(info)
+      respond(400, info, this)
+    } else {
+      return refresh(user, this)
+    }
   }
 
   // login
   router.post('/login', (ctx, next) => {
     return passport.authenticate('local', {
       failWithError: true
-    }, (user, info, status) => {
-      if (user === false) {
-        debug(info)
-        respond(400, info, ctx)
-      } else {
-        return refresh(user, ctx)
-      }
-    })(ctx, next)
+    }, callback.bind(ctx))(ctx, next)
   })
 
   // check
   router.get('/check', (ctx, next) => {
     return passport.authenticate('bearer', {
       session: false
-    }, async (user, info, status) => {
-      if (user === false) {
-        debug(info)
-        respond(400, info, ctx)
-      } else {
-        await refresh(user, ctx)
-      }
-    })(ctx, next)
+    }, callback.bind(ctx))(ctx, next)
   })
 
   // signup
@@ -108,39 +105,7 @@ export default (app, router) => {
 
   // logout
   router.del('/logout', async (ctx, next) => {
-    let token
-
-    if (ctx.headers && ctx.headers.authorization) {
-      var parts = ctx.headers.authorization.split(' ')
-      if (parts.length === 2) {
-        const scheme = parts[0]
-        const credentials = parts[1]
-
-        if (/^Bearer$/i.test(scheme)) {
-          token = credentials
-        }
-      } else {
-        ctx.throw(400)
-      }
-    }
-
-    if (ctx.body && ctx.body.access_token) {
-      if (token) {
-        return respond(400, {
-          message: 'Multiple tokens found.'
-        }, ctx)
-      }
-      token = ctx.body.access_token
-    }
-
-    if (ctx.query && ctx.query.access_token) {
-      if (token) {
-        return respond(400, {
-          message: 'Multiple tokens found.'
-        }, ctx)
-      }
-      token = ctx.query.access_token
-    }
+    const token = ctx.request.token
 
     if (!token) {
       return respond(400, {

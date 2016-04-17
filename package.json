@@ -18,6 +18,7 @@
   },
   "dependencies": {
     "koa": "^2.0.0",
+    "koa-bearer-token": "^0.1.2",
     "koa-bodyparser": "^3.0.0",
     "koa-compress": "^2.0.0",
     "koa-conditional-get": "^2.0.0",
@@ -30,6 +31,7 @@
     "koa-generic-session-mongo": "^0.2.5",
     "koa-json": "^2.0.0",
     "koa-json-error": "^3.0.0",
+    "koa-logger": "^2.0.0",
     "koa-mongo-error": "^1.0.0",
     "koa-passport": "^2.1.0",
     "koa-router": "^7.0.1",

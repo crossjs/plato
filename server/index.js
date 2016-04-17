@@ -1,4 +1,5 @@
 import Koa from 'koa'
+import logger from 'koa-logger'
 // import convert from 'koa-convert'
 // import historyApiFallback from 'koa-connect-history-api-fallback'
 import conditional from 'koa-conditional-get'
@@ -8,7 +9,7 @@ import favicon from 'koa-favicon'
 import serve from 'koa-static'
 // import error from 'koa-error'
 import bodyParser from 'koa-bodyparser'
-// import json from 'koa-json'
+import bearerToken from 'koa-bearer-token'
 import _debug from 'debug'
 import config from '../config'
 import mongo from './db/mongo'
@@ -21,6 +22,7 @@ const paths = config.utils_paths
 
 // Koa application is now a class and requires the new operator.
 const app = new Koa()
+app.use(logger())
 
 // This rewrites all routes requests to the root /index.html file
 // (ignoring file requests). If you want to implement isomorphic
@@ -35,9 +37,9 @@ const app = new Koa()
 //   store: new MongoStore()
 // })))
 
-// bodyParser && json
+// bodyParser && bearerToken
 app.use(bodyParser())
-// app.use(json())
+app.use(bearerToken())
 
 // etag works together with conditional-get
 app.use(conditional())
@@ -77,5 +79,5 @@ app.listen(server_port, server_host, err => {
     debug(err)
     return
   }
-  debug('Server is now running at ' + server_host + ':' + server_port + '.')
+  debug('Server is now running at %s:%s.', server_host, server_port)
 })
