@@ -1,0 +1,8 @@
+.ui-grid.ui-grid-app-guest {
+  [data-key="access"],
+  [data-key="name"] {
+    span {
+      max-width: initial;
+    }
+  }
+}

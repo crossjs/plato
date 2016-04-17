@@ -1,0 +1,86 @@
+body, h1, h2, h3, h4, h5, h6, p, dl, dd, form, ul, ol, pre, blockquote, textarea, input, figure {
+  margin: 0;
+}
+
+ul, ol, th, td, button, textarea, input {
+  padding: 0;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+article, footer, header, nav, section {
+  display: block;
+}
+
+button, input, textarea {
+  outline: none;
+}
+
+:-ms-input-placeholder {
+  color: color(var(--white) lightness(-40%));
+}
+
+html {
+  height: 100%;
+  /*visibility: hidden;*/
+  overflow: hidden;
+  font: 1.25em/1.5 Tahoma, Arial, Helvetica, "Microsoft YaHei", "宋体", sans-serif;
+
+  /*&.visible {*/
+    /*visibility: visible;*/
+  /*}*/
+}
+
+body {
+  height: 100%;
+  font-size: 0.7rem;
+  color: color(var(--black) lightness(20%));
+  background-color: color(var(--white) lightness(-10%));
+
+  ::-webkit-scrollbar {
+    width: 0.3rem;
+    height: 0.3rem;
+    background-color: $scrollbar_color;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: $scrollbar_thumb_color;
+  }
+  ::-webkit-scrollbar-button {
+    height: 0;
+    width: 0;
+    background-color: transparent;
+  }
+}
+
+input, textarea, keygen, select, button {
+  font: 0.7rem/1.5 Tahoma, Arial, Helvetica, "Microsoft YaHei", "宋体", sans-serif;
+  color: color(var(--black) lightness(20%));
+}
+
+code, kbd, pre, samp {
+  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+pre code {
+  padding: 0;
+  font-size: inherit;
+  color: inherit;
+  white-space: pre-wrap;
+  background-color: transparent;
+  border-radius: 0;
+}
+
+a {
+  color: color(var(--black) lightness(+20%));
+  text-decoration: underline;
+
+  &:hover {
+    text-decoration: none;
+  }
+}

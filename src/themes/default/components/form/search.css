@@ -1,0 +1,42 @@
+.ui-form-search {
+  padding: 0;
+  max-width: 48rem;
+
+  .ui-form-items {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .ui-form-item {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0;
+
+    .ui-form-explain {
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
+
+  .ui-form-group {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0;
+  }
+
+  .ui-form-input {
+    display: inline-block;
+    vertical-align: middle;
+    width: auto;
+  }
+
+  .ui-form-buttons {
+    display: inline-block;
+    vertical-align: middle;
+    padding: 0;
+  }
+
+  .ui-form-button {
+    margin-right: 0;
+  }
+}

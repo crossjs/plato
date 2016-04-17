@@ -1,0 +1,72 @@
+.ui-form-grid {
+  $width: 1px;
+  $color: color($white lightness(-6%));
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  th {
+    font-weight: normal;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    text-align: center;
+    &:first-child {
+      border-right: $width solid $color;
+    }
+  }
+  td,
+  th {
+    padding: 0.25rem;
+    border-right: $width solid $color;
+    border-bottom: $width solid $color;
+    border-left-width: 0px;
+    border-top-width: 0px;
+    text-align: center;
+    &.numeric {
+      text-align: right;
+    }
+    &:last-child {
+      border-right-width: 0px;
+    }
+  }
+
+  thead {
+    th {
+      border-bottom: $width solid $color;
+    }
+  }
+
+  tfoot {
+    th, td {
+      border-top: $width solid $color;
+    }
+  }
+
+  tbody, tfoot {
+    tr:last-child {
+      th, td {
+        border-bottom-width: 0px;
+      }
+    }
+  }
+
+  thead th {
+    cursor: default;
+    border-bottom-width: 2px;
+  }
+
+  td {
+    text-align: center;
+    color: color($black lightness(50%));
+
+    input {
+      box-sizing: border-box;
+      width: 100%;
+      text-align: center;
+      border: none;
+    }
+  }
+
+}

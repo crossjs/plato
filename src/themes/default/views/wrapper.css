@@ -1,0 +1,9 @@
+#wrapper {
+  position: fixed;
+  z-index: 1;
+  box-sizing: border-box;
+  padding-top: $header_height;
+  padding-bottom: $footer_height;
+  height: 100%;
+  width: 100%;
+}

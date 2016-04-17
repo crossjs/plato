@@ -6,7 +6,7 @@ import {
   SET_BEARER,
   ADD_TOAST,
   DELETE_TOAST,
-  CLEAR_TOAST,
+  CLEAR_TOASTS,
   SET_USERS
 } from './constants'
 
@@ -44,7 +44,7 @@ const mutations = {
     state.toasts.$remove(toast)
   },
 
-  [CLEAR_TOAST] (state, toast) {
+  [CLEAR_TOASTS] (state) {
     state.toasts = []
   },
 

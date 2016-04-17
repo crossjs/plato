@@ -1,0 +1,156 @@
+@import '../utils/var';
+
+.ui-grid {
+  .content {
+    .more {
+      display: inline;
+    }
+    a,
+    span {
+      display: block;
+      vertical-align: inherit;
+      max-width: inherit;
+      white-space: normal;
+    }
+  }
+  .rdetail,
+  .rcontent,
+  p {
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .rcontent {
+    width: 300px;
+    margin-bottom: 10px;
+  }
+  .rcontent > div:first-child {
+    float: left;
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+  }
+  .rcontent > div:first-child img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: color($dark_blue lightness(+10%)) url('../images/a.png') no-repeat 50% 50%;
+    border-radius: 50%;
+  }
+  .rcontent > div:last-child {
+    overflow: hidden;
+  }
+  .light {
+    color: #999;
+  }
+  .rdetail .more {
+    color: #0071BD;
+    margin-left: 10px;
+  }
+}
+
+.ui-select-item-hover {
+  background: #f2f2f2;
+}
+
+.ui-dialog-content .footer {
+  text-align: left;
+}
+
+table {
+  word-break: break-all;
+}
+
+.report-page,
+.block-page,
+.delete-page,
+.keyword-page,
+.user-page,
+.comment-report-page,
+.comment-delete-page {
+  tr > td:nth-child(1) {
+    width: 5%;
+  }
+}
+
+.unit-page,
+.community-page {
+  tr > td:nth-child(1) {
+    width: 10%;
+  }
+}
+
+.report-page,
+.keyword-page,
+.unit-page,
+.community-page,
+.comment-report-page {
+  tr > td:nth-child(2) {
+    width: 60%;
+  }
+}
+
+.user-page {
+  tr > td:nth-child(2), tr > td:nth-child(4), tr > td:nth-child(5) {
+    width: 15%;
+  }
+  tr > td:nth-child(3) {
+    width: 25%;
+  }
+}
+
+.custom-ui-select {
+  overflow-y: auto;
+  max-height: 300px;
+}
+
+.user-page td[data-key="reason"] {
+  a {
+    display: inline-block;
+    width: 300px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+}
+
+.report-page td[data-key="content"] a,
+.delete-post-page td[data-key="content"] a,
+.delete-thread-page td[data-key="content"] a {
+  display: inline-block;
+  width: 300px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+/*
+.ui-grid-grid .content td span {
+  max-width: none;
+}
+*/
+/* add for microblog/block */
+.ui-grid .content a > p {
+  text-decoration: underline;
+  width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+}
+/* add for forum/allpost */
+.allpost-grid .content span,
+/*add for forum/post-mng/report */
+.report-page .content span,
+/*add for forum/post-mng/delete */
+.delete-post-page .content span,
+/*add for forum/post-mng/delete */
+.delete-thread-page .content span 
+ {
+  display: inline-block;
+  max-width: 15rem;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+
+

@@ -58,9 +58,9 @@ router.beforeEach(transition => {
 })
 
 router.afterEach(transition => {
-  if (transition.to.fullPath !== '/demo') {
-    window.scrollTo(0, 0)
-  }
+  // if (transition.to.fullPath !== '/demo') {
+  window.scrollTo(0, 0)
+  // }
 })
 
 router.start(App, 'app')

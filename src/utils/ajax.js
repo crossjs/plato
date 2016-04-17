@@ -24,6 +24,11 @@ function mutate (options) {
   return options
 }
 
+function inject (json) {
+  json._id = Date.now()
+  return json
+}
+
 const ajax = (url, options = {}) => {
   return fetch(url, mutate(options))
   .then(res => {
@@ -31,7 +36,7 @@ const ajax = (url, options = {}) => {
       return res
     } else {
       // global toast
-      res.json().then(json => store.dispatch('ADD_TOAST', json))
+      res.json().then(inject).then(json => store.dispatch('ADD_TOAST', json))
       throw res
     }
   })

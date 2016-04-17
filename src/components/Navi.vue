@@ -10,6 +10,9 @@
   </nav>
 </template>
 
+<script>
+</script>
+
 <style>
 .v-link-active {
   color: red;

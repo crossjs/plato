@@ -3,7 +3,7 @@ import {
 
   ADD_TOAST,
   DELETE_TOAST,
-  CLEAR_TOAST,
+  CLEAR_TOASTS,
 
   SET_USERS
 } from './constants'
@@ -14,7 +14,7 @@ export const setBearer = makeAction(SET_BEARER)
 // toasts
 export const addToast = makeAction(ADD_TOAST)
 export const deleteToast = makeAction(DELETE_TOAST)
-export const clearToast = makeAction(CLEAR_TOAST)
+export const clearToasts = makeAction(CLEAR_TOASTS)
 
 // users
 export const setUsers = makeAction(SET_USERS)

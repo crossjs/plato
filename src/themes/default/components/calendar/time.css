@@ -1,0 +1,20 @@
+.ui-calendar-time {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-top: 1px solid color($white lightness(-10%));
+  border-bottom: 1px solid color($white lightness(-10%));
+  text-align: center;
+
+  div {
+    display: inline-block;
+  }
+
+  input {
+    width: 1rem;
+    text-align: center;
+  }
+}
+
+.ui-calendar-time-delimiter {
+  display: inline-block;
+}

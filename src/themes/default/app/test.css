@@ -1,0 +1,19 @@
+.ui-test-auth,
+.ui-test-jump {
+  p {
+    margin: 0.5em;
+  }
+
+  a,
+  button {
+    margin: 0.5em;
+    padding: 0.5em 1em;
+    text-align: left;
+  }
+
+  a {
+    display: inline-block;
+    border: 1px solid silver;
+    border-radius: 2px;
+  }
+}

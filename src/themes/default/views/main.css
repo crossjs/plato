@@ -1,0 +1,13 @@
+.collapsed {
+  #main {
+    margin-left: 2.25rem;
+  }
+}
+
+#main {
+  padding: 0.5rem;
+  height: 100%;
+  overflow: auto;
+  box-sizing: border-box;
+  margin-left: $aside_width;
+}

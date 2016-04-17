@@ -1,0 +1,269 @@
+@import '../../utils/var';
+.ui-form {
+  font-size: 0.7rem;
+  padding: 1rem 0;
+
+  select {
+    padding: 4px;
+    min-height: 32px;
+    line-height: 22px;
+  }
+}
+
+.ui-form-input,
+.ui-form-textarea,
+.ui-form-static {
+  display: inline-block;
+  border: 1px solid color($black lightness(80%));
+  padding: 0.2rem 0.3rem;
+  width: 100%;
+  min-height: 1.6rem;
+  line-height: 1.1rem;
+  background-color: $white;
+  outline: none;
+  box-sizing: border-box;
+
+  &:hover,
+  &:focus {
+    border-color: $light_blue;
+  }
+
+  &[readonly] {
+    background-color: color($white lightness(-6%));
+  }
+
+  &[disabled] {
+    background-color: color($white lightness(-3%));
+  }
+
+  &[size] {
+    width: auto;
+  }
+}
+
+.pre-code {
+  .ui-form-input,
+  .ui-form-textarea,
+  .ui-form-static {
+    font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+  }
+}
+
+.ui-form-prefix,
+.ui-form-suffix {
+  display: inline-block;
+  border-top: 1px solid color($black lightness(80%));
+  border-bottom: 1px solid color($black lightness(80%));
+  padding: 0.2rem 0.3rem;
+  min-height: 1.6rem;
+  line-height: 1.1rem;
+  background-color: color($black lightness(90%));
+  outline: none;
+  box-sizing: border-box;
+}
+
+.ui-form-prefix {
+  border-left: 1px solid color($black lightness(80%));
+}
+
+.ui-form-suffix {
+  border-right: 1px solid color($black lightness(80%));
+  margin-left: -0.2rem;
+}
+
+.ui-form-comment {
+  padding: 0.2rem 0.05rem;
+  color: color($white lightness(-40%));
+}
+
+.ui-form-input {
+  &::-ms-clear {
+    display: none;
+  }
+}
+
+.ui-form-textarea {
+  resize: vertical;
+}
+
+.ui-form-items {
+  label {
+    width: 7.25rem;
+    text-align: right;
+    position: absolute;
+    margin: 0 0 0 -7.5rem;
+    line-height: 32px;
+
+    &:after {
+      content: '：';
+    }
+  }
+
+  .radio-group,
+  .checkbox-group {
+    input {
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    label {
+      display: inline-block;
+      vertical-align: middle;
+      width: auto;
+      text-align: left;
+      position: static;
+      margin: 0 0.25rem 0 0;
+
+      &:after {
+        content: none;
+      }
+    }
+
+  }
+
+  .radio-pair,
+  .checkbox-pair {
+    margin: 0 0.25rem 0 0;
+    white-space: nowrap;
+  }
+}
+
+.ui-form-group {
+  margin: 0 2.5rem 0 7.5rem;
+  position: relative;
+  cursor: default;
+
+  &.required {
+    > label:before {
+      content: '* ';
+      color: $red;
+    }
+  }
+
+  .ui-form-item {
+    margin: 0 0 0.5rem;
+  }
+
+  > .ui-form-comment {
+    margin: -0.5rem 0 0;
+  }
+}
+
+.ui-form-item {
+  margin: 0 2.5rem 0.5rem 7.5rem;
+  position: relative;
+  cursor: default;
+
+  &.required {
+    > label:before {
+      content: '* ';
+      color: $red;
+    }
+  }
+
+  .placeholder {
+    font-size: 0.6rem;
+    position: absolute;
+    left: 0.5rem;
+    top: 32px;
+    height: 19px;
+  }
+
+  &.sep-v {
+    color: $white;
+    text-align: center;
+    line-height: 1.4em;
+
+    &:before {
+      content: '\20';
+      display: block;
+      width: 1.5em;
+      height: 1.5em;
+      background-color: color($white lightness(-10%));
+      position: absolute;
+      left: 50%;
+      margin-left: -0.75em;
+      z-index: -1;
+      border-radius: 50%;
+    }
+
+    &:after {
+      content: '\20';
+      display: block;
+      border-bottom: 1px solid color($white lightness(-10%));
+      margin-top: -0.75em;
+      position: relative;
+      z-index: -2;
+    }
+
+  }
+}
+
+.ui-form-items-inline {
+  display: inline-block;
+  margin-right: -0.25rem;
+  margin-left: -0.25rem;
+
+  .ui-form-item {
+    display: inline-block;
+    position: static;
+    /*flex: 1;*/
+    margin-right: 0.25rem;
+    margin-left: 0.25rem;
+
+    &.sep {
+      margin-right: 0;
+      margin-left: 0;
+    }
+  }
+}
+
+.ui-form-icon-item {
+  .ui-form-input,
+  .ui-form-textarea,
+  .ui-form-static {
+    padding-left: 24px;
+  }
+}
+
+.ui-form-icon {
+  position: absolute;
+  padding: 4px;
+  color: color($black lightness(50%));
+}
+
+.ui-form-buttons {
+  padding: 1rem 2.5rem 0 7.5rem;
+}
+
+.ui-form-button {
+  cursor: pointer;
+  margin: 0 0.5rem 0 0;
+  padding: 0.25rem 1.5rem;
+  height: 1.6rem;
+  line-height: 1.1rem;
+  color: $white;
+  background-color: $orange;
+  border: none;
+
+  &:hover {
+    background-color: color($orange lightness(-10%));
+  }
+}
+
+.button-form-cancel {
+  background-color: color($orange saturation(0%) lightness(-10%));
+
+  &:hover {
+    background-color: color($orange saturation(0%));
+  }
+}
+
+.ui-form-element-invisible {
+  position: absolute !important;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+  left: -9999px;
+  top: -9999px;
+  z-index: -1;
+}

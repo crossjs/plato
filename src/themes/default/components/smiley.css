@@ -1,0 +1,70 @@
+@import '../utils/var';
+
+.ui-smiley {
+  -webkit-user-select: none;
+  box-shadow: 0 0 0.15rem color($white lightness(-33%));
+
+  .ui-tabs-panel {
+    font-size: 0;
+    padding: 0.15rem;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background-color: $white;
+    height: 169px;
+    width: 361px;
+  }
+
+  .ui-tip-shadow {
+    padding: 1px;
+  }
+
+  .ui-tip-container {
+    padding: 0;
+  }
+}
+
+.ui-smiley-trigger {
+  display: inline-block;
+  margin-top: -0.5rem;
+  font-size: 1rem;
+  color: color($white lightness(-20%));
+  cursor: pointer;
+
+  &:hover {
+    color: color($white lightness(-33%));
+  }
+}
+
+.ui-smiley-trigger-active {
+  color: $orange;
+
+  &:hover {
+    color: $orange;
+  }
+}
+
+.ui-selector {
+  border-top: 1px solid color($white lightness(-10%));
+  border-left: 1px solid color($white lightness(-10%));
+  width: 360px;
+
+  &.ui-selector-nmoji {
+    background: url('../images/nmoji-face.png') no-repeat;
+  }
+  &.ui-selector-emoji {
+    background: url('../images/emoji-face.png') no-repeat;
+  }
+}
+
+.ui-selector-option {
+  width: 23px;
+  height: 23px;
+  border-right: 1px solid color($white lightness(-10%));
+  border-bottom: 1px solid color($white lightness(-10%));
+  display: inline-block;
+  cursor: pointer;
+
+  &:hover {
+    background-color: color($orange alpha(20%));
+  }
+}

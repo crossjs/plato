@@ -1,0 +1,102 @@
+@font-face {
+  font-family: 'iconfont';
+  src: url('../fonts/iconfont.woff') format('woff');
+}
+
+.iconfont {
+  &:before {
+    font-family: 'iconfont';
+    font-style: normal;
+    font-size: 120%;
+    margin-right: 0.3em;
+  }
+}
+
+.iconfont-loading {
+  &:before {
+    content: '\e606';
+  }
+}
+
+.iconfont-add {
+  &:before {
+    content: '\e618';
+  }
+}
+
+.iconfont-del,
+.iconfont-delete {
+  &:before {
+    content: '\e623';
+  }
+}
+
+.iconfont-edit {
+  &:before {
+    content: '\e61e';
+  }
+}
+
+/* for nd-upload */
+.iconfont-download {
+  &:before {
+    content: '\e627';
+  }
+}
+
+/* for nd-upload */
+.iconfont-remove {
+  &:before {
+    content: '\e625';
+  }
+}
+
+.iconfont-check {
+  &:before {
+    content: '\e62c';
+  }
+}
+
+.iconfont-visibleStrategy {
+  &:before {
+    content: '\e60a';
+  }
+}
+.iconfont-area {
+  &:before {
+    content: '\e642';
+  }
+}
+.iconfont-comment {
+  &:before {
+    content: '\e615';
+  }
+}
+.iconfont-task {
+  &:before {
+    content: '\e648';
+  }
+}
+.iconfont-source {
+  &:before {
+    content: '\e631';
+  }
+}
+
+.iconfont-topic {
+  &:before {
+    content: '\e61f';
+  }
+}
+
+.iconfont-voting {
+  &:before {
+    content: '\e657';
+  }
+}
+
+.iconfont-news {
+  &:before {
+    content: '\e644';
+  }
+}

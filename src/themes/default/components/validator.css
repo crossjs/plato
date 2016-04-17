@@ -1,0 +1,23 @@
+.ui-form-explain {
+  display: none;
+}
+
+.ui-form-item-error {
+  .ui-form-input,
+  .ui-form-textarea {
+    border-color: $red;
+  }
+
+  .ui-form-prefix,
+  .ui-form-suffix {
+    border-color: $red;
+  }
+
+  .ui-form-explain {
+    display: inline-block;
+    padding: 0.2rem 0.05rem;
+    line-height: 22px;
+    color: $red;
+    background-color: $white;
+  }
+}

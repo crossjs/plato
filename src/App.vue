@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <div class="container">
     <toast></toast>
     <navi></navi>
-    <router-view class="view" transition="view-transition" transition-mode="out-in" keep-alive></router-view>
+    <router-view class="router-view" transition="router-view-transition" transition-mode="out-in" keep-alive></router-view>
   </div>
 </template>
 
@@ -26,18 +26,26 @@ export default {
 </script>
 
 <style>
-body {
-  font-family: Helvetica, sans-serif;
-  background-color: #fbf9fe;
-  font-size: 1.5rem;
+@import "index";
+.container {
+  position: fixed;
+  z-index: 1;
+  box-sizing: border-box;
+  padding-top: var(--header_height);
+  padding-bottom: var(--footer_height);
+  height: 100%;
+  width: 100%;
 }
-.view {
+
+.router-view {
   transition: all .5s ease;
 }
-.view-transition-enter, .view-transition-leave {
+
+.router-view-transition-enter, .router-view-transition-leave {
   opacity: 0;
-  transform: translate3d(10px, 0, 0);
+  transform: translate3d(1rem, 0, 0);
 }
+
 [v-cloak] {
   display: none;
 }

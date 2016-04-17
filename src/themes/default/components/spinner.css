@@ -1,0 +1,52 @@
+/*from http://www.css-spinners.com/spinner/spinner*/
+
+@keyframes ui-spinner {
+  from {
+    transform: rotateZ(0deg);
+  }
+  to {
+    transform: rotateZ(360deg);
+  }
+}
+
+.ui-spinner-small {
+  $color: color(#003 alpha(30%));
+  animation: ui-spinner 1500ms infinite linear;
+  border-radius: 0.5em;
+  box-shadow:
+    $color 0.35rem 0 0 0,
+    $color 0.25rem 0.25rem 0 0,
+    $color 0 0.35rem 0 0,
+    $color -0.25rem 0.25rem 0 0,
+    $color -0.35rem 0 0 0,
+    $color -0.25rem -0.25rem 0 0,
+    $color 0 -0.35rem 0 0,
+    $color 0.25rem -0.25rem 0 0;
+  display: inline-block;
+  font-size: 0.5rem;
+  width: 0.2rem;
+  height: 0.2rem;
+  overflow: hidden;
+  text-indent: 100%;
+}
+
+.ui-spinner-large {
+  $color: color(#003 alpha(30%));
+  animation: ui-spinner 1500ms infinite linear;
+  border-radius: 0.5em;
+  box-shadow:
+    $color 0.7rem 0 0 0,
+    $color 0.5rem 0.5rem 0 0,
+    $color 0 0.7rem 0 0,
+    $color -0.5rem 0.5rem 0 0,
+    $color -0.7rem 0 0 0,
+    $color -0.5rem -0.5rem 0 0,
+    $color 0 -0.7rem 0 0,
+    $color 0.5rem -0.5rem 0 0;
+  display: inline-block;
+  font-size: 0.5rem;
+  width: 0.3rem;
+  height: 0.3rem;
+  overflow: hidden;
+  text-indent: 100%;
+}

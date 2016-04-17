@@ -1,0 +1,43 @@
+$calendar_width: 238px;
+
+.ui-calendar {
+  .ui-tip-container {
+    padding: 0;
+  }
+}
+
+.ui-calendar-date,
+.ui-calendar-month,
+.ui-calendar-year {
+  border: none;
+  box-shadow: none;
+}
+
+.ui-calendar-panel {
+  text-align: center;
+  border-bottom: 1px solid color($white lightness(-10%));
+  @mixin clearfix;
+
+  .month,
+  .year {
+    width: 25%;
+  }
+}
+
+.ui-calendar-container {
+  text-align: center;
+}
+
+.ui-calendar-control {
+  display: inline;
+  display: inline-block;
+  float: left;
+  width: 12.5%;
+  *width: 29px;
+  padding: 2px 0;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #efefee;
+  }
+}

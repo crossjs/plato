@@ -1,0 +1,50 @@
+@import '../utils/var';
+
+//置顶排序
+.ui-top-list{
+  margin-top: 0.5rem;
+}
+.ui-top-sort .ui-dialog-message{
+  font-size: 0.7rem;
+  color: color($red blackness(6%));
+  font-weight: bold;
+  text-align: center;
+}
+
+.top-items {
+  border-collapse: collapse;
+  width: 100%;
+  display: table;
+  color: $black;
+  font-weight: normal;
+//  font-size: 0.7rem;
+  border: 1px solid #f0f0f0;
+
+  dt,dd{
+    display: table-row;
+    padding: 0.5rem;
+  }
+  dd {
+
+    &:nth-child(odd) {
+      background-color: color($white blackness(30%));
+    }
+    &:hover {
+      background-color: color($white blackness(60%));
+    }
+    &.current {
+      background-color: #FFDA95;
+      cursor: move;
+    }
+  }
+
+  span {
+    display: table-cell;
+    border-right: 1px solid #f0f0f0;
+    border-bottom: 1px solid #f0f0f0;
+    border-left-width: 0;
+    border-top-width: 0;
+    padding: 0.25rem;
+  }
+
+}

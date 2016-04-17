@@ -1,0 +1,21 @@
+#bread {
+  color: color($white lightness(-20%));
+  min-height: 1em;
+  margin: -0.5rem -0.5rem 0.5rem;
+  padding: 0.5rem;
+  background-color: color($white lightness(-5%));
+  border-bottom: 1px solid color($white lightness(-10%));
+
+  a {
+    color: color($white lightness(-60%));
+
+    &:hover {
+      color: color($orange saturation(0%) lightness(-20%));
+      text-decoration: none;
+    }
+  }
+
+  span {
+    color: color($white lightness(-40%));
+  }
+}

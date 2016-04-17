@@ -1,0 +1,202 @@
+@import '../utils/var';
+
+.ui-grid .export-progress {
+  width: 0;
+  height: 0.25rem;
+  background-color: $orange;
+  background-size: 2rem 2rem;
+  @include gradient-striped(rgba(255, 255, 255, .5));
+  @include animation(progress-msg-stripes 2s linear infinite);
+  &.active {
+    @include transition(width 0.6s ease);
+  }
+}
+
+[name="search-form"] {
+  position: absolute;
+  right: 0.5rem;
+}
+
+.emptyText {
+  text-align: center;
+  font-size: 0.8rem;
+  padding-top: 2rem;
+  &:before {
+    content: '';
+    display: block;
+    margin: 0.5rem auto;
+    width: 193px;
+    height: 228px;
+    background: url('../images/guide.png');
+  }
+}
+
+.ui-grid-grid td[data-key="file"] .downloadLink {
+  color: invert($orange);
+  text-decoration: none;
+  &:hover {
+    color: $orange;
+  }
+}
+
+[name="grid-edit-board-form"] {
+  .ui-form-static {
+    border-width: 0;
+  }
+}
+
+[data-group="timeline-timescope"] {
+  .ui-form-input[readonly] {
+    background-color: initial;
+  }
+  .ui-form-explain {
+    top: rem(-3.1);
+  }
+}
+
+.ui-grid-view {
+  .value {
+    word-break: break-all;
+    word-wrap: break-word;
+  }
+}
+
+
+.mblog-select-dialog {
+  .ui-dialog-message {
+    padding-bottom: 0;
+    height: 25.9rem;
+    max-height: 25.9rem;
+
+    form[name=search-mblog] {
+      max-width: initial;
+      position: relative;
+      padding: 0;
+
+      .ui-form-input {
+        width: 30rem;
+      }
+
+      .ui-form-explain {
+        right: 7.2rem;
+      }
+
+      .ui-form-buttons {
+        padding: 0;
+        right: 3.5rem;
+        top: 0;
+        position: absolute;
+      }
+    }
+
+    .mb-grid {
+      .card {
+        width: 15.5rem;
+        .card-wrapper {
+          cursor: pointer;
+          background-color: color($white lightness(-2));
+          border-color: color($white lightness(-5));
+
+          [data-role=cell-key] {
+            display: none;
+          }
+
+          [data-key=uid] {
+            position: relative;
+            img.avatar {
+              width: 2.5rem;
+              height: 2.5rem;
+              border-radius: 1.25rem;
+              background: color($dark_blue lightness(10)) url('../images/a.png') no-repeat 50% 50%;
+            }
+            .name-label {
+              position: absolute;
+              left: 3rem;
+              top: 0.15rem;
+            }
+          }
+
+          [data-key=created_at] {
+            position: absolute;
+            top: 2rem;
+            left: 3.5rem;
+            color: color($white lightness(-30));
+          }
+
+          [data-key=content]{
+            height: 2.5rem;
+            padding: 0.5rem 0;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 13.5rem;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            display: -webkit-box;
+          }
+        }
+
+        &.selected-mblog .card-wrapper {
+          background-color: $bg_success;
+
+          &:after {
+            font-family: 'iconfont';
+            content: '\e62c';
+            color: $text_success;
+            position: absolute;
+            right: 0.5rem;
+            top: 0.5rem;
+            font-size: 24px;
+            width: 1.4rem;
+          }
+        }
+      }
+      .content {
+        margin: 0;
+      }
+      .footer {
+        position: absolute;
+        bottom: 0;
+      }
+    }
+
+    &.placeholder-image{
+      background: url('../images/guide.png') no-repeat center;
+    }
+  }
+
+  .ui-dialog-foot [disabled] {
+    a, a:hover {
+      color: grayscale($orange);
+      background-color: lighten(grayscale($orange), 10);
+      cursor: default;
+    }
+
+  }
+
+}
+
+.top-mb-card {
+  padding: 0.5rem;
+  border: 1px solid  color($white lightness(-10));
+  margin-bottom: 0.5rem;
+
+  .avatar {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 1.25rem;
+    background: color($dark_blue lightness(10)) url('../images/a.png') no-repeat 50% 50%;
+  }
+
+  .name-label {
+    position: absolute;
+    top: 0.65rem;
+    left: 3.5rem;
+  }
+
+  .create-time {
+    position: absolute;
+    top: 2rem;
+    left: 3.5rem;
+    color: color($white lightness(-30));
+  }
+}

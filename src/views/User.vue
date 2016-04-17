@@ -9,16 +9,21 @@ import { GET } from 'utils/ajax'
 import { bearer, users } from 'vx/getters'
 import { setUsers } from 'vx/actions'
 export default {
-  // data () {
-  //   return {
-  //     users: []
+  // created () {
+  //   if (this.bearer) {
+  //     this.fetchUsers()
+  //   } else {
+  //     this.$route.router.go('/')
   //   }
   // },
-  created () {
-    if (this.bearer) {
-      this.fetchUsers()
-    } else {
-      this.$route.router.go('/')
+  route: {
+    activate (transition) {
+      if (this.bearer) {
+        transition.next()
+        this.fetchUsers()
+      } else {
+        this.$route.router.go('/')
+      }
     }
   },
   methods: {

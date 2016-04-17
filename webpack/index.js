@@ -95,10 +95,11 @@ webpackConfig.module.loaders = [
     test: /\.html$/,
     loader: 'vue-html'
   },
-  {
-    test: /\.css$/,
-    loaders: ['vue-style', 'css?sourceMap', 'postcss']
-  },
+  // {
+  //   test: /\.css$/,
+  //   // loaders: ['vue-style', 'css?sourceMap', 'postcss']
+  //   loaders: ['vue-style', 'css', 'postcss']
+  // },
   {
     test: /\.(png|jpg|gif|svg|woff2?|eot|ttf)(\?.*)?$/,
     loader: 'url',
@@ -110,20 +111,26 @@ webpackConfig.module.loaders = [
 ]
 
 webpackConfig.vue = {
-  loaders: ['vue-style', 'css?sourceMap', 'postcss']
-}
-
-webpackConfig.postcss = pack => {
-  // use webpack context
-  return [
-    require('postcss-import')({
-      addDependencyTo: pack
-    }),
-    require('postcss-custom-properties')({
-      variables: require('./variables')
-    }),
-    require('autoprefixer')
-  ]
+  // loaders: ['vue-style', 'css?sourceMap', 'postcss']
+  loaders: ['vue-style', 'css', 'postcss'],
+  postcss: pack => {
+    // use webpack context
+    return [
+      require('postcss-import')({
+        root: paths.src('themes/default'),
+        path: paths.src('themes/default'),
+        addDependencyTo: pack
+      }),
+      require('postcss-url')(),
+      // require('postcss-custom-properties')({
+        // variables: require('./variables')
+      // }),
+      require('postcss-cssnext')(),
+      require('postcss-browser-reporter')(),
+      require('postcss-reporter')()
+    ]
+  },
+  autoprefixer: false
 }
 
 webpackConfig.eslint = {

@@ -1,16 +1,18 @@
 <template>
   <div>
-    <form v-on:submit.prevent="login">
-      <div>
-        <label>Username:</label>
-        <input type="text" name="username" v-model="username">
-      </div>
-      <div>
-        <label>Password:</label>
-        <input type="password" name="password" v-model="password">
-      </div>
-      <div>
-        <input type="submit" value="Log In">
+    <form class="ui-form ui-form-login" v-on:submit.prevent="login" novalidate>
+      <ul class="ui-form-items">
+        <li class="ui-form-item ui-form-icon-item required">
+          <span class="ui-form-icon iconfont iconfont-user-o"></span>
+          <input class="ui-form-input" type="text" name="username" v-model="username" value="" placeholder="帐号" maxlength="71" required="required" pattern="^\w{2,20}(@\w{2,50})?$" data-display="帐号" data-errormessage-pattern="格式：用户@组织" data-widget-cid="widget-6">
+        <div class="ui-form-explain"></div></li>
+        <li class="ui-form-item ui-form-icon-item required">
+          <span class="ui-form-icon iconfont iconfont-lock-o"></span>
+          <input class="ui-form-input" type="password" name="password" v-model="password" value="" placeholder="密码" maxlength="32" required="required" data-display="密码" data-widget-cid="widget-7">
+        <div class="ui-form-explain"></div></li>
+      </ul>
+      <div class="ui-form-buttons">
+        <button class="ui-form-button button-form-submit" type="submit">登录</button>
       </div>
     </form>
     <ul class="errors">
@@ -108,4 +110,6 @@ export default {
 </script>
 
 <style>
+/*@import "../themes/default/components/form"*/
+/*@import "../themes/default/app/login"*/
 </style>

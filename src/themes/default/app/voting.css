@@ -1,0 +1,43 @@
+.ui-grid {
+  .card {
+    width: 240px;
+
+    .imgbox {
+      width: 208px;
+      height: 208px;
+      overflow: hidden;
+      margin-bottom: 10px;
+      line-height: 208px;
+      box-shadow: 1px 1px 3px #ddd;
+    }
+    .imgbox img {
+      width: 100%;
+      vertical-align: middle;
+    }
+  }
+  [data-key=dentry_id] [data-role=cell-key]:after, [data-key=content] [data-role=cell-key]:after {
+    content: '';
+  }
+}
+
+.template-add li.ui-form-item {
+  margin: 0 50px 10px 180px;
+}
+.template-add label{
+  width: 190px;
+  margin: 0 0 0 -195px;
+}
+.template-add #grid-put-item-columns,
+#grid-put-item-columnWidth,
+#grid-add-item-columns,
+#grid-add-item-columnWidth{
+  width: 120px;
+}
+
+.ui-dialog-head a{
+  color: red;
+  margin-left: 10px;
+}
+.ui-dialog-title{
+  display: inline-block;
+}
