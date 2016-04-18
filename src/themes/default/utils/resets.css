@@ -27,31 +27,23 @@ button, input, textarea {
 }
 
 html {
-  height: 100%;
-  /*visibility: hidden;*/
-  overflow: hidden;
   font: 1.25em/1.5 Tahoma, Arial, Helvetica, "Microsoft YaHei", "宋体", sans-serif;
-
-  /*&.visible {*/
-    /*visibility: visible;*/
-  /*}*/
 }
 
 body {
-  height: 100%;
   font-size: 0.7rem;
   color: color(black lightness(20%));
   background-color: color(white lightness(-10%));
 
-  ::-webkit-scrollbar {
+  & ::-webkit-scrollbar {
     width: 0.3rem;
     height: 0.3rem;
-    background-color: $scrollbar_color;
+    background-color: var(--scrollbar_color);
   }
-  ::-webkit-scrollbar-thumb {
-    background-color: $scrollbar_thumb_color;
+  & ::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbar_thumb_color);
   }
-  ::-webkit-scrollbar-button {
+  & ::-webkit-scrollbar-button {
     height: 0;
     width: 0;
     background-color: transparent;

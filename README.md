@@ -2,6 +2,14 @@
 
 > A simple platform built with koa and vue
 
+## Requires
+
+- koa
+- vue
+- mongodb
+- webpack
+- postcss
+
 ## Build Setup
 
 ``` bash

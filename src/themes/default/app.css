@@ -12,6 +12,10 @@
   background-color: color(var(--orange) hue(+180deg) lightness(-50%));
 }
 
+.content {
+  padding: 1rem;
+}
+
 .footer {
   clear: both;
   color: white;
@@ -22,8 +26,6 @@
 
 .router-view {
   transition: all .5s ease;
-  padding: 1rem;
-  box-sizing: border-box;
 }
 
 .router-view-transition-enter, .router-view-transition-leave {

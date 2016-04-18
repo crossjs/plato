@@ -1,12 +1,5 @@
 .ui-form {
-  font-size: 0.7rem;
   padding: 1rem 0;
-
-  select {
-    padding: 4px;
-    min-height: 32px;
-    line-height: 22px;
-  }
 }
 
 .ui-form-input,
@@ -24,7 +17,7 @@
 
   &:hover,
   &:focus {
-    border-color:  color(var(--orange) hue(+180deg));
+    border-color:  color(var(--orange) hue(+180deg) lightness(-30%));
   }
 
   &[readonly] {
@@ -37,14 +30,6 @@
 
   &[size] {
     width: auto;
-  }
-}
-
-.pre-code {
-  .ui-form-input,
-  .ui-form-textarea,
-  .ui-form-static {
-    font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
   }
 }
 
@@ -86,7 +71,7 @@
 }
 
 .ui-form-items {
-  label {
+  & label {
     width: 7.25rem;
     text-align: right;
     position: absolute;
@@ -97,142 +82,39 @@
       content: '：';
     }
   }
-
-  .radio-group,
-  .checkbox-group {
-    input {
-      display: inline-block;
-      vertical-align: middle;
-    }
-
-    label {
-      display: inline-block;
-      vertical-align: middle;
-      width: auto;
-      text-align: left;
-      position: static;
-      margin: 0 0.25rem 0 0;
-
-      &:after {
-        content: none;
-      }
-    }
-
-  }
-
-  .radio-pair,
-  .checkbox-pair {
-    margin: 0 0.25rem 0 0;
-    white-space: nowrap;
-  }
-}
-
-.ui-form-group {
-  margin: 0 2.5rem 0 7.5rem;
-  position: relative;
-  cursor: default;
-
-  &.required {
-    > label:before {
-      content: '* ';
-      color: $red;
-    }
-  }
-
-  .ui-form-item {
-    margin: 0 0 0.5rem;
-  }
-
-  > .ui-form-comment {
-    margin: -0.5rem 0 0;
-  }
 }
 
 .ui-form-item {
-  margin: 0 2.5rem 0.5rem;
+  margin: 0 0 0.5rem;
   position: relative;
   cursor: default;
 
   &.required {
-    > label:before {
+    & > label:before {
       content: '* ';
       color: $red;
-    }
-  }
-
-  .placeholder {
-    font-size: 0.6rem;
-    position: absolute;
-    left: 0.5rem;
-    top: 32px;
-    height: 19px;
-  }
-
-  &.sep-v {
-    color: white;
-    text-align: center;
-    line-height: 1.4em;
-
-    &:before {
-      content: '\20';
-      display: block;
-      width: 1.5em;
-      height: 1.5em;
-      background-color: color(white lightness(-10%));
-      position: absolute;
-      left: 50%;
-      margin-left: -0.75em;
-      z-index: -1;
-      border-radius: 50%;
-    }
-
-    &:after {
-      content: '\20';
-      display: block;
-      border-bottom: 1px solid color(white lightness(-10%));
-      margin-top: -0.75em;
-      position: relative;
-      z-index: -2;
-    }
-
-  }
-}
-
-.ui-form-items-inline {
-  display: inline-block;
-  margin-right: -0.25rem;
-  margin-left: -0.25rem;
-
-  .ui-form-item {
-    display: inline-block;
-    position: static;
-    /*flex: 1;*/
-    margin-right: 0.25rem;
-    margin-left: 0.25rem;
-
-    &.sep {
-      margin-right: 0;
-      margin-left: 0;
     }
   }
 }
 
 .ui-form-icon-item {
-  .ui-form-input,
+  & .ui-form-input,
   .ui-form-textarea,
   .ui-form-static {
-    padding-left: 24px;
+    padding-left: 1.2rem;
   }
 }
 
 .ui-form-icon {
   position: absolute;
-  padding: 4px;
+  left: 1px;
+  top: 1px;
+  padding: 0.25rem;
   color: color(black lightness(50%));
 }
 
 .ui-form-buttons {
-  padding: 1rem 2.5rem 0;
+  padding: 1rem 0 0;
 }
 
 .ui-form-button {
@@ -248,6 +130,10 @@
   &:hover {
     background-color: color(var(--orange) lightness(-10%));
   }
+
+  &[disabled] {
+    background-color: color(var(--orange) saturation(0%));
+  }
 }
 
 .button-form-cancel {
@@ -258,11 +144,16 @@
   }
 }
 
-.ui-form-element-invisible {
-  position: absolute !important;
-  clip: rect(1px 1px 1px 1px);
-  clip: rect(1px, 1px, 1px, 1px);
-  left: -9999px;
-  top: -9999px;
-  z-index: -1;
+.ui-form-errors {
+  padding: 0 0 1rem;
+}
+
+.ui-form-error {
+  margin: 0 0 0.5rem;
+  padding: 0.3rem 0.3rem 0.3rem 0.8rem;
+  cursor: default;
+  color: var(--text_warning);
+  background-color: var(--bg_warning);
+  list-style-type: square;
+  list-style-position: inside;
 }

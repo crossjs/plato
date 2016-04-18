@@ -5,7 +5,9 @@
       <logo></logo>
       <navi></navi>
     </header>
-    <router-view class="router-view" transition="router-view-transition" transition-mode="out-in" keep-alive></router-view>
+    <section class="content">
+      <router-view class="router-view" transition="router-view-transition" transition-mode="out-in" keep-alive></router-view>
+    </section>
     <footer class="footer">
       &copy; 2016
     </footer>
