@@ -1,4 +1,3 @@
-@import '../../utils/var';
 .ui-form {
   font-size: 0.7rem;
   padding: 1rem 0;
@@ -14,26 +13,26 @@
 .ui-form-textarea,
 .ui-form-static {
   display: inline-block;
-  border: 1px solid color($black lightness(80%));
+  border: 1px solid color(black lightness(80%));
   padding: 0.2rem 0.3rem;
   width: 100%;
   min-height: 1.6rem;
   line-height: 1.1rem;
-  background-color: $white;
+  background-color: white;
   outline: none;
   box-sizing: border-box;
 
   &:hover,
   &:focus {
-    border-color: $light_blue;
+    border-color:  color(var(--orange) hue(+180deg));
   }
 
   &[readonly] {
-    background-color: color($white lightness(-6%));
+    background-color: color(white lightness(-6%));
   }
 
   &[disabled] {
-    background-color: color($white lightness(-3%));
+    background-color: color(white lightness(-3%));
   }
 
   &[size] {
@@ -52,28 +51,28 @@
 .ui-form-prefix,
 .ui-form-suffix {
   display: inline-block;
-  border-top: 1px solid color($black lightness(80%));
-  border-bottom: 1px solid color($black lightness(80%));
+  border-top: 1px solid color(black lightness(80%));
+  border-bottom: 1px solid color(black lightness(80%));
   padding: 0.2rem 0.3rem;
   min-height: 1.6rem;
   line-height: 1.1rem;
-  background-color: color($black lightness(90%));
+  background-color: color(black lightness(90%));
   outline: none;
   box-sizing: border-box;
 }
 
 .ui-form-prefix {
-  border-left: 1px solid color($black lightness(80%));
+  border-left: 1px solid color(black lightness(80%));
 }
 
 .ui-form-suffix {
-  border-right: 1px solid color($black lightness(80%));
+  border-right: 1px solid color(black lightness(80%));
   margin-left: -0.2rem;
 }
 
 .ui-form-comment {
   padding: 0.2rem 0.05rem;
-  color: color($white lightness(-40%));
+  color: color(white lightness(-40%));
 }
 
 .ui-form-input {
@@ -150,7 +149,7 @@
 }
 
 .ui-form-item {
-  margin: 0 2.5rem 0.5rem 7.5rem;
+  margin: 0 2.5rem 0.5rem;
   position: relative;
   cursor: default;
 
@@ -170,7 +169,7 @@
   }
 
   &.sep-v {
-    color: $white;
+    color: white;
     text-align: center;
     line-height: 1.4em;
 
@@ -179,7 +178,7 @@
       display: block;
       width: 1.5em;
       height: 1.5em;
-      background-color: color($white lightness(-10%));
+      background-color: color(white lightness(-10%));
       position: absolute;
       left: 50%;
       margin-left: -0.75em;
@@ -190,7 +189,7 @@
     &:after {
       content: '\20';
       display: block;
-      border-bottom: 1px solid color($white lightness(-10%));
+      border-bottom: 1px solid color(white lightness(-10%));
       margin-top: -0.75em;
       position: relative;
       z-index: -2;
@@ -229,11 +228,11 @@
 .ui-form-icon {
   position: absolute;
   padding: 4px;
-  color: color($black lightness(50%));
+  color: color(black lightness(50%));
 }
 
 .ui-form-buttons {
-  padding: 1rem 2.5rem 0 7.5rem;
+  padding: 1rem 2.5rem 0;
 }
 
 .ui-form-button {
@@ -242,20 +241,20 @@
   padding: 0.25rem 1.5rem;
   height: 1.6rem;
   line-height: 1.1rem;
-  color: $white;
-  background-color: $orange;
+  color: white;
+  background-color: var(--orange);
   border: none;
 
   &:hover {
-    background-color: color($orange lightness(-10%));
+    background-color: color(var(--orange) lightness(-10%));
   }
 }
 
 .button-form-cancel {
-  background-color: color($orange saturation(0%) lightness(-10%));
+  background-color: color(var(--orange) saturation(0%) lightness(-10%));
 
   &:hover {
-    background-color: color($orange saturation(0%));
+    background-color: color(var(--orange) saturation(0%));
   }
 }
 

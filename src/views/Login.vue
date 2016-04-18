@@ -4,21 +4,19 @@
       <ul class="ui-form-items">
         <li class="ui-form-item ui-form-icon-item required">
           <span class="ui-form-icon iconfont iconfont-user-o"></span>
-          <input class="ui-form-input" type="text" name="username" v-model="username" value="" placeholder="帐号" maxlength="71" required="required" pattern="^\w{2,20}(@\w{2,50})?$" data-display="帐号" data-errormessage-pattern="格式：用户@组织" data-widget-cid="widget-6">
-        <div class="ui-form-explain"></div></li>
+          <input class="ui-form-input" type="text" name="username" v-model="username" placeholder="帐号" maxlength="20" required>
+          <div class="ui-form-explain" v-show="!validation.username">不合法</div>
+        </li>
         <li class="ui-form-item ui-form-icon-item required">
           <span class="ui-form-icon iconfont iconfont-lock-o"></span>
-          <input class="ui-form-input" type="password" name="password" v-model="password" value="" placeholder="密码" maxlength="32" required="required" data-display="密码" data-widget-cid="widget-7">
-        <div class="ui-form-explain"></div></li>
+          <input class="ui-form-input" type="password" name="password" v-model="password" placeholder="密码" maxlength="20" required>
+          <div class="ui-form-explain" v-show="!validation.password">不合法</div>
+        </li>
       </ul>
       <div class="ui-form-buttons">
         <button class="ui-form-button button-form-submit" type="submit">登录</button>
       </div>
     </form>
-    <ul class="errors">
-      <li v-show="!validation.username">Name cannot be empty.</li>
-      <li v-show="!validation.password">Please provide a valid email address.</li>
-    </ul>
   </div>
 </template>
 
@@ -60,9 +58,7 @@ export default {
     },
     isValid () {
       const validation = this.validation
-      return Object.keys(validation).every(key => {
-        return validation[key]
-      })
+      return Object.keys(validation).every(key => validation[key])
     }
   },
 
@@ -110,6 +106,5 @@ export default {
 </script>
 
 <style>
-/*@import "../themes/default/components/form"*/
-/*@import "../themes/default/app/login"*/
+@import "views/login";
 </style>

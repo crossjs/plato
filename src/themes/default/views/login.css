@@ -1,0 +1,48 @@
+@import "utils/form";
+
+.iconfont-user-o {
+  &:before {
+    content: "\e601";
+  }
+}
+
+.iconfont-lock-o {
+  &:before {
+    content: "\e602";
+  }
+}
+
+.ui-form-login {
+  padding: 0.5rem;
+  .ui-form-buttons, .ui-form-item {
+    margin: 0 0 0.5rem 0;
+    padding: 0;
+  }
+  & .ui-form-input {
+    padding: 0.5rem 0.75rem;
+    min-height: 2.2rem;
+    font-size: 0.8rem;
+    padding-left: 30px;
+  }
+  & .ui-form-icon {
+    padding: 10px;
+  }
+  & .ui-form-button {
+    width: 100%;
+    height: 2.2rem;
+    padding: 0.5rem 1.5rem;
+    font-size: 0.9rem;
+    background-color: var(--orange);
+    &:hover {
+      background-color: color(var(--orange) lightness(-10%));
+    }
+  }
+  & .ui-form-explain {
+    padding: 0.5rem 0.75rem 0.5rem 0.5rem;
+    font-size: 0.8rem;
+    padding-right: 0;
+    position: absolute;
+    right: 0.75rem;
+    top: 1px;
+  }
+}
