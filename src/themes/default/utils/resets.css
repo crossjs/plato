@@ -23,7 +23,7 @@ button, input, textarea {
 }
 
 :-ms-input-placeholder {
-  color: color(var(--white) lightness(-40%));
+  color: color(white lightness(-40%));
 }
 
 html {
@@ -40,8 +40,8 @@ html {
 body {
   height: 100%;
   font-size: 0.7rem;
-  color: color(var(--black) lightness(20%));
-  background-color: color(var(--white) lightness(-10%));
+  color: color(black lightness(20%));
+  background-color: color(white lightness(-10%));
 
   ::-webkit-scrollbar {
     width: 0.3rem;
@@ -60,7 +60,7 @@ body {
 
 input, textarea, keygen, select, button {
   font: 0.7rem/1.5 Tahoma, Arial, Helvetica, "Microsoft YaHei", "宋体", sans-serif;
-  color: color(var(--black) lightness(20%));
+  color: color(black lightness(20%));
 }
 
 code, kbd, pre, samp {
@@ -77,7 +77,7 @@ pre code {
 }
 
 a {
-  color: color(var(--black) lightness(+20%));
+  color: color(black lightness(+20%));
   text-decoration: underline;
 
   &:hover {

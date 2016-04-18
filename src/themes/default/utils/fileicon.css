@@ -1,7 +1,0 @@
-@each $icon in mpg, aac, aiff, avi, bmp, c, cpp, css, dat, dmg, doc, dotx, dwg, dxf, eps, exe, flv, gif, h, hpp, html, ics, iso, java, jpg, js, key, less, mid, mp3, mp4, ai, odf, ods, odt, otp, ots, ott, pdf, php, png, ppt, psd, py, qt, rar, rb, rtf, sass, scss, sql, tga, tgz, tiff, txt, unknown, wav, xls, xlsx, xml, yml, zip {
-  .icon-fileicon-$(icon) {
-    width: 48px;
-    height: 48px;
-    background: url('../sprites/fileicon/$(icon).png') no-repeat 0 0;
-  }
-}

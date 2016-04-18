@@ -16,7 +16,7 @@ const webpackConfig = {
   devtool: config.compiler_devtool,
   resolve: {
     root: paths.src(),
-    extensions: ['', '.css', '.js', '.vue'],
+    extensions: ['', '.css', '.js', '.json', '.vue'],
     alias: {},
     modulesDirectories: ['node_modules']
   },
@@ -122,9 +122,9 @@ webpackConfig.vue = {
         addDependencyTo: pack
       }),
       require('postcss-url')(),
-      // require('postcss-custom-properties')({
-        // variables: require('./variables')
-      // }),
+      require('postcss-custom-properties')({
+        variables: require(paths.src('themes/default/variables'))
+      }),
       require('postcss-cssnext')(),
       require('postcss-browser-reporter')(),
       require('postcss-reporter')()

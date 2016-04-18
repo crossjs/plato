@@ -15,19 +15,14 @@ export default {
     }
   },
 
-  created () {
-    this.logout()
-  },
+  // created () {
+  //   this.logout()
+  // },
 
   // methods
   methods: {
     logout () {
       if (!this.bearer) {
-        this.$route.router.go('/')
-        return
-      }
-      const { token, expires } = this.bearer
-      if (!token || expires < Date.now()) {
         this.setBearer(null)
         this.$route.router.go('/')
         return
@@ -37,6 +32,13 @@ export default {
         this.setBearer(null)
         this.$route.router.go('/')
       })
+    }
+  },
+
+  route: {
+    activate (transition) {
+      transition.next()
+      this.logout()
     }
   },
 

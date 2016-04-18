@@ -1,11 +1,13 @@
 import { STATUS_CODES } from 'http'
+// import _debug from 'debug'
 
 export default () => {
+  // const debug = _debug('koa:tools:error')
   return async (ctx, next) => {
     try {
       await next()
     } catch (err) {
-      ctx.app.emit('error', err, ctx);
+      ctx.app.emit('error', err, ctx)
 
       let message
 
@@ -13,13 +15,11 @@ export default () => {
       if (err.code === 11000 || err.code === 11001) {
         ctx.status = 409
         message = err.errmsg
-      }
-      // mongoose type and validation error
-      else if (err.name === 'CastError' || err.name === 'ValidationError') {
+      } else if (err.name === 'CastError' || err.name === 'ValidationError') {
+        // mongoose type and validation error
         ctx.status = 400
-      }
-      // others
-      else {
+      } else {
+        // others
         ctx.status = ctx.status || 500
         message = err.message
       }

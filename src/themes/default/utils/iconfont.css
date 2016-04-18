@@ -7,96 +7,32 @@
   &:before {
     font-family: 'iconfont';
     font-style: normal;
-    font-size: 120%;
+    line-height: inherit;
     margin-right: 0.3em;
+    -webkit-font-smoothing: antialiased;
+    /*-webkit-text-stroke-width: 0.2px;*/
+    -moz-osx-font-smoothing: grayscale;
   }
 }
 
-.iconfont-loading {
-  &:before {
-    content: '\e606';
-  }
+.iconfont-signup {
+  &:before { content: "\e607"; }
 }
-
-.iconfont-add {
-  &:before {
-    content: '\e618';
-  }
+.iconfont-users {
+  &:before { content: "\e605"; }
 }
-
-.iconfont-del,
-.iconfont-delete {
-  &:before {
-    content: '\e623';
-  }
+.iconfont-profile {
+  /*&:before { content: "\e603"; }*/
 }
-
-.iconfont-edit {
-  &:before {
-    content: '\e61e';
-  }
+.iconfont-logout {
+  &:before { content: "\e608"; }
 }
-
-/* for nd-upload */
-.iconfont-download {
-  &:before {
-    content: '\e627';
-  }
+.iconfont-login {
+  &:before { content: "\e600"; }
 }
-
-/* for nd-upload */
-.iconfont-remove {
-  &:before {
-    content: '\e625';
-  }
+.iconfont-about {
+  &:before { content: "\e60c"; }
 }
-
-.iconfont-check {
-  &:before {
-    content: '\e62c';
-  }
-}
-
-.iconfont-visibleStrategy {
-  &:before {
-    content: '\e60a';
-  }
-}
-.iconfont-area {
-  &:before {
-    content: '\e642';
-  }
-}
-.iconfont-comment {
-  &:before {
-    content: '\e615';
-  }
-}
-.iconfont-task {
-  &:before {
-    content: '\e648';
-  }
-}
-.iconfont-source {
-  &:before {
-    content: '\e631';
-  }
-}
-
-.iconfont-topic {
-  &:before {
-    content: '\e61f';
-  }
-}
-
-.iconfont-voting {
-  &:before {
-    content: '\e657';
-  }
-}
-
-.iconfont-news {
-  &:before {
-    content: '\e644';
-  }
+.iconfont-help {
+  /*&:before { content: "\e605"; }*/
 }

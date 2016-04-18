@@ -1,0 +1,36 @@
+@import "utils/resets";
+@import "utils/iconfont";
+@import "utils/globals";
+
+.container {
+  /*min-width: var(--page_min_width);*/
+  /*background-color: white;*/
+}
+
+.header {
+  height: var(--header_height);
+  background-color: color(var(--orange) hue(+180deg) lightness(-50%));
+}
+
+.footer {
+  clear: both;
+  color: white;
+  text-align: center;
+  background-color: color(var(--orange) hue(+180deg) saturation(5%) lightness(60%));
+  padding: 1rem;
+}
+
+.router-view {
+  transition: all .5s ease;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.router-view-transition-enter, .router-view-transition-leave {
+  opacity: 0;
+  transform: translate3d(1rem, 0, 0);
+}
+
+[v-cloak] {
+  display: none;
+}

@@ -1,0 +1,19 @@
+.logo {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: var(--aside_width);
+  overflow: hidden;
+  background-color: var(--orange);
+  transition: width 200ms linear;
+  & a {
+    white-space: nowrap;
+    display: block;
+    padding-left: 2.35rem;
+    height: var(--header_height);
+    font-size: 0.9rem;
+    font-weight: normal;
+    line-height: var(--header_height);
+    background: url("../images/logo.png") 0.3rem 50% no-repeat;
+  }
+}

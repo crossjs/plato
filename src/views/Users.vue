@@ -16,6 +16,16 @@ export default {
   //     this.$route.router.go('/')
   //   }
   // },
+
+  methods: {
+    fetchUsers () {
+      GET('/apis/users')
+      .then(json => {
+        this.setUsers(json)
+      })
+    }
+  },
+
   route: {
     activate (transition) {
       if (this.bearer) {
@@ -26,14 +36,7 @@ export default {
       }
     }
   },
-  methods: {
-    fetchUsers () {
-      GET('/apis/users')
-      .then(json => {
-        this.setUsers(json)
-      })
-    }
-  },
+
   vuex: {
     getters: {
       bearer,

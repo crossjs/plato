@@ -1,14 +1,21 @@
 <template>
   <div class="container">
     <toast></toast>
-    <navi></navi>
+    <header class="header">
+      <logo></logo>
+      <navi></navi>
+    </header>
     <router-view class="router-view" transition="router-view-transition" transition-mode="out-in" keep-alive></router-view>
+    <footer class="footer">
+      &copy; 2016
+    </footer>
   </div>
 </template>
 
 <script>
 import store from 'vx/store'
 import Toast from 'components/Toast'
+import Logo from 'components/Logo'
 import Navi from 'components/Navi'
 export default {
   name: 'App',
@@ -20,33 +27,12 @@ export default {
   // },
   components: {
     Toast,
+    Logo,
     Navi
   }
 }
 </script>
 
 <style>
-@import "index";
-.container {
-  position: fixed;
-  z-index: 1;
-  box-sizing: border-box;
-  padding-top: var(--header_height);
-  padding-bottom: var(--footer_height);
-  height: 100%;
-  width: 100%;
-}
-
-.router-view {
-  transition: all .5s ease;
-}
-
-.router-view-transition-enter, .router-view-transition-leave {
-  opacity: 0;
-  transform: translate3d(1rem, 0, 0);
-}
-
-[v-cloak] {
-  display: none;
-}
+@import "app";
 </style>

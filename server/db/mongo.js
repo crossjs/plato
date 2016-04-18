@@ -1,5 +1,5 @@
 import mongoose from 'mongoose'
-import mongoError from 'koa-mongo-error'
+// import mongoError from 'koa-mongo-error'
 import _debug from 'debug'
 
 export default app => {
@@ -30,5 +30,5 @@ export default app => {
   //   console.log(err, result)
   // })
 
-  app.use(mongoError())
+  // app.use(mongoError())
 }

@@ -46,9 +46,9 @@ export default {
     }
   },
 
-  created () {
-    this.bearer && this.goProfile()
-  },
+  // created () {
+  //   this.bearer && this.goProfile()
+  // },
 
   // computed property for form validation state
   computed: {

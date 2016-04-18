@@ -1,0 +1,21 @@
+{
+  "orange": "#E7604A",
+
+  "bg_success": "#DFF0D8",
+  "bg_info": "#D9EDF7",
+  "bg_warning": "#FCF8E3",
+  "bg_danger": "#F2DEDE",
+
+  "text_success": "#3C763D",
+  "text_info": "#31708F",
+  "text_warning": "#8A6D3B",
+  "text_danger": "#A94442",
+
+  "scrollbar_color": "rgba(255, 255, 255, 0.3)",
+  "scrollbar_thumb_color": "#E7604A",
+
+  "header_height": "2.5rem",
+  "footer_height": "0",
+  "aside_width": "10rem",
+  "page_min_width": "49rem"
+}
