@@ -1,5 +1,5 @@
 <template>
-  <form class="ui-form ui-form-login" v-on:submit.prevent="login" autocomplete="off" novalidate>
+  <form class="ui-form" v-on:submit.prevent="login" autocomplete="off" novalidate>
     <validator name="validation">
       <ul class="ui-form-errors" v-if="$validation.modified">
         <li class="ui-form-error" v-for="error in $validation.errors">
@@ -126,5 +126,9 @@ export default {
 </script>
 
 <style>
+@import "utils/form";
+</style>
+
+<style scoped>
 @import "views/login";
 </style>

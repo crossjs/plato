@@ -1,0 +1,138 @@
+{
+    "name": "client",
+    "target": "web",
+    "devtool": null,
+    "resolve": {
+        "root": "C:\\plat\\src",
+        "extensions": [
+            "",
+            ".css",
+            ".js",
+            ".json",
+            ".vue"
+        ],
+        "alias": {},
+        "modulesDirectories": [
+            "node_modules"
+        ]
+    },
+    "module": {
+        "preLoaders": [
+            {
+                "test": {},
+                "loader": "eslint",
+                "exclude": {},
+                "query": {
+                    "emitWarning": false
+                }
+            }
+        ],
+        "loaders": [
+            {
+                "test": {},
+                "loader": "vue"
+            },
+            {
+                "test": {},
+                "loader": "babel",
+                "exclude": {}
+            },
+            {
+                "test": {},
+                "loader": "json"
+            },
+            {
+                "test": {},
+                "loader": "vue-html"
+            },
+            {
+                "test": {},
+                "loader": "url",
+                "query": {
+                    "limit": 10000,
+                    "name": "[name].[ext]?[hash:7]"
+                }
+            }
+        ]
+    },
+    "node": {
+        "fs": "empty"
+    },
+    "entry": {
+        "app": [
+            "C:\\plat\\src\\index.js"
+        ],
+        "vendor": []
+    },
+    "output": {
+        "filename": "[name].[chunkhash].js",
+        "path": "C:\\plat\\dist",
+        "publicPath": "/"
+    },
+    "vue": {
+        "loaders": {
+            "css": "C:\\plat\\node_modules\\extract-text-webpack-plugin\\loader.js?{\"omit\":1,\"extract\":true,\"remove\":true}!vue-style!css?sourceMap"
+        },
+        "autoprefixer": false
+    },
+    "eslint": {},
+    "plugins": [
+        {
+            "definitions": {
+                "process.env": {
+                    "NODE_ENV": "\"production\""
+                },
+                "NODE_ENV": "production",
+                "__DEV__": false,
+                "__PROD__": true,
+                "__TEST__": false,
+                "__BASENAME__": "\"\""
+            }
+        },
+        {
+            "options": {
+                "template": "C:\\plat\\src\\index.html",
+                "filename": "index.html",
+                "hash": false,
+                "inject": true,
+                "compile": true,
+                "favicon": "C:\\plat\\src\\static\\favicon.ico",
+                "minify": {
+                    "collapseWhitespace": false,
+                    "minifyJS": false
+                },
+                "cache": true,
+                "showErrors": true,
+                "chunks": "all",
+                "excludeChunks": [],
+                "title": "Webpack App",
+                "xhtml": false
+            }
+        },
+        {},
+        {
+            "preferEntry": true
+        },
+        {},
+        {
+            "options": {
+                "compress": {
+                    "unused": true,
+                    "dead_code": true,
+                    "warnings": false
+                }
+            }
+        },
+        {
+            "filename": "[name].[contenthash].css",
+            "options": {},
+            "id": 1
+        },
+        {
+            "chunkNames": [
+                "vendor"
+            ],
+            "ident": "C:\\plat\\node_modules\\webpack\\lib\\optimize\\CommonsChunkPlugin.js0"
+        }
+    ]
+}

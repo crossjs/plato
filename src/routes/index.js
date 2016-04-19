@@ -9,22 +9,23 @@ import Logout from 'views/Logout'
 export default {
   '/': {
     icon: 'home',
-    name: '首页',
+    title: '首页',
+    name: 'home',
     skip: true,
-    auth: false,
     exact: true,
     component: Home
   },
   '/about': {
     icon: 'about',
-    name: '关于',
-    auth: false,
+    title: '关于',
+    name: 'about',
     component: About
   },
   '/users': {
     icon: 'users',
+    title: '用户',
+    name: 'users',
     auth: true,
-    name: '用户',
     component: Users,
     subRoutes: {
       '/:username': {
@@ -34,24 +35,28 @@ export default {
   },
   '/profile': {
     icon: 'profile',
+    title: '资料',
+    name: 'profile',
     auth: true,
-    name: '资料',
     component: Profile
   },
   '/signup': {
     icon: 'signup',
-    name: '注册',
+    title: '注册',
+    name: 'signup',
     component: Signup
   },
   '/login': {
     icon: 'login',
-    name: '登录',
+    title: '登录',
+    name: 'login',
     component: Login
   },
   '/logout': {
     icon: 'logout',
+    title: '退出',
+    name: 'logout',
     auth: true,
-    name: '退出',
     component: Logout
   }
 }

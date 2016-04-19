@@ -1,6 +1,6 @@
 <template>
   <nav class="navi">
-    <a v-for="link in links" v-link="{ path: link.path, exact: link.exact }" class="iconfont iconfont-{{link.icon}}">{{link.name}}</a>
+    <a v-for="link in links" v-link="{ path: link.path, name: link.name, exact: link.exact }" class="iconfont iconfont-{{link.icon}}">{{link.title}}</a>
   </nav>
 </template>
 
@@ -8,43 +8,6 @@
 import routes from 'routes'
 import { bearer } from 'vx/getters'
 export default {
-  data () {
-    return {
-      links: [
-        {
-          icon: 'about',
-          name: '关于',
-          path: '/about'
-        },
-        {
-          icon: 'users',
-          name: '用户',
-          path: '/users'
-        },
-        {
-          icon: 'profile',
-          name: '资料',
-          path: '/profile'
-        },
-        {
-          icon: 'signup',
-          name: '注册',
-          path: '/signup'
-        },
-        {
-          icon: 'login',
-          name: '登录',
-          path: '/login'
-        },
-        {
-          icon: 'logout',
-          name: '退出',
-          path: '/logout'
-        }
-      ]
-    }
-  },
-
   computed: {
     links () {
       if (this.bearer) {
@@ -74,9 +37,10 @@ function walkRoutes (reducer) {
     .map(key => {
       return {
         path: key,
+        name: routes[key].name,
         exact: routes[key].exact,
         icon: routes[key].icon,
-        name: routes[key].name
+        title: routes[key].title
       }
     })
 }

@@ -33,7 +33,6 @@ const APP_ENTRY_PATH = paths.src('index.js')
 
 webpackConfig.entry = {
   app: __DEV__
-    // ? [APP_ENTRY_PATH, `webpack-hot-middleware/client?path=${config.compiler_public_path}__webpack_hmr`]
     ? [APP_ENTRY_PATH, 'webpack-hot-middleware/client']
     : [APP_ENTRY_PATH],
   vendor: config.compiler_vendor
@@ -55,19 +54,10 @@ webpackConfig.output = {
 
 webpackConfig.module.preLoaders = [
   {
-    test: /\.vue$/,
+    test: /\.(vue|js)$/,
     loader: 'eslint',
     exclude: /node_modules/,
     query: {
-      configFile: paths.base('.eslintrc'),
-      emitWarning: __DEV__
-    }
-  }, {
-    test: /\.js$/,
-    loader: 'eslint',
-    exclude: /node_modules/,
-    query: {
-      configFile: paths.base('.eslintrc'),
       emitWarning: __DEV__
     }
   }
@@ -76,6 +66,14 @@ webpackConfig.module.preLoaders = [
 // ------------------------------------
 // Loaders
 // ------------------------------------
+
+const cssLoaders = (loaders => {
+  if (__DEV__) {
+    return loaders.join('!')
+  }
+  const [first, ...rest] = loaders
+  return ExtractTextPlugin.extract(first, rest.join('!'))
+})(['vue-style', 'css?sourceMap'])
 
 webpackConfig.module.loaders = [
   {
@@ -95,11 +93,6 @@ webpackConfig.module.loaders = [
     test: /\.html$/,
     loader: 'vue-html'
   },
-  // {
-  //   test: /\.css$/,
-  //   // loaders: ['vue-style', 'css?sourceMap', 'postcss']
-  //   loaders: ['vue-style', 'css', 'postcss']
-  // },
   {
     test: /\.(png|jpg|gif|svg|woff2?|eot|ttf)(\?.*)?$/,
     loader: 'url',
@@ -110,9 +103,17 @@ webpackConfig.module.loaders = [
   }
 ]
 
+if (__DEV__) {
+  webpackConfig.module.loaders.push({
+    test: /\.css$/,
+    loader: cssLoaders
+  })
+}
+
 webpackConfig.vue = {
-  // loaders: ['vue-style', 'css?sourceMap', 'postcss']
-  loaders: ['vue-style', 'css', 'postcss'],
+  loaders: {
+    css: cssLoaders
+  },
   postcss: pack => {
     // use webpack context
     return [
@@ -135,24 +136,6 @@ webpackConfig.vue = {
 
 webpackConfig.eslint = {
   formatter: require('eslint-friendly-formatter')
-}
-
-// ------------------------------------
-// Finalize Configuration
-// ------------------------------------
-// when we don't know the public path (we know it only when HMR is enabled [in development]) we
-// need to use the extractTextPlugin to fix this issue:
-// http://stackoverflow.com/questions/34133808/webpack-ots-parsing-error-loading-fonts/34133809#34133809
-if (!__DEV__) {
-  debug('Apply ExtractTextPlugin to CSS loaders.')
-  const [first, ...rest] = webpackConfig.vue.loaders
-  webpackConfig.vue.loaders = ExtractTextPlugin.extract(first, rest)
-
-  webpackConfig.module.loaders.filter(loader => loader.loaders && loader.loaders.find(name => /css/.test(name.split('?')[0]))
-  ).forEach(loader => {
-    const [first, ...rest] = loader.loaders
-    loader.loaders = ExtractTextPlugin.extract(first, rest)
-  })
 }
 
 // ------------------------------------

@@ -4,8 +4,10 @@ export default config => ({
   compiler_hash_type       : 'chunkhash',
   compiler_devtool         : null,
   compiler_stats           : {
-    chunks : true,
-    chunkModules : true,
+    modules : false,
+    children : false,
+    chunks : false,
+    chunkModules : false,
     colors : true
   },
   compiler_public_path     : '/'

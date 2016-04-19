@@ -1,87 +1,115 @@
 <template>
-  <div>
-    <div class="message" v-show="!!message">{{message}}</div>
-    <form v-on:submit.prevent="signup">
-      <div>
-        <label>账号</label>
-        <input type="text" name="username" v-model="username">
-        <div class="desc">4-20 个小写字母</div>
+  <form class="ui-form" v-on:submit.prevent="signup" autocomplete="off" novalidate>
+    <validator name="validation">
+      <ul class="ui-form-errors" v-if="$validation.modified">
+        <li class="ui-form-error" v-for="error in $validation.errors">
+          {{error.message}}
+        </li>
+      </ul>
+      <ul class="ui-form-items">
+        <li class="ui-form-item ui-form-icon-item" v-for="field in fields">
+          <span class="ui-form-icon iconfont iconfont-{{field.icon}}"></span>
+          <input class="ui-form-input"
+            :type="field.type"
+            :field="field.name"
+            :placeholder="field.placeholder"
+            v-model="field.value"
+            v-validate="field.validate">
+        </li>
+      </ul>
+      <div class="ui-form-buttons">
+        <button class="ui-form-button button-form-submit"
+          type="submit" :disabled="!$validation.valid">注册</button>
       </div>
-      <div>
-        <label>密码</label>
-        <input type="password" name="password" v-model="password">
-        <div class="desc">4-20 个数字或大小写字母</div>
-      </div>
-      <div>
-        <input type="submit" value="Sign Up">
-      </div>
-    </form>
-  </div>
+      <!-- <pre>{{ $validation | json }}</pre> -->
+    </validator>
+  </form>
 </template>
 
 <script>
-import ajax from 'utils/ajax'
-const usernameRE = /^[a-z]{4,20}$/
-const passwordRE = /^[0-9A-Za-z]{4,20}$/
-// http://stackoverflow.com/questions/3802192/regexp-java-for-password-validation
-// ^                 # start-of-string
-// (?=.*[0-9])       # a digit must occur at least once
-// (?=.*[a-z])       # a lower case letter must occur at least once
-// (?=.*[A-Z])       # an upper case letter must occur at least once
-// (?=.*[@#$%^&+=])  # a special character must occur at least once
-// (?=\S+$)          # no whitespace allowed in the entire string
-// .{8,}             # anything, at least eight places though
-// $                 # end-of-string
-// const passwordRE = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\S+$).{8,}$/
+import { POST } from 'utils/ajax'
 export default {
   data () {
     return {
-      message: 'message',
-      username: 'username',
-      password: 'password'
-    }
-  },
-
-  // computed property for form validation state
-  computed: {
-    validation () {
-      return {
-        username: usernameRE.test(this.username),
-        password: passwordRE.test(this.password)
-      }
-    },
-    isValid () {
-      const validation = this.validation
-      return Object.keys(validation).every(key => {
-        return validation[key]
-      })
+      fields: [{
+        icon: 'user-o',
+        name: 'username',
+        type: 'text',
+        value: '',
+        placeholder: '账号（由小写英文字母组成）',
+        validate: {
+          required: {
+            rule: true,
+            message: '请输入账号'
+          },
+          minlength: {
+            rule: 4,
+            message: '账号不能少于 4 个字符'
+          },
+          maxlength: {
+            rule: 20,
+            message: '账号不能多于 20 个字符'
+          },
+          pattern: {
+            rule: '/^[a-z]{4,20}$/',
+            message: '账号不符合规则'
+          }
+        }
+      }, {
+        icon: 'lock-o',
+        name: 'password',
+        type: 'password',
+        value: '',
+        placeholder: '密码（由英文字母或下划线组成）',
+        validate: {
+          required: {
+            rule: true,
+            message: '请输入密码'
+          },
+          minlength: {
+            rule: 4,
+            message: '密码不能少于 4 个字符'
+          },
+          maxlength: {
+            rule: 20,
+            message: '密码不能多于 20 个字符'
+          },
+          pattern: {
+            rule: '/^[0-9A-Za-z]{4,20}$/',
+            message: '密码不符合规则'
+          }
+        }
+      }]
     }
   },
 
   // methods
   methods: {
     signup () {
-      if (!this.isValid) {
-        this.message = '请输入账号与密码'
+      if (!this.$validation.valid) {
         return
       }
-      ajax('/apis/signup', {
-        method: 'POST',
+      POST('/apis/signup', {
         body: {
-          username: this.username,
-          password: this.password
+          username: this.fields[0].value,
+          password: this.fields[1].value
         }
       })
       .then(json => {
-        console.log('1', json)
+        this.goLogin(json)
       })
-      .catch(err => {
-        console.log('2', err)
-      })
+    },
+    goLogin ({ username }) {
+      this.$route.router.go('login', { username })
     }
   }
 }
 </script>
 
 <style>
+@import "utils/form";
+</style>
+
+<style scoped>
+@import "views/signup";
 </style>

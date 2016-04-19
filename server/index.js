@@ -61,7 +61,7 @@ if (app.env === 'development') {
   webpack(app)
 } else {
   // favicon
-  app.use(favicon(paths.dist('static/favicon.ico')))
+  app.use(favicon(paths.dist('favicon.ico')))
 
   // static with cache
   app.use(serve(paths.dist(), {
