@@ -1,11 +1,3 @@
-import Home from 'views/Home'
-import Users from 'views/Users'
-import About from 'views/About'
-import Profile from 'views/Profile'
-import Login from 'views/Login'
-import Signup from 'views/Signup'
-import Logout from 'views/Logout'
-
 export default {
   '/': {
     icon: 'home',
@@ -13,23 +5,23 @@ export default {
     name: 'home',
     skip: true,
     exact: true,
-    component: Home
+    component: resolve => require(['views/Home'], resolve)
   },
   '/about': {
     icon: 'about',
     title: '关于',
     name: 'about',
-    component: About
+    component: resolve => require(['views/About'], resolve)
   },
   '/users': {
     icon: 'users',
     title: '用户',
     name: 'users',
     auth: true,
-    component: Users,
+    component: resolve => require(['views/Users'], resolve),
     subRoutes: {
       '/:username': {
-        component: Users
+        component: resolve => require(['views/Users'], resolve)
       }
     }
   },
@@ -38,25 +30,25 @@ export default {
     title: '资料',
     name: 'profile',
     auth: true,
-    component: Profile
+    component: resolve => require(['views/Profile'], resolve)
   },
   '/signup': {
     icon: 'signup',
     title: '注册',
     name: 'signup',
-    component: Signup
+    component: resolve => require(['views/Signup'], resolve)
   },
   '/login': {
     icon: 'login',
     title: '登录',
     name: 'login',
-    component: Login
+    component: resolve => require(['views/Login'], resolve)
   },
   '/logout': {
     icon: 'logout',
     title: '退出',
     name: 'logout',
     auth: true,
-    component: Logout
+    component: resolve => require(['views/Logout'], resolve)
   }
 }

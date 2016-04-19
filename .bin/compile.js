@@ -4,11 +4,8 @@ const config = require('../config')
 const debug = require('debug')('koa:bin:compile')
 
 debug('Create webpack compiler.')
-const webpackConfig = require('../webpack')
-// require('fs').writeFile('webpackConfig-prod', JSON.stringify(webpackConfig, null, 4))
-const compiler = require('webpack')(webpackConfig)
 
-compiler.run((err, stats) => {
+require('webpack')(require('../webpack')).run((err, stats) => {
   const jsonStats = stats.toJson()
 
   debug('Webpack compile completed.')

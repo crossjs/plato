@@ -35,6 +35,4 @@ export default {
 }
 </script>
 
-<style>
-@import "app";
-</style>
+<style src="styles/app"></style>

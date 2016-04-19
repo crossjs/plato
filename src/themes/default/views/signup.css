@@ -31,7 +31,7 @@
     height: 2.2rem;
     padding: 0.5rem 1.5rem;
     font-size: 0.9rem;
-    background-color: var(--orange);
+    background-color: color(var(--orange) hue(+180deg));
 
     &:hover {
       background-color: color(var(--orange) lightness(-10%));

@@ -1,8 +1,8 @@
 {
   "name": "plat",
   "version": "1.0.0",
-  "description": "promotion platform",
-  "license": "ISC",
+  "description": "A plat<del>form</del> built with koa and vue",
+  "license": "MIT",
   "main": "index.js",
   "scripts": {
     "lint": "eslint --max-warnings 10 .",

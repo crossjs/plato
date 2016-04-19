@@ -17,7 +17,9 @@ const webpackConfig = {
   resolve: {
     root: paths.src(),
     extensions: ['', '.css', '.js', '.json', '.vue'],
-    alias: {},
+    alias: {
+      styles: paths.src('themes/default')
+    },
     modulesDirectories: ['node_modules']
   },
   module: {},
@@ -82,8 +84,14 @@ webpackConfig.module.loaders = [
   },
   {
     test: /\.js$/,
-    loader: 'babel',
+    loader: 'bundle!babel',
+    include: /views/,
     exclude: /node_modules/
+  },
+  {
+    test: /\.js$/,
+    loader: 'babel',
+    exclude: /views|node_modules/
   },
   {
     test: /\.json$/,

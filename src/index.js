@@ -21,6 +21,8 @@ const router = new Router({
   linkActiveClass: 'link-active'
 })
 
+console.log(routes)
+
 router.map(routes)
 
 router.beforeEach(transition => {
