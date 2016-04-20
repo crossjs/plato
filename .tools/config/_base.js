@@ -8,12 +8,12 @@ const debug = _debug('koa:config:base')
 const config = {
   env : process.env.NODE_ENV || 'development',
 
-  pkg : require('../package.json'),
+  pkg : require('../../package.json'),
 
   // ----------------------------------
   // Project Structure
   // ----------------------------------
-  path_base  : path.resolve(__dirname, '../'),
+  path_base  : path.resolve(__dirname, '../../'),
   dir_src    : 'src',
   dir_dist   : 'dist',
   dir_server : 'server',

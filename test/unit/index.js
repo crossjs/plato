@@ -1,13 +1,33 @@
-// Polyfill fn.bind() for PhantomJS
-/* eslint-disable no-extend-native */
-Function.prototype.bind = require('function-bind')
+// ---------------------------------------
+// Test Environment Setup
+// ---------------------------------------
+import chai from 'chai'
+import sinonChai from 'sinon-chai'
+import chaiAsPromised from 'chai-as-promised'
 
-// require all test files (files that ends with .spec.js)
-var testsContext = require.context('./specs', true, /\.spec$/)
-testsContext.keys().forEach(testsContext)
+chai.use(sinonChai)
+chai.use(chaiAsPromised)
 
-// require all src files except main.js for coverage.
-// you can also change this to match only the subset of files that
-// you want coverage for.
-var srcContext = require.context('../../src', true, /^\.\/(?!main(\.js)?$)/)
-srcContext.keys().forEach(srcContext)
+global.chai = chai
+global.assert = chai.assert
+global.expect = chai.expect
+global.should = chai.should()
+
+// ---------------------------------------
+// Require Tests
+// ---------------------------------------
+// for use with karma-webpack-with-fast-source-maps
+const __karmaWebpackManifest__ = [] // eslint-disable-line
+const inManifest = path => ~__karmaWebpackManifest__.indexOf(path)
+
+// require all `**/*.spec.js`
+const testsContext = require.context('./', true, /\.spec\.js$/)
+
+// only run tests that have changed after the first pass.
+const testsToRun = testsContext.keys().filter(inManifest)
+;(testsToRun.length ? testsToRun : testsContext.keys()).forEach(testsContext)
+
+// require all `src/**/*.js` except for `index.js` (for isparta coverage reporting)
+const componentsContext = require.context('../../src/', true, /^((?!index).)*\.js$/)
+
+componentsContext.keys().forEach(componentsContext)

@@ -1,5 +1,5 @@
 // 1. start the dev server
-var server = require('../../build/dev-server.js')
+var server = require('../../.tools/bin/start')
 
 // 2. run the nightwatch test suite against it
 // to run in additional browsers:
@@ -12,7 +12,8 @@ var runner = spawn(
   './node_modules/.bin/nightwatch',
   [
     '--config', 'test/e2e/nightwatch.conf.js',
-    '--env', 'chrome,firefox'
+    // '--env', 'chrome,firefox'
+    '--env', 'chrome'
   ],
   {
     stdio: 'inherit'

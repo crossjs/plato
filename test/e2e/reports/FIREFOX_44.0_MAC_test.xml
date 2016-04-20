@@ -5,24 +5,18 @@
 
   <testsuite name="test"
     errors="0" failures="1" hostname="" id="" package="test" skipped="0"
-    tests="1" time="6.435" timestamp="Sun, 27 Mar 2016 06:32:16 GMT">
+    tests="1" time="17.98" timestamp="Wed, 20 Apr 2016 15:53:19 GMT">
   
-    <testcase name="default e2e tests" time="6.435" assertions="4">
-
-    
-
-    
-
-      <failure message="Testing if element &lt;p&gt; has count: 3">    at Object.module.exports.default e2e tests (/Users/liwenfu/vue/test/e2e/specs/test.js:11:15)
-    at Module.call (/Users/liwenfu/vue/node_modules/nightwatch/lib/runner/module.js:63:34)
-    at /Users/liwenfu/vue/node_modules/nightwatch/lib/runner/testcase.js:97:29
-    at _fulfilled (/Users/liwenfu/vue/node_modules/q/q.js:834:54)
-    at self.promiseDispatch.done (/Users/liwenfu/vue/node_modules/q/q.js:863:30)
-    at Promise.promise.promiseDispatch (/Users/liwenfu/vue/node_modules/q/q.js:796:13)
-    at /Users/liwenfu/vue/node_modules/q/q.js:556:49
-    at runSingle (/Users/liwenfu/vue/node_modules/q/q.js:137:13)
-    at flush (/Users/liwenfu/vue/node_modules/q/q.js:125:13)
-    at nextTickCallbackWith0Args (node.js:453:9)</failure>
+    <testcase name="default e2e tests" time="17.98" assertions="1">  <failure message="Timed out while waiting for element &lt;app&gt; to be present for 5000 milliseconds.">    at Object.module.exports.default e2e tests.browser [as default e2e tests] (/Users/liwenfu/plat/test/e2e/specs/test.js:8:8)
+    at Module.call (/Users/liwenfu/plat/node_modules/nightwatch/lib/runner/module.js:63:34)
+    at /Users/liwenfu/plat/node_modules/nightwatch/lib/runner/testcase.js:97:29
+    at _fulfilled (/Users/liwenfu/plat/node_modules/q/q.js:834:54)
+    at self.promiseDispatch.done (/Users/liwenfu/plat/node_modules/q/q.js:863:30)
+    at Promise.promise.promiseDispatch (/Users/liwenfu/plat/node_modules/q/q.js:796:13)
+    at /Users/liwenfu/plat/node_modules/q/q.js:556:49
+    at runSingle (/Users/liwenfu/plat/node_modules/q/q.js:137:13)
+    at flush (/Users/liwenfu/plat/node_modules/q/q.js:125:13)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)</failure>
 
     
     </testcase>

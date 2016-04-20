@@ -12,9 +12,60 @@
     "debug": "better-npm-run debug",
     "clean": "better-npm-run clean",
     "compile": "better-npm-run compile",
-    "test": "better-npm-run test",
+    "unit": "better-npm-run unit",
+    "unit:dev": "npm run unit -- --watch",
+    "e2e": "node test/e2e/runner.js",
+    "test": "npm run unit && npm run e2e",
     "test:dev": "npm test -- --watch",
     "deploy": "better-npm-run deploy"
+  },
+  "betterScripts": {
+    "compile": {
+      "command": "node .tools/bin/compile",
+      "env": {
+        "NODE_ENV": "production",
+        "DEBUG": "koa*"
+      }
+    },
+    "start": {
+      "command": "nodemon --harmony .tools/bin/start",
+      "env": {
+        "NODE_ENV": "production",
+        "DEBUG": "koa*"
+      }
+    },
+    "dev": {
+      "command": "nodemon --harmony .tools/bin/start",
+      "env": {
+        "DEBUG": "koa*"
+      }
+    },
+    "debug": {
+      "command": "nodemon --harmony --debug .tools/bin/start",
+      "env": {
+        "DEBUG": "koa*"
+      }
+    },
+    "clean": {
+      "command": "node .tools/bin/clean",
+      "env": {
+        "DEBUG": "koa*"
+      }
+    },
+    "deploy": {
+      "command": "npm run lint && npm run clean && npm run compile",
+      "env": {
+        "NODE_ENV": "production",
+        "DEBUG": "koa*"
+      }
+    },
+    "unit": {
+      "command": "node --harmony ./node_modules/karma/bin/karma start .tools/bin/karma",
+      "env": {
+        "NODE_ENV": "test",
+        "DEBUG": "koa*"
+      }
+    }
   },
   "dependencies": {
     "koa": "^2.0.0",
@@ -58,7 +109,9 @@
     "bundle-loader": "^0.5.4",
     "chai": "^3.5.0",
     "chai-as-promised": "^5.3.0",
+    "chromedriver": "^2.21.2",
     "copy-webpack-plugin": "^1.1.1",
+    "cross-spawn": "^2.2.3",
     "css-loader": "^0.23.1",
     "debug": "^2.2.0",
     "eslint": "^2.5.3",
@@ -82,6 +135,7 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^1.7.0",
     "mocha": "^2.4.5",
+    "nightwatch": "^0.8.18",
     "nodemon": "^1.9.1",
     "phantomjs-polyfill": "0.0.2",
     "phantomjs-prebuilt": "^2.1.7",
@@ -92,10 +146,10 @@
     "postcss-loader": "^0.8.2",
     "postcss-reporter": "^1.3.3",
     "postcss-url": "^5.1.1",
+    "selenium-server": "^2.53.0",
     "sinon": "^1.17.3",
     "sinon-chai": "^2.8.0",
     "style-loader": "^0.13.1",
-    "todomvc-app-css": "^2.0.4",
     "url-loader": "^0.5.7",
     "vue-hot-reload-api": "^1.3.2",
     "vue-html-loader": "^1.2.2",
@@ -107,55 +161,7 @@
     "yargs": "^4.4.0"
   },
   "engines": {
-    "node": ">= 5.7.0",
+    "node": ">= 5.10.0",
     "npm": ">= 3.6.0"
-  },
-  "betterScripts": {
-    "compile": {
-      "command": "node .bin/compile",
-      "env": {
-        "NODE_ENV": "production",
-        "DEBUG": "koa*"
-      }
-    },
-    "start": {
-      "command": "nodemon --harmony .bin/start",
-      "env": {
-        "NODE_ENV": "production",
-        "DEBUG": "koa*"
-      }
-    },
-    "dev": {
-      "command": "nodemon --harmony .bin/start",
-      "env": {
-        "DEBUG": "koa*"
-      }
-    },
-    "debug": {
-      "command": "nodemon --harmony --debug .bin/start",
-      "env": {
-        "DEBUG": "koa*"
-      }
-    },
-    "clean": {
-      "command": "node .bin/clean",
-      "env": {
-        "DEBUG": "koa*"
-      }
-    },
-    "deploy": {
-      "command": "npm run lint && npm run clean && npm run compile",
-      "env": {
-        "NODE_ENV": "production",
-        "DEBUG": "koa*"
-      }
-    },
-    "test": {
-      "command": "node ./node_modules/karma/bin/karma start .bin/karma",
-      "env": {
-        "NODE_ENV": "test",
-        "DEBUG": "koa*"
-      }
-    }
   }
 }

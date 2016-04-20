@@ -46,6 +46,4 @@ function walkRoutes (reducer) {
 }
 </script>
 
-<style>
-@import "components/navi";
-</style>
+<style src="styles/components/navi"></style>

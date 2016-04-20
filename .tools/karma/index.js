@@ -6,21 +6,24 @@ const debug = require('debug')('app:karma')
 debug('Create configuration.')
 
 const karmaConfig = {
-  basePath: '../', // project root in relation to bin/karma.js
+  basePath: '../../', // project root in relation to bin/karma.js
   files: [
     './node_modules/phantomjs-polyfill/bind-polyfill.js',
     './node_modules/sinon/pkg/sinon.js',
     {
-      pattern: `./${config.dir_test}/test-bundler.js`,
+      pattern: `./${config.dir_test}/unit/index.js`,
       watched: false,
       served: true,
       included: true
     }
   ],
+  proxies: {
+    '/api/': 'http://localhost:3000/api/'
+  },
   singleRun: !argv.watch,
   frameworks: ['mocha'],
   preprocessors: {
-    [`${config.dir_test}/test-bundler.js`]: ['webpack', 'sourcemap']
+    [`${config.dir_test}/unit/index.js`]: ['webpack', 'sourcemap']
   },
   reporters: ['mocha'],
   browsers: ['PhantomJS'],

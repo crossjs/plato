@@ -1,7 +1,7 @@
 import webpackDevMiddleware from 'webpack-dev-middleware'
 import applyExpressMiddleware from '../lib/apply-express-middleware'
 import _debug from 'debug'
-import config from '../../../config'
+import config from '../../config'
 
 // const paths = config.utils_paths
 const debug = _debug('koa:server:webpack-dev')

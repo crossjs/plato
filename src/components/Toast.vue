@@ -26,6 +26,4 @@ export default {
 }
 </script>
 
-<style>
-@import "components/toast";
-</style>
+<style src="styles/components/toast"></style>

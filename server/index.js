@@ -11,7 +11,7 @@ import serve from 'koa-static'
 import bodyParser from 'koa-bodyparser'
 import bearerToken from 'koa-bearer-token'
 import _debug from 'debug'
-import config from '../config'
+import config from './config'
 import mongo from './db/mongo'
 import routes from './routes'
 import webpack from './tools/webpack'
@@ -74,7 +74,7 @@ const {
   server_port
 } = config
 
-app.listen(server_port, server_host, err => {
+export default app.listen(server_port, server_host, err => {
   if (err) {
     debug(err)
     return

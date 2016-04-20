@@ -1,7 +1,7 @@
 import webpack from 'webpack'
 import devMiddleware from './middleware/webpack-dev'
 import hotMiddleware from './middleware/webpack-hot'
-import webpackConfig from '../../webpack'
+import webpackConfig from '../../.tools/webpack'
 
 export default app => {
   const compiler = webpack(webpackConfig)
