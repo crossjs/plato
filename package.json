@@ -5,18 +5,17 @@
   "license": "MIT",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint --max-warnings 10 .",
-    "lint:fix": "npm run lint -- --fix",
     "start": "better-npm-run start",
     "dev": "better-npm-run dev",
     "debug": "better-npm-run debug",
-    "clean": "better-npm-run clean",
-    "compile": "better-npm-run compile",
     "unit": "better-npm-run unit",
     "unit:dev": "npm run unit -- --watch",
-    "e2e": "node test/e2e/runner.js",
+    "e2e": "better-npm-run e2e",
     "test": "npm run unit && npm run e2e",
-    "test:dev": "npm test -- --watch",
+    "lint": "eslint --max-warnings 10 .",
+    "lint:fix": "npm run lint -- --fix",
+    "clean": "better-npm-run clean",
+    "compile": "better-npm-run compile",
     "deploy": "better-npm-run deploy"
   },
   "betterScripts": {
@@ -60,7 +59,14 @@
       }
     },
     "unit": {
-      "command": "node --harmony ./node_modules/karma/bin/karma start .tools/bin/karma",
+      "command": "node --harmony .tools/bin/unit",
+      "env": {
+        "NODE_ENV": "test",
+        "DEBUG": "koa*"
+      }
+    },
+    "e2e": {
+      "command": "node --harmony .tools/bin/e2e",
       "env": {
         "NODE_ENV": "test",
         "DEBUG": "koa*"

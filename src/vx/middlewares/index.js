@@ -9,6 +9,8 @@ const localStorageMiddleware = {
   }
 }
 
-export default process.env.NODE_ENV !== 'production'
+const { NODE_ENV } = process.env
+
+export default NODE_ENV !== 'production' && NODE_ENV !== 'test'
   ? [createLogger(), localStorageMiddleware]
   : [localStorageMiddleware]

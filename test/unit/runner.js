@@ -2,10 +2,9 @@ import spawn from 'cross-spawn'
 
 export default server => {
   const runner = spawn(
-    './node_modules/.bin/nightwatch',
+    './node_modules/.bin/karma',
     [
-      '--config', 'test/e2e/_nightwatch.conf.js',
-      '--env', 'chrome'
+      'start', 'test/unit/_karma.conf.js'
     ],
     {
       stdio: 'inherit'

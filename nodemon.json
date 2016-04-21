@@ -1,4 +1,12 @@
 {
   "verbose": false,
-  "ignore": ["data", "dist", "coverage", "test", "src"]
+  "ignore": [
+    ".tools",
+    "coverage",
+    "data",
+    "dist",
+    "node_modules",
+    "src",
+    "test"
+  ]
 }
