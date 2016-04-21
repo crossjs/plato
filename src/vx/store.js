@@ -4,10 +4,12 @@ import middlewares from './middlewares'
 import {
   BEARER_KEY,
   SET_BEARER,
+  SET_PROFILE,
   ADD_TOAST,
   DELETE_TOAST,
   CLEAR_TOASTS,
-  SET_USERS
+  SET_USERS,
+  SET_PAGES
 } from './constants'
 
 Vue.use(Vuex)
@@ -18,8 +20,10 @@ if (navigator.userAgent.indexOf('PhantomJS') > -1) {
 }
 
 const state = {
+  pages: [],
   users: [],
   toasts: [],
+  profile: {},
   bearer: (function () {
     try {
       return JSON.parse(localStorage.getItem(BEARER_KEY) || '[]')
@@ -36,6 +40,10 @@ const mutations = {
     state.bearer = bearer
   },
 
+  [SET_PROFILE] (state, profile) {
+    state.profile = profile
+  },
+
   [ADD_TOAST] (state, toast) {
     state.toasts.push(toast)
   },
@@ -49,8 +57,11 @@ const mutations = {
   },
 
   [SET_USERS] (state, users) {
-    console.log(users)
     state.users = users
+  },
+
+  [SET_PAGES] (state, pages) {
+    state.pages = pages
   }
 
 }

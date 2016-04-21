@@ -9,10 +9,18 @@ export const bearer = ({ bearer }) => {
   return bearer
 }
 
+export const profile = ({ profile }) => {
+  return profile
+}
+
 export const toasts = ({ toasts }) => {
   return toasts
 }
 
 export const users = ({ users }) => {
   return users
+}
+
+export const pages = ({ pages }) => {
+  return pages
 }

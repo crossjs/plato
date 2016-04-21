@@ -1,27 +1,9 @@
 import _debug from 'debug'
-import passport from 'koa-passport'
 import User from '../models/user'
-import { expires } from '../utils/bearer'
+import authCheck from '../utils/authcheck'
 
 export default (app, router) => {
   const debug = _debug('koa:routes:user')
-
-  const authCheck = async (ctx, next) => {
-    await passport.authenticate('bearer', {
-      session: false
-    }, async (user, info, status) => {
-      if (user === false) {
-        debug(info)
-        ctx.status = 401
-      } else {
-        // update expires
-        await user.update({
-          expires: Date.now() + expires
-        }).exec()
-        await next()
-      }
-    })(ctx, next)
-  }
 
   const whiteProps = 'username created'
 
@@ -39,9 +21,8 @@ export default (app, router) => {
 
   // profile
   router.get('/profile', authCheck, async ctx => {
-    // .findById(id) returns all data about one user, if one exists with that _id
     const user = await User.findOne({
-      token: this.request.token
+      token: ctx.request.token
     }).exec()
     ctx.body = user
   })

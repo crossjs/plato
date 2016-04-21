@@ -36,3 +36,10 @@
 .iconfont-help {
   /*&:before { content: "\e605"; }*/
 }
+
+.iconfont-user-o {
+  &:before { content: "\e601"; }
+}
+.iconfont-lock-o {
+  &:before { content: "\e602"; }
+}

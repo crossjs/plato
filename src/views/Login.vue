@@ -1,38 +1,25 @@
 <template>
-  <form class="ui-form" v-on:submit.prevent="login" autocomplete="off" novalidate>
-    <validator name="validation">
-      <ul class="ui-form-errors" v-if="$validation.modified">
-        <li class="ui-form-error" v-for="error in $validation.errors">
-          {{error.message}}
-        </li>
-      </ul>
-      <ul class="ui-form-items">
-        <li class="ui-form-item ui-form-icon-item" v-for="field in fields">
-          <span class="ui-form-icon iconfont iconfont-{{field.icon}}"></span>
-          <input class="ui-form-input"
-            :type="field.type"
-            :field="field.name"
-            :placeholder="field.placeholder"
-            v-model="field.value"
-            v-validate="field.validate">
-        </li>
-      </ul>
-      <div class="ui-form-buttons">
-        <button class="ui-form-button button-form-submit"
-          type="submit" :disabled="!$validation.valid">登录</button>
-      </div>
-      <!-- <pre>{{ $validation | json }}</pre> -->
-    </validator>
-  </form>
+  <div class="login">
+    <c-form
+      :pending="pending"
+      :cls="cls"
+      :submit="submit"
+      :fields="fields"
+      :buttons="buttons"></c-form>
+  </div>
 </template>
 
 <script>
+import CForm from 'components/CForm'
 import { POST } from 'utils/ajax'
 import { bearer } from 'vx/getters'
 import { setBearer } from 'vx/actions'
 export default {
   data () {
     return {
+      pending: false,
+      cls: 'ui-form-slim',
+      submit: this.login,
       fields: [{
         icon: 'user-o',
         name: 'username',
@@ -81,16 +68,24 @@ export default {
             message: '密码不符合规则'
           }
         }
+      }],
+      buttons: [{
+        role: 'submit',
+        type: 'submit',
+        label: '登录',
+        validFirst: true,
+        pendingLabel: '登录...'
       }]
     }
   },
 
   // methods
   methods: {
-    login () {
-      if (!this.$validation.valid) {
+    login ($validation) {
+      if (!$validation.valid) {
         return
       }
+      this.pending = true
       POST('/apis/login', {
         body: {
           username: this.fields[0].value,
@@ -121,10 +116,10 @@ export default {
     actions: {
       setBearer
     }
+  },
+
+  components: {
+    CForm
   }
 }
 </script>
-
-<style src="styles/utils/form"></style>
-
-<style src="styles/views/login" scoped></style>

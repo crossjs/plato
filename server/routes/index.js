@@ -3,6 +3,7 @@ import _debug from 'debug'
 
 import auth from './auth'
 import user from './user'
+import page from './page'
 
 export default app => {
   const debug = _debug('koa:routes')
@@ -16,6 +17,7 @@ export default app => {
 
   auth(app, router)
   user(app, router)
+  page(app, router)
 
   // support different functions for different pages on the server
   app.use(router.routes())

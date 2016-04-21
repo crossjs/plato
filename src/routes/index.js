@@ -13,6 +13,18 @@ export default {
     name: 'about',
     component: resolve => require(['views/About'], resolve)
   },
+  '/pages': {
+    icon: 'pages',
+    title: '页面',
+    name: 'pages',
+    auth: true,
+    component: resolve => require(['views/Pages'], resolve),
+    subRoutes: {
+      '/create': {
+        component: resolve => require(['views/Pages/Create'], resolve)
+      }
+    }
+  },
   '/users': {
     icon: 'users',
     title: '用户',
@@ -36,12 +48,14 @@ export default {
     icon: 'signup',
     title: '注册',
     name: 'signup',
+    auth: false,
     component: resolve => require(['views/Signup'], resolve)
   },
   '/login': {
     icon: 'login',
     title: '登录',
     name: 'login',
+    auth: false,
     component: resolve => require(['views/Login'], resolve)
   },
   '/logout': {

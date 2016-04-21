@@ -16,9 +16,9 @@
 
 <script>
 import store from 'vx/store'
-import Toast from 'components/Toast'
-import Logo from 'components/Logo'
-import Navi from 'components/Navi'
+import Toast from 'views/components/Toast'
+import Logo from 'views/components/Logo'
+import Navi from 'views/components/Navi'
 export default {
   name: 'App',
   store,

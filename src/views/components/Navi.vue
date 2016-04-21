@@ -11,9 +11,9 @@ export default {
   computed: {
     links () {
       if (this.bearer) {
-        return walkRoutes(route => !route.skip && !!route.auth)
+        return walkRoutes(route => !route.skip && route.auth !== false)
       } else {
-        return walkRoutes(route => !route.skip && !route.auth)
+        return walkRoutes(route => !route.skip && route.auth !== true)
       }
     }
   },
@@ -46,4 +46,4 @@ function walkRoutes (reducer) {
 }
 </script>
 
-<style src="styles/components/navi"></style>
+<style src="styles/views/components/navi"></style>

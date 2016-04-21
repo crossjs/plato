@@ -4,4 +4,4 @@
   </div>
 </template>
 
-<style src="styles/components/logo"></style>
+<style src="styles/views/components/logo"></style>

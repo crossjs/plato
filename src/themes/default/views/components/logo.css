@@ -12,7 +12,7 @@
     padding-left: 2.35rem;
     height: var(--header_height);
     line-height: var(--header_height);
-    background: url("../images/logo.png") 0.3rem 50% no-repeat;
+    background: url("../../images/logo.png") 0.3rem 50% no-repeat;
     color: white;
     text-decoration: none;
   }
