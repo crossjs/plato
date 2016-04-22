@@ -1,6 +1,29 @@
-.navi {
+.nav {
   float: right;
   /*transition: margin-left 200ms linear;*/
+
+  & ul {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  & li {
+    display: inline-block;
+    vertical-align: middle;
+
+    & ul {
+      display: none;
+    }
+
+    &:hover {
+      & .link-active + ul {
+        display: block;
+        position: absolute;
+        background-color: color(var(--orange) hue(+180deg) lightness(-50%));
+      }
+    }
+  }
+
   & a {
     display: inline-block;
     vertical-align: middle;
@@ -17,6 +40,9 @@
 
     &.link-active {
       background-color: color(var(--orange) hue(+180deg) lightness(-60%));
+    }
+
+    &.link-active + ul {
     }
   }
 }

@@ -2,10 +2,12 @@
   position: absolute;
   left: 0;
   top: 0;
-  width: var(--aside_width);
-  overflow: hidden;
-  background-color: var(--orange);
+  padding-right: 1rem;
+  /*width: var(--aside_width);*/
+  /*overflow: hidden;*/
+  background-color: inherit;
   transition: width 200ms linear;
+
   & a {
     white-space: nowrap;
     display: block;
@@ -17,7 +19,7 @@
     text-decoration: none;
   }
 
-  & .v-link-active {
+  & .link-active {
     color: white;
   }
 }

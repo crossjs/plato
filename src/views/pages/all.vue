@@ -1,12 +1,6 @@
 <template>
   <div class="pages">
-    <!-- todo: generate from routes config? -->
-    <router-view></router-view>
     <pre v-for="page in pages" track-by="_id"><code>{{page | json}}</code></pre>
-    <aside>
-      <a v-link="{ path: '/pages/create' }">创建</a>
-      <a v-link="{ path: '/pages' }">列表</a>
-    </aside>
   </div>
 </template>
 
@@ -14,6 +8,7 @@
 import { GET } from 'utils/ajax'
 import { bearer, pages } from 'vx/getters'
 import { setPages } from 'vx/actions'
+
 export default {
   methods: {
     fetchPages () {
@@ -46,3 +41,5 @@ export default {
   }
 }
 </script>
+
+<style src="styles/views/pages"></style>

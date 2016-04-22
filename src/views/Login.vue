@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import CForm from 'components/CForm'
+import CForm from 'components/c-form'
 import { POST } from 'utils/ajax'
 import { bearer } from 'vx/getters'
 import { setBearer } from 'vx/actions'

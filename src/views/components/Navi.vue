@@ -1,6 +1,9 @@
 <template>
-  <nav class="navi">
-    <a v-for="link in links" v-link="{ path: link.path, name: link.name, exact: link.exact }" class="iconfont iconfont-{{link.icon}}">{{link.title}}</a>
+  <nav class="nav">
+    <c-route
+      :filter="filter"
+      :routes="routes"
+      ></c-route>
   </nav>
 </template>
 
@@ -8,12 +11,16 @@
 import routes from 'routes'
 import { bearer } from 'vx/getters'
 export default {
+  data () {
+    return {
+      routes: routes()
+    }
+  },
+
   computed: {
-    links () {
-      if (this.bearer) {
-        return walkRoutes(route => !route.skip && route.auth !== false)
-      } else {
-        return walkRoutes(route => !route.skip && route.auth !== true)
+    filter () {
+      return (key, route) => {
+        return key !== '/' && route.auth !== !this.bearer
       }
     }
   },
@@ -23,26 +30,6 @@ export default {
       bearer
     }
   }
-}
-
-function walkRoutes (reducer) {
-  if (!reducer) {
-    reducer = () => {
-      return true
-    }
-  }
-
-  return Object.keys(routes)
-    .filter(key => reducer(routes[key]))
-    .map(key => {
-      return {
-        path: key,
-        name: routes[key].name,
-        exact: routes[key].exact,
-        icon: routes[key].icon,
-        title: routes[key].title
-      }
-    })
 }
 </script>
 

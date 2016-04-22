@@ -1,22 +1,20 @@
 <template>
-  <div>
-    <pre><code>
-    {{profile | json}}
-    </code></pre>
+  <div class="pages">
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
 import { GET } from 'utils/ajax'
-import { bearer } from 'vx/getters'
-import { profile } from 'vx/getters'
-import { setProfile } from 'vx/actions'
+import { bearer, pages } from 'vx/getters'
+import { setPages } from 'vx/actions'
+
 export default {
   methods: {
-    getProfile () {
-      GET('/apis/profile')
+    fetchPages () {
+      GET('/apis/pages')
       .then(json => {
-        this.setProfile(json)
+        this.setPages(json)
       })
     }
   },
@@ -25,9 +23,9 @@ export default {
     activate (transition) {
       if (this.bearer) {
         transition.next()
-        this.getProfile()
+        this.fetchPages()
       } else {
-        this.$route.router.go('/login')
+        this.$route.router.go('/')
       }
     }
   },
@@ -35,11 +33,13 @@ export default {
   vuex: {
     getters: {
       bearer,
-      profile
+      pages
     },
     actions: {
-      setProfile
+      setPages
     }
   }
 }
 </script>
+
+<style src="styles/views/pages"></style>

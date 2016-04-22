@@ -2,8 +2,9 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Validator from 'vue-validator'
 
-import App from 'App'
+import App from 'app'
 import routes from 'routes'
+import CRoute from 'components/c-route'
 
 if (module.hot) {
   module.hot.accept()
@@ -21,7 +22,9 @@ const router = new Router({
   linkActiveClass: 'link-active'
 })
 
-router.map(routes)
+// register for global use
+Vue.component('c-route', CRoute)
+router.map(routes())
 
 router.beforeEach(transition => {
   if (/\/http/.test(transition.to.path)) {

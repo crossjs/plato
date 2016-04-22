@@ -22,11 +22,6 @@ import Navi from 'views/components/Navi'
 export default {
   name: 'App',
   store,
-  // data () {
-  //   return {
-  //     authenticating: false
-  //   }
-  // },
   components: {
     Toast,
     Logo,

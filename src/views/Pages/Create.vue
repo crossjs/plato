@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import CForm from 'components/CForm'
+import CForm from 'components/c-form'
 export default {
   data () {
     return {

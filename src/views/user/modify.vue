@@ -1,5 +1,5 @@
 <template>
-  <div class="signup">
+  <div class="modify">
     <c-form
       :pending="pending"
       :cls="cls"
@@ -12,12 +12,14 @@
 <script>
 import CForm from 'components/c-form'
 import { POST } from 'utils/ajax'
+import { bearer } from 'vx/getters'
+import { setProfile } from 'vx/actions'
 export default {
   data () {
     return {
       pending: false,
       cls: 'ui-form-slim',
-      submit: this.signup,
+      submit: this.modify,
       fields: [{
         icon: 'user-o',
         name: 'username',
@@ -70,36 +72,49 @@ export default {
       buttons: [{
         role: 'submit',
         type: 'submit',
-        label: '注册',
-        pendingLabel: '注册...',
-        validFirst: true
+        label: '提交修改',
+        validFirst: true,
+        pendingLabel: '提交修改...'
       }]
     }
   },
 
   // methods
   methods: {
-    signup ($validation) {
+    modify ($validation) {
       if (!$validation.valid) {
         return
       }
       this.pending = true
-      POST('/apis/signup', {
+      POST('/apis/profile', {
         body: {
           username: this.fields[0].value,
           password: this.fields[1].value
         }
       })
       .then(json => {
-        this.goLogin(json)
-        this.pending = false
-      })
-      .catch(() => {
-        this.pending = false
+        this.setProfile(json)
+        this.goProfile()
       })
     },
-    goLogin ({ username }) {
-      this.$route.router.go('login', { username })
+    goProfile () {
+      this.$route.router.go('/profile')
+    }
+  },
+
+  // route: {
+  //   activate (transition) {
+  //     transition.next()
+  //     this.bearer && this.goProfile()
+  //   }
+  // },
+
+  vuex: {
+    getters: {
+      bearer
+    },
+    actions: {
+      setProfile
     }
   },
 
