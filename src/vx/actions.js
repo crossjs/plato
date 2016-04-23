@@ -1,6 +1,8 @@
 import {
   SET_BEARER,
 
+  SET_PROGRESS,
+
   SET_PROFILE,
 
   ADD_TOAST,
@@ -14,6 +16,9 @@ import {
 
 // bearer token
 export const setBearer = makeAction(SET_BEARER)
+
+// global progress
+export const setProgress = makeAction(SET_PROGRESS)
 
 // profile
 export const setProfile = makeAction(SET_PROFILE)

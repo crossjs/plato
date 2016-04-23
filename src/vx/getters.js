@@ -9,6 +9,10 @@ export const bearer = ({ bearer }) => {
   return bearer
 }
 
+export const progress = ({ progress }) => {
+  return progress
+}
+
 export const profile = ({ profile }) => {
   return profile
 }

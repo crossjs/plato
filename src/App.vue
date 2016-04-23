@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <progress></progress>
     <toast></toast>
     <header class="header">
       <logo></logo>
@@ -16,13 +17,15 @@
 
 <script>
 import store from 'vx/store'
-import Toast from 'views/components/Toast'
-import Logo from 'views/components/Logo'
-import Navi from 'views/components/Navi'
+import Progress from 'views/components/progress'
+import Toast from 'views/components/toast'
+import Logo from 'views/components/logo'
+import Navi from 'views/components/navi'
 export default {
   name: 'App',
   store,
   components: {
+    Progress,
     Toast,
     Logo,
     Navi

@@ -10,10 +10,13 @@
         <li v-for="field in fields" class="ui-form-item" :class="{'ui-form-icon-item': field.icon}">
           <label class="ui-form-label" v-if="field.label">{{field.label}}</label>
           <span class="ui-form-icon iconfont iconfont-{{field.icon}}" v-if="field.icon"></span>
-          <!-- <c-input :props="field"></c-input> -->
           <template v-if="field.type==='multiline'">
             <textarea class="ui-form-input"
+              :rows="field.rows"
+              :cols="field.cols"
               :field="field.name"
+              :readonly="field.readonly"
+              :disabled="field.disabled"
               :placeholder="field.placeholder"
               v-model="field.value"
               v-validate="field.validate"></textarea>
@@ -21,7 +24,10 @@
           <template v-else>
             <input class="ui-form-input"
               :type="field.type"
+              :size="field.size"
               :field="field.name"
+              :readonly="field.readonly"
+              :disabled="field.disabled"
               :placeholder="field.placeholder"
               v-model="field.value"
               v-validate="field.validate">
@@ -30,18 +36,29 @@
       </ul>
       <div class="ui-form-buttons">
         <button v-for="button in buttons" class="ui-form-button button-form-{{button.role}}"
-          :type="button.type" :disabled="button.validFirst && !$validation.valid || pending">{{pending ? button.pendingLabel || button.label : button.label}}</button>
+          :type="button.type" :disabled="_disabled(button.disabled)">{{_label(button.label)}}</button>
       </div>
     </form>
   </validator>
 </template>
 
 <script>
-// import CInput from 'components/CInput'
 export default {
-  props: ['pending', 'cls', 'submit', 'fields', 'buttons'],
-  components: {
-    // CInput
+  props: ['cls', 'submit', 'fields', 'buttons'],
+
+  methods: {
+    _label (label) {
+      if (typeof label === 'function') {
+        return label(this.$validation)
+      }
+      return label
+    },
+    _disabled (disabled) {
+      if (typeof disabled === 'function') {
+        return disabled(this.$validation)
+      }
+      return !!disabled
+    }
   }
 }
 </script>

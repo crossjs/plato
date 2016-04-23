@@ -1,5 +1,9 @@
 import 'whatwg-fetch'
 import store from 'vx/store'
+import {
+  SET_PROGRESS,
+  ADD_TOAST
+} from 'vx/constants'
 import getBearerToken from 'utils/getBearerToken'
 
 const defaults = {
@@ -30,13 +34,15 @@ function inject (json) {
 }
 
 const ajax = (url, options = {}) => {
+  store.dispatch(SET_PROGRESS, 99)
   return fetch(url, mutate(options))
   .then(res => {
+    store.dispatch(SET_PROGRESS, 0)
     if (res.status >= 200 && res.status < 300) {
       return res
     } else {
       // global toast
-      res.json().then(inject).then(json => store.dispatch('ADD_TOAST', json))
+      res.json().then(inject).then(json => store.dispatch(ADD_TOAST, json))
       throw res
     }
   })

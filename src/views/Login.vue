@@ -1,8 +1,6 @@
 <template>
   <div class="login">
     <c-form
-      :pending="pending"
-      :cls="cls"
       :submit="submit"
       :fields="fields"
       :buttons="buttons"></c-form>
@@ -14,69 +12,24 @@ import CForm from 'components/c-form'
 import { POST } from 'utils/ajax'
 import { bearer } from 'vx/getters'
 import { setBearer } from 'vx/actions'
-import { RE_USERNAME, RE_PASSWORD } from 'utils/regex'
+import userFields from 'utils/userFields'
 export default {
   data () {
     return {
       pending: false,
       submit: this.login,
-      fields: [{
-        label: '账号',
-        icon: 'user-o',
-        name: 'username',
-        type: 'text',
-        value: '',
-        placeholder: RE_USERNAME[1],
-        validate: {
-          required: {
-            rule: true,
-            message: '请输入账号'
-          },
-          minlength: {
-            rule: 4,
-            message: '账号不能少于 4 个字符'
-          },
-          maxlength: {
-            rule: 20,
-            message: '账号不能多于 20 个字符'
-          },
-          pattern: {
-            rule: `/${RE_USERNAME[0].source}/`,
-            message: '账号不符合规则'
-          }
-        }
-      }, {
-        label: '密码',
-        icon: 'lock-o',
-        name: 'password',
-        type: 'password',
-        value: '',
-        placeholder: RE_PASSWORD[1],
-        validate: {
-          required: {
-            rule: true,
-            message: '请输入密码'
-          },
-          minlength: {
-            rule: 8,
-            message: '密码不能少于 8 个字符'
-          },
-          maxlength: {
-            rule: 20,
-            message: '密码不能多于 20 个字符'
-          },
-          pattern: {
-            rule: `/${RE_PASSWORD[0].source}/`,
-            message: '密码不符合规则'
-          }
-        }
-      }],
+      fields: userFields,
       buttons: [{
         role: 'submit',
         type: 'submit',
-        label: '登录',
-        validFirst: true,
-        pendingLabel: '登录...'
+        // string or function
+        label: $validation => {
+          return this.pending ? '提交登录中...' : '提交登录'
+        },
+        // boolean or function
+        disabled: $validation => {
+          return !$validation.valid || this.pending
+        }
       }]
     }
   },
@@ -97,13 +50,15 @@ export default {
       .then(json => {
         this.setBearer(json)
         this.goUserIndex()
+        this.reset()
       })
-      .catch(() => {
-        this.pending = false
-      })
+      .catch(() => this.reset)
     },
     goUserIndex () {
       this.$route.router.go('/user')
+    },
+    reset () {
+      this.pending = false
     }
   },
 

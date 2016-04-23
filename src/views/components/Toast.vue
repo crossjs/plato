@@ -14,7 +14,6 @@ import {
 } from 'vx/actions'
 import { toasts } from 'vx/getters'
 export default {
-  // props: ['toasts'],
   vuex: {
     getters: {
       toasts

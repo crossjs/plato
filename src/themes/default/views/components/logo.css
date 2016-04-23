@@ -1,7 +1,5 @@
 .logo {
-  position: absolute;
-  left: 0;
-  top: 0;
+  float: left;
   padding-right: 1rem;
   /*width: var(--aside_width);*/
   /*overflow: hidden;*/

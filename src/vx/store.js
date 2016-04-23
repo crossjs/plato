@@ -4,6 +4,7 @@ import middlewares from './middlewares'
 import {
   BEARER_KEY,
   SET_BEARER,
+  SET_PROGRESS,
   SET_PROFILE,
   ADD_TOAST,
   DELETE_TOAST,
@@ -24,6 +25,7 @@ const state = {
   users: [],
   toasts: [],
   profile: {},
+  progress: 0,
   bearer: (function () {
     try {
       return JSON.parse(localStorage.getItem(BEARER_KEY) || '[]')
@@ -38,6 +40,10 @@ const mutations = {
 
   [SET_BEARER] (state, bearer) {
     state.bearer = bearer
+  },
+
+  [SET_PROGRESS] (state, progress) {
+    state.progress = progress
   },
 
   [SET_PROFILE] (state, profile) {
