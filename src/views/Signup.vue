@@ -16,7 +16,6 @@ export default {
   data () {
     return {
       pending: false,
-      cls: 'ui-form-slim',
       submit: this.signup,
       fields: [{
         icon: 'user-o',

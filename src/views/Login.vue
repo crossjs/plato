@@ -14,18 +14,19 @@ import CForm from 'components/c-form'
 import { POST } from 'utils/ajax'
 import { bearer } from 'vx/getters'
 import { setBearer } from 'vx/actions'
+import { RE_USERNAME, RE_PASSWORD } from 'utils/regex'
 export default {
   data () {
     return {
       pending: false,
-      cls: 'ui-form-slim',
       submit: this.login,
       fields: [{
+        label: '账号',
         icon: 'user-o',
         name: 'username',
         type: 'text',
         value: '',
-        placeholder: '账号（由小写英文字母组成）',
+        placeholder: RE_USERNAME[1],
         validate: {
           required: {
             rule: true,
@@ -40,31 +41,32 @@ export default {
             message: '账号不能多于 20 个字符'
           },
           pattern: {
-            rule: '/^[a-z]{4,20}$/',
+            rule: `/${RE_USERNAME[0].source}/`,
             message: '账号不符合规则'
           }
         }
       }, {
+        label: '密码',
         icon: 'lock-o',
         name: 'password',
         type: 'password',
         value: '',
-        placeholder: '密码（由英文字母或下划线组成）',
+        placeholder: RE_PASSWORD[1],
         validate: {
           required: {
             rule: true,
             message: '请输入密码'
           },
           minlength: {
-            rule: 4,
-            message: '密码不能少于 4 个字符'
+            rule: 8,
+            message: '密码不能少于 8 个字符'
           },
           maxlength: {
             rule: 20,
             message: '密码不能多于 20 个字符'
           },
           pattern: {
-            rule: '/^[0-9A-Za-z]{4,20}$/',
+            rule: `/${RE_PASSWORD[0].source}/`,
             message: '密码不符合规则'
           }
         }
@@ -94,18 +96,21 @@ export default {
       })
       .then(json => {
         this.setBearer(json)
-        this.goProfile()
+        this.goUserIndex()
+      })
+      .catch(() => {
+        this.pending = false
       })
     },
-    goProfile () {
-      this.$route.router.go('/profile')
+    goUserIndex () {
+      this.$route.router.go('/user')
     }
   },
 
   route: {
     activate (transition) {
       transition.next()
-      this.bearer && this.goProfile()
+      this.bearer && this.goUserIndex()
     }
   },
 

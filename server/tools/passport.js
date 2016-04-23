@@ -1,13 +1,32 @@
 import passport from 'koa-passport'
 import { Strategy as LocalStrategy } from 'passport-local'
 import { Strategy as BearerStrategy } from 'passport-http-bearer'
-// import _debug from 'debug'
+import _debug from 'debug'
 import User from '../models/user'
 import hash from '../utils/hash'
+import { BEARER_EXPIRES } from '../config'
+
+const debug = _debug('koa:tools:passport')
+
+export const authCheck = async (ctx, next) => {
+  await passport.authenticate('bearer', {
+    session: false
+  }, async (user, info, status) => {
+    if (user === false) {
+      debug(info)
+      ctx.status = 401
+    } else {
+      const expires = Date.now() + BEARER_EXPIRES
+      // update expires
+      await user.update({ expires }).exec()
+      // todo: apply user to ctx?
+      // ctx.user = { ...user.toJSON(), expires }
+      await next()
+    }
+  })(ctx, next)
+}
 
 export default app => {
-  // const debug = _debug('koa:tools:passport')
-
   app.use(passport.initialize())
 
   passport.use(new LocalStrategy((username, password, done) => {
@@ -18,6 +37,7 @@ export default app => {
       if (!user) {
         return done(null, false, { message: 'Incorrect username.' })
       }
+      debug(user)
       if (hash(password, user.salt) !== user.password) {
         return done(null, false, { message: 'Incorrect password.' })
       }
@@ -33,6 +53,7 @@ export default app => {
       if (!user) {
         return done(null, false, { message: 'Token not exist.' })
       }
+      debug(user)
       return done(null, user, { message: 'Token validated.' })
     })
   }))

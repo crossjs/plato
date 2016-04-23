@@ -72,6 +72,7 @@
 
 .ui-form-items {
   & label {
+  display: block;
     line-height: 32px;
 
     &:after {
@@ -96,8 +97,6 @@
 
 .ui-form-icon {
   position: absolute;
-  left: 1px;
-  top: 1px;
   padding: 0.25rem;
   color: color(black lightness(50%));
 }

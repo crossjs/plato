@@ -8,8 +8,8 @@
       </ul>
       <ul class="ui-form-items">
         <li v-for="field in fields" class="ui-form-item" :class="{'ui-form-icon-item': field.icon}">
-          <span class="ui-form-icon iconfont iconfont-{{field.icon}}" v-if="field.icon"></span>
           <label class="ui-form-label" v-if="field.label">{{field.label}}</label>
+          <span class="ui-form-icon iconfont iconfont-{{field.icon}}" v-if="field.icon"></span>
           <!-- <c-input :props="field"></c-input> -->
           <template v-if="field.type==='multiline'">
             <textarea class="ui-form-input"
@@ -47,4 +47,3 @@ export default {
 </script>
 
 <style src="styles/components/form"></style>
-<style src="styles/components/form-slim"></style>

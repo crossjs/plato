@@ -1,9 +1,9 @@
-import _debug from 'debug'
+// import _debug from 'debug'
 import Page from '../models/page'
-import authCheck from '../utils/authcheck'
+import { authCheck } from '../tools/passport'
 
 export default (app, router) => {
-  const debug = _debug('koa:routes:page')
+  // const debug = _debug('koa:routes:page')
 
   router.get('/pages', authCheck, async ctx => {
     const pages = await Page.find({}).exec()
