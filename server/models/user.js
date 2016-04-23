@@ -39,6 +39,7 @@ const schema = new mongoose.Schema({
 // asc
 // schema.index({ username: 1 })
 
+// document middleware
 schema.pre('save', function (next) {
   debug('save', this.password)
   if (!this.salt) {
@@ -55,35 +56,22 @@ schema.pre('save', function (next) {
   next()
 })
 
-schema.pre('update', function (next) {
-  debug('update', this.password)
-  if (this.password) {
-    this.salt = salt()
+// query middleware
+schema.pre('update', update)
+schema.pre('findOneAndUpdate', update)
 
-    // hash password
-    this.password = hash(this.password, this.salt)
+function update () {
+  const $set = this.getUpdate()
+  const { password } = $set
+
+  if (password) {
+    $set.salt = salt()
+    $set.password = hash(password, $set.salt)
   }
 
-  if (!this.updated) {
-    this.updated = Date.now()
-  }
+  $set.updated = Date.now()
 
-  next()
-})
-schema.pre('findOneAndUpdate', function (next) {
-  debug('findOneAndUpdate', this.password)
-  if (this.password) {
-    this.salt = salt()
-
-    // hash password
-    this.password = hash(this.password, this.salt)
-  }
-
-  if (!this.updated) {
-    this.updated = Date.now()
-  }
-
-  next()
-})
+  this.update({}, { $set })
+}
 
 export default mongoose.model('User', schema)

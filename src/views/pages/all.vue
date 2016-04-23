@@ -8,7 +8,6 @@
 import { GET } from 'utils/ajax'
 import { bearer, pages } from 'vx/getters'
 import { setPages } from 'vx/actions'
-
 export default {
   methods: {
     fetchPages () {

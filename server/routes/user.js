@@ -8,7 +8,7 @@ export default (app, router) => {
   const whiteProps = 'username created'
 
   router.get('/users', authCheck, async ctx => {
-    const users = await User.find({})/*.select(whiteProps)*/.exec()
+    const users = await User.find({}).select(whiteProps).exec()
     ctx.body = users
   })
 

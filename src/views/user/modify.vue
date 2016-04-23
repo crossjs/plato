@@ -25,7 +25,6 @@ export default {
         name: 'password0',
         type: 'password',
         value: '',
-        // placeholder: '旧密码',
         validate: {
           required: {
             rule: true,
@@ -95,6 +94,9 @@ export default {
       .then(json => {
         this.setProfile(json)
         this.goUserIndex()
+      })
+      .catch(() => {
+        this.pending = false
       })
     },
     goUserIndex () {

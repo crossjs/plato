@@ -75,25 +75,7 @@ export default (app, router) => {
       }, ctx)
     }
 
-    const user = await User.findOne({ token }).exec((err, doc) => {
-      if (err) {
-        return respond(400, {
-          message: err.errmsg
-        }, ctx)
-      }
-      if (!doc) {
-        return respond(404, {
-          message: 'Token not found.'
-        }, ctx)
-      }
-
-      return doc
-    })
-
-    await user.update({
-      token: '',
-      expires: 0
-    }).exec()
+    await User.findOneAndUpdate({ token }, { expires: 0 }).exec()
 
     ctx.body = {}
     ctx.status = 200
