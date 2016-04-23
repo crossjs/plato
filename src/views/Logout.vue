@@ -15,11 +15,6 @@ export default {
     }
   },
 
-  // created () {
-  //   this.logout()
-  // },
-
-  // methods
   methods: {
     logout () {
       if (!this.bearer) {

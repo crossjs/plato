@@ -10,6 +10,7 @@
 <script>
 import CForm from 'components/c-form'
 import { POST } from 'utils/ajax'
+import { progress } from 'vx/getters'
 import userFields from 'utils/userFields'
 export default {
   data () {
@@ -22,11 +23,11 @@ export default {
         type: 'submit',
         // string or function
         label: $validation => {
-          return this.pending ? '提交注册中...' : '提交注册'
+          return this.progress ? '提交注册中...' : '提交注册'
         },
         // boolean or function
         disabled: $validation => {
-          return !$validation.valid || this.pending
+          return !$validation.valid || !!this.progress
         }
       }]
     }
@@ -38,7 +39,6 @@ export default {
       if (!$validation.valid) {
         return
       }
-      this.pending = true
       POST('/apis/signup', {
         body: {
           username: this.fields[0].value,
@@ -47,14 +47,16 @@ export default {
       })
       .then(json => {
         this.goLogin(json)
-        this.pending = false
-      })
-      .catch(() => {
-        this.pending = false
       })
     },
     goLogin ({ username }) {
       this.$route.router.go('login', { username })
+    }
+  },
+
+  vuex: {
+    getters: {
+      progress
     }
   },
 

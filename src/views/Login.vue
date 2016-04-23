@@ -10,7 +10,7 @@
 <script>
 import CForm from 'components/c-form'
 import { POST } from 'utils/ajax'
-import { bearer } from 'vx/getters'
+import { bearer, progress } from 'vx/getters'
 import { setBearer } from 'vx/actions'
 import userFields from 'utils/userFields'
 export default {
@@ -24,11 +24,11 @@ export default {
         type: 'submit',
         // string or function
         label: $validation => {
-          return this.pending ? '提交登录中...' : '提交登录'
+          return this.progress ? '提交登录中...' : '提交登录'
         },
         // boolean or function
         disabled: $validation => {
-          return !$validation.valid || this.pending
+          return !$validation.valid || !!this.progress
         }
       }]
     }
@@ -40,7 +40,6 @@ export default {
       if (!$validation.valid) {
         return
       }
-      this.pending = true
       POST('/apis/login', {
         body: {
           username: this.fields[0].value,
@@ -50,15 +49,10 @@ export default {
       .then(json => {
         this.setBearer(json)
         this.goUserIndex()
-        this.reset()
       })
-      .catch(() => this.reset)
     },
     goUserIndex () {
       this.$route.router.go('/user')
-    },
-    reset () {
-      this.pending = false
     }
   },
 
@@ -71,7 +65,8 @@ export default {
 
   vuex: {
     getters: {
-      bearer
+      bearer,
+      progress
     },
     actions: {
       setBearer

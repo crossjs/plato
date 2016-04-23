@@ -1,15 +1,22 @@
 import mongoose from 'mongoose'
+// import _debug from 'debug'
+
+// const debug = _debug('koa:models:role')
 
 const schema = new mongoose.Schema({
-  user: {
-    type: Number,
+  name: {
+    type: String,
+    index: true,
+    unique: true,
+    lowercase: true,
     required: true
   },
-  title: {
-    type: String
+  desc: {
+    type: String,
+    required: true
   },
-  content: {
-    type: String
+  level: {
+    type: Number
   },
   updated: {
     type: Number
@@ -19,6 +26,7 @@ const schema = new mongoose.Schema({
   }
 })
 
+// document middleware
 schema.pre('save', function (next) {
   if (!this.created) {
     this.created = Date.now()
@@ -36,4 +44,4 @@ function update () {
   this.update({}, { $set: { updated } })
 }
 
-export default mongoose.model('Page', schema)
+export default mongoose.model('Role', schema)

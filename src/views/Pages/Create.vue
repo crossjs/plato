@@ -10,10 +10,10 @@
 
 <script>
 import CForm from 'components/c-form'
+import { progress } from 'vx/getters'
 export default {
   data () {
     return {
-      cls: 'ui-form-regular',
       submit: () => {
         console.log(arguments)
       },
@@ -51,11 +51,24 @@ export default {
       buttons: [{
         role: 'submit',
         type: 'submit',
-        label: '提交创建',
-        validFirst: true
+        // string or function
+        label: $validation => {
+          return this.progress ? '提交创建中...' : '提交创建'
+        },
+        // boolean or function
+        disabled: $validation => {
+          return !$validation.valid || !!this.progress
+        }
       }]
     }
   },
+
+  vuex: {
+    getters: {
+      progress
+    }
+  },
+
   components: {
     CForm
   }

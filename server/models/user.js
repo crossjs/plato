@@ -1,9 +1,9 @@
 import mongoose from 'mongoose'
-import _debug from 'debug'
+// import _debug from 'debug'
 import hash from '../utils/hash'
 import salt from '../utils/salt'
 
-const debug = _debug('koa:models:user')
+// const debug = _debug('koa:models:user')
 
 const schema = new mongoose.Schema({
   username: {
@@ -36,12 +36,8 @@ const schema = new mongoose.Schema({
   }
 })
 
-// asc
-// schema.index({ username: 1 })
-
 // document middleware
 schema.pre('save', function (next) {
-  debug('save', this.password)
   if (!this.salt) {
     this.salt = salt()
   }

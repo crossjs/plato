@@ -1,8 +1,6 @@
 <template>
   <div class="modify">
     <c-form
-      :pending="pending"
-      :cls="cls"
       :submit="submit"
       :fields="fields"
       :buttons="buttons"></c-form>
@@ -12,7 +10,7 @@
 <script>
 import CForm from 'components/c-form'
 import { PATCH } from 'utils/ajax'
-import { bearer } from 'vx/getters'
+import { bearer, progress } from 'vx/getters'
 import { setProfile } from 'vx/actions'
 export default {
   data () {
@@ -72,9 +70,14 @@ export default {
       buttons: [{
         role: 'submit',
         type: 'submit',
-        label: '提交修改',
-        validFirst: true,
-        pendingLabel: '提交修改...'
+        // string or function
+        label: $validation => {
+          return this.progress ? '提交修改中...' : '提交修改'
+        },
+        // boolean or function
+        disabled: $validation => {
+          return !$validation.valid || !!this.progress
+        }
       }]
     }
   },
@@ -85,7 +88,6 @@ export default {
       if (!$validation.valid) {
         return
       }
-      this.pending = true
       PATCH('/apis/profile', {
         body: {
           password: this.fields[1].value
@@ -95,25 +97,16 @@ export default {
         this.setProfile(json)
         this.goUserIndex()
       })
-      .catch(() => {
-        this.pending = false
-      })
     },
     goUserIndex () {
       this.$route.router.go('/user')
     }
   },
 
-  // route: {
-  //   activate (transition) {
-  //     transition.next()
-  //     this.bearer && this.goUserIndex()
-  //   }
-  // },
-
   vuex: {
     getters: {
-      bearer
+      bearer,
+      progress
     },
     actions: {
       setProfile
