@@ -13,6 +13,7 @@ import bearerToken from 'koa-bearer-token'
 import _debug from 'debug'
 import config from './config'
 import mongo from './db/mongo'
+import passport from './passport'
 import routes from './routes'
 import webpack from './tools/webpack'
 import error from './tools/error'
@@ -23,6 +24,8 @@ const paths = config.utils_paths
 // Koa application is now a class and requires the new operator.
 const app = new Koa()
 app.use(logger())
+
+app.use(passport.initialize())
 
 // This rewrites all routes requests to the root /index.html file
 // (ignoring file requests). If you want to implement isomorphic

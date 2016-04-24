@@ -9,7 +9,7 @@ import role from './role'
 export default app => {
   const debug = _debug('koa:routes')
 
-  debug('inject routes')
+  debug('initialize')
 
   // api routes
   const router = new Router({

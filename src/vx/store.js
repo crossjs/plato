@@ -23,6 +23,7 @@ if (navigator.userAgent.indexOf('PhantomJS') > -1) {
 
 const state = {
   pages: [],
+  roles: [],
   users: [],
   toasts: [],
   profile: {},

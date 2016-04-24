@@ -10,7 +10,7 @@
         <li v-for="field in fields" class="ui-form-item" :class="{'ui-form-icon-item': field.icon}">
           <label class="ui-form-label" v-if="field.label">{{field.label}}</label>
           <span class="ui-form-icon iconfont iconfont-{{field.icon}}" v-if="field.icon"></span>
-          <template v-if="field.type==='multiline'">
+          <template v-if="_type(field.type, ['multiline'])">
             <textarea class="ui-form-input"
               :rows="field.rows"
               :cols="field.cols"
@@ -21,9 +21,23 @@
               v-model="field.value"
               v-validate="field.validate"></textarea>
           </template>
-          <template v-else>
+          <template v-if="_type(field.type, ['select'])">
+            <select class="ui-form-select"
+              :multiple="field.multiple"
+              :size="field.size"
+              :field="field.name"
+              :readonly="field.readonly"
+              :disabled="field.disabled"
+              :placeholder="field.placeholder"
+              v-model="field.value"
+              v-validate="field.validate">
+              <option v-for="option in field.options"
+                :value="option.value">{{option.text}}</option>
+            </select>
+          </template>
+          <template v-if="_type(field.type)">
             <input class="ui-form-input"
-              :type="field.type"
+              :type="field.type || text"
               :size="field.size"
               :field="field.name"
               :readonly="field.readonly"
@@ -43,10 +57,16 @@
 </template>
 
 <script>
+const TEXT_LIKE_TYPES = [
+  '', 'text', 'password', 'datetime', 'number', 'email'
+]
 export default {
   props: ['cls', 'submit', 'fields', 'buttons'],
 
   methods: {
+    _type (type, types = TEXT_LIKE_TYPES) {
+      return types.indexOf(type || '') !== -1
+    },
     _label (label) {
       if (typeof label === 'function') {
         return label(this.$validation)

@@ -50,16 +50,18 @@ export default {
       }, {
         label: '角色等级',
         name: 'level',
-        type: 'number',
-        value: 0,
+        type: 'select',
+        options: [8, 4, 2, 1, 0].map(key => {
+          return {
+            text: key,
+            value: key
+          }
+        }),
+        value: 4,
         validate: {
           required: {
             rule: true,
             message: '请输入角色等级'
-          },
-          maxlength: {
-            rule: 1,
-            message: '角色等级不能多于 1 个字符'
           }
         }
       }],

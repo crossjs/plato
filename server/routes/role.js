@@ -1,16 +1,24 @@
-// import _debug from 'debug'
+import _debug from 'debug'
 import Role from '../models/role'
-import { authCheck } from '../tools/passport'
+import { check } from '../passport'
 
 export default (app, router) => {
-  // const debug = _debug('koa:routes:role')
+  const debug = _debug('koa:routes:role')
 
-  router.get('/roles', authCheck, async ctx => {
+  debug('initialize')
+
+  router.get('/roles', check, async ctx => {
     const roles = await Role.find({}).exec()
     ctx.body = roles
   })
 
-  router.get('/roles/:id', authCheck, async ctx => {
+  router.post('/roles', check, async ctx => {
+    const { name, desc, level } = ctx.request.body
+    const role = await Role.create({ name, desc, level })
+    ctx.body = role.toJSON()
+  })
+
+  router.get('/roles/:id', check, async ctx => {
     const role = await Role.findById(ctx.params.id).exec()
     ctx.body = role
   })

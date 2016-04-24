@@ -2,33 +2,35 @@ import _debug from 'debug'
 import respond from './utils/respond'
 import hash from '../utils/hash'
 import User from '../models/user'
-import { authCheck } from '../tools/passport'
+import { check } from '../passport'
 
 export default (app, router) => {
   const debug = _debug('koa:routes:user')
 
+  debug('initialize')
+
   const whiteProps = 'username created'
 
-  router.get('/users', authCheck, async ctx => {
+  router.get('/users', check, async ctx => {
     const users = await User.find({}).select(whiteProps).exec()
     ctx.body = users
   })
 
-  router.get('/users/:id', authCheck, async ctx => {
+  router.get('/users/:id', check, async ctx => {
     const user = await User.findById(ctx.params.id).select(whiteProps).exec()
     ctx.body = user
   })
 
   // profile
 
-  router.get('/profile', authCheck, async ctx => {
+  router.get('/profile', check, async ctx => {
     const user = await User.findOne({
       token: ctx.request.token
     }).exec()
     ctx.body = user
   })
 
-  router.patch('/profile', authCheck, async ctx => {
+  router.patch('/profile', check, async ctx => {
     const { password0, password } = ctx.request.body
     if (hash(password0, ctx._user.salt) !== ctx._user.password) {
       return respond(400, {

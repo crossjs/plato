@@ -1,7 +1,6 @@
-import passport from 'koa-passport'
 import only from 'only'
 import _debug from 'debug'
-import _passport from '../tools/passport'
+import passport from '../passport'
 import User from '../models/user'
 import salt from '../utils/salt'
 import respond from './utils/respond'
@@ -10,11 +9,10 @@ import { BEARER_EXPIRES } from '../config'
 export default (app, router) => {
   const debug = _debug('koa:routes:auth')
 
+  debug('initialize')
+
   // clear
   // User.remove({}).exec()
-
-  _debug('inject passport strategies')
-  _passport(app)
 
   const whiteProps = 'username token expires'
 
@@ -52,10 +50,7 @@ export default (app, router) => {
 
   // signup
   router.post('/signup', async ctx => {
-    const {
-      username,
-      password
-    } = ctx.request.body
+    const { username, password } = ctx.request.body
     const user = await User.create({ username, password })
     ctx.body = only(user.toJSON(), whiteProps)
   })

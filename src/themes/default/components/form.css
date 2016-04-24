@@ -3,16 +3,18 @@
 }
 
 .ui-form-input,
+.ui-form-select,
 .ui-form-textarea,
 .ui-form-static {
   display: inline-block;
   border: 1px solid color(black lightness(80%));
   padding: 0.2rem 0.3rem;
   width: 100%;
-  min-height: 1.6rem;
-  line-height: 1.1rem;
+  min-height: 2rem;
+  line-height: 1.5rem;
   background-color: white;
   outline: none;
+  border-radius: 0.25rem;
   box-sizing: border-box;
 
   &:hover,
@@ -31,6 +33,10 @@
   &[size] {
     width: auto;
   }
+}
+
+.ui-form-select {
+  height: 2rem;
 }
 
 .ui-form-prefix,
@@ -109,11 +115,12 @@
   cursor: pointer;
   margin: 0 0.5rem 0 0;
   padding: 0.25rem 1.5rem;
-  height: 1.6rem;
-  line-height: 1.1rem;
+  height: 2rem;
+  line-height: 1.5rem;
   color: white;
   background-color: var(--orange);
   border: none;
+  border-radius: 0.25rem;
 
   &:hover {
     background-color: color(var(--orange) lightness(-10%));
