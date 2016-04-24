@@ -7,7 +7,6 @@
 <script>
 import { DELETE } from 'utils/ajax'
 import { setBearer } from 'vx/actions'
-import { bearer } from 'vx/getters'
 export default {
   data () {
     return {
@@ -38,9 +37,6 @@ export default {
   },
 
   vuex: {
-    getters: {
-      bearer
-    },
     actions: {
       setBearer
     }
