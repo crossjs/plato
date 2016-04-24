@@ -10,7 +10,8 @@ import {
   DELETE_TOAST,
   CLEAR_TOASTS,
   SET_USERS,
-  SET_PAGES
+  SET_PAGES,
+  SET_ROLES
 } from './constants'
 
 Vue.use(Vuex)
@@ -68,6 +69,10 @@ const mutations = {
 
   [SET_PAGES] (state, pages) {
     state.pages = pages
+  },
+
+  [SET_ROLES] (state, roles) {
+    state.roles = roles
   }
 
 }

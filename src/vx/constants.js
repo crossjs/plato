@@ -12,3 +12,5 @@ export const CLEAR_TOASTS = 'CLEAR_TOASTS'
 export const SET_USERS = 'SET_USERS'
 
 export const SET_PAGES = 'SET_PAGES'
+
+export const SET_ROLES = 'SET_ROLES'

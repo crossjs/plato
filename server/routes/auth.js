@@ -10,6 +10,9 @@ import { BEARER_EXPIRES } from '../config'
 export default (app, router) => {
   const debug = _debug('koa:routes:auth')
 
+  // clear
+  // User.remove({}).exec()
+
   _debug('inject passport strategies')
   _passport(app)
 

@@ -8,12 +8,13 @@
 </template>
 
 <script>
-import CForm from 'components/c-form'
+import form from 'mixins/form'
 import { POST } from 'utils/ajax'
 import md5 from 'utils/md5'
-import { progress } from 'vx/getters'
 import userFields from 'utils/userFields'
 export default {
+  mixins: [form],
+
   data () {
     return {
       pending: false,
@@ -41,28 +42,21 @@ export default {
         return
       }
       POST('/apis/signup', {
-        body: {
-          username: this.fields[0].value,
-          password: md5(this.fields[1].value)
-        }
+        body: this.formdata(data => {
+          data.password = md5(data.password)
+          return data
+        })
       })
       .then(json => {
         this.goLogin(json)
       })
     },
     goLogin ({ username }) {
-      this.$route.router.go('login', { username })
+      this.$route.router.go({
+        name: 'login',
+        query: { username }
+      })
     }
-  },
-
-  vuex: {
-    getters: {
-      progress
-    }
-  },
-
-  components: {
-    CForm
   }
 }
 </script>

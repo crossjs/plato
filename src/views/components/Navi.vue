@@ -8,12 +8,12 @@
 </template>
 
 <script>
-import routes from 'routes'
+import { routes } from 'routes'
 import { bearer } from 'vx/getters'
 export default {
   data () {
     return {
-      routes: routes()
+      routes
     }
   },
 

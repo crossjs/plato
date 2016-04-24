@@ -28,3 +28,7 @@ export const users = ({ users }) => {
 export const pages = ({ pages }) => {
   return pages
 }
+
+export const roles = ({ roles }) => {
+  return roles
+}

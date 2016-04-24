@@ -16,7 +16,8 @@
     }
 
     &:hover {
-      & .link-active + ul {
+      /*& .link-active + ul {*/
+      & ul {
         display: block;
         position: absolute;
         background-color: color(var(--orange) hue(+180deg) lightness(-50%));

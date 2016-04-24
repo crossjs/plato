@@ -18,33 +18,48 @@ export default {
     return {
       submit: this.create,
       fields: [{
-        label: '页面标题',
-        name: 'title',
+        label: '角色名称',
+        name: 'name',
         type: 'text',
         value: '',
         validate: {
           required: {
             rule: true,
-            message: '请输入标题'
+            message: '请输入角色名称'
           },
           maxlength: {
             rule: 20,
-            message: '标题不能多于 20 个字符'
+            message: '角色名称不能多于 20 个字符'
           }
         }
       }, {
-        label: '页面内容',
-        name: 'content',
+        label: '角色描述',
+        name: 'desc',
         type: 'multiline',
         value: '',
         validate: {
           required: {
             rule: true,
-            message: '请输入内容'
+            message: '请输入角色描述'
           },
           maxlength: {
-            rule: 2000,
-            message: '内容不能多于 2000 个字符'
+            rule: 100,
+            message: '角色描述不能多于 100 个字符'
+          }
+        }
+      }, {
+        label: '角色等级',
+        name: 'level',
+        type: 'number',
+        value: 0,
+        validate: {
+          required: {
+            rule: true,
+            message: '请输入角色等级'
+          },
+          maxlength: {
+            rule: 1,
+            message: '角色等级不能多于 1 个字符'
           }
         }
       }],
@@ -68,11 +83,11 @@ export default {
       if (!$validation.valid) {
         return
       }
-      POST('/apis/pages', {
+      POST('/apis/roles', {
         body: this.formdata()
       })
       .then(json => {
-        this.$route.router.go('/pages')
+        this.$route.router.go('/roles')
       })
     }
   }

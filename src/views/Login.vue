@@ -8,14 +8,16 @@
 </template>
 
 <script>
-import CForm from 'components/c-form'
+import form from 'mixins/form'
 import { POST } from 'utils/ajax'
 import md5 from 'utils/md5'
-import { bearer, progress } from 'vx/getters'
 import { setBearer } from 'vx/actions'
 import userFields from 'utils/userFields'
 export default {
+  mixins: [form],
+
   data () {
+    userFields[0].value = this.$route.query.username || ''
     return {
       pending: false,
       submit: this.login,
@@ -42,10 +44,10 @@ export default {
         return
       }
       POST('/apis/login', {
-        body: {
-          username: this.fields[0].value,
-          password: md5(this.fields[1].value)
-        }
+        body: this.formdata(data => {
+          data.password = md5(data.password)
+          return data
+        })
       })
       .then(json => {
         this.setBearer(json)
@@ -65,17 +67,9 @@ export default {
   },
 
   vuex: {
-    getters: {
-      bearer,
-      progress
-    },
     actions: {
       setBearer
     }
-  },
-
-  components: {
-    CForm
   }
 }
 </script>

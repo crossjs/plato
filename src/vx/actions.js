@@ -11,7 +11,8 @@ import {
 
   SET_USERS,
 
-  SET_PAGES
+  SET_PAGES,
+  SET_ROLES
 } from './constants'
 
 // bearer token
@@ -33,6 +34,9 @@ export const setUsers = makeAction(SET_USERS)
 
 // pages
 export const setPages = makeAction(SET_PAGES)
+
+// pages
+export const setRoles = makeAction(SET_ROLES)
 
 function makeAction (type) {
   return ({ dispatch }, ...args) => dispatch(type, ...args)

@@ -3,12 +3,16 @@ import Router from 'vue-router'
 import Validator from 'vue-validator'
 
 import App from 'app'
-import routes from 'routes'
+import { routes, alias } from 'routes'
+import mixins from 'mixins'
 import CRoute from 'components/c-route'
 
 if (module.hot) {
   module.hot.accept()
 }
+
+// global mixins
+Vue.mixin(mixins)
 
 // process.env.NODE_ENV === 'developmemnt'
 Vue.config.debug = true
@@ -22,9 +26,12 @@ const router = new Router({
   linkActiveClass: 'link-active'
 })
 
-// register for global use
+// register route component for global use
 Vue.component('c-route', CRoute)
-router.map(routes())
+
+// register routes
+router.map(routes)
+router.alias(alias)
 
 router.beforeEach(transition => {
   if (/\/http/.test(transition.to.path)) {
