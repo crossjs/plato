@@ -20,7 +20,7 @@ export const authCheck = async (ctx, next) => {
       // update expires
       await user.update({ expires }).exec()
       // todo: apply user to ctx?
-      // ctx.user = { ...user.toJSON(), expires }
+      ctx._user = { ...user.toJSON(), expires }
       await next()
     }
   })(ctx, next)

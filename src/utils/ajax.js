@@ -41,13 +41,25 @@ const ajax = (url, options = {}) => {
     if (res.status >= 200 && res.status < 300) {
       return res
     } else {
-      // global toast
-      res.json().then(inject).then(json => store.dispatch(ADD_TOAST, json))
       throw res
     }
   })
   .then(res => {
     return res.json()
+  })
+  .catch(err => {
+    store.dispatch(SET_PROGRESS, 0)
+    if (!err.json) {
+      // global toast
+      store.dispatch(ADD_TOAST, inject({
+        code: '500',
+        message: 'Server Error'
+      }))
+    } else {
+      // global toast
+      err.json().then(inject).then(json => store.dispatch(ADD_TOAST, json))
+    }
+    throw err
   })
 }
 

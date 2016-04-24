@@ -1,9 +1,9 @@
 import mongoose from 'mongoose'
-// import _debug from 'debug'
+import _debug from 'debug'
 import hash from '../utils/hash'
 import salt from '../utils/salt'
 
-// const debug = _debug('koa:models:user')
+const debug = _debug('koa:models:user')
 
 const schema = new mongoose.Schema({
   username: {
@@ -64,6 +64,8 @@ function update () {
     $set.salt = salt()
     $set.password = hash(password, $set.salt)
   }
+
+  debug(this.getQuery())
 
   $set.updated = Date.now()
 

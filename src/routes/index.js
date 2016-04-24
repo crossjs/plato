@@ -68,7 +68,7 @@ const routes = {
       },
       '/modify': {
         icon: 'modify',
-        title: '修改资料',
+        title: '修改密码',
         name: 'user/modify',
         auth: true,
         component: resolve => require(['views/user/modify'], resolve)

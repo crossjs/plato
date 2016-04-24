@@ -10,6 +10,7 @@
 <script>
 import CForm from 'components/c-form'
 import { POST } from 'utils/ajax'
+import md5 from 'utils/md5'
 import { bearer, progress } from 'vx/getters'
 import { setBearer } from 'vx/actions'
 import userFields from 'utils/userFields'
@@ -43,7 +44,7 @@ export default {
       POST('/apis/login', {
         body: {
           username: this.fields[0].value,
-          password: this.fields[1].value
+          password: md5(this.fields[1].value)
         }
       })
       .then(json => {

@@ -1,9 +1,11 @@
-// import _debug from 'debug'
+import _debug from 'debug'
+import respond from './utils/respond'
+import hash from '../utils/hash'
 import User from '../models/user'
 import { authCheck } from '../tools/passport'
 
 export default (app, router) => {
-  // const debug = _debug('koa:routes:user')
+  const debug = _debug('koa:routes:user')
 
   const whiteProps = 'username created'
 
@@ -26,11 +28,23 @@ export default (app, router) => {
     ctx.body = user
   })
 
-  router.patch('/profile', async ctx => {
-    const { password } = ctx.request.body
+  router.patch('/profile', authCheck, async ctx => {
+    const { password0, password } = ctx.request.body
+    if (hash(password0, ctx._user.salt) !== ctx._user.password) {
+      return respond(400, {
+        message: 'Password is NOT correct'
+      }, ctx)
+    }
     const user = await User.findOneAndUpdate({
       token: ctx.request.token
     }, { password }).exec()
+    if (!user) {
+      debug(user)
+      return respond(404, {
+        message: 'User is Not Found'
+      }, ctx)
+    }
+    debug(user)
     ctx.body = user
   })
 }

@@ -1,10 +1,10 @@
-import { STATUS_CODES } from 'http'
 import passport from 'koa-passport'
 import only from 'only'
 import _debug from 'debug'
 import _passport from '../tools/passport'
 import User from '../models/user'
 import salt from '../utils/salt'
+import respond from './utils/respond'
 import { BEARER_EXPIRES } from '../config'
 
 export default (app, router) => {
@@ -22,14 +22,6 @@ export default (app, router) => {
     await user.update({ token, expires }).exec()
     ctx.body = { ...only(user.toJSON(), whiteProps), token, expires }
     ctx.status = 201
-  }
-
-  function respond (status, { message }, ctx) {
-    ctx.body = {
-      code: STATUS_CODES[status],
-      message
-    }
-    ctx.status = status || 500
   }
 
   function callback (user, info, status) {
