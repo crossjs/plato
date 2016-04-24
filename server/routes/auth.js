@@ -61,7 +61,7 @@ export default (app, router) => {
   })
 
   // logout
-  router.del('/logout', async (ctx, next) => {
+  router.del('/user/logout', async (ctx, next) => {
     const token = ctx.request.token
 
     if (!token) {

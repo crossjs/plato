@@ -15,11 +15,20 @@
       display: none;
     }
 
+    & li {
+      display: block;
+
+      & a {
+        display: block;
+      }
+    }
+
     &:hover {
       /*& .link-active + ul {*/
       & ul {
         display: block;
         position: absolute;
+        z-index: 1;
         background-color: color(var(--orange) hue(+180deg) lightness(-50%));
       }
     }

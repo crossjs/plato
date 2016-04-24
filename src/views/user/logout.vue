@@ -22,7 +22,7 @@ export default {
         this.$route.router.go('/')
         return
       }
-      DELETE('/apis/logout')
+      DELETE('/apis/user/logout')
       .then(json => {
         this.setBearer(null)
         this.$route.router.go('/')

@@ -95,6 +95,13 @@ export default {
           name: 'user/modify',
           auth: true,
           component: resolve => require(['views/user/modify'], resolve)
+        },
+        '/logout': {
+          icon: 'logout',
+          title: '退出',
+          name: 'user/logout',
+          auth: true,
+          component: resolve => require(['views/user/logout'], resolve)
         }
       }
     },
@@ -111,13 +118,6 @@ export default {
       name: 'login',
       auth: false,
       component: resolve => require(['views/login'], resolve)
-    },
-    '/logout': {
-      icon: 'logout',
-      title: '退出',
-      name: 'logout',
-      auth: true,
-      component: resolve => require(['views/logout'], resolve)
     }
   },
 
