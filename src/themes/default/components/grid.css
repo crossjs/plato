@@ -1,52 +1,30 @@
 .ui-grid {
   width: 100%;
-  border: 1px solid var(--orange);
-  background-color: #fff;
+  border-collapse: collapse;
 
   & th {
-    background-color: var(--orange);
-    color: white;
-    cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -user-select: none;
+    border-bottom: 2px solid color(white lightness(80%));
+    user-select: none;
+    text-align: left;
   }
 
   & td {
-    background-color: #f9f9f9;
+    border-top: 1px solid color(white lightness(80%));
   }
 
-  & th, & td {
-    min-width: 120px;
-    padding: 10px 20px;
+  & th,
+  & td {
+    /*min-width: 6rem;*/
+    padding: 0.5rem 1rem;
+
+    &.index {
+      width: 1rem;
+    }
   }
 
-  & th.active {
-    color: #fff;
-  }
-
-  & th.active .arrow {
-    opacity: 1;
-  }
-
-  & .arrow {
-    display: inline-block;
-    vertical-align: middle;
-    width: 0;
-    height: 0;
-    margin-left: 5px;
-    opacity: 0.66;
-  }
-
-  & .arrow.asc {
-    border-left: 4px solid transparent;
-    border-right: 4px solid transparent;
-    border-bottom: 4px solid #fff;
-  }
-
-  & .arrow.dsc {
-    border-left: 4px solid transparent;
-    border-right: 4px solid transparent;
-    border-top: 4px solid #fff;
+  & tr:hover {
+    & td {
+      background-color: color(white lightness(90%));
+    }
   }
 }

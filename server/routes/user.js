@@ -12,12 +12,17 @@ export default (app, router) => {
   const whiteProps = 'username created'
 
   router.get('/users', check, async ctx => {
-    const users = await User.find({}).select(whiteProps).exec()
+    const users = await User.find({}).exec()
     ctx.body = users
   })
 
   router.get('/users/:id', check, async ctx => {
     const user = await User.findById(ctx.params.id).select(whiteProps).exec()
+    ctx.body = user
+  })
+
+  router.del('/users/:id', check, async ctx => {
+    const user = await User.findByIdAndRemove(ctx.params.id).exec()
     ctx.body = user
   })
 

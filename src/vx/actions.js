@@ -10,6 +10,7 @@ import {
   CLEAR_TOASTS,
 
   SET_USERS,
+  DELETE_USER,
 
   SET_PAGES,
   SET_ROLES
@@ -31,6 +32,7 @@ export const clearToasts = makeAction(CLEAR_TOASTS)
 
 // users
 export const setUsers = makeAction(SET_USERS)
+export const deleteUser = makeAction(DELETE_USER)
 
 // pages
 export const setPages = makeAction(SET_PAGES)

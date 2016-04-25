@@ -1,0 +1,50 @@
+.ui-modal {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+}
+
+.ui-modal-content {
+  width: 15rem;
+  background-color: white;
+  margin: 1rem auto;
+  border: 0.25rem solid rgba(0, 0, 0, 0.5);
+}
+
+.ui-modal-header {
+  height: 2.5rem;
+  border-bottom: 1px solid color(white lightness(80%));
+
+  & button {
+    float: right;
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 1.5rem;
+    line-height: 1;
+    text-align: center;
+    background: none;
+
+    &:hover {
+      color: white;
+      background-color: var(--orange);
+    }
+  }
+}
+
+.ui-modal-body {
+  text-align: center;
+  padding: 1rem;
+}
+
+.ui-modal-footer {
+  padding: 0.5rem;
+  text-align: center;
+  border-top: 1px solid color(white lightness(80%));
+  & button {
+    margin: 0 0.5rem;
+    padding: 0.25rem 1.5rem;
+  }
+}

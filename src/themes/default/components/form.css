@@ -132,15 +132,10 @@
 }
 
 .ui-form-button {
-  cursor: pointer;
-  margin: 0 0.5rem 0 0;
+  margin: 0 0.5rem;
   padding: 0.25rem 1.5rem;
-  height: 2rem;
-  line-height: 1.5rem;
   color: white;
   background-color: var(--orange);
-  border: none;
-  /*border-radius: 0.25rem;*/
 
   &:hover {
     background-color: color(var(--orange) lightness(-10%));

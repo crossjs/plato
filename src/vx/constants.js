@@ -10,6 +10,7 @@ export const DELETE_TOAST = 'DELETE_TOAST'
 export const CLEAR_TOASTS = 'CLEAR_TOASTS'
 
 export const SET_USERS = 'SET_USERS'
+export const DELETE_USER = 'DELETE_USER'
 
 export const SET_PAGES = 'SET_PAGES'
 

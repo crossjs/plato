@@ -42,11 +42,19 @@ schema.pre('save', function (next) {
     this.salt = salt()
   }
 
+  if (!this.token) {
+    this.token = this.salt
+  }
+
   // hash password
   this.password = hash(this.password, this.salt)
 
   if (!this.created) {
     this.created = Date.now()
+  }
+
+  if (!this.updated) {
+    this.updated = this.created
   }
 
   next()

@@ -1,23 +1,58 @@
 <template>
   <div class="users">
+    <c-modal
+      :show.sync="modal.show"
+      :body="modal.body"
+      :buttons="modal.buttons"></c-modal>
     <c-grid
       :data="users"
       :columns="columns"
-      :filter-key="query"></c-grid>
-    <pre v-for="user in users" track-by="_id"><code>{{user | json}}</code></pre>
+      :actions="actions"></c-grid>
   </div>
 </template>
 
 <script>
+import mModal from 'mixins/m-modal'
 import mGrid from 'mixins/m-grid'
-import { GET } from 'utils/ajax'
+import { GET, DELETE } from 'utils/ajax'
 import { bearer, users } from 'vx/getters'
 import { setUsers } from 'vx/actions'
 export default {
-  mixins: [mGrid],
+  mixins: [mModal, mGrid],
 
   data () {
+    let target
+    const showModal = function (column) {
+      target = column
+      this.modal.show = true
+    }.bind(this)
+    const dismissModal = function (ok) {
+      this.modal.show = false
+      if (ok) {
+        this.deleteUser(target)
+      }
+      target = null
+    }.bind(this)
     return {
+      target: null,
+      modal: {
+        show: false,
+        body: '确定删除？',
+        buttons: {
+          ok: {
+            label: '确定',
+            click () {
+              dismissModal(true)
+            }
+          },
+          no: {
+            label: '取消',
+            click () {
+              dismissModal(false)
+            }
+          }
+        }
+      },
       columns: {
         username: {
           label: '用户名'
@@ -25,6 +60,12 @@ export default {
         created: {
           label: '创建时间',
           filters: 'datetime'
+        }
+      },
+      actions: {
+        remove: {
+          label: '删除',
+          click: showModal
         }
       }
     }
@@ -35,6 +76,15 @@ export default {
       GET('/apis/users')
       .then(json => {
         this.setUsers(json)
+      })
+    },
+    deleteUser (user) {
+      if (!user || !user._id) {
+        return
+      }
+      DELETE(`/apis/users/${user._id}`)
+      .then(json => {
+        this.users.$remove(user)
       })
     }
   },

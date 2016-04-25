@@ -10,6 +10,7 @@ import {
   DELETE_TOAST,
   CLEAR_TOASTS,
   SET_USERS,
+  DELETE_USER,
   SET_PAGES,
   SET_ROLES
 } from './constants'
@@ -66,6 +67,10 @@ const mutations = {
 
   [SET_USERS] (state, users) {
     state.users = users
+  },
+
+  [DELETE_USER] (state, user) {
+    state.users.$remove(user)
   },
 
   [SET_PAGES] (state, pages) {
