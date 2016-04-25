@@ -2,6 +2,20 @@
   padding: 1rem 0;
 }
 
+.ui-form-errors {
+  padding: 0 0 1rem;
+}
+
+.ui-form-error {
+  margin: 0 0 0.5rem;
+  padding: 0.3rem 0.3rem 0.3rem 0.8rem;
+  cursor: default;
+  color: var(--text_warning);
+  background-color: var(--bg_warning);
+  list-style-type: square;
+  list-style-position: inside;
+}
+
 .ui-form-input,
 .ui-form-select,
 .ui-form-textarea,
@@ -14,7 +28,7 @@
   line-height: 1.5rem;
   background-color: white;
   outline: none;
-  border-radius: 0.25rem;
+  /*border-radius: 0.25rem;*/
   box-sizing: border-box;
 
   &:hover,
@@ -45,8 +59,8 @@
   border-top: 1px solid color(black lightness(80%));
   border-bottom: 1px solid color(black lightness(80%));
   padding: 0.2rem 0.3rem;
-  min-height: 1.6rem;
-  line-height: 1.1rem;
+  min-height: 2rem;
+  line-height: 1.5rem;
   background-color: color(black lightness(90%));
   outline: none;
   box-sizing: border-box;
@@ -97,14 +111,20 @@
   & .ui-form-input,
   & .ui-form-textarea,
   & .ui-form-static {
-    padding-left: 1.2rem;
+    padding-left: 1.5rem;
   }
 }
 
 .ui-form-icon {
   position: absolute;
-  padding: 0.25rem;
+  min-width: 1.5rem;
+  min-height: 2rem;
+  line-height: 2rem;
+  text-align: center;
   color: color(black lightness(50%));
+  &:before {
+    margin: 0;
+  }
 }
 
 .ui-form-buttons {
@@ -120,7 +140,7 @@
   color: white;
   background-color: var(--orange);
   border: none;
-  border-radius: 0.25rem;
+  /*border-radius: 0.25rem;*/
 
   &:hover {
     background-color: color(var(--orange) lightness(-10%));
@@ -137,18 +157,4 @@
   &:hover {
     background-color: color(var(--orange) saturation(0%));
   }
-}
-
-.ui-form-errors {
-  padding: 0 0 1rem;
-}
-
-.ui-form-error {
-  margin: 0 0 0.5rem;
-  padding: 0.3rem 0.3rem 0.3rem 0.8rem;
-  cursor: default;
-  color: var(--text_warning);
-  background-color: var(--bg_warning);
-  list-style-type: square;
-  list-style-position: inside;
 }

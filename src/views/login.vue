@@ -8,13 +8,13 @@
 </template>
 
 <script>
-import form from 'mixins/form'
+import mForm from 'mixins/m-form'
 import { POST } from 'utils/ajax'
 import md5 from 'utils/md5'
 import { setBearer } from 'vx/actions'
 import userFields from 'utils/userFields'
 export default {
-  mixins: [form],
+  mixins: [mForm],
 
   data () {
     userFields[0].value = this.$route.query.username || ''

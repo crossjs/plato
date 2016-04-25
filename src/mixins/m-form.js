@@ -1,5 +1,4 @@
 import CForm from 'components/c-form'
-
 export default {
   methods: {
     formdata (mutator = data => data) {

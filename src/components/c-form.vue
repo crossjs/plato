@@ -18,6 +18,7 @@
               :readonly="field.readonly"
               :disabled="field.disabled"
               :placeholder="field.placeholder"
+              v-bind="field.validate | _validate2attr"
               v-model="field.value"
               v-validate="field.validate"></textarea>
           </template>
@@ -29,6 +30,7 @@
               :readonly="field.readonly"
               :disabled="field.disabled"
               :placeholder="field.placeholder"
+              v-bind="field.validate | _validate2attr"
               v-model="field.value"
               v-validate="field.validate">
               <option v-for="option in field.options"
@@ -43,6 +45,7 @@
               :readonly="field.readonly"
               :disabled="field.disabled"
               :placeholder="field.placeholder"
+              v-bind="field.validate | _validate2attr"
               v-model="field.value"
               v-validate="field.validate">
           </template>
@@ -57,14 +60,14 @@
 </template>
 
 <script>
-const TEXT_LIKE_TYPES = [
+const TEXTLIKE_TYPES = [
   '', 'text', 'password', 'datetime', 'number', 'email'
 ]
 export default {
   props: ['cls', 'submit', 'fields', 'buttons'],
 
   methods: {
-    _type (type, types = TEXT_LIKE_TYPES) {
+    _type (type, types = TEXTLIKE_TYPES) {
       return types.indexOf(type || '') !== -1
     },
     _label (label) {
@@ -78,6 +81,16 @@ export default {
         return disabled(this.$validation)
       }
       return !!disabled
+    }
+  },
+
+  filters: {
+    // todo: filter names
+    _validate2attr (data) {
+      return Object.keys(data).reduce((obj, key) => {
+        obj[key] = data[key].rule
+        return obj
+      }, {})
     }
   }
 }

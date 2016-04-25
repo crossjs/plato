@@ -9,10 +9,10 @@
 </template>
 
 <script>
-import form from 'mixins/form'
+import mForm from 'mixins/m-form'
 import { POST } from 'utils/ajax'
 export default {
-  mixins: [form],
+  mixins: [mForm],
 
   data () {
     return {
