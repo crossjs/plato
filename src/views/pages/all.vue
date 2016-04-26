@@ -56,7 +56,7 @@ export default {
         }
       },
       columns: {
-        user: {
+        username: {
           label: '用户'
         },
         title: {
@@ -83,7 +83,13 @@ export default {
     fetchPages () {
       GET('/apis/pages')
       .then(json => {
-        this.setPages(json)
+        Promise.all(json.map(data => {
+          return GET(`/apis/users/${data.user}`).then(user => {
+            data.username = user.username
+          })
+        })).then(() => {
+          this.setPages(json)
+        })
       })
     },
     deleteUser (page) {
