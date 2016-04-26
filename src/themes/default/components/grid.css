@@ -27,4 +27,16 @@
       background-color: color(white lightness(90%));
     }
   }
+
+  & button {
+    padding: 0;
+    height: auto;
+    line-height: inherit;
+    background: none;
+    color: color(var(--orange) hue(+180deg) lightness(-30%));
+
+    &:hover {
+      color: var(--orange);
+    }
+  }
 }

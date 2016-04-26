@@ -8,7 +8,10 @@
       </div>
       <div class="ui-modal-body">{{body}}</div>
       <div v-if="buttons" class="ui-modal-footer">
-        <button v-for="button in buttons" :type="button.type || 'button'" @click="button.click">{{button.label}}</button>
+        <button v-for="button in buttons"
+          :role="button.role"
+          :type="button.type || 'button'"
+          @click="button.click">{{button.label}}</button>
       </div>
     </div>
   </div>

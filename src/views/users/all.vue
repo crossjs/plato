@@ -41,12 +41,14 @@ export default {
         buttons: {
           ok: {
             label: '确定',
+            role: 'submit',
             click () {
               dismissModal(true)
             }
           },
           no: {
             label: '取消',
+            role: 'cancel',
             click () {
               dismissModal(false)
             }

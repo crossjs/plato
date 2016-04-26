@@ -52,8 +52,10 @@
         </li>
       </ul>
       <div class="ui-form-buttons">
-        <button v-for="button in buttons" class="ui-form-button button-form-{{button.role}}"
-          :type="button.type" :disabled="_disabled(button.disabled)">{{_label(button.label)}}</button>
+        <button v-for="button in buttons"
+          :role="button.role"
+          :type="button.type || 'button'"
+          :disabled="_disabled(button.disabled)">{{_label(button.label)}}</button>
       </div>
     </form>
   </validator>

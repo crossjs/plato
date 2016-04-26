@@ -9,7 +9,7 @@ Object.keys(state).forEach(key => {
   }
 })
 
-// customize
+// customize, override defaults
 const gettersContext = require.context('./', true, /^((?!index).)*\.js$/)
 gettersContext.keys().forEach(key => {
   Object.assign(getters, gettersContext(key))

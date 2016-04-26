@@ -129,35 +129,17 @@
 
 .ui-form-buttons {
   padding: 1rem 0 0;
-}
 
-.ui-form-button {
-  margin: 0 0.5rem;
-  padding: 0.25rem 1.5rem;
-  color: white;
-  background-color: var(--orange);
+  & button {
+    margin: 0 0.5rem;
+    padding: 0 1.5rem;
 
-  &:first-child {
-    margin-left: 0;
-  }
+    &:first-child {
+      margin-left: 0;
+    }
 
-  &:last-child {
-    margin-right: 0;
-  }
-
-  &:hover {
-    background-color: color(var(--orange) lightness(-10%));
-  }
-
-  &[disabled] {
-    background-color: color(var(--orange) saturation(0%));
-  }
-}
-
-.button-form-cancel {
-  background-color: color(var(--orange) saturation(0%) lightness(-10%));
-
-  &:hover {
-    background-color: color(var(--orange) saturation(0%));
+    &:last-child {
+      margin-right: 0;
+    }
   }
 }

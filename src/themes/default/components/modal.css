@@ -11,25 +11,28 @@
   width: 15rem;
   background-color: white;
   margin: 1rem auto;
-  border: 0.25rem solid rgba(0, 0, 0, 0.5);
 }
 
 .ui-modal-header {
-  height: 2.5rem;
-  border-bottom: 1px solid color(white lightness(80%));
+  height: 2rem;
+  border-bottom: 1px solid color(white lightness(90%));
 
   & button {
     float: right;
-    width: 2.5rem;
-    height: 2.5rem;
-    font-size: 1.5rem;
+    margin: 0;
+    padding: 0;
+    width: 2rem;
+    height: 2rem;
+    font-size: 1rem;
     line-height: 1;
     text-align: center;
     background: none;
+    color: color(white lightness(50%));
+    transition: transform .5s ease;
 
     &:hover {
-      color: white;
-      background-color: var(--orange);
+      color: var(--orange);
+      transform: rotate3d(0, 0, 1, 90deg);
     }
   }
 }
@@ -37,14 +40,16 @@
 .ui-modal-body {
   text-align: center;
   padding: 1rem;
+  font-size: 0.8rem;
 }
 
 .ui-modal-footer {
   padding: 0.5rem;
   text-align: center;
-  border-top: 1px solid color(white lightness(80%));
+  border-top: 1px solid color(white lightness(90%));
   & button {
     margin: 0 0.5rem;
-    padding: 0.25rem 1.5rem;
+    padding: 0 1.5rem;
+    height: 1.75rem;
   }
 }

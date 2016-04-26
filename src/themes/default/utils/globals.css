@@ -5,19 +5,39 @@
 button {
   cursor: pointer;
   margin: 0;
-  padding: 0.25rem 0.75rem;
+  padding: 0 0.75rem;
   height: 2rem;
-  line-height: 1.5rem;
   border: none;
-  color: color(white lightness(30%));
+  color: white;
   background-color: color(white lightness(70%));
 
   &:hover {
     background-color: color(white lightness(80%));
   }
 
-  &[disabled] {
-    color: color(white lightness(70%));
-    background-color: color(white lightness(80%));
+  &[role="submit"] {
+    background-color: var(--orange);
+
+    &:hover {
+      background-color: color(var(--orange) lightness(-10%));
+    }
+
+    &[disabled] {
+      color: color(white lightness(70%));
+      background-color: color(white lightness(80%));
+    }
+  }
+
+  &[role="cancel"] {
+    background-color: color(var(--orange) saturation(0%));
+
+    &:hover {
+      background-color: color(var(--orange) saturation(0%) lightness(-10%));
+    }
+
+    &[disabled] {
+      color: color(white lightness(70%));
+      background-color: color(white lightness(80%));
+    }
   }
 }
