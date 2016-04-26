@@ -6,8 +6,6 @@
 
 <script>
 import { GET } from 'utils/ajax'
-import { bearer } from 'vx/getters'
-import { profile } from 'vx/getters'
 import { setProfile } from 'vx/actions'
 export default {
   methods: {
@@ -30,10 +28,6 @@ export default {
   },
 
   vuex: {
-    getters: {
-      bearer,
-      profile
-    },
     actions: {
       setProfile
     }

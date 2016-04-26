@@ -1,0 +1,4 @@
+const SET_USERS = 'SET_USERS'
+const DELETE_USER = 'DELETE_USER'
+
+export default { SET_USERS, DELETE_USER }

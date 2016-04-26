@@ -5,7 +5,6 @@
 </template>
 
 <script>
-import { bearer } from 'vx/getters'
 export default {
   route: {
     activate () {
@@ -14,12 +13,6 @@ export default {
       } else {
         this.$route.router.go('/login')
       }
-    }
-  },
-
-  vuex: {
-    getters: {
-      bearer
     }
   }
 }

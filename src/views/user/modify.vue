@@ -8,13 +8,14 @@
 </template>
 
 <script>
-import CForm from 'components/c-form'
+import mForm from 'mixins/m-form'
 import { PATCH } from 'utils/ajax'
 import md5 from 'utils/md5'
-import { bearer, progress } from 'vx/getters'
-import { setProfile } from 'vx/actions'
 import { RE_PASSWORD } from 'utils/regex'
+import { setProfile } from 'vx/actions'
 export default {
+  mixins: [mForm],
+
   data () {
     return {
       pending: false,
@@ -107,17 +108,9 @@ export default {
   },
 
   vuex: {
-    getters: {
-      bearer,
-      progress
-    },
     actions: {
       setProfile
     }
-  },
-
-  components: {
-    CForm
   }
 }
 </script>

@@ -9,7 +9,6 @@
 
 <script>
 import { routes } from 'routes'
-import { bearer } from 'vx/getters'
 export default {
   data () {
     return {
@@ -22,12 +21,6 @@ export default {
       return (key, route) => {
         return key !== '/' && route.auth !== !this.bearer
       }
-    }
-  },
-
-  vuex: {
-    getters: {
-      bearer
     }
   }
 }

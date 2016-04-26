@@ -1,4 +1,5 @@
-import { bearer, progress } from 'vx/getters'
+import getters from 'vx/getters'
+const { bearer, progress } = getters
 
 export default {
   vuex: {
