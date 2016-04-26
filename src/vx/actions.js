@@ -6,6 +6,7 @@ import {
   SET_PROFILE,
 
   ADD_TOAST,
+  SHIFT_TOAST,
   DELETE_TOAST,
   CLEAR_TOASTS,
 
@@ -27,6 +28,7 @@ export const setProfile = makeAction(SET_PROFILE)
 
 // toasts
 export const addToast = makeAction(ADD_TOAST)
+export const shiftToast = makeAction(SHIFT_TOAST)
 export const deleteToast = makeAction(DELETE_TOAST)
 export const clearToasts = makeAction(CLEAR_TOASTS)
 

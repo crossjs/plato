@@ -137,6 +137,14 @@
   color: white;
   background-color: var(--orange);
 
+  &:first-child {
+    margin-left: 0;
+  }
+
+  &:last-child {
+    margin-right: 0;
+  }
+
   &:hover {
     background-color: color(var(--orange) lightness(-10%));
   }

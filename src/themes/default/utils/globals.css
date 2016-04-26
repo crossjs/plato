@@ -13,7 +13,6 @@ button {
   background-color: color(white lightness(70%));
 
   &:hover {
-    color: color(white lightness(20%));
     background-color: color(white lightness(80%));
   }
 

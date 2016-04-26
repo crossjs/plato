@@ -6,6 +6,7 @@ export const SET_PROGRESS = 'SET_PROGRESS'
 export const SET_PROFILE = 'SET_PROFILE'
 
 export const ADD_TOAST = 'ADD_TOAST'
+export const SHIFT_TOAST = 'SHIFT_TOAST'
 export const DELETE_TOAST = 'DELETE_TOAST'
 export const CLEAR_TOASTS = 'CLEAR_TOASTS'
 
