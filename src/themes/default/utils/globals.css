@@ -4,6 +4,11 @@
 
 button {
   cursor: pointer;
+  white-space: nowrap;
+}
+
+.button {
+  cursor: pointer;
   margin: 0;
   padding: 0 0.75rem;
   height: 2rem;
@@ -40,4 +45,19 @@ button {
       background-color: color(white lightness(80%));
     }
   }
+}
+
+.slide-transition {
+  transition: all .5s ease;
+}
+.slide-enter, .slide-leave {
+  opacity: 0;
+  transform: translate3d(0, -1rem, 0);
+}
+
+.fade-transition {
+  transition: all .5s ease;
+}
+.fade-enter, .fade-leave {
+  opacity: 0;
 }

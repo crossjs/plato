@@ -45,11 +45,3 @@
     overflow: auto;
   }
 }
-
-.slide-transition {
-  transition: all .5s ease;
-}
-.slide-enter, .slide-leave {
-  opacity: 0;
-  transform: translate3d(0, -1rem, 0);
-}

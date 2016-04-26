@@ -12,6 +12,13 @@ export default (app, router) => {
     ctx.body = pages
   })
 
+  router.post('/pages', check, async ctx => {
+    const { title, content } = ctx.request.body
+    const user = ctx._user._id
+    const page = await Page.create({ user, title, content })
+    ctx.body = page.toJSON()
+  })
+
   router.get('/pages/:id', check, async ctx => {
     const page = await Page.findById(ctx.params.id).exec()
     ctx.body = page

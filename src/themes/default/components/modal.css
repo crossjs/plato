@@ -25,7 +25,7 @@
     height: 2rem;
     font-size: 1rem;
     line-height: 1;
-    text-align: center;
+    border: none;
     background: none;
     color: color(white lightness(50%));
     transition: transform .5s ease;
@@ -47,7 +47,7 @@
   padding: 0.5rem;
   text-align: center;
   border-top: 1px solid color(white lightness(90%));
-  & button {
+  & .button {
     margin: 0 0.5rem;
     padding: 0 1.5rem;
     height: 1.75rem;

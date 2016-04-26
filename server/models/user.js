@@ -33,6 +33,10 @@ const schema = new mongoose.Schema({
   },
   expires: {
     type: Number
+  },
+  state: {
+    type: Number,
+    default: 0
   }
 })
 

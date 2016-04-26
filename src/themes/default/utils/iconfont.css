@@ -15,11 +15,31 @@
   }
 }
 
+.iconfont-remove,
+.iconfont-delete {
+  &:before { content: "\e619"; }
+}
+.iconfont-add,
+.iconfont-create {
+  &:before { content: "\e606"; }
+}
+.iconfont-pages {
+  &:before { content: "\e609"; }
+}
+.iconfont-roles {
+  &:before { content: "\e61b"; }
+}
+.iconfont-modify {
+  &:before { content: "\e60b"; }
+}
 .iconfont-signup {
   &:before { content: "\e607"; }
 }
 .iconfont-users {
-  &:before { content: "\e605"; }
+  &:before { content: "\e615"; }
+}
+.iconfont-user {
+  &:before { content: "\e601"; }
 }
 .iconfont-profile {
   /*&:before { content: "\e603"; }*/
@@ -28,7 +48,7 @@
   &:before { content: "\e608"; }
 }
 .iconfont-login {
-  &:before { content: "\e600"; }
+  &:before { content: "\e601"; }
 }
 .iconfont-about {
   &:before { content: "\e60c"; }
@@ -38,7 +58,7 @@
 }
 
 .iconfont-user-o {
-  &:before { content: "\e601"; }
+  &:before { content: "\e616"; }
 }
 .iconfont-lock-o {
   &:before { content: "\e602"; }

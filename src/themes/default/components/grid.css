@@ -6,6 +6,7 @@
     border-bottom: 2px solid color(white lightness(80%));
     user-select: none;
     text-align: left;
+    white-space: nowrap;
   }
 
   & td {
@@ -28,7 +29,7 @@
     }
   }
 
-  & button {
+  & .button {
     padding: 0;
     height: auto;
     line-height: inherit;

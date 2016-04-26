@@ -12,7 +12,11 @@
         <td class="index">{{$index + 1}}</td>
         <td v-for="column in columns">{{entry[$key] | _filter column.filters }}</td>
         <td v-if="actions">
-          <button v-for="action in actions" :type="action.type || 'button'" @click="action.click(entry)">{{action.label}}</button>
+          <button v-for="action in actions"
+            class="button"
+            :role="action.role"
+            :type="action.type || 'button'"
+            @click="action.click(entry)">{{action.label}}</button>
         </td>
       </tr>
     </tbody>

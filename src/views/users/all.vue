@@ -15,7 +15,7 @@
 import mModal from 'mixins/m-modal'
 import mGrid from 'mixins/m-grid'
 import { GET, DELETE } from 'utils/ajax'
-import { bearer, users } from 'vx/getters'
+import { users } from 'vx/getters'
 import { setUsers } from 'vx/actions'
 export default {
   mixins: [mModal, mGrid],
@@ -104,7 +104,6 @@ export default {
 
   vuex: {
     getters: {
-      bearer,
       users
     },
     actions: {
