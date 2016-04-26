@@ -14,9 +14,9 @@
 <script>
 import mModal from 'mixins/m-modal'
 import mGrid from 'mixins/m-grid'
-import { GET, DELETE } from 'utils/ajax'
+// import { GET, DELETE } from 'utils/ajax'
 import { pages } from 'vx/getters'
-import { setPages } from 'vx/actions'
+import { getPages, deletePage } from 'vx/actions'
 export default {
   mixins: [mModal, mGrid],
 
@@ -29,7 +29,7 @@ export default {
     const dismissModal = function (ok) {
       this.modal.show = false
       if (ok) {
-        this.deleteUser(target)
+        this.deletePage(target)
       }
       target = null
     }.bind(this)
@@ -80,34 +80,26 @@ export default {
   },
 
   methods: {
-    fetchPages () {
-      GET('/apis/pages')
-      .then(json => {
-        Promise.all(json.map(data => {
-          return GET(`/apis/users/${data.user}`).then(user => {
-            data.username = user.username
-          })
-        })).then(() => {
-          this.setPages(json)
-        })
-      })
-    },
-    deleteUser (page) {
-      if (!page || !page._id) {
-        return
-      }
-      DELETE(`/apis/pages/${page._id}`)
-      .then(json => {
-        this.pages.$remove(page)
-      })
-    }
+    // fetchPages () {
+    //   GET('/apis/pages')
+    //   .then(json => {
+    //     Promise.all(json.map(data => {
+    //       // todo: cache users
+    //       return GET(`/apis/users/${data.user}`).then(user => {
+    //         data.username = user.username
+    //       })
+    //     })).then(() => {
+    //       this.setPages(json)
+    //     })
+    //   })
+    // }
   },
 
   route: {
     activate (transition) {
       if (this.bearer) {
         transition.next()
-        this.fetchPages()
+        this.getPages()
       } else {
         this.$route.router.go('/')
       }
@@ -119,7 +111,8 @@ export default {
       pages
     },
     actions: {
-      setPages
+      getPages,
+      deletePage
     }
   }
 }
