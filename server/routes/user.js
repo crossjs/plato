@@ -28,14 +28,14 @@ export default (app, router) => {
 
   // profile
 
-  router.get('/profile', check, async ctx => {
+  router.get('/user/profile', check, async ctx => {
     const user = await User.findOne({
       token: ctx.request.token
     }).exec()
     ctx.body = user
   })
 
-  router.patch('/profile', check, async ctx => {
+  router.patch('/user/profile', check, async ctx => {
     const { password0, password } = ctx.request.body
     if (hash(password0, ctx._user.salt) !== ctx._user.password) {
       return respond(400, {

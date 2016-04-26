@@ -10,7 +10,7 @@
 
 <script>
 import mForm from 'mixins/m-form'
-import { POST } from 'utils/ajax'
+import { createPage } from 'vx/actions'
 export default {
   mixins: [mForm],
 
@@ -68,12 +68,13 @@ export default {
       if (!$validation.valid) {
         return
       }
-      POST('/apis/pages', {
-        body: this.formdata()
-      })
-      .then(json => {
-        this.$route.router.go('/pages')
-      })
+      this.createPage(this.formdata())
+    }
+  },
+
+  vuex: {
+    actions: {
+      createPage
     }
   }
 }

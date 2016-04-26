@@ -14,7 +14,6 @@
 <script>
 import mModal from 'mixins/m-modal'
 import mGrid from 'mixins/m-grid'
-// import { GET, DELETE } from 'utils/ajax'
 import { pages } from 'vx/getters'
 import { getPages, deletePage } from 'vx/actions'
 export default {
@@ -77,22 +76,6 @@ export default {
         }
       }
     }
-  },
-
-  methods: {
-    // fetchPages () {
-    //   GET('/apis/pages')
-    //   .then(json => {
-    //     Promise.all(json.map(data => {
-    //       // todo: cache users
-    //       return GET(`/apis/users/${data.user}`).then(user => {
-    //         data.username = user.username
-    //       })
-    //     })).then(() => {
-    //       this.setPages(json)
-    //     })
-    //   })
-    // }
   },
 
   route: {

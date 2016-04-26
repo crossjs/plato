@@ -9,9 +9,8 @@
 
 <script>
 import mForm from 'mixins/m-form'
-import { POST } from 'utils/ajax'
 import md5 from 'utils/md5'
-import { setBearer } from 'vx/actions'
+import { getBearer } from 'vx/actions'
 import userFields from 'utils/userFields'
 export default {
   mixins: [mForm],
@@ -43,16 +42,20 @@ export default {
       if (!$validation.valid) {
         return
       }
-      POST('/apis/login', {
-        body: this.formdata(data => {
-          data.password = md5(data.password)
-          return data
-        })
-      })
-      .then(json => {
-        this.setBearer(json)
-        this.goUserIndex()
-      })
+      this.getBearer(this.formdata(data => {
+        data.password = md5(data.password)
+        return data
+      }))
+      // POST('/apis/login', {
+      //   body: this.formdata(data => {
+      //     data.password = md5(data.password)
+      //     return data
+      //   })
+      // })
+      // .then(json => {
+      //   this.setBearer(json)
+      //   this.goUserIndex()
+      // })
     },
     goUserIndex () {
       this.$route.router.go('/user')
@@ -68,7 +71,17 @@ export default {
 
   vuex: {
     actions: {
-      setBearer
+      getBearer
+    }
+  },
+
+  watch: {
+    bearer (value) {
+      this.$nextTick(() => {
+        if (value) {
+          this.$route.router.go('/user')
+        }
+      })
     }
   }
 }

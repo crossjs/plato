@@ -1,3 +1,4 @@
-const SET_PROFILE = 'SET_PROFILE'
+const GET_PROFILE = 'GET_PROFILE'
+const UPDATE_PROFILE = 'UPDATE_PROFILE'
 
-export default { SET_PROFILE }
+export default { GET_PROFILE, UPDATE_PROFILE }

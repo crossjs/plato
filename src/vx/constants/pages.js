@@ -1,5 +1,5 @@
-const SET_PAGES = 'SET_PAGES'
 const GET_PAGES = 'GET_PAGES'
+const CREATE_PAGE = 'CREATE_PAGE'
 const DELETE_PAGE = 'DELETE_PAGE'
 
-export default { SET_PAGES, GET_PAGES, DELETE_PAGE }
+export default { GET_PAGES, CREATE_PAGE, DELETE_PAGE }

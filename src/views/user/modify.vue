@@ -9,10 +9,9 @@
 
 <script>
 import mForm from 'mixins/m-form'
-import { PATCH } from 'utils/ajax'
 import md5 from 'utils/md5'
 import { RE_PASSWORD } from 'utils/regex'
-import { setProfile } from 'vx/actions'
+import { updateProfile } from 'vx/actions'
 export default {
   mixins: [mForm],
 
@@ -91,25 +90,18 @@ export default {
       if (!$validation.valid) {
         return
       }
-      PATCH('/apis/profile', {
-        body: {
-          password0: md5(this.fields[0].value),
-          password: md5(this.fields[1].value)
-        }
-      })
-      .then(json => {
-        this.setProfile(json)
-        this.goUserIndex()
-      })
-    },
-    goUserIndex () {
-      this.$route.router.go('/user')
+      this.updateProfile(this.formdata(data => {
+        data.password0 = md5(data.password0)
+        data.password = md5(data.password)
+        return data
+      }))
+      // this.$route.router.go('/user')
     }
   },
 
   vuex: {
     actions: {
-      setProfile
+      updateProfile
     }
   }
 }

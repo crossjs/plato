@@ -5,7 +5,11 @@ import {
   CLEAR_TOASTS
 } from '../constants'
 
-export default {
+const state = {
+  toasts: []
+}
+
+const mutations = {
   [ADD_TOAST] (state, toast) {
     state.toasts.push(toast)
   },
@@ -23,4 +27,9 @@ export default {
       state.toasts.shift()
     }
   }
+}
+
+export default {
+  state,
+  mutations
 }

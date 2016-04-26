@@ -18,8 +18,7 @@ Vue.mixin(mixins)
 // global filters
 Object.keys(filters).forEach(key => Vue.filter(key, filters[key]))
 
-// process.env.NODE_ENV === 'developmemnt'
-Vue.config.debug = true
+Vue.config.debug = process.env.NODE_ENV === 'developmemnt'
 
 Vue.use(Router)
 Vue.use(Validator)

@@ -19,6 +19,11 @@ export default (app, router) => {
     ctx.body = page.toJSON()
   })
 
+  router.del('/pages/:id', check, async ctx => {
+    const page = await Page.findByIdAndRemove(ctx.params.id).exec()
+    ctx.body = page.toJSON()
+  })
+
   router.get('/pages/:id', check, async ctx => {
     const page = await Page.findById(ctx.params.id).exec()
     ctx.body = page

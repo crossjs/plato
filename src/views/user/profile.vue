@@ -5,20 +5,11 @@
 </template>
 
 <script>
-import { GET } from 'utils/ajax'
-import { setProfile } from 'vx/actions'
+import { profile } from 'vx/getters'
+import { getProfile } from 'vx/actions'
 export default {
-  methods: {
-    getProfile () {
-      return GET('/apis/profile')
-      .then(json => {
-        this.setProfile(json)
-      })
-    }
-  },
-
   route: {
-    activate (transition) {
+    activate () {
       if (this.bearer) {
         return this.getProfile()
       } else {
@@ -28,8 +19,11 @@ export default {
   },
 
   vuex: {
+    getters: {
+      profile
+    },
     actions: {
-      setProfile
+      getProfile
     }
   }
 }

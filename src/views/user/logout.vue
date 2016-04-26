@@ -1,12 +1,11 @@
 <template>
-  <div>
+  <div class="logout">
     {{status}}
   </div>
 </template>
 
 <script>
-import { DELETE } from 'utils/ajax'
-import { setBearer } from 'vx/actions'
+import { deleteBearer } from 'vx/actions'
 export default {
   data () {
     return {
@@ -14,31 +13,28 @@ export default {
     }
   },
 
-  methods: {
-    logout () {
+  route: {
+    activate () {
       if (!this.bearer) {
-        this.setBearer(null)
-        this.$route.router.go('/')
         return
       }
-      DELETE('/apis/user/logout')
-      .then(json => {
-        this.setBearer(null)
-        this.$route.router.go('/')
-      })
-    }
-  },
-
-  route: {
-    activate (transition) {
-      transition.next()
-      this.logout()
+      return this.deleteBearer()
     }
   },
 
   vuex: {
     actions: {
-      setBearer
+      deleteBearer
+    }
+  },
+
+  watch: {
+    bearer (value) {
+      this.$nextTick(() => {
+        if (!value) {
+          this.$route.router.go('/')
+        }
+      })
     }
   }
 }

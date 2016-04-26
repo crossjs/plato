@@ -1,11 +1,11 @@
-import state from '../state'
+import modules from '../modules'
 
 const getters = {}
 
 // defaults
-Object.keys(state).forEach(key => {
+Object.keys(modules).forEach(key => {
   getters[key] = state => {
-    return state[key]
+    return state[key][key]
   }
 })
 

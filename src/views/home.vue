@@ -1,18 +1,7 @@
 <template>
-  <div>
+  <div class="view-home">
     <pre><code>
     {{bearer | json}}
     </code></pre>
   </div>
 </template>
-
-<script>
-import { bearer } from 'vx/getters'
-export default {
-  vuex: {
-    getters: {
-      bearer
-    }
-  }
-}
-</script>

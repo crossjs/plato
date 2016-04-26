@@ -3,7 +3,11 @@ import {
   DELETE_USER
 } from '../constants'
 
-export default {
+const state = {
+  users: []
+}
+
+const mutations = {
   [SET_USERS] (state, users) {
     state.users = users
   },
@@ -11,4 +15,9 @@ export default {
   [DELETE_USER] (state, user) {
     state.users.$remove(user)
   }
+}
+
+export default {
+  state,
+  mutations
 }
