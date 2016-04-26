@@ -13,7 +13,7 @@ import { deleteToast, shiftToast } from 'vx/actions'
 import { toasts } from 'vx/getters'
 export default {
   ready () {
-    setInterval(this.shiftToast.bind(this), 3000)
+    // setInterval(this.shiftToast.bind(this), 3000)
   },
 
   vuex: {
