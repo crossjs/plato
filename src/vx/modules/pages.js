@@ -10,8 +10,10 @@ const state = {
 
 const mutations = {
 
-  [GET_PAGES] (state, pages) {
-    state.pages = pages
+  [GET_PAGES] (state, pages, status) {
+    if (status === 1) {
+      state.pages = pages
+    }
   },
 
   [CREATE_PAGE] (state, page) {

@@ -95,6 +95,11 @@ webpackConfig.module.loaders = [
     exclude: /views|node_modules/
   },
   {
+    test: /\.js$/,
+    loader: 'babel',
+    include: /vuex-promise/
+  },
+  {
     test: /\.json$/,
     loader: 'json'
   },

@@ -1,19 +1,14 @@
 import { GET_PAGES, CREATE_PAGE, DELETE_PAGE } from '../constants'
 import { GET, POST, DELETE } from 'utils/ajax'
 
+const inject = json =>
+  Promise.all(json.map(data => GET(`/apis/users/${data.user}`).then(user => {
+    data.username = user.username
+  }))).then(() => json)
+
 export default {
   getPages ({ dispatch }, payload) {
-    GET('/apis/pages')
-    .then(json => {
-      Promise.all(json.map(data => {
-        // todo: cache users
-        return GET(`/apis/users/${data.user}`).then(user => {
-          data.username = user.username
-        })
-      })).then(() => {
-        dispatch(GET_PAGES, json)
-      })
-    })
+    dispatch(GET_PAGES, GET('/apis/pages').then(inject))
   },
 
   createPage ({ dispatch }, payload) {
