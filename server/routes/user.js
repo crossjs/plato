@@ -9,7 +9,7 @@ export default (app, router) => {
 
   debug('initialize')
 
-  const whiteProps = 'username created'
+  const whiteProps = 'username created state'
 
   router.get('/users', check, async ctx => {
     const users = await User.find({}).exec()

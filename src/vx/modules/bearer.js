@@ -1,7 +1,10 @@
 import {
   _BEARER_KEY,
   GET_BEARER,
-  DELETE_BEARER
+  DELETE_BEARER,
+  PROMISE_PENDING,
+  PROMISE_SUCCESS,
+  PROMISE_FAILURE
 } from '../constants'
 
 const state = {
@@ -16,16 +19,21 @@ const state = {
 }
 
 const mutations = {
-  [GET_BEARER] (state, bearer) {
-    state.bearer = bearer
-    // save to localStorage
-    localStorage.setItem(_BEARER_KEY, JSON.stringify(bearer))
+  [GET_BEARER] (state, { meta, payload } = {}) {
+    console.log(arguments)
+    if (meta === PROMISE_SUCCESS) {
+      state.bearer = payload
+      // save to localStorage
+      localStorage.setItem(_BEARER_KEY, JSON.stringify(payload))
+    }
   },
 
-  [DELETE_BEARER] (state) {
-    state.bearer = null
-    // save to localStorage
-    localStorage.setItem(_BEARER_KEY, JSON.stringify(null))
+  [DELETE_BEARER] (state, { meta }) {
+    if (meta === PROMISE_SUCCESS) {
+      state.bearer = null
+      // save to localStorage
+      localStorage.setItem(_BEARER_KEY, JSON.stringify(null))
+    }
   }
 }
 

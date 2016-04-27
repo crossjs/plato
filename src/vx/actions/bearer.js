@@ -3,17 +3,12 @@ import { POST, DELETE } from 'utils/ajax'
 
 export default {
   getBearer ({ dispatch }, payload) {
-    POST('/apis/login', {
+    dispatch(GET_BEARER, POST('/apis/login', {
       body: payload
-    })
-    .then(json => {
-      dispatch(GET_BEARER, json)
-    })
+    }))
   },
+
   deleteBearer ({ dispatch }) {
-    DELETE('/apis/user/logout')
-    .then(json => {
-      dispatch(DELETE_BEARER)
-    })
+    dispatch(DELETE_BEARER, DELETE('/apis/user/logout'))
   }
 }

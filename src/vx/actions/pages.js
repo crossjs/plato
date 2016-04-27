@@ -12,18 +12,12 @@ export default {
   },
 
   createPage ({ dispatch }, payload) {
-    POST('/apis/pages', {
+    dispatch(CREATE_PAGE, POST('/apis/pages', {
       body: payload
-    })
-    .then(json => {
-      dispatch(CREATE_PAGE, json)
-    })
+    }))
   },
 
   deletePage ({ dispatch }, payload) {
-    DELETE(`/apis/pages/${payload._id}`)
-    .then(json => {
-      dispatch(DELETE_PAGE, json)
-    })
+    dispatch(DELETE_PAGE, DELETE(`/apis/pages/${payload._id}`))
   }
 }

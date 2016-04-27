@@ -36,6 +36,7 @@ const schema = new mongoose.Schema({
   },
   state: {
     type: Number,
+    // >0: disabled
     default: 0
   }
 })

@@ -29,7 +29,7 @@ export const check = async (ctx, next) => {
 }
 
 passport.use(new LocalStrategy((username, password, done) => {
-  User.findOne({ username }).exec((err, user) => {
+  User.findOne({ username, state: 0 }).exec((err, user) => {
     if (err) {
       return done(null, false, { message: 'An error occurred.' })
     }

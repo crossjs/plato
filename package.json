@@ -99,8 +99,8 @@
     "vue": "^1.0.20",
     "vue-router": "^0.7.11",
     "vue-validator": "^2.0.2",
-    "vuex": "^0.6.2",
-    "vuex-promise": "0.0.1",
+    "vuex-fsa": "^0.6.3",
+    "vuex-promise": "0.1.0",
     "whatwg-fetch": "^0.11.0"
   },
   "devDependencies": {
