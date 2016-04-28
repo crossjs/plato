@@ -14,9 +14,8 @@
 <script>
 import mModal from 'mixins/m-modal'
 import mGrid from 'mixins/m-grid'
-import { GET, DELETE } from 'utils/ajax'
 import { users } from 'vx/getters'
-import { setUsers } from 'vx/actions'
+import { getUsers, deleteUser } from 'vx/actions'
 export default {
   mixins: [mModal, mGrid],
 
@@ -73,29 +72,11 @@ export default {
     }
   },
 
-  methods: {
-    fetchUsers () {
-      GET('/apis/users')
-      .then(json => {
-        this.setUsers(json)
-      })
-    },
-    deleteUser (user) {
-      if (!user || !user._id) {
-        return
-      }
-      DELETE(`/apis/users/${user._id}`)
-      .then(json => {
-        this.users.$remove(user)
-      })
-    }
-  },
-
   route: {
     activate (transition) {
       if (this.bearer) {
         transition.next()
-        this.fetchUsers()
+        this.getUsers()
       } else {
         this.$route.router.go('/')
       }
@@ -107,7 +88,8 @@ export default {
       users
     },
     actions: {
-      setUsers
+      getUsers,
+      deleteUser
     }
   }
 }

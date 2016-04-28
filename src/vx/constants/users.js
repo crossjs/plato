@@ -1,4 +1,4 @@
-const SET_USERS = 'SET_USERS'
+const GET_USERS = 'GET_USERS'
 const DELETE_USER = 'DELETE_USER'
 
-export default { SET_USERS, DELETE_USER }
+export default { GET_USERS, DELETE_USER }

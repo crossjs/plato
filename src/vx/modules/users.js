@@ -1,6 +1,7 @@
 import {
-  SET_USERS,
-  DELETE_USER
+  GET_USERS,
+  DELETE_USER,
+  PROMISE_SUCCESS
 } from '../constants'
 
 const state = {
@@ -8,12 +9,22 @@ const state = {
 }
 
 const mutations = {
-  [SET_USERS] (state, users) {
-    state.users = users
+  [GET_USERS] (state, { payload, meta }) {
+    if (meta === PROMISE_SUCCESS) {
+      state.users = payload
+    }
   },
 
-  [DELETE_USER] (state, user) {
-    state.users.$remove(user)
+  [DELETE_USER] (state, { payload, meta }) {
+    if (meta === PROMISE_SUCCESS) {
+      state.users.some((user, index) => {
+        console.log(user, index)
+        if (user._id === payload._id) {
+          state.users.splice(index, 1)
+          return true
+        }
+      })
+    }
   }
 }
 
