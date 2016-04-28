@@ -1,4 +1,4 @@
-import createLogger from 'vuex/logger'
+import createLogger from 'vuex-fsa/logger'
 import createPromise from 'vuex-promise'
 
 import {

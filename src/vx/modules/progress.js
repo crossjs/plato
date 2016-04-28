@@ -7,8 +7,8 @@ const state = {
 }
 
 const mutations = {
-  [SET_PROGRESS] (state, progress) {
-    state.progress = progress
+  [SET_PROGRESS] (state, { payload }) {
+    state.progress = payload
   }
 }
 

@@ -2,9 +2,7 @@ import {
   _BEARER_KEY,
   GET_BEARER,
   DELETE_BEARER,
-  PROMISE_PENDING,
-  PROMISE_SUCCESS,
-  PROMISE_FAILURE
+  PROMISE_SUCCESS
 } from '../constants'
 
 const state = {
@@ -20,7 +18,6 @@ const state = {
 
 const mutations = {
   [GET_BEARER] (state, { meta, payload } = {}) {
-    console.log(arguments)
     if (meta === PROMISE_SUCCESS) {
       state.bearer = payload
       // save to localStorage

@@ -8,11 +8,11 @@ const state = {
 }
 
 const mutations = {
-  [GET_PROFILE] (state, profile) {
-    state.profile = profile
+  [GET_PROFILE] (state, { payload }) {
+    state.profile = payload
   },
-  [UPDATE_PROFILE] (state, profile) {
-    state.profile = profile
+  [UPDATE_PROFILE] (state, { payload }) {
+    state.profile = payload
   }
 }
 

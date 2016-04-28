@@ -9,20 +9,15 @@
 </template>
 
 <script>
-import { deleteToast, shiftToast } from 'vx/actions'
 import { toasts } from 'vx/getters'
+import { deleteToast } from 'vx/actions'
 export default {
-  ready () {
-    // setInterval(this.shiftToast.bind(this), 3000)
-  },
-
   vuex: {
     getters: {
       toasts
     },
     actions: {
-      deleteToast,
-      shiftToast
+      deleteToast
     }
   }
 }

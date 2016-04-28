@@ -46,16 +46,6 @@ export default {
         data.password = md5(data.password)
         return data
       }))
-      // POST('/apis/login', {
-      //   body: this.formdata(data => {
-      //     data.password = md5(data.password)
-      //     return data
-      //   })
-      // })
-      // .then(json => {
-      //   this.setBearer(json)
-      //   this.goUserIndex()
-      // })
     },
     goUserIndex () {
       this.$route.router.go('/user')

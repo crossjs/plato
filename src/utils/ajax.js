@@ -1,18 +1,28 @@
 import 'whatwg-fetch'
 import store from 'vx/store'
-import {
-  SET_PROGRESS,
-  ADD_TOAST
-} from 'vx/constants'
+import { SET_PROGRESS, ADD_TOAST, DELETE_TOAST } from 'vx/constants'
 import getBearerToken from 'utils/getBearerToken'
 
-const defaults = {
+const headers = {
   'Accept': 'application/json',
   'Content-Type': 'application/json'
 }
 
+function setProgress (progress) {
+  store.dispatch(SET_PROGRESS, progress)
+}
+
+function setToast (toast) {
+  toast._id = Date.now()
+
+  store.dispatch(ADD_TOAST, toast)
+  setTimeout(() => {
+    store.dispatch(DELETE_TOAST, toast)
+  }, 3000)
+}
+
 function mutate (options) {
-  options.headers = { ...defaults, ...options.headers }
+  options.headers = { ...headers, ...options.headers }
 
   const bearerToken = getBearerToken()
   if (bearerToken) {
@@ -28,16 +38,10 @@ function mutate (options) {
   return options
 }
 
-function inject (json) {
-  json._id = Date.now()
-  return json
-}
-
 const ajax = (url, options = {}) => {
-  store.dispatch(SET_PROGRESS, 99)
+  setProgress(99)
   return fetch(url, mutate(options))
   .then(res => {
-    store.dispatch(SET_PROGRESS, 0)
     if (res.status >= 200 && res.status < 300) {
       return res
     } else {
@@ -45,19 +49,18 @@ const ajax = (url, options = {}) => {
     }
   })
   .then(res => {
+    setProgress(0)
     return res.json()
   })
   .catch(err => {
-    store.dispatch(SET_PROGRESS, 0)
+    setProgress(0)
     if (!err.json) {
-      // global toast
-      store.dispatch(ADD_TOAST, inject({
+      setToast({
         code: '500',
         message: 'Server Error'
-      }))
+      })
     } else {
-      // global toast
-      err.json().then(inject).then(json => store.dispatch(ADD_TOAST, json))
+      err.json().then(setToast)
     }
     throw err
   })

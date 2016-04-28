@@ -100,7 +100,7 @@
     "vue-router": "^0.7.11",
     "vue-validator": "^2.0.2",
     "vuex-fsa": "^0.6.3",
-    "vuex-promise": "0.1.0",
+    "vuex-promise": "0.1.1",
     "whatwg-fetch": "^0.11.0"
   },
   "devDependencies": {

@@ -1,8 +1,6 @@
 import {
   ADD_TOAST,
-  SHIFT_TOAST,
-  DELETE_TOAST,
-  CLEAR_TOASTS
+  DELETE_TOAST
 } from '../constants'
 
 const state = {
@@ -10,22 +8,12 @@ const state = {
 }
 
 const mutations = {
-  [ADD_TOAST] (state, toast) {
-    state.toasts.push(toast)
+  [ADD_TOAST] (state, { payload }) {
+    state.toasts.push(payload)
   },
 
-  [DELETE_TOAST] (state, toast) {
-    state.toasts.$remove(toast)
-  },
-
-  [CLEAR_TOASTS] (state) {
-    state.toasts = []
-  },
-
-  [SHIFT_TOAST] (state) {
-    if (state.toasts.length) {
-      state.toasts.shift()
-    }
+  [DELETE_TOAST] (state, { payload }) {
+    state.toasts.$remove(payload)
   }
 }
 
