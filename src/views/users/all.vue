@@ -29,6 +29,10 @@ export default {
       if (key === 'submit') {
         return this.deleteUser(this.target)
       }
+      // else if (key === 'cancel') {
+        // prevent close
+        // return false
+      // }
       // grid
       if (entry) {
         this.target = entry
