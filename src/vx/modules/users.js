@@ -18,7 +18,6 @@ const mutations = {
   [DELETE_USER] (state, { payload, meta }) {
     if (meta === PROMISE_SUCCESS) {
       state.users.some((user, index) => {
-        console.log(user, index)
         if (user._id === payload._id) {
           state.users.splice(index, 1)
           return true

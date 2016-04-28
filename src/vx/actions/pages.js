@@ -4,7 +4,7 @@ import { GET, POST, DELETE } from 'utils/ajax'
 const inject = json =>
   Promise.all(json.map(data => GET(`/apis/users/${data.user}`).then(user => {
     data.username = user.username
-  }))).then(() => json)
+  }))).then(() => json).catch(() => json)
 
 export default {
   getPages ({ dispatch }, payload) {

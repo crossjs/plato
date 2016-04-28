@@ -2,16 +2,16 @@
   <div v-show="show" class="ui-modal" :class="[cls]" transition="fade">
     <div v-show="show" class="ui-modal-content" transition="slide">
       <div class="ui-modal-header">
-        <button type="button" @click="_close">&times;</button>
+        <button type="button" @click="_click()">&times;</button>
         <h4 v-if="title">{{title}}</h4>
       </div>
       <div class="ui-modal-body">{{body}}</div>
       <div v-if="buttons" class="ui-modal-footer">
         <button v-for="button in buttons"
           class="button"
-          :role="button.role"
+          :role="$key"
           :type="button.type || 'button'"
-          @click="button.click">{{button.label}}</button>
+           @click="_click($key)">{{button.label}}</button>
       </div>
     </div>
   </div>
@@ -19,11 +19,16 @@
 
 <script>
 export default {
-  props: ['show', 'cls', 'body', 'title', 'buttons'],
+  props: ['show', 'cls', 'body', 'title', 'buttons', 'callback'],
 
   methods: {
-    _close () {
-      this.show = false
+    _click (key) {
+      if (this.callback) {
+        this.show = this.callback(key) === false
+        return
+      } else {
+        this.show = false
+      }
     }
   }
 }

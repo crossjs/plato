@@ -3,15 +3,19 @@
     <c-modal
       :show.sync="modal.show"
       :body="modal.body"
-      :buttons="modal.buttons"></c-modal>
+      :buttons="modal.buttons"
+      :callback="modal.callback"></c-modal>
     <c-grid
-      :data="users"
       :columns="columns"
-      :actions="actions"></c-grid>
+      :data="users"
+      :transformer="transformer"
+      :actions="actions"
+      :callback="callback"></c-grid>
   </div>
 </template>
 
 <script>
+import datetime from 'nd-datetime'
 import mModal from 'mixins/m-modal'
 import mGrid from 'mixins/m-grid'
 import { users } from 'vx/getters'
@@ -20,17 +24,25 @@ export default {
   mixins: [mModal, mGrid],
 
   data () {
-    let target
-    const showModal = function (column) {
-      target = column
-      this.modal.show = true
-    }.bind(this)
-    const dismissModal = function (ok) {
-      this.modal.show = false
-      if (ok) {
-        this.deleteUser(target)
+    const callback = function (key, entry) {
+      // modal
+      if (key === 'submit') {
+        return this.deleteUser(this.target)
       }
-      target = null
+      // grid
+      if (entry) {
+        this.target = entry
+        if (key === 'remove') {
+          this.modal.show = true
+        } else if (key === 'modify') {
+          this.$route.router.go({
+            name: 'users/modify',
+            params: {
+              username: entry.username
+            }
+          })
+        }
+      }
     }.bind(this)
     return {
       target: null,
@@ -38,37 +50,47 @@ export default {
         show: false,
         body: '确定删除？',
         buttons: {
-          ok: {
-            label: '确定',
-            role: 'submit',
-            click () {
-              dismissModal(true)
-            }
+          submit: {
+            label: '确定'
           },
-          no: {
-            label: '取消',
-            role: 'cancel',
-            click () {
-              dismissModal(false)
-            }
+          cancel: {
+            label: '取消'
           }
-        }
+        },
+        callback
       },
       columns: {
         username: {
           label: '用户名'
         },
         created: {
-          label: '创建时间',
-          filters: 'datetime'
+          label: '创建时间'
+        },
+        updated: {
+          label: '活跃时间'
+        },
+        token: {
+          label: '登录状态'
+        },
+        state: {
+          label: '用户状态'
         }
       },
-      actions: {
-        remove: {
-          label: '删除',
-          click: showModal
+      transformer (value, key) {
+        if (/updated|created/.test(key)) {
+          return datetime(value)
         }
-      }
+        return value
+      },
+      actions: {
+        modify: {
+          label: '编辑'
+        },
+        remove: {
+          label: '删除'
+        }
+      },
+      callback
     }
   },
 

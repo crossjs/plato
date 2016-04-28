@@ -42,7 +42,7 @@ const ajax = (url, options = {}) => {
   setProgress(99)
   return fetch(url, mutate(options))
   .then(res => {
-    if (res.status >= 200 && res.status < 300) {
+    if (res.status >= 200 && res.status < 400) {
       return res
     } else {
       throw res

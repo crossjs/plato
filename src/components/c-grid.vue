@@ -10,13 +10,13 @@
     <tbody>
       <tr v-for="entry in data" track-by="_id">
         <td class="index">{{$index + 1}}</td>
-        <td v-for="column in columns">{{entry[$key] | _filter column.filters }}</td>
+        <td v-for="column in columns">{{transformer(entry[$key], $key, entry)}}</td>
         <td v-if="actions">
           <button v-for="action in actions"
             class="button"
-            :role="action.role"
+            :role="$key"
             :type="action.type || 'button'"
-            @click="action.click(entry)">{{action.label}}</button>
+            @click="callback($key, entry)">{{action.label}}</button>
         </td>
       </tr>
     </tbody>
@@ -24,16 +24,32 @@
 </template>
 
 <script>
-import Vue from 'vue'
+const noop = value => value
 export default {
-  props: ['cls', 'columns', 'data', 'actions'],
-
-  filters: {
-    _filter (value, filters) {
-      if (!filters) {
-        return value
-      }
-      return Vue.filter(filters)(value)
+  props: {
+    cls: {
+      type: String,
+      default: ''
+    },
+    columns: {
+      type: Object,
+      default: {}
+    },
+    data: {
+      type: Array,
+      default: []
+    },
+    transformer: {
+      type: Function,
+      default: noop
+    },
+    actions: {
+      type: Object,
+      default: []
+    },
+    callback: {
+      type: Function,
+      default: noop
     }
   }
 }
