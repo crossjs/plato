@@ -27,8 +27,8 @@ export default (app, router) => {
   })
 
   router.patch('/users/:id', check, async ctx => {
-    const { state } = ctx.request.body
-    const user = await User.findByIdAndUpdate(ctx.params.id, { state }).exec()
+    const { username, state } = ctx.request.body
+    const user = await User.findByIdAndUpdate(ctx.params.id, { username, state }, { new: true }).exec()
     ctx.body = user
   })
 
@@ -50,7 +50,7 @@ export default (app, router) => {
     }
     const user = await User.findOneAndUpdate({
       token: ctx.request.token
-    }, { password }).exec()
+    }, { password }, { new: true }).exec()
     if (!user) {
       debug(user)
       return respond(404, {

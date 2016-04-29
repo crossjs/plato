@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import CRow from './c-grid/c-row'
+import CRow from './c-row'
 export default {
   props: {
     cls: {

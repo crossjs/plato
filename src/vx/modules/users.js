@@ -31,7 +31,7 @@ const mutations = {
     if (meta === PROMISE_SUCCESS) {
       state.users.some((user, index) => {
         if (user._id === payload._id) {
-          state.users[index] = payload
+          state.users.$set(index, payload)
           return true
         }
       })

@@ -1,7 +1,9 @@
 <template>
   <div class="c-text">
     <template v-if="state === 1">
-      <input type="text" :value="value" size="12">
+      <input type="text" size="12"
+        v-model="value"
+        debounce="500">
     </template>
     <template v-else>
       {{value}}
@@ -10,7 +12,8 @@
 </template>
 
 <script>
+import mField from 'mixins/m-field'
 export default {
-  props: ['state', 'value']
+  mixins: [mField]
 }
 </script>

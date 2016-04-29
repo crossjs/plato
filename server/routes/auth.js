@@ -65,7 +65,7 @@ export default (app, router) => {
       }, ctx)
     }
 
-    await User.findOneAndUpdate({ token }, { expires: 0 }).exec()
+    await User.findOneAndUpdate({ token }, { expires: 0 }, { new: true }).exec()
 
     ctx.body = {}
     ctx.status = 200

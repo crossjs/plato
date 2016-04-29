@@ -13,7 +13,8 @@
 </template>
 
 <script>
+import mField from 'mixins/m-field'
 export default {
-  props: ['state', 'value']
+  mixins: [mField]
 }
 </script>

@@ -5,7 +5,8 @@
       <component
         :is="column.component || 'text'"
         :state="state"
-        :value.sync="data[$key]"></component>
+        :value="data[$key]"
+        @mutate="_mutate($key, $arguments)"></component>
     </td>
     <td v-if="actions[state]">
       <button v-for="action in actions[state]"
@@ -18,9 +19,9 @@
 </template>
 
 <script>
-import Text from '../c-text'
-import Switch from '../c-switch'
-import Datetime from '../c-datetime'
+import Text from './c-text'
+import Switch from './c-switch'
+import Datetime from './c-datetime'
 export default {
   props: {
     state: {
@@ -49,7 +50,21 @@ export default {
     }
   },
 
+  watch: {
+    data () {
+      this.state = 2
+      this.$nextTick(() => {
+        this.state = 0
+      })
+    }
+  },
+
   methods: {
+    _mutate (key, [value]) {
+      this.payload = {
+        ...this.data, [key]: value
+      }
+    },
     _click (key) {
       this.callback(key)
     }

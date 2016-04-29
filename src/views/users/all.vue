@@ -38,14 +38,14 @@ export default {
           label: '用户名',
           component: 'text'
         },
-        created: {
-          label: '创建时间',
-          component: 'datetime'
-        },
-        updated: {
-          label: '活跃时间',
-          component: 'datetime'
-        },
+        // created: {
+        //   label: '创建时间',
+        //   component: 'datetime'
+        // },
+        // updated: {
+        //   label: '活跃时间',
+        //   component: 'datetime'
+        // },
         // token: {
         //   label: '登录状态',
         //   component: 'text'
@@ -85,7 +85,12 @@ export default {
             this.state = 1
             break
           case 'submit':
-            vm.updateUser(this.data)
+            if (this.payload) {
+              vm.updateUser(this.payload)
+              // this.payload = null
+            } else {
+              this.state = 0
+            }
             break
           case 'cancel':
             this.state = 0
