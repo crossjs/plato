@@ -26,6 +26,12 @@ export default (app, router) => {
     ctx.body = user
   })
 
+  router.patch('/users/:id', check, async ctx => {
+    const { state } = ctx.request.body
+    const user = await User.findByIdAndUpdate(ctx.params.id, { state }).exec()
+    ctx.body = user
+  })
+
   // profile
 
   router.get('/user/profile', check, async ctx => {

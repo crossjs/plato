@@ -8,23 +8,20 @@
       </tr>
     </thead>
     <tbody>
-      <tr v-for="entry in data" track-by="_id">
-        <td class="index">{{$index + 1}}</td>
-        <td v-for="column in columns">{{transformer(entry[$key], $key, entry)}}</td>
-        <td v-if="actions">
-          <button v-for="action in actions"
-            class="button"
-            :role="$key"
-            :type="action.type || 'button'"
-            @click="callback($key, entry)">{{action.label}}</button>
-        </td>
-      </tr>
+      <template v-for="entry in data" track-by="_id">
+        <c-row
+          :index="$index"
+          :data="entry"
+          :columns="columns"
+          :actions="actions"
+          :callback="callback"></c-row>
+      </template>
     </tbody>
   </table>
 </template>
 
 <script>
-const noop = value => value
+import CRow from './c-grid/c-row'
 export default {
   props: {
     cls: {
@@ -39,18 +36,18 @@ export default {
       type: Array,
       default: []
     },
-    transformer: {
-      type: Function,
-      default: noop
-    },
     actions: {
-      type: Object,
+      type: Array,
       default: []
     },
     callback: {
       type: Function,
-      default: noop
+      default: () => true
     }
+  },
+
+  components: {
+    CRow
   }
 }
 </script>

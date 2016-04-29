@@ -7,8 +7,23 @@ button {
   white-space: nowrap;
 }
 
+.link {
+  margin: 0;
+  background: none;
+  border: none;
+  color: color(var(--orange) hue(+180deg) lightness(-20%));
+
+  &:hover {
+    color: color(var(--orange));
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    color: color(var(--orange) saturation(0%));
+  }
+}
+
 .button {
-  cursor: pointer;
   margin: 0;
   padding: 0 0.75rem;
   height: 2rem;
@@ -27,7 +42,8 @@ button {
       background-color: color(var(--orange) lightness(-10%));
     }
 
-    &[disabled] {
+    &:disabled {
+      cursor: not-allowed;
       color: color(white lightness(70%));
       background-color: color(white lightness(80%));
     }
@@ -40,7 +56,8 @@ button {
       background-color: color(var(--orange) saturation(0%) lightness(-10%));
     }
 
-    &[disabled] {
+    &:disabled {
+      cursor: not-allowed;
       color: color(white lightness(70%));
       background-color: color(white lightness(80%));
     }

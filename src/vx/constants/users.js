@@ -1,4 +1,5 @@
 const GET_USERS = 'GET_USERS'
 const DELETE_USER = 'DELETE_USER'
+const UPDATE_USER = 'UPDATE_USER'
 
-export default { GET_USERS, DELETE_USER }
+export default { GET_USERS, DELETE_USER, UPDATE_USER }

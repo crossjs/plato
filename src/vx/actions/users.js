@@ -1,5 +1,5 @@
-import { GET_USERS, DELETE_USER } from '../constants'
-import { GET, DELETE } from 'utils/ajax'
+import { GET_USERS, DELETE_USER, UPDATE_USER } from '../constants'
+import { GET, DELETE, PATCH } from 'utils/ajax'
 
 export default {
   getUsers ({ dispatch }) {
@@ -8,5 +8,11 @@ export default {
 
   deleteUser ({ dispatch }, payload) {
     dispatch(DELETE_USER, DELETE(`/apis/users/${payload._id}`))
+  },
+
+  updateUser ({ dispatch }, { _id, ...payload }) {
+    dispatch(UPDATE_USER, PATCH(`/apis/users/${_id}`, {
+      body: payload
+    }))
   }
 }

@@ -19,16 +19,45 @@
 
 <script>
 export default {
-  props: ['show', 'cls', 'body', 'title', 'buttons', 'callback'],
+  props: {
+    show: {
+      type: Boolean,
+      default: false
+    },
+    cls: {
+      type: String,
+      default: ''
+    },
+    title: {
+      type: String,
+      default: ''
+    },
+    body: {
+      type: String,
+      default: ''
+    },
+    buttons: {
+      type: Object,
+      default: () => {
+        return {
+          submit: {
+            label: '确定'
+          },
+          cancel: {
+            label: '取消'
+          }
+        }
+      }
+    },
+    callback: {
+      type: Function,
+      default: () => true
+    }
+  },
 
   methods: {
     _click (key) {
-      if (this.callback) {
-        this.show = this.callback(key) === false
-        return
-      } else {
-        this.show = false
-      }
+      this.show = this.callback(key) === false
     }
   }
 }
