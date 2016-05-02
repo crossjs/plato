@@ -24,6 +24,10 @@ export default {
       type: Boolean,
       default: false
     },
+    args: {
+      type: Array,
+      default: () => []
+    },
     cls: {
       type: String,
       default: ''

@@ -1,38 +1,22 @@
 <template>
   <div class="users">
-    <c-modal
-      :show.sync="modal.show"
-      :title="modal.title"
-      :body="modal.body"
-      :callback="modal.callback"></c-modal>
     <c-grid
-      :columns="grid.columns"
+      :columns="columns"
       :data="users"
-      :actions="grid.actions"
-      :callback="grid.callback"></c-grid>
+      @action="_action"></c-grid>
   </div>
 </template>
 
 <script>
-import mModal from 'mixins/m-modal'
 import mGrid from 'mixins/m-grid'
 import { users } from 'vx/getters'
 import { getUsers, deleteUser, updateUser } from 'vx/actions'
 export default {
-  mixins: [mModal, mGrid],
+  mixins: [mGrid],
 
   data () {
-    const modal = {
-      show: false,
-      // title: '？',
-      body: '确定删除？',
-      callback (key) {
-        if (key === 'submit') {
-          return this.$parent.deleteUser(this.$parent.target)
-        }
-      }
-    }
-    const grid = {
+    // let target
+    return {
       columns: {
         username: {
           label: '用户名',
@@ -54,54 +38,34 @@ export default {
           label: '禁止',
           component: 'switch'
         }
-      },
-      // actions will auto switch by state
-      actions: [
-        {
-          modify: {
-            label: '编辑'
-          },
-          remove: {
-            label: '删除'
-          }
-        },
-        {
-          submit: {
-            label: '确定'
-          },
-          cancel: {
-            label: '取消'
-          }
-        }
-      ],
-      callback (key) {
-        const vm = this.$parent.$parent
-        // row -> grid -> vm
-        switch (key) {
-          case 'remove':
-            vm.modal.show = true
-            break
-          case 'modify':
-            this.state = 1
-            break
-          case 'submit':
-            if (this.payload) {
-              vm.updateUser(this.payload)
-              // this.payload = null
-            } else {
-              this.state = 0
-            }
-            break
-          case 'cancel':
-            this.state = 0
-            break
-        }
       }
     }
-    return {
-      target: null,
-      modal,
-      grid
+  },
+
+  methods: {
+    _action (key, user, payload) {
+      // console.log(key, user, payload)
+      // `this` is c-row
+      // const vm = this.$parent.$parent
+      // row -> grid -> vm
+      switch (key) {
+        case 'remove':
+          this.deleteUser(user)
+          break
+        case 'modify':
+          this.state = 1
+          break
+        case 'submit':
+          if (payload) {
+            this.updateUser(payload)
+          } else {
+            this.state = 0
+          }
+          break
+        case 'cancel':
+          this.state = 0
+          break
+      }
     }
   },
 

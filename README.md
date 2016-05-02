@@ -2,17 +2,26 @@
 
 > A plat<del>form</del> built with koa and vue
 
-## Requires
+## 技术栈
 
 - koa
-- vue
+- vue (with vuex, vue-router)
 - mongodb
 - webpack
 - postcss
+- karma
 
-## Build Setup
+## 设计原则
+
+- 单向数据流
+- 组件间通过事件传递数据
+
+## 使用说明
 
 ``` bash
+# start mongo
+mongod --dbpath path/to/data/db
+
 # install dependencies
 npm install
 
@@ -38,18 +47,12 @@ npm run e2e
 npm test
 ```
 
-## Mongo
-
-``` bash
-mongod --dbpath path/to/data/db
-```
-
-## Tips
+## 常见问题
 
 - do NOT use `@import` in css
 - node@5.7.0 did NOT work for the `path.parse` issue
 
-## Browser Support
+## 兼容性
 
 ![Chrome](https://raw.github.com/alrra/browser-logos/master/chrome/chrome_48x48.png) | ![Firefox](https://raw.github.com/alrra/browser-logos/master/firefox/firefox_48x48.png) | ![IE](https://raw.github.com/alrra/browser-logos/master/internet-explorer/internet-explorer_48x48.png) | ![Opera](https://raw.github.com/alrra/browser-logos/master/opera/opera_48x48.png) | ![Safari](https://raw.github.com/alrra/browser-logos/master/safari/safari_48x48.png)
 --- | --- | --- | --- | --- |

@@ -1,6 +1,8 @@
 .ui-grid {
-  width: 100%;
-  border-collapse: collapse;
+  & table {
+    width: 100%;
+    border-collapse: collapse;
+  }
 
   & th {
     border-bottom: 2px solid color(white lightness(80%));

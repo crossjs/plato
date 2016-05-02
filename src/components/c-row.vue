@@ -13,7 +13,7 @@
         class="link"
         :role="$key"
         :type="action.type || 'button'"
-        @click="_click($key)">{{action.label}}</button>
+        @click="_click($key, action)">{{action.label}}</button>
     </td>
   </tr>
 </template>
@@ -42,7 +42,7 @@ export default {
     },
     actions: {
       type: Array,
-      default: []
+      default: () => []
     },
     callback: {
       type: Function,
@@ -51,9 +51,14 @@ export default {
   },
 
   watch: {
+    // data 变化，从 dispatch 来
     data () {
+      // 重置 payload
+      this.payload = null
+      // 先设置为中间态
       this.state = 2
       this.$nextTick(() => {
+        // 再设置为展示态
         this.state = 0
       })
     }
@@ -61,12 +66,17 @@ export default {
 
   methods: {
     _mutate (key, [value]) {
-      this.payload = {
-        ...this.data, [key]: value
+      if (!this.payload) {
+        this.payload = { ...this.data }
       }
+      // 数据变更，保存到 payload
+      this.payload[key] = value
     },
-    _click (key) {
-      this.callback(key)
+    _click (key, action) {
+      if (action.hasOwnProperty('state')) {
+        this.state = action.state
+      }
+      this.$emit('action', key, action, this.data, this.payload)
     }
   },
 

@@ -14,12 +14,10 @@ export default {
     '/:username': {
       hidden: true,
       component: resolve => require(['views/users/detail'], resolve)
-    },
-    '/:username/modify': {
-      name: 'users/modify',
-      auth: true,
-      hidden: true,
-      component: resolve => require(['views/users/modify'], resolve)
     }
   }
 }
+
+// export const alias = {
+//   '/users/:id/modify': '/users'
+// }
