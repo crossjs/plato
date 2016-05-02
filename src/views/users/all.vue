@@ -52,19 +52,17 @@ export default {
         case 'remove':
           this.deleteUser(user)
           break
-        case 'modify':
-          this.state = 1
-          break
+        // case 'modify':
+        //   this.state = 1
+        //   break
         case 'submit':
           if (payload) {
             this.updateUser(payload)
-          } else {
-            this.state = 0
           }
           break
-        case 'cancel':
-          this.state = 0
-          break
+        // case 'cancel':
+        //   this.state = 0
+        //   break
       }
     }
   },
