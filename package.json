@@ -96,9 +96,9 @@
     "only": "0.0.2",
     "passport-http-bearer": "^1.0.1",
     "passport-local": "^1.0.0",
-    "vue": "^1.0.20",
-    "vue-router": "^0.7.11",
-    "vue-validator": "^2.0.2",
+    "vue": "^1.0.21",
+    "vue-router": "^0.7.13",
+    "vue-validator": "^2.1.1",
     "vuex-fsa": "^0.6.3",
     "vuex-promise": "0.1.1",
     "whatwg-fetch": "^0.11.0"

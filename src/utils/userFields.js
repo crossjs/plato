@@ -6,7 +6,9 @@ export default [{
   name: 'username',
   type: 'text',
   value: '',
-  placeholder: RE_USERNAME[1],
+  attrs: {
+    placeholder: RE_USERNAME[1]
+  },
   validate: {
     required: {
       rule: true,
@@ -31,7 +33,9 @@ export default [{
   name: 'password',
   type: 'password',
   value: '',
-  placeholder: RE_PASSWORD[1],
+  attrs: {
+    placeholder: RE_PASSWORD[1]
+  },
   validate: {
     required: {
       rule: true,

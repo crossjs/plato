@@ -62,8 +62,8 @@ export default {
   methods: {
     _click (key) {
       promisify(this.callback(key))
-        .then(() => this.show = false)
-        .catch(() => this.show = true)
+        .then(() => { this.show = false })
+        .catch(() => { this.show = true })
     }
   }
 }

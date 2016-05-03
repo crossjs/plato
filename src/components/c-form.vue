@@ -10,45 +10,14 @@
         <li v-for="field in fields" class="ui-form-item" :class="{'ui-form-icon-item': field.icon}">
           <label class="ui-form-label" v-if="field.label">{{field.label}}</label>
           <span class="ui-form-icon iconfont iconfont-{{field.icon}}" v-if="field.icon"></span>
-          <template v-if="_type(field.type, ['multiline'])">
-            <textarea class="ui-form-input"
-              :rows="field.rows"
-              :cols="field.cols"
-              :field="field.name"
-              :readonly="field.readonly"
-              :disabled="field.disabled"
-              :placeholder="field.placeholder"
-              v-bind="field.validate | _validate2attr"
-              v-model="field.value"
-              v-validate="field.validate"></textarea>
-          </template>
-          <template v-if="_type(field.type, ['select'])">
-            <select class="ui-form-select"
-              :multiple="field.multiple"
-              :size="field.size"
-              :field="field.name"
-              :readonly="field.readonly"
-              :disabled="field.disabled"
-              :placeholder="field.placeholder"
-              v-bind="field.validate | _validate2attr"
-              v-model="field.value"
-              v-validate="field.validate">
-              <option v-for="option in field.options"
-                :value="option.value">{{option.text}}</option>
-            </select>
-          </template>
-          <template v-if="_type(field.type)">
-            <input class="ui-form-input"
-              :type="field.type || text"
-              :size="field.size"
-              :field="field.name"
-              :readonly="field.readonly"
-              :disabled="field.disabled"
-              :placeholder="field.placeholder"
-              v-bind="field.validate | _validate2attr"
-              v-model="field.value"
-              v-validate="field.validate">
-          </template>
+          <component
+            :is="_component(field.type)"
+            :state="state"
+            :field="field.name"
+            :value="field.value"
+            :attrs="_extract(field)"
+            :validate="field.validate"
+            @mutate="_mutate($key, $arguments)"></component>
         </li>
       </ul>
       <div class="ui-form-buttons">
@@ -63,13 +32,41 @@
 </template>
 
 <script>
+import Text from './c-text'
+import Multiline from './c-multiline'
 const TEXTLIKE_TYPES = [
   '', 'text', 'password', 'datetime', 'number', 'email'
 ]
 export default {
   props: ['cls', 'submit', 'fields', 'buttons'],
 
+  data () {
+    return {
+      state: 1
+    }
+  },
+
   methods: {
+    _component (type, types = TEXTLIKE_TYPES) {
+      if (types.indexOf(type)) {
+        return 'text'
+      }
+      return type
+    },
+    _extract (field) {
+      const attrs = {}
+      if (field.attrs) {
+        Object.keys(field.attrs).forEach(key => {
+          attrs[key] = field.attrs[key]
+        })
+      }
+      if (field.validate) {
+        Object.keys(field.validate).forEach(key => {
+          attrs[key] = field.validate[key].rule
+        })
+      }
+      return attrs
+    },
     _type (type, types = TEXTLIKE_TYPES) {
       return types.indexOf(type || '') !== -1
     },
@@ -85,6 +82,11 @@ export default {
       }
       return !!disabled
     }
+  },
+
+  components: {
+    Text,
+    Multiline
   },
 
   filters: {

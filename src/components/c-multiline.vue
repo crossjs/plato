@@ -1,14 +1,9 @@
 <template>
-  <div class="c-text">
+  <div class="c-multiline">
     <template v-if="state === 1">
-      <input
-        class="ui-form-input"
-        type="text"
-        :field="field"
+      <textarea
         v-model="value"
-        v-bind="attrs"
-        v-validate="validate"
-        debounce="500">
+        debounce="500"></textarea>
     </template>
     <template v-else>
       {{value}}

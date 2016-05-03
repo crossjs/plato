@@ -1,5 +1,24 @@
 export default {
-  props: ['state', 'value'],
+  props: {
+    state: {
+      type: Number,
+      default: 0
+    },
+    value: {
+    },
+    field: {
+      type: String,
+      default: ''
+    },
+    attrs: {
+      type: Object,
+      default: {}
+    },
+    validate: {
+      type: Object,
+      default: {}
+    }
+  },
 
   watch: {
     state (v) {
