@@ -61,9 +61,23 @@ export default {
 
   methods: {
     _click (key) {
-      this.callback(key).then(() => this.show = false)
+      promisify(this.callback(key))
+        .then(() => this.show = false)
+        .catch(() => this.show = true)
     }
   }
+}
+
+function promisify (val) {
+  if (!val) {
+    return val === false ? Promise.reject(val) : Promise.resolve(val)
+  }
+
+  if (typeof val.then === 'function') {
+    return val
+  }
+
+  return Promise.resolve(val)
 }
 </script>
 
