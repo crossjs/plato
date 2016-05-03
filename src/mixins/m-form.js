@@ -2,8 +2,8 @@ import CForm from 'components/c-form'
 export default {
   methods: {
     formdata (mutator = data => data) {
-      return mutator(this.fields.reduce((obj, field) => {
-        obj[field.name] = field.value
+      return mutator(Object.keys(this.fields).reduce((obj, key) => {
+        obj[key] = this.fields[key].value
         return obj
       }, {}))
     }

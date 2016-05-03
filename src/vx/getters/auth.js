@@ -1,5 +1,5 @@
 export default {
-  bearer ({ bearer: { bearer } }) {
+  bearer ({ auth: { bearer } }) {
     if (!bearer) {
       return null
     }
@@ -8,5 +8,9 @@ export default {
       return null
     }
     return bearer
+  },
+
+  username ({ auth: { username } }) {
+    return username
   }
 }

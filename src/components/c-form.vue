@@ -11,19 +11,18 @@
           <label class="ui-form-label" v-if="field.label">{{field.label}}</label>
           <span class="ui-form-icon iconfont iconfont-{{field.icon}}" v-if="field.icon"></span>
           <component
-            :is="_component(field.type)"
+            :is="field.type"
             :state="state"
-            :field="field.name"
-            :value="field.value"
+            :field="$key"
+            :value.sync="field.value"
             :attrs="_extract(field)"
-            :validate="field.validate"
-            @mutate="_mutate($key, $arguments)"></component>
+            :validate="field.validate"></component>
         </li>
       </ul>
       <div class="ui-form-buttons">
         <button v-for="button in buttons"
           class="button"
-          :role="button.role"
+          :role="$key"
           :type="button.type || 'button'"
           :disabled="_disabled(button.disabled)">{{_label(button.label)}}</button>
       </div>
@@ -33,12 +32,27 @@
 
 <script>
 import Text from './c-text'
-import Multiline from './c-multiline'
-const TEXTLIKE_TYPES = [
-  '', 'text', 'password', 'datetime', 'number', 'email'
-]
+import Password from './c-password'
+import Textarea from './c-textarea'
 export default {
-  props: ['cls', 'submit', 'fields', 'buttons'],
+  props: {
+    cls: {
+      type: String,
+      default: ''
+    },
+    submit: {
+      type: Function,
+      default: () => true
+    },
+    fields: {
+      type: Object,
+      default: {}
+    },
+    buttons: {
+      type: Object,
+      default: {}
+    }
+  },
 
   data () {
     return {
@@ -47,12 +61,6 @@ export default {
   },
 
   methods: {
-    _component (type, types = TEXTLIKE_TYPES) {
-      if (types.indexOf(type)) {
-        return 'text'
-      }
-      return type
-    },
     _extract (field) {
       const attrs = {}
       if (field.attrs) {
@@ -66,9 +74,6 @@ export default {
         })
       }
       return attrs
-    },
-    _type (type, types = TEXTLIKE_TYPES) {
-      return types.indexOf(type || '') !== -1
     },
     _label (label) {
       if (typeof label === 'function') {
@@ -86,7 +91,8 @@ export default {
 
   components: {
     Text,
-    Multiline
+    Password,
+    Textarea
   },
 
   filters: {

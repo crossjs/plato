@@ -1,7 +1,7 @@
 <template>
   <div class="signup">
     <c-form
-      :submit="submit"
+      :submit="signup"
       :fields="fields"
       :buttons="buttons"></c-form>
   </div>
@@ -9,29 +9,29 @@
 
 <script>
 import mForm from 'mixins/m-form'
-import { POST } from 'utils/ajax'
 import md5 from 'utils/md5'
+import { username } from 'vx/getters'
+import { createUser } from 'vx/actions'
 import userFields from 'utils/userFields'
 export default {
   mixins: [mForm],
 
   data () {
     return {
-      pending: false,
-      submit: this.signup,
       fields: userFields,
-      buttons: [{
-        role: 'submit',
-        type: 'submit',
-        // string or function
-        label: $validation => {
-          return this.progress ? '提交注册中...' : '提交注册'
-        },
-        // boolean or function
-        disabled: $validation => {
-          return !$validation.valid || !!this.progress
+      buttons: {
+        submit: {
+          type: 'submit',
+          // string or function
+          label: $validation => {
+            return this.progress ? '提交注册中...' : '提交注册'
+          },
+          // boolean or function
+          disabled: $validation => {
+            return !$validation.valid || !!this.progress
+          }
         }
-      }]
+      }
     }
   },
 
@@ -41,20 +41,37 @@ export default {
       if (!$validation.valid) {
         return
       }
-      POST('/apis/signup', {
-        body: this.formdata(data => {
-          data.password = md5(data.password)
-          return data
-        })
-      })
-      .then(json => {
-        this.goLogin(json)
-      })
+      this.createUser(this.formdata(data => {
+        data.password = md5(data.password)
+        return data
+      }))
     },
     goLogin ({ username }) {
       this.$route.router.go({
         name: 'login',
         query: { username }
+      })
+    }
+  },
+
+  vuex: {
+    getters: {
+      username
+    },
+    actions: {
+      createUser
+    }
+  },
+
+  watch: {
+    username (username) {
+      this.$nextTick(() => {
+        if (username) {
+          this.$route.router.go({
+            name: 'login',
+            query: { username }
+          })
+        }
       })
     }
   }

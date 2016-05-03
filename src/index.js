@@ -1,10 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Validator from 'vue-validator'
+// import Validator from 'vue-validator'
+import Validator from 'utils/validator'
 
 import App from 'app'
 import { routes, alias } from 'routes'
-import mixins from 'mixins'
+import { bearer, progress } from 'vx/getters'
 import CRoute from 'components/c-route'
 
 if (module.hot) {
@@ -12,7 +13,14 @@ if (module.hot) {
 }
 
 // global mixins
-Vue.mixin(mixins)
+Vue.mixin({
+  vuex: {
+    getters: {
+      bearer,
+      progress
+    }
+  }
+})
 
 Vue.config.debug = process.env.NODE_ENV === 'developmemnt'
 

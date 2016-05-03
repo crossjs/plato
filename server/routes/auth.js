@@ -35,28 +35,28 @@ export default (app, router) => {
   }
 
   // login
-  router.post('/login', (ctx, next) => {
+  router.post('/auth/login', (ctx, next) => {
     return passport.authenticate('local', {
       failWithError: true
     }, callback.bind(ctx))(ctx, next)
   })
 
   // check
-  router.get('/check', (ctx, next) => {
+  router.get('/auth/check', (ctx, next) => {
     return passport.authenticate('bearer', {
       session: false
     }, callback.bind(ctx))(ctx, next)
   })
 
   // signup
-  router.post('/signup', async ctx => {
+  router.post('/auth/signup', async ctx => {
     const { username, password } = ctx.request.body
     const user = await User.create({ username, password })
     ctx.body = only(user.toJSON(), whiteProps)
   })
 
   // logout
-  router.del('/user/logout', async (ctx, next) => {
+  router.del('/auth/logout', async (ctx, next) => {
     const token = ctx.request.token
 
     if (!token) {

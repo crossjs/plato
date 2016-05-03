@@ -1,7 +1,7 @@
 <template>
   <div class="login">
     <c-form
-      :submit="submit"
+      :submit="login"
       :fields="fields"
       :buttons="buttons"></c-form>
   </div>
@@ -11,28 +11,32 @@
 import mForm from 'mixins/m-form'
 import md5 from 'utils/md5'
 import { getBearer } from 'vx/actions'
-import userFields from 'utils/userFields'
+import { username, password } from 'utils/userFields'
 export default {
   mixins: [mForm],
 
   data () {
-    userFields[0].value = this.$route.query.username || ''
     return {
-      pending: false,
-      submit: this.login,
-      fields: userFields,
-      buttons: [{
-        role: 'submit',
-        type: 'submit',
-        // string or function
-        label: $validation => {
-          return this.progress ? '提交登录中...' : '提交登录'
-        },
-        // boolean or function
-        disabled: $validation => {
-          return !$validation.valid || !!this.progress
+      fields: {
+        // copy
+        username: Object.assign({}, username, {
+          value: this.$route.query.username
+        }),
+        password
+      },
+      buttons: {
+        submit: {
+          type: 'submit',
+          // string or function
+          label: $validation => {
+            return this.progress ? '提交登录中...' : '提交登录'
+          },
+          // boolean or function
+          disabled: $validation => {
+            return !$validation.valid || !!this.progress
+          }
         }
-      }]
+      }
     }
   },
 

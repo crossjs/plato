@@ -2,6 +2,7 @@ import {
   _BEARER_KEY,
   GET_BEARER,
   DELETE_BEARER,
+  CREATE_USER,
   PROMISE_SUCCESS
 } from '../constants'
 
@@ -13,7 +14,8 @@ const state = {
       // log e
       return null
     }
-  })()
+  })(),
+  username: null
 }
 
 const mutations = {
@@ -28,6 +30,13 @@ const mutations = {
   [DELETE_BEARER] (state, { meta }) {
     if (meta === PROMISE_SUCCESS) {
       state.bearer = null
+      // save to localStorage
+      localStorage.setItem(_BEARER_KEY, JSON.stringify(null))
+    }
+  },
+
+  [CREATE_USER] (state, { meta, payload }) {
+    if (meta === PROMISE_SUCCESS) {
       // save to localStorage
       localStorage.setItem(_BEARER_KEY, JSON.stringify(null))
     }
