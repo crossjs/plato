@@ -56,7 +56,7 @@ export default {
       // 重置 payload
       this.payload = null
       // 先设置为中间态
-      this.state = 2
+      this.state = -1
       this.$nextTick(() => {
         // 再设置为展示态
         this.state = 0
