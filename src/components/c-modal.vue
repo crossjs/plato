@@ -55,13 +55,13 @@ export default {
     },
     callback: {
       type: Function,
-      default: () => true
+      default: () => Promise.resolve(true)
     }
   },
 
   methods: {
     _click (key) {
-      this.show = this.callback(key) === false
+      this.callback(key).then(() => this.show = false)
     }
   }
 }
