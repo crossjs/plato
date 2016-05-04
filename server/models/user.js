@@ -2,6 +2,7 @@ import mongoose from 'mongoose'
 import _debug from 'debug'
 import hash from '../utils/hash'
 import salt from '../utils/salt'
+import { BEARER_EXPIRES } from '../config'
 
 const debug = _debug('koa:models:user')
 
@@ -60,6 +61,10 @@ schema.pre('save', function (next) {
 
   if (!this.updated) {
     this.updated = this.created
+  }
+
+  if (!this.expires) {
+    this.expires = Date.now() + BEARER_EXPIRES
   }
 
   next()

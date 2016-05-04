@@ -53,6 +53,7 @@ export default (app, router) => {
     const { username, password } = ctx.request.body
     const user = await User.create({ username, password })
     ctx.body = only(user.toJSON(), whiteProps)
+    ctx.status = 201
   })
 
   // logout

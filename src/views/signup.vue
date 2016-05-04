@@ -10,7 +10,6 @@
 <script>
 import mForm from 'mixins/m-form'
 import md5 from 'utils/md5'
-import { username } from 'vx/getters'
 import { createUser } from 'vx/actions'
 import userFields from 'utils/userFields'
 export default {
@@ -49,22 +48,18 @@ export default {
   },
 
   vuex: {
-    getters: {
-      username
-    },
     actions: {
       createUser
     }
   },
 
   watch: {
-    username (username) {
+    bearer (value) {
       this.$nextTick(() => {
-        if (username) {
-          this.$route.router.go({
-            name: 'login',
-            query: { username }
-          })
+        if (value) {
+          this.$route.router.go('/user')
+        } else {
+          this.$route.router.go('/login')
         }
       })
     }

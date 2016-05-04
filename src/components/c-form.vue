@@ -7,7 +7,7 @@
         </li>
       </ul>
       <ul class="c-form-items">
-        <li v-for="field in fields" class="c-form-item" :class="{'ui-form-icon-item': field.icon}">
+        <li v-for="field in fields" class="c-form-item" :class="{'c-form-icon-item': field.icon}">
           <label class="c-form-label" v-if="field.label">{{field.label}}</label>
           <span class="c-form-icon iconfont iconfont-{{field.icon}}" v-if="field.icon"></span>
           <component

@@ -114,3 +114,4 @@ export default {
 </script>
 
 <style src="styles/components/grid"></style>
+<style src="styles/components/form"></style>

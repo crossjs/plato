@@ -18,10 +18,10 @@ export default {
     // let target
     return {
       columns: {
-        username: {
-          label: '用户名',
-          type: 'text'
-        },
+        // username: {
+        //   label: '用户名',
+        //   type: 'text'
+        // },
         created: {
           label: '创建时间',
           type: 'datetime'

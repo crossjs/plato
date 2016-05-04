@@ -92,8 +92,8 @@
 
 .c-form-items {
   & label {
-  display: block;
-    line-height: 32px;
+    display: block;
+    line-height: 2;
 
     &:after {
       content: '：';

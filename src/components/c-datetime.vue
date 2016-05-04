@@ -3,15 +3,20 @@
     <template v-if="state === 1">
       <input
         class="c-form-input"
-        type="datetime"
+        type="text"
+        :value="datetime(value)"
+        @click="this.showCalendar = !this.showCalendar"
+        readonly>
+      <input
+        type="hidden"
         :field="field"
         v-model="value"
         v-bind="attrs"
         v-validate="validate"
-        debounce="500"
         number>
       <calendar
-        :value="value"
+        :value.sync="value"
+        :show.sync="showCalendar"
         ></calendar>
     </template>
     <template v-else>
@@ -26,6 +31,11 @@ import datetime from 'nd-datetime'
 import Calendar from './c-calendar'
 export default {
   mixins: [mField],
+  data () {
+    return {
+      showCalendar: false
+    }
+  },
   methods: {
     datetime
   },

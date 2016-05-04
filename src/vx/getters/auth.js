@@ -8,9 +8,5 @@ export default {
       return null
     }
     return bearer
-  },
-
-  username ({ auth: { username } }) {
-    return username
   }
 }

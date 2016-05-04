@@ -1,17 +1,29 @@
 <template>
-  <div class="c-calendar">
+  <div
+    v-focus="show"
+    v-show="show"
+    tabindex="-1"
+    class="c-calendar"
+    @mouseleave="_toggle(false) | debounce 500"
+    @mouseenter="_toggle(true)"
+    transition="slide">
     <div class="c-calendar-header">
-      <button @click="_prev('M')">&lt;</button>
+      <button v-show="this.view === 'd'" @click="_prev('M')">&lt;</button>
       <button @click="_switch('M')">{{monthName}}</button>
       <button @click="_switch('y')">{{year}}</button>
-      <button @click="_next('M')">&gt;</button>
+      <button v-show="this.view === 'd'" @click="_next('M')">&gt;</button>
     </div>
-    <div v-show="showMonths" class="c-calendar-content">
-      <div class="c-calendar-months">
-        <span v-for="month in months" track-by="$index" :class="{selected: month.selected}" @click="_select('M', month.value)">{{month.value}}</span>
+    <div v-show="view === 'y'" class="c-calendar-content">
+      <div class="c-calendar-years">
+        <span v-for="year in years" track-by="$index" :class="{selected: year.selected}" @click="_select('y', year.value)">{{year.value}}</span>
       </div>
     </div>
-    <div class="c-calendar-content">
+    <div v-show="view === 'M'" class="c-calendar-content">
+      <div class="c-calendar-months">
+        <span v-for="month in months" track-by="$index" :class="{selected: month.selected}" @click="_select('M', month.value)">{{month.label}}</span>
+      </div>
+    </div>
+    <div v-show="view === 'd'" class="c-calendar-content">
       <div class="c-calendar-days">
         <span v-for="weekName in weekNames" track-by="$index">{{weekName}}</span>
       </div>
@@ -26,32 +38,32 @@
 import datetime from 'nd-datetime'
 export default {
   props: {
+    show: {
+      type: Boolean,
+      default: false
+    },
     value: {
       type: Number,
       default: 0
+    },
+    view: {
+      type: String,
+      default: 'd'
     }
   },
 
   data () {
     return {
-      showMonths: false,
-      // year: 0,
-      // month: 0,
-      // date: 0,
-      hours: 0,
-      minutes: 0,
-      seconds: 0,
-      // days: [],
-      today: null,
-      weekNames: ['日', '一', '二', '三', '四', '五', '六']
+      // hours: 0,
+      // minutes: 0,
+      // seconds: 0,
+      weekNames: ['日', '一', '二', '三', '四', '五', '六'],
+      monthNames: datetime.MONTH_NAMES_ABBR
     }
   },
 
   /*eslint-disable*/
   computed: {
-    // selected () {
-    //
-    // },
     moment () {
       return datetime(this.value)
     },
@@ -67,10 +79,19 @@ export default {
     monthName () {
       return this.moment.MMM()
     },
-    months () {
-      return datetime.MONTH_NAMES_ABBR.map((name, index) => {
+    years () {
+      return [-6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5].map(value => {
         return {
-          value: name,
+          value: this.year + value,
+          selected: value === 0
+        }
+      })
+    },
+    months () {
+      return this.monthNames.map((name, index) => {
+        return {
+          label: name,
+          value: index + 1,
           selected: index + 1 === this.month
         }
       })
@@ -114,11 +135,22 @@ export default {
   /*eslint-enable*/
 
   methods: {
+    _toggle (show) {
+      if (show) {
+        this._cancelNext = true
+      } else {
+        if (this._cancelNext) {
+          this._cancelNext = false
+          return
+        }
+      }
+      this.show = show
+    },
     _switch (type) {
-      switch (type) {
-        case 'M':
-          this.showMonths = !this.showMonths
-          break
+      if (this.view === type) {
+        this.view = 'd'
+      } else {
+        this.view = type
       }
     },
     _prev (type) {
@@ -137,9 +169,31 @@ export default {
     },
     _select (type, value) {
       switch (type) {
+        case 'y':
+          this.value = this.moment.add('y', value - this.year).toNumber()
+          this.view = 'd'
+          break
+        case 'M':
+          this.value = this.moment.add('M', value - this.month).toNumber()
+          this.view = 'd'
+          break
         case 'd':
           this.value = this.moment.add('d', value - this.date).toNumber()
+          this.show = false
           break
+      }
+    }
+  },
+
+  // a custom directive to wait for the DOM to be updated
+  // before focusing on the input field.
+  // http://vuejs.org/guide/custom-directive.html
+  directives: {
+    focus (value) {
+      if (value) {
+        this.vm.$nextTick(function () {
+          this.$el.focus()
+        })
       }
     }
   }

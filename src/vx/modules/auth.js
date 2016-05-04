@@ -14,8 +14,7 @@ const state = {
       // log e
       return null
     }
-  })(),
-  username: null
+  })()
 }
 
 const mutations = {
@@ -37,7 +36,9 @@ const mutations = {
 
   [CREATE_USER] (state, { meta, payload }) {
     if (meta === PROMISE_SUCCESS) {
-      state.username = payload.username
+      state.bearer = payload
+      // save to localStorage
+      localStorage.setItem(_BEARER_KEY, JSON.stringify(payload))
     }
   }
 }

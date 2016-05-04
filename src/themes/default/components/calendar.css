@@ -1,7 +1,10 @@
 .c-calendar {
   position: absolute;
+  margin: -1px 0 0;
   background-color: white;
   width: 14rem;
+  border: 1px solid color(black lightness(80%));
+  outline: none;
 }
 
 .c-calendar-header {
@@ -9,23 +12,53 @@
   font-size: 1.5em;
 }
 
+.c-calendar-years,
 .c-calendar-months {
-  position: absolute;
   padding: 1rem;
   background-color: white;
+
+  &:after {
+    display: block;
+    content: '\20';
+    clear: both;
+  }
+
   & span {
+    cursor: pointer;
     display: block;
     float: left;
     width: 4rem;
-    height: 4rem;
-    line-height: 4rem;
+    height: 3rem;
+    line-height: 3rem;
     text-align: center;
     font-weight: bold;
+    box-sizing: border-box;
+    border-top: 1px solid color(white lightness(90%));
+    border-left: 1px solid color(white lightness(90%));
+
+    &:nth-child(3n) {
+      border-right: 1px solid color(white lightness(90%));
+    }
+
+    &:nth-child(10),
+    &:nth-child(11),
+    &:nth-child(12) {
+      border-bottom: 1px solid color(white lightness(90%));
+    }
+
+    &:hover {
+      background-color: color(white lightness(90%));
+    }
+
+    &.selected {
+      color: var(--orange);
+    }
   }
 }
 
 .c-calendar-days {
   height: 2rem;
+
   & span {
     display: block;
     float: left;
@@ -38,6 +71,12 @@
 }
 
 .c-calendar-dates {
+  &:after {
+    display: block;
+    content: '\20';
+    clear: both;
+  }
+
   & span {
     display: block;
     float: left;
