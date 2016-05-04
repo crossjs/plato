@@ -22,7 +22,7 @@ Vue.mixin({
   }
 })
 
-Vue.config.debug = process.env.NODE_ENV === 'developmemnt'
+Vue.config.debug = process.env.NODE_ENV === 'development'
 
 Vue.use(Router)
 Vue.use(Validator)

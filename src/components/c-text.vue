@@ -2,7 +2,7 @@
   <div class="c-text">
     <template v-if="state === 1">
       <input
-        class="ui-form-input"
+        class="c-form-input"
         type="text"
         :field="field"
         v-model="value"

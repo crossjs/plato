@@ -1,10 +1,12 @@
 <template>
-  <tr class="ui-grid-row">
+  <tr class="c-grid-row">
     <td class="index">{{index + 1}}</td>
     <td v-for="column in columns">
       <component
-        :is="column.component || 'text'"
+        :is="column.type"
         :state="state"
+        :field="$key"
+        :attrs="column.attrs"
         :value="data[$key]"
         @mutate="_mutate($key, $arguments)"></component>
     </td>
@@ -20,7 +22,7 @@
 
 <script>
 import Text from './c-text'
-import Switch from './c-switch'
+import Checkbox from './c-checkbox'
 import Datetime from './c-datetime'
 export default {
   props: {
@@ -34,11 +36,11 @@ export default {
     },
     data: {
       type: Object,
-      default: {}
+      default: () => {}
     },
     columns: {
       type: Object,
-      default: {}
+      default: () => {}
     },
     actions: {
       type: Array,
@@ -82,7 +84,7 @@ export default {
 
   components: {
     Text,
-    Switch,
+    Checkbox,
     Datetime
   }
 }

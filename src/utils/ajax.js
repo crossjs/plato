@@ -1,11 +1,21 @@
 import 'whatwg-fetch'
 import store from 'vx/store'
 import { SET_PROGRESS, ADD_TOAST, DELETE_TOAST } from 'vx/constants'
-import getBearerToken from 'utils/getBearerToken'
 
 const headers = {
   'Accept': 'application/json',
   'Content-Type': 'application/json'
+}
+
+function getBearerToken () {
+  const { bearer } = store.state.auth
+  if (bearer) {
+    const { token, expires } = bearer
+    if (token && expires >= Date.now()) {
+      return token
+    }
+  }
+  return null
 }
 
 function setProgress (progress) {

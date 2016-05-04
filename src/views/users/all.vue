@@ -20,23 +20,23 @@ export default {
       columns: {
         username: {
           label: '用户名',
-          component: 'text'
+          type: 'text'
         },
-        // created: {
-        //   label: '创建时间',
-        //   component: 'datetime'
-        // },
+        created: {
+          label: '创建时间',
+          type: 'datetime'
+        },
         // updated: {
         //   label: '活跃时间',
-        //   component: 'datetime'
+        //   type: 'datetime'
         // },
         // token: {
         //   label: '登录状态',
-        //   component: 'text'
+        //   type: 'text'
         // },
         state: {
           label: '禁止',
-          component: 'switch'
+          type: 'checkbox'
         }
       }
     }

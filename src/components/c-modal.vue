@@ -1,12 +1,12 @@
 <template>
-  <div v-show="show" class="ui-modal" :class="[cls]" transition="fade">
-    <div v-show="show" class="ui-modal-content" transition="slide">
-      <div class="ui-modal-header">
+  <div v-show="show" class="c-modal" :class="[cls]" transition="fade">
+    <div v-show="show" class="c-modal-content" transition="slide">
+      <div class="c-modal-header">
         <button type="button" @click="_click('close')">&times;</button>
         <h4 v-if="title">{{title}}</h4>
       </div>
-      <div class="ui-modal-body">{{body}}</div>
-      <div v-if="buttons" class="ui-modal-footer">
+      <div class="c-modal-body">{{body}}</div>
+      <div v-if="buttons" class="c-modal-footer">
         <button v-for="button in buttons"
           class="button"
           :role="$key"

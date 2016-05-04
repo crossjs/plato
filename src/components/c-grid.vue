@@ -1,30 +1,32 @@
 <template>
-  <div class="ui-grid" :class="[cls]">
+  <div class="c-grid" :class="[cls]">
     <c-modal
       :show.sync="modal.show"
       :args.sync="modal.args"
       :title="modal.title"
       :body="modal.body"
       :callback="modal.callback"></c-modal>
-    <table>
-      <thead>
-        <tr>
-          <th class="index">#</th>
-          <th v-for="column in columns" :key="$key">{{column.label}}</th>
-          <th v-if="actions"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <template v-for="entry in data" track-by="_id">
-          <c-row
-            :index="$index"
-            :data="entry"
-            :columns="columns"
-            :actions="actions"
-            @action="_action"></c-row>
-        </template>
-      </tbody>
-    </table>
+    <validator name="validation">
+      <table>
+        <thead>
+          <tr>
+            <th class="index">#</th>
+            <th v-for="column in columns" :key="$key">{{column.label}}</th>
+            <th v-if="actions"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <template v-for="entry in data" track-by="_id">
+            <c-row
+              :index="$index"
+              :data="entry"
+              :columns="columns"
+              :actions="actions"
+              @action="_action"></c-row>
+          </template>
+        </tbody>
+      </table>
+    </validator>
   </div>
 </template>
 

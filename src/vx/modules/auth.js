@@ -37,8 +37,7 @@ const mutations = {
 
   [CREATE_USER] (state, { meta, payload }) {
     if (meta === PROMISE_SUCCESS) {
-      // save to localStorage
-      localStorage.setItem(_BEARER_KEY, JSON.stringify(null))
+      state.username = payload.username
     }
   }
 }

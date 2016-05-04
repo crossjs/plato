@@ -521,6 +521,12 @@ function Validate (Vue) {
         return { model: raw };
       }
     },
+
+
+    // use current component's vm as fallback
+    _getScope: function _getScope() {
+      return this._scope || this.vm;
+    },
     setupValidate: function setupValidate(name, model, filters) {
       var params = this.params;
       var containerVm = this.getContainerVm();
@@ -528,7 +534,7 @@ function Validate (Vue) {
 
       this.field = _.camelize(this.arg ? this.arg : params.field);
 
-      this.validation = validator.manageValidation(this.field, model, containerVm, this.frag.node, this._scope, filters, this.isDetectBlur(params.detectBlur), this.isDetectChange(params.detectChange));
+      this.validation = validator.manageValidation(this.field, model, containerVm, this.frag.node, this._getScope(), filters, this.isDetectBlur(params.detectBlur), this.isDetectChange(params.detectChange));
 
       params.group && validator.addGroupValidation(params.group, this.field);
 
@@ -662,7 +668,7 @@ function Validate (Vue) {
       var containerVm = this.vm;
       while (containerVm) {
         if (containerVm.$options._validator) {
-          if (containerVm != this.vm) {
+          if (containerVm !== this.vm) {
             var validator = containerVm._validatorMaps[containerVm.$options._validator];
             exports$1.Vue.util.defineReactive(this.vm, validator.name, validator._scope);
           }

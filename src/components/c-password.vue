@@ -2,7 +2,7 @@
   <div class="c-text">
     <template v-if="state === 1">
       <input
-        class="ui-form-input"
+        class="c-form-input"
         type="password"
         :field="field"
         v-model="value"
@@ -11,7 +11,7 @@
         debounce="500">
     </template>
     <template v-else>
-      {{new Array((value||'******').length).join('*')}}
+      {{new Array((value || '******').length).join('*')}}
     </template>
   </div>
 </template>

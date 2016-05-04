@@ -45,12 +45,6 @@ export default {
         data.password = md5(data.password)
         return data
       }))
-    },
-    goLogin ({ username }) {
-      this.$route.router.go({
-        name: 'login',
-        query: { username }
-      })
     }
   },
 

@@ -29,7 +29,7 @@
         display: block;
         position: absolute;
         z-index: 1;
-        background-color: color(var(--orange) hue(+180deg) lightness(-50%));
+        background-color: color(var(--invert) lightness(-30%));
       }
     }
   }
@@ -45,11 +45,11 @@
     text-decoration: none;
 
     &:hover {
-      background-color: color(var(--orange) hue(+180deg) lightness(-60%));
+      background-color: color(var(--invert) lightness(-30%));
     }
 
     &.link-active {
-      background-color: color(var(--orange) hue(+180deg) lightness(-60%));
+      background-color: color(var(--invert) lightness(-30%));
     }
 
     &.link-active + ul {

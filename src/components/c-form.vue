@@ -1,15 +1,15 @@
 <template>
   <validator name="validation">
-    <form class="ui-form" :class="[cls]" v-on:submit.prevent="submit($validation)" autocomplete="off" novalidate>
-      <ul class="ui-form-errors" v-if="$validation.modified">
-        <li class="ui-form-error" v-for="error in $validation.errors">
+    <form class="c-form" :class="[cls]" v-on:submit.prevent="submit($validation)" autocomplete="off" novalidate>
+      <ul class="c-form-errors" v-if="$validation.modified">
+        <li class="c-form-error" v-for="error in $validation.errors">
           {{error.message}}
         </li>
       </ul>
-      <ul class="ui-form-items">
-        <li v-for="field in fields" class="ui-form-item" :class="{'ui-form-icon-item': field.icon}">
-          <label class="ui-form-label" v-if="field.label">{{field.label}}</label>
-          <span class="ui-form-icon iconfont iconfont-{{field.icon}}" v-if="field.icon"></span>
+      <ul class="c-form-items">
+        <li v-for="field in fields" class="c-form-item" :class="{'ui-form-icon-item': field.icon}">
+          <label class="c-form-label" v-if="field.label">{{field.label}}</label>
+          <span class="c-form-icon iconfont iconfont-{{field.icon}}" v-if="field.icon"></span>
           <component
             :is="field.type"
             :state="state"
@@ -19,7 +19,7 @@
             :validate="field.validate"></component>
         </li>
       </ul>
-      <div class="ui-form-buttons">
+      <div class="c-form-buttons">
         <button v-for="button in buttons"
           class="button"
           :role="$key"
@@ -93,16 +93,6 @@ export default {
     Text,
     Password,
     Textarea
-  },
-
-  filters: {
-    // todo: filter names
-    _validate2attr (data) {
-      return Object.keys(data).reduce((obj, key) => {
-        obj[key] = data[key].rule
-        return obj
-      }, {})
-    }
   }
 }
 </script>

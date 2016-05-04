@@ -1,4 +1,4 @@
-.ui-modal {
+.c-modal {
   background-color: rgba(0, 0, 0, 0.5);
   position: fixed;
   width: 100%;
@@ -7,13 +7,13 @@
   top: 0;
 }
 
-.ui-modal-content {
+.c-modal-content {
   width: 15rem;
   background-color: white;
   margin: 1rem auto;
 }
 
-.ui-modal-header {
+.c-modal-header {
   height: 2rem;
   border-bottom: 1px solid color(white lightness(90%));
 
@@ -37,13 +37,13 @@
   }
 }
 
-.ui-modal-body {
+.c-modal-body {
   text-align: center;
   padding: 1rem;
   font-size: 0.8rem;
 }
 
-.ui-modal-footer {
+.c-modal-footer {
   padding: 0.5rem;
   text-align: center;
   border-top: 1px solid color(white lightness(90%));

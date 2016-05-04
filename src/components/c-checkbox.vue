@@ -1,10 +1,12 @@
 <template>
-  <div class="c-switch">
+  <div class="c-checkbox">
     <template v-if="state === 1">
-      <input type="checkbox"
+      <input
+        type="checkbox"
+        :field="field"
         v-model="value"
-        v-bind:true-value="1"
-        v-bind:false-value="0">
+        v-bind="_attrs"
+        v-validate="validate">
     </template>
     <template v-else>
       {{value ? '是' : '否'}}
@@ -15,6 +17,15 @@
 <script>
 import mField from 'mixins/m-field'
 export default {
-  mixins: [mField]
+  mixins: [mField],
+
+  computed: {
+    _attrs () {
+      return Object.assign({
+        'true-value': 1,
+        'false-value': 0
+      }, this.attrs)
+    }
+  }
 }
 </script>

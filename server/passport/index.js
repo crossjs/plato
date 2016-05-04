@@ -29,18 +29,20 @@ export const check = async (ctx, next) => {
 }
 
 passport.use(new LocalStrategy((username, password, done) => {
-  User.findOne({ username, state: 0 }).exec((err, user) => {
+  User.findOne({ username }).exec((err, user) => {
     if (err) {
-      return done(null, false, { message: 'An error occurred.' })
+      return done(null, false, { message: '系统错误' })
     }
     if (!user) {
-      return done(null, false, { message: 'Incorrect username.' })
+      return done(null, false, { message: '账号不正确' })
     }
-    debug(user)
+    if (user.state) {
+      return done(null, false, { message: '账号已停用' })
+    }
     if (hash(password, user.salt) !== user.password) {
-      return done(null, false, { message: 'Incorrect password.' })
+      return done(null, false, { message: '密码不正确' })
     }
-    return done(null, user, { message: 'Logged in.' })
+    return done(null, user, { message: '登录成功' })
   })
 }))
 

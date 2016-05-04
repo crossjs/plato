@@ -1,4 +1,6 @@
 # plat
+[![dependencies](https://david-dm.org/crossjs/plat.svg?style=flat-square)](https://david-dm.org/crossjs/plat)
+[![devDependency Status](https://david-dm.org/crossjs/plat/dev-status.svg?style=flat-square)](https://david-dm.org/crossjs/plat#info=devDependencies)
 
 > A plat<del>form</del> built with koa and vue
 
@@ -15,7 +17,8 @@
 
 - 单向数据流
 - 组件间通过事件传递数据
-- 使用 mixins 实现“继承”
+- 使用 mixins 实现复用
+- 向 vue@2 靠拢
 
 ## 使用说明
 

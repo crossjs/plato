@@ -9,7 +9,7 @@
 
 .header {
   height: var(--header_height);
-  background-color: color(var(--orange) hue(+180deg) lightness(-50%));
+  background-color: color(var(--invert) lightness(-30%));
 }
 
 .content {
@@ -20,7 +20,7 @@
   clear: both;
   color: white;
   text-align: center;
-  background-color: color(var(--orange) hue(+180deg) saturation(5%) lightness(60%));
+  background-color: color(var(--invert) saturation(5%) lightness(40%));
   padding: 0.5rem;
 }
 

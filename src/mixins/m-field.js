@@ -12,11 +12,15 @@ export default {
     },
     attrs: {
       type: Object,
-      default: {}
+      default () {
+        return {}
+      }
     },
     validate: {
       type: Object,
-      default: {}
+      default () {
+        return {}
+      }
     }
   },
 

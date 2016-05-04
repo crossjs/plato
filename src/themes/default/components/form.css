@@ -1,12 +1,12 @@
-.ui-form {
+.c-form {
   padding: 1rem 0;
 }
 
-.ui-form-errors {
+.c-form-errors {
   padding: 0 0 1rem;
 }
 
-.ui-form-error {
+.c-form-error {
   margin: 0 0 0.5rem;
   padding: 0.3rem 0.3rem 0.3rem 0.8rem;
   cursor: default;
@@ -16,10 +16,10 @@
   list-style-position: inside;
 }
 
-.ui-form-input,
-.ui-form-select,
-.ui-form-textarea,
-.ui-form-static {
+.c-form-input,
+.c-form-select,
+.c-form-textarea,
+.c-form-static {
   display: inline-block;
   border: 1px solid color(black lightness(80%));
   padding: 0.2rem 0.3rem;
@@ -33,7 +33,7 @@
 
   &:hover,
   &:focus {
-    border-color:  color(var(--orange) hue(+180deg) lightness(-30%));
+    border-color:  color(var(--invert) lightness(-10%));
   }
 
   &[readonly] {
@@ -49,12 +49,12 @@
   }
 }
 
-.ui-form-select {
+.c-form-select {
   height: 2rem;
 }
 
-.ui-form-prefix,
-.ui-form-suffix {
+.c-form-prefix,
+.c-form-suffix {
   display: inline-block;
   border-top: 1px solid color(black lightness(80%));
   border-bottom: 1px solid color(black lightness(80%));
@@ -66,31 +66,31 @@
   box-sizing: border-box;
 }
 
-.ui-form-prefix {
+.c-form-prefix {
   border-left: 1px solid color(black lightness(80%));
 }
 
-.ui-form-suffix {
+.c-form-suffix {
   border-right: 1px solid color(black lightness(80%));
   margin-left: -0.2rem;
 }
 
-.ui-form-comment {
+.c-form-comment {
   padding: 0.2rem 0.05rem;
   color: color(white lightness(-40%));
 }
 
-.ui-form-input {
+.c-form-input {
   &::-ms-clear {
     display: none;
   }
 }
 
-.ui-form-textarea {
+.c-form-textarea {
   resize: vertical;
 }
 
-.ui-form-items {
+.c-form-items {
   & label {
   display: block;
     line-height: 32px;
@@ -101,21 +101,21 @@
   }
 }
 
-.ui-form-item {
+.c-form-item {
   margin: 0 0 0.5rem;
   position: relative;
   cursor: default;
 }
 
-.ui-form-icon-item {
-  & .ui-form-input,
-  & .ui-form-textarea,
-  & .ui-form-static {
+.c-form-icon-item {
+  & .c-form-input,
+  & .c-form-textarea,
+  & .c-form-static {
     padding-left: 1.5rem;
   }
 }
 
-.ui-form-icon {
+.c-form-icon {
   position: absolute;
   min-width: 1.5rem;
   min-height: 2rem;
@@ -127,7 +127,7 @@
   }
 }
 
-.ui-form-buttons {
+.c-form-buttons {
   padding: 1rem 0 0;
 
   & .button {
