@@ -4,8 +4,8 @@
     v-show="show"
     tabindex="-1"
     class="c-calendar"
-    @mouseleave="_toggle(false) | debounce 500"
-    @mouseenter="_toggle(true)"
+    @blur="_toggle(false) | debounce 500"
+    @focus="_toggle(true)"
     transition="slide">
     <div class="c-calendar-header">
       <button v-show="this.view === 'd'" @click="_prev('M')">&lt;</button>
