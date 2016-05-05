@@ -23,9 +23,13 @@ export default {
     _attrs () {
       return Object.assign({
         'true-value': 1,
-        'false-value': 0
+        'false-value': 0,
+        'true-label': '是',
+        'false-label': '否'
       }, this.attrs)
     }
   }
 }
 </script>
+
+<style src="styles/components/checkbox"></style>

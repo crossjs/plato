@@ -1,0 +1,51 @@
+.c-checkbox {
+  line-height: 0;
+
+  & input {
+    appearance: none;
+    position: relative;
+    width: 2rem;
+    height: 1rem;
+    border: 1px solid color(white lightness(80%));
+    outline: 0;
+    border-radius: 1rem;
+    box-sizing: border-box;
+    background: color(white lightness(80%));
+
+    &:after,
+    &:before {
+      content: " ";
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 0.9rem;
+      border-radius: 0.5rem;
+      transition: transform .3s;
+    }
+
+    &:before {
+      width: 2rem;
+      background-color: color(white lightness(90%));
+    }
+
+    &:after {
+      width: 1rem;
+      background-color: white;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+    }
+  }
+
+  & input:checked {
+    border-color: var(--invert);
+    background-color: var(--invert);
+  }
+
+  & input:checked:before {
+    transform: scale(0);
+  }
+
+  & input:checked:after {
+    transform: translateX(0.9rem);
+  }
+
+}

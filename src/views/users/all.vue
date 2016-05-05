@@ -2,6 +2,7 @@
   <div class="users">
     <c-grid
       :columns="columns"
+      :actions="actions"
       :data="users"
       @action="_action"></c-grid>
   </div>
@@ -20,14 +21,16 @@ export default {
       columns: {
         // username: {
         //   label: '用户名',
-        //   type: 'text'
+        //   type: 'text',
+        //   editable: true
         // },
         created: {
           label: '创建时间',
-          type: 'datetime'
+          type: 'datetime',
+          editable: true
         },
         // updated: {
-        //   label: '活跃时间',
+        //   label: '更新时间',
         //   type: 'datetime'
         // },
         // token: {
@@ -36,9 +39,31 @@ export default {
         // },
         state: {
           label: '禁止',
-          type: 'checkbox'
+          type: 'checkbox',
+          editable: true
         }
-      }
+      },
+      actions: [
+        {
+          modify: {
+            label: '编辑',
+            state: 1
+          },
+          remove: {
+            label: '删除',
+            confirm: true
+          }
+        },
+        {
+          submit: {
+            label: '确定'
+          },
+          cancel: {
+            label: '取消',
+            state: 0
+          }
+        }
+      ]
     }
   },
 

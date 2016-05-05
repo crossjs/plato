@@ -31,16 +31,29 @@ import datetime from 'nd-datetime'
 import Calendar from './c-calendar'
 export default {
   mixins: [mField],
+
   data () {
     return {
       showCalendar: false
     }
   },
+
   methods: {
     datetime
   },
+
   components: {
     Calendar
+  },
+
+  watch: {
+    state (v) {
+      this.$nextTick(() => {
+        if (!v) {
+          this.showCalendar = false
+        }
+      })
+    }
   }
 }
 </script>

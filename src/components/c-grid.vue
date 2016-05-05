@@ -49,27 +49,7 @@ export default {
     },
     actions: {
       type: Array,
-      default: () => [
-        {
-          modify: {
-            label: '编辑',
-            state: 1
-          },
-          remove: {
-            label: '删除',
-            confirm: true
-          }
-        },
-        {
-          submit: {
-            label: '确定'
-          },
-          cancel: {
-            label: '取消',
-            state: 0
-          }
-        }
-      ]
+      default: () => []
     },
     callback: {
       type: Function,

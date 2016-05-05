@@ -4,7 +4,7 @@
     <td v-for="column in columns">
       <component
         :is="column.type"
-        :state="state"
+        :state="column.editable ? state : 0"
         :field="$key"
         :attrs="column.attrs"
         :value="data[$key]"

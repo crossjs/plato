@@ -5,34 +5,56 @@
   width: 14rem;
   border: 1px solid color(black lightness(80%));
   outline: none;
-}
-
-.c-calendar-header {
   text-align: center;
-  font-size: 1.5em;
-}
 
-.c-calendar-years,
-.c-calendar-months {
-  padding: 1rem;
-  background-color: white;
-
-  &:after {
-    display: block;
-    content: '\20';
-    clear: both;
+  & a {
+    cursor: pointer;
   }
 
   & span {
     cursor: pointer;
     display: block;
     float: left;
+    width: 2rem;
+    height: 2rem;
+    line-height: 2rem;
+    box-sizing: border-box;
+
+    &:hover {
+      background-color: color(white lightness(90%));
+    }
+
+    &.today {
+      color: var(--invert);
+    }
+
+    &.selected {
+      color: var(--orange);
+    }
+  }
+}
+
+.c-calendar-header {
+  font-size: 1.5em;
+}
+
+.c-calendar-content {
+  &:after {
+    content: ' ';
+    display: block;
+    clear: both;
+  }
+}
+
+.c-calendar-years,
+.c-calendar-months {
+  padding: 1rem;
+  font-weight: bold;
+
+  & span {
     width: 4rem;
     height: 3rem;
     line-height: 3rem;
-    text-align: center;
-    font-weight: bold;
-    box-sizing: border-box;
     border-top: 1px solid color(white lightness(90%));
     border-left: 1px solid color(white lightness(90%));
 
@@ -45,59 +67,24 @@
     &:nth-child(12) {
       border-bottom: 1px solid color(white lightness(90%));
     }
-
-    &:hover {
-      background-color: color(white lightness(90%));
-    }
-
-    &.selected {
-      color: var(--orange);
-    }
   }
 }
 
 .c-calendar-days {
   height: 2rem;
+  font-weight: bold;
 
   & span {
-    display: block;
-    float: left;
-    width: 2rem;
-    height: 2rem;
-    line-height: 2rem;
-    text-align: center;
-    font-weight: bold;
+    cursor: default;
+
+    &:hover {
+      background-color: transparent;
+    }
   }
 }
 
 .c-calendar-dates {
-  &:after {
-    display: block;
-    content: '\20';
-    clear: both;
-  }
-
   & span {
-    display: block;
-    float: left;
-    width: 2rem;
-    height: 2rem;
-    line-height: 2rem;
-    text-align: center;
-    cursor: pointer;
-
-    &:hover {
-      background-color: color(white lightness(90%));
-    }
-
-    &.today {
-      color: color(var(--invert));
-    }
-
-    &.selected {
-      color: var(--orange);
-    }
-
     &.empty {
       cursor: default;
       &:hover {
@@ -105,4 +92,23 @@
       }
     }
   }
+}
+
+.c-calendar-hours,
+.c-calendar-minutes,
+.c-calendar-seconds {
+  padding: 1rem;
+}
+
+.c-calendar-minutes,
+.c-calendar-seconds {
+  & span {
+    width: 1rem;
+    height: 1rem;
+    line-height: 1rem;
+  }
+}
+
+.c-calendar-footer {
+  font-size: 1.5em;
 }
