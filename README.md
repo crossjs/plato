@@ -20,6 +20,11 @@
 - 使用 mixins 实现复用
 - 向 vue@2 靠拢
 
+## 阅读顺序
+
+- src/vx: vuex 相关配置
+- src/components: 一些通用的 UI 组件
+
 ## 使用说明
 
 ``` bash
@@ -53,7 +58,7 @@ npm test
 
 ## 常见问题
 
-- do NOT use `@import` in css
+- do NOT use `@import` in scoped css
 - node@5.7.0 did NOT work for the `path.parse` issue
 
 ## 兼容性
