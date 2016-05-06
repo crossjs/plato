@@ -1,4 +1,4 @@
-import { DELETE_TOAST } from '../constants'
+import { DELETE_TOAST } from '../types'
 
 export default {
   deleteToast ({ dispatch }, payload) {

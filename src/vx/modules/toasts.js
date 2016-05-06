@@ -1,7 +1,7 @@
 import {
   ADD_TOAST,
   DELETE_TOAST
-} from '../constants'
+} from '../types'
 
 const state = {
   toasts: []

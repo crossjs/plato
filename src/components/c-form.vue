@@ -33,7 +33,8 @@
 <script>
 import Text from './c-text'
 import Password from './c-password'
-import Textarea from './c-textarea'
+import Multiline from './c-multiline'
+import Dropdown from './c-dropdown'
 export default {
   props: {
     cls: {
@@ -92,7 +93,8 @@ export default {
   components: {
     Text,
     Password,
-    Textarea
+    Multiline,
+    Dropdown
   }
 }
 </script>

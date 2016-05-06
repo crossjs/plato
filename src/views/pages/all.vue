@@ -80,12 +80,8 @@ export default {
 
   route: {
     activate (transition) {
-      if (this.bearer) {
-        transition.next()
-        this.getPages()
-      } else {
-        this.$route.router.go('/')
-      }
+      transition.next()
+      this.getPages()
     }
   },
 

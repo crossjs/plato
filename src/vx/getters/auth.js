@@ -1,12 +1,12 @@
 export default {
-  bearer ({ auth: { bearer } }) {
-    if (!bearer) {
+  auth ({ auth: { auth } }) {
+    if (!auth) {
       return null
     }
-    const { token, expires } = bearer
+    const { token, expires } = auth
     if (!token || expires < Date.now()) {
       return null
     }
-    return bearer
+    return auth
   }
 }

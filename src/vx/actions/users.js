@@ -1,4 +1,4 @@
-import { GET_USERS, DELETE_USER, UPDATE_USER } from '../constants'
+import { GET_USERS, DELETE_USER, UPDATE_USER } from '../types'
 import { GET, DELETE, PATCH } from 'utils/ajax'
 
 export default {

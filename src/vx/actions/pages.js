@@ -1,4 +1,4 @@
-import { GET_PAGES, CREATE_PAGE, DELETE_PAGE } from '../constants'
+import { GET_PAGES, CREATE_PAGE, DELETE_PAGE } from '../types'
 import { GET, POST, DELETE } from 'utils/ajax'
 
 const inject = json =>

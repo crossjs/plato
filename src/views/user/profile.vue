@@ -10,11 +10,7 @@ import { getProfile } from 'vx/actions'
 export default {
   route: {
     activate () {
-      if (this.bearer) {
-        return this.getProfile()
-      } else {
-        this.$route.router.go('/login')
-      }
+      this.getProfile()
     }
   },
 

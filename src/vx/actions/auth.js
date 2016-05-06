@@ -1,4 +1,4 @@
-import { GET_BEARER, DELETE_BEARER, CREATE_USER } from '../constants'
+import { GET_BEARER, DELETE_BEARER, CREATE_USER } from '../types'
 import { POST, DELETE } from 'utils/ajax'
 
 export default {

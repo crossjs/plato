@@ -22,4 +22,15 @@ export default (app, router) => {
     const role = await Role.findById(ctx.params.id).exec()
     ctx.body = role
   })
+
+  router.del('/roles/:id', check, async ctx => {
+    const role = await Role.findByIdAndRemove(ctx.params.id).exec()
+    ctx.body = role
+  })
+
+  router.patch('/roles/:id', check, async ctx => {
+    const { desc, level } = ctx.request.body
+    const role = await Role.findByIdAndUpdate(ctx.params.id, { desc, level }, { new: true }).exec()
+    ctx.body = role
+  })
 }

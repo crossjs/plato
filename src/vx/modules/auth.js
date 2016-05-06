@@ -1,15 +1,18 @@
 import {
-  _BEARER_KEY,
   GET_BEARER,
   DELETE_BEARER,
-  CREATE_USER,
+  CREATE_USER
+} from '../types'
+
+import {
+  BEARER_KEY,
   PROMISE_SUCCESS
 } from '../constants'
 
 const state = {
-  bearer: (function () {
+  auth: (function () {
     try {
-      return JSON.parse(localStorage.getItem(_BEARER_KEY))
+      return JSON.parse(localStorage.getItem(BEARER_KEY))
     } catch (e) {
       // log e
       return null
@@ -20,25 +23,25 @@ const state = {
 const mutations = {
   [GET_BEARER] (state, { meta, payload } = {}) {
     if (meta === PROMISE_SUCCESS) {
-      state.bearer = payload
+      state.auth = payload
       // save to localStorage
-      localStorage.setItem(_BEARER_KEY, JSON.stringify(payload))
+      localStorage.setItem(BEARER_KEY, JSON.stringify(payload))
     }
   },
 
   [DELETE_BEARER] (state, { meta }) {
     if (meta === PROMISE_SUCCESS) {
-      state.bearer = null
+      state.auth = null
       // save to localStorage
-      localStorage.setItem(_BEARER_KEY, JSON.stringify(null))
+      localStorage.setItem(BEARER_KEY, JSON.stringify(null))
     }
   },
 
   [CREATE_USER] (state, { meta, payload }) {
     if (meta === PROMISE_SUCCESS) {
-      state.bearer = payload
+      state.auth = payload
       // save to localStorage
-      localStorage.setItem(_BEARER_KEY, JSON.stringify(payload))
+      localStorage.setItem(BEARER_KEY, JSON.stringify(payload))
     }
   }
 }

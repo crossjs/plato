@@ -1,6 +1,6 @@
 import {
   SET_PROGRESS
-} from '../constants'
+} from '../types'
 
 const state = {
   progress: 0

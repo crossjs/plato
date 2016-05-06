@@ -5,7 +5,8 @@ import Validator from 'utils/validator'
 
 import App from 'app'
 import { routes, alias } from 'routes'
-import { bearer, progress } from 'vx/getters'
+import store from 'vx/store'
+import { auth, progress } from 'vx/getters'
 import CRoute from 'components/c-route'
 
 if (module.hot) {
@@ -16,7 +17,7 @@ if (module.hot) {
 Vue.mixin({
   vuex: {
     getters: {
-      bearer,
+      auth,
       progress
     }
   }
@@ -41,18 +42,15 @@ router.map(routes)
 router.alias(alias)
 
 router.beforeEach(transition => {
-  if (/\/http/.test(transition.to.path)) {
-    const url = transition.to.path.split('http')[1]
-    window.location.href = `http${url}`
+  if (transition.to.auth && !auth(store.state)) {
+    transition.abort()
   } else {
     transition.next()
   }
 })
 
 router.afterEach(transition => {
-  // if (transition.to.fullPath !== '/demo') {
   window.scrollTo(0, 0)
-  // }
 })
 
 router.start(App, 'app')

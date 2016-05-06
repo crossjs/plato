@@ -2,7 +2,7 @@ import {
   GET_PAGES,
   CREATE_PAGE,
   DELETE_PAGE
-} from '../constants'
+} from '../types'
 
 const state = {
   pages: []

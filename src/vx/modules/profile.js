@@ -1,7 +1,7 @@
 import {
   GET_PROFILE,
   UPDATE_PROFILE
-} from '../constants'
+} from '../types'
 
 const state = {
   profile: {}

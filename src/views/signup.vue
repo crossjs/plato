@@ -54,7 +54,7 @@ export default {
   },
 
   watch: {
-    bearer (value) {
+    auth (value) {
       this.$nextTick(() => {
         if (value) {
           this.$route.router.go('/user')

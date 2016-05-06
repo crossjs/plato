@@ -1,7 +1,10 @@
 import {
   GET_USERS,
   DELETE_USER,
-  UPDATE_USER,
+  UPDATE_USER
+} from '../types'
+
+import {
   PROMISE_SUCCESS
 } from '../constants'
 

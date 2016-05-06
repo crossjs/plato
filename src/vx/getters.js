@@ -4,9 +4,7 @@ const getters = {}
 
 // defaults
 Object.keys(modules).forEach(key => {
-  getters[key] = state => {
-    return state[key][key]
-  }
+  getters[key] = state => state[key][key]
 })
 
 // customize, override defaults

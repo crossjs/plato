@@ -1,4 +1,4 @@
-import { GET_PROFILE, UPDATE_PROFILE } from '../constants'
+import { GET_PROFILE, UPDATE_PROFILE } from '../types'
 import { GET, PATCH } from 'utils/ajax'
 
 export default {

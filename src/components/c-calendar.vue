@@ -122,9 +122,6 @@ export default {
     second () {
       return this.moment.s()
     },
-    // monthName () {
-      // return this.moment.MMM()
-    // },
     years () {
       return [-6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5].map(value => {
         return {

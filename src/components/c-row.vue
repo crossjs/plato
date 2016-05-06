@@ -24,6 +24,7 @@
 import Text from './c-text'
 import Checkbox from './c-checkbox'
 import Datetime from './c-datetime'
+import Dropdown from './c-dropdown'
 export default {
   props: {
     state: {
@@ -85,7 +86,8 @@ export default {
   components: {
     Text,
     Checkbox,
-    Datetime
+    Datetime,
+    Dropdown
   }
 }
 </script>

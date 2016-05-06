@@ -19,7 +19,7 @@ export default {
   computed: {
     filter () {
       return (key, route) => {
-        return key !== '/' && route.auth !== !this.bearer
+        return key !== '/' && route.auth !== !this.auth
       }
     }
   }

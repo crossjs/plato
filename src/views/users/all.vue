@@ -19,20 +19,18 @@ export default {
     // let target
     return {
       columns: {
-        // username: {
-        //   label: '用户名',
-        //   type: 'text',
-        //   editable: true
-        // },
+        username: {
+          label: '用户名',
+          type: 'text'
+        },
         created: {
           label: '创建时间',
-          type: 'datetime',
-          editable: true
+          type: 'datetime'
         },
-        // updated: {
-        //   label: '更新时间',
-        //   type: 'datetime'
-        // },
+        updated: {
+          label: '更新时间',
+          type: 'datetime'
+        },
         // token: {
         //   label: '登录状态',
         //   type: 'text'
@@ -94,12 +92,8 @@ export default {
 
   route: {
     activate (transition) {
-      if (this.bearer) {
-        transition.next()
-        this.getUsers()
-      } else {
-        this.$route.router.go('/')
-      }
+      transition.next()
+      this.getUsers()
     }
   },
 

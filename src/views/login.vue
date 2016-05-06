@@ -50,16 +50,13 @@ export default {
         data.password = md5(data.password)
         return data
       }))
-    },
-    goUserIndex () {
-      this.$route.router.go('/user')
     }
   },
 
   route: {
     activate (transition) {
       transition.next()
-      this.bearer && this.goUserIndex()
+      this.auth && this.$route.router.go('/user')
     }
   },
 
@@ -70,7 +67,7 @@ export default {
   },
 
   watch: {
-    bearer (value) {
+    auth (value) {
       this.$nextTick(() => {
         if (value) {
           this.$route.router.go('/user')

@@ -15,7 +15,7 @@ export default {
 
   route: {
     activate () {
-      if (!this.bearer) {
+      if (!this.auth) {
         return
       }
       return this.deleteBearer()
@@ -29,7 +29,7 @@ export default {
   },
 
   watch: {
-    bearer (value) {
+    auth (value) {
       this.$nextTick(() => {
         if (!value) {
           this.$route.router.go('/')

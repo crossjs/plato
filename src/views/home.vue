@@ -1,7 +1,7 @@
 <template>
   <div class="view-home">
     <pre><code>
-    {{bearer | json}}
+    {{auth | json}}
     </code></pre>
   </div>
 </template>

@@ -1,5 +1,11 @@
 import {
-  SET_ROLES
+  GET_ROLES,
+  DELETE_ROLE,
+  UPDATE_ROLE
+} from '../types'
+
+import {
+  PROMISE_SUCCESS
 } from '../constants'
 
 const state = {
@@ -7,8 +13,32 @@ const state = {
 }
 
 const mutations = {
-  [SET_ROLES] (state, roles) {
-    state.roles = roles
+  [GET_ROLES] (state, { payload, meta }) {
+    if (meta === PROMISE_SUCCESS) {
+      state.roles = payload
+    }
+  },
+
+  [DELETE_ROLE] (state, { payload, meta }) {
+    if (meta === PROMISE_SUCCESS) {
+      state.roles.some((role, index) => {
+        if (role._id === payload._id) {
+          state.roles.splice(index, 1)
+          return true
+        }
+      })
+    }
+  },
+
+  [UPDATE_ROLE] (state, { payload, meta }) {
+    if (meta === PROMISE_SUCCESS) {
+      state.roles.some((role, index) => {
+        if (role._id === payload._id) {
+          state.roles.$set(index, payload)
+          return true
+        }
+      })
+    }
   }
 }
 

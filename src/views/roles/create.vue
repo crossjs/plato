@@ -1,7 +1,7 @@
 <template>
-  <div class="page-create">
+  <div class="role-create">
     <c-form
-      :submit="submit"
+      :submit="create"
       :fields="fields"
       :buttons="buttons">
     </c-form>
@@ -10,73 +10,72 @@
 
 <script>
 import mForm from 'mixins/m-form'
-import { POST } from 'utils/ajax'
+import { createRole } from 'vx/actions'
+import { ROLE_LEVEL_OPTIONS } from 'vx/constants'
 export default {
   mixins: [mForm],
 
   data () {
     return {
-      submit: this.create,
-      fields: [{
-        label: '角色名称',
-        name: 'name',
-        type: 'text',
-        value: '',
-        validate: {
-          required: {
-            rule: true,
-            message: '请输入角色名称'
-          },
-          maxlength: {
-            rule: 20,
-            message: '角色名称不能多于 20 个字符'
+      fields: {
+        name: {
+          label: '角色名称',
+          type: 'text',
+          value: '',
+          validate: {
+            required: {
+              rule: true,
+              message: '请输入角色名称'
+            },
+            maxlength: {
+              rule: 20,
+              message: '角色名称不能多于 20 个字符'
+            }
           }
-        }
-      }, {
-        label: '角色描述',
-        name: 'desc',
-        type: 'multiline',
-        value: '',
-        validate: {
-          required: {
-            rule: true,
-            message: '请输入角色描述'
-          },
-          maxlength: {
-            rule: 100,
-            message: '角色描述不能多于 100 个字符'
-          }
-        }
-      }, {
-        label: '角色等级',
-        name: 'level',
-        type: 'select',
-        options: [8, 4, 2, 1, 0].map(key => {
-          return {
-            text: key,
-            value: key
-          }
-        }),
-        value: 4,
-        validate: {
-          required: {
-            rule: true,
-            message: '请输入角色等级'
-          }
-        }
-      }],
-      buttons: [{
-        role: 'submit',
-        type: 'submit',
-        // string or function
-        label: $validation => {
-          return this.progress ? '提交创建中...' : '提交创建'
         },
-        // boolean or function
-        disabled: $validation => {
-          return !$validation.valid || !!this.progress
+        desc: {
+          label: '角色描述',
+          type: 'multiline',
+          value: '',
+          validate: {
+            required: {
+              rule: true,
+              message: '请输入角色描述'
+            },
+            maxlength: {
+              rule: 100,
+              message: '角色描述不能多于 100 个字符'
+            }
+          }
+        },
+        level: {
+          label: '角色等级',
+          type: 'dropdown',
+          value: 0,
+          attrs: {
+            options: ROLE_LEVEL_OPTIONS
+          },
+          validate: {
+            required: {
+              rule: true,
+              message: '请输入角色等级'
+            }
+          }
         }
-      }]
+      },
+      buttons: {
+        submit: {
+          type: 'submit',
+          // string or function
+          label: $validation => {
+            return this.progress ? '提交创建中...' : '提交创建'
+          },
+          // boolean or function
+          disabled: $validation => {
+            return !$validation.valid || !!this.progress
+          }
+        }
+      }
     }
   },
 
@@ -85,12 +84,13 @@ export default {
       if (!$validation.valid) {
         return
       }
-      POST('/apis/roles', {
-        body: this.formdata()
-      })
-      .then(json => {
-        this.$route.router.go('/roles')
-      })
+      this.createRole(this.formdata())
+    }
+  },
+
+  vuex: {
+    actions: {
+      createRole
     }
   }
 }

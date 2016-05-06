@@ -9,7 +9,7 @@
         v-validate="validate">
     </template>
     <template v-else>
-      {{value ? '是' : '否'}}
+      {{value ? trueLabel : falseLabel}}
     </template>
   </div>
 </template>
@@ -19,13 +19,22 @@ import mField from 'mixins/m-field'
 export default {
   mixins: [mField],
 
+  props: {
+    trueLabel: {
+      type: String,
+      default: '是'
+    },
+    falseLabel: {
+      type: String,
+      default: '否'
+    }
+  },
+
   computed: {
     _attrs () {
       return Object.assign({
         'true-value': 1,
-        'false-value': 0,
-        'true-label': '是',
-        'false-label': '否'
+        'false-value': 0
       }, this.attrs)
     }
   }
