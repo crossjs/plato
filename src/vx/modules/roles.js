@@ -9,21 +9,27 @@ import {
 } from '../constants'
 
 const state = {
-  roles: []
+  roles: {
+    // disable pagination
+    count: -1,
+    items: [],
+    query: {}
+  }
 }
 
 const mutations = {
   [GET_ROLES] (state, { payload, meta }) {
     if (meta === PROMISE_SUCCESS) {
-      state.roles = payload
+      Object.assign(state.roles, payload)
     }
   },
 
   [DELETE_ROLE] (state, { payload, meta }) {
     if (meta === PROMISE_SUCCESS) {
-      state.roles.some((role, index) => {
+      const { items } = state.roles
+      items.some((role, index) => {
         if (role._id === payload._id) {
-          state.roles.splice(index, 1)
+          items.splice(index, 1)
           return true
         }
       })
@@ -32,9 +38,10 @@ const mutations = {
 
   [UPDATE_ROLE] (state, { payload, meta }) {
     if (meta === PROMISE_SUCCESS) {
-      state.roles.some((role, index) => {
+      const { items } = state.roles
+      items.some((role, index) => {
         if (role._id === payload._id) {
-          state.roles.$set(index, payload)
+          items.$set(index, payload)
           return true
         }
       })

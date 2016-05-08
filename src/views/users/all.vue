@@ -4,7 +4,8 @@
       :columns="columns"
       :actions="actions"
       :data="users"
-      @action="_action"></c-grid>
+      @action="_action"
+      @paginate="_paginate"></c-grid>
   </div>
 </template>
 
@@ -16,7 +17,6 @@ export default {
   mixins: [mGrid],
 
   data () {
-    // let target
     return {
       columns: {
         username: {
@@ -36,13 +36,16 @@ export default {
         //   type: 'text'
         // },
         state: {
-          label: '禁止',
+          label: '启用',
           type: 'checkbox',
           editable: true
         }
       },
       actions: [
         {
+          detail: {
+            label: '详情'
+          },
           modify: {
             label: '编辑',
             state: 1
@@ -67,11 +70,15 @@ export default {
 
   methods: {
     _action (key, user, payload) {
-      // console.log(key, user, payload)
-      // `this` is c-row
-      // const vm = this.$parent.$parent
-      // row -> grid -> vm
       switch (key) {
+        case 'detail':
+          this.$route.router.go({
+            name: 'users/detail',
+            params: {
+              id: user._id
+            }
+          })
+          break
         case 'remove':
           this.deleteUser(user)
           break
@@ -87,6 +94,11 @@ export default {
         //   this.state = 0
         //   break
       }
+    },
+    _paginate (query) {
+      this.getUsers({
+        query
+      })
     }
   },
 

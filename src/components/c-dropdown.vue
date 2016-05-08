@@ -1,5 +1,5 @@
 <template>
-  <div class="c-text">
+  <div class="c-dropdown">
     <template v-if="state === 1">
       <select
         class="c-form-select"
@@ -13,7 +13,7 @@
       </select>
     </template>
     <template v-else>
-      {{attrs.options[value]}}
+      {{attrs.options[value] || '-'}}
     </template>
   </div>
 </template>

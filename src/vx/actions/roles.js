@@ -12,8 +12,8 @@ export default {
     }))
   },
 
-  deleteRole ({ dispatch }, payload) {
-    dispatch(DELETE_ROLE, DELETE(`/apis/roles/${payload._id}`))
+  deleteRole ({ dispatch }, { _id }) {
+    dispatch(DELETE_ROLE, DELETE(`/apis/roles/${_id}`))
   },
 
   updateRole ({ dispatch }, { _id, ...payload }) {

@@ -9,7 +9,9 @@ export default (app, router) => {
 
   router.get('/roles', check, async ctx => {
     const roles = await Role.find({}).exec()
-    ctx.body = roles
+    ctx.body = {
+      items: roles
+    }
   })
 
   router.post('/roles', check, async ctx => {

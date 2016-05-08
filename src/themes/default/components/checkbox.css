@@ -1,5 +1,10 @@
 .c-checkbox {
+  color: var(--orange);
   line-height: 0;
+
+  &.checked {
+    color: var(--invert);
+  }
 
   & input {
     appearance: none;

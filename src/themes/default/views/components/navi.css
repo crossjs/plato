@@ -24,7 +24,6 @@
     }
 
     &:hover {
-      /*& .link-active + ul {*/
       & ul {
         display: block;
         position: absolute;
@@ -37,22 +36,17 @@
   & a {
     display: inline-block;
     vertical-align: middle;
-    /*float: left;*/
-    /*margin: 0 0 0 0.5rem;*/
     padding: 0 1rem;
     line-height: var(--header_height);
     color: white;
     text-decoration: none;
 
     &:hover {
-      background-color: color(var(--invert) lightness(-30%));
+      background-color: color(var(--invert) lightness(-20%));
     }
 
     &.link-active {
-      background-color: color(var(--invert) lightness(-30%));
-    }
-
-    &.link-active + ul {
+      background-color: color(var(--invert) lightness(-25%));
     }
   }
 }

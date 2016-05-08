@@ -11,7 +11,9 @@ export default {
       hidden: true,
       component: resolve => require(['views/users/all'], resolve)
     },
-    '/:username': {
+    '/:id': {
+      name: 'users/detail',
+      auth: true,
       hidden: true,
       component: resolve => require(['views/users/detail'], resolve)
     }

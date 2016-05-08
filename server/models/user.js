@@ -37,8 +37,8 @@ const schema = new mongoose.Schema({
   },
   state: {
     type: Number,
-    // >0: disabled
-    default: 0
+    // 0: disabled, 1: enabled
+    default: 1
   }
 })
 
@@ -82,8 +82,6 @@ function update () {
     $set.salt = salt()
     $set.password = hash(password, $set.salt)
   }
-
-  debug(this.getQuery())
 
   $set.updated = Date.now()
 

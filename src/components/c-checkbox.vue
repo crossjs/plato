@@ -1,5 +1,5 @@
 <template>
-  <div class="c-checkbox">
+  <div class="c-checkbox" :class="{checked: value}">
     <template v-if="state === 1">
       <input
         type="checkbox"

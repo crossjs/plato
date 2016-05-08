@@ -9,15 +9,20 @@ export default (app, router) => {
 
   debug('initialize')
 
-  const whiteProps = 'username created state'
-
   router.get('/users', check, async ctx => {
-    const users = await User.find({}).exec()
-    ctx.body = users
+    const { $count = '', $offset = 0, $limit = 20 } = ctx.request.query
+    const users = await User.find({}).skip(+$offset).limit(+$limit).select('username created state').exec()
+    const res = {
+      items: users
+    }
+    if ($count) {
+      res.count = await User.find({}).count().exec()
+    }
+    ctx.body = res
   })
 
   router.get('/users/:id', check, async ctx => {
-    const user = await User.findById(ctx.params.id).select(whiteProps).exec()
+    const user = await User.findById(ctx.params.id).exec()
     ctx.body = user
   })
 
@@ -45,19 +50,17 @@ export default (app, router) => {
     const { password0, password } = ctx.request.body
     if (hash(password0, ctx._user.salt) !== ctx._user.password) {
       return respond(400, {
-        message: 'Password is NOT correct'
+        message: '密码不正确'
       }, ctx)
     }
     const user = await User.findOneAndUpdate({
       token: ctx.request.token
     }, { password }, { new: true }).exec()
     if (!user) {
-      debug(user)
       return respond(404, {
-        message: 'User is Not Found'
+        message: '用户不存在'
       }, ctx)
     }
-    debug(user)
     ctx.body = user
   })
 }

@@ -3,7 +3,6 @@
     <li v-for="route in _routes">
       <a
         :class="{
-          iconfont: route.icon,
           ['iconfont-' + route.icon]: route.icon
         }"
         v-link="{

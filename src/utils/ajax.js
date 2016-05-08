@@ -1,9 +1,10 @@
 import 'whatwg-fetch'
+import qs from 'querystring'
 import store from 'vx/store'
 import { auth } from 'vx/getters'
 import { SET_PROGRESS, ADD_TOAST, DELETE_TOAST } from 'vx/types'
 
-const headers = {
+const defaultHeaders = {
   'Accept': 'application/json',
   'Content-Type': 'application/json'
 }
@@ -21,26 +22,36 @@ function setToast (toast) {
   }, 3000)
 }
 
-function mutate (options) {
-  options.headers = { ...headers, ...options.headers }
+function mutate (url, { headers, body, query, ...options }) {
+  headers = { ...defaultHeaders, ...headers }
+  options.headers = headers
 
   const bearer = auth(store.state)
   if (bearer) {
-    options.headers['Authorization'] = 'Bearer ' + bearer.token
+    headers['Authorization'] = 'Bearer ' + bearer.token
   }
 
-  if (options.body) {
-    if (typeof options.body === 'object') {
-      options.body = JSON.stringify(options.body)
+  if (body) {
+    if (typeof body === 'object') {
+      body = JSON.stringify(body)
     }
+    options.body = body
   }
 
-  return options
+  if (query) {
+    if (typeof query === 'object') {
+      query = qs.stringify(query)
+    }
+    url += (url.indexOf('?') !== -1) ? '&' : '?'
+    url += query
+  }
+
+  return [url, options]
 }
 
 const ajax = (url, options = {}) => {
   setProgress(99)
-  return fetch(url, mutate(options))
+  return fetch(...mutate(url, options))
   .then(res => {
     if (res.status >= 200 && res.status < 400) {
       return res
@@ -91,4 +102,10 @@ export const PATCH = (url, options = {}) => {
 export const DELETE = (url, options = {}) => {
   options.method = 'DELETE'
   return ajax(url, options)
+}
+
+export const PAGINATE_QUERY = {
+  $count: true,
+  $offset: 0,
+  $limit: 1
 }

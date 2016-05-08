@@ -36,7 +36,7 @@ passport.use(new LocalStrategy((username, password, done) => {
     if (!user) {
       return done(null, false, { message: '账号不正确' })
     }
-    if (user.state) {
+    if (!user.state) {
       return done(null, false, { message: '账号已停用' })
     }
     if (hash(password, user.salt) !== user.password) {

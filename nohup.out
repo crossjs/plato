@@ -1,0 +1,47 @@
+2016-05-06T22:13:27.612+0800 I CONTROL  [initandlisten] MongoDB starting : pid=670 port=27017 dbpath=/Users/liwenfu/data/db 64-bit host=mbpssd.local
+2016-05-06T22:13:27.612+0800 I CONTROL  [initandlisten] db version v3.2.4
+2016-05-06T22:13:27.612+0800 I CONTROL  [initandlisten] git version: e2ee9ffcf9f5a94fad76802e28cc978718bb7a30
+2016-05-06T22:13:27.612+0800 I CONTROL  [initandlisten] allocator: system
+2016-05-06T22:13:27.612+0800 I CONTROL  [initandlisten] modules: none
+2016-05-06T22:13:27.612+0800 I CONTROL  [initandlisten] build environment:
+2016-05-06T22:13:27.613+0800 I CONTROL  [initandlisten]     distarch: x86_64
+2016-05-06T22:13:27.613+0800 I CONTROL  [initandlisten]     target_arch: x86_64
+2016-05-06T22:13:27.613+0800 I CONTROL  [initandlisten] options: { storage: { dbPath: "/Users/liwenfu/data/db" } }
+2016-05-06T22:13:27.614+0800 I -        [initandlisten] Detected data files in /Users/liwenfu/data/db created by the 'wiredTiger' storage engine, so setting the active storage engine to 'wiredTiger'.
+2016-05-06T22:13:27.615+0800 W -        [initandlisten] Detected unclean shutdown - /Users/liwenfu/data/db/mongod.lock is not empty.
+2016-05-06T22:13:27.615+0800 W STORAGE  [initandlisten] Recovering data from the last clean checkpoint.
+2016-05-06T22:13:27.615+0800 I STORAGE  [initandlisten] wiredtiger_open config: create,cache_size=1G,session_max=20000,eviction=(threads_max=4),config_base=false,statistics=(fast),log=(enabled=true,archive=true,path=journal,compressor=snappy),file_manager=(close_idle_time=100000),checkpoint=(wait=60,log_size=2GB),statistics_log=(wait=0),
+2016-05-06T22:13:32.673+0800 I CONTROL  [signalProcessingThread] got signal 2 (Interrupt: 2), will terminate after current cmd ends
+2016-05-06T22:13:32.673+0800 I CONTROL  [signalProcessingThread] dbexit:  rc: 0
+2016-05-06T22:13:38.266+0800 I CONTROL  [initandlisten] MongoDB starting : pid=673 port=27017 dbpath=/Users/liwenfu/data/db 64-bit host=mbpssd.local
+2016-05-06T22:13:38.267+0800 I CONTROL  [initandlisten] db version v3.2.4
+2016-05-06T22:13:38.267+0800 I CONTROL  [initandlisten] git version: e2ee9ffcf9f5a94fad76802e28cc978718bb7a30
+2016-05-06T22:13:38.267+0800 I CONTROL  [initandlisten] allocator: system
+2016-05-06T22:13:38.267+0800 I CONTROL  [initandlisten] modules: none
+2016-05-06T22:13:38.267+0800 I CONTROL  [initandlisten] build environment:
+2016-05-06T22:13:38.267+0800 I CONTROL  [initandlisten]     distarch: x86_64
+2016-05-06T22:13:38.267+0800 I CONTROL  [initandlisten]     target_arch: x86_64
+2016-05-06T22:13:38.267+0800 I CONTROL  [initandlisten] options: { storage: { dbPath: "/Users/liwenfu/data/db" } }
+2016-05-06T22:13:38.267+0800 I -        [initandlisten] Detected data files in /Users/liwenfu/data/db created by the 'wiredTiger' storage engine, so setting the active storage engine to 'wiredTiger'.
+2016-05-06T22:13:38.267+0800 W -        [initandlisten] Detected unclean shutdown - /Users/liwenfu/data/db/mongod.lock is not empty.
+2016-05-06T22:13:38.267+0800 W STORAGE  [initandlisten] Recovering data from the last clean checkpoint.
+2016-05-06T22:13:38.268+0800 I STORAGE  [initandlisten] wiredtiger_open config: create,cache_size=1G,session_max=20000,eviction=(threads_max=4),config_base=false,statistics=(fast),log=(enabled=true,archive=true,path=journal,compressor=snappy),file_manager=(close_idle_time=100000),checkpoint=(wait=60,log_size=2GB),statistics_log=(wait=0),
+2016-05-06T22:13:44.078+0800 I CONTROL  [initandlisten] 
+2016-05-06T22:13:44.078+0800 I CONTROL  [initandlisten] ** WARNING: soft rlimits too low. Number of files is 256, should be at least 1000
+2016-05-06T22:13:44.089+0800 I NETWORK  [HostnameCanonicalizationWorker] Starting hostname canonicalization worker
+2016-05-06T22:13:44.090+0800 I FTDC     [initandlisten] Initializing full-time diagnostic data capture with directory '/Users/liwenfu/data/db/diagnostic.data'
+2016-05-06T22:13:44.091+0800 I NETWORK  [initandlisten] waiting for connections on port 27017
+2016-05-06T22:13:45.028+0800 I FTDC     [ftdc] Unclean full-time diagnostic data capture shutdown detected, found interim file, some metrics may have been lost. OK
+2016-05-06T22:13:58.240+0800 I CONTROL  [initandlisten] MongoDB starting : pid=676 port=27017 dbpath=/Users/liwenfu/data/db 64-bit host=mbpssd.local
+2016-05-06T22:13:58.241+0800 I CONTROL  [initandlisten] db version v3.2.4
+2016-05-06T22:13:58.241+0800 I CONTROL  [initandlisten] git version: e2ee9ffcf9f5a94fad76802e28cc978718bb7a30
+2016-05-06T22:13:58.241+0800 I CONTROL  [initandlisten] allocator: system
+2016-05-06T22:13:58.241+0800 I CONTROL  [initandlisten] modules: none
+2016-05-06T22:13:58.241+0800 I CONTROL  [initandlisten] build environment:
+2016-05-06T22:13:58.241+0800 I CONTROL  [initandlisten]     distarch: x86_64
+2016-05-06T22:13:58.241+0800 I CONTROL  [initandlisten]     target_arch: x86_64
+2016-05-06T22:13:58.241+0800 I CONTROL  [initandlisten] options: { storage: { dbPath: "/Users/liwenfu/data/db" } }
+2016-05-06T22:13:58.241+0800 E NETWORK  [initandlisten] listen(): bind() failed errno:48 Address already in use for socket: 0.0.0.0:27017
+2016-05-06T22:13:58.242+0800 E NETWORK  [initandlisten]   addr already in use
+2016-05-06T22:13:58.242+0800 E STORAGE  [initandlisten] Failed to set up sockets during startup.
+2016-05-06T22:13:58.242+0800 I CONTROL  [initandlisten] dbexit:  rc: 48

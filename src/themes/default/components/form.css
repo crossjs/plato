@@ -16,19 +16,32 @@
   list-style-position: inside;
 }
 
+.c-form-label {
+  display: block;
+  margin: 0.5rem 0 0.25rem;
+
+  &:after {
+    content: '：';
+  }
+}
+
+.c-form-icon {
+  position: absolute;
+  margin: 1px;
+  min-width: 1.5rem;
+  text-align: center;
+  color: color(black lightness(50%));
+}
+
 .c-form-input,
-.c-form-select,
-.c-form-textarea,
-.c-form-static {
+.c-form-textarea {
   display: inline-block;
   border: 1px solid color(black lightness(80%));
-  padding: 0.2rem 0.3rem;
+  padding: 0 0.3rem;
   width: 100%;
-  min-height: 2rem;
-  line-height: 1.5rem;
+  line-height: inherit;
   background-color: white;
   outline: none;
-  /*border-radius: 0.25rem;*/
   box-sizing: border-box;
 
   &:hover,
@@ -49,8 +62,41 @@
   }
 }
 
+.c-form-input {
+  &::-ms-clear {
+    display: none;
+  }
+}
+
+.c-form-textarea {
+  resize: vertical;
+}
+
 .c-form-select {
-  height: 2rem;
+  appearance: none;
+  border-radius: 0;
+  border: 1px solid color(black lightness(80%));
+  padding: 0 1.1rem 0 0.3rem;
+  outline: none;
+  box-sizing: border-box;
+  background: white url('../images/down.png') no-repeat right center;
+
+  &:hover,
+  &:focus {
+    border-color:  color(var(--invert) lightness(-10%));
+  }
+
+  &[readonly] {
+    background-color: color(white lightness(-6%));
+  }
+
+  &[disabled] {
+    background-color: color(white lightness(-3%));
+  }
+
+  &[size] {
+    width: auto;
+  }
 }
 
 .c-form-prefix,
@@ -59,8 +105,6 @@
   border-top: 1px solid color(black lightness(80%));
   border-bottom: 1px solid color(black lightness(80%));
   padding: 0.2rem 0.3rem;
-  min-height: 2rem;
-  line-height: 1.5rem;
   background-color: color(black lightness(90%));
   outline: none;
   box-sizing: border-box;
@@ -80,50 +124,20 @@
   color: color(white lightness(-40%));
 }
 
-.c-form-input {
-  &::-ms-clear {
-    display: none;
-  }
-}
-
-.c-form-textarea {
-  resize: vertical;
-}
-
 .c-form-items {
-  & label {
-    display: block;
-    line-height: 2;
-
-    &:after {
-      content: '：';
-    }
-  }
 }
 
 .c-form-item {
   margin: 0 0 0.5rem;
   position: relative;
   cursor: default;
+  line-height: 3;
 }
 
 .c-form-icon-item {
   & .c-form-input,
-  & .c-form-textarea,
-  & .c-form-static {
+  & .c-form-textarea {
     padding-left: 1.5rem;
-  }
-}
-
-.c-form-icon {
-  position: absolute;
-  min-width: 1.5rem;
-  min-height: 2rem;
-  line-height: 2rem;
-  text-align: center;
-  color: color(black lightness(50%));
-  &:before {
-    margin: 0;
   }
 }
 

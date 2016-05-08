@@ -3,63 +3,96 @@
   src: url('../fonts/iconfont.woff') format('woff');
 }
 
-.iconfont {
-  &:before {
-    font-family: 'iconfont';
-    font-style: normal;
-    line-height: inherit;
-    margin-right: 0.3em;
-    -webkit-font-smoothing: antialiased;
-    /*-webkit-text-stroke-width: 0.2px;*/
-    -moz-osx-font-smoothing: grayscale;
-  }
-}
-
 .iconfont-remove,
 .iconfont-delete {
-  &:before { content: "\e619"; }
+  &:before {
+    @mixin iconfont;
+    content: "\e619";
+  }
 }
 .iconfont-add,
 .iconfont-create {
-  &:before { content: "\e606"; }
+  &:before {
+    @mixin iconfont;
+    content: "\e606";
+  }
 }
 .iconfont-pages {
-  &:before { content: "\e609"; }
+  &:before {
+    @mixin iconfont;
+    content: "\e609";
+  }
 }
 .iconfont-roles {
-  &:before { content: "\e61b"; }
+  &:before {
+    @mixin iconfont;
+    content: "\e61b";
+  }
 }
 .iconfont-modify {
-  &:before { content: "\e60b"; }
+  &:before {
+    @mixin iconfont;
+    content: "\e60b";
+  }
 }
 .iconfont-signup {
-  &:before { content: "\e607"; }
+  &:before {
+    @mixin iconfont;
+    content: "\e607";
+  }
 }
 .iconfont-users {
-  &:before { content: "\e615"; }
+  &:before {
+    @mixin iconfont;
+    content: "\e615";
+  }
 }
 .iconfont-user {
-  &:before { content: "\e601"; }
+  &:before {
+    @mixin iconfont;
+    content: "\e601";
+  }
 }
 .iconfont-profile {
-  /*&:before { content: "\e603"; }*/
+  /*&:before {
+    @mixin iconfont;
+    content: "\e603";
+  }*/
 }
 .iconfont-logout {
-  &:before { content: "\e608"; }
+  &:before {
+    @mixin iconfont;
+    content: "\e608";
+  }
 }
 .iconfont-login {
-  &:before { content: "\e601"; }
+  &:before {
+    @mixin iconfont;
+    content: "\e601";
+  }
 }
 .iconfont-about {
-  &:before { content: "\e60c"; }
+  &:before {
+    @mixin iconfont;
+    content: "\e60c";
+  }
 }
 .iconfont-help {
-  /*&:before { content: "\e605"; }*/
+  /*&:before {
+    @mixin iconfont;
+    content: "\e605";
+  }*/
 }
 
 .iconfont-user-o {
-  &:before { content: "\e616"; }
+  &:before {
+    @mixin iconfont;
+    content: "\e616";
+  }
 }
 .iconfont-lock-o {
-  &:before { content: "\e602"; }
+  &:before {
+    @mixin iconfont;
+    content: "\e602";
+  }
 }

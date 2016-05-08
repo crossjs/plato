@@ -47,9 +47,10 @@
   padding: 0.5rem;
   text-align: center;
   border-top: 1px solid color(white lightness(90%));
+
   & .button {
     margin: 0 0.5rem;
     padding: 0 1.5rem;
-    height: 1.75rem;
+    line-height: 2.5;
   }
 }

@@ -1,38 +1,45 @@
 <template>
   <div class="c-grid" :class="[cls]">
-    <c-modal
+    <modal
       :show.sync="modal.show"
       :args.sync="modal.args"
       :title="modal.title"
       :body="modal.body"
-      :callback="modal.callback"></c-modal>
+      :callback="modal.callback"></modal>
     <validator name="validation">
       <table>
         <thead>
           <tr>
             <th class="index">#</th>
             <th v-for="column in columns" :key="$key">{{column.label}}</th>
-            <th v-if="actions"></th>
+            <th v-if="actions">操作</th>
           </tr>
         </thead>
         <tbody>
-          <template v-for="entry in data" track-by="_id">
-            <c-row
-              :index="$index"
+          <template v-for="entry in data.items" track_by="_id">
+            <row
+              :index="data.query.$offset || 0 + $index"
               :data="entry"
               :columns="columns"
               :actions="actions"
-              @action="_action"></c-row>
+              @action="_action"></row>
           </template>
         </tbody>
       </table>
+      <paginator
+        v-if="data.count !== -1"
+        :query="data.query"
+        :count="data.count"
+        @paginate="_paginate"
+        ></paginator>
     </validator>
   </div>
 </template>
 
 <script>
-import CModal from './c-modal'
-import CRow from './c-row'
+import Modal from './c-modal'
+import Row from './c-row'
+import Paginator from './c-paginator'
 export default {
   props: {
     cls: {
@@ -41,11 +48,11 @@ export default {
     },
     columns: {
       type: Object,
-      default: {}
+      default: () => {}
     },
     data: {
-      type: Array,
-      default: []
+      type: Object,
+      default: () => {}
     },
     actions: {
       type: Array,
@@ -61,8 +68,8 @@ export default {
     return {
       modal: {
         show: false,
-        // args: [],
-        // title: '？',
+        args: [],
+        title: '',
         body: '确定删除？',
         callback (key) {
           if (key === 'submit') {
@@ -83,12 +90,16 @@ export default {
         return
       }
       this.$emit(...args)
+    },
+    _paginate (query) {
+      this.$emit('paginate', query)
     }
   },
 
   components: {
-    CModal,
-    CRow
+    Modal,
+    Row,
+    Paginator
   }
 }
 </script>

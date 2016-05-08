@@ -72,10 +72,6 @@ export default {
 
   methods: {
     _action (key, role, payload) {
-      // console.log(key, role, payload)
-      // `this` is c-row
-      // const vm = this.$parent.$parent
-      // row -> grid -> vm
       switch (key) {
         case 'remove':
           this.deleteRole(role)

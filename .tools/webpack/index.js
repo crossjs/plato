@@ -140,6 +140,9 @@ webpackConfig.vue = {
       require('postcss-custom-properties')({
         variables: require(paths.src('themes/default/variables'))
       }),
+      require('postcss-mixins')({
+        mixinsDir: paths.src('themes/default/mixins')
+      }),
       require('postcss-cssnext')(),
       require('postcss-browser-reporter')(),
       require('postcss-reporter')()
