@@ -89,7 +89,7 @@ config.compiler_vendor = config.compiler_vendor
 // ------------------------------------
 // Utilities
 // ------------------------------------
-config.utils_paths = (() => {
+config.paths = (() => {
   const resolve = path.resolve
 
   const base = (...args) =>
@@ -98,7 +98,9 @@ config.utils_paths = (() => {
   return {
     base,
     src : base.bind(null, config.dir_src),
-    dist : base.bind(null, config.dir_dist)
+    dist : base.bind(null, config.dir_dist),
+    server : base.bind(null, config.dir_server),
+    test : base.bind(null, config.dir_test)
   }
 })()
 

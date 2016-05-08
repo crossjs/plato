@@ -2,7 +2,7 @@ import _debug from 'debug'
 import passport from 'koa-passport'
 import { Strategy as LocalStrategy } from 'passport-local'
 import { Strategy as BearerStrategy } from 'passport-http-bearer'
-import { BEARER_EXPIRES } from '../config'
+import { bearer_expires } from '../config'
 import hash from '../utils/hash'
 import User from '../models/user'
 
@@ -18,7 +18,7 @@ export const check = async (ctx, next) => {
       debug(info)
       ctx.status = 401
     } else {
-      const expires = Date.now() + BEARER_EXPIRES
+      const expires = Date.now() + bearer_expires
       // update expires
       await user.update({ expires }).exec()
       // todo: apply user to ctx?

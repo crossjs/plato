@@ -14,12 +14,12 @@ import _debug from 'debug'
 import config from './config'
 import mongo from './db/mongo'
 import passport from './passport'
+import error from './error'
 import routes from './routes'
-import webpack from './tools/webpack'
-import error from './tools/error'
+import devTools from './dev-tools'
 
 const debug = _debug('koa:server')
-const paths = config.utils_paths
+const paths = config.paths
 
 // Koa application is now a class and requires the new operator.
 const app = new Koa()
@@ -52,16 +52,12 @@ app.use(etag())
 app.use(error())
 
 mongo(app)
-routes(app)
-
-// error
-// app.use(error())
 
 // ------------------------------------
 // Apply Webpack DEV/HMR Middleware
 // ------------------------------------
 if (app.env === 'development') {
-  webpack(app)
+  devTools(app)
 } else {
   // favicon
   app.use(favicon(paths.dist('favicon.ico')))
@@ -71,6 +67,8 @@ if (app.env === 'development') {
     maxAge: 365 * 24 * 60 * 60
   }))
 }
+
+routes(app)
 
 const {
   server_host,

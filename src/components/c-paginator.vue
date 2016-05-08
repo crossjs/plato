@@ -1,5 +1,5 @@
 <template>
-  <div class="c-paginator" :class="[cls]">
+  <div v-if="maxpage > 1" class="c-paginator" :class="[cls]">
     <a v-for="page in pages"
       href="javascript:;"
       :class="{current: page.current, disabled: page.disabled}"

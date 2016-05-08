@@ -3,11 +3,10 @@ import CopyWebpackPlugin from 'copy-webpack-plugin'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import _debug from 'debug'
-import config from '../config'
+import config, { paths } from '../config'
+const { __DEV__, __PROD__, __TEST__ } = config.globals
 
 const debug = _debug('koa:webpack:config')
-const paths = config.utils_paths
-const { __DEV__, __PROD__, __TEST__ } = config.globals
 
 debug('Create configuration.')
 const webpackConfig = {

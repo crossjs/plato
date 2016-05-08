@@ -22,6 +22,7 @@
   },
   "rules": {
     "arrow-parens": 0,
+    "camelcase": 0,
     "prefer-const": 2,
 
     "babel/generator-star-spacing": 2,

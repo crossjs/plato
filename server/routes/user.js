@@ -11,7 +11,7 @@ export default (app, router) => {
 
   router.get('/users', check, async ctx => {
     const { $count = '', $offset = 0, $limit = 20 } = ctx.request.query
-    const users = await User.find({}).skip(+$offset).limit(+$limit).select('username created state').exec()
+    const users = await User.find({}).skip(+$offset).limit(+$limit).select('username created updated state').exec()
     const res = {
       items: users
     }

@@ -4,7 +4,7 @@ import passport from '../passport'
 import User from '../models/user'
 import salt from '../utils/salt'
 import respond from './utils/respond'
-import { BEARER_EXPIRES } from '../config'
+import { bearer_expires } from '../config'
 
 export default (app, router) => {
   const debug = _debug('koa:routes:auth')
@@ -19,7 +19,7 @@ export default (app, router) => {
   // refresh token
   async function refresh (user, ctx) {
     const token = salt()
-    const expires = Date.now() + BEARER_EXPIRES
+    const expires = Date.now() + bearer_expires
     await user.update({ token, expires }).exec()
     ctx.body = { ...only(user.toJSON(), whiteProps), token, expires }
     ctx.status = 201
