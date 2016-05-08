@@ -1,7 +1,8 @@
 .DS_STORE
+*.bak
 *.log
 *.old
-*.bak
+*.out
 
 node_modules
 
