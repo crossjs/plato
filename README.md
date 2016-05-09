@@ -56,6 +56,10 @@ npm run e2e
 npm test
 ```
 
+## 接口模拟
+
+见 apis 目录
+
 ## 常见问题
 
 - do NOT use `@import` in scoped css
