@@ -29,7 +29,7 @@
 
 ``` bash
 # start mongo
-mongod --dbpath path/to/data/db
+mongod -dbpath path/to/data/db
 
 # install dependencies
 npm install
