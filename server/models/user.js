@@ -1,10 +1,10 @@
 import mongoose from 'mongoose'
-import _debug from 'debug'
+// import _debug from 'debug'
 import hash from '../utils/hash'
 import salt from '../utils/salt'
 import { bearer_expires } from '../config'
 
-const debug = _debug('koa:models:user')
+// const debug = _debug('koa:models:user')
 
 const schema = new mongoose.Schema({
   username: {

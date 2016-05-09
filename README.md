@@ -37,7 +37,10 @@ npm install
 # serve with hot reload at localhost:3000
 npm run dev
 
-# todo:
+# serve with mocking
+npm run dev:mock
+
+# clean
 npm run clean
 
 # build for production with minification

@@ -1,13 +1,15 @@
 import webpack from './webpack'
 import mocking from './middleware/mocking'
-import { paths } from '../config'
+import { paths, server_mock } from '../config'
 
 export default app => {
   webpack(app)
 
-  app.use(mocking({
-    root: paths.base(),
-    matcher: /^\/apis\//,
-    reducer: null
-  }))
+  if (server_mock) {
+    app.use(mocking({
+      root: paths.base(),
+      matcher: /^\/apis\//,
+      reducer: null
+    }))
+  }
 }
