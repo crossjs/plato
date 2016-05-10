@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+// import Touch from 'vue-touch'
 // import Validator from 'vue-validator'
 import Validator from 'utils/validator'
 
@@ -26,6 +27,7 @@ Vue.mixin({
 Vue.config.debug = process.env.NODE_ENV === 'development'
 
 Vue.use(Router)
+// Vue.use(Touch)
 Vue.use(Validator)
 
 const router = new Router({

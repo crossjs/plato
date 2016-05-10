@@ -3,17 +3,18 @@
 }
 
 button {
+  margin: 0;
+  background: none;
+  border: none;
   cursor: pointer;
   white-space: nowrap;
 }
 
 .link {
-  margin: 0;
-  background: none;
-  border: none;
   color: color(var(--invert));
 
-  &:hover {
+  &:hover,
+  &:active {
     color: color(var(--orange));
   }
 
@@ -24,21 +25,21 @@ button {
 }
 
 .button {
-  margin: 0;
   padding: 0 0.75rem;
   line-height: 3;
-  border: none;
   color: white;
   background-color: color(white lightness(70%));
 
-  &:hover {
+  &:hover,
+  &:active {
     background-color: color(white lightness(80%));
   }
 
   &[role="submit"] {
     background-color: var(--orange);
 
-    &:hover {
+    &:hover,
+    &:active {
       background-color: color(var(--orange) lightness(-10%));
     }
 
@@ -52,7 +53,8 @@ button {
   &[role="cancel"] {
     background-color: color(var(--orange) saturation(0%));
 
-    &:hover {
+    &:hover,
+    &:active {
       background-color: color(var(--orange) saturation(0%) lightness(-10%));
     }
 

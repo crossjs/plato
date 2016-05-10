@@ -3,6 +3,13 @@
   src: url('../fonts/iconfont.woff') format('woff');
 }
 
+.iconfont-nav {
+  &:before {
+    @mixin iconfont;
+    content: "\e603";
+  }
+}
+
 .iconfont-remove,
 .iconfont-delete {
   &:before {

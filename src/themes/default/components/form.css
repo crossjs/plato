@@ -145,6 +145,7 @@
   padding: 1rem 0 0;
 
   & .button {
+    width: 100%;
     margin: 0 0.5rem;
     padding: 0 1.5rem;
 

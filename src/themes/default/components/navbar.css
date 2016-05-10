@@ -1,0 +1,9 @@
+.c-navbar {
+  & > button {
+    color: white;
+
+    &.active {
+      color: var(--orange);
+    }
+  }
+}

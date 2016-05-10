@@ -100,6 +100,7 @@
     "querystring": "^0.2.0",
     "vue": "^1.0.22",
     "vue-router": "^0.7.13",
+    "vue-touch": "^1.1.0",
     "vue-validator": "^2.1.1",
     "vuex-fsa": "^0.6.3",
     "vuex-promise": "0.1.1",

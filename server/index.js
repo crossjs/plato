@@ -75,10 +75,18 @@ const {
   server_port
 } = config
 
-export default app.listen(server_port, server_host, err => {
+const args = [server_port]
+
+if (server_host) {
+  args.push(server_host)
+}
+
+args.push(err => {
   if (err) {
     debug(err)
     return
   }
   debug('Server is now running at %s:%s.', server_host, server_port)
 })
+
+export default app.listen(...args)
