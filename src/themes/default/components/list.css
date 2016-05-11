@@ -1,0 +1,33 @@
+.c-list {
+  border-bottom: 1px solid color(white lightness(-10%));
+}
+
+.c-list-title {
+  padding: 0.5rem;
+  color: color(white lightness(-40%));
+  font-weight: normal;
+}
+
+.c-list-items {
+}
+
+.c-list-item {
+  display: flex;
+  flex-direction: row;
+  padding: 0.5rem;
+  background-color: white;
+  border-top: 1px solid color(white lightness(-10%));
+}
+
+.c-list-icon {
+  flex: none;
+}
+
+.c-list-label {
+  flex: none;
+}
+
+.c-list-value {
+  flex: auto;
+  text-align: right;
+}

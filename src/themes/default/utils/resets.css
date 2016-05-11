@@ -33,7 +33,7 @@ html {
 body {
   font-size: 0.7rem;
   color: color(black lightness(20%));
-  background-color: color(white lightness(-5%));
+  background-color: var(--bg_body);
 
   & ::-webkit-scrollbar {
     width: 0.3rem;

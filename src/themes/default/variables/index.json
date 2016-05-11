@@ -16,6 +16,8 @@
   "scrollbar_color": "rgba(255, 255, 255, 0.3)",
   "scrollbar_thumb_color": "#E7604A",
 
+  "bg_body": "#FBF9FE",
+
   "header_height": "2.5rem",
   "footer_height": "0",
   "aside_width": "10rem",

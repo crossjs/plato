@@ -1,14 +1,16 @@
 <template>
   <div class="container">
-    <progress></progress>
-    <toast></toast>
+    <progress cls="progress" :progress="progress"></progress>
+    <toast cls="toast" @remove="removeToast"></toast>
     <header class="header">
-      <logo></logo>
+      <logo cls="logo">
+        <a v-link="{ path: '/', exact: true }">Logo</a>
+      </logo>
       <navbar cls="navbar">
-        <c-route
+        <route
           :filter="filter"
           :routes="routes"
-          ></c-route>
+          ></route>
       </navbar>
     </header>
     <section class="content">
@@ -22,19 +24,24 @@
 
 <script>
 import store from 'vx/store'
-import Progress from 'views/components/progress'
-import Toast from 'views/components/toast'
-import Logo from 'views/components/logo'
+import { progress, toasts } from 'vx/getters'
+import { deleteToast } from 'vx/actions'
+import Progress from 'components/c-progress'
+import Toast from 'components/c-toast'
+import Logo from 'components/c-logo'
 import Navbar from 'components/c-navbar'
+import Route from 'components/c-route'
 import { routes } from 'routes'
 export default {
   name: 'App',
   store,
+
   data () {
     return {
       routes
     }
   },
+
   computed: {
     filter () {
       return (key, route) => {
@@ -42,14 +49,33 @@ export default {
       }
     }
   },
+
+  methods: {
+    removeToast (toast) {
+      this.deleteToast(toast)
+    }
+  },
+
+  vuex: {
+    getters: {
+      progress,
+      toasts
+    },
+    actions: {
+      deleteToast
+    }
+  },
+
   components: {
     Progress,
     Toast,
     Logo,
-    Navbar
+    Navbar,
+    Route
   }
 }
 </script>
 
 <style src="styles/app"></style>
+<style src="styles/views/components/logo"></style>
 <style src="styles/views/components/navbar"></style>

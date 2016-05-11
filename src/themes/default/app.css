@@ -13,10 +13,11 @@
 }
 
 .content {
-  padding: 1rem;
+  /*padding: 1rem;*/
 }
 
 .footer {
+  display: none;
   clear: both;
   color: white;
   text-align: center;

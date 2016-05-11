@@ -1,13 +1,11 @@
 .c-form {
-  padding: 1rem 0;
 }
 
 .c-form-errors {
-  padding: 0 0 1rem;
 }
 
 .c-form-error {
-  margin: 0 0 0.5rem;
+  margin: 0.5rem 0;
   padding: 0.3rem 0.3rem 0.3rem 0.8rem;
   cursor: default;
   color: var(--text_warning);
@@ -16,33 +14,36 @@
   list-style-position: inside;
 }
 
-.c-form-label {
-  display: block;
-  margin: 0.5rem 0 0.25rem;
-
-  &:after {
-    content: '：';
-  }
-}
-
 .c-form-icon {
-  position: absolute;
+  flex: none;
   margin: 1px;
   min-width: 1.5rem;
   text-align: center;
   color: color(black lightness(50%));
 }
 
+.c-form-label {
+  flex: none;
+  &:after {
+    content: '：';
+  }
+}
+
+.c-form-field {
+  flex: auto;
+}
+
 .c-form-input,
 .c-form-textarea {
-  display: inline-block;
-  border: 1px solid color(black lightness(80%));
+  width: 100%;
+  border: none;
   padding: 0 0.3rem;
   width: 100%;
   line-height: inherit;
   background-color: white;
   outline: none;
   box-sizing: border-box;
+  text-align: right;
 
   &:hover,
   &:focus {
@@ -99,42 +100,22 @@
   }
 }
 
-.c-form-prefix,
-.c-form-suffix {
-  display: inline-block;
-  border-top: 1px solid color(black lightness(80%));
-  border-bottom: 1px solid color(black lightness(80%));
-  padding: 0.2rem 0.3rem;
-  background-color: color(black lightness(90%));
-  outline: none;
-  box-sizing: border-box;
-}
-
-.c-form-prefix {
-  border-left: 1px solid color(black lightness(80%));
-}
-
-.c-form-suffix {
-  border-right: 1px solid color(black lightness(80%));
-  margin-left: -0.2rem;
-}
-
-.c-form-comment {
-  padding: 0.2rem 0.05rem;
-  color: color(white lightness(-40%));
-}
-
 .c-form-items {
+  border-bottom: 1px solid color(white lightness(-10%));
 }
 
 .c-form-item {
-  margin: 0 0 0.5rem;
+  display: flex;
+  padding: 0.5rem;
+  flex-direction: row;
   position: relative;
   cursor: default;
   line-height: 3;
+  border-top: 1px solid color(white lightness(-10%));
 }
 
 .c-form-icon-item {
+  flex: none;
   & .c-form-input,
   & .c-form-textarea {
     padding-left: 1.5rem;
@@ -142,8 +123,7 @@
 }
 
 .c-form-buttons {
-  padding: 1rem 0 0;
-
+  margin: 0.5rem;
   & .button {
     width: 100%;
     margin: 0 0.5rem;

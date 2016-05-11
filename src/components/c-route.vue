@@ -11,11 +11,11 @@
           exact: route.exact
         }">{{route.title}}</a>
       <template v-if="recursive && route.subRoutes">
-        <c-route
+        <route
           :father="route.path"
           :filter="filter"
           :routes="route.subRoutes"
-          ></c-route>
+          ></route>
       </template>
     </li>
   </ul>
@@ -23,6 +23,7 @@
 
 <script>
 export default {
+  name: 'route',
   props: {
     recursive: {
       type: Boolean,
