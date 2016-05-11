@@ -1,5 +1,9 @@
 export default {
   props: {
+    cls: {
+      type: String,
+      default: ''
+    },
     state: {
       type: Number,
       default: 0

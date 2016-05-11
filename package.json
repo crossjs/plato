@@ -99,6 +99,7 @@
     "passport-local": "^1.0.0",
     "querystring": "^0.2.0",
     "vue": "^1.0.22",
+    "vue-picker": "0.0.4",
     "vue-router": "^0.7.13",
     "vue-validator": "^2.1.1",
     "vuex-fsa": "^0.6.3",

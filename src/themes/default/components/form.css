@@ -14,6 +14,20 @@
   list-style-position: inside;
 }
 
+.c-form-items {
+  border-bottom: 1px solid color(white lightness(-10%));
+}
+
+.c-form-item {
+  display: flex;
+  padding: 0.5rem;
+  flex-direction: row;
+  position: relative;
+  cursor: default;
+  line-height: 3;
+  border-top: 1px solid color(white lightness(-10%));
+}
+
 .c-form-icon {
   flex: none;
   margin: 1px;
@@ -97,28 +111,6 @@
 
   &[size] {
     width: auto;
-  }
-}
-
-.c-form-items {
-  border-bottom: 1px solid color(white lightness(-10%));
-}
-
-.c-form-item {
-  display: flex;
-  padding: 0.5rem;
-  flex-direction: row;
-  position: relative;
-  cursor: default;
-  line-height: 3;
-  border-top: 1px solid color(white lightness(-10%));
-}
-
-.c-form-icon-item {
-  flex: none;
-  & .c-form-input,
-  & .c-form-textarea {
-    padding-left: 1.5rem;
   }
 }
 

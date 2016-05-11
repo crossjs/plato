@@ -1,11 +1,11 @@
 <template>
-  <div class="c-datetime">
+  <div class="c-datetime"
+    :class="[cls]">
     <template v-if="state === 1">
       <input
-        class="c-form-input"
         type="text"
         :value="datetime(value)"
-        @click="this.showCalendar = !this.showCalendar"
+        @click="this.showPicker = !this.showPicker"
         readonly>
       <input
         type="hidden"
@@ -14,10 +14,10 @@
         v-bind="attrs"
         v-validate="validate"
         number>
-      <calendar
+      <datepicker
         :value.sync="value"
-        :show.sync="showCalendar"
-        ></calendar>
+        :show.sync="showPicker"
+        ></datepicker>
     </template>
     <template v-else>
       {{datetime(value)}}
@@ -28,13 +28,13 @@
 <script>
 import mField from 'mixins/m-field'
 import datetime from 'nd-datetime'
-import Calendar from './c-calendar'
+import Datepicker from './c-datepicker'
 export default {
   mixins: [mField],
 
   data () {
     return {
-      showCalendar: false
+      showPicker: false
     }
   },
 
@@ -43,17 +43,19 @@ export default {
   },
 
   components: {
-    Calendar
+    Datepicker
   },
 
   watch: {
     state (v) {
       this.$nextTick(() => {
         if (!v) {
-          this.showCalendar = false
+          this.showPicker = false
         }
       })
     }
   }
 }
 </script>
+
+<style src="styles/components/datetime"></style>

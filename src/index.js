@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+// import 'vue-picker'
 // import Validator from 'vue-validator'
 import Validator from 'utils/validator'
 

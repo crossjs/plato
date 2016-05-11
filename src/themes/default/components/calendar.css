@@ -1,6 +1,6 @@
 .c-calendar {
-  position: absolute;
-  margin: -1px 0 0;
+  position: fixed;
+  bottom: 0;
   background-color: white;
   width: 14rem;
   border: 1px solid color(black lightness(80%));

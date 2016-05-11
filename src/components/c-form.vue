@@ -1,13 +1,18 @@
 <template>
   <validator name="validation">
-    <form class="c-form" :class="[cls]" v-on:submit.prevent="submit($validation)" autocomplete="off" novalidate>
+    <form class="c-form"
+      :class="[cls]"
+      @submit.prevent="submit($validation)"
+      autocomplete="off"
+      novalidate>
       <ul class="c-form-errors" v-if="$validation.errors && $validation.modified">
         <li class="c-form-error" v-for="error in $validation.errors">
           {{error.message}}
         </li>
       </ul>
       <ul class="c-form-items">
-        <li v-for="field in fields" class="c-form-item" :class="{'c-form-icon-item': field.icon}">
+        <li class="c-form-item"
+          v-for="field in fields">
           <span class="c-form-icon iconfont-{{field.icon}}" v-if="field.icon"></span>
           <label class="c-form-label" v-if="field.label">{{field.label}}</label>
           <div class="c-form-field">

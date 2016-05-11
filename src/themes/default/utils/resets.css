@@ -27,11 +27,11 @@ button, input, textarea {
 }
 
 html {
-  font: 1.25em/1.5 Tahoma, Arial, Helvetica, "Microsoft YaHei", "宋体", sans-serif;
+  font: 1em/1.5 Tahoma, Arial, Helvetica, "Microsoft YaHei", "宋体", sans-serif;
 }
 
 body {
-  font-size: 0.7rem;
+  font-size: 1rem;
   color: color(black lightness(20%));
   background-color: var(--bg_body);
 
@@ -51,7 +51,7 @@ body {
 }
 
 input, textarea, keygen, select, button {
-  font: 0.7rem/1.5 Tahoma, Arial, Helvetica, "Microsoft YaHei", "宋体", sans-serif;
+  font: 1rem/1.5 Tahoma, Arial, Helvetica, "Microsoft YaHei", "宋体", sans-serif;
   color: color(black lightness(20%));
 }
 
@@ -74,5 +74,9 @@ a {
 
   &:hover {
     text-decoration: none;
+  }
+
+  &:active {
+    color: var(--invert);
   }
 }
