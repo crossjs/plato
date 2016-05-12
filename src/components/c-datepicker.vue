@@ -1,66 +1,67 @@
 <template>
-  <div
-    v-focus="show"
+  <div class="c-datepicker"
+    :class="[cls]"
     tabindex="-1"
-    class="c-datepicker"
-    @blur="show = false"
-    @focus="show = true"
+    v-focus="show"
+    v-show="show"
     transition="slide">
-    <div class="c-datepicker-header">
-      <button>取消</button>
-      <button>确定</button>
-    </div>
-    <div class="c-datepicker-content">
-      <div class="c-datepicker-years">
-        <div class="c-datepicker-mask"></div>
-        <span v-for="year in years"
-          track-by="$index"
-          :class="{selected: year.selected}"
-          @click="_select('y', year.value)">{{year.value}}</span>
+    <div class="c-datepicker-mask"
+      @touchend.prevent="show = false"
+      v-show="show"
+      transition="slide"></div>
+    <div class="c-datepicker-body"
+      @touchmove.prevent
+      v-show="show"
+      transition="slide">
+      <div class="c-datepicker-header">
+        {{zeroPad(year)}}
+        -
+        {{zeroPad(month)}}
+        -
+        {{zeroPad(date)}}
+        &nbsp;
+        {{zeroPad(hour)}}
+        :
+        {{zeroPad(minute)}}
+        :
+        {{zeroPad(second)}}
       </div>
-      <i>-</i>
-      <div class="c-datepicker-months">
-        <div class="c-datepicker-mask"></div>
-        <span v-for="i in 12"
-          track-by="$index"
-          :class="{selected: i + 1 === month}"
-          @click="_select('M', i + 1)">{{_zeroPad(i + 1)}}</span>
-      </div>
-      <i>-</i>
-      <div class="c-datepicker-dates">
-        <div class="c-datepicker-mask"></div>
-        <span v-for="day in days"
-          track-by="$index"
-          :class="{empty: day.empty, today: day.today, selected: day.selected}" @click="_select('d', day.value)">{{_zeroPad(day.value)}}</span>
-      </div>
-      <i></i>
-      <div class="c-datepicker-hours">
-        <div class="c-datepicker-mask"></div>
-        <span v-for="i in 24"
-          track-by="$index"
-          :class="{selected: i === hour}"
-          @click="_select('h', i)">{{_zeroPad(i)}}</span>
-      </div>
-      <i>:</i>
-      <div class="c-datepicker-minutes"
-        @touchstart.prevent="_dragstart('m', $event)"
-        @touchmove.prevent="_dragging('m', $event)"
-        @touchend.prevent="_dragend('m', $event)">
-        <div class="c-datepicker-mask"></div>
-        <div class="c-datepicker-scroller" v-el:m>
-          <span v-for="i in 60"
-            track-by="$index"
-            :class="{selected: i === minute}"
-            @click="_select('m', i)">{{_zeroPad(i)}}</span>
-        </div>
-      </div>
-      <i>:</i>
-      <div class="c-datepicker-seconds">
-        <div class="c-datepicker-mask"></div>
-        <span v-for="i in 60"
-          track-by="$index"
-          :class="{selected: i === second}"
-          @click="_select('s', i)">{{_zeroPad(i)}}</span>
+      <div class="c-datepicker-content">
+        <picker
+          cls="c-datepicker-years"
+          :size="size"
+          :value.sync="year"
+          :items="years"></picker>
+        <i>-</i>
+        <picker
+          cls="c-datepicker-months"
+          :size="size"
+          :value.sync="month"
+          :items="months"></picker>
+        <i>-</i>
+        <picker
+          cls="c-datepicker-dates"
+          :size="size"
+          :value.sync="date"
+          :items="dates"></picker>
+        <i></i>
+        <picker
+          cls="c-datepicker-hours"
+          :size="size"
+          :value.sync="hour"
+          :items="hours"></picker>
+        <i>:</i>
+        <picker
+          cls="c-datepicker-minutes"
+          :size="size"
+          :value.sync="minute"
+          :items="minutes"></picker>
+        <i>:</i>
+        <picker
+          cls="c-datepicker-seconds"
+          :size="size"
+          :value.sync="second"
+          :items="seconds"></picker>
       </div>
     </div>
   </div>
@@ -68,8 +69,13 @@
 
 <script>
 import datetime from 'nd-datetime'
+import Picker from 'components/c-picker'
 export default {
   props: {
+    cls: {
+      type: String,
+      default: ''
+    },
     show: {
       type: Boolean,
       default: false
@@ -84,137 +90,51 @@ export default {
     }
   },
 
-  /*eslint-disable*/
-  computed: {
-    moment () {
-      return datetime(this.value)
-    },
-    year () {
-      return this.moment.yyyy()
-    },
-    month () {
-      return this.moment.M()
-    },
-    date () {
-      return this.moment.d()
-    },
-    hour () {
-      return this.moment.h()
-    },
-    minute () {
-      return this.moment.m()
-    },
-    second () {
-      return this.moment.s()
-    },
-    years () {
-      return [-6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5].map(value => {
-        return {
-          value: this.year + value,
-          selected: value === 0
-        }
-      })
-    },
-    days () {
-      const firstDayOfMonth = datetime(`${this.year}-${this.month}-01`, 'yyyy-MM-dd').D()
-      const lastDateOfPreviousMonth = datetime(`${this.year}-${this.month}-00`, 'yyyy-MM-dd').d()
-      const lastDateOfMonth = datetime(`${this.year}-${this.month + 1}-00`, 'yyyy-MM-dd').d()
-      const days = []
-
-      for (let i = 1; i <= firstDayOfMonth; i++) {
-        days.push({
-          value: '',
-          empty: true
-        })
-      }
-
-      const now = datetime()
-      const nowYear = now.yyyy()
-      const nowMonth = now.M()
-      const nowDate = now.d()
-
-      for (let i = 1; i <= lastDateOfMonth; i++) {
-        days.push({
-          value: i,
-          selected: this.date === i,
-          today: this.year === nowYear && this.month === nowMonth && i === nowDate
-        })
-      }
-
-      const remains = (7 - (firstDayOfMonth + lastDateOfMonth) % 7) % 7
-      for (let i = 1; i <= remains; i++) {
-        days.push({
-          value: '',
-          empty: true
-        })
-      }
-
-      return days
+  data () {
+    const moment = datetime(this.value)
+    return {
+      size: 7,
+      /* eslint-disable */
+      year: moment.yyyy(),
+      month: moment.M(),
+      date: moment.d(),
+      hour: moment.h(),
+      minute: moment.m(),
+      second: moment.s(),
+      /* eslint-enable */
+      years: makeArray(1900, 2020),
+      months: makeArray(1, 12),
+      hours: makeArray(0, 23),
+      minutes: makeArray(0, 59),
+      seconds: makeArray(0, 59)
     }
   },
-  /*eslint-enable*/
+
+  computed: {
+    // years () {
+    //   const half = (this.size - 1) / 2
+    //   return makeArray(this.year - half, this.year + half)
+    // },
+    dates () {
+      return makeArray(1, datetime(`${this.year}-${this.month + 1}-00`, 'yyyy-MM-dd').d())
+    }
+  },
+
+  watch: {
+    year: watch,
+    month: watch,
+    date: watch,
+    hour: watch,
+    minute: watch,
+    second: watch
+  },
 
   methods: {
-    _dragstart (type, e) {
-      if (e.touches && e.touches.length) {
-        this.drag = true
-        if (typeof this.steps === 'undefined') {
-          this.steps = 0
-          this.targetsteps = 0
-        }
-        this.minsteps = 4 - this.$els[type].children.length
-        this.maxsteps = 3
-        this.y = e.touches[0].pageY
-      }
-    },
-    _dragging (type, e) {
-      if (this.drag) {
-        const distance = e.touches[0].pageY - this.y
-        let steps = this.steps + Math.floor(distance / 32)
-        steps = Math.min(this.maxsteps, Math.max(this.minsteps, steps))
-        this.targetsteps = steps
-        this.$els[type].style.transform = 'translate3d(0px, ' + steps * 32 + 'px, 0px)'
-      }
-    },
-    _dragend (type, e) {
-      this.drag = false
-      this.steps = this.targetsteps
-    },
-    _zeroPad (value) {
-      if (value < 10) {
-        return '0' + value
-      }
+    zeroPad
+  },
 
-      return '' + value
-    },
-    _toggle (show) {
-      this.show = show
-    },
-    _switch (type) {
-      this.view = type
-    },
-    _select (type, value) {
-      switch (type) {
-        case 'y':
-          this.value = this.moment.add('y', value - this.year).toNumber()
-          break
-        case 'M':
-          this.value = this.moment.add('M', value - this.month).toNumber()
-          break
-        case 'd':
-          this.value = this.moment.add('d', value - this.date).toNumber()
-          break
-        case 'h':
-          this.value = this.moment.add('h', value - this.hour).toNumber()
-          break
-        case 'm':
-          this.value = this.moment.add('m', value - this.minute).toNumber()
-          break
-        case 's':
-          this.value = this.moment.add('s', value - this.second).toNumber()
-          break
-      }
-    }
+  components: {
+    Picker
   },
 
   // a custom directive to wait for the DOM to be updated
@@ -229,6 +149,30 @@ export default {
       }
     }
   }
+}
+
+function watch () {
+  this.$nextTick(() => {
+    this.value = datetime(`${this.year}-${this.month}-${this.date} ${this.hour}:${this.minute}:${this.second}`).toNumber()
+  })
+}
+
+function zeroPad (value) {
+  if (value < 10) {
+    return '0' + value
+  }
+  return '' + value
+}
+
+function makeArray (start, end) {
+  const arr = []
+  for (let i = start; i <= end; i++) {
+    arr.push({
+      label: zeroPad(i),
+      value: i
+    })
+  }
+  return arr
 }
 </script>
 

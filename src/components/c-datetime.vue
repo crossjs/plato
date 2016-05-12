@@ -3,9 +3,10 @@
     :class="[cls]">
     <template v-if="state === 1">
       <input
+        class="c-datetime-input"
         type="text"
         :value="datetime(value)"
-        @click="this.showPicker = !this.showPicker"
+        @touchstart="this.showPicker = !this.showPicker"
         readonly>
       <input
         type="hidden"

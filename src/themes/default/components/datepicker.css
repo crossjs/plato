@@ -3,6 +3,22 @@
   left: 0;
   bottom: 0;
   width: 100%;
+}
+
+.c-datepicker-mask {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.c-datepicker-body {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
   background-color: white;
   border: 1px solid color(black lightness(80%));
   outline: none;
@@ -57,17 +73,4 @@
       color: var(--orange);
     }
   }
-}
-
-.c-datepicker-mask {
-  position: absolute;
-  width: 100%;
-  height: 14rem;
-  z-index: 3;
-  background:
-  linear-gradient(180deg, rgba(255, 255, 255,.95),rgba(255, 255, 255,.6)),
-  linear-gradient(0deg,rgba(255, 255, 255,.95),rgba(255, 255, 255,.6));
-  background-repeat: no-repeat;
-  background-position: top, bottom;
-  background-size: 100% 6rem;
 }
