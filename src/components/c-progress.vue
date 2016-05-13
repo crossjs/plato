@@ -1,6 +1,5 @@
 <template>
-  <div
-    class="c-navbar"
+  <div class="c-progress"
     :class="[cls]"
     :style="{width: '' + progress + '%'}"></div>
 </template>

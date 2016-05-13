@@ -7,8 +7,8 @@
       v-if="items">
       <div class="c-list-item"
         v-for="item in items">
-        <div class="c-list-icon">{{item.icon}}</div>
-        <div class="c-list-label">{{item.label}}</div>
+        <icon cls="c-list-icon" :value="item.icon"></icon>
+        <labe cls="c-list-labe" :value="item.label"></labe>
         <component
           cls="c-list-value"
           :is="item.type"
@@ -16,7 +16,7 @@
           :field="$key"
           :attrs="item.attrs"
           :validate="item.validate"
-          :value="item.value"
+          :value.sync="item.value"
           @mutate="_mutate($key, $arguments)"></component>
       </div>
     </div>
@@ -24,7 +24,10 @@
 </template>
 
 <script>
+import Icon from './c-icon'
+import Labe from './c-labe'
 import Text from './c-text'
+import Password from './c-password'
 import Checkbox from './c-checkbox'
 import Datetime from './c-datetime'
 import Dropdown from './c-dropdown'
@@ -65,7 +68,10 @@ export default {
   },
 
   components: {
+    Icon,
+    Labe,
     Text,
+    Password,
     Checkbox,
     Datetime,
     Dropdown

@@ -36,7 +36,7 @@ button {
   }
 
   &.primary,
-  &[role="submit"] {
+  &.submit {
     background-color: var(--orange);
 
     &:hover,
@@ -51,7 +51,7 @@ button {
     }
   }
 
-  &[role="cancel"] {
+  &.cancel {
     background-color: color(var(--orange) saturation(0%));
 
     &:hover,

@@ -45,6 +45,12 @@
 
 .c-form-field {
   flex: auto;
+  display: flex;
+  flex-direction: row;
+
+  & > div {
+    flex: auto;
+  }
 }
 
 .c-form-input,

@@ -1,8 +1,9 @@
 <template>
-  <div class="c-text">
+  <div class="c-password"
+    :class="[cls]">
     <template v-if="state === 1">
       <input
-        class="c-form-input"
+        class="c-password-input"
         type="password"
         :field="field"
         v-model="value"
@@ -22,3 +23,5 @@ export default {
   mixins: [mField]
 }
 </script>
+
+<style src="styles/components/password"></style>

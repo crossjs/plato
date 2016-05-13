@@ -2,7 +2,7 @@
   <div class="login">
     <c-form
       :submit="login"
-      :fields="fields"
+      :fields.sync="fields"
       :buttons="buttons"></c-form>
   </div>
 </template>
@@ -23,18 +23,18 @@ export default {
           value: this.$route.query.username
         }),
         password
-      },
-      buttons: {
+      }
+    }
+  },
+
+  computed: {
+    buttons () {
+      return {
         submit: {
           type: 'submit',
           // string or function
-          label: $validation => {
-            return this.progress ? '提交登录中...' : '提交登录'
-          },
-          // boolean or function
-          disabled: $validation => {
-            return !$validation.valid || !!this.progress
-          }
+          label: this.progress ? '提交登录中...' : '提交登录',
+          disabled: !!this.progress
         }
       }
     }
@@ -42,14 +42,12 @@ export default {
 
   // methods
   methods: {
-    login ($validation) {
+    login ($validation, $data) {
       if (!$validation.valid) {
         return
       }
-      this.getBearer(this.formdata(data => {
-        data.password = md5(data.password)
-        return data
-      }))
+      $data.password = md5($data.password)
+      this.getBearer($data)
     }
   },
 

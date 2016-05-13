@@ -3,7 +3,7 @@ import { RE_USERNAME, RE_PASSWORD } from 'utils/regex'
 export default {
   username: {
     label: '账号',
-    icon: 'user-o',
+    icon: 'iconfont-user-o',
     type: 'text',
     value: '',
     attrs: {
@@ -30,7 +30,7 @@ export default {
   },
   password: {
     label: '密码',
-    icon: 'lock-o',
+    icon: 'iconfont-lock-o',
     type: 'password',
     value: '',
     attrs: {

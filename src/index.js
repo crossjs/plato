@@ -7,7 +7,7 @@ import Validator from 'utils/validator'
 import App from 'app'
 import { routes, alias } from 'routes'
 import store from 'vx/store'
-import { auth } from 'vx/getters'
+import { auth, progress } from 'vx/getters'
 
 if (module.hot) {
   module.hot.accept()
@@ -17,7 +17,8 @@ if (module.hot) {
 Vue.mixin({
   vuex: {
     getters: {
-      auth
+      auth,
+      progress
     }
   }
 })

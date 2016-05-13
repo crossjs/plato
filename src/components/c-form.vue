@@ -1,47 +1,34 @@
 <template>
   <validator name="validation">
+    <ul class="c-form-errors" v-if="$validation.errors && $validation.modified">
+      <li class="c-form-error" v-for="error in $validation.errors">
+        {{error.message}}
+      </li>
+    </ul>
     <form class="c-form"
       :class="[cls]"
-      @submit.prevent="submit($validation)"
+      @submit.prevent="_submit"
       autocomplete="off"
       novalidate>
-      <ul class="c-form-errors" v-if="$validation.errors && $validation.modified">
-        <li class="c-form-error" v-for="error in $validation.errors">
-          {{error.message}}
-        </li>
-      </ul>
-      <ul class="c-form-items">
-        <li class="c-form-item"
-          v-for="field in fields">
-          <span class="c-form-icon iconfont-{{field.icon}}" v-if="field.icon"></span>
-          <label class="c-form-label" v-if="field.label">{{field.label}}</label>
-          <div class="c-form-field">
-            <component
-              :is="field.type"
-              :state="state"
-              :field="$key"
-              :value.sync="field.value"
-              :attrs="_extract(field)"
-              :validate="field.validate"></component>
-          </div>
-        </li>
-      </ul>
-      <div class="c-form-buttons">
+      <list
+        :state="state"
+        :title="title"
+        :items="fields"
+        ></list>
+      <pane>
         <button v-for="button in buttons"
           class="button"
-          :role="$key"
+          :class="[$key]"
           :type="button.type || 'button'"
-          :disabled="_disabled(button.disabled)">{{_label(button.label)}}</button>
-      </div>
+          :disabled="button.disabled || $validation.invalid">{{button.label}}</button>
+      </pane>
     </form>
   </validator>
 </template>
 
 <script>
-import Text from './c-text'
-import Password from './c-password'
-import Multiline from './c-multiline'
-import Dropdown from './c-dropdown'
+import List from './c-list'
+import Pane from './c-pane'
 export default {
   props: {
     cls: {
@@ -54,11 +41,11 @@ export default {
     },
     fields: {
       type: Object,
-      default: {}
+      default: () => {}
     },
     buttons: {
       type: Object,
-      default: {}
+      default: () => {}
     }
   },
 
@@ -69,39 +56,24 @@ export default {
   },
 
   methods: {
-    _extract (field) {
-      const attrs = {}
-      if (field.attrs) {
-        Object.keys(field.attrs).forEach(key => {
-          attrs[key] = field.attrs[key]
-        })
+    _submit () {
+      if (this.$validation.valid) {
+        this.submit(this.$validation, this._formdata())
+      } else {
+        this.submit(this.$validation)
       }
-      if (field.validate) {
-        Object.keys(field.validate).forEach(key => {
-          attrs[key] = field.validate[key].rule
-        })
-      }
-      return attrs
     },
-    _label (label) {
-      if (typeof label === 'function') {
-        return label(this.$validation)
-      }
-      return label
-    },
-    _disabled (disabled) {
-      if (typeof disabled === 'function') {
-        return disabled(this.$validation)
-      }
-      return !!disabled
+    _formdata () {
+      return Object.keys(this.fields).reduce((obj, key) => {
+        obj[key] = this.fields[key].value
+        return obj
+      }, {})
     }
   },
 
   components: {
-    Text,
-    Password,
-    Multiline,
-    Dropdown
+    List,
+    Pane
   }
 }
 </script>
