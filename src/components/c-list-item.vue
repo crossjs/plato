@@ -19,6 +19,7 @@
 import Icon from './c-icon'
 import Labe from './c-labe'
 import Text from './c-text'
+import Multiline from './c-multiline'
 import Password from './c-password'
 import Checkbox from './c-checkbox'
 import Datetime from './c-datetime'
@@ -57,6 +58,7 @@ export default {
     Icon,
     Labe,
     Text,
+    Multiline,
     Password,
     Checkbox,
     Datetime,

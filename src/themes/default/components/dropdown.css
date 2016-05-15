@@ -1,0 +1,36 @@
+.c-dropdown {
+  @mixin field-present;
+}
+
+.c-dropdown-select {
+  @mixin field-editing;
+  /*text-align: right;*/
+  /*background-color: none;*/
+  /*border: none;*/
+  /*width: 100%;*/
+  /*height: 100%;*/
+  appearance: none;
+  border-radius: 0.25rem;
+  border: 1px solid color(black lightness(80%));
+  padding: 0 1.1rem 0 0.3rem;
+  outline: none;
+  box-sizing: border-box;
+  background: white url('../images/down.png') no-repeat right center;
+
+  &:hover,
+  &:focus {
+    border-color:  color(var(--invert) lightness(-10%));
+  }
+
+  &[readonly] {
+    background-color: color(white lightness(-6%));
+  }
+
+  &[disabled] {
+    background-color: color(white lightness(-3%));
+  }
+
+  &[size] {
+    width: auto;
+  }
+}

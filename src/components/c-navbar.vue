@@ -10,7 +10,7 @@
     <nav
       class="c-navbar-menu"
       v-show="opened"
-      @mouseup="opened = false">
+      @click="opened = false">
       <slot></slot>
     </nav>
   </div>

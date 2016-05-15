@@ -22,7 +22,10 @@ export default {
       columns: {
         username: {
           label: '账号',
-          type: 'text'
+          type: 'text',
+          attrs: {
+            readonly: true
+          }
         },
         state: {
           label: '状态',
@@ -34,11 +37,17 @@ export default {
         },
         created: {
           label: '创建时间',
-          type: 'datetime'
+          type: 'datetime',
+          attrs: {
+            readonly: true
+          }
         },
         updated: {
           label: '活跃时间',
-          type: 'datetime'
+          type: 'datetime',
+          attrs: {
+            readonly: true
+          }
         }
       }
     }

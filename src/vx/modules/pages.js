@@ -1,32 +1,65 @@
 import {
   GET_PAGES,
+  PAGINATE_PAGES,
   CREATE_PAGE,
-  DELETE_PAGE
+  DELETE_PAGE,
+  UPDATE_PAGE
 } from '../types'
 
+import {
+  PROMISE_SUCCESS
+} from '../constants'
+
 const state = {
-  pages: []
+  pages: {
+    // disable pagination
+    count: 0,
+    items: [],
+    query: {}
+  }
 }
 
 const mutations = {
-
-  [GET_PAGES] (state, pages, status) {
-    if (status === 1) {
-      state.pages = pages
+  [GET_PAGES] (state, { payload, meta }) {
+    if (meta === PROMISE_SUCCESS) {
+      Object.assign(state.pages, payload)
     }
   },
 
-  [CREATE_PAGE] (state, page) {
-    state.pages.push(page)
+  [PAGINATE_PAGES] (state, { payload }) {
+    Object.assign(state.pages, payload)
   },
 
-  [DELETE_PAGE] (state, page) {
-    state.pages.some((p, i) => {
-      if (p._id === page._id) {
-        state.pages.splice(i, 1)
-        return true
-      }
-    })
+  [CREATE_PAGE] (state, { payload, meta }) {
+    if (meta === PROMISE_SUCCESS) {
+      state.pages.count += 1
+      state.pages.items.push(payload)
+    }
+  },
+
+  [DELETE_PAGE] (state, { payload, meta }) {
+    if (meta === PROMISE_SUCCESS) {
+      const { items } = state.pages
+      items.some((user, index) => {
+        if (user._id === payload._id) {
+          items.splice(index, 1)
+          state.pages.count -= 1
+          return true
+        }
+      })
+    }
+  },
+
+  [UPDATE_PAGE] (state, { payload, meta }) {
+    if (meta === PROMISE_SUCCESS) {
+      const { items } = state.pages
+      items.some((user, index) => {
+        if (user._id === payload._id) {
+          items.$set(index, { ...user, ...payload })
+          return true
+        }
+      })
+    }
   }
 
 }

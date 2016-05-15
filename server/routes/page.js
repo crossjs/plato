@@ -8,8 +8,15 @@ export default (app, router) => {
   debug('initialize')
 
   router.get('/pages', check, async ctx => {
-    const pages = await Page.find({}).exec()
-    ctx.body = pages
+    const { $count = '', $offset = 0, $limit = 20 } = ctx.request.query
+    const pages = await Page.find({}).skip(+$offset).limit(+$limit).exec()
+    const res = {
+      items: pages
+    }
+    if ($count) {
+      res.count = await Page.find({}).count().exec()
+    }
+    ctx.body = res
   })
 
   router.post('/pages', check, async ctx => {
@@ -22,6 +29,12 @@ export default (app, router) => {
   router.del('/pages/:id', check, async ctx => {
     const page = await Page.findByIdAndRemove(ctx.params.id).exec()
     ctx.body = page.toJSON()
+  })
+
+  router.patch('/pages/:id', check, async ctx => {
+    const { title, content } = ctx.request.body
+    const page = await Page.findByIdAndUpdate(ctx.params.id, { title, content }, { new: true }).exec()
+    ctx.body = page
   })
 
   router.get('/pages/:id', check, async ctx => {

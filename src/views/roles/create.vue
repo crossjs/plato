@@ -2,24 +2,25 @@
   <div class="role-create">
     <c-form
       :submit="create"
-      :fields="fields"
-      :buttons="buttons">
+      :columns="columns"
+      :items="items"
+      :actions="actions">
     </c-form>
   </div>
 </template>
 
 <script>
 import CForm from 'components/c-form'
+import { roles } from 'vx/getters'
 import { createRole } from 'vx/actions'
 import { ROLE_LEVEL_OPTIONS } from 'vx/constants'
 export default {
   data () {
     return {
-      fields: {
+      columns: {
         name: {
           label: '角色名称',
           type: 'text',
-          value: '',
           validate: {
             required: {
               rule: true,
@@ -33,8 +34,7 @@ export default {
         },
         desc: {
           label: '角色描述',
-          type: 'multiline',
-          value: '',
+          type: 'text',
           validate: {
             required: {
               rule: true,
@@ -49,7 +49,6 @@ export default {
         level: {
           label: '角色等级',
           type: 'dropdown',
-          value: 0,
           attrs: {
             options: ROLE_LEVEL_OPTIONS
           },
@@ -61,32 +60,49 @@ export default {
           }
         }
       },
-      buttons: {
+      items: {
+        name: '',
+        desc: '',
+        level: 0
+      },
+      actions: [null, {
         submit: {
           type: 'submit',
+          cls: 'primary',
           // string or function
-          label: $validation => {
-            return this.progress ? '提交创建中...' : '提交创建'
-          },
-          // boolean or function
-          disabled: $validation => {
-            return !$validation.valid || !!this.progress
-          }
+          label: this.progress ? '提交创建中...' : '提交创建',
+          disabled: !!this.progress
         }
-      }
+      }]
+    }
+  },
+
+  watch: {
+    roles: {
+      handler (val) {
+        this.$nextTick(() => {
+          if (val.items.length) {
+            this.$route.router.go('/roles')
+          }
+        })
+      },
+      deep: true
     }
   },
 
   methods: {
-    create ($validation, $data) {
+    create ($validation, $payload) {
       if (!$validation.valid) {
         return
       }
-      this.createRole($data)
+      this.createRole($payload)
     }
   },
 
   vuex: {
+    getters: {
+      roles
+    },
     actions: {
       createRole
     }

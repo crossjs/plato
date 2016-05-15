@@ -1,11 +1,9 @@
 <template>
-  <div
-    class="c-toast"
+  <div class="c-toast"
     :class="[cls]"
     v-show="toasts.length"
     transition="slide">
-    <div
-      class="toast"
+    <div class="toast"
       v-for="toast in toasts"
       track-by="_id"
       transition="slide">

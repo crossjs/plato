@@ -1,80 +1,72 @@
 <template>
   <div class="pages">
-    <c-modal
-      :show.sync="modal.show"
-      :body="modal.body"
-      :buttons="modal.buttons"></c-modal>
-    <c-grid
-      :data="pages"
+    <c-form
+      v-for="items in pages.items"
+      track-by="_id"
+      :state="state"
       :columns="columns"
-      :actions="actions"></c-grid>
+      :items="items"
+      :actions="actions"
+      @mutate="_mutate(items._id, $arguments)"></c-form>
+    <paginator
+      v-if="pages.count !== -1"
+      :query="pages.query"
+      :count="pages.count"
+      @paginate="_paginate"></paginator>
   </div>
 </template>
 
 <script>
-import mModal from 'mixins/m-modal'
-import mGrid from 'mixins/m-grid'
+import CForm from 'components/c-form'
+import Paginator from 'components/c-paginator'
 import { pages } from 'vx/getters'
-import { getPages, deletePage } from 'vx/actions'
+import { getPages, updatePage } from 'vx/actions'
 export default {
-  mixins: [mModal, mGrid],
-
   data () {
-    let target
-    const showModal = function (column) {
-      target = column
-      this.modal.show = true
-    }.bind(this)
-    const dismissModal = function (ok) {
-      this.modal.show = false
-      if (ok) {
-        this.deletePage(target)
-      }
-      target = null
-    }.bind(this)
     return {
-      target: null,
-      modal: {
-        show: false,
-        body: '确定删除？',
-        buttons: {
-          ok: {
-            label: '确定',
-            role: 'submit',
-            click () {
-              dismissModal(true)
-            }
-          },
-          no: {
-            label: '取消',
-            role: 'cancel',
-            click () {
-              dismissModal(false)
-            }
-          }
-        }
-      },
+      state: 1,
       columns: {
         username: {
-          label: '用户'
+          label: '账号',
+          type: 'text',
+          attrs: {
+            readonly: true
+          }
         },
         title: {
-          label: '页面标题'
+          label: '标题',
+          type: 'text'
         },
         content: {
-          label: '页面内容'
+          label: '正文',
+          type: 'multiline'
         },
         created: {
           label: '创建时间',
-          filters: 'datetime'
-        }
-      },
-      actions: {
-        remove: {
-          label: '删除',
-          click: showModal
+          type: 'datetime',
+          attrs: {
+            readonly: true
+          }
+        },
+        updated: {
+          label: '修改时间',
+          type: 'datetime',
+          attrs: {
+            readonly: true
+          }
         }
       }
+    }
+  },
+
+  methods: {
+    _paginate (query) {
+      this.getPages({
+        query
+      })
+    },
+    _mutate (_id, [val]) {
+      this.updatePage({ _id, ...val })
     }
   },
 
@@ -91,8 +83,13 @@ export default {
     },
     actions: {
       getPages,
-      deletePage
+      updatePage
     }
+  },
+
+  components: {
+    CForm,
+    Paginator
   }
 }
 </script>

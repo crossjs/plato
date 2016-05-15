@@ -17,16 +17,22 @@ export default app => {
   mongoose.connection.once('open', () => {
     debug('mongoose connected.')
   })
-  // mongoose.connection.db.dropDatabase((err, result) => {
-  //   console.log(err, result)
-  // })
-  // mongoose.connection.db.dropCollection('users', (err, result) => {
-  //   console.log(err, result)
-  // })
   // mongoose.connection.collections.users.drop((err, result) => {
   //   console.log(err, result)
   // })
+  // mongoose.connection.collections.roles.drop((err, result) => {
+  //   console.log(err, result)
+  // })
+  // mongoose.connection.collections.pages.drop((err, result) => {
+  //   console.log(err, result)
+  // })
   // mongoose.connection.collections.users.reIndex((err, result) => {
+  //   console.log(err, result)
+  // })
+  // mongoose.connection.collections.roles.reIndex((err, result) => {
+  //   console.log(err, result)
+  // })
+  // mongoose.connection.collections.pages.reIndex((err, result) => {
   //   console.log(err, result)
   // })
 

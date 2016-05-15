@@ -1,15 +1,13 @@
 <template>
   <div class="c-datetime"
-    :class="[cls]">
-    <template v-if="state === 1">
-      <input
-        class="c-datetime-input"
+    :class="[cls, {editing: editing}]">
+    <template v-if="editing">
+      <input class="c-datetime-input"
         type="text"
         :value="datetime(value)"
-        @touchstart="this.showPicker = !this.showPicker"
+        @click="this.showPicker = !this.showPicker"
         readonly>
-      <input
-        type="hidden"
+      <input type="hidden"
         :field="field"
         v-model="value"
         v-bind="attrs"
@@ -17,8 +15,7 @@
         number>
       <datepicker
         :value.sync="value"
-        :show.sync="showPicker"
-        ></datepicker>
+        :show.sync="showPicker"></datepicker>
     </template>
     <template v-else>
       {{datetime(value)}}

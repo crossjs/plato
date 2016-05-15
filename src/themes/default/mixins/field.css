@@ -1,0 +1,7 @@
+@define-mixin field-present {
+  color: color(black lightness(+60%))
+}
+
+@define-mixin field-editing {
+  color: color(black lightness(+40%))
+}

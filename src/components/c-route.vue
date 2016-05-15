@@ -14,8 +14,7 @@
         <route
           :father="route.path"
           :filter="filter"
-          :routes="route.subRoutes"
-          ></route>
+          :routes="route.subRoutes"></route>
       </template>
     </li>
   </ul>

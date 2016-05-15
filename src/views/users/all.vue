@@ -3,7 +3,6 @@
     <c-form
       v-for="items in users.items"
       track-by="_id"
-      :submit="submit"
       :state="state"
       :columns="columns"
       :items="items"
@@ -25,6 +24,7 @@ import { getUsers, updateUser } from 'vx/actions'
 export default {
   data () {
     return {
+      state: 1,
       columns: {
         username: {
           label: '账号',
@@ -43,11 +43,17 @@ export default {
         },
         created: {
           label: '创建时间',
-          type: 'datetime'
+          type: 'datetime',
+          attrs: {
+            readonly: true
+          }
         },
         updated: {
           label: '活跃时间',
-          type: 'datetime'
+          type: 'datetime',
+          attrs: {
+            readonly: true
+          }
         }
       }
     }

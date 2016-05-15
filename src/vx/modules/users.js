@@ -39,7 +39,7 @@ const mutations = {
         }
       })
       if (!found) {
-        // state.users.count++
+        state.users.count += 1
         items.push(payload)
       }
     }
@@ -51,6 +51,7 @@ const mutations = {
       items.some((user, index) => {
         if (user._id === payload._id) {
           items.splice(index, 1)
+          state.users.count -= 1
           return true
         }
       })

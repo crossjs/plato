@@ -1,8 +1,9 @@
 <template>
-  <div class="c-multiline">
-    <template v-if="state === 1">
+  <div class="c-multiline"
+    :class="[cls, {editing: editing}]">
+    <template v-if="editing">
       <textarea
-        class="c-form-textarea"
+        class="c-multiline-textarea"
         type="text"
         :field="field"
         v-model="value"
@@ -22,3 +23,5 @@ export default {
   mixins: [mField]
 }
 </script>
+
+<style src="styles/components/multiline"></style>

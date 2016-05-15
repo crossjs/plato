@@ -23,5 +23,14 @@ export default {
       type: Object,
       default: () => {}
     }
+  },
+
+  computed: {
+    editing () {
+      return this.state === 1 && (!this.attrs || !this.attrs.readonly)
+    },
+    _attrs () {
+      return { ...this.attrs, ...this.validate }
+    }
   }
 }

@@ -1,14 +1,10 @@
-import { GET_PAGES, CREATE_PAGE, DELETE_PAGE } from '../types'
-import { GET, POST, DELETE } from 'utils/ajax'
-
-const inject = json =>
-  Promise.all(json.map(data => GET(`/apis/users/${data.user}`).then(user => {
-    data.username = user.username
-  }))).then(() => json).catch(() => json)
+import { GET_PAGES, PAGINATE_PAGES, CREATE_PAGE, DELETE_PAGE, UPDATE_PAGE } from '../types'
+import { GET, POST, DELETE, PATCH, PAGINATE_QUERY } from 'utils/ajax'
 
 export default {
-  getPages ({ dispatch }, payload) {
-    dispatch(GET_PAGES, GET('/apis/pages').then(inject))
+  getPages ({ dispatch }, { query = PAGINATE_QUERY } = {}) {
+    dispatch(PAGINATE_PAGES, { query })
+    dispatch(GET_PAGES, GET('/apis/pages', { query }).then(inject))
   },
 
   createPage ({ dispatch }, payload) {
@@ -19,5 +15,17 @@ export default {
 
   deletePage ({ dispatch }, payload) {
     dispatch(DELETE_PAGE, DELETE(`/apis/pages/${payload._id}`))
+  },
+
+  updatePage ({ dispatch }, { _id, ...payload }) {
+    dispatch(UPDATE_PAGE, PATCH(`/apis/pages/${_id}`, {
+      body: payload
+    }))
   }
+}
+
+function inject (pages) {
+  return Promise.all(pages.items.map(data => GET(`/apis/users/${data.user}`).then(user => {
+    data.username = user.username
+  }))).then(() => pages).catch(() => pages)
 }

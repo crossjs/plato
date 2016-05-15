@@ -1,13 +1,12 @@
 <template>
   <div class="c-text"
-    :class="[cls]">
-    <template v-if="state === 1">
-      <input
-        class="c-text-input"
+    :class="[cls, {editing: editing}]">
+    <template v-if="editing">
+      <input class="c-text-input"
         type="text"
         :field="field"
         v-model="value"
-        v-bind="attrs"
+        v-bind="_attrs"
         v-validate="validate"
         debounce="500">
     </template>

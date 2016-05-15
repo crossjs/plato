@@ -18,6 +18,7 @@ export default (app, router) => {
     const { name, desc, level } = ctx.request.body
     const role = await Role.create({ name, desc, level })
     ctx.body = role.toJSON()
+    ctx.status = 201
   })
 
   router.get('/roles/:id', check, async ctx => {

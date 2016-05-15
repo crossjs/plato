@@ -1,7 +1,7 @@
 <template>
   <div class="c-checkbox"
-    :class="[cls, {checked: value}]">
-    <template v-if="state === 1">
+    :class="[cls, {editing: editing, checked: value}]">
+    <template v-if="editing">
       <input type="checkbox"
         :field="field"
         v-model="value"

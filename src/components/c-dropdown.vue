@@ -1,8 +1,9 @@
 <template>
-  <div class="c-dropdown">
-    <template v-if="state === 1">
+  <div class="c-dropdown"
+    :class="[cls, {editing: editing}]">
+    <template v-if="editing">
       <select
-        class="c-form-select"
+        class="c-dropdown-select"
         :field="field"
         v-model="value"
         v-bind="_attrs"
@@ -32,3 +33,5 @@ export default {
   }
 }
 </script>
+
+<style src="styles/components/dropdown"></style>

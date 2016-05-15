@@ -1,93 +1,69 @@
 <template>
   <div class="roles">
-    <c-grid
+    <c-form
+      v-for="items in roles.items"
+      track-by="_id"
+      :state="state"
       :columns="columns"
+      :items="items"
       :actions="actions"
-      :data="roles"
-      @action="_action"></c-grid>
+      @mutate="_mutate(items._id, $arguments)"></c-form>
   </div>
 </template>
 
 <script>
-import mGrid from 'mixins/m-grid'
+import CForm from 'components/c-form'
 import { roles } from 'vx/getters'
-import { getRoles, deleteRole, updateRole } from 'vx/actions'
+import { getRoles, updateRole } from 'vx/actions'
 import { ROLE_LEVEL_OPTIONS } from 'vx/constants'
 export default {
-  mixins: [mGrid],
-
   data () {
-    // let target
     return {
+      state: 1,
       columns: {
         name: {
           label: '名称',
-          type: 'text'
+          type: 'text',
+          attrs: {
+            readonly: true
+          },
+          validate: {
+            maxlength: 20
+          }
         },
         desc: {
           label: '描述',
           type: 'text',
-          editable: true
-        },
-        created: {
-          label: '创建时间',
-          type: 'datetime'
-        },
-        updated: {
-          label: '更新时间',
-          type: 'datetime'
+          validate: {
+            maxlength: 50
+          }
         },
         level: {
           label: '等级',
           type: 'dropdown',
           attrs: {
             options: ROLE_LEVEL_OPTIONS
-          },
-          editable: true
-        }
-      },
-      actions: [
-        {
-          modify: {
-            label: '编辑',
-            state: 1
-          },
-          remove: {
-            label: '删除',
-            confirm: true
           }
         },
-        {
-          submit: {
-            label: '确定'
-          },
-          cancel: {
-            label: '取消',
-            state: 0
+        created: {
+          label: '活跃时间',
+          type: 'datetime',
+          attrs: {
+            readonly: true
           }
         }
-      ]
+      }
     }
   },
 
   methods: {
-    _action (key, role, payload) {
-      switch (key) {
-        case 'remove':
-          this.deleteRole(role)
-          break
-        // case 'modify':
-        //   this.state = 1
-        //   break
-        case 'submit':
-          if (payload) {
-            this.updateRole(payload)
-          }
-          break
-        // case 'cancel':
-        //   this.state = 0
-        //   break
-      }
+    _paginate (query) {
+      this.getRoles({
+        query
+      })
+    },
+    _mutate (_id, [val]) {
+      this.updateRole({ _id, ...val })
     }
   },
 
@@ -104,9 +80,14 @@ export default {
     },
     actions: {
       getRoles,
-      deleteRole,
       updateRole
     }
+  },
+
+  components: {
+    CForm
   }
 }
 </script>
+
+<style src="styles/views/roles"></style>

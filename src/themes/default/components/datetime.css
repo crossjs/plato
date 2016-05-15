@@ -1,7 +1,9 @@
 .c-datetime {
+  @mixin field-present;
 }
 
 .c-datetime-input {
+  @mixin field-editing;
   text-align: right;
   background-color: none;
   border: none;

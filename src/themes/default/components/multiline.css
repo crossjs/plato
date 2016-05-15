@@ -1,8 +1,8 @@
-.c-text {
+.c-multiline {
   @mixin field-present;
 }
 
-.c-text-input {
+.c-multiline-textarea {
   @mixin field-editing;
   text-align: right;
   background-color: transparent;
