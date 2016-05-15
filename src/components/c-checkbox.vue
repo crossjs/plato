@@ -2,12 +2,12 @@
   <div class="c-checkbox"
     :class="[cls, {checked: value}]">
     <template v-if="state === 1">
-      <input
-        type="checkbox"
+      <input type="checkbox"
         :field="field"
         v-model="value"
         v-bind="_attrs"
         v-validate="validate">
+      <label>{{value ? _attrs['true-label'] : _attrs['false-label']}}</label>
     </template>
     <template v-else>
       {{value ? _attrs['true-label'] : _attrs['false-label']}}

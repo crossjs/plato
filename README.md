@@ -4,6 +4,21 @@
 
 > A plat<del>form</del> built with koa and vue
 
+## 预览
+
+** 登录 **
+
+![登录](http://hbimg.b0.upaiyun.com/31170a5d7dc67feecebed4709823cd5c415d7eba53ae-uA9uCz_fw554)
+
+** 列表（可编辑） **
+
+![列表](http://hbimg.b0.upaiyun.com/1525d851854ffad81b7718fc9de940df219447909663-JshDPh_fw658)
+
+** 展示与编辑（可切换） **
+
+![展示](http://hbimg.b0.upaiyun.com/ebb39b86beaa09d0d954e9feac9fa34593e0f2c66501-QsBGNS_fw658)
+![编辑](http://hbimg.b0.upaiyun.com/91d37d633286ad29c65208bfb2dc1b1f34b0f2436bba-EFMrTx_fw658)
+
 ## 技术栈
 
 - koa

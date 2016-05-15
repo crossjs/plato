@@ -11,13 +11,6 @@ export default {
       hidden: true,
       component: resolve => require(['views/user/profile'], resolve)
     },
-    '/modify': {
-      icon: 'modify',
-      title: '修改密码',
-      name: 'user/modify',
-      auth: true,
-      component: resolve => require(['views/user/modify'], resolve)
-    },
     '/logout': {
       icon: 'logout',
       title: '退出',

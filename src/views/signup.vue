@@ -2,48 +2,53 @@
   <div class="signup">
     <c-form
       :submit="signup"
-      :fields="fields"
-      :buttons="buttons"></c-form>
+      :columns="columns"
+      :items="items"
+      :actions="actions"></c-form>
   </div>
 </template>
 
 <script>
-import mForm from 'mixins/m-form'
+import CForm from 'components/c-form'
 import md5 from 'utils/md5'
 import { createUser } from 'vx/actions'
-import userFields from 'utils/userFields'
+import { username, password } from 'utils/userFields'
 export default {
-  mixins: [mForm],
-
   data () {
     return {
-      fields: userFields,
-      buttons: {
+      columns: {
+        username,
+        password
+      },
+      items: {
+        username: '',
+        password: ''
+      }
+    }
+  },
+
+  computed: {
+    actions () {
+      return [null, {
         submit: {
           type: 'submit',
+          cls: 'primary',
           // string or function
-          label: $validation => {
-            return this.progress ? '提交注册中...' : '提交注册'
-          },
-          // boolean or function
-          disabled: $validation => {
-            return !$validation.valid || !!this.progress
-          }
+          label: this.progress ? '提交注册中...' : '提交注册',
+          disabled: !!this.progress
         }
-      }
+      }]
     }
   },
 
   // methods
   methods: {
-    signup ($validation) {
+    signup ($validation, $payload) {
       if (!$validation.valid) {
         return
       }
-      this.createUser(this.formdata(data => {
-        data.password = md5(data.password)
-        return data
-      }))
+      $payload.password = md5($payload.password)
+      this.createUser($payload)
     }
   },
 
@@ -63,6 +68,10 @@ export default {
         }
       })
     }
+  },
+
+  components: {
+    CForm
   }
 }
 </script>

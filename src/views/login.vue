@@ -2,52 +2,54 @@
   <div class="login">
     <c-form
       :submit="login"
-      :fields.sync="fields"
-      :buttons="buttons"></c-form>
+      :columns="columns"
+      :items="items"
+      :actions="actions"
+      @mutate="_mutate"></c-form>
   </div>
 </template>
 
 <script>
-import mForm from 'mixins/m-form'
+import CForm from 'components/c-form'
 import md5 from 'utils/md5'
 import { getBearer } from 'vx/actions'
 import { username, password } from 'utils/userFields'
 export default {
-  mixins: [mForm],
-
   data () {
     return {
-      fields: {
-        // copy
-        username: Object.assign({}, username, {
-          value: this.$route.query.username
-        }),
+      columns: {
+        username,
         password
+      },
+      items: {
+        username: this.$route.query.username,
+        password: ''
       }
     }
   },
 
   computed: {
-    buttons () {
-      return {
+    actions () {
+      return [null, {
         submit: {
           type: 'submit',
+          cls: 'primary',
           // string or function
           label: this.progress ? '提交登录中...' : '提交登录',
           disabled: !!this.progress
         }
-      }
+      }]
     }
   },
 
   // methods
   methods: {
-    login ($validation, $data) {
+    login ($validation, $payload) {
       if (!$validation.valid) {
         return
       }
-      $data.password = md5($data.password)
-      this.getBearer($data)
+      $payload.password = md5($payload.password)
+      this.getBearer($payload)
     }
   },
 
@@ -72,6 +74,10 @@ export default {
         }
       })
     }
+  },
+
+  components: {
+    CForm
   }
 }
 </script>

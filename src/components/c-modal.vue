@@ -1,14 +1,21 @@
 <template>
-  <div v-show="show" class="c-modal" :class="[cls]" transition="fade">
-    <div v-show="show" class="c-modal-content" transition="slide">
+  <div class="c-modal"
+    :class="[cls]"
+    v-show="show"
+    transition="fade">
+    <div class="c-modal-content"
+      v-show="show"
+      transition="slide">
       <div class="c-modal-header">
-        <button type="button" @click="_click('close')">&times;</button>
+        <button type="button"
+          @click="_click('close')">&times;</button>
         <h4 v-if="title">{{title}}</h4>
       </div>
       <div class="c-modal-body">{{body}}</div>
-      <div v-if="buttons" class="c-modal-footer">
-        <button v-for="button in buttons"
-          class="button"
+      <div class="c-modal-footer"
+        v-if="buttons">
+        <button class="button"
+          v-for="button in buttons"
           :role="$key"
           :type="button.type || 'button'"
            @click="_click($key)">{{button.label}}</button>

@@ -1,24 +1,26 @@
 .c-navbar {
+  position: absolute;
+  z-index: 1;
+  width: 100%;
 }
 
 .c-navbar-toggle {
-  float: right;
-  width: var(--header_height);
-  line-height: var(--header_height);
+  position: absolute;
+  right: 0;
+  width: 4rem;
+  font-size: 1.2rem;
+  line-height: 4rem;
   text-align: center;
 }
 
 .c-navbar-menu {
   position: absolute;
   z-index: 9;
-  top: var(--header_height);
+  top: 4rem;
   width: 100%;
   background-color: white;
   box-shadow: 0 1px 3px color(white lightness(-20%));
   /*transition: margin-left 200ms linear;*/
-
-  & ul {
-  }
 
   & li {
     & ul {
@@ -44,7 +46,7 @@
   & a {
     display: block;
     padding: 0 1rem;
-    line-height: var(--header_height);
+    line-height: 4rem;
     text-decoration: none;
 
     &:active {

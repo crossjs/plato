@@ -9,11 +9,9 @@
 </template>
 
 <script>
-import mForm from 'mixins/m-form'
+import CForm from 'components/c-form'
 import { createPage } from 'vx/actions'
 export default {
-  mixins: [mForm],
-
   data () {
     return {
       submit: this.create,
@@ -64,11 +62,11 @@ export default {
   },
 
   methods: {
-    create ($validation) {
+    create ($validation, $data) {
       if (!$validation.valid) {
         return
       }
-      this.createPage(this.formdata())
+      this.createPage($data)
     }
   },
 
@@ -76,6 +74,10 @@ export default {
     actions: {
       createPage
     }
+  },
+
+  components: {
+    CForm
   }
 }
 </script>

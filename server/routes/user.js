@@ -1,6 +1,5 @@
 import _debug from 'debug'
 import respond from './utils/respond'
-import hash from '../utils/hash'
 import User from '../models/user'
 import { check } from '../passport'
 
@@ -47,15 +46,10 @@ export default (app, router) => {
   })
 
   router.patch('/user/profile', check, async ctx => {
-    const { password0, password } = ctx.request.body
-    if (hash(password0, ctx._user.salt) !== ctx._user.password) {
-      return respond(400, {
-        message: '密码不正确'
-      }, ctx)
-    }
+    const { state } = ctx.request.body
     const user = await User.findOneAndUpdate({
       token: ctx.request.token
-    }, { password }, { new: true }).exec()
+    }, { state }, { new: true }).exec()
     if (!user) {
       return respond(404, {
         message: '用户不存在'

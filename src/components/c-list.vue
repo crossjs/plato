@@ -5,32 +5,20 @@
       v-if="title">{{title}}</h5>
     <div class="c-list-items"
       v-if="items">
-      <div class="c-list-item"
-        v-for="item in items">
-        <icon cls="c-list-icon" :value="item.icon"></icon>
-        <labe cls="c-list-labe" :value="item.label"></labe>
-        <component
-          cls="c-list-value"
-          :is="item.type"
-          :state="state"
-          :field="$key"
-          :attrs="item.attrs"
-          :validate="item.validate"
-          :value.sync="item.value"
-          @mutate="_mutate($key, $arguments)"></component>
+      <list-item
+        v-for="column in columns"
+        :state="state"
+        :field="$key"
+        :column="column"
+        :value="items[$key]"
+        @mutate="_mutate($key, $arguments)">
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import Icon from './c-icon'
-import Labe from './c-labe'
-import Text from './c-text'
-import Password from './c-password'
-import Checkbox from './c-checkbox'
-import Datetime from './c-datetime'
-import Dropdown from './c-dropdown'
+import ListItem from './c-list-item'
 export default {
   props: {
     cls: {
@@ -45,6 +33,10 @@ export default {
       type: String,
       default: ''
     },
+    columns: {
+      type: Object,
+      default: () => {}
+    },
     items: {
       type: Object,
       default: () => {}
@@ -52,29 +44,13 @@ export default {
   },
 
   methods: {
-    _mutate (key, [value]) {
-      if (!this.payload) {
-        this.payload = { ...this.data }
-      }
-      // 数据变更，保存到 payload
-      this.payload[key] = value
-    },
-    _click (key, action) {
-      if (action.hasOwnProperty('state')) {
-        this.state = action.state
-      }
-      this.$emit('action', key, action, this.data, this.payload)
+    _mutate (key, [val]) {
+      this.$emit('mutate', key, val)
     }
   },
 
   components: {
-    Icon,
-    Labe,
-    Text,
-    Password,
-    Checkbox,
-    Datetime,
-    Dropdown
+    ListItem
   }
 }
 </script>

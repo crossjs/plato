@@ -1,44 +1,31 @@
 <template>
   <div class="profile">
-    <validator name="validation">
-      <list
-        :state="state"
-        :title="title"
-        :items="items"
-        ></list>
-      <pane>
-        <button class="button primary"
-          @click="_click">修改资料</button>
-      </pane>
-    </validator>
+    <c-form
+      :submit="submit"
+      :state="state"
+      :title="title"
+      :columns="columns"
+      :items="profile"
+      :actions="actions"></c-form>
   </div>
 </template>
 
 <script>
+import CForm from 'components/c-form'
 import { profile } from 'vx/getters'
-import { getProfile } from 'vx/actions'
-import List from 'components/c-list'
-import Pane from 'components/c-pane'
+import { getProfile, updateProfile } from 'vx/actions'
 export default {
   data () {
     return {
       state: 0,
-      title: '用户信息'
-    }
-  },
-
-  computed: {
-    items () {
-      const profile = this.profile
-      return profile ? {
+      title: '用户信息',
+      columns: {
         username: {
           label: '账号',
-          value: profile.username,
           type: 'text'
         },
         state: {
           label: '状态',
-          value: profile.state,
           type: 'checkbox',
           attrs: {
             'true-label': '正常',
@@ -47,21 +34,67 @@ export default {
         },
         created: {
           label: '创建时间',
-          value: profile.created,
           type: 'datetime'
         },
         updated: {
           label: '活跃时间',
-          value: profile.updated,
           type: 'datetime'
         }
-      } : null
+      }
+    }
+  },
+
+  computed: {
+    actions () {
+      return [
+        // 展示态
+        {
+          modify: {
+            type: 'button',
+            cls: 'primary',
+            label: '修改个人资料',
+            mutation (ctx) {
+              ctx.$parent.state = 1
+            }
+          }
+        },
+        // 编辑态
+        {
+          cancel: {
+            type: 'submit',
+            // cls: 'default',
+            label: '取消',
+            mutation (ctx) {
+              ctx.$parent.state = 0
+            }
+          },
+          submit: {
+            type: 'submit',
+            cls: 'warning',
+            label: this.progress ? '提交修改中...' : '提交修改',
+            disabled: !!this.progress
+          }
+        }
+      ]
     }
   },
 
   methods: {
-    _click () {
-      this.state = 2 + ~this.state
+    submit ($validation, $payload) {
+      if (!$validation.valid) {
+        return
+      }
+      this.updateProfile($payload)
+    }
+  },
+
+  watch: {
+    profile (val) {
+      this.state && this.$nextTick(() => {
+        if (val) {
+          this.state = 0
+        }
+      })
     }
   },
 
@@ -76,13 +109,13 @@ export default {
       profile
     },
     actions: {
-      getProfile
+      getProfile,
+      updateProfile
     }
   },
 
   components: {
-    List,
-    Pane
+    CForm
   }
 }
 </script>

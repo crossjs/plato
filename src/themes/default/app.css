@@ -3,26 +3,11 @@
 @import "utils/globals";
 
 .container {
-  /*min-width: var(--page_min_width);*/
-  /*background-color: white;*/
 }
 
 .header {
-  height: var(--header_height);
+  height: 4rem;
   background-color: color(var(--invert) lightness(-30%));
-}
-
-.content {
-  /*padding: 1rem;*/
-}
-
-.footer {
-  display: none;
-  clear: both;
-  color: white;
-  text-align: center;
-  background-color: color(var(--invert) saturation(5%) lightness(40%));
-  padding: 0.5rem;
 }
 
 .router-view {

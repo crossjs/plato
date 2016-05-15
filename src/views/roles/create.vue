@@ -9,12 +9,10 @@
 </template>
 
 <script>
-import mForm from 'mixins/m-form'
+import CForm from 'components/c-form'
 import { createRole } from 'vx/actions'
 import { ROLE_LEVEL_OPTIONS } from 'vx/constants'
 export default {
-  mixins: [mForm],
-
   data () {
     return {
       fields: {
@@ -80,11 +78,11 @@ export default {
   },
 
   methods: {
-    create ($validation) {
+    create ($validation, $data) {
       if (!$validation.valid) {
         return
       }
-      this.createRole(this.formdata())
+      this.createRole($data)
     }
   },
 
@@ -92,6 +90,10 @@ export default {
     actions: {
       createRole
     }
+  },
+
+  components: {
+    CForm
   }
 }
 </script>

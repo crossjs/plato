@@ -5,7 +5,6 @@ export default {
     label: '账号',
     icon: 'iconfont-user-o',
     type: 'text',
-    value: '',
     attrs: {
       placeholder: RE_USERNAME[1]
     },
@@ -32,7 +31,6 @@ export default {
     label: '密码',
     icon: 'iconfont-lock-o',
     type: 'password',
-    value: '',
     attrs: {
       placeholder: RE_PASSWORD[1]
     },

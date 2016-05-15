@@ -2,7 +2,7 @@
   <div
     class="c-toast"
     :class="[cls]"
-    v-if="toasts.length"
+    v-show="toasts.length"
     transition="slide">
     <div
       class="toast"
@@ -31,7 +31,7 @@ export default {
 
   methods: {
     _remove (toast) {
-      this.$emit('remote', toast)
+      this.$emit('remove', toast)
     }
   }
 }

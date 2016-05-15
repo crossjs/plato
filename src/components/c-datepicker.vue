@@ -3,12 +3,10 @@
     :class="[cls]"
     tabindex="-1"
     v-focus="show"
-    v-show="show"
-    transition="slide">
+    v-show="show">
     <div class="c-datepicker-mask"
       @touchend.prevent="show = false"
-      v-show="show"
-      transition="slide"></div>
+      v-show="show"></div>
     <div class="c-datepicker-body"
       @touchmove.prevent
       v-show="show"

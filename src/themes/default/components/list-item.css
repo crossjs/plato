@@ -1,0 +1,23 @@
+.c-list-item {
+  display: flex;
+  flex-direction: row;
+  padding: 1rem;
+  border-top: 1px solid color(white lightness(-10%));
+
+  &:first-child {
+    border-top: none;
+  }
+}
+
+.c-list-icon {
+  flex: none;
+}
+
+.c-list-label {
+  flex: none;
+}
+
+.c-list-value {
+  flex: auto;
+  text-align: right;
+}

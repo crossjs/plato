@@ -1,7 +1,15 @@
 <template>
   <validator name="validation">
-    <ul class="c-form-errors" v-if="$validation.errors && $validation.modified">
-      <li class="c-form-error" v-for="error in $validation.errors">
+    <modal
+      :show.sync="modal.show"
+      :args.sync="modal.args"
+      :title="modal.title"
+      :body="modal.body"
+      :callback="modal.callback"></modal>
+    <ul class="c-form-errors"
+      v-if="$validation.errors && $validation.modified">
+      <li class="c-form-error"
+        v-for="error in $validation.errors">
         {{error.message}}
       </li>
     </ul>
@@ -13,25 +21,39 @@
       <list
         :state="state"
         :title="title"
-        :items="fields"
-        ></list>
-      <pane>
-        <button v-for="button in buttons"
-          class="button"
-          :class="[$key]"
-          :type="button.type || 'button'"
-          :disabled="button.disabled || $validation.invalid">{{button.label}}</button>
+        :columns="columns"
+        :items="items"
+        @mutate="_mutate"></list>
+      <pane v-for="a in actions"
+        v-show="state === $index">
+        <flex v-for="action in a" transition="fade">
+          <button class="button"
+            :class="[action.cls || 'default']"
+            :type="action.type || 'button'"
+            :disabled="action.disabled || $validation.invalid"
+            @click="_click($key, action)">{{action.label}}</button>
+        </flex>
       </pane>
     </form>
   </validator>
 </template>
 
 <script>
+import Modal from './c-modal'
 import List from './c-list'
 import Pane from './c-pane'
+import Flex from './c-flex'
 export default {
   props: {
     cls: {
+      type: String,
+      default: ''
+    },
+    state: {
+      type: Number,
+      default: 1
+    },
+    title: {
       type: String,
       default: ''
     },
@@ -39,41 +61,66 @@ export default {
       type: Function,
       default: () => true
     },
-    fields: {
+    columns: {
       type: Object,
       default: () => {}
     },
-    buttons: {
+    items: {
       type: Object,
       default: () => {}
+    },
+    actions: {
+      type: Array,
+      default: () => []
     }
   },
 
   data () {
     return {
-      state: 1
+      args: [],
+      modal: {
+        show: false,
+        title: '',
+        body: '',
+        callback (key) {
+          if (key === 'submit') {
+            this.$parent.$emit(...this.$parent.args)
+          }
+        }
+      }
     }
   },
 
   methods: {
-    _submit () {
-      if (this.$validation.valid) {
-        this.submit(this.$validation, this._formdata())
-      } else {
-        this.submit(this.$validation)
+    _mutate (key, val) {
+      if (val !== this.items[key]) {
+        if (!this.payload) {
+          this.payload = { ...this.items }
+        }
+        this.payload[key] = val
+        this.$emit('mutate', this.payload)
       }
     },
-    _formdata () {
-      return Object.keys(this.fields).reduce((obj, key) => {
-        obj[key] = this.fields[key].value
-        return obj
-      }, {})
+    _click (key, action) {
+      const args = ['action', key]
+      if (action.mutation) {
+        if (action.mutation(this) === false) {
+          this.args = args
+          return false
+        }
+      }
+      this.$emit(...args)
+    },
+    _submit () {
+      this.submit(this.$validation, this.payload)
     }
   },
 
   components: {
+    Modal,
     List,
-    Pane
+    Pane,
+    Flex
   }
 }
 </script>

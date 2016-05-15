@@ -13,7 +13,7 @@ function setProgress (progress) {
   store.dispatch(SET_PROGRESS, progress)
 }
 
-function setToast (toast) {
+function addToast (toast) {
   toast._id = Date.now()
 
   store.dispatch(ADD_TOAST, toast)
@@ -66,12 +66,12 @@ const ajax = (url, options = {}) => {
   .catch(err => {
     setProgress(0)
     if (!err.json) {
-      setToast({
+      addToast({
         code: '500',
         message: 'Server Error'
       })
     } else {
-      err.json().then(setToast)
+      err.json().then(addToast)
     }
     throw err
   })
@@ -107,5 +107,5 @@ export const DELETE = (url, options = {}) => {
 export const PAGINATE_QUERY = {
   $count: true,
   $offset: 0,
-  $limit: 1
+  $limit: 2
 }

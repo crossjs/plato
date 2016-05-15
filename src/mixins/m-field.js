@@ -9,6 +9,7 @@ export default {
       default: 0
     },
     value: {
+      twoWay: true
     },
     field: {
       type: String,
@@ -16,30 +17,11 @@ export default {
     },
     attrs: {
       type: Object,
-      default () {
-        return {}
-      }
+      default: () => {}
     },
     validate: {
       type: Object,
-      default () {
-        return {}
-      }
-    }
-  },
-
-  watch: {
-    state (v) {
-      if (v === 0) {
-        this.value = this.cache
-      } else {
-        this.cache = this.value
-      }
-    },
-    value (v) {
-      this.$nextTick(() => {
-        this.$emit('mutate', v)
-      })
+      default: () => {}
     }
   }
 }
