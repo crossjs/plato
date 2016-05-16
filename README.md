@@ -1,9 +1,9 @@
-# plat
+# plato
 
-[![Travis](https://img.shields.io/travis/crossjs/plat.svg?style=flat-square)](https://github.com/crossjs/plat)
-[![Coveralls](https://img.shields.io/coveralls/crossjs/plat.svg?style=flat-square)](https://github.com/crossjs/plat)
-[![dependencies](https://david-dm.org/crossjs/plat.svg?style=flat-square)](https://david-dm.org/crossjs/plat)
-[![devDependency Status](https://david-dm.org/crossjs/plat/dev-status.svg?style=flat-square)](https://david-dm.org/crossjs/plat#info=devDependencies)
+[![Travis](https://img.shields.io/travis/crossjs/plat.svg?style=flat-square)](https://github.com/crossjs/plato)
+[![Coveralls](https://img.shields.io/coveralls/crossjs/plato.svg?style=flat-square)](https://github.com/crossjs/plato)
+[![dependencies](https://david-dm.org/crossjs/plato.svg?style=flat-square)](https://david-dm.org/crossjs/plato)
+[![devDependency Status](https://david-dm.org/crossjs/plato/dev-status.svg?style=flat-square)](https://david-dm.org/crossjs/plato#info=devDependencies)
 
 > A plat<del>form</del> built with koa and vue
 
