@@ -1,6 +1,6 @@
 # plato
 
-[![Travis](https://img.shields.io/travis/crossjs/plat.svg?style=flat-square)](https://github.com/crossjs/plato)
+[![Travis](https://img.shields.io/travis/crossjs/plato.svg?style=flat-square)](https://github.com/crossjs/plato)
 [![Coveralls](https://img.shields.io/coveralls/crossjs/plato.svg?style=flat-square)](https://github.com/crossjs/plato)
 [![dependencies](https://david-dm.org/crossjs/plato.svg?style=flat-square)](https://david-dm.org/crossjs/plato)
 [![devDependency Status](https://david-dm.org/crossjs/plato/dev-status.svg?style=flat-square)](https://david-dm.org/crossjs/plato#info=devDependencies)
