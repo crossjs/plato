@@ -12,7 +12,7 @@
     "unit": "better-npm-run unit",
     "unit:dev": "npm run unit -- --watch",
     "e2e": "better-npm-run e2e",
-    "test": "npm run unit && npm run e2e",
+    "test": "npm run unit",
     "lint": "eslint --max-warnings 10 .",
     "lint:fix": "npm run lint -- --fix",
     "clean": "better-npm-run clean",
