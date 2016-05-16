@@ -1,7 +1,10 @@
 <template>
   <div class="container">
-    <progress cls="progress" :progress="progress"></progress>
-    <toast cls="toast" :toasts="toasts" @remove="removeToast"></toast>
+    <progress cls="progress"
+      :progress="progress"></progress>
+    <toast cls="toast"
+      :toasts="toasts"
+      @remove="removeToast"></toast>
     <header class="header">
       <logo cls="logo">
         <a v-link="{ path: '/', exact: true }">plat</a>
@@ -13,7 +16,10 @@
           ></route>
       </navbar>
     </header>
-    <router-view class="router-view" transition="router-view-transition" transition-mode="out-in" keep-alive></router-view>
+    <router-view class="router-view"
+      transition="router-view-transition"
+      transition-mode="out-in"
+      keep-alive></router-view>
   </div>
 </template>
 

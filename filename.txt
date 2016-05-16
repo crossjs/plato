@@ -1,0 +1,153 @@
+{
+  "basePath": "../../",
+  "files": [
+    "./node_modules/phantomjs-polyfill/bind-polyfill.js",
+    "./node_modules/sinon/pkg/sinon.js",
+    {
+      "pattern": "./test/unit/index.js",
+      "watched": false,
+      "served": true,
+      "included": true
+    }
+  ],
+  "proxies": {},
+  "singleRun": false,
+  "frameworks": [
+    "mocha"
+  ],
+  "preprocessors": {
+    "test/unit/index.js": [
+      "webpack",
+      "sourcemap"
+    ]
+  },
+  "reporters": [
+    "mocha",
+    "coverage"
+  ],
+  "browsers": [
+    "PhantomJS"
+  ],
+  "webpack": {
+    "devtool": "inline-source-map",
+    "resolve": {
+      "root": "C:\\plat\\src",
+      "extensions": [
+        "",
+        ".css",
+        ".js",
+        ".json",
+        ".vue"
+      ],
+      "alias": {
+        "styles": "C:\\plat\\src\\themes\\default"
+      },
+      "modulesDirectories": [
+        "node_modules"
+      ]
+    },
+    "plugins": [
+      {
+        "definitions": {
+          "process.env": {
+            "NODE_ENV": "\"test\""
+          },
+          "NODE_ENV": "test",
+          "__DEV__": false,
+          "__PROD__": false,
+          "__TEST__": true,
+          "__BASENAME__": "\"\""
+        }
+      },
+      {
+        "options": {
+          "template": "C:\\plat\\src\\index.html",
+          "filename": "index.html",
+          "hash": false,
+          "inject": true,
+          "compile": true,
+          "favicon": "C:\\plat\\src\\static\\favicon.ico",
+          "minify": {
+            "collapseWhitespace": false,
+            "minifyJS": false
+          },
+          "cache": true,
+          "showErrors": true,
+          "chunks": "all",
+          "excludeChunks": [],
+          "title": "Webpack App",
+          "xhtml": false
+        }
+      },
+      {}
+    ],
+    "module": {
+      "loaders": [
+        {
+          "test": {},
+          "loader": "vue"
+        },
+        {
+          "test": {},
+          "loader": "bundle!babel",
+          "include": {},
+          "exclude": {}
+        },
+        {
+          "test": {},
+          "loader": "babel",
+          "exclude": {}
+        },
+        {
+          "test": {},
+          "loader": "babel",
+          "include": {}
+        },
+        {
+          "test": {},
+          "loader": "json"
+        },
+        {
+          "test": {},
+          "loader": "vue-html"
+        },
+        {
+          "test": {},
+          "loader": "url",
+          "query": {
+            "limit": 10000,
+            "name": "[name].[ext]?[hash:7]"
+          }
+        }
+      ],
+      "preLoaders": [
+        {
+          "test": {},
+          "include": "C:\\plat\\src",
+          "loader": "isparta",
+          "exclude": {}
+        }
+      ]
+    },
+    "vue": {
+      "loaders": {
+        "css": "vue-style!css?sourceMap"
+      },
+      "autoprefixer": false
+    }
+  },
+  "webpackMiddleware": {
+    "noInfo": true
+  },
+  "coverageReporter": {
+    "reporters": [
+      {
+        "type": "text-summary"
+      },
+      {
+        "type": "html",
+        "dir": "coverage"
+      }
+    ]
+  }
+}

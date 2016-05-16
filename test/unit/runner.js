@@ -17,12 +17,12 @@ export default server => {
   )
 
   runner.on('exit', function (code) {
-    server.close()
+    server && server.close()
     process.exit(code)
   })
 
   runner.on('error', function (err) {
-    server.close()
+    server && server.close()
     throw err
   })
 }

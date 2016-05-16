@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import fastclick from 'fastclick'
-// import 'vue-picker'
 // import Validator from 'vue-validator'
 import Validator from 'utils/validator'
 

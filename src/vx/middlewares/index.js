@@ -8,7 +8,7 @@ import {
 } from '../constants'
 
 const middlewares = [createPromise({
-  debug: true,
+  debug: process.env.NODE_ENV === 'development',
   status: {
     PENDING: PROMISE_PENDING,
     SUCCESS: PROMISE_SUCCESS,

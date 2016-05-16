@@ -1,4 +1,7 @@
 # plat
+
+[![Travis](https://img.shields.io/travis/crossjs/plat.svg?style=flat-square)](https://github.com/crossjs/plat)
+[![Coveralls](https://img.shields.io/coveralls/crossjs/plat.svg?style=flat-square)](https://github.com/crossjs/plat)
 [![dependencies](https://david-dm.org/crossjs/plat.svg?style=flat-square)](https://david-dm.org/crossjs/plat)
 [![devDependency Status](https://david-dm.org/crossjs/plat/dev-status.svg?style=flat-square)](https://david-dm.org/crossjs/plat#info=devDependencies)
 

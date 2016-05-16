@@ -56,7 +56,7 @@ webpackConfig.output = {
 
 webpackConfig.module.preLoaders = [
   {
-    test: /\.(vue|js)$/,
+    test: /\.(js|vue)$/,
     loader: 'eslint',
     exclude: /node_modules/,
     query: {
@@ -70,7 +70,7 @@ webpackConfig.module.preLoaders = [
 // ------------------------------------
 
 const cssLoaders = (loaders => {
-  if (__DEV__) {
+  if (!__PROD__) {
     return loaders.join('!')
   }
   const [first, ...rest] = loaders
@@ -84,19 +84,8 @@ webpackConfig.module.loaders = [
   },
   {
     test: /\.js$/,
-    loader: 'bundle!babel',
-    include: /views/,
+    loader: 'babel',
     exclude: /node_modules/
-  },
-  {
-    test: /\.js$/,
-    loader: 'babel',
-    exclude: /views|node_modules/
-  },
-  {
-    test: /\.js$/,
-    loader: 'babel',
-    include: /vuex-promise/
   },
   {
     test: /\.json$/,

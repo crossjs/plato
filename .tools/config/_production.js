@@ -1,5 +1,5 @@
-/* eslint key-spacing:0 */
 export default config => ({
-  compiler_hash_type       : 'chunkhash',
-  compiler_public_path     : '/'
+  compiler_hash_type: 'chunkhash',
+  compiler_html_minify: true,
+  compiler_public_path: '/'
 })

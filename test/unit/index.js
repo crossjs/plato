@@ -3,10 +3,8 @@
 // ---------------------------------------
 import chai from 'chai'
 import sinonChai from 'sinon-chai'
-import chaiAsPromised from 'chai-as-promised'
 
 chai.use(sinonChai)
-chai.use(chaiAsPromised)
 
 global.chai = chai
 global.assert = chai.assert
@@ -27,7 +25,7 @@ const testsContext = require.context('./', true, /\.spec\.js$/)
 const testsToRun = testsContext.keys().filter(inManifest)
 ;(testsToRun.length ? testsToRun : testsContext.keys()).forEach(testsContext)
 
-// require all `src/**/*.js` except for `index.js` (for isparta coverage reporting)
-const componentsContext = require.context('../../src/', true, /^((?!index).)*\.js$/)
+// require all `src/**/*.(js|vue)` except for `index.(js|vue)` (for isparta coverage reporting)
+const componentsContext = require.context('../../src/', true, /^((?!index).)*\.(js|vue)$/)
 
 componentsContext.keys().forEach(componentsContext)

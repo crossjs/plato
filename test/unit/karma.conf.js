@@ -1,4 +1,3 @@
-import { argv } from 'yargs'
 import config from '../../.tools/config'
 import webpackConfig from '../../.tools/webpack'
 
@@ -18,39 +17,40 @@ const karmaConfig = {
     }
   ],
   proxies: {
-    '/api/': 'http://localhost:3000/api/'
+    // '/apis/': 'http://localhost:3000/apis/'
   },
-  singleRun: !argv.watch,
+  singleRun: config.coverage_enabled,
   frameworks: ['mocha'],
   preprocessors: {
     [`${config.dir_test}/unit/index.js`]: ['webpack', 'sourcemap']
   },
-  reporters: ['mocha'],
+  reporters: ['mocha', 'coverage'],
+  coverageReporter: {
+    reporters: config.coverage_reporters,
+    check: config.coverage_check
+  },
   browsers: ['PhantomJS'],
   webpack: {
-    devtool: 'inline-source-map',
+    devtool: webpackConfig.devtool,
     resolve: webpackConfig.resolve,
     plugins: webpackConfig.plugins,
     module: {
+      preLoaders: [{
+        test: /\.js$/,
+        include: config.paths.src(),
+        loader: 'isparta'
+      }],
       loaders: webpackConfig.module.loaders
+    },
+    vue: {
+      loaders: {
+        js: 'isparta'
+      }
     }
   },
   webpackMiddleware: {
     noInfo: true
-  },
-  coverageReporter: {
-    reporters: config.coverage_reporters
   }
-}
-
-if (config.coverage_enabled) {
-  karmaConfig.reporters.push('coverage')
-  karmaConfig.webpack.module.preLoaders = [{
-    test: /\.js$/,
-    include: new RegExp(config.dir_client),
-    loader: 'isparta',
-    exclude: /node_modules/
-  }]
 }
 
 export default cfg => cfg.set(karmaConfig)

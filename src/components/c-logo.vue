@@ -1,6 +1,5 @@
 <template>
-  <div
-    class="c-logo"
+  <div class="c-logo"
     :class="[cls]">
     <slot></slot>
   </div>

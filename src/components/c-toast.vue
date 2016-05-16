@@ -1,12 +1,12 @@
 <template>
   <div class="c-toast"
     :class="[cls]"
-    v-show="toasts.length"
-    transition="slide">
+    :transition="transition"
+    v-show="toasts.length">
     <div class="toast"
+      :transition="transition"
       v-for="toast in toasts"
-      track-by="_id"
-      transition="slide">
+      track-by="_id">
       <button class="ignore" @click="_remove(toast)">ⓧ</button>
       <pre class="code"><code> {{toast.code}} </code></pre>
       <pre class="message"><code> {{toast.message}} </code></pre>
@@ -20,6 +20,10 @@ export default {
     cls: {
       type: String,
       default: ''
+    },
+    transition: {
+      type: String,
+      default: 'slide'
     },
     toasts: {
       type: Array,
