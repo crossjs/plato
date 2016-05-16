@@ -76,6 +76,7 @@
   },
   "dependencies": {
     "blueimp-md5": "^2.3.0",
+    "chartist": "^0.9.7",
     "clone": "^1.0.2",
     "deep-equal": "^1.0.1",
     "fastclick": "^1.0.6",
@@ -102,7 +103,6 @@
     "passport-local": "^1.0.0",
     "querystring": "^0.2.0",
     "vue": "^1.0.22",
-    "vue-picker": "0.0.4",
     "vue-router": "^0.7.13",
     "vue-validator": "^2.1.1",
     "vuex-fsa": "^0.6.3",
@@ -110,6 +110,7 @@
     "whatwg-fetch": "^1.0.0"
   },
   "devDependencies": {
+    "babel-core": "^6.8.0",
     "babel-eslint": "^6.0.4",
     "babel-loader": "^6.2.4",
     "babel-plugin-add-module-exports": "^0.2.0",
@@ -120,6 +121,7 @@
     "babel-preset-es2015-rollup": "^1.1.1",
     "babel-preset-stage-0": "^6.5.0",
     "babel-register": "^6.8.0",
+    "babel-runtime": "^6.6.1",
     "better-npm-run": "0.0.8",
     "bundle-loader": "^0.5.4",
     "chai": "^3.5.0",
