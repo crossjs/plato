@@ -20,8 +20,6 @@ export default {
       default: () => {}
     },
     validate: {
-      type: Object,
-      default: () => {}
     }
   },
 
@@ -30,7 +28,12 @@ export default {
       return this.state === 1 && (!this.attrs || !this.attrs.readonly)
     },
     _attrs () {
-      return { ...this.attrs, ...this.validate }
+      if (this.state !== 1 || !this.validate) {
+        return this.attrs || {}
+      }
+      return Object.assign({
+        'v-validate': this.validate
+      }, this.attrs, this.validate)
     }
   }
 }

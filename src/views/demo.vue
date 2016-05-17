@@ -5,17 +5,17 @@
         type="button"
         @click="_toggle">切换状态</button>
     </pane>
-    <c-form
+    <list
       v-for="demo in demos"
       :state="state"
       :title="demo.title"
       :columns="demo.columns"
-      :items="demo.items"></c-form>
+      :items="demo.items"></list>
   </div>
 </template>
 
 <script>
-import CForm from 'components/c-form'
+import List from 'components/c-list'
 import Pane from 'components/c-pane'
 import { ROLE_LEVEL_OPTIONS } from 'vx/constants'
 export default {
@@ -90,8 +90,8 @@ export default {
             label: '自定义 Value',
             type: 'checkbox',
             attrs: {
-              'true-value': 1,
-              'false-value': 0
+              'true-value': true,
+              'false-value': false
             }
           }
         },
@@ -99,7 +99,7 @@ export default {
           regular: false,
           readonly: true,
           customLabel: true,
-          customValue: 0
+          customValue: false
         }
       }, {
         title: 'Datetime',
@@ -114,11 +114,27 @@ export default {
             attrs: {
               readonly: true
             }
+          },
+          custom: {
+            label: '自定义',
+            type: 'datetime',
+            attrs: {
+              format: 'yyyy-MM-dd'
+            }
+          },
+          custom2: {
+            label: '自定义',
+            type: 'datetime',
+            attrs: {
+              format: 'yyyy年MM月dd日'
+            }
           }
         },
         items: {
           regular: Date.now(),
-          readonly: Date.now()
+          readonly: Date.now(),
+          custom: Date.now(),
+          custom2: Date.now()
         }
       }]
     }
@@ -131,7 +147,7 @@ export default {
   },
 
   components: {
-    CForm,
+    List,
     Pane
   }
 }

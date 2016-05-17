@@ -28,10 +28,24 @@
   & a {
     cursor: pointer;
   }
+
+  & i {
+    width: 2rem;
+    text-align: center;
+    font-style: normal;
+    font-size: 0.8rem;
+  }
+
+  & b {
+    flex: auto;
+    font-weight: normal;
+  }
 }
 
 .c-datepicker-header {
-  font-size: 1.5em;
+  display: flex;
+  flex-direction: row;
+  line-height: 2rem;
   border-bottom: 1px solid color(white lightness(-10%));
 }
 
@@ -40,13 +54,8 @@
   flex-direction: row;
   height: 14rem;
 
-  & > i {
-    flex: none;
-    width: 1rem;
-    text-align: center;
+  & i {
     line-height: 14rem;
-    font-style: normal;
-    font-size: 0.8rem;
   }
 
   & > div {

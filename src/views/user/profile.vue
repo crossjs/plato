@@ -24,7 +24,21 @@ export default {
           label: '账号',
           type: 'text',
           attrs: {
-            readonly: true
+            // readonly: true
+          },
+          validate: {
+            required: {
+              rule: true,
+              message: '请输入账号'
+            },
+            minlength: {
+              rule: 4,
+              message: '账号不能少于 4 个字符'
+            },
+            maxlength: {
+              rule: 20,
+              message: '账号不能多于 20 个字符'
+            }
           }
         },
         state: {

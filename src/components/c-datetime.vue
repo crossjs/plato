@@ -4,21 +4,21 @@
     <template v-if="editing">
       <input class="c-datetime-input"
         type="text"
-        :value="datetime(value)"
+        :value="datetime(value, _attrs.format)"
         @click="this.showPicker = !this.showPicker"
         readonly>
       <input type="hidden"
         :field="field"
         v-model="value"
-        v-bind="attrs"
-        v-validate="validate"
+        v-bind="_attrs"
         number>
       <datepicker
         :value.sync="value"
+        :format="_attrs.format"
         :show.sync="showPicker"></datepicker>
     </template>
     <template v-else>
-      {{datetime(value)}}
+      {{datetime(value, _attrs.format)}}
     </template>
   </div>
 </template>

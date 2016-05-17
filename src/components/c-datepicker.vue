@@ -12,54 +12,21 @@
       v-show="show"
       transition="slide">
       <div class="c-datepicker-header">
-        {{zeroPad(year)}}
-        -
-        {{zeroPad(month)}}
-        -
-        {{zeroPad(date)}}
-        &nbsp;
-        {{zeroPad(hour)}}
-        :
-        {{zeroPad(minute)}}
-        :
-        {{zeroPad(second)}}
+        <template v-for="column in columns" track-by="$index">
+          <b v-if="column.type === 'picker'">{{zeroPad(column.value)}}</b>
+          <i v-else>{{column}}</i>
+        </template>
       </div>
       <div class="c-datepicker-content">
-        <picker
-          cls="c-datepicker-years"
-          :size="size"
-          :value.sync="year"
-          :items="years"></picker>
-        <i>-</i>
-        <picker
-          cls="c-datepicker-months"
-          :size="size"
-          :value.sync="month"
-          :items="months"></picker>
-        <i>-</i>
-        <picker
-          cls="c-datepicker-dates"
-          :size="size"
-          :value.sync="date"
-          :items="dates"></picker>
-        <i></i>
-        <picker
-          cls="c-datepicker-hours"
-          :size="size"
-          :value.sync="hour"
-          :items="hours"></picker>
-        <i>:</i>
-        <picker
-          cls="c-datepicker-minutes"
-          :size="size"
-          :value.sync="minute"
-          :items="minutes"></picker>
-        <i>:</i>
-        <picker
-          cls="c-datepicker-seconds"
-          :size="size"
-          :value.sync="second"
-          :items="seconds"></picker>
+        <template v-for="column in columns" track-by="$index">
+          <picker v-if="column.type === 'picker'"
+            :cls="column.cls"
+            :size="size"
+            :value="column.value"
+            :items="column.items"
+            @mutate="column.mutate"></picker>
+          <i v-else>{{column}}</i>
+        </template>
       </div>
     </div>
   </div>
@@ -82,9 +49,9 @@ export default {
       type: Number,
       default: 0
     },
-    view: {
+    format: {
       type: String,
-      default: 'd'
+      default: 'yyyy-MM-dd hh:mm:ss'
     }
   },
 
@@ -100,21 +67,30 @@ export default {
       minute: moment.m(),
       second: moment.s(),
       /* eslint-enable */
-      years: makeArray(1900, 2020),
-      months: makeArray(1, 12),
-      hours: makeArray(0, 23),
-      minutes: makeArray(0, 59),
-      seconds: makeArray(0, 59)
     }
   },
 
   computed: {
-    // years () {
-    //   const half = (this.size - 1) / 2
-    //   return makeArray(this.year - half, this.year + half)
-    // },
-    dates () {
-      return makeArray(1, datetime(`${this.year}-${this.month + 1}-00`, 'yyyy-MM-dd').d())
+    columns () {
+      const views = this.format.match(/y+|M+|d+|h+|m+|s+|i+|E+|D+|[^yMdhmsiED]+/g)
+      if (views === null) {
+        return []
+      }
+      return views.map(view => {
+        if (/[^yMdhmsiED]/.test(view)) {
+          return view
+        }
+        const varname = this.getName(view)
+        return {
+          cls: `c-datepicker-${varname}s`,
+          type: 'picker',
+          value: this[varname],
+          items: this.getItems(view),
+          mutate (val) {
+            this[varname] = val
+          }
+        }
+      })
     }
   },
 
@@ -128,7 +104,32 @@ export default {
   },
 
   methods: {
-    zeroPad
+    zeroPad,
+    getName (type) {
+      return ({
+        'yyyy': 'year',
+        'MM': 'month',
+        'dd': 'date',
+        'hh': 'hour',
+        'mm': 'minute',
+        'ss': 'second'
+      })[type]
+    },
+    getItems (type) {
+      switch (type) {
+        case 'yyyy':
+          return makeArray(1900, 2020)
+        case 'MM':
+          return makeArray(1, 12)
+        case 'dd':
+          return makeArray(1, datetime(`${this.year}-${this.month + 1}-00`, 'yyyy-MM-dd').d())
+        case 'hh':
+          return makeArray(0, 23)
+        case 'mm':
+        case 'ss':
+          return makeArray(0, 59)
+      }
+    }
   },
 
   components: {
@@ -139,8 +140,8 @@ export default {
   // before focusing on the input field.
   // http://vuejs.org/guide/custom-directive.html
   directives: {
-    focus (value) {
-      if (value) {
+    focus (val) {
+      if (val) {
         this.vm.$nextTick(function () {
           this.$el.focus()
         })

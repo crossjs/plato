@@ -8,7 +8,6 @@
         :field="field"
         v-model="value"
         v-bind="attrs"
-        v-validate="validate"
         debounce="500"></textarea>
     </template>
     <template v-else>

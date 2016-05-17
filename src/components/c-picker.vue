@@ -28,7 +28,7 @@ export default {
       }
     },
     value: {
-      twoWay: true
+      // twoWay: true
     },
     items: {
       type: Array,
@@ -88,6 +88,7 @@ export default {
     },
     _dragend (e) {
       this.dragging = false
+      this.$emit('mutate', this.value)
     }
   }
 }

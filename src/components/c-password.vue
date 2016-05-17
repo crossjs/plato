@@ -7,7 +7,6 @@
         :field="field"
         v-model="value"
         v-bind="attrs"
-        v-validate="validate"
         debounce="500">
     </template>
     <template v-else>

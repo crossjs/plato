@@ -6,8 +6,7 @@
         class="c-dropdown-select"
         :field="field"
         v-model="value"
-        v-bind="_attrs"
-        v-validate="validate">
+        v-bind="_attrs">
         <option v-for="option in _options" :value="option.value">
           {{ option.label }}
         </option>
