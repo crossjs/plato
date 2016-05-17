@@ -84,6 +84,12 @@
     content: "\e60c";
   }
 }
+.iconfont-demo {
+  &:before {
+    @mixin iconfont;
+    content: "\e604";
+  }
+}
 .iconfont-help {
   /*&:before {
     @mixin iconfont;

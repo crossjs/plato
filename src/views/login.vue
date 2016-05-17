@@ -4,8 +4,7 @@
       :submit="login"
       :columns="columns"
       :items="items"
-      :actions="actions"
-      @mutate="_mutate"></c-form>
+      :actions="actions"></c-form>
   </div>
 </template>
 

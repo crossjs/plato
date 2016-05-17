@@ -26,13 +26,15 @@
         @mutate="_mutate"></list>
       <pane v-for="a in actions"
         v-show="state === $index">
-        <flex v-for="action in a" transition="fade">
-          <button class="button"
-            :class="[action.cls || 'default']"
-            :type="action.type || 'button'"
-            :disabled="action.disabled || $validation.invalid"
-            @click="_click($key, action)">{{action.label}}</button>
-        </flex>
+        <flex-box>
+          <flex-item v-for="action in a" transition="fade">
+            <button class="button"
+              :class="[action.cls || 'default']"
+              :type="action.type || 'button'"
+              :disabled="action.disabled || $validation.invalid"
+              @click="_click($key, action)">{{action.label}}</button>
+          </flex-item>
+        </flex-box>
       </pane>
     </form>
   </validator>
@@ -42,7 +44,8 @@
 import Modal from './c-modal'
 import List from './c-list'
 import Pane from './c-pane'
-import Flex from './c-flex'
+import FlexBox from './c-flex-box'
+import FlexItem from './c-flex-item'
 export default {
   props: {
     cls: {
@@ -120,7 +123,8 @@ export default {
     Modal,
     List,
     Pane,
-    Flex
+    FlexBox,
+    FlexItem
   }
 }
 </script>

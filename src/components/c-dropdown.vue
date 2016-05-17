@@ -8,13 +8,13 @@
         v-model="value"
         v-bind="_attrs"
         v-validate="validate">
-        <option v-for="option in attrs.options" :value="$key">
-          {{ option }}
+        <option v-for="option in _options" :value="option.value">
+          {{ option.label }}
         </option>
       </select>
     </template>
     <template v-else>
-      {{attrs.options[value] || '-'}}
+      {{_label}}
     </template>
   </div>
 </template>
@@ -25,10 +25,25 @@ export default {
   mixins: [mField],
 
   computed: {
+    _options () {
+      return this.attrs.options || []
+    },
     _attrs () {
       /*eslint no-unused-vars:[0]*/
       const { options, ...rest } = this.attrs
       return rest
+    },
+    _label () {
+      const { options } = this.attrs
+      let label
+      this._options.some(option => {
+        if (option.value === this.value) {
+          label = option.label
+          return true
+        }
+        return false
+      })
+      return label || '-'
     }
   }
 }

@@ -1,5 +1,5 @@
 <template>
-  <div class="c-flex"
+  <div class="c-flex-item"
     :class="[cls]">
     <slot></slot>
   </div>
@@ -16,4 +16,4 @@ export default {
 }
 </script>
 
-<style src="styles/components/flex"></style>
+<style src="styles/components/flex-item"></style>

@@ -6,7 +6,6 @@
       :state="state"
       :columns="columns"
       :items="items"
-      :actions="actions"
       @mutate="_mutate(items._id, $arguments)"></c-form>
     <paginator
       v-if="users.count !== -1"
