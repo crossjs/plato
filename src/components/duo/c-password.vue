@@ -1,26 +1,26 @@
 <template>
-  <div class="c-multiline"
+  <div class="c-password"
     :class="[cls, {editing: editing}]">
     <template v-if="editing">
-      <textarea
-        class="c-multiline-textarea"
-        type="text"
+      <input class="c-password-input"
+        type="password"
         :field="field"
         v-model="value"
         v-bind="attrs"
-        debounce="500"></textarea>
+        v-validate="validate"
+        debounce="500">
     </template>
     <template v-else>
-      {{value}}
+      {{new Array((value || '******').length).join('*')}}
     </template>
   </div>
 </template>
 
 <script>
-import mField from 'mixins/m-field'
+import mField from './m-field'
 export default {
   mixins: [mField]
 }
 </script>
 
-<style src="styles/components/multiline"></style>
+<style src="styles/components/password"></style>

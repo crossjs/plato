@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import CForm from 'components/c-form'
+import CForm from 'duo/c-form'
 import { profile } from 'vx/getters'
 import { getProfile, updateProfile } from 'vx/actions'
 export default {

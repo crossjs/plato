@@ -13,7 +13,7 @@
 
 <script>
 import { Svg } from 'chartist'
-import Chartist from 'components/c-chartist'
+import Chartist from 'solo/c-chartist'
 export default {
   data () {
     return {

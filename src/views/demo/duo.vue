@@ -15,8 +15,8 @@
 </template>
 
 <script>
-import List from 'components/c-list'
-import Pane from 'components/c-pane'
+import List from 'duo/c-list'
+import Pane from 'solo/c-pane'
 import { ROLE_LEVEL_OPTIONS } from 'vx/constants'
 export default {
   data () {

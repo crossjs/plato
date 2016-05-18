@@ -34,7 +34,7 @@
 
 <script>
 import datetime from 'nd-datetime'
-import Picker from 'components/c-picker'
+import Picker from './c-picker'
 export default {
   props: {
     cls: {

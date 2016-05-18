@@ -17,7 +17,9 @@ const webpackConfig = {
     root: paths.src(),
     extensions: ['', '.css', '.js', '.json', '.vue'],
     alias: {
-      styles: paths.src('themes/default')
+      styles: paths.src('themes/default'),
+      duo: paths.src('components/duo'),
+      solo: paths.src('components/solo')
     },
     modulesDirectories: ['node_modules']
   },

@@ -6,7 +6,8 @@
         class="c-dropdown-select"
         :field="field"
         v-model="value"
-        v-bind="_attrs">
+        v-bind="_attrs"
+        v-validate="validate">
         <option v-for="option in _options" :value="option.value">
           {{ option.label }}
         </option>
@@ -19,7 +20,7 @@
 </template>
 
 <script>
-import mField from 'mixins/m-field'
+import mField from './m-field'
 export default {
   mixins: [mField],
 
@@ -33,7 +34,6 @@ export default {
       return rest
     },
     _label () {
-      const { options } = this.attrs
       let label
       this._options.some(option => {
         if (option.value === this.value) {

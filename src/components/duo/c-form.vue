@@ -41,11 +41,11 @@
 </template>
 
 <script>
-import Modal from './c-modal'
+import Modal from '../solo/c-modal'
 import List from './c-list'
-import Pane from './c-pane'
-import FlexBox from './c-flex-box'
-import FlexItem from './c-flex-item'
+import Pane from '../solo/c-pane'
+import FlexBox from '../solo/c-flex-box'
+import FlexItem from '../solo/c-flex-item'
 export default {
   props: {
     cls: {

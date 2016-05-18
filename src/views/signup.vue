@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import CForm from 'components/c-form'
+import CForm from 'duo/c-form'
 import md5 from 'utils/md5'
 import { createUser } from 'vx/actions'
 import { username, password } from 'utils/userFields'

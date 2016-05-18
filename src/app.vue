@@ -7,7 +7,7 @@
       @remove="removeToast"></toast>
     <header class="header">
       <logo cls="logo">
-        <a v-link="{ path: '/', exact: true }">plat</a>
+        <a v-link="{ path: '/', exact: true }">plato</a>
       </logo>
       <navbar cls="navbar">
         <route
@@ -27,11 +27,11 @@
 import store from 'vx/store'
 import { progress, toasts } from 'vx/getters'
 import { deleteToast } from 'vx/actions'
-import Progress from 'components/c-progress'
-import Toast from 'components/c-toast'
-import Logo from 'components/c-logo'
-import Navbar from 'components/c-navbar'
-import Route from 'components/c-route'
+import Progress from 'solo/c-progress'
+import Toast from 'solo/c-toast'
+import Logo from 'solo/c-logo'
+import Navbar from 'solo/c-navbar'
+import Route from 'solo/c-route'
 import { routes } from 'routes'
 export default {
   name: 'App',

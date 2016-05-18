@@ -11,6 +11,7 @@
         :field="field"
         v-model="value"
         v-bind="_attrs"
+        v-validate="validate"
         number>
       <datepicker
         :value.sync="value"
@@ -24,9 +25,9 @@
 </template>
 
 <script>
-import mField from 'mixins/m-field'
+import mField from './m-field'
 import datetime from 'nd-datetime'
-import Datepicker from './c-datepicker'
+import Datepicker from '../solo/c-datepicker'
 export default {
   mixins: [mField],
 

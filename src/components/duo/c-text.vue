@@ -1,25 +1,26 @@
 <template>
-  <div class="c-password"
+  <div class="c-text"
     :class="[cls, {editing: editing}]">
     <template v-if="editing">
-      <input class="c-password-input"
-        type="password"
+      <input class="c-text-input"
+        type="text"
         :field="field"
         v-model="value"
-        v-bind="attrs"
+        v-bind="_attrs"
+        v-validate="validate"
         debounce="500">
     </template>
     <template v-else>
-      {{new Array((value || '******').length).join('*')}}
+      {{value}}
     </template>
   </div>
 </template>
 
 <script>
-import mField from 'mixins/m-field'
+import mField from './m-field'
 export default {
   mixins: [mField]
 }
 </script>
 
-<style src="styles/components/password"></style>
+<style src="styles/components/text"></style>

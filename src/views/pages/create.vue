@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import CForm from 'components/c-form'
+import CForm from 'duo/c-form'
 import { pages } from 'vx/getters'
 import { createPage } from 'vx/actions'
 export default {

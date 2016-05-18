@@ -5,21 +5,25 @@
       <input type="checkbox"
         :field="field"
         v-model="value"
-        v-bind="_attrs">
-      <label>{{value ? _attrs['true-label'] : _attrs['false-label']}}</label>
+        v-bind="_attrs"
+        v-validate="validate">
+      <label>{{_valid ? _attrs['true-label'] : _attrs['false-label']}}</label>
     </template>
     <template v-else>
-      {{value ? _attrs['true-label'] : _attrs['false-label']}}
+      {{_valid ? _attrs['true-label'] : _attrs['false-label']}}
     </template>
   </div>
 </template>
 
 <script>
-import mField from 'mixins/m-field'
+import mField from './m-field'
 export default {
   mixins: [mField],
 
   computed: {
+    _valid () {
+      return this.value === this._attrs['true-value']
+    },
     _attrs () {
       return Object.assign({
         'true-value': 1,
