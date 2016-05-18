@@ -58,15 +58,15 @@ export default {
             label: '自定义 Value',
             type: 'checkbox',
             attrs: {
-              'true-value': true,
-              'false-value': false
+              'true-value': '是',
+              'false-value': '否'
             }
           }
         },
         items: {
           regular: false,
           customLabel: true,
-          customValue: false
+          customValue: '否'
         }
       }, {
         title: 'Datetime',

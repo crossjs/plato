@@ -1,7 +1,6 @@
 <template>
-  <div class="c-labe"
-    :class="[cls]"
-    v-if="value">{{value}}</div>
+  <div class="c-mask"
+    :class="[cls]"><slot></slot></div>
 </template>
 
 <script>
@@ -10,9 +9,9 @@ export default {
     cls: {
       type: String,
       default: ''
-    },
-    value: {
     }
   }
 }
 </script>
+
+<style src="styles/components/solo/mask"></style>

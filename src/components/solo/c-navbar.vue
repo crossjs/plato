@@ -1,22 +1,24 @@
 <template>
-  <div
-    class="c-navbar"
+  <div class="c-navbar"
     :class="[cls]">
-    <button
+    <button class="iconfont-nav c-navbar-toggle"
       type="button"
-      class="iconfont-nav c-navbar-toggle"
       :class="{active: opened}"
       @click="opened = !opened"></button>
-    <nav
-      class="c-navbar-menu"
+    <mask cls="c-datepicker-mask"
+      @touchend.prevent="opened = false"
+      v-show="opened"></mask>
+    <nav class="c-navbar-menu"
       v-show="opened"
-      @click="opened = false">
+      @click="opened = false"
+      transition="slide">
       <slot></slot>
     </nav>
   </div>
 </template>
 
 <script>
+import Mask from './c-mask'
 export default {
   props: {
     cls: {
@@ -29,6 +31,10 @@ export default {
     return {
       opened: false
     }
+  },
+
+  components: {
+    Mask
   }
 }
 </script>

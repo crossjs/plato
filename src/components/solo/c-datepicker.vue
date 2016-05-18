@@ -4,9 +4,9 @@
     tabindex="-1"
     v-focus="show"
     v-show="show">
-    <div class="c-datepicker-mask"
+    <mask cls="c-datepicker-mask"
       @touchend.prevent="show = false"
-      v-show="show"></div>
+      v-show="show"></mask>
     <div class="c-datepicker-body"
       @touchmove.prevent
       v-show="show"
@@ -34,6 +34,7 @@
 
 <script>
 import datetime from 'nd-datetime'
+import Mask from './c-mask'
 import Picker from './c-picker'
 export default {
   props: {
@@ -133,6 +134,7 @@ export default {
   },
 
   components: {
+    Mask,
     Picker
   },
 

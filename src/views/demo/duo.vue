@@ -1,28 +1,23 @@
 <template>
   <div class="demos">
-    <pane>
-      <button class="button warning"
-        type="button"
-        @click="_toggle">切换状态</button>
-    </pane>
-    <list
+    <c-form
       v-for="demo in demos"
-      :state="state"
+      :state="demo.state"
       :title="demo.title"
       :columns="demo.columns"
-      :items="demo.items"></list>
+      :items="demo.items"
+      :actions="actions"></c-form>
   </div>
 </template>
 
 <script>
-import List from 'duo/c-list'
-import Pane from 'solo/c-pane'
+import CForm from 'duo/c-form'
 import { ROLE_LEVEL_OPTIONS } from 'vx/constants'
 export default {
   data () {
     return {
-      state: 0,
       demos: [{
+        state: 0,
         title: 'Text',
         columns: {
           regular: {
@@ -42,6 +37,7 @@ export default {
           readonly: '我有写保护'
         }
       }, {
+        state: 0,
         title: 'Dropdown',
         columns: {
           regular: {
@@ -65,6 +61,7 @@ export default {
           readonly: 2
         }
       }, {
+        state: 0,
         title: 'Checkbox',
         columns: {
           regular: {
@@ -102,6 +99,7 @@ export default {
           customValue: false
         }
       }, {
+        state: 0,
         title: 'Datetime',
         columns: {
           regular: {
@@ -136,7 +134,31 @@ export default {
           custom: Date.now(),
           custom2: Date.now()
         }
-      }]
+      }],
+      actions: [
+        // 展示态
+        {
+          modify: {
+            type: 'button',
+            cls: 'warning',
+            label: '进入编辑',
+            mutation (ctx) {
+              ctx.state = 1
+            }
+          }
+        },
+        // 编辑态
+        {
+          normal: {
+            type: 'button',
+            cls: 'primary',
+            label: '退出编辑',
+            mutation (ctx) {
+              ctx.state = 0
+            }
+          }
+        }
+      ]
     }
   },
 
@@ -147,8 +169,7 @@ export default {
   },
 
   components: {
-    List,
-    Pane
+    CForm
   }
 }
 </script>
