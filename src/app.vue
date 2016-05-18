@@ -79,4 +79,3 @@ export default {
 
 <style src="styles/app"></style>
 <style src="styles/views/components/logo"></style>
-<style src="styles/views/components/navbar"></style>

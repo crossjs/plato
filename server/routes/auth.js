@@ -27,7 +27,6 @@ export default (app, router) => {
 
   function callback (user, info, status) {
     if (user === false) {
-      debug(info)
       respond(400, info, this)
     } else {
       return refresh(user, this)

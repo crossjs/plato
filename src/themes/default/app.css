@@ -8,6 +8,7 @@
 
 .header {
   position: fixed;
+  z-index: 11;
   top: 0;
   left: 0;
   width: 100%;
@@ -19,7 +20,8 @@
   transition: all .5s ease;
 }
 
-.router-view-transition-enter, .router-view-transition-leave {
+.router-view-transition-enter,
+.router-view-transition-leave {
   opacity: 0;
   transform: translate3d(0, 1rem, 0);
 }

@@ -34,7 +34,19 @@ const config = {
   compiler_hash_type: 'hash',
   compiler_quiet: false,
   compiler_public_path: '',
-  compiler_vendor: []
+  compiler_vendor: [
+    'fastclick',
+    'nd-datetime',
+    'passport-http-bearer',
+    'passport-local',
+    'querystring',
+    'vue',
+    'vue-router',
+    'vue-validator',
+    'vuex-fsa',
+    'vuex-promise',
+    'whatwg-fetch'
+  ]
 }
 
 // ------------------------------------

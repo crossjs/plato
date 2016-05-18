@@ -84,8 +84,7 @@ export default {
         // 编辑态
         {
           cancel: {
-            type: 'submit',
-            // cls: 'default',
+            type: 'button',
             label: '取消',
             mutation (ctx) {
               ctx.$parent.state = 0
@@ -105,6 +104,10 @@ export default {
   methods: {
     submit ($validation, $payload) {
       if (!$validation.valid) {
+        return
+      }
+      if (!$payload) {
+        this.state = 0
         return
       }
       this.updateProfile($payload)

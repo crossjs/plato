@@ -74,12 +74,14 @@ export default {
           }
         }
       }, {
-        ratio: 'ct-square',
+        // ratio: 'ct-square',
         type: 'Pie',
         data: {
           series: [20, 10, 30, 40]
         },
         options: {
+          width: document.documentElement.clientWidth,
+          height: document.documentElement.clientWidth,
           labelInterpolationFnc (value) {
             return value + '%'
           }

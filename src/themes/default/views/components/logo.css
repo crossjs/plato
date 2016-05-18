@@ -3,7 +3,6 @@
   z-index: 1;
   width: 100%;
   background-color: inherit;
-  transition: width 200ms linear;
 
   & a {
     display: block;
@@ -13,6 +12,8 @@
     line-height: 4rem;
     text-align: center;
     text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
   }
 
   & .link-active {

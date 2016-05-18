@@ -8,6 +8,8 @@ import User from '../models/user'
 
 const debug = _debug('koa:passport')
 
+debug('initialize')
+
 export default passport
 
 export const check = async (ctx, next) => {
@@ -15,7 +17,6 @@ export const check = async (ctx, next) => {
     session: false
   }, async (user, info, status) => {
     if (user === false) {
-      debug(info)
       ctx.status = 401
     } else {
       const expires = Date.now() + bearer_expires
@@ -54,7 +55,6 @@ passport.use(new BearerStrategy((token, done) => {
     if (!user) {
       return done(null, false, { message: 'Token not exist.' })
     }
-    debug(user)
     return done(null, user, { message: 'Token validated.' })
   })
 }))

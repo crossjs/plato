@@ -73,6 +73,7 @@ schema.pre('save', function (next) {
 // query middleware
 schema.pre('update', update)
 schema.pre('findOneAndUpdate', update)
+schema.pre('findByIdAndUpdate', update)
 
 function update () {
   const $set = this.getUpdate()

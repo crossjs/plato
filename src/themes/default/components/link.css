@@ -4,7 +4,23 @@
 
 .c-link-a {
   @mixin field-editing;
+  display: block;
   text-align: right;
+  text-decoration: none;
   width: 100%;
   height: 100%;
+
+  &:after {
+    content: "\20";
+    display: inline-block;
+    transform: rotateZ(45deg);
+    height: 0.5em;
+    width: 0.5em;
+    border-width: 0.125em 0.125em 0 0;
+    border-color: color(black lightness(+60%));
+    border-style: solid;
+    position: relative;
+    top: -0.0625em;
+    left: 0.25em;
+  }
 }
