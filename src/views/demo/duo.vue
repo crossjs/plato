@@ -140,7 +140,7 @@ export default {
         {
           modify: {
             type: 'button',
-            cls: 'warning',
+            class: 'warning',
             label: '进入编辑',
             mutation (ctx) {
               ctx.state = 1
@@ -151,7 +151,7 @@ export default {
         {
           normal: {
             type: 'button',
-            cls: 'primary',
+            class: 'primary',
             label: '退出编辑',
             mutation (ctx) {
               ctx.state = 0

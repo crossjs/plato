@@ -1,12 +1,11 @@
 <template>
-  <div class="c-logo"
-    :class="[cls]"><slot></slot></div>
+  <div :class="['c-logo', class]"><slot></slot></div>
 </template>
 
 <script>
 export default {
   props: {
-    cls: {
+    class: {
       type: String,
       default: ''
     }

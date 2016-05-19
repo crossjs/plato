@@ -74,7 +74,7 @@ export default {
         {
           modify: {
             type: 'button',
-            cls: 'primary',
+            class: 'primary',
             label: '修改个人资料',
             mutation (ctx) {
               ctx.$parent.state = 1
@@ -92,7 +92,7 @@ export default {
           },
           submit: {
             type: 'submit',
-            cls: 'warning',
+            class: 'warning',
             label: this.progress ? '提交修改中...' : '提交修改',
             disabled: !!this.progress
           }

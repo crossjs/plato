@@ -1,18 +1,18 @@
 <template>
-  <div v-if="maxpage > 1" class="c-paginator" :class="[cls]">
+  <div :class="['c-paginator', class]"
+     v-if="maxpage > 1">
     <a v-for="page in pages"
       href="javascript:;"
       :class="{current: page.current, disabled: page.disabled}"
       @click="paginate(page)">
-      {{page.label}}
-    </a>
+      {{page.label}}</a>
   </div>
 </template>
 
 <script>
 export default {
   props: {
-    cls: {
+    class: {
       type: String,
       default: ''
     },
@@ -72,7 +72,7 @@ export default {
       if (useN3) {
         pages.push({
           label: '...',
-          cls: 'hellip'
+          class: 'hellip'
         })
       }
       for (let i = n4; i <= n5; i++) {
@@ -85,7 +85,7 @@ export default {
       if (useN6) {
         pages.push({
           label: '...',
-          cls: 'hellip'
+          class: 'hellip'
         })
       }
       n7 = Math.max(n7, (useMiddle ? n5 : n2) + 1)

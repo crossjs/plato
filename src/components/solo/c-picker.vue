@@ -1,7 +1,6 @@
 <!-- Inspired by https://facebook.github.io/react-native/docs/picker.html -->
 <template>
-  <div class="c-picker"
-    :class="[cls]"
+  <div :class="['c-picker', class]"
     @touchstart.prevent="_dragstart($event)"
     @touchmove.prevent="_drag($event)"
     @touchend.prevent="_dragend($event)">
@@ -16,7 +15,7 @@
 <script>
 export default {
   props: {
-    cls: {
+    class: {
       type: String,
       default: ''
     },

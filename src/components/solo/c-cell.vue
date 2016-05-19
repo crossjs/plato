@@ -1,11 +1,10 @@
 <template>
-  <div class="c-cell"
-    :class="[cls]">
-    <icon cls="c-cell-icon"
+  <div :class="['c-cell', class]">
+    <icon class="c-cell-icon"
       :value="column.icon"></icon>
-    <labe cls="c-cell-labe"
+    <labe class="c-cell-labe"
       :value="column.label"></labe>
-    <component cls="c-cell-value"
+    <component class="c-cell-value"
       :is="column.type"
       :value="value"
       :attrs="column.attrs"></component>
@@ -22,7 +21,7 @@ import Datetime from './c-datetime'
 import Dropdown from './c-dropdown'
 export default {
   props: {
-    cls: {
+    class: {
       type: String,
       default: ''
     },

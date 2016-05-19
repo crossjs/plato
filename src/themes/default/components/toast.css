@@ -7,29 +7,11 @@
   height: 0;
 
   & .toast {
-    margin: 0 auto 0.25rem;
+    margin: 0 0 0.25rem;
     padding: 0.5rem;
-    width: 50%;
-    max-width: 16rem;
     min-width: 12rem;
     background: white;
-    box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.3);
 
-    & .ignore {
-      cursor: pointer;
-      float: right;
-      width: 1.05rem;
-      text-align: center;
-      font-size: 0.9rem;
-      line-height: 1.05rem;
-      border: none;
-      color: color(black lightness(60%));
-      background-color: white;
-      border-radius: 50%;
-      &:hover {
-        color: var(--orange);
-      }
-    }
     & .code {
       &:before {
         content: "code: ";

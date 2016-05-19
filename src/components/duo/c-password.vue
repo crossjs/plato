@@ -1,6 +1,5 @@
 <template>
-  <div class="c-password"
-    :class="[cls, {editing: editing}]">
+  <div :class="['c-password', class, {editing: editing}]">
     <template v-if="editing">
       <input class="c-password-input"
         type="password"

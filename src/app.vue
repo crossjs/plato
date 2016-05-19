@@ -1,15 +1,15 @@
 <template>
   <div class="container">
-    <progress cls="progress"
+    <progress class="progress"
       :progress="progress"></progress>
-    <toast cls="toast"
+    <toast class="toast"
       :toasts="toasts"
       @remove="removeToast"></toast>
     <header class="header">
-      <logo cls="logo">
+      <logo class="logo">
         <a v-link="{ path: '/', exact: true }">plato</a>
       </logo>
-      <navbar cls="navbar">
+      <navbar class="navbar">
         <route
           :filter="filter"
           :routes="routes"

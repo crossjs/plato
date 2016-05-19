@@ -1,13 +1,11 @@
 <template>
-  <div class="c-toast"
-    :class="[cls]"
+  <div :class="['c-toast', class]"
     :transition="transition"
     v-show="toasts.length">
     <div class="toast"
       :transition="transition"
       v-for="toast in toasts"
       track-by="_id">
-      <button class="ignore" @click="_remove(toast)">ⓧ</button>
       <pre class="code"><code> {{toast.code}} </code></pre>
       <pre class="message"><code> {{toast.message}} </code></pre>
     </div>
@@ -17,7 +15,7 @@
 <script>
 export default {
   props: {
-    cls: {
+    class: {
       type: String,
       default: ''
     },

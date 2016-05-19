@@ -1,6 +1,5 @@
 <template>
-  <div class="c-datetime"
-    :class="[cls, {editing: editing}]">
+  <div :class="['c-datetime', class, {editing: editing}]">
     <template v-if="editing">
       <input class="c-datetime-input"
         type="text"

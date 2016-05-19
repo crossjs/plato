@@ -1,6 +1,6 @@
 export default {
   props: {
-    cls: {
+    class: {
       type: String,
       default: ''
     },

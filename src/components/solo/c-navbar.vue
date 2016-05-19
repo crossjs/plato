@@ -1,12 +1,10 @@
 <template>
-  <div class="c-navbar"
-    :class="[cls]">
+  <div :class="['c-navbar', class]">
     <mask v-show="opened"
       @touchend.prevent="opened = false"
       transition="fade"></mask>
-    <button class="iconfont-nav c-navbar-toggle"
+    <button :class="['c-navbar-toggle', 'iconfont-nav', {active: opened}]"
       type="button"
-      :class="{active: opened}"
       @click="opened = !opened"></button>
     <nav class="c-navbar-menu"
       v-show="opened"
@@ -21,7 +19,7 @@
 import Mask from './c-mask'
 export default {
   props: {
-    cls: {
+    class: {
       type: String,
       default: ''
     }

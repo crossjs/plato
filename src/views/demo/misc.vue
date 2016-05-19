@@ -1,5 +1,6 @@
 <template>
   <div class="demo-misc">
+    <image src="images/logo.png"></image>
     <pane>pane</pane>
     <flex-box>
       <flex-item>flex-item-1</flex-item>
@@ -10,11 +11,13 @@
 </template>
 
 <script>
+import Image from 'solo/c-image'
 import Pane from 'solo/c-pane'
 import FlexBox from 'solo/c-flex-box'
 import FlexItem from 'solo/c-flex-item'
 export default {
   components: {
+    Image,
     Pane,
     FlexBox,
     FlexItem

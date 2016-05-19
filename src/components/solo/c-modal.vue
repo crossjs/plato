@@ -1,45 +1,35 @@
 <template>
-  <div class="c-modal"
-    :class="[cls]"
+  <div :class="['c-modal', class]"
     v-show="show"
     transition="fade">
+    <mask v-show="show"
+      @touchend.prevent="show = false"
+      transition="fade"></mask>
     <div class="c-modal-content"
       v-show="show"
-      transition="slide">
-      <div class="c-modal-header">
-        <button type="button"
-          @click="_click('close')">&times;</button>
-        <h4 v-if="title">{{title}}</h4>
-      </div>
+      transition="slide-up">
       <div class="c-modal-body">{{body}}</div>
-      <div class="c-modal-footer"
-        v-if="buttons">
-        <button class="button"
-          v-for="button in buttons"
-          :role="$key"
-          :type="button.type || 'button'"
-           @click="_click($key)">{{button.label}}</button>
-      </div>
+      <pane class="c-modal-footer"
+        v-if="actions">
+        <button v-for="action in actions"
+          :class="['button', action.class || 'default']"
+          :type="action.type || 'button'"
+           @click="_click($key)">{{action.label}}</button>
+      </pane>
     </div>
   </div>
 </template>
 
 <script>
+import Pane from './c-pane'
+import Mask from './c-mask'
 export default {
   props: {
     show: {
       type: Boolean,
       default: false
     },
-    args: {
-      type: Array,
-      default: () => []
-    },
-    cls: {
-      type: String,
-      default: ''
-    },
-    title: {
+    class: {
       type: String,
       default: ''
     },
@@ -47,15 +37,19 @@ export default {
       type: String,
       default: ''
     },
-    buttons: {
+    actions: {
       type: Object,
       default: () => {
         return {
           submit: {
-            label: '确定'
+            label: '确定',
+            class: 'warning',
+            type: 'submit'
           },
           cancel: {
-            label: '取消'
+            label: '取消',
+            class: 'default',
+            type: 'button'
           }
         }
       }
@@ -72,6 +66,11 @@ export default {
         .then(() => { this.show = false })
         .catch(() => { this.show = true })
     }
+  },
+
+  components: {
+    Mask,
+    Pane
   }
 }
 

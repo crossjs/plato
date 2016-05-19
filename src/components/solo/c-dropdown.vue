@@ -1,6 +1,5 @@
 <template>
-  <div class="c-dropdown"
-    :class="[cls]">{{_label}}</div>
+  <div :class="['c-dropdown', class]">{{_label}}</div>
 </template>
 
 <script>

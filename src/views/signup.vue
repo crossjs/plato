@@ -32,10 +32,15 @@ export default {
       return [null, {
         submit: {
           type: 'submit',
-          cls: 'primary',
+          class: 'primary',
           // string or function
           label: this.progress ? '提交注册中...' : '提交注册',
-          disabled: !!this.progress
+          disabled: !!this.progress,
+          mutation (ctx, modal) {
+            modal.show = true
+            modal.body = '确定注册？'
+            return false
+          }
         }
       }]
     }

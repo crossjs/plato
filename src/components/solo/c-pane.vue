@@ -1,6 +1,5 @@
 <template>
-  <div class="c-pane"
-    :class="[cls]">
+  <div :class="['c-pane', class]">
     <slot></slot>
   </div>
 </template>
@@ -8,7 +7,7 @@
 <script>
 export default {
   props: {
-    cls: {
+    class: {
       type: String,
       default: ''
     }

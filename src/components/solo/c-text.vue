@@ -1,6 +1,5 @@
 <template>
-  <div class="c-text"
-    :class="[cls]">{{value}}</div>
+  <div :class="['c-text', class]">{{value}}</div>
 </template>
 
 <script>

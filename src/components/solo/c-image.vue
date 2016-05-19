@@ -1,6 +1,5 @@
 <template>
-  <div class="c-image"
-    :class="[cls]">
+  <div :class="['c-image', class]">
     <img class="c-image-img"
       :src="src"
       :width="width"
@@ -13,13 +12,13 @@
 <script>
 export default {
   props: {
-    cls: {
+    class: {
       type: String,
       default: ''
     },
     src: {
       type: String,
-      default: ''
+      default: 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=='
     },
     alt: {
       type: String,

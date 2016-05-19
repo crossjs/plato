@@ -14,8 +14,7 @@
           {{error.message}}
         </li>
       </ul>
-      <form class="c-form"
-        :class="[cls]"
+      <form :class="['c-form', class]"
         @submit.prevent="_submit"
         autocomplete="off"
         novalidate>
@@ -28,8 +27,7 @@
         <flex-box v-for="a in actions"
           v-show="state === $index">
           <flex-item v-for="action in a" transition="fade">
-            <button class="button"
-              :class="[action.cls || 'default']"
+            <button :class="['button', action.class || 'default']"
               :type="action.type || 'button'"
               :disabled="action.disabled || $validation.invalid"
               @click="_click($key, action)">{{action.label}}</button>
@@ -48,7 +46,7 @@ import FlexBox from '../solo/c-flex-box'
 import FlexItem from '../solo/c-flex-item'
 export default {
   props: {
-    cls: {
+    class: {
       type: String,
       default: ''
     },
@@ -83,10 +81,14 @@ export default {
       args: [],
       modal: {
         show: false,
-        title: '',
-        body: '',
+        body: '请确认',
         callback (key) {
           if (key === 'submit') {
+            // reset
+            this.show = false
+            this.body = ''
+            // submit
+            this.$parent._submit()
             this.$parent.$emit(...this.$parent.args)
           }
         }
@@ -107,7 +109,7 @@ export default {
     _click (key, action) {
       const args = ['action', key]
       if (action.mutation) {
-        if (action.mutation(this) === false) {
+        if (action.mutation(this, this.modal) === false) {
           this.args = args
           return false
         }
@@ -115,7 +117,9 @@ export default {
       this.$emit(...args)
     },
     _submit () {
-      this.submit(this.$validation, this.payload)
+      if (!this.modal.show) {
+        this.submit(this.$validation, this.payload)
+      }
     }
   },
 

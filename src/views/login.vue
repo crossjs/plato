@@ -32,7 +32,7 @@ export default {
       return [null, {
         submit: {
           type: 'submit',
-          cls: 'primary',
+          class: 'primary',
           // string or function
           label: this.progress ? '提交登录中...' : '提交登录',
           disabled: !!this.progress

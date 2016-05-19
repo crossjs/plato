@@ -39,15 +39,10 @@
 
 - duo 组件拥有两个状态：展示与编辑，集成了 validator
 - solo 组件仅展示
-- 单向数据流
+- 基于 vuex 单向的数据流
 - 组件间通过事件传递数据
 - 使用 mixins 实现复用
 - 向 vue@2 靠拢
-- z-index
-  - header > 10
-  - mask > 100
-  - modal > 1000
-  - toasts > 10000
 
 ## 阅读顺序
 

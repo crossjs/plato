@@ -1,13 +1,12 @@
 <template>
-  <div class="c-labe"
-    :class="[cls]"
+  <div :class="['c-labe', class]"
     v-if="value">{{value}}</div>
 </template>
 
 <script>
 export default {
   props: {
-    cls: {
+    class: {
       type: String,
       default: ''
     },

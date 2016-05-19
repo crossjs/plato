@@ -1,6 +1,5 @@
 <template>
-  <div class="c-dropdown"
-    :class="[cls, {editing: editing}]">
+  <div :class="['c-dropdown', class, {editing: editing}]">
     <template v-if="editing">
       <select
         class="c-dropdown-select"

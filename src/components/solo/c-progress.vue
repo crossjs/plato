@@ -1,13 +1,12 @@
 <template>
-  <div class="c-progress"
-    :class="[cls]"
+  <div :class="['c-progress', class]"
     :style="{width: '' + progress + '%'}"></div>
 </template>
 
 <script>
 export default {
   props: {
-    cls: {
+    class: {
       type: String,
       default: ''
     },

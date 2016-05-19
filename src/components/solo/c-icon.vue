@@ -1,13 +1,12 @@
 <template>
-  <div class="c-icon"
-    :class="[cls, value]"
+  <div :class="['c-icon', class, value]"
     v-if="value"><slot></slot></div>
 </template>
 
 <script>
 export default {
   props: {
-    cls: {
+    class: {
       type: String,
       default: ''
     },

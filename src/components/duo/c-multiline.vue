@@ -1,10 +1,7 @@
 <template>
-  <div class="c-multiline"
-    :class="[cls, {editing: editing}]">
+  <div :class="['c-multiline', class, {editing: editing}]">
     <template v-if="editing">
-      <textarea
-        class="c-multiline-textarea"
-        type="text"
+      <textarea class="c-multiline-textarea"
         :field="field"
         v-model="value"
         v-bind="attrs"

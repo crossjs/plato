@@ -1,13 +1,12 @@
 <template>
-  <div class="c-chartist"
-    :class="[cls, ratio, noData]">{{message}}</div>
+  <div :class="['c-chartist', class, ratio, noData]">{{message}}</div>
 </template>
 
 <script>
 import Chartist from 'chartist'
 export default {
   props: {
-    cls: {
+    class: {
       type: String,
       default: ''
     },
@@ -88,13 +87,13 @@ export default {
   },
 
   watch: {
-    'ratio': 'draw',
-    'options': 'draw',
-    'data': {
+    ratio: 'draw',
+    options: 'draw',
+    data: {
       handler: 'draw',
       deep: true
     },
-    'type': 'draw'
+    type: 'draw'
   }
 }
 </script>

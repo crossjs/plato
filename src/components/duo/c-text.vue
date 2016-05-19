@@ -1,6 +1,5 @@
 <template>
-  <div class="c-text"
-    :class="[cls, {editing: editing}]">
+  <div :class="['c-text', class, {editing: editing}]">
     <template v-if="editing">
       <input class="c-text-input"
         type="text"

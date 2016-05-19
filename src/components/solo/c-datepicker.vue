@@ -1,10 +1,9 @@
 <template>
-  <div class="c-datepicker"
-    :class="[cls]"
+  <div :class="['c-datepicker', class]"
     tabindex="-1"
     v-focus="show"
     v-show="show">
-    <mask cls="c-datepicker-mask"
+    <mask class="c-datepicker-mask"
       @touchend.prevent="show = false"
       v-show="show"></mask>
     <div class="c-datepicker-body"
@@ -20,7 +19,7 @@
       <div class="c-datepicker-content">
         <template v-for="column in columns" track-by="$index">
           <picker v-if="column.type === 'picker'"
-            :cls="column.cls"
+            :class="column.class"
             :size="size"
             :value="column.value"
             :items="column.items"
@@ -38,7 +37,7 @@ import Mask from './c-mask'
 import Picker from './c-picker'
 export default {
   props: {
-    cls: {
+    class: {
       type: String,
       default: ''
     },
@@ -83,7 +82,7 @@ export default {
         }
         const varname = this.getName(view)
         return {
-          cls: `c-datepicker-${varname}s`,
+          class: `c-datepicker-${varname}s`,
           type: 'picker',
           value: this[varname],
           items: this.getItems(view),

@@ -1,10 +1,7 @@
 <template>
   <ul>
     <li v-for="route in _routes">
-      <a
-        :class="{
-          ['iconfont-' + route.icon]: route.icon
-        }"
+      <a :class="{['iconfont-' + route.icon]: route.icon}"
         v-link="{
           path: father + route.path,
           name: route.name,

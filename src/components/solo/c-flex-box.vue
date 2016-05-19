@@ -1,6 +1,5 @@
 <template>
-  <div class="c-flex-box"
-    :class="[cls]">
+  <div :class="['c-flex-box', class]">
     <slot></slot>
   </div>
 </template>
@@ -8,7 +7,7 @@
 <script>
 export default {
   props: {
-    cls: {
+    class: {
       type: String,
       default: ''
     }

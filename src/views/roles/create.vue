@@ -68,7 +68,7 @@ export default {
       actions: [null, {
         submit: {
           type: 'submit',
-          cls: 'primary',
+          class: 'primary',
           // string or function
           label: this.progress ? '提交创建中...' : '提交创建',
           disabled: !!this.progress

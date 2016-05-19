@@ -1,7 +1,6 @@
 <template>
-  <div class="c-checkbox"
-    :class="[cls, {checked: _valid}]">
-      {{_valid ? _attrs['true-label'] : _attrs['false-label']}}
+  <div :class="['c-checkbox', class, {checked: _valid}]">
+    {{_valid ? _attrs['true-label'] : _attrs['false-label']}}
   </div>
 </template>
 

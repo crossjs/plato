@@ -1,11 +1,10 @@
 <template>
-  <div class="c-group"
-    :class="[cls]">
+  <div :class="['c-group', class]">
     <h5 class="c-group-title"
       v-if="title">{{title}}</h5>
     <div class="c-group-cells"
       v-if="items">
-      <cell cls="c-group-cell"
+      <cell class="c-group-cell"
         v-for="column in columns"
         :state="state"
         :field="$key"
@@ -20,7 +19,7 @@
 import Cell from './c-cell'
 export default {
   props: {
-    cls: {
+    class: {
       type: String,
       default: ''
     },
