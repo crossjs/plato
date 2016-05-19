@@ -6,27 +6,27 @@
       :title="modal.title"
       :body="modal.body"
       :callback="modal.callback"></modal>
-    <ul class="c-form-errors"
-      v-if="$validation.errors && $validation.modified">
-      <li class="c-form-error"
-        v-for="error in $validation.errors">
-        {{error.message}}
-      </li>
-    </ul>
-    <form class="c-form"
-      :class="[cls]"
-      @submit.prevent="_submit"
-      autocomplete="off"
-      novalidate>
-      <list
-        :state="state"
-        :title="title"
-        :columns="columns"
-        :items="items"
-        @mutate="_mutate"></list>
-      <pane v-for="a in actions"
-        v-show="state === $index">
-        <flex-box>
+    <pane>
+      <ul class="c-form-errors"
+        v-if="$validation.errors && $validation.modified">
+        <li class="c-form-error"
+          v-for="error in $validation.errors">
+          {{error.message}}
+        </li>
+      </ul>
+      <form class="c-form"
+        :class="[cls]"
+        @submit.prevent="_submit"
+        autocomplete="off"
+        novalidate>
+        <group
+          :state="state"
+          :title="title"
+          :columns="columns"
+          :items="items"
+          @mutate="_mutate"></group>
+        <flex-box v-for="a in actions"
+          v-show="state === $index">
           <flex-item v-for="action in a" transition="fade">
             <button class="button"
               :class="[action.cls || 'default']"
@@ -35,14 +35,14 @@
               @click="_click($key, action)">{{action.label}}</button>
           </flex-item>
         </flex-box>
-      </pane>
-    </form>
+      </form>
+    </pane>
   </validator>
 </template>
 
 <script>
 import Modal from '../solo/c-modal'
-import List from './c-list'
+import Group from './c-group'
 import Pane from '../solo/c-pane'
 import FlexBox from '../solo/c-flex-box'
 import FlexItem from '../solo/c-flex-item'
@@ -121,7 +121,7 @@ export default {
 
   components: {
     Modal,
-    List,
+    Group,
     Pane,
     FlexBox,
     FlexItem

@@ -1,21 +1,20 @@
 <template>
-  <div class="c-list"
+  <div class="c-group"
     :class="[cls]">
-    <h5 class="c-list-title"
+    <h5 class="c-group-title"
       v-if="title">{{title}}</h5>
-    <div class="c-list-items"
+    <div class="c-group-cells"
       v-if="items">
-      <list-item
+      <cell cls="c-group-cell"
         v-for="column in columns"
         :column="column"
-        :value="items[$key]">
-      </div>
+        :value="items[$key]"></cell>
     </div>
   </div>
 </template>
 
 <script>
-import ListItem from './c-list-item'
+import Cell from './c-cell'
 export default {
   props: {
     cls: {
@@ -37,9 +36,9 @@ export default {
   },
 
   components: {
-    ListItem
+    Cell
   }
 }
 </script>
 
-<style src="styles/components/list"></style>
+<style src="styles/components/group"></style>

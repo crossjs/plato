@@ -1,6 +1,9 @@
 <template>
   <div class="view-demo">
-    <router-view></router-view>
+    <router-view class="router-view"
+      transition="router-view-transition"
+      transition-mode="out-in"
+      keep-alive></router-view>
   </div>
 </template>
 

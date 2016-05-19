@@ -14,4 +14,4 @@ export default {
 }
 </script>
 
-<style src="styles/components/solo/mask"></style>
+<style src="styles/components/mask"></style>

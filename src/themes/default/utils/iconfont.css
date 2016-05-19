@@ -90,6 +90,24 @@
     content: "\e604";
   }
 }
+.iconfont-duo {
+  &:before {
+    @mixin iconfont;
+    content: "\e60d";
+  }
+}
+.iconfont-solo {
+  &:before {
+    @mixin iconfont;
+    content: "\e60a";
+  }
+}
+.iconfont-chart {
+  &:before {
+    @mixin iconfont;
+    content: "\e605";
+  }
+}
 .iconfont-help {
   /*&:before {
     @mixin iconfont;

@@ -1,0 +1,11 @@
+.demo-misc {
+  & .c-pane {
+    background-color: color(white lightness(-10%));
+  }
+  & .c-flex-box {
+    background-color: color(white lightness(-10%));
+  }
+  & .c-flex-item {
+    background-color: color(white lightness(-20%));
+  }
+}

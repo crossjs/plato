@@ -1,4 +1,4 @@
-.c-list-item {
+.c-cell {
   display: flex;
   flex-direction: row;
   padding: 1rem;
@@ -9,15 +9,15 @@
   }
 }
 
-.c-list-icon {
+.c-cell-icon {
   flex: none;
 }
 
-.c-list-label {
+.c-cell-label {
   flex: none;
 }
 
-.c-list-value {
+.c-cell-value {
   flex: auto;
   text-align: right;
 }

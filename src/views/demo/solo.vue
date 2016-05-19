@@ -1,15 +1,16 @@
 <template>
-  <div class="demos">
-    <list
+  <Pane class="demos">
+    <group
       v-for="demo in demos"
       :title="demo.title"
       :columns="demo.columns"
-      :items="demo.items"></list>
-  </div>
+      :items="demo.items"></group>
+  </Pane>
 </template>
 
 <script>
-import List from 'solo/c-list'
+import Pane from 'solo/c-pane'
+import Group from 'solo/c-group'
 import { ROLE_LEVEL_OPTIONS } from 'vx/constants'
 export default {
   data () {
@@ -100,7 +101,8 @@ export default {
   },
 
   components: {
-    List
+    Pane,
+    Group
   }
 }
 </script>

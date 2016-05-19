@@ -1,28 +1,40 @@
 <template>
-  <div class="c-list-item"
+  <div class="c-cell"
     :class="[cls]">
-    <icon cls="c-list-icon"
+    <icon cls="c-cell-icon"
       :value="column.icon"></icon>
-    <labe cls="c-list-labe"
+    <labe cls="c-cell-labe"
       :value="column.label"></labe>
-    <component cls="c-list-value"
+    <component cls="c-cell-value"
       :is="column.type"
-      :value="value"
-      :attrs="column.attrs"></component>
+      :state="state"
+      :field="field"
+      :attrs="column.attrs"
+      :validate="column.validate"
+      :value.sync="value"></component>
   </div>
 </template>
 
 <script>
-import Icon from './c-icon'
-import Labe from './c-labe'
+import Icon from '../solo/c-icon'
+import Labe from '../solo/c-labe'
 import Text from './c-text'
-import Link from './c-link'
+import Multiline from './c-multiline'
+import Password from './c-password'
 import Checkbox from './c-checkbox'
 import Datetime from './c-datetime'
 import Dropdown from './c-dropdown'
 export default {
   props: {
     cls: {
+      type: String,
+      default: ''
+    },
+    state: {
+      type: Number,
+      default: 0
+    },
+    field: {
       type: String,
       default: ''
     },
@@ -46,7 +58,8 @@ export default {
     Icon,
     Labe,
     Text,
-    Link,
+    Multiline,
+    Password,
     Checkbox,
     Datetime,
     Dropdown
@@ -54,4 +67,4 @@ export default {
 }
 </script>
 
-<style src="styles/components/list-item"></style>
+<style src="styles/components/cell"></style>

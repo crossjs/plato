@@ -1,15 +1,15 @@
-.c-list {
-  margin: 1rem;
+.c-group {
+  /*margin: 0.5rem;*/
 }
 
-.c-list-title {
+.c-group-title {
   padding: 1rem 1rem 0.5rem;
   color: color(white lightness(-40%));
   font-size: 1rem;
   font-weight: normal;
 }
 
-.c-list-items {
+.c-group-cells {
   background-color: white;
   border: 1px solid color(white lightness(-10%));
   border-radius: 0.25rem;
