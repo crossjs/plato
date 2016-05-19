@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import Toast from 'components/c-toast'
+import Toast from 'solo/c-toast'
 import { trigger } from '../../utils'
 
 describe('toast.vue', () => {

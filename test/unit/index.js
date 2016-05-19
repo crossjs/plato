@@ -25,7 +25,7 @@ const testsContext = require.context('./', true, /\.spec\.js$/)
 const testsToRun = testsContext.keys().filter(inManifest)
 ;(testsToRun.length ? testsToRun : testsContext.keys()).forEach(testsContext)
 
-// require all `src/**/*.(js|vue)` except for `index.(js|vue)` (for isparta coverage reporting)
+// require all `src/**/*.(js|vue)` except for `index.(js|vue)` (for coverage reporting)
 const componentsContext = require.context('../../src/', true, /^((?!index).)*\.(js|vue)$/)
 
 componentsContext.keys().forEach(componentsContext)

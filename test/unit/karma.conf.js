@@ -35,17 +35,7 @@ const karmaConfig = {
     resolve: webpackConfig.resolve,
     plugins: webpackConfig.plugins,
     module: {
-      preLoaders: [{
-        test: /\.js$/,
-        include: config.paths.src(),
-        loader: 'isparta'
-      }],
       loaders: webpackConfig.module.loaders
-    },
-    vue: {
-      loaders: {
-        js: 'isparta'
-      }
     }
   },
   webpackMiddleware: {
