@@ -11,7 +11,7 @@ describe('progress.vue', () => {
     const vm = new Vue({
       el: '#el',
       template: `<div>
-          <progress cls="progress"
+          <progress class="progress"
             :progress="progress"></progress>
         </div>`,
       data: {

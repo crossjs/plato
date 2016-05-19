@@ -2,7 +2,6 @@
   <validator name="validation">
     <modal
       :show.sync="modal.show"
-      :args.sync="modal.args"
       :title="modal.title"
       :body="modal.body"
       :callback="modal.callback"></modal>

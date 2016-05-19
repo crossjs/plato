@@ -26,6 +26,7 @@ import Mask from './c-mask'
 export default {
   props: {
     show: {
+      twoWay: true,
       type: Boolean,
       default: false
     },

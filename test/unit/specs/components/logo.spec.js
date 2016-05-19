@@ -10,7 +10,7 @@ describe('logo.vue', () => {
   it('should render correct contents', () => {
     const vm = new Vue({
       el: '#el',
-      template: '<div><logo cls="logo"><em>plato</em></logo></div>',
+      template: '<div><logo class="logo"><em>plato</em></logo></div>',
       components: {
         Logo
       }

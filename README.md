@@ -13,18 +13,20 @@
 
 ## 预览
 
-** 登录 **
+**带验证的登录表单、注册表单+确认框**
 
-![登录](http://hbimg.b0.upaiyun.com/31170a5d7dc67feecebed4709823cd5c415d7eba53ae-uA9uCz_fw554)
+![带验证的登录表单](http://hbimg.b0.upaiyun.com/bd60a51cde4f9c1d1c18f9be7cd3a0448bd5ad6b7dd8-F87zFf_fw658)
+![注册表单+确认框](http://hbimg.b0.upaiyun.com/be8d2c825a1fece77f5ff6d4e2d2e73c22db5a455547-LIVZgZ_fw658)
 
-** 列表（可编辑） **
+**可以行内编辑的分页列表、日期时间选择器**
 
-![列表](http://hbimg.b0.upaiyun.com/1525d851854ffad81b7718fc9de940df219447909663-JshDPh_fw658)
+![可以行内编辑的分页列表](http://hbimg.b0.upaiyun.com/9d17dc8f928499be2485d52cd27175958be7467291a2-d8cDno_fw658)
+![日期时间选择器](http://hbimg.b0.upaiyun.com/9f63c694c1f0ca1ea58b1a8ad606dffee21ab61b9875-ZKByyx_fw658)
 
-** 展示与编辑（可切换） **
+**切换表单状态：展示与编辑**
 
-![展示](http://hbimg.b0.upaiyun.com/ebb39b86beaa09d0d954e9feac9fa34593e0f2c66501-QsBGNS_fw658)
-![编辑](http://hbimg.b0.upaiyun.com/91d37d633286ad29c65208bfb2dc1b1f34b0f2436bba-EFMrTx_fw658)
+![展示](http://hbimg.b0.upaiyun.com/1bb18b8877928e3d15fdcd1c36236b1e94fe6a5b6776-YrqPk3_fw658)
+![编辑](http://hbimg.b0.upaiyun.com/ba816e5efee6e936939e07b61392a45eee5fca8c6bf7-kzLp53_fw658)
 
 ## 技术栈
 

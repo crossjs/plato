@@ -44,7 +44,7 @@ export default {
           label: '创建时间',
           type: 'datetime',
           attrs: {
-            readonly: true
+            // readonly: true
           }
         },
         updated: {

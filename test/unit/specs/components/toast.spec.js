@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Toast from 'solo/c-toast'
-import { trigger } from '../../utils'
 
 describe('toast.vue', () => {
   before(() => {
@@ -8,7 +7,7 @@ describe('toast.vue', () => {
     el.id = 'el'
     document.body.appendChild(el)
   })
-  it('should render correct contents', done => {
+  it('should render correct contents', () => {
     const toasts = [{
       _id: 1,
       code: 'code1',
@@ -41,17 +40,6 @@ describe('toast.vue', () => {
       }
     })
 
-    const vmToast = vm.$children[0]
-
-    expect(vmToast.$el.children.length).to.equal(2)
-    // button
-    trigger(vmToast.$el.children[0].children[0], 'click')
-
-    vmToast.$nextTick(() => {
-      vmToast.$nextTick(() => {
-        expect(vmToast.$el.children.length).to.equal(1)
-        done()
-      })
-    })
+    expect(vm.$children[0].$el.children.length).to.equal(2)
   })
 })
