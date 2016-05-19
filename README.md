@@ -9,7 +9,7 @@
 [![dependencies](https://david-dm.org/crossjs/plato.svg?style=flat-square)](https://david-dm.org/crossjs/plato)
 [![devDependency Status](https://david-dm.org/crossjs/plato/dev-status.svg?style=flat-square)](https://david-dm.org/crossjs/plato#info=devDependencies)
 
-> A plat<del>form</del> built with koa and vue
+> A plat<del>form</del> built with [koa](koajs.com) and [vue](http://vuejs.org/)
 
 ## 预览
 
