@@ -3,8 +3,7 @@
     <progress class="progress"
       :progress="progress"></progress>
     <toast class="toast"
-      :toasts="toasts"
-      @remove="removeToast"></toast>
+      :toasts="toasts"></toast>
     <header class="header">
       <logo class="logo">
         <a v-link="{ path: '/', exact: true }">plato</a>
@@ -26,7 +25,6 @@
 <script>
 import store from 'vx/store'
 import { progress, toasts } from 'vx/getters'
-import { deleteToast } from 'vx/actions'
 import Progress from 'solo/c-progress'
 import Toast from 'solo/c-toast'
 import Logo from 'solo/c-logo'
@@ -51,19 +49,10 @@ export default {
     }
   },
 
-  methods: {
-    removeToast (toast) {
-      this.deleteToast(toast)
-    }
-  },
-
   vuex: {
     getters: {
       progress,
       toasts
-    },
-    actions: {
-      deleteToast
     }
   },
 
