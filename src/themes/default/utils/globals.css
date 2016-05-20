@@ -13,7 +13,6 @@ button {
 .link {
   color: color(var(--invert));
 
-  &:hover,
   &:active {
     color: color(var(--orange));
   }
@@ -31,7 +30,6 @@ button {
   background-color: color(white lightness(70%));
   border-radius: 0.25rem;
 
-  &:hover,
   &:active {
     background-color: color(white lightness(80%));
   }
@@ -39,7 +37,6 @@ button {
   &.primary {
     background-color: var(--invert);
 
-    &:hover,
     &:active {
       background-color: color(var(--invert) lightness(+10%));
     }
@@ -54,7 +51,6 @@ button {
   &.warning {
     background-color: var(--orange);
 
-    &:hover,
     &:active {
       background-color: color(var(--orange) lightness(+10%));
     }
@@ -70,7 +66,6 @@ button {
     color: color(white lightness(-80%));
     background-color: color(white lightness(-20%));
 
-    &:hover,
     &:active {
       background-color: color(white lightness(-10%));
     }

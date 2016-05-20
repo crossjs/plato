@@ -1,11 +1,8 @@
 <template>
   <div :class="['c-datetime', class, {editing: editing}]">
     <template v-if="editing">
-      <input class="c-datetime-input"
-        type="text"
-        :value="datetime(value, _attrs.format)"
-        @click="this.showPicker = !this.showPicker"
-        readonly>
+      <span class="c-datetime-input"
+        @click="this.showPicker = !this.showPicker">{{datetime(value, _attrs.format)}}</span>
       <input type="hidden"
         :field="field"
         v-model="value"
@@ -40,18 +37,18 @@ export default {
     datetime
   },
 
-  components: {
-    Datepicker
-  },
-
   watch: {
-    state (v) {
+    state (val) {
       this.$nextTick(() => {
-        if (!v) {
+        if (!val) {
           this.showPicker = false
         }
       })
     }
+  },
+
+  components: {
+    Datepicker
   }
 }
 </script>

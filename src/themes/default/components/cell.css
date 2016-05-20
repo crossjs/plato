@@ -13,8 +13,9 @@
   flex: none;
 }
 
-.c-cell-label {
+.c-cell-labe {
   flex: none;
+  margin-right: 0.3em;
 }
 
 .c-cell-value {

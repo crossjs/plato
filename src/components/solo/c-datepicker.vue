@@ -1,8 +1,8 @@
 <template>
   <div :class="['c-datepicker', class]"
-    tabindex="-1"
     v-focus="show"
-    v-show="show">
+    v-show="show"
+    tabindex="-1">
     <mask class="c-datepicker-mask"
       @touchend.prevent="show = false"
       v-show="show"></mask>

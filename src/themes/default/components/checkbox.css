@@ -61,5 +61,4 @@
   & input:checked:after {
     transform: translateX(1.4rem);
   }
-
 }

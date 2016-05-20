@@ -28,7 +28,17 @@ export default {
       return this.state === 1 && (!this.attrs || !this.attrs.readonly)
     },
     _attrs () {
-      return { ...this.attrs, ...this.validate }
+      return { ...this.attrs, ...extractValidate(this.validate) }
     }
   }
+}
+
+function extractValidate (validate) {
+  if (!validate) {
+    return null
+  }
+  return Object.keys(validate).reduce((obj, key) => {
+    obj[key] = validate[key].rule
+    return obj
+  }, {})
 }

@@ -1,5 +1,7 @@
 <template>
-  <div :class="['c-mask', class]"><slot></slot></div>
+  <div :class="['c-mask', class]"
+    tabindex="-1"
+    transition="fade"><slot></slot></div>
 </template>
 
 <script>
