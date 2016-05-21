@@ -1,15 +1,15 @@
-import { GET_BEARER, DELETE_BEARER, CREATE_USER } from '../types'
+import { GET_AUTH, DELETE_AUTH, CREATE_USER } from '../types'
 import { POST, DELETE } from 'utils/ajax'
 
 export default {
   getBearer ({ dispatch }, payload) {
-    dispatch(GET_BEARER, POST('/apis/auth/login', {
+    dispatch(GET_AUTH, POST('/apis/auth/login', {
       body: payload
     }))
   },
 
   deleteBearer ({ dispatch }) {
-    dispatch(DELETE_BEARER, DELETE('/apis/auth/logout'))
+    dispatch(DELETE_AUTH, DELETE('/apis/auth/logout'))
   },
 
   createUser ({ dispatch }, payload) {

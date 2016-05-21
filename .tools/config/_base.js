@@ -35,15 +35,12 @@ const config = {
   compiler_quiet: false,
   compiler_public_path: '',
   compiler_vendor: [
-    'fastclick',
     'nd-datetime',
-    'passport-http-bearer',
-    'passport-local',
     'querystring',
     'vue',
     'vue-router',
-    'vue-validator',
     'vuex-fsa',
+    'vuex-localstorage',
     'vuex-promise',
     'whatwg-fetch'
   ]

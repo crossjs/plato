@@ -31,6 +31,7 @@ import Logo from 'solo/c-logo'
 import Navbar from 'solo/c-navbar'
 import Route from 'solo/c-route'
 import { routes } from 'routes'
+
 export default {
   name: 'App',
   store,

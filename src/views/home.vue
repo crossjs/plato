@@ -1,6 +1,7 @@
 <template>
   <div class="demos">
     <pane>
+      {{$t("message.hello")}}
       <group
         v-for="demo in demos"
         :title="demo.title"

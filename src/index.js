@@ -1,31 +1,34 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-// import Validator from 'vue-validator'
-import Validator from 'utils/validator'
-
+import I18n from 'vue-i18n'
 import App from 'app'
 import { routes, alias } from 'routes'
 import store from 'vx/store'
-import { auth, progress } from 'vx/getters'
+import { env, auth, progress } from 'vx/getters'
+import applyLocales from 'locales/apply'
 
 if (module.hot) {
   module.hot.accept()
 }
 
+Vue.config.debug = process.env.NODE_ENV === 'development'
+
+Vue.use(Router)
+
+Vue.use(I18n)
+
 // global mixins
 Vue.mixin({
   vuex: {
     getters: {
+      env,
       auth,
       progress
     }
   }
 })
 
-Vue.config.debug = process.env.NODE_ENV === 'development'
-
-Vue.use(Router)
-Vue.use(Validator)
+applyLocales(env, store, Vue)
 
 const router = new Router({
   history: false,

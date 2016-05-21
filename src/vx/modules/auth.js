@@ -1,39 +1,34 @@
+import { getPersist, setPersist } from 'vuex-localstorage'
+
 import {
-  GET_BEARER,
-  DELETE_BEARER,
+  GET_AUTH,
+  DELETE_AUTH,
   CREATE_USER
 } from '../types'
 
 import {
-  BEARER_KEY,
+  AUTH_KEY,
   PROMISE_SUCCESS
 } from '../constants'
 
 const state = {
-  auth: (function () {
-    try {
-      return JSON.parse(localStorage.getItem(BEARER_KEY))
-    } catch (e) {
-      // log e
-      return null
-    }
-  })()
+  auth: getPersist(AUTH_KEY)
 }
 
 const mutations = {
-  [GET_BEARER] (state, { meta, payload } = {}) {
+  [GET_AUTH] (state, { meta, payload } = {}) {
     if (meta === PROMISE_SUCCESS) {
       state.auth = payload
       // save to localStorage
-      localStorage.setItem(BEARER_KEY, JSON.stringify(payload))
+      setPersist(AUTH_KEY, payload)
     }
   },
 
-  [DELETE_BEARER] (state, { meta }) {
+  [DELETE_AUTH] (state, { meta }) {
     if (meta === PROMISE_SUCCESS) {
       state.auth = null
       // save to localStorage
-      localStorage.setItem(BEARER_KEY, JSON.stringify(null))
+      setPersist(AUTH_KEY, null)
     }
   },
 
@@ -41,7 +36,7 @@ const mutations = {
     if (meta === PROMISE_SUCCESS) {
       state.auth = payload
       // save to localStorage
-      localStorage.setItem(BEARER_KEY, JSON.stringify(payload))
+      setPersist(AUTH_KEY, payload)
     }
   }
 }

@@ -38,11 +38,14 @@
 </template>
 
 <script>
+import Vue from 'vue'
+import Validator from './validator'
 import Modal from '../solo/c-modal'
 import Group from './c-group'
 import Pane from '../solo/c-pane'
 import FlexBox from '../solo/c-flex-box'
 import FlexItem from '../solo/c-flex-item'
+Vue.use(Validator)
 export default {
   props: {
     class: {
