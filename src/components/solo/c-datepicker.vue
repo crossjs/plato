@@ -2,14 +2,12 @@
   <div :class="['c-datepicker', class]"
     v-focus="show"
     v-show="show"
-    tabindex="-1">
+    tabindex="-1"
+    transition="fade">
     <mask class="c-datepicker-mask"
-      @touchend.prevent="show = false"
-      v-show="show"></mask>
+      @touchend.prevent="show = false"></mask>
     <div class="c-datepicker-body"
-      @touchmove.prevent
-      v-show="show"
-      transition="slide">
+      @touchmove.prevent>
       <div class="c-datepicker-header">
         <template v-for="column in columns" track-by="$index">
           <b v-if="column.type === 'picker'">{{zeroPad(column.value)}}</b>

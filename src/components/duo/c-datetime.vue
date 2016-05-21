@@ -9,7 +9,7 @@
         v-bind="_attrs"
         v-validate="validate"
         number>
-      <datepicker
+      <datepicker v-if="showPicker"
         :value.sync="value"
         :format="_attrs.format"
         :show.sync="showPicker"></datepicker>

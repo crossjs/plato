@@ -1,6 +1,5 @@
 @import "utils/resets";
 @import "utils/iconfont";
-@import "utils/globals";
 
 .container {
   padding: 4rem 0 0;

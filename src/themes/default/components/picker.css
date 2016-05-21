@@ -15,4 +15,5 @@
 }
 
 .c-picker-content {
+  transition: transform .5s ease;
 }
