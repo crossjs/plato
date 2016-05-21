@@ -1,5 +1,14 @@
 <template>
   <div class="view-about">
-    About
+    <pane>About</pane>
   </div>
 </template>
+
+<script>
+import Pane from 'solo/c-pane'
+export default {
+  components: {
+    Pane
+  }
+}
+</script>

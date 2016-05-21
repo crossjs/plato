@@ -2,4 +2,8 @@
   margin: 0.5rem -0.5rem;
   display: flex;
   flex-direction: row;
+
+  &.column {
+    flex-direction: column;
+  }
 }

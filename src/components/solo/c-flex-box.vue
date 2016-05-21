@@ -1,5 +1,5 @@
 <template>
-  <div :class="['c-flex-box', class]">
+  <div :class="['c-flex-box', class, direction]">
     <slot></slot>
   </div>
 </template>
@@ -10,6 +10,10 @@ export default {
     class: {
       type: String,
       default: ''
+    },
+    direction: {
+      type: String,
+      default: 'row'
     }
   }
 }

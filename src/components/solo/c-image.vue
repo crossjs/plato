@@ -30,11 +30,11 @@ export default {
     },
     width: {
       type: Number,
-      default: 0
+      default: ''
     },
     height: {
       type: Number,
-      default: 0
+      default: ''
     }
   }
 }

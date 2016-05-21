@@ -2,7 +2,7 @@
   <div :class="['c-modal', class]"
     v-show="show"
     transition="fade">
-    <mask v-show="show"
+    <mask v-show="backdrop && show"
       @touchend.prevent="show = false"
       transition="fade"></mask>
     <div class="c-modal-content"
@@ -29,6 +29,10 @@ export default {
       twoWay: true,
       type: Boolean,
       default: false
+    },
+    backdrop: {
+      type: Boolean,
+      default: true
     },
     class: {
       type: String,

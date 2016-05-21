@@ -8,7 +8,8 @@ export default {
     '/roles': require('./roles'),
     '/user': require('./user'),
     '/signup': require('./signup'),
-    '/login': require('./login')
+    '/login': require('./login'),
+    '/logout': require('./logout')
   },
 
   alias: {
