@@ -3,7 +3,7 @@ export default (env, store, Vue) => {
 
   function update (lang) {
     Vue.config.lang = lang
-    Vue.locale(lang, require(`locales/${lang}.json`))
+    Vue.locale(lang, require(`./${lang}.json`))
   }
 
   store.watch(({ env }) => {

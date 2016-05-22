@@ -173,5 +173,3 @@ export default {
   }
 }
 </script>
-
-<style src="styles/views/demos"></style>

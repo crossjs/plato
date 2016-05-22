@@ -1,4 +1,4 @@
-import { getPersist, setPersist } from 'vuex-localstorage'
+import createPersist from 'vuex-localstorage'
 
 import {
   SET_ENV
@@ -8,16 +8,18 @@ import {
   ENV_KEY
 } from '../constants'
 
+const persist = createPersist(ENV_KEY, {
+  lang: navigator.language.split('-')[0]
+})
+
 const state = {
-  env: getPersist(ENV_KEY, {
-    lang: navigator.language.split('-')[0]
-  })
+  env: persist.get()
 }
 
 const mutations = {
   [SET_ENV] (state, { payload }) {
     state.env = Object.assign({}, state.env, payload)
-    setPersist(ENV_KEY, state.env)
+    persist.set(state.env)
   }
 }
 

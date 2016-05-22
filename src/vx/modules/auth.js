@@ -1,4 +1,4 @@
-import { getPersist, setPersist } from 'vuex-localstorage'
+import createPersist from 'vuex-localstorage'
 
 import {
   GET_AUTH,
@@ -11,8 +11,10 @@ import {
   PROMISE_SUCCESS
 } from '../constants'
 
+const persist = createPersist(AUTH_KEY)
+
 const state = {
-  auth: getPersist(AUTH_KEY)
+  auth: persist.get()
 }
 
 const mutations = {
@@ -20,7 +22,7 @@ const mutations = {
     if (meta === PROMISE_SUCCESS) {
       state.auth = payload
       // save to localStorage
-      setPersist(AUTH_KEY, payload)
+      persist.set(payload)
     }
   },
 
@@ -28,7 +30,7 @@ const mutations = {
     if (meta === PROMISE_SUCCESS) {
       state.auth = null
       // save to localStorage
-      setPersist(AUTH_KEY, null)
+      persist.set(null)
     }
   },
 
@@ -36,7 +38,7 @@ const mutations = {
     if (meta === PROMISE_SUCCESS) {
       state.auth = payload
       // save to localStorage
-      setPersist(AUTH_KEY, payload)
+      persist.set(payload)
     }
   }
 }

@@ -1,7 +1,13 @@
 <template>
   <div class="demos">
+    <c-form
+      :columns="columns"
+      :items="{lang: env.lang}"
+      @mutate="setEnv"></c-form>
+    <pane class="quatation">
+      {{$t('message.plato')}}
+    </pane>
     <pane>
-      {{$t("message.hello")}}
       <group
         v-for="demo in demos"
         :title="demo.title"
@@ -12,13 +18,30 @@
 </template>
 
 <script>
+import CForm from 'duo/c-form'
 import Pane from 'solo/c-pane'
 import Group from 'solo/c-group'
+import { setEnv } from 'vx/actions'
 export default {
   data () {
     return {
+      columns: {
+        lang: {
+          label: '语言',
+          type: 'dropdown',
+          attrs: {
+            options: [{
+              value: 'en',
+              label: '英文'
+            }, {
+              value: 'zh',
+              label: '中文'
+            }]
+          }
+        }
+      },
       demos: [{
-        title: 'demo',
+        title: '示例',
         columns: {
           duo: {
             icon: 'iconfont-duo',
@@ -71,11 +94,18 @@ export default {
     }
   },
 
+  vuex: {
+    actions: {
+      setEnv
+    }
+  },
+
   components: {
+    CForm,
     Pane,
     Group
   }
 }
 </script>
 
-<style src="styles/views/demos"></style>
+<style src="styles/views/home"></style>

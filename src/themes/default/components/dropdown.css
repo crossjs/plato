@@ -10,8 +10,8 @@
   border-radius: 0.25rem;
   margin: 0;
   padding: 0 1.1rem 0 0.3rem;
+  width: auto;
   outline: none;
   box-sizing: border-box;
   background: transparent url('../images/down.png') no-repeat right center;
-  border: none;
 }
