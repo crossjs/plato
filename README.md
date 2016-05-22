@@ -1,6 +1,6 @@
 # plato
 
-> 开发中……
+> 开发中…… [Live demo](http://crossjs.com/plato)
 
 ![haojiyou](http://hbimg.b0.upaiyun.com/c0b233344592936874714e5596736eb92ae8d3309ff4-QFVcuc_fw658)
 
