@@ -7,7 +7,6 @@
         :field="field"
         v-model="value"
         v-bind="_attrs"
-        v-validate="validate"
         number>
       <datepicker v-if="showPicker"
         :value.sync="value"

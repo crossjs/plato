@@ -1,40 +1,38 @@
 <template>
-  <validator name="validation">
-    <modal
-      :show.sync="modal.show"
-      :title="modal.title"
-      :body="modal.body"
-      :callback="modal.callback"></modal>
-    <pane>
-      <ul class="c-form-errors"
-        v-if="$validation.errors && $validation.modified">
-        <li class="c-form-error"
-          v-for="error in $validation.errors">
-          {{error.message}}
-        </li>
-      </ul>
-      <form :class="['c-form', class]"
-        @submit.prevent="_submit"
-        autocomplete="off"
-        novalidate>
-        <group
-          :state="state"
-          :title="title"
-          :columns="columns"
-          :items="items"
-          @mutate="_mutate"></group>
-        <flex-box v-for="a in actions"
-          v-show="state === $index">
-          <flex-item v-for="action in a" transition="fade">
-            <button :class="['button', action.class || 'default']"
-              :type="action.type || 'button'"
-              :disabled="action.disabled || $validation.invalid"
-              @click="_click($key, action)">{{action.label}}</button>
-          </flex-item>
-        </flex-box>
-      </form>
-    </pane>
-  </validator>
+  <modal
+    :show.sync="modal.show"
+    :title="modal.title"
+    :body="modal.body"
+    :callback="modal.callback"></modal>
+  <pane>
+    <ul class="c-form-errors"
+      v-if="$validation && $validation.errors">
+      <li class="c-form-error"
+        v-for="error in $validation.errors">
+        {{error.message}}
+      </li>
+    </ul>
+    <form :class="['c-form', class]"
+      @submit.prevent="_submit"
+      autocomplete="off"
+      novalidate>
+      <group
+        :state="state"
+        :title="title"
+        :columns="columns"
+        :items="items"
+        @mutate="_mutate"></group>
+      <flex-box v-for="a in actions"
+        v-show="state === $index">
+        <flex-item v-for="action in a" transition="fade">
+          <button :class="['button', action.class || 'default']"
+            :type="action.type || 'button'"
+            :disabled="_disabled(action)"
+            @click="_click($key, action)">{{action.label}}</button>
+        </flex-item>
+      </flex-box>
+    </form>
+  </pane>
 </template>
 
 <script>
@@ -99,6 +97,10 @@ export default {
   },
 
   methods: {
+    _disabled (action) {
+      return action.disabled ||
+        (this.$validation && this.$validation.errors.length > 0)
+    },
     _mutate (key, val) {
       if (val !== this.items[key]) {
         if (!this.payload) {

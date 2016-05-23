@@ -4,8 +4,7 @@
       <input type="checkbox"
         :field="field"
         v-model="value"
-        v-bind="_attrs"
-        v-validate="validate">
+        v-bind="_attrs">
       <label>{{_valid ? _attrs['true-label'] : _attrs['false-label']}}</label>
     </template>
     <template v-else>

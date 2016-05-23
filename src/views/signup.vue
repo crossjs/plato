@@ -49,13 +49,16 @@ export default {
   // methods
   methods: {
     signup ($validation, $payload) {
-      if (!$validation.valid) {
+      if ($validation.errors.length) {
         return
       }
       $payload.password = md5($payload.password)
       this.createUser($payload)
     }
   },
+
+  // validator: {
+  // },
 
   vuex: {
     actions: {

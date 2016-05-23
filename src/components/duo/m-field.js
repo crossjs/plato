@@ -30,6 +30,15 @@ export default {
     _attrs () {
       return { ...this.attrs, ...extractValidate(this.validate) }
     }
+  },
+
+  methods: {
+    _validate () {
+      if (!this.validate || !this.$validation) {
+        return
+      }
+      this.$validate()
+    }
   }
 }
 

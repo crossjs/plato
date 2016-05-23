@@ -6,7 +6,7 @@
         :field="field"
         v-model="value"
         v-bind="_attrs"
-        v-validate="validate"
+        @change="_validate"
         debounce="500">
     </template>
     <template v-else>

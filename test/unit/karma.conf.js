@@ -20,7 +20,7 @@ const karmaConfig = {
     // '/apis/': 'http://localhost:3000/apis/'
   },
   singleRun: config.coverage_enabled,
-  frameworks: ['mocha'],
+  frameworks: ['mocha', 'es6-shim'],
   preprocessors: {
     [`${config.dir_test}/unit/index.js`]: ['webpack', 'sourcemap']
   },
