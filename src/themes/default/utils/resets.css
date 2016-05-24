@@ -94,10 +94,10 @@ button {
 }
 
 .link {
-  color: color(var(--invert));
+  color: var(--invert);
 
   &:active {
-    color: color(var(--orange));
+    color: var(--orange);
   }
 
   &:disabled {

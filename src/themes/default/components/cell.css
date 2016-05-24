@@ -16,6 +16,7 @@
 
 .c-cell-icon {
   flex: none;
+  margin-right: 0.3em;
 }
 
 .c-cell-labe {

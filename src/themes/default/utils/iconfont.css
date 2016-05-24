@@ -114,6 +114,12 @@
     content: "\e605";
   }*/
 }
+.iconfont-view {
+  &:before {
+    @mixin iconfont;
+    content: "\e60e";
+  }
+}
 
 .iconfont-user-o {
   &:before {

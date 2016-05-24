@@ -48,8 +48,8 @@ export default {
 
   // methods
   methods: {
-    signup ($validation, $payload) {
-      if ($validation.errors.length) {
+    signup ($payload) {
+      if (this.$validation.invalid) {
         return
       }
       $payload.password = md5($payload.password)
@@ -57,8 +57,15 @@ export default {
     }
   },
 
-  // validator: {
-  // },
+  validator: {
+  },
+
+  route: {
+    activate (transition) {
+      transition.next()
+      this.auth && this.$route.router.go('/user')
+    }
+  },
 
   vuex: {
     actions: {
@@ -67,12 +74,10 @@ export default {
   },
 
   watch: {
-    auth (value) {
+    auth (val) {
       this.$nextTick(() => {
-        if (value) {
+        if (val) {
           this.$route.router.go('/user')
-        } else {
-          this.$route.router.go('/login')
         }
       })
     }

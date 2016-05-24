@@ -38,6 +38,26 @@ export default {
         }
       }, {
         state: 0,
+        title: 'Password',
+        columns: {
+          regular: {
+            label: '默认',
+            type: 'password'
+          },
+          readonly: {
+            label: '只读',
+            type: 'password',
+            attrs: {
+              readonly: true
+            }
+          }
+        },
+        items: {
+          regular: '我很正常',
+          readonly: '我有写保护'
+        }
+      }, {
+        state: 0,
         title: 'Dropdown',
         columns: {
           regular: {

@@ -102,8 +102,8 @@ export default {
   },
 
   methods: {
-    submit ($validation, $payload) {
-      if (!$validation.valid) {
+    submit ($payload) {
+      if (!this.$validation.valid) {
         return
       }
       if (!$payload) {
@@ -122,6 +122,9 @@ export default {
         }
       })
     }
+  },
+
+  validator: {
   },
 
   route: {

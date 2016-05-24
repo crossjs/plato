@@ -99,7 +99,7 @@ export default {
   methods: {
     _disabled (action) {
       return action.disabled ||
-        (this.$validation && this.$validation.errors.length > 0)
+        (this.$validation && this.$validation.invalid)
     },
     _mutate (key, val) {
       if (val !== this.items[key]) {
@@ -122,7 +122,7 @@ export default {
     },
     _submit () {
       if (!this.modal.show) {
-        this.submit(this.$validation, this.payload)
+        this.submit(this.payload)
       }
     }
   },

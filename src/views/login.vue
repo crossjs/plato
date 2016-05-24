@@ -43,13 +43,16 @@ export default {
 
   // methods
   methods: {
-    login ($validation, $payload) {
-      if (!$validation.valid) {
+    login ($payload) {
+      if (this.$validation.invalid) {
         return
       }
       $payload.password = md5($payload.password)
       this.getBearer($payload)
     }
+  },
+
+  validator: {
   },
 
   route: {

@@ -1,13 +1,6 @@
 import * as rules from './rules'
 
 export function install (Vue) {
-  // // 1. 添加全局方法或属性
-  // Vue.myGlobalMethod = ...
-  // // 2. 添加全局资源
-  // Vue.directive('my-directive', {})
-  // // 3. 添加实例方法
-  // Vue.prototype.$myMethod = ...
-
   const _init = Vue.prototype._init
   Vue.prototype._init = function (options = {}) {
     options.init = options.init
@@ -19,22 +12,17 @@ export function install (Vue) {
   function validatorInit () {
     const options = this.$options
     const { validator } = options
-    // validator option handling
-    const validatorVm = getValidatorVm(this)
-    if (validatorVm) {
-      this.$validation = validatorVm.$validation
-    }
     if (validator) {
       Vue.util.defineReactive(this, '$validation', {
-        errors: []
+        errors: [],
+        valid: true,
+        invalid: false
       })
-      // console.log('this.$validation', this.$validation)
-      // store injection
-      // if (store) {
-      //   this.$store = store
-      // } else if (options.parent && options.parent.$store) {
-      //   this.$store = options.parent.$store
-      // }
+    } else {
+      const validatorVm = getValidatorVm(this)
+      if (validatorVm) {
+        this.$validation = validatorVm.$validation
+      }
     }
   }
 
@@ -44,15 +32,18 @@ export function install (Vue) {
       return
     }
     const { $validation } = getValidatorVm(this)
+    // reset field errors
     const errors = $validation.errors.filter(error => {
       return error.field !== this.field
     })
+    // validate field with rules
     Object.keys(validate).some(key => {
       if (rules.hasOwnProperty(key)) {
         const { rule, message } = validate[key]
         if (!rules[key](this.value, rule)) {
           errors.push({
             field: this.field,
+            rule,
             message
           })
           return true
@@ -61,6 +52,8 @@ export function install (Vue) {
       return false
     })
     $validation.errors = errors
+    $validation.valid = errors.length === 0
+    $validation.invalid = errors.length > 0
   }
 }
 
