@@ -21,7 +21,7 @@
       ],
       "plugins": [
         "add-module-exports",
-        "coverage",
+        "__coverage__",
         "transform-async-to-generator",
         "transform-runtime"
       ],

@@ -39,23 +39,74 @@
 
 ## 设计原则
 
-- duo 组件拥有两个状态：展示与编辑，集成了 validator
-- solo 组件仅展示
-- 基于 vuex 单向的数据流
-- 组件间通过事件传递数据
-- 使用 mixins 实现复用
+### 基本
+
+- 使用 ES6 编写
 - 向 vue@2 靠拢
 
-## 阅读顺序
+### 数据
 
-- src/vx: vuex 相关配置
-- src/components: 一些通用的 UI 组件
+- 使用 [vuex](https://github.com/vuejs/vuex/) 进行数据管理
+- 数据按模块分文件存放于 `src/vx/modules` 目录，并确保模块间数据不互相干扰
+- 严格遵循单向数据流
+- 组件间通过事件传递数据
+  - 使用 $emit
+  - 禁止使用 $dispatch 或 $broadcast，因为此特性在 vue@2 中不可用
+
+``` js
+// file: src/vx/store.js
+import Vue from 'vue'
+import Vuex from 'vuex-fsa'
+import modules from './modules'
+import middlewares from './middlewares'
+
+Vue.use(Vuex)
+
+export default new Vuex.Store({
+  strict: process.env.NODE_ENV === 'development',
+  modules,
+  middlewares
+})
+```
+
+## 路由
+
+- 使用 [vue-router](https://github.com/vuejs/vue-router/) 进行路由管理
+- 路由按模块分文件存放于 `src/routes` 目录
+- 配合 Webpack 实现 [动态载入](http://router.vuejs.org/zh-cn/lazy.html)
+
+## 国际化
+
+*此方案目前比较 ugly，待优化*
+
+- 使用 [vue-i18n](https://github.com/kazupon/vue-i18n/) 进行多语言支持
+- see files in `src/locales`
+
+## UI 组件
+
+**不限制使用何种 UI 组件，可以使用第三方，或自己开发（请尽量考虑复用性）**
+
+*预置 UI 组件（`src/components`）最早设计用于后台开发，后来简单改造成移动端使用，还有很大优化空间*
+
+- 使用 .vue [单文件组件](http://cn.vuejs.org/guide/application.html#单文件组件)
+- 使用 mixins 实现复用
+- 为了 **性能** 考虑，组件分为两类
+  - duo 组件拥有两个状态：展示与编辑，集成了 validator
+    - *计划优化 validator*
+  - solo 组件仅展示
+
+## 使用样式
+
+- 使用 [postcss](http://postcss.org/) 拥抱未来
+- 谨慎使用 [scoped css](http://vue-loader.vuejs.org/en/features/scoped-css.html)
+  - 尤其不要在 scoped css 内使用 `@import`
+- see files in `src/themes/default`
 
 ## 使用说明
 
 ``` bash
-# start mongo
-mongod -dbpath path/to/data/db
+# 可选。启动 mongodb，体验前后端交互
+mongod -dbpath <path/to/data/db>
 
 # install dependencies
 npm install
@@ -63,7 +114,7 @@ npm install
 # serve with hot reload at localhost:3000
 npm run dev
 
-# serve with mocking
+# serve with mocking. see mocks in /apis
 npm run dev:mock
 
 # clean
@@ -85,15 +136,10 @@ npm run e2e
 npm test
 ```
 
-## 接口模拟
-
-见 apis 目录
-
-## 常见问题
-
-- do NOT use `@import` in scoped css
-- node@5.7.0 did NOT work for the `path.parse` issue
-
 ## 兼容性
 
 移动浏览器
+
+## 相关
+
+[vue-devtools](https://github.com/vuejs/vue-devtools)
