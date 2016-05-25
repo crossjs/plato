@@ -47,8 +47,12 @@ export default {
   // methods
   methods: {
     login ($payload) {
-      $payload.password = md5($payload.password)
-      this.getBearer($payload)
+      this.$validate().then(() => {
+        $payload.password = md5($payload.password)
+        this.getBearer($payload)
+      }).catch($validation => {
+        this.$emit('error', $validation)
+      })
     }
   },
 

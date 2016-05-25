@@ -119,15 +119,7 @@ export default {
     },
     _submit () {
       if (!this.modal.show) {
-        if (this.$validation) {
-          this.$validate().then(() => {
-            this.submit(this.payload)
-          }).catch($validation => {
-            this.$emit('error', $validation)
-          })
-        } else {
-          this.submit(this.payload)
-        }
+        this.submit(this.payload)
       }
     }
   },

@@ -1,3 +1,4 @@
+import Promise from 'nd-promise'
 import * as rules from './rules'
 
 export function install (Vue) {
@@ -77,7 +78,9 @@ export function install (Vue) {
       $validation.fields.forEach(field => field.$validate())
     }
 
-    return $validation.valid ? Promise.resolve($validation) : Promise.reject($validation)
+    return new Promise((resolve, reject) => {
+      $validation.valid ? resolve($validation) : reject($validation)
+    })
   }
 }
 
