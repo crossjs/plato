@@ -5,7 +5,8 @@
       :width="width"
       :height="height"
       :alt="alt"
-      :title="title">
+      :title="title"
+      @load="_load">
   </div>
 </template>
 
@@ -29,14 +30,49 @@ export default {
       default: ''
     },
     width: {
-      type: Number,
+      type: [String, Number],
       default: ''
     },
     height: {
-      type: Number,
+      type: [String, Number],
       default: ''
+    },
+    keepRatio: {
+      type: Boolean,
+      default: true
+    }
+  },
+
+  methods: {
+    _load ($event) {
+      if (this.keepRatio) {
+        const img = $event.path[0]
+        getSize(img.src).then(({ width, height }) => {
+          const ratio = width / height
+          if (ratio !== img.width / img.height) {
+            // 只处理宽度缩小的情况
+            img.height = img.width / ratio
+          }
+        })
+      }
     }
   }
+}
+
+function getSize (src) {
+  return new Promise((resolve, reject) => {
+    var img = new Image()
+    img.onload = function () {
+      resolve({
+        width: img.width,
+        height: img.height
+      })
+    }
+    img.onerror = function () {
+      reject(null)
+    }
+    img.src = src
+  })
 }
 </script>
 

@@ -29,6 +29,17 @@ export default {
           regular: '我很正常'
         }
       }, {
+        title: 'Password',
+        columns: {
+          regular: {
+            label: '默认',
+            type: 'password'
+          }
+        },
+        items: {
+          regular: '我很正常'
+        }
+      }, {
         title: 'Dropdown',
         columns: {
           regular: {

@@ -1,6 +1,9 @@
 <template>
   <div class="demo-misc">
-    <c-image src="images/logo.png"></c-image>
+    <c-image class="img1" src="images/logo.png"></c-image>
+    <c-image class="img2" src="images/logo.png"
+      width="500"
+      height="500"></c-image>
     <pane>pane</pane>
     <flex-box>
       <flex-item>flex-item-1</flex-item>

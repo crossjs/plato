@@ -77,7 +77,7 @@ export function install (Vue) {
       $validation.fields.forEach(field => field.$validate())
     }
 
-    return Promise.resolve($validation)
+    return $validation.valid ? Promise.resolve($validation) : Promise.reject($validation)
   }
 }
 

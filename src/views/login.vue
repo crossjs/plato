@@ -9,10 +9,13 @@
 </template>
 
 <script>
+import Vue from 'vue'
+import Validator from 'plugins/validator'
 import CForm from 'duo/c-form'
 import md5 from 'utils/md5'
 import { getBearer } from 'vx/actions'
 import { username, password } from 'utils/userFields'
+Vue.use(Validator)
 export default {
   data () {
     return {

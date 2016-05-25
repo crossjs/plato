@@ -1,4 +1,8 @@
 .demo-misc {
+  & .c-image {
+    margin: 1rem;
+    background-color: color(white lightness(-20%));
+  }
   & .c-pane {
     background-color: color(white lightness(-10%));
   }

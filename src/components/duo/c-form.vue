@@ -36,14 +36,11 @@
 </template>
 
 <script>
-import Vue from 'vue'
-import Validator from './validator'
 import Modal from '../solo/c-modal'
 import Group from './c-group'
 import Pane from '../solo/c-pane'
 import FlexBox from '../solo/c-flex-box'
 import FlexItem from '../solo/c-flex-item'
-Vue.use(Validator)
 export default {
   props: {
     class: {
@@ -122,9 +119,15 @@ export default {
     },
     _submit () {
       if (!this.modal.show) {
-        this.$validate().then($validation => {
-          $validation.valid && this.submit(this.payload)
-        })
+        if (this.$validation) {
+          this.$validate().then(() => {
+            this.submit(this.payload)
+          }).catch($validation => {
+            this.$emit('error', $validation)
+          })
+        } else {
+          this.submit(this.payload)
+        }
       }
     }
   },

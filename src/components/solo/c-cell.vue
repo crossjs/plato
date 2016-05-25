@@ -14,8 +14,9 @@
 <script>
 import Icon from './c-icon'
 import Labe from './c-labe'
-import Text from './c-text'
 import Link from './c-link'
+import Text from './c-text'
+import Password from './c-password'
 import Checkbox from './c-checkbox'
 import Datetime from './c-datetime'
 import Dropdown from './c-dropdown'
@@ -45,6 +46,7 @@ export default {
     Icon,
     Labe,
     Text,
+    Password,
     Link,
     Checkbox,
     Datetime,

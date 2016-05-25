@@ -32,7 +32,7 @@ export default {
 
   computed: {
     _value () {
-      return this.showPassword ? this.value : new Array((this.value || '******').length).join('*')
+      return this.showPassword ? this.value : new Array((this.value || '******').length + 1).join('*')
     }
   },
 

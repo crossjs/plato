@@ -11,9 +11,12 @@
 </template>
 
 <script>
+import Vue from 'vue'
+import Validator from 'plugins/validator'
 import CForm from 'duo/c-form'
 import { profile } from 'vx/getters'
 import { getProfile, updateProfile } from 'vx/actions'
+Vue.use(Validator)
 export default {
   data () {
     return {
