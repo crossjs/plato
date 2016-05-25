@@ -1,4 +1,8 @@
 /**
+ * From: https://github.com/vuejs/vue-validator
+ */
+
+/**
  * Fundamental validate functions
  */
 

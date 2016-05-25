@@ -39,6 +39,7 @@ export default {
           mutation (ctx, modal) {
             modal.show = true
             modal.body = '确定注册？'
+            // 阻止提交，以实现等待确认
             return false
           }
         }
@@ -49,15 +50,16 @@ export default {
   // methods
   methods: {
     signup ($payload) {
-      if (this.$validation.invalid) {
-        return
-      }
+      // if (this.$validation.invalid) {
+        // return
+      // }
       $payload.password = md5($payload.password)
       this.createUser($payload)
     }
   },
 
   validator: {
+    auto: true
   },
 
   route: {

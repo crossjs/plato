@@ -103,9 +103,6 @@ export default {
 
   methods: {
     submit ($payload) {
-      if (!this.$validation.valid) {
-        return
-      }
       if (!$payload) {
         this.state = 0
         return
@@ -125,6 +122,7 @@ export default {
   },
 
   validator: {
+    // auto: true
   },
 
   route: {

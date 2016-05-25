@@ -1,11 +1,13 @@
 <template>
-  <Pane class="demos">
-    <group
-      v-for="demo in demos"
-      :title="demo.title"
-      :columns="demo.columns"
-      :items="demo.items"></group>
-  </Pane>
+  <div class="demos">
+    <Pane class="demos">
+      <group
+        v-for="demo in demos"
+        :title="demo.title"
+        :columns="demo.columns"
+        :items="demo.items"></group>
+    </Pane>
+  </div>
 </template>
 
 <script>

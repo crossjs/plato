@@ -1,21 +1,10 @@
 <template>
-  <div :class="['c-password', class, {editing: editing}]">
+  <div :class="['c-password', class]">
     <button class="c-password-toggle iconfont-view"
       :class="{active: showPassword}"
       type="button"
       @click="_toggle"></button>
-    <template v-if="editing">
-      <input class="c-password-input"
-        :type="showPassword ? 'text' : 'password'"
-        :field="field"
-        v-model="value"
-        v-bind="attrs"
-        @change="_validate"
-        debounce="500">
-    </template>
-    <template v-else>
-      {{_value}}
-    </template>
+    {{_value}}
   </div>
 </template>
 

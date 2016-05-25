@@ -1,14 +1,16 @@
 <template>
-  <pane class="view-home">
-    <chartist
-      v-for="chart of charts"
-      :ratio="chart.ratio"
-      :type="chart.type"
-      :data="chart.data"
-      :options="chart.options"
-      :responsive="chart.responsive"
-      :events="chart.events"></chartist>
-  </pane>
+  <div class="demo-chart">
+    <pane>
+      <chartist
+        v-for="chart of charts"
+        :ratio="chart.ratio"
+        :type="chart.type"
+        :data="chart.data"
+        :options="chart.options"
+        :responsive="chart.responsive"
+        :events="chart.events"></chartist>
+    </pane>
+  </div>
 </template>
 
 <script>
