@@ -1,5 +1,5 @@
 import store from 'vx/store'
-import { auth } from 'vx/getters'
+import { auth, env } from 'vx/getters'
 import { SET_PROGRESS, ADD_TOAST, DELETE_TOAST } from 'vx/types'
 
 export function setProgress (progress) {
@@ -24,8 +24,13 @@ export function getAuth () {
   return auth(store.state)
 }
 
+export function getEnv () {
+  return env(store.state)
+}
+
 export default {
   setProgress,
   addToast,
-  getAuth
+  getAuth,
+  getEnv
 }

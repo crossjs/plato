@@ -24,6 +24,7 @@
 
 <script>
 import store from 'vx/store'
+import i18n from 'vx/i18n'
 import { progress, toasts } from 'vx/getters'
 import Progress from 'solo/c-progress'
 import Toast from 'solo/c-toast'
@@ -35,6 +36,7 @@ import { routes } from 'routes'
 export default {
   name: 'App',
   store,
+  i18n,
 
   data () {
     return {

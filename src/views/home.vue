@@ -5,7 +5,7 @@
       :items="{lang: env.lang}"
       @mutate="setEnv"></c-form>
     <pane class="quatation">
-      {{$t('message.plato')}}
+      {{__('message.plato')}}
     </pane>
     <pane>
       <group

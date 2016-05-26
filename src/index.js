@@ -1,12 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import I18n from 'vue-i18n'
+import I18n from 'plugins/i18n'
 import App from 'app'
 import { routes, alias } from 'routes'
-import store from 'vx/store'
 import { env, auth, progress } from 'vx/getters'
 import utils from 'vx/utils'
-import applyLocales from 'locales/apply'
 
 if (module.hot) {
   module.hot.accept()
@@ -15,7 +13,6 @@ if (module.hot) {
 Vue.config.debug = process.env.NODE_ENV === 'development'
 
 Vue.use(Router)
-
 Vue.use(I18n)
 
 // global mixins
@@ -28,8 +25,6 @@ Vue.mixin({
     }
   }
 })
-
-applyLocales(env, store, Vue)
 
 const router = new Router({
   history: false,
