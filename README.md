@@ -77,10 +77,32 @@ export default new Vuex.Store({
 
 ## 国际化
 
-*此方案目前比较 ugly，待优化*
+``` js
+// use plugin
+import Vue from 'vue'
+import I18n from 'plugins/i18n'
+Vue.use(I18n)
 
-- 使用 [vue-i18n](https://github.com/kazupon/vue-i18n/) 进行多语言支持
-- see files in `src/locales`
+// set resources
+export default {
+  name: 'App',
+  i18n: {
+    resources: {
+      message: {
+        plato: '...'
+      }
+    }
+  }
+}
+```
+
+``` vuex
+// use translate
+// see: https://github.com/Matt-Esch/string-template
+<template>
+{{__('message.plato')}}
+</template>
+```
 
 ## UI 组件
 
