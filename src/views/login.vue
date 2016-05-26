@@ -13,7 +13,7 @@ import Vue from 'vue'
 import Validator from 'plugins/validator'
 import CForm from 'duo/c-form'
 import md5 from 'utils/md5'
-import { getBearer } from 'vx/actions'
+import { getAuth } from 'vx/actions'
 import { username, password } from 'utils/userFields'
 Vue.use(Validator)
 export default {
@@ -49,7 +49,7 @@ export default {
     login ($payload) {
       this.$validate().then(() => {
         $payload.password = md5($payload.password)
-        this.getBearer($payload)
+        this.getAuth($payload)
       }).catch($validation => {
         this.$emit('error', $validation)
       })
@@ -69,7 +69,7 @@ export default {
 
   vuex: {
     actions: {
-      getBearer
+      getAuth
     }
   },
 

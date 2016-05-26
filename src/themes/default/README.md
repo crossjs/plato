@@ -3,3 +3,4 @@ z-index
   - mask > 100
   - modal > 1000
   - toasts > 10000
+  - progress > 100000

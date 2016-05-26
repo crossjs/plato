@@ -3,10 +3,15 @@
   flex-direction: row;
   padding: 1rem;
   border-top: 1px solid color(white lightness(-10%));
-  border-radius: inherit;
 
   &:first-child {
     border-top: none;
+    border-radius: inherit;
+  }
+
+  &:last-child {
+    border-bottom-left-radius: inherit;
+    border-bottom-right-radius: inherit;
   }
 
   &:active {

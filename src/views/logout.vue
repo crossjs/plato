@@ -13,7 +13,7 @@
 <script>
 import CImage from 'solo/c-image'
 import Modal from 'solo/c-modal'
-import { deleteBearer } from 'vx/actions'
+import { deleteAuth } from 'vx/actions'
 export default {
   data () {
     return {
@@ -21,7 +21,7 @@ export default {
       backdrop: false,
       callback (key) {
         if (key === 'submit') {
-          this.$parent.deleteBearer()
+          this.$parent.deleteAuth()
         } else {
           history.back()
         }
@@ -41,7 +41,7 @@ export default {
 
   vuex: {
     actions: {
-      deleteBearer
+      deleteAuth
     }
   },
 

@@ -5,6 +5,7 @@ import App from 'app'
 import { routes, alias } from 'routes'
 import store from 'vx/store'
 import { env, auth, progress } from 'vx/getters'
+import utils from 'vx/utils'
 import applyLocales from 'locales/apply'
 
 if (module.hot) {
@@ -41,15 +42,17 @@ router.map(routes)
 router.alias(alias)
 
 router.beforeEach(transition => {
-  if (transition.to.auth && !auth(store.state)) {
+  if (transition.to.auth && !utils.getAuth()) {
     transition.abort()
   } else {
+    utils.setProgress(60)
     transition.next()
   }
 })
 
 router.afterEach(transition => {
   window.scrollTo(0, 0)
+  utils.setProgress(100)
 })
 
 router.start(App, 'app')
