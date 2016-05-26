@@ -18,11 +18,8 @@ export function install (Vue) {
 
     if (i18n) {
       // 在入口处定义 $i18n
-      Vue.util.defineReactive(this, '$i18n', Object.assign({
-        languages: [],
-        resources: {}
-      }, i18n))
-    } else {
+      Vue.util.defineReactive(this, '$i18n', i18n)
+    } else if (!this.$i18n) {
       // 寻找父级带 i18n 的组件
       const i18nVm = getI18nVm(this)
       if (i18nVm) {
@@ -32,16 +29,16 @@ export function install (Vue) {
     }
   }
 
-  Vue.prototype.__ = Vue.prototype.$translate = function (key, ...args) {
-    if (!key) {
-      return ''
+  Vue.prototype.__ = Vue.prototype.$translate = function (keys, ...args) {
+    if (!keys) {
+      return keys
     }
     // `.` 作为分隔符
-    return format(key.split('.').reduce((res, key) => {
-      if (res.hasOwnProperty(key)) {
+    return format(keys.split('.').reduce((res, key) => {
+      if (res && res.hasOwnProperty && res.hasOwnProperty(key)) {
         return res[key]
       }
-      return {}
+      return keys
     }, this.$i18n.resources), ...args)
   }
 }

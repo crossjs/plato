@@ -1,20 +1,22 @@
 <template>
-  <ul>
-    <li v-for="route in _routes">
-      <a :class="{['iconfont-' + route.icon]: route.icon}"
-        v-link="{
-          path: father + route.path,
-          name: route.name,
-          exact: route.exact
-        }">{{route.title}}</a>
-      <template v-if="recursive && route.subRoutes">
-        <route
-          :father="route.path"
-          :filter="filter"
-          :routes="route.subRoutes"></route>
-      </template>
-    </li>
-  </ul>
+  <div class="c-route">
+    <ul>
+      <li v-for="route in _routes">
+        <a :class="{['iconfont-' + route.icon]: route.icon}"
+          v-link="{
+            path: father + route.path,
+            name: route.name,
+            exact: route.exact
+          }">{{route.title}}</a>
+        <template v-if="recursive && route.subRoutes">
+          <route
+            :father="route.path"
+            :filter="filter"
+            :routes="route.subRoutes"></route>
+        </template>
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
@@ -41,12 +43,12 @@ export default {
 
   computed: {
     _routes () {
-      return walkRoutes(this.routes, this.filter)
+      return walkRoutes(this.routes, this.filter, this.__.bind(this))
     }
   }
 }
 
-function walkRoutes (routes, filter) {
+function walkRoutes (routes, filter, __ = val => val) {
   let keys = Object.keys(routes)
 
   keys = keys.filter(key => !routes[key].hidden)
@@ -62,7 +64,7 @@ function walkRoutes (routes, filter) {
       name: route.name,
       exact: route.exact,
       icon: route.icon,
-      title: route.title,
+      title: __(route.title),
       subRoutes: route.subRoutes
     }
   })

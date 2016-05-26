@@ -1,5 +1,8 @@
 {
   "message": {
     "plato": "好的开始是成功的一半！"
+  },
+  "routes": {
+    "login": "登录"
   }
 }

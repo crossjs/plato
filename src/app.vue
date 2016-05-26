@@ -24,19 +24,21 @@
 
 <script>
 import store from 'vx/store'
-import i18n from 'vx/i18n'
-import { progress, toasts } from 'vx/getters'
+import { toasts } from 'vx/getters'
 import Progress from 'solo/c-progress'
 import Toast from 'solo/c-toast'
 import Logo from 'solo/c-logo'
 import Navbar from 'solo/c-navbar'
 import Route from 'solo/c-route'
 import { routes } from 'routes'
+import { GET } from 'utils/ajax'
 
 export default {
   name: 'App',
   store,
-  i18n,
+  i18n: {
+    resources: {}
+  },
 
   data () {
     return {
@@ -52,9 +54,31 @@ export default {
     }
   },
 
+  methods: {
+    getResources () {
+      const { lang } = this.env
+      GET(`./i18n/${lang}.json`).then(resources => {
+        this.$i18n.resources = resources
+      })
+    }
+  },
+
+  created () {
+    this.getResources()
+  },
+
+  watch: {
+    env (val, old) {
+      if (val.lang !== old.lang) {
+        this.$nextTick(() => {
+          this.getResources()
+        })
+      }
+    }
+  },
+
   vuex: {
     getters: {
-      progress,
       toasts
     }
   },

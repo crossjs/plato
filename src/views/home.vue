@@ -32,7 +32,7 @@ export default {
           attrs: {
             options: [{
               value: 'en',
-              label: '英文'
+              label: 'English'
             }, {
               value: 'zh',
               label: '中文'

@@ -1,5 +1,8 @@
 {
   "message": {
     "plato": "The beginning is the most important part of the work."
+  },
+  "routes": {
+    "login": "Login"
   }
 }
