@@ -37,14 +37,13 @@
 - postcss
 - karma
 
-## 设计原则
-
-### 基本
+## 基本原则
 
 - 使用 ES6 编写
 - 向 vue@2 靠拢
+- 尽量使用小的依赖库
 
-### 数据
+## 数据
 
 - 使用 [vuex](https://github.com/vuejs/vuex/) 进行数据管理
 - 数据按模块分文件存放于 `src/vx/modules` 目录，并确保模块间数据不互相干扰
@@ -104,6 +103,41 @@ export default {
 </template>
 ```
 
+## 表单验证
+
+``` js
+// use plugin
+import Vue from 'vue'
+import Validator from 'plugins/validator'
+
+Vue.use(Validator)
+
+// set validator
+export default {,
+  ...
+  validator: {
+    // 设置初始化后自动检查
+    auto: true
+  }
+  ...
+}
+
+// use validator
+// in template
+<input type="text" @change="_validate">
+
+// in js
+...
+methods: {
+  _validate () {
+    if (!this.validate || !this.$validation) {
+      return
+    }
+    this.$validate()
+  }
+}
+```
+
 ## UI 组件
 
 **不限制使用何种 UI 组件，可以使用第三方，或自己开发（请尽量考虑复用性）**
@@ -160,7 +194,16 @@ npm test
 
 ## 兼容性
 
-移动浏览器
+> 移动浏览器
+
+*修改 `postcss-cssnext` 配置以调整 CSS 兼容性*
+
+``` js
+// .tools/webpack/index.js
+require('postcss-cssnext')({
+  browsers: 'last 1 version'
+}),
+```
 
 ## 相关
 
