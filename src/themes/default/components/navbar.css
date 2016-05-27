@@ -53,6 +53,7 @@
     padding: 0 1rem;
     line-height: 4rem;
     text-decoration: none;
+    text-align: center;
 
     &:active {
       background-color: color(white lightness(-5%));

@@ -19,7 +19,7 @@ export function install (Vue) {
     if (i18n) {
       // 在入口处定义 $i18n
       Vue.util.defineReactive(this, '$i18n', i18n)
-    } else if (!this.$i18n) {
+    } else {
       // 寻找父级带 i18n 的组件
       const i18nVm = getI18nVm(this)
       if (i18nVm) {
@@ -30,7 +30,7 @@ export function install (Vue) {
   }
 
   Vue.prototype.__ = Vue.prototype.$translate = function (keys, ...args) {
-    if (!keys) {
+    if (!keys || !this.$i18n) {
       return keys
     }
     // `.` 作为分隔符
