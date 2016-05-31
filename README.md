@@ -1,6 +1,7 @@
 # plato
 
 > :construction: 开发中…… [Live demo](http://crossjs.com/plato)
+> :warning: UI 组件持续调整中，生产使用请慎重
 
 ![haojiyou](http://hbimg.b0.upaiyun.com/c0b233344592936874714e5596736eb92ae8d3309ff4-QFVcuc_fw658)
 
