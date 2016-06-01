@@ -13,6 +13,10 @@
 
 > A plat<del>form</del> built with [koa](http://koajs.com/) and [vue](http://vuejs.org/)
 
+## 更新日志
+
+- 20160602：UI 组件重构（移除状态切换、移除内置校验……）
+
 ## 预览
 
 **带验证的登录表单、注册表单+确认框**
@@ -148,10 +152,10 @@ methods: {
 
 - 使用 .vue [单文件组件](http://cn.vuejs.org/guide/application.html#单文件组件)
 - 使用 mixins 实现复用
-- 为了 **性能** 考虑，组件分为两类
-  - duo 组件拥有两个状态：展示与编辑，集成了 validator
-    - *计划优化 validator*
-  - solo 组件仅展示
+- <del>为了 **性能** 考虑，组件分为两类</del>
+  - <del>duo 组件拥有两个状态：展示与编辑，集成了 validator</del>
+    - *<del>计划优化 validator</del>*
+  - <del>solo 组件仅展示</del>
 
 ## 使用样式
 
