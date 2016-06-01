@@ -3,17 +3,16 @@
     <h5 class="c-group-title"
       v-if="title">{{title}}</h5>
     <div class="c-group-cells"
-      v-if="items">
-      <cell class="c-group-cell"
-        v-for="column in columns"
-        :column="column"
-        :value="items[$key]"></cell>
+      v-if="cells">
+      <c-cell v-for="cell in cells"
+        class="c-group-cell"
+        :model="cell"></c-cell>
     </div>
   </div>
 </template>
 
 <script>
-import Cell from './c-cell'
+import CCell from './c-cell'
 export default {
   props: {
     class: {
@@ -24,18 +23,16 @@ export default {
       type: String,
       default: ''
     },
-    columns: {
-      type: Object,
-      default: () => {}
-    },
-    items: {
-      type: Object,
-      default: () => {}
+    cells: {
+      type: Array,
+      default () {
+        return []
+      }
     }
   },
 
   components: {
-    Cell
+    CCell
   }
 }
 </script>

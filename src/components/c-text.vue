@@ -1,6 +1,5 @@
 <template>
-  <div :class="['c-icon', class, value]"
-    v-if="value"><slot></slot></div>
+  <div :class="['c-text', class]">{{value}}</div>
 </template>
 
 <script>
@@ -16,4 +15,4 @@ export default {
 }
 </script>
 
-<style src="styles/components/icon"></style>
+<style src="styles/components/text"></style>

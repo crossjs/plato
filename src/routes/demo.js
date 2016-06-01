@@ -5,17 +5,11 @@ export default {
   hidden: true,
   component: resolve => require(['views/demo'], resolve),
   subRoutes: {
-    '/duo': {
-      icon: 'duo',
-      title: 'duo',
-      name: 'demo/duo',
-      component: resolve => require(['views/demo/duo'], resolve)
-    },
-    '/solo': {
-      icon: 'solo',
-      title: 'solo',
-      name: 'demo/solo',
-      component: resolve => require(['views/demo/solo'], resolve)
+    '/form': {
+      icon: 'form',
+      title: 'form',
+      name: 'demo/form',
+      component: resolve => require(['views/demo/form'], resolve)
     },
     '/chart': {
       icon: 'chart',

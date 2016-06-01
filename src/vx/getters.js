@@ -10,5 +10,7 @@ Object.keys(modules).forEach(key => {
 // customize, override defaults
 const gettersContext = require.context('./getters/', false, /\.js$/)
 export default gettersContext.keys().reduce((getters, key) => {
-  return Object.assign(getters, gettersContext(key))
+  const obj = gettersContext(key)
+  console.log(obj)
+  return Object.assign(getters, obj)
 }, getters)

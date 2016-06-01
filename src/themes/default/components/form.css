@@ -1,138 +1,90 @@
 .c-form {
 }
 
-.c-form-errors {
-}
-
-.c-form-error {
-  margin: 0.5rem 0;
-  padding: 0.3rem 0.3rem 0.3rem 0.8rem;
-  cursor: default;
-  color: var(--text_warning);
-  background-color: var(--bg_warning);
-  list-style-type: square;
-  list-style-position: inside;
-}
-
-.c-form-items {
-  border-bottom: 1px solid color(white lightness(-10%));
-}
-
-.c-form-item {
-  display: flex;
-  padding: 0.5rem;
-  flex-direction: row;
-  position: relative;
-  cursor: default;
-  line-height: 3;
-  border-top: 1px solid color(white lightness(-10%));
-}
-
-.c-form-icon {
-  flex: none;
-  margin: 1px;
-  min-width: 1.5rem;
+.c-form-title {
+  padding: 1rem 1rem 0.5rem;
+  color: color(white lightness(-40%));
+  font-size: 1rem;
+  font-weight: normal;
   text-align: center;
-  color: color(black lightness(50%));
 }
 
-.c-form-label {
-  flex: none;
-  &:after {
-    content: '：';
-  }
+.c-form-cells {
+  background-color: white;
+  border: 1px solid color(white lightness(-10%));
+  border-radius: 0.25rem;
 }
 
-.c-form-field {
-  flex: auto;
+.c-form-cell {
   display: flex;
   flex-direction: row;
+  padding: 1rem;
+  border-top: 1px solid color(white lightness(-10%));
 
-  & > div {
-    flex: auto;
+  &:first-child {
+    border-top: none;
+    border-radius: inherit;
+  }
+
+  &:last-child {
+    border-bottom-left-radius: inherit;
+    border-bottom-right-radius: inherit;
+  }
+
+  &:active {
+    background-color: color(var(--invert) alpha(10%))
   }
 }
 
-.c-form-input,
-.c-form-textarea {
-  width: 100%;
-  border: none;
-  padding: 0 0.3rem;
-  width: 100%;
-  line-height: inherit;
-  background-color: white;
-  outline: none;
-  box-sizing: border-box;
+.c-form-cell-icon {
+  flex: none;
+  margin-right: 0.3em;
+}
+
+.c-form-cell-labe {
+  flex: none;
+  margin-right: 0.3em;
+}
+
+.c-form-cell-value {
+  flex: auto;
   text-align: right;
-
-  &:hover,
-  &:focus {
-    border-color:  color(var(--invert) lightness(-10%));
-  }
-
-  &[readonly] {
-    background-color: color(white lightness(-6%));
-  }
-
-  &[disabled] {
-    background-color: color(white lightness(-3%));
-  }
-
-  &[size] {
-    width: auto;
-  }
 }
 
-.c-form-input {
-  &::-ms-clear {
-    display: none;
-  }
-}
-
-.c-form-textarea {
-  resize: vertical;
-}
-
-.c-form-select {
-  appearance: none;
-  border-radius: 0;
-  border: 1px solid color(black lightness(80%));
-  padding: 0 1.1rem 0 0.3rem;
-  outline: none;
-  box-sizing: border-box;
-  background: white url('../images/down.png') no-repeat right center;
-
-  &:hover,
-  &:focus {
-    border-color:  color(var(--invert) lightness(-10%));
+/* 输入框独占一行 */
+.c-form-expand {
+  & .c-form-cell {
+    display: block;
   }
 
-  &[readonly] {
-    background-color: color(white lightness(-6%));
+  & .c-form-cell-icon {
+    flex: none;
+    display: inline-block;
   }
 
-  &[disabled] {
-    background-color: color(white lightness(-3%));
+  & .c-form-cell-label {
+    flex: none;
+    display: inline-block;
   }
 
-  &[size] {
-    width: auto;
+  & .c-form-cell-value {
+    flex: none;
+    text-align: left;
   }
-}
 
-.c-form-buttons {
-  margin: 0.5rem;
-  & .button {
-    width: 100%;
-    margin: 0 0.5rem;
-    padding: 0 1.5rem;
+  & .c-form-field {
+    text-align: left;
+  }
 
-    &:first-child {
-      margin-left: 0;
-    }
+  & .c-password-toggle {
+    position: absolute;
+    right: 0;
+    top: 0;
+    left: auto;
+  }
 
-    &:last-child {
-      margin-right: 0;
-    }
+  & .c-password-input {
+    padding-right: 1.8rem;
+    padding-left: 0;
   }
 }

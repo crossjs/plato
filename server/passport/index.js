@@ -3,6 +3,7 @@ import passport from 'koa-passport'
 import { Strategy as LocalStrategy } from 'passport-local'
 import { Strategy as BearerStrategy } from 'passport-http-bearer'
 import { bearer_expires } from '../config'
+import respond from '../utils/respond'
 import hash from '../utils/hash'
 import User from '../models/user'
 
@@ -17,13 +18,15 @@ export const check = async (ctx, next) => {
     session: false
   }, async (user, info, status) => {
     if (user === false) {
-      ctx.status = 401
+      respond(401, {
+        message: 'Unauthorized'
+      }, ctx)
     } else {
       const expires = Date.now() + bearer_expires
       // update expires
-      await user.update({ expires }).exec()
-      // todo: apply user to ctx?
-      ctx._user = { ...user.toJSON(), expires }
+      await user.update({ expires }, { new: true }).exec()
+      // apply user to ctx
+      ctx._user = user.toJSON()
       await next()
     }
   })(ctx, next)

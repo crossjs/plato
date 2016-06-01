@@ -3,28 +3,27 @@
     <c-image
       src="images/logo.png"></c-image>
     <modal
-      body="确定退出？"
-      :show.sync="show"
-      :backdrop="backdrop"
-      :callback="callback"></modal>
+      :show.sync="true"
+      :backdrop="false"
+      :callback="callback">确定退出？</modal>
   </div>
 </template>
 
 <script>
-import CImage from 'solo/c-image'
-import Modal from 'solo/c-modal'
+import CImage from 'components/c-image'
+import Modal from 'components/c-modal'
 import { deleteAuth } from 'vx/actions'
 export default {
   data () {
     return {
-      show: true,
-      backdrop: false,
       callback (key) {
         if (key === 'submit') {
           this.$parent.deleteAuth()
         } else {
           history.back()
         }
+        // return `false` to prevent hidding modal
+        return false
       }
     }
   },
@@ -35,7 +34,6 @@ export default {
         history.back()
         return
       }
-      this.show = true
     }
   },
 

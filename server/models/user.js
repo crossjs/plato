@@ -39,6 +39,23 @@ const schema = new mongoose.Schema({
     type: Number,
     // 0: disabled, 1: enabled
     default: 1
+  },
+  signature: {
+    type: String,
+    default: ''
+  },
+  gender: {
+    type: Number,
+    // -1: unknown, 0: male, 1: female, 2: other
+    default: -1
+  },
+  birthday: {
+    type: String,
+    default: ''
+  },
+  address: {
+    type: String,
+    default: ''
   }
 })
 

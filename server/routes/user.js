@@ -1,5 +1,5 @@
 import _debug from 'debug'
-import respond from './utils/respond'
+import respond from '../utils/respond'
 import User from '../models/user'
 import { check } from '../passport'
 
@@ -46,10 +46,10 @@ export default (app, router) => {
   })
 
   router.patch('/user/profile', check, async ctx => {
-    const { state } = ctx.request.body
+    const { signature, gender, birthday, address } = ctx.request.body
     const user = await User.findOneAndUpdate({
       token: ctx.request.token
-    }, { state }, { new: true }).exec()
+    }, { signature, gender, birthday, address }, { new: true }).exec()
     if (!user) {
       return respond(404, {
         message: '用户不存在'

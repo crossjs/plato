@@ -17,8 +17,4 @@
 
 .c-modal-footer {
   border-top: 1px solid color(white lightness(90%));
-
-  & .button {
-    margin: 0.5rem 0 0;
-  }
 }

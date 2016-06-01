@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Pane from 'solo/c-pane'
+import Pane from 'components/c-pane'
 export default {
   components: {
     Pane

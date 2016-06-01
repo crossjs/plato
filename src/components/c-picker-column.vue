@@ -1,11 +1,11 @@
 <!-- Inspired by https://facebook.github.io/react-native/docs/picker.html -->
 <template>
-  <div :class="['c-picker', class]"
+  <div :class="['c-picker-column', class]"
     @touchstart.prevent="_dragstart($event)"
     @touchmove.prevent="_drag($event)"
     @touchend.prevent="_dragend($event)">
-    <div class="c-picker-scroller"></div>
-    <div class="c-picker-content"
+    <div class="c-picker-column-scroller"></div>
+    <div class="c-picker-column-content"
       :style="{transform: transform}">
       <span v-for="item in items" track-by="$index">{{item.label}}</span>
     </div>
@@ -21,26 +21,33 @@ export default {
     },
     size: {
       type: Number,
-      default: 3,
+      default: 7,
       validator (value) {
         return value >= 3 && value % 2 === 1
       }
     },
     value: {
-      // twoWay: true
     },
     items: {
       type: Array,
-      default: () => []
+      default () {
+        return []
+      },
+      coerce (val) {
+        if (!val[0] || !val[0].label) {
+          return val.map(value => {
+            return {
+              label: value,
+              value
+            }
+          })
+        }
+        return val
+      }
     },
     itemHeight: {
       type: Number,
       default: 32
-    }
-  },
-
-  data () {
-    return {
     }
   },
 
@@ -87,7 +94,15 @@ export default {
     },
     _dragend (e) {
       this.dragging = false
-      this.$emit('mutate', this.value)
+      // this.$emit('mutate', this.value)
+    }
+  },
+
+  watch: {
+    value (val) {
+      this.$nextTick(() => {
+        this.$emit('mutate', val)
+      })
     }
   }
 }

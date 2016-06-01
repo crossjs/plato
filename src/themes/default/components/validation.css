@@ -1,0 +1,12 @@
+.c-validation {
+}
+
+.c-validation-error {
+  margin: 0.5rem 0;
+  padding: 0.3rem 0.3rem 0.3rem 0.8rem;
+  cursor: default;
+  color: var(--text_warning);
+  background-color: var(--bg_warning);
+  list-style-type: square;
+  list-style-position: inside;
+}

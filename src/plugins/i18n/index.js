@@ -2,7 +2,7 @@ import format from 'string-template'
 
 export function install (Vue) {
   if (Vue.config.debug) {
-    console.log('Vue I18n Plugin Installed.')
+    console.log('[I18n] Vue I18n Plugin Installed.')
   }
 
   const _init = Vue.prototype._init

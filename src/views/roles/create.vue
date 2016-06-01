@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import CForm from 'duo/c-form'
+import CForm from 'components/c-form'
 import { roles } from 'vx/getters'
 import { createRole } from 'vx/actions'
 import { ROLE_LEVEL_OPTIONS } from 'vx/constants'

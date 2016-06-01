@@ -1,45 +1,43 @@
 <template>
-  <div :class="['c-cell', class]">
-    <icon class="c-cell-icon"
-      :value="column.icon"></icon>
-    <labe class="c-cell-labe"
-      :value="column.label"></labe>
-    <component class="c-cell-value"
-      :is="column.type"
-      :state="state"
+  <div :class="['c-form-cell', class]">
+    <c-icon class="c-form-cell-icon"
+      :value="model.icon"></c-icon>
+    <c-label class="c-form-cell-label">{{model.label}}</c-label>
+    <component class="c-form-cell-value"
+      :is="model.type"
       :field="field"
-      :attrs="column.attrs"
-      :validate="column.validate"
-      :value.sync="value"></component>
+      :value.sync="value"
+      :attrs="model.attrs"
+      :extra="model.extra"
+      :validate="model.validate"></component>
   </div>
 </template>
 
 <script>
-import Icon from '../solo/c-icon'
-import Labe from '../solo/c-labe'
-import Text from './c-text'
+import CIcon from './c-icon'
+import CLabel from './c-label'
+import Textfield from './c-textfield'
 import Multiline from './c-multiline'
 import Password from './c-password'
 import Checkbox from './c-checkbox'
 import Datetime from './c-datetime'
 import Dropdown from './c-dropdown'
+import Picker from './c-picker'
 export default {
   props: {
     class: {
       type: String,
       default: ''
     },
-    state: {
-      type: Number,
-      default: 0
-    },
     field: {
       type: String,
       default: ''
     },
-    column: {
+    model: {
       type: Object,
-      default: () => {}
+      default () {
+        return {}
+      }
     },
     value: {
     }
@@ -54,16 +52,15 @@ export default {
   },
 
   components: {
-    Icon,
-    Labe,
-    Text,
+    CIcon,
+    CLabel,
+    Textfield,
     Multiline,
     Password,
     Checkbox,
     Datetime,
-    Dropdown
+    Dropdown,
+    Picker
   }
 }
 </script>
-
-<style src="styles/components/cell"></style>

@@ -15,8 +15,8 @@
 
 <script>
 import { Svg } from 'chartist'
-import Pane from 'solo/c-pane'
-import Chartist from 'solo/c-chartist'
+import Pane from 'components/c-pane'
+import Chartist from 'components/c-chartist'
 export default {
   data () {
     return {

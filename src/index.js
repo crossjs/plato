@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import Validator from 'plugins/validator'
 import I18n from 'plugins/i18n'
 import App from 'app'
 import { routes, alias } from 'routes'
@@ -13,6 +14,7 @@ if (module.hot) {
 Vue.config.debug = process.env.NODE_ENV === 'development'
 
 Vue.use(Router)
+Vue.use(Validator)
 Vue.use(I18n)
 
 // global mixins

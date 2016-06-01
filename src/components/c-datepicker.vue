@@ -4,8 +4,8 @@
     v-show="show"
     tabindex="-1"
     transition="fade">
-    <mask class="c-datepicker-mask"
-      @touchend.prevent="show = false"></mask>
+    <c-mask class="c-datepicker-mask"
+      @touchend.prevent="show = false"></c-mask>
     <div class="c-datepicker-body"
       @touchmove.prevent>
       <div class="c-datepicker-header">
@@ -16,12 +16,12 @@
       </div>
       <div class="c-datepicker-content">
         <template v-for="column in columns" track-by="$index">
-          <picker v-if="column.type === 'picker'"
+          <c-picker-column v-if="column.type === 'picker'"
             :class="column.class"
             :size="size"
             :value="column.value"
             :items="column.items"
-            @mutate="column.mutate"></picker>
+            @mutate="column.mutate"></c-picker-column>
           <i v-else>{{column}}</i>
         </template>
       </div>
@@ -31,8 +31,8 @@
 
 <script>
 import datetime from 'nd-datetime'
-import Mask from './c-mask'
-import Picker from './c-picker'
+import CMask from './c-mask'
+import CPickerColumn from './c-picker-column'
 export default {
   props: {
     class: {
@@ -74,18 +74,20 @@ export default {
       if (views === null) {
         return []
       }
+      // views.unshift(' ')
+      // views.push(' ')
       return views.map(view => {
         if (/[^yMdhmsiED]/.test(view)) {
           return view
         }
-        const varname = this.getName(view)
+        const name = this.getName(view)
         return {
-          class: `c-datepicker-${varname}s`,
+          class: `c-datepicker-${name}s`,
           type: 'picker',
-          value: this[varname],
+          value: this[name],
           items: this.getItems(view),
           mutate (val) {
-            this[varname] = val
+            this[name] = val
           }
         }
       })
@@ -116,23 +118,23 @@ export default {
     getItems (type) {
       switch (type) {
         case 'yyyy':
-          return makeArray(1900, 2020)
+          return makeArrayByRange(1900, 2020)
         case 'MM':
-          return makeArray(1, 12)
+          return makeArrayByRange(1, 12)
         case 'dd':
-          return makeArray(1, datetime(`${this.year}-${this.month + 1}-00`, 'yyyy-MM-dd').d())
+          return makeArrayByRange(1, datetime(`${this.year}-${this.month + 1}-00`, 'yyyy-MM-dd').d())
         case 'hh':
-          return makeArray(0, 23)
+          return makeArrayByRange(0, 23)
         case 'mm':
         case 'ss':
-          return makeArray(0, 59)
+          return makeArrayByRange(0, 59)
       }
     }
   },
 
   components: {
-    Mask,
-    Picker
+    CMask,
+    CPickerColumn
   },
 
   // a custom directive to wait for the DOM to be updated
@@ -162,7 +164,7 @@ function zeroPad (value) {
   return '' + value
 }
 
-function makeArray (start, end) {
+function makeArrayByRange (start, end) {
   const arr = []
   for (let i = start; i <= end; i++) {
     arr.push({

@@ -16,8 +16,8 @@
 </template>
 
 <script>
-import CForm from 'duo/c-form'
-import Paginator from 'solo/c-paginator'
+import CForm from 'components/c-form'
+import Paginator from 'components/c-paginator'
 import { users } from 'vx/getters'
 import { getUsers, updateUser } from 'vx/actions'
 export default {

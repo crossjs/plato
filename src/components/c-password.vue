@@ -1,27 +1,26 @@
 <template>
   <div :class="['c-password', class]">
-    <button class="c-password-toggle iconfont-view"
-      :class="{active: showPassword}"
+    <button :class="['c-password-toggle', 'iconfont-view', {active: showPassword}]"
       type="button"
       @click="_toggle"></button>
-    {{_value}}
+    <input class="c-form-field c-password-input"
+      :type="showPassword ? 'text' : 'password'"
+      :field="field"
+      v-model="value"
+      v-bind="_attrs"
+      @change="_validate"
+      debounce="500">
   </div>
 </template>
 
 <script>
-import mField from './m-field'
+import mField from './m-form-field'
 export default {
   mixins: [mField],
 
   data () {
     return {
       showPassword: false
-    }
-  },
-
-  computed: {
-    _value () {
-      return this.showPassword ? this.value : new Array((this.value || '******').length + 1).join('*')
     }
   },
 

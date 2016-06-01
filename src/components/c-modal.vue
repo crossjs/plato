@@ -2,27 +2,33 @@
   <div :class="['c-modal', class]"
     v-show="show"
     transition="fade">
-    <mask v-show="backdrop && show"
+    <c-mask v-show="backdrop && show"
       @touchend.prevent="show = false"
-      transition="fade"></mask>
+      transition="fade"></c-mask>
     <div class="c-modal-content"
       v-show="show"
       transition="slide-up">
-      <div class="c-modal-body">{{body}}</div>
-      <pane class="c-modal-footer"
+      <div class="c-modal-body"><slot></slot></div>
+      <c-pane class="c-modal-footer"
         v-if="actions">
-        <button v-for="action in actions"
-          :class="['button', action.class || 'default']"
-          :type="action.type || 'button'"
-           @click="_click($key)">{{action.label}}</button>
-      </pane>
+        <c-flex-box>
+          <c-flex-item v-for="action in actions">
+            <c-button :class="action.class"
+              :type="action.type"
+              @click="_click($key)">{{action.label}}</c-button>
+          </c-flex-item>
+        </c-flex-box>
+      </c-pane>
     </div>
   </div>
 </template>
 
 <script>
-import Pane from './c-pane'
-import Mask from './c-mask'
+import CPane from './c-pane'
+import CMask from './c-mask'
+import CFlexBox from './c-flex-box'
+import CFlexItem from './c-flex-item'
+import CButton from './c-button'
 export default {
   props: {
     show: {
@@ -35,10 +41,6 @@ export default {
       default: true
     },
     class: {
-      type: String,
-      default: ''
-    },
-    body: {
       type: String,
       default: ''
     },
@@ -74,8 +76,11 @@ export default {
   },
 
   components: {
-    Mask,
-    Pane
+    CMask,
+    CPane,
+    CFlexBox,
+    CFlexItem,
+    CButton
   }
 }
 

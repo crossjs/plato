@@ -3,7 +3,7 @@ import _debug from 'debug'
 import passport from '../passport'
 import User from '../models/user'
 import salt from '../utils/salt'
-import respond from './utils/respond'
+import respond from '../utils/respond'
 import { bearer_expires } from '../config'
 
 export default (app, router) => {

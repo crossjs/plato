@@ -9,10 +9,8 @@ export default (app, router) => {
 
   router.get('/pages', check, async ctx => {
     const { $count = '', $offset = 0, $limit = 20 } = ctx.request.query
-    const pages = await Page.find({}).skip(+$offset).limit(+$limit).exec()
-    const res = {
-      items: pages
-    }
+    const items = await Page.find({}).skip(+$offset).limit(+$limit).exec()
+    const res = { items }
     if ($count) {
       res.count = await Page.find({}).count().exec()
     }

@@ -1,5 +1,5 @@
 <template>
-  <div :class="['c-text', class]">{{value}}</div>
+  <div :class="['c-label', class]"><slot></slot></div>
 </template>
 
 <script>
@@ -9,4 +9,4 @@ export default {
 }
 </script>
 
-<style src="styles/components/text"></style>
+<style src="styles/components/label"></style>

@@ -1,131 +1,75 @@
 <template>
-  <div class="profile">
-    <c-form
-      :submit="submit"
-      :state="state"
-      :title="title"
-      :columns="columns"
-      :items="profile"
-      :actions="actions"></c-form>
+  <div class="v-user-profile">
+    <c-pane>
+      <c-group
+        :title="title"
+        :cells="cells"></c-group>
+    </c-pane>
+    <c-pane>
+      <c-button class="primary" @click="go('user/modify')">修改资料</c-button>
+    </c-pane>
+    <c-pane>
+      <c-button class="warning" @click="go('logout')">退出登录</c-button>
+    </c-pane>
   </div>
 </template>
 
 <script>
-import Vue from 'vue'
-import Validator from 'plugins/validator'
-import CForm from 'duo/c-form'
+import datetime from 'nd-datetime'
+import CPane from 'components/c-pane'
+import CGroup from 'components/c-group'
+import CButton from 'components/c-button'
 import { profile } from 'vx/getters'
-import { getProfile, updateProfile } from 'vx/actions'
-Vue.use(Validator)
+import { getProfile } from 'vx/actions'
 export default {
   data () {
     return {
-      state: 0,
-      title: '用户信息',
-      columns: {
-        username: {
-          label: '账号',
-          type: 'text',
-          attrs: {
-            // readonly: true
-          },
-          validate: {
-            required: {
-              rule: true,
-              message: '请输入账号'
-            },
-            minlength: {
-              rule: 4,
-              message: '账号不能少于 4 个字符'
-            },
-            maxlength: {
-              rule: 20,
-              message: '账号不能多于 20 个字符'
-            }
-          }
-        },
-        state: {
-          label: '状态',
-          type: 'checkbox',
-          attrs: {
-            'true-label': '正常',
-            'false-label': '禁用'
-          }
-        },
-        created: {
-          label: '创建时间',
-          type: 'datetime',
-          attrs: {
-            readonly: true
-          }
-        },
-        updated: {
-          label: '活跃时间',
-          type: 'datetime',
-          attrs: {
-            readonly: true
-          }
-        }
-      }
+      title: '个人资料'
     }
   },
 
   computed: {
-    actions () {
-      return [
-        // 展示态
-        {
-          modify: {
-            type: 'button',
-            class: 'primary',
-            label: '修改个人资料',
-            mutation (ctx) {
-              ctx.$parent.state = 1
-            }
-          }
-        },
-        // 编辑态
-        {
-          cancel: {
-            type: 'button',
-            label: '取消',
-            mutation (ctx) {
-              ctx.$parent.state = 0
-            }
-          },
-          submit: {
-            type: 'submit',
-            class: 'warning',
-            label: this.progress ? '提交修改中...' : '提交修改',
-            disabled: !!this.progress
-          }
-        }
-      ]
+    cells () {
+      const {
+        username, state, signature,
+        gender, birthday, address,
+        created, updated, expires
+      } = this.profile
+      return [{
+        label: '账号',
+        value: username
+      }, {
+        label: '状态',
+        value: ['禁用', '正常'][state]
+      }, {
+        label: '签名',
+        value: signature
+      }, {
+        label: '性别',
+        value: ['-', '男', '女', '其它'][gender + 1]
+      }, {
+        label: '出生年月',
+        value: birthday || '-'
+      }, {
+        label: '联系地址',
+        value: address || '-'
+      }, {
+        label: '创建时间',
+        value: datetime(created)
+      }, {
+        label: '更新时间',
+        value: datetime(updated)
+      }, {
+        label: '会话有效期',
+        value: datetime(expires)
+      }]
     }
   },
 
   methods: {
-    submit ($payload) {
-      if (!$payload) {
-        this.state = 0
-        return
-      }
-      this.updateProfile($payload)
+    go (val) {
+      this.$route.router.go(val)
     }
-  },
-
-  watch: {
-    profile (val) {
-      this.state && this.$nextTick(() => {
-        if (val) {
-          this.state = 0
-        }
-      })
-    }
-  },
-
-  validator: {
-    // auto: true
   },
 
   route: {
@@ -139,13 +83,14 @@ export default {
       profile
     },
     actions: {
-      getProfile,
-      updateProfile
+      getProfile
     }
   },
 
   components: {
-    CForm
+    CPane,
+    CGroup,
+    CButton
   }
 }
 </script>

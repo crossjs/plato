@@ -10,6 +10,12 @@ export default {
       auth: true,
       // hidden: true,
       component: resolve => require(['views/user/profile'], resolve)
+    },
+    '/modify': {
+      name: 'user/modify',
+      auth: true,
+      hidden: true,
+      component: resolve => require(['views/user/modify'], resolve)
     }
   }
 }

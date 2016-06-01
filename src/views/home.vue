@@ -1,35 +1,37 @@
 <template>
   <div class="demos">
-    <c-form
-      :columns="columns"
-      :items="{lang: env.lang}"
-      @mutate="setEnv"></c-form>
-    <pane class="quatation">
+    <c-pane>
+      <c-form
+        :cells="cells"
+        :items="{lang: env.lang}"
+        @mutate="setEnv"></c-form>
+    </c-pane>
+    <c-pane class="quatation">
       {{__('message.plato')}}
-    </pane>
-    <pane>
-      <group
+    </c-pane>
+    <c-pane>
+      <c-group
         v-for="demo in demos"
         :title="demo.title"
-        :columns="demo.columns"
-        :items="demo.items"></group>
-    </pane>
+        :cells="demo.cells"
+        :items="demo.items"></c-group>
+    </c-pane>
   </div>
 </template>
 
 <script>
-import CForm from 'duo/c-form'
-import Pane from 'solo/c-pane'
-import Group from 'solo/c-group'
+import CForm from 'components/c-form'
+import CPane from 'components/c-pane'
+import CGroup from 'components/c-group'
 import { setEnv } from 'vx/actions'
 export default {
   data () {
     return {
-      columns: {
+      cells: {
         lang: {
           label: '语言',
           type: 'dropdown',
-          attrs: {
+          extra: {
             options: [{
               value: 'en',
               label: 'English'
@@ -42,54 +44,37 @@ export default {
       },
       demos: [{
         title: '示例',
-        columns: {
-          duo: {
-            icon: 'iconfont-duo',
-            label: 'duo',
-            type: 'link'
-          },
-          solo: {
-            icon: 'iconfont-solo',
-            label: 'solo',
-            type: 'link'
-          },
-          chart: {
-            icon: 'iconfont-chart',
-            label: 'chart',
-            type: 'link'
-          },
-          misc: {
-            icon: 'iconfont-misc',
-            label: 'misc',
-            type: 'link'
+        cells: [{
+          icon: 'iconfont-form',
+          label: 'form',
+          type: 'link',
+          value: {
+            route: {
+              name: 'demo/form'
+            },
+            label: '一些表单组件'
           }
-        },
-        items: {
-          duo: {
-            route: {
-              name: 'demo/duo'
-            },
-            label: '一些双态组件'
-          },
-          solo: {
-            route: {
-              name: 'demo/solo'
-            },
-            label: '一些单态组件'
-          },
-          chart: {
+        }, {
+          icon: 'iconfont-chart',
+          label: 'chart',
+          type: 'link',
+          value: {
             route: {
               name: 'demo/chart'
             },
             label: '一些图表'
-          },
-          misc: {
+          }
+        }, {
+          icon: 'iconfont-misc',
+          label: 'misc',
+          type: 'link',
+          value: {
             route: {
               name: 'demo/misc'
             },
             label: '杂项'
           }
-        }
+        }]
       }]
     }
   },
@@ -102,8 +87,8 @@ export default {
 
   components: {
     CForm,
-    Pane,
-    Group
+    CPane,
+    CGroup
   }
 }
 </script>

@@ -1,13 +1,12 @@
 <template>
   <div class="pages">
-    <c-form
-      v-for="items in pages.items"
-      track-by="_id"
-      :state="state"
-      :columns="columns"
-      :items="items"
-      :actions="actions"
-      @mutate="_mutate(items._id, $arguments)"></c-form>
+    <pane>
+      <c-button class="primary"
+        @click="_create">Create</c-button>
+    </pane>
+    <pane>
+      <group :cells="cells"></group>
+    </pane>
     <paginator
       v-if="pages.count !== -1"
       :query="pages.query"
@@ -17,49 +16,36 @@
 </template>
 
 <script>
-import CForm from 'duo/c-form'
-import Paginator from 'solo/c-paginator'
+import Pane from 'components/c-pane'
+import CButton from 'components/c-button'
+import Group from 'components/c-group'
+import Paginator from 'components/c-paginator'
 import { pages } from 'vx/getters'
 import { getPages, updatePage } from 'vx/actions'
 export default {
-  data () {
-    return {
-      state: 1,
-      columns: {
-        username: {
-          label: '账号',
-          type: 'text',
-          attrs: {
-            readonly: true
-          }
-        },
-        title: {
-          label: '标题',
-          type: 'text'
-        },
-        content: {
-          label: '正文',
-          type: 'multiline'
-        },
-        created: {
-          label: '创建时间',
-          type: 'datetime',
-          attrs: {
-            readonly: true
-          }
-        },
-        updated: {
-          label: '修改时间',
-          type: 'datetime',
-          attrs: {
-            readonly: true
+  computed: {
+    cells () {
+      return this.pages.items.map(item => {
+        return {
+          label: item.title,
+          value: item.created,
+          click: () => {
+            this.$route.router.go({
+              name: 'pages/preview',
+              params: {
+                id: item._id
+              }
+            })
           }
         }
-      }
+      })
     }
   },
 
   methods: {
+    _create () {
+      this.$route.router.go('/pages/create')
+    },
     _paginate (query) {
       this.getPages({
         query
@@ -88,7 +74,9 @@ export default {
   },
 
   components: {
-    CForm,
+    CButton,
+    Pane,
+    Group,
     Paginator
   }
 }

@@ -19,7 +19,7 @@ export default {
       columns: {
         title: {
           label: '标题',
-          type: 'textfield',
+          type: 'text',
           validate: {
             required: {
               rule: true,
@@ -47,7 +47,7 @@ export default {
 
   computed: {
     actions () {
-      return {
+      return [null, {
         submit: {
           type: 'submit',
           class: 'primary',
@@ -55,7 +55,7 @@ export default {
           label: this.progress ? '提交创建中...' : '提交创建',
           disabled: !!this.progress
         }
-      }
+      }]
     }
   },
 

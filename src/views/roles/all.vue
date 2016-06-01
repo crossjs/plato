@@ -1,10 +1,9 @@
 <template>
-  <div class="roles">
+  <div class="v-roles">
     <c-form
       v-for="items in roles.items"
       track-by="_id"
-      :state="state"
-      :columns="columns"
+      :cells="cells"
       :items="items"
       :actions="actions"
       @mutate="_mutate(items._id, $arguments)"></c-form>
@@ -12,15 +11,14 @@
 </template>
 
 <script>
-import CForm from 'duo/c-form'
+import CForm from 'components/c-form'
 import { roles } from 'vx/getters'
 import { getRoles, updateRole } from 'vx/actions'
 import { ROLE_LEVEL_OPTIONS } from 'vx/constants'
 export default {
   data () {
     return {
-      state: 1,
-      columns: {
+      cells: {
         name: {
           label: '名称',
           type: 'text',
@@ -41,7 +39,7 @@ export default {
         level: {
           label: '等级',
           type: 'dropdown',
-          attrs: {
+          extra: {
             options: ROLE_LEVEL_OPTIONS
           }
         },

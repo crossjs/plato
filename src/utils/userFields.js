@@ -4,7 +4,7 @@ export default {
   username: {
     label: '账号',
     icon: 'iconfont-user-o',
-    type: 'text',
+    type: 'textfield',
     attrs: {
       placeholder: RE_USERNAME[1]
     },

@@ -1,7 +1,10 @@
 .c-flex-box {
   margin: 0.5rem -0.5rem;
   display: flex;
-  flex-direction: row;
+
+  &.row {
+    flex-direction: row;
+  }
 
   &.column {
     flex-direction: column;

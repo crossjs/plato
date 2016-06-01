@@ -10,6 +10,7 @@
       </logo>
       <navbar class="navbar">
         <route
+          :recursive="recursive"
           :filter="filter"
           :routes="routes"
           ></route>
@@ -25,11 +26,11 @@
 <script>
 import store from 'vx/store'
 import { toasts } from 'vx/getters'
-import Progress from 'solo/c-progress'
-import Toast from 'solo/c-toast'
-import Logo from 'solo/c-logo'
-import Navbar from 'solo/c-navbar'
-import Route from 'solo/c-route'
+import Progress from 'components/c-progress'
+import Toast from 'components/c-toast'
+import Logo from 'components/c-logo'
+import Navbar from 'components/c-navbar'
+import Route from 'components/c-route'
 import { routes } from 'routes'
 import { GET } from 'utils/ajax'
 
@@ -42,6 +43,7 @@ export default {
 
   data () {
     return {
+      recursive: false,
       routes
     }
   },

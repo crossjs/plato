@@ -3,7 +3,7 @@ import * as rules from './rules'
 
 export function install (Vue) {
   if (Vue.config.debug) {
-    console.log('Vue Validator Plugin Installed.')
+    console.log('[Validator] Vue Validator Plugin Installed.')
   }
 
   const _init = Vue.prototype._init

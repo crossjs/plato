@@ -1,28 +1,29 @@
 <template>
   <div class="demos">
-    <Pane class="demos">
-      <group
+    <c-pane class="demos">
+      <c-form
         v-for="demo in demos"
         :title="demo.title"
-        :columns="demo.columns"
-        :items="demo.items"></group>
-    </Pane>
+        :cells="demo.cells"
+        :items="demo.items"
+        @mutate="mutate"></c-form>
+    </c-pane>
   </div>
 </template>
 
 <script>
-import Pane from 'solo/c-pane'
-import Group from 'solo/c-group'
+import CPane from 'components/c-pane'
+import CForm from 'components/c-form'
 import { ROLE_LEVEL_OPTIONS } from 'vx/constants'
 export default {
   data () {
     return {
       demos: [{
         title: 'Text',
-        columns: {
+        cells: {
           regular: {
             label: '默认',
-            type: 'text'
+            type: 'textfield'
           }
         },
         items: {
@@ -30,7 +31,7 @@ export default {
         }
       }, {
         title: 'Password',
-        columns: {
+        cells: {
           regular: {
             label: '默认',
             type: 'password'
@@ -41,11 +42,11 @@ export default {
         }
       }, {
         title: 'Dropdown',
-        columns: {
+        cells: {
           regular: {
             label: '默认',
             type: 'dropdown',
-            attrs: {
+            extra: {
               options: ROLE_LEVEL_OPTIONS
             }
           }
@@ -55,15 +56,15 @@ export default {
         }
       }, {
         title: 'Checkbox',
-        columns: {
+        cells: {
           regular: {
             label: '默认',
             type: 'checkbox'
           },
           customLabel: {
-            label: '自定义 Label',
+            label: '定义 Label',
             type: 'checkbox',
-            attrs: {
+            extra: {
               'true-label': '正常',
               'false-label': '禁用'
             }
@@ -71,7 +72,7 @@ export default {
           customValue: {
             label: '自定义 Value',
             type: 'checkbox',
-            attrs: {
+            extra: {
               'true-value': '是',
               'false-value': '否'
             }
@@ -84,7 +85,7 @@ export default {
         }
       }, {
         title: 'Datetime',
-        columns: {
+        cells: {
           regular: {
             label: '默认',
             type: 'datetime'
@@ -113,9 +114,15 @@ export default {
     }
   },
 
+  methods: {
+    mutate () {
+      console.log.apply(console, arguments)
+    }
+  },
+
   components: {
-    Pane,
-    Group
+    CPane,
+    CForm
   }
 }
 </script>

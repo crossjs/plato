@@ -4,10 +4,6 @@ export default {
       type: String,
       default: ''
     },
-    state: {
-      type: Number,
-      default: 0
-    },
     value: {
       twoWay: true
     },
@@ -17,16 +13,21 @@ export default {
     },
     attrs: {
       type: Object,
-      default: () => {}
+      default () {
+        return {}
+      }
+    },
+    extra: {
+      type: Object,
+      default () {
+        return {}
+      }
     },
     validate: {
     }
   },
 
   computed: {
-    editing () {
-      return this.state === 1 && (!this.attrs || !this.attrs.readonly)
-    },
     _attrs () {
       return { ...this.attrs, ...extractValidate(this.validate) }
     }

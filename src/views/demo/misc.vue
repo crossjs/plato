@@ -14,10 +14,10 @@
 </template>
 
 <script>
-import CImage from 'solo/c-image'
-import Pane from 'solo/c-pane'
-import FlexBox from 'solo/c-flex-box'
-import FlexItem from 'solo/c-flex-item'
+import CImage from 'components/c-image'
+import Pane from 'components/c-pane'
+import FlexBox from 'components/c-flex-box'
+import FlexItem from 'components/c-flex-item'
 export default {
   components: {
     CImage,

@@ -1,5 +1,5 @@
 <template>
-  <div :class="['c-pane', class]">
+  <div :class="['c-pane', class, dir]">
     <slot></slot>
   </div>
 </template>
@@ -8,6 +8,10 @@
 export default {
   props: {
     class: {
+      type: String,
+      default: ''
+    },
+    dir: {
       type: String,
       default: ''
     }
