@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import Progress from 'solo/c-progress'
+import Progress from 'components/c-progress'
 
 describe('progress.vue', () => {
   before(() => {

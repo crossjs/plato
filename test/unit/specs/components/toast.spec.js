@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import Toast from 'solo/c-toast'
+import Toast from 'components/c-toast'
 
 describe('toast.vue', () => {
   before(() => {

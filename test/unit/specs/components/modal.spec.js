@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import Modal from 'solo/c-modal'
+import Modal from 'components/c-modal'
 import { triggerMouseEvents } from '../../utils'
 
 describe('modal.vue', () => {

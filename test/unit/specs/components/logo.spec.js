@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import Logo from 'solo/c-logo'
+import Logo from 'components/c-logo'
 
 describe('logo.vue', () => {
   before(() => {
