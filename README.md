@@ -6,7 +6,7 @@
 
 :construction: coding hard, coding with :heart:
 
-- :white_check_mark:: Plugins like vuex, i18n and validator are almost ready, could be used in production amusedly.
+- :white_check_mark: Plugins like vuex, i18n and validator are almost ready, could be used in production amusedly.
 - :negative_squared_cross_mark: UI components are NOT stable, could be changed anytime.
 
 [![Travis](https://img.shields.io/travis/crossjs/plato.svg?style=flat-square)](https://github.com/crossjs/plato)
