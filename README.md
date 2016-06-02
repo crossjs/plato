@@ -1,10 +1,13 @@
-# plato
-
-> :construction: 开发中…… [Live demo](http://crossjs.com/plato)
-
-> :warning: UI 组件持续调整中，生产使用请慎重
-
 ![haojiyou](http://hbimg.b0.upaiyun.com/c0b233344592936874714e5596736eb92ae8d3309ff4-QFVcuc_fw658)
+
+# PLATO
+
+[See online demo](http://crossjs.com/plato)
+
+:construction: coding hard, coding with :heart:
+
+- :white_check_mark:: Plugins like vuex, i18n and validator are almost ready, could be used in production amusedly.
+- :negative_squared_cross_mark: UI components are NOT stable, could be changed anytime.
 
 [![Travis](https://img.shields.io/travis/crossjs/plato.svg?style=flat-square)](https://github.com/crossjs/plato)
 [![Coveralls](https://img.shields.io/coveralls/crossjs/plato.svg?style=flat-square)](https://github.com/crossjs/plato)
@@ -13,46 +16,31 @@
 
 > A plat<del>form</del> built with [koa](http://koajs.com/) and [vue](http://vuejs.org/)
 
-## 更新日志
+## Dependencies
 
-- 20160602
-  - UI 组件重构（移除状态切换、移除内置校验……）
-  - 移除 c-text 与 c-link
-  - 重写 c-cell，支持 click 参数，响应区域为整个 cell
+- Client
+  - vue
+    - vuex-fsa
+    - vuex-promise
+    - vue-router
+    - i18n
+    - validator
+  - postCSS
+  - webpack
+  - karma
+  - mocha
+- Server
+  - koa
+  - mongodb
 
-## 预览
-
-**带验证的登录表单、注册表单+确认框**
-
-![带验证的登录表单](http://hbimg.b0.upaiyun.com/bd60a51cde4f9c1d1c18f9be7cd3a0448bd5ad6b7dd8-F87zFf_fw658)
-![注册表单+确认框](http://hbimg.b0.upaiyun.com/be8d2c825a1fece77f5ff6d4e2d2e73c22db5a455547-LIVZgZ_fw658)
-
-**可以行内编辑的分页列表、日期时间选择器**
-
-![可以行内编辑的分页列表](http://hbimg.b0.upaiyun.com/9d17dc8f928499be2485d52cd27175958be7467291a2-d8cDno_fw658)
-![日期时间选择器](http://hbimg.b0.upaiyun.com/9f63c694c1f0ca1ea58b1a8ad606dffee21ab61b9875-ZKByyx_fw658)
-
-**切换表单状态：展示与编辑**
-
-![展示](http://hbimg.b0.upaiyun.com/1bb18b8877928e3d15fdcd1c36236b1e94fe6a5b6776-YrqPk3_fw658)
-![编辑](http://hbimg.b0.upaiyun.com/ba816e5efee6e936939e07b61392a45eee5fca8c6bf7-kzLp53_fw658)
-
-## 技术栈
-
-- koa
-- vue (with vuex, vue-router)
-- mongodb
-- webpack
-- postcss
-- karma
-
-## 基本原则
+## Principles
 
 - 使用 ES6 编写
 - 向 vue@2 靠拢
+- **不限制使用何种 UI 组件，可以使用第三方，或自己开发（请尽量考虑复用性）**
 - 尽量使用小的依赖库
 
-## 数据
+## Data
 
 - 使用 [vuex](https://github.com/vuejs/vuex/) 进行数据管理
 - 数据按模块分文件存放于 `src/vx/modules` 目录，并确保模块间数据不互相干扰
@@ -77,13 +65,13 @@ export default new Vuex.Store({
 })
 ```
 
-## 路由
+## Router
 
 - 使用 [vue-router](https://github.com/vuejs/vue-router/) 进行路由管理
 - 路由按模块分文件存放于 `src/routes` 目录
 - 配合 Webpack 实现 [动态载入](http://router.vuejs.org/zh-cn/lazy.html)
 
-## 国际化
+## Localization
 
 ``` js
 // use plugin
@@ -112,17 +100,19 @@ export default {
 </template>
 ```
 
-## 表单验证
+## Validation
 
 ``` js
 // use plugin
+// details in `src/index.js`
 import Vue from 'vue'
 import Validator from 'plugins/validator'
 
 Vue.use(Validator)
 
 // set validator
-export default {,
+// details in `src/views/login.vue`
+export default {
   ...
   validator: {
     // 设置初始化后自动检查
@@ -132,11 +122,12 @@ export default {,
 }
 
 // use validator
-// in template
-<input type="text" @change="_validate">
+// in `src/components/c-textfield.vue`
+// template:
+<input ...
+  @change="_validate">
 
-// in js
-...
+// script:
 methods: {
   _validate () {
     if (!this.validate || !this.$validation) {
@@ -147,27 +138,21 @@ methods: {
 }
 ```
 
-## UI 组件
+## Theming
 
-**不限制使用何种 UI 组件，可以使用第三方，或自己开发（请尽量考虑复用性）**
+- use [postcss](http://postcss.org/), for the future
+- use [scoped css](http://vue-loader.vuejs.org/en/features/scoped-css.html) carefully
+  - do NOT use `@import` in scoped css
+- *modifying `postcss-cssnext` to adjust compatibilities：*
 
-*预置 UI 组件（`src/components`）最早设计用于后台开发，后来简单改造成移动端使用，还有很大优化空间*
+``` js
+// .tools/webpack/index.js
+require('postcss-cssnext')({
+  browsers: 'last 1 version'
+}),
+```
 
-- 使用 .vue [单文件组件](http://cn.vuejs.org/guide/application.html#单文件组件)
-- 使用 mixins 实现复用
-- <del>为了 **性能** 考虑，组件分为两类</del>
-  - <del>duo 组件拥有两个状态：展示与编辑，集成了 validator</del>
-    - *<del>计划优化 validator</del>*
-  - <del>solo 组件仅展示</del>
-
-## 使用样式
-
-- 使用 [postcss](http://postcss.org/) 拥抱未来
-- 谨慎使用 [scoped css](http://vue-loader.vuejs.org/en/features/scoped-css.html)
-  - 尤其不要在 scoped css 内使用 `@import`
-- see files in `src/themes/default`
-
-## 使用说明
+## Usage
 
 ``` bash
 # 可选。启动 mongodb，体验前后端交互
@@ -201,19 +186,10 @@ npm run e2e
 npm test
 ```
 
-## 兼容性
+## Compatibility
 
-> 移动浏览器
+Latest mobile browsers
 
-*修改 `postcss-cssnext` 配置以调整 CSS 兼容性*
+## Appendix
 
-``` js
-// .tools/webpack/index.js
-require('postcss-cssnext')({
-  browsers: 'last 1 version'
-}),
-```
-
-## 相关
-
-[vue-devtools](https://github.com/vuejs/vue-devtools)
+- [vue-devtools](https://github.com/vuejs/vue-devtools)
