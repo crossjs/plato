@@ -1,14 +1,16 @@
 .c-link {
-  @mixin field-present;
+  color: color(black lightness(+60%));
 }
 
 .c-link-a {
-  @mixin field-editing;
-  display: block;
+  color: color(black lightness(+40%));
   text-align: right;
-  text-decoration: none;
+  outline: none;
+  box-sizing: border-box;
+  background-color: transparent;
+  border: none;
   width: 100%;
-  height: 100%;
+  height: inherit;
 
   &:after {
     content: "\20";

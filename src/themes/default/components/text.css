@@ -1,11 +1,3 @@
 .c-text {
-  @mixin field-present;
-}
-
-.c-text-input {
-  @mixin field-editing;
-
-  &:focus {
-    /*box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.075), 0 0 5px color(var(--invert) alpha(50%));*/
-  }
+  color: color(black lightness(+60%));
 }
