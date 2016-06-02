@@ -2,6 +2,8 @@
 
 # PLATO
 
+> A plat<del>form</del> built with [koa](http://koajs.com/) and [vue](http://vuejs.org/)
+
 [See online demo](http://crossjs.com/plato)
 
 :construction: coding hard, coding with :heart:
@@ -13,8 +15,6 @@
 [![Coveralls](https://img.shields.io/coveralls/crossjs/plato.svg?style=flat-square)](https://github.com/crossjs/plato)
 [![dependencies](https://david-dm.org/crossjs/plato.svg?style=flat-square)](https://david-dm.org/crossjs/plato)
 [![devDependency Status](https://david-dm.org/crossjs/plato/dev-status.svg?style=flat-square)](https://david-dm.org/crossjs/plato#info=devDependencies)
-
-> A plat<del>form</del> built with [koa](http://koajs.com/) and [vue](http://vuejs.org/)
 
 ## Dependencies
 
