@@ -1,31 +1,29 @@
 <template>
-  <div :class="['c-value', class]">
-    <component :class="'c-value-' + type"
-      :is="type"
-      :value="value"></component>
+  <div :class="['c-value', class, {link: extra.isLink}]">
+    <template v-if="extra.isHTML">
+      {{{value}}}
+    </template>
+    <template v-else>
+      {{value}}
+    </template>
   </div>
 </template>
 
 <script>
-import Text from './c-text'
-import Link from './c-link'
 export default {
   props: {
     class: {
       type: String,
       default: ''
     },
-    type: {
-      type: String,
-      default: 'text'
-    },
     value: {
+    },
+    extra: {
+      type: Object,
+      default () {
+        return {}
+      }
     }
-  },
-
-  components: {
-    Text,
-    Link
   }
 }
 </script>

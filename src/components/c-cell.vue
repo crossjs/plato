@@ -1,11 +1,11 @@
 <template>
-  <div :class="['c-cell', class]" @click="click(modal)">
+  <div :class="['c-cell', class]" @click="_click(model.click)">
     <c-icon class="c-cell-icon"
       :class="model.icon"></c-icon>
     <c-label class="c-cell-label">{{model.label}}</c-label>
     <c-value class="c-cell-value"
-      :type="model.type"
-      :value="model.value"></c-value>
+      :value="model.value"
+      :extra="model.extra"></c-value>
   </div>
 </template>
 
@@ -19,15 +19,25 @@ export default {
       type: String,
       default: ''
     },
-    click: {
-      type: Function,
-      default: () => {}
-    },
     model: {
       type: Object,
       default () {
         return {}
       }
+    }
+  },
+
+  methods: {
+    _click (callback) {
+      if (typeof callback === 'function') {
+        callback()
+      }
+      // if (this.model.type === 'link') {
+      //   const e = document.createEvent('MouseEvents')
+      //   // dispatch a non-bubble click event
+      //   e.initEvent('click', false, true)
+      //   this.$el.querySelector('.c-link-a').dispatchEvent(e)
+      // }
     }
   },
 

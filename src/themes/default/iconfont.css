@@ -60,12 +60,6 @@
     content: "\e601";
   }
 }
-.iconfont-profile {
-  /*&:before {
-    @mixin iconfont;
-    content: "\e603";
-  }*/
-}
 .iconfont-logout {
   &:before {
     @mixin iconfont;
@@ -90,18 +84,6 @@
     content: "\e604";
   }
 }
-.iconfont-duo {
-  &:before {
-    @mixin iconfont;
-    content: "\e60d";
-  }
-}
-.iconfont-solo {
-  &:before {
-    @mixin iconfont;
-    content: "\e60a";
-  }
-}
 .iconfont-chart {
   &:before {
     @mixin iconfont;
@@ -118,6 +100,12 @@
   &:before {
     @mixin iconfont;
     content: "\e60e";
+  }
+}
+.iconfont-github {
+  &:before {
+    @mixin iconfont;
+    content: "\e60f";
   }
 }
 

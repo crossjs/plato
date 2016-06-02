@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import mField from './m-form-field'
+import mField from './m-field'
 import CMask from './c-mask'
 import CPickerColumn from './c-picker-column'
 export default {

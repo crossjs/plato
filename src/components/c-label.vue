@@ -3,9 +3,13 @@
 </template>
 
 <script>
-import mField from './m-field'
 export default {
-  mixins: [mField]
+  props: {
+    class: {
+      type: String,
+      default: ''
+    }
+  }
 }
 </script>
 

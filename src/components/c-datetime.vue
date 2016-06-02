@@ -16,7 +16,7 @@
 
 <script>
 import datetime from 'nd-datetime'
-import mField from './m-form-field'
+import mField from './m-field'
 import CDatepicker from './c-datepicker'
 export default {
   mixins: [mField],

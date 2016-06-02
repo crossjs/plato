@@ -26,6 +26,7 @@ import CGroup from 'components/c-group'
 import { setEnv } from 'vx/actions'
 export default {
   data () {
+    const { router } = this.$route
     return {
       cells: {
         lang: {
@@ -45,34 +46,51 @@ export default {
       demos: [{
         title: '示例',
         cells: [{
-          icon: 'iconfont-form',
+          icon: 'iconfont-solo',
           label: 'form',
-          type: 'link',
-          value: {
-            route: {
-              name: 'demo/form'
-            },
-            label: '一些表单组件'
+          value: '一些表单组件',
+          click () {
+            router.go('demo/form')
+          },
+          extra: {
+            isLink: true
           }
         }, {
           icon: 'iconfont-chart',
           label: 'chart',
-          type: 'link',
-          value: {
-            route: {
-              name: 'demo/chart'
-            },
-            label: '一些图表'
+          value: '一些图表',
+          click () {
+            router.go('demo/chart')
+          },
+          extra: {
+            isLink: true
           }
         }, {
-          icon: 'iconfont-misc',
-          label: 'misc',
-          type: 'link',
-          value: {
-            route: {
-              name: 'demo/misc'
-            },
-            label: '杂项'
+          icon: 'iconfont-duo',
+          value: '<i>杂七杂八</i>',
+          click () {
+            router.go('demo/misc')
+          },
+          extra: {
+            isLink: true,
+            isHTML: true
+          }
+        }]
+      }, {
+        title: '关于',
+        cells: [{
+          icon: 'iconfont-github',
+          label: 'Fork',
+          value: 'github.com/crossjs/plato',
+          click () {
+            window.open('https://github.com/crossjs/plato')
+          }
+        }, {
+          icon: 'iconfont-demo',
+          label: 'Author',
+          value: 'github.com/crossjs',
+          click () {
+            window.open('https://github.com/crossjs')
           }
         }]
       }]

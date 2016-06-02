@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import mField from './m-form-field'
+import mField from './m-field'
 export default {
   mixins: [mField],
 
