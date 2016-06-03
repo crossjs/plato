@@ -1,7 +1,7 @@
 <template>
   <div :class="['c-cell', class]" @click="_click(model.click)">
     <c-icon class="c-cell-icon"
-      :class="model.icon"></c-icon>
+      :value="model.icon" v-if="model.icon"></c-icon>
     <c-label class="c-cell-label">{{model.label}}</c-label>
     <c-value class="c-cell-value"
       :value="model.value"

@@ -46,7 +46,6 @@ export default {
       demos: [{
         title: '示例',
         cells: [{
-          icon: 'iconfont-solo',
           label: 'form',
           value: '一些表单组件',
           click () {
@@ -66,7 +65,6 @@ export default {
             isLink: true
           }
         }, {
-          icon: 'iconfont-duo',
           value: '<i>杂七杂八</i>',
           click () {
             router.go('demo/misc')
