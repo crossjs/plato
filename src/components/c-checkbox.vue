@@ -1,12 +1,12 @@
 <template>
   <div :class="['c-checkbox', class, {checked: _valid}]">
     <input type="checkbox"
-      :field="field"
-      :true-value="_true"
-      :false-value="_false"
-      v-model="value"
-      v-bind="_attrs">
-    <label v-if="_label">{{_label}}</label>
+    :field="field"
+    :true-value="_true"
+    :false-value="_false"
+    :aria-label="_label"
+    v-model="value"
+    v-bind="_attrs">
   </div>
 </template>
 

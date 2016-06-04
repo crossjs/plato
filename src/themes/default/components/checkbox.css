@@ -1,64 +1,58 @@
 .c-checkbox {
-  color: var(--orange);
   height: 1.5rem;
 
-  &.checked {
-    color: var(--invert);
-  }
-
-  & label {
-    display: inline-block;
-    vertical-align: middle;
-    transform: translateY(-2px);
-  }
-
+  /* as background */
   & input {
-    transform: translateY(-2px);
-    display: inline-block;
-    vertical-align: middle;
     appearance: none;
+    transform: translateY(-2px);
     position: relative;
-    width: 3rem;
+    min-width: 3rem;
     height: 1.5rem;
     border: 1px solid color(white lightness(80%));
-    outline: 0;
     border-radius: 1.5rem;
     box-sizing: border-box;
     background: color(white lightness(80%));
 
-    &:after,
+    /* as a dot */
     &:before {
-      content: " ";
+      content: "\20";
+      white-space: nowrap;
       position: absolute;
-      top: 0;
-      left: 0;
+      z-index: 1;
+      width: 1.4rem;
       height: 1.4rem;
       border-radius: 0.7rem;
-      transition: transform .3s;
-    }
-
-    &:before {
-      width: 3rem;
-      background-color: color(white lightness(90%));
-    }
-
-    &:after {
-      width: 1.5rem;
       background-color: white;
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
     }
+
+    /* as label */
+    &:after {
+      transform: translateY(-1px);
+      content: attr(aria-label);
+      color: white;
+      white-space: nowrap;
+      display: inline-block;
+      position: relative;
+      z-index: 2;
+      padding: 0 0.5rem 0 2rem;
+      height: 1.4rem;
+      border-radius: 0.7rem;
+    }
   }
 
-  & input:checked {
-    border-color: var(--invert);
-    background-color: var(--invert);
-  }
+  &.checked {
+    & input {
+      border-color: var(--invert);
+      background-color: var(--invert);
+    }
 
-  & input:checked:before {
-    transform: scale(0);
-  }
+    & input:before {
+      right: 0;
+    }
 
-  & input:checked:after {
-    transform: translateX(1.4rem);
+    & input:after {
+      padding: 0 2rem 0 0.5rem;
+    }
   }
 }

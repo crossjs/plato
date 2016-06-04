@@ -1,60 +1,41 @@
 <template>
   <div class="users">
-    <c-form
-      v-for="items in users.items"
-      track-by="_id"
-      :state="state"
-      :columns="columns"
-      :items="items"
-      @mutate="_mutate(items._id, $arguments)"></c-form>
-    <paginator
-      v-if="users.count !== -1"
-      :query="users.query"
-      :count="users.count"
-      @paginate="_paginate"></paginator>
+    <c-pane>
+      <c-group
+        v-for="item in items"
+        track-by="title"
+        :title="item.title"
+        :cells="item.cells"></c-group>
+      <paginator
+        v-if="users.count !== -1"
+        :query="users.query"
+        :count="users.count"
+        @paginate="_paginate"></paginator>
+    </c-pane>
   </div>
 </template>
 
 <script>
-import CForm from 'components/c-form'
+import CPane from 'components/c-pane'
+import CGroup from 'components/c-group'
 import Paginator from 'components/c-paginator'
 import { users } from 'vx/getters'
 import { getUsers, updateUser } from 'vx/actions'
 export default {
-  data () {
-    return {
-      state: 1,
-      columns: {
-        username: {
-          label: '账号',
-          type: 'text',
-          attrs: {
-            readonly: true
-          }
-        },
-        state: {
-          label: '状态',
-          type: 'checkbox',
-          attrs: {
-            'true-label': '正常',
-            'false-label': '禁用'
-          }
-        },
-        created: {
-          label: '创建时间',
-          type: 'datetime',
-          attrs: {
-            // readonly: true
-          }
-        },
-        updated: {
-          label: '活跃时间',
-          type: 'datetime',
-          attrs: {
-            readonly: true
-          }
+  computed: {
+    items () {
+      return this.users.items.map(item => {
+        return {
+          title: '#' + item._id,
+          cells: [{
+            label: '账号',
+            value: item.username
+          }, {
+            label: '状态',
+            value: ['禁用', '正常'][item.state]
+          }]
         }
-      }
+      })
     }
   },
 
@@ -87,7 +68,8 @@ export default {
   },
 
   components: {
-    CForm,
+    CPane,
+    CGroup,
     Paginator
   }
 }

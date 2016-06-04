@@ -11,7 +11,7 @@ if (module.hot) {
   module.hot.accept()
 }
 
-Vue.config.debug = process.env.NODE_ENV === 'development'
+Vue.config.debug = __DEV__
 
 Vue.use(Router)
 Vue.use(Validator)

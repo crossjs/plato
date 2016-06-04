@@ -8,7 +8,7 @@ import {
 } from '../constants'
 
 const middlewares = [createPromise({
-  debug: process.env.NODE_ENV === 'development',
+  debug: __DEV__,
   status: {
     PENDING: PROMISE_PENDING,
     SUCCESS: PROMISE_SUCCESS,
@@ -16,7 +16,7 @@ const middlewares = [createPromise({
   }
 })]
 
-if (process.env.NODE_ENV === 'development') {
+if (__DEV__) {
   middlewares.unshift(createLogger())
 }
 

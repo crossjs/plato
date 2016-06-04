@@ -32,12 +32,6 @@ export default {
       if (typeof callback === 'function') {
         callback()
       }
-      // if (this.model.type === 'link') {
-      //   const e = document.createEvent('MouseEvents')
-      //   // dispatch a non-bubble click event
-      //   e.initEvent('click', false, true)
-      //   this.$el.querySelector('.c-link-a').dispatchEvent(e)
-      // }
     }
   },
 

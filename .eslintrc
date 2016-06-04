@@ -18,7 +18,10 @@
     "node": true
   },
   "globals": {
-    "location": false
+    "location": false,
+    "__DEV__": false,
+    "__PROD__": false,
+    "__TEST__": false
   },
   "rules": {
     "arrow-parens": 0,
