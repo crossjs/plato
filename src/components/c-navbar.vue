@@ -1,11 +1,13 @@
 <template>
   <div :class="['c-navbar', class]">
-    <mask v-show="opened"
+    <c-mask v-show="opened"
       @touchend.prevent="opened = false"
-      transition="fade"></mask>
-    <button :class="['c-navbar-toggle', 'iconfont-nav', {active: opened}]"
+      transition="fade"></c-mask>
+    <button :class="['c-navbar-toggle', {active: opened}]"
       type="button"
-      @click="opened = !opened"></button>
+      @click="opened = !opened">
+        <c-icon :value="0xe603"></c-icon>
+    </button>
     <nav class="c-navbar-menu"
       v-show="opened"
       @click="opened = false"
@@ -16,7 +18,8 @@
 </template>
 
 <script>
-import Mask from './c-mask'
+import CMask from './c-mask'
+import CIcon from './c-icon'
 export default {
   props: {
     class: {
@@ -32,7 +35,8 @@ export default {
   },
 
   components: {
-    Mask
+    CMask,
+    CIcon
   }
 }
 </script>

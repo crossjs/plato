@@ -1,5 +1,5 @@
 export default {
-  icon: 'login',
+  icon: 0xe601,
   title: 'routes.login',
   name: 'login',
   auth: false,

@@ -1,5 +1,5 @@
 export default {
-  icon: 'pages',
+  icon: 0xe609,
   title: '页面',
   name: 'pages',
   auth: true,

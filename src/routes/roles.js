@@ -1,5 +1,5 @@
 export default {
-  icon: 'roles',
+  icon: 0xe61b,
   title: '角色',
   name: 'roles',
   auth: true,

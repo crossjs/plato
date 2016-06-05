@@ -2,18 +2,21 @@ import Vue from 'vue'
 import Progress from 'components/c-progress'
 
 describe('progress.vue', () => {
+  let el
   before(() => {
-    const el = document.createElement('div')
-    el.id = 'el'
+    el = document.createElement('div')
     document.body.appendChild(el)
   })
+
+  afterEach(() => {
+    // document.body.removeChild(el)
+  })
+
   it('should render correct contents', done => {
     const vm = new Vue({
-      el: '#el',
-      template: `<div>
-          <progress class="progress"
-            :progress="progress"></progress>
-        </div>`,
+      el,
+      template: `<progress class="progress"
+        :progress="progress"></progress>`,
       data: {
         progress: 0
       },

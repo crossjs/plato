@@ -29,7 +29,7 @@
   display: none;
 }
 
-.link {
+/*.link {
   color: var(--invert);
 
   &:active {
@@ -40,7 +40,7 @@
     cursor: not-allowed;
     color: color(var(--orange) saturation(0%));
   }
-}
+}*/
 
 .link-active {
   color: var(--orange);

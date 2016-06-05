@@ -1,5 +1,5 @@
 export default {
-  icon: 'user',
+  icon: 0xe601,
   title: '个人中心',
   name: 'user',
   auth: true,
@@ -8,7 +8,7 @@ export default {
     '/': {
       name: 'user/profile',
       auth: true,
-      // hidden: true,
+      hidden: true,
       component: resolve => require(['views/user/profile'], resolve)
     },
     '/modify': {

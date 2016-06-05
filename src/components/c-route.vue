@@ -2,12 +2,14 @@
   <div class="c-route">
     <ul>
       <li v-for="route in _routes">
-        <a :class="{['iconfont-' + route.icon]: route.icon}"
-          v-link="{
+        <a v-link="{
             path: father + route.path,
             name: route.name,
             exact: route.exact
-          }">{{route.title}}</a>
+          }">
+            <c-icon v-if="route.icon"
+              :value="route.icon"></c-icon>
+          {{route.title}}</a>
         <template v-if="recursive && route.subRoutes">
           <route
             :father="route.path"
@@ -20,6 +22,7 @@
 </template>
 
 <script>
+import CIcon from 'components/c-icon'
 export default {
   name: 'route',
   props: {
@@ -45,6 +48,10 @@ export default {
     _routes () {
       return walkRoutes(this.routes, this.filter, this.__.bind(this))
     }
+  },
+
+  components: {
+    CIcon
   }
 }
 

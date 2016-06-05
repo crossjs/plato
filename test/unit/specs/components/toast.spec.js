@@ -2,11 +2,16 @@ import Vue from 'vue'
 import Toast from 'components/c-toast'
 
 describe('toast.vue', () => {
+  let el
   before(() => {
-    const el = document.createElement('div')
-    el.id = 'el'
+    el = document.createElement('div')
     document.body.appendChild(el)
   })
+
+  afterEach(() => {
+    // document.body.removeChild(el)
+  })
+
   it('should render correct contents', () => {
     const toasts = [{
       _id: 1,
@@ -18,14 +23,12 @@ describe('toast.vue', () => {
       message: 'message1'
     }]
     const vm = new Vue({
-      el: '#el',
-      template: `<div>
-          <toast
-            cls="toast"
-            :transition="transition"
-            :toasts="toasts"
-            @remove="_remove"></toast>
-        </div>`,
+      el,
+      template: `<toast
+        class="toast"
+        :transition="transition"
+        :toasts="toasts"
+        @remove="_remove"></toast>`,
       data: {
         toasts,
         transition: ''

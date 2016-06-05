@@ -1,5 +1,5 @@
 export default {
-  icon: 'users',
+  icon: 0xe615,
   title: '用户',
   name: 'users',
   auth: true,

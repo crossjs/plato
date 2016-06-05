@@ -1,12 +1,5 @@
 <template>
-  <div :class="['c-value', class, {link: extra.isLink}]">
-    <template v-if="extra.isHTML">
-      {{{value}}}
-    </template>
-    <template v-else>
-      {{value}}
-    </template>
-  </div>
+  <div :class="['c-value', class]"><slot></slot></div>
 </template>
 
 <script>
@@ -15,14 +8,6 @@ export default {
     class: {
       type: String,
       default: ''
-    },
-    value: {
-    },
-    extra: {
-      type: Object,
-      default () {
-        return {}
-      }
     }
   }
 }

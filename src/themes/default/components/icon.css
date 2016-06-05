@@ -1,2 +1,4 @@
 .c-icon {
+  @mixin iconfont;
+  display: inline-block;
 }

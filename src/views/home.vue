@@ -55,7 +55,7 @@ export default {
             isLink: true
           }
         }, {
-          icon: 'iconfont-chart',
+          icon: 0xe605,
           label: 'chart',
           value: '一些图表',
           click () {
@@ -77,14 +77,15 @@ export default {
       }, {
         title: '关于',
         cells: [{
-          icon: 'iconfont-github',
+          // icon: 'iconfont-github',
+          icon: 0xe60f,
           label: 'Fork',
           value: 'github.com/crossjs/plato',
           click () {
             window.open('https://github.com/crossjs/plato')
           }
         }, {
-          icon: 'iconfont-demo',
+          icon: 0xe604,
           label: 'Author',
           value: 'github.com/crossjs',
           click () {

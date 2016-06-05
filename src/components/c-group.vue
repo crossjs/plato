@@ -4,15 +4,14 @@
       v-if="title">{{title}}</h5>
     <div class="c-group-cells"
       v-if="cells">
-      <c-cell v-for="cell in cells"
-        class="c-group-cell"
-        :model="cell"></c-cell>
+      <c-group-cell v-for="cell in cells"
+        :model="cell"></c-group-cell>
     </div>
   </div>
 </template>
 
 <script>
-import CCell from './c-cell'
+import CGroupCell from './c-group-cell'
 export default {
   props: {
     class: {
@@ -32,7 +31,7 @@ export default {
   },
 
   components: {
-    CCell
+    CGroupCell
   }
 }
 </script>

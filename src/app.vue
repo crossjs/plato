@@ -1,20 +1,19 @@
 <template>
   <div class="container">
-    <progress class="progress"
-      :progress="progress"></progress>
-    <toast class="toast"
-      :toasts="toasts"></toast>
+    <c-progress class="progress"
+      :progress="progress"></c-progress>
+    <c-toast class="toast"
+      :toasts="toasts"></c-toast>
     <header class="header">
-      <logo class="logo">
-        <a v-link="{ path: '/', exact: true }">plato</a>
-      </logo>
-      <navbar class="navbar">
-        <route
+      <c-logo class="logo">
+        <a v-link="{ path: '/', exact: true }">PLATO</a>
+      </c-logo>
+      <c-navbar class="navbar">
+        <c-route
           :recursive="recursive"
           :filter="filter"
-          :routes="routes"
-          ></route>
-      </navbar>
+          :routes="routes"></c-route>
+      </c-navbar>
     </header>
     <router-view class="router-view"
       transition="router-view-transition"
@@ -24,13 +23,13 @@
 </template>
 
 <script>
+import CProgress from 'components/c-progress'
+import CToast from 'components/c-toast'
+import CLogo from 'components/c-logo'
+import CNavbar from 'components/c-navbar'
+import CRoute from 'components/c-route'
 import store from 'vx/store'
 import { toasts } from 'vx/getters'
-import Progress from 'components/c-progress'
-import Toast from 'components/c-toast'
-import Logo from 'components/c-logo'
-import Navbar from 'components/c-navbar'
-import Route from 'components/c-route'
 import { routes } from 'routes'
 import { GET } from 'utils/ajax'
 
@@ -86,11 +85,11 @@ export default {
   },
 
   components: {
-    Progress,
-    Toast,
-    Logo,
-    Navbar,
-    Route
+    CProgress,
+    CToast,
+    CLogo,
+    CNavbar,
+    CRoute
   }
 }
 </script>

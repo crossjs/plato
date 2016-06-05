@@ -1,5 +1,5 @@
 export default {
-  icon: 'signup',
+  icon: 0xe607,
   title: '注册',
   name: 'signup',
   auth: false,

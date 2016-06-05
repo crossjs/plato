@@ -3,20 +3,23 @@ import Modal from 'components/c-modal'
 import { triggerMouseEvents } from '../../utils'
 
 describe('modal.vue', () => {
+  let el
   before(() => {
-    const el = document.createElement('div')
-    el.id = 'el'
+    el = document.createElement('div')
     document.body.appendChild(el)
   })
+
+  afterEach(() => {
+    // document.body.removeChild(el)
+  })
+
   it('should render correct contents', done => {
     const vm = new Vue({
-      el: '#el',
-      template: `<div>
-          <modal
-            :show.sync="show"
-            :body="body"
-            :callback="callback"></modal>
-        </div>`,
+      el,
+      template: `<modal
+        :show.sync="show"
+        :body="body"
+        :callback="callback"></modal>`,
       data: {
         flag: 'a',
         show: true,
