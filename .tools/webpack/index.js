@@ -132,7 +132,8 @@ webpackConfig.vue = {
         mixinsDir: paths.src('themes/default/mixins')
       }),
       require('postcss-cssnext')({
-        browsers: 'last 2 version'
+        // see: https://github.com/ai/browserslist#queries
+        browsers: 'Android >= 4, iOS >= 7'
       }),
       require('postcss-browser-reporter')(),
       require('postcss-reporter')()
