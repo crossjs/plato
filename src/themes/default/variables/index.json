@@ -1,20 +1,8 @@
 {
-  "orange": "#E7604A",
-  "invert": "#17A0B5",
-  "error": "#BD2C00",
-
-  "bg_success": "#DFF0D8",
-  "bg_info": "#D9EDF7",
-  "bg_warning": "#FCF8E3",
-  "bg_danger": "#F2DEDE",
-
-  "text_success": "#3C763D",
-  "text_info": "#31708F",
-  "text_warning": "#8A6D3B",
-  "text_danger": "#A94442",
-
-  "scrollbar_color": "rgba(255, 255, 255, 0.3)",
-  "scrollbar_thumb_color": "#E7604A",
-
-  "bg_body": "#FBF9FE"
+  "primary": "#39b983",
+  "secondary": "#34495E",
+  "success": "#3ABA58",
+  "error": "#BA3A3A",
+  "warning": "#BA783A",
+  "background": "#FBF9FE"
 }

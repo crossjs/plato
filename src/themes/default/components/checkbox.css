@@ -43,8 +43,8 @@
 
   &.checked {
     & input {
-      border-color: var(--invert);
-      background-color: var(--invert);
+      border-color: var(--primary);
+      background-color: var(--primary);
     }
 
     & input:before {

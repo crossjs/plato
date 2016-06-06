@@ -5,7 +5,7 @@ html {
 body {
   font-size: 1rem;
   color: color(black lightness(20%));
-  background-color: var(--bg_body);
+  background-color: var(--background);
 }
 
 body, h1, h2, h3, h4, h5, h6, p, dl, dd, form, ul, ol, pre, blockquote, textarea, input, figure, button {
@@ -23,6 +23,7 @@ input, textarea, keygen, select, button {
 
 button, input, textarea {
   outline: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 button {
@@ -49,15 +50,16 @@ pre code {
 }
 
 a {
-  color: color(black lightness(+20%));
+  color: var(--primary);
   text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
 
   &:hover {
     text-decoration: none;
   }
 
   &:active {
-    color: var(--invert);
+    color: var(--secondary);
   }
 }
 

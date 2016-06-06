@@ -33,7 +33,7 @@
   }
 
   &:active {
-    background-color: color(var(--invert) alpha(10%))
+    background-color: color(var(--secondary) alpha(10%))
   }
 }
 

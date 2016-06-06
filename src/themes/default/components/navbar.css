@@ -15,7 +15,7 @@
   text-align: center;
 
   &.active {
-    color: var(--orange);
+    color: var(--primary);
   }
 }
 
@@ -60,19 +60,8 @@
     }
 
     &.link-active {
-      color: color(var(--invert) lightness(-10%));
-      background-color: color(white lightness(-5%));
-      & + ul {
-        display: block;
-        background-color: color(white lightness(-10%));
-
-        & a {
-          &.link-active {
-            color: var(--invert);
-            background-color: color(white lightness(-5%));
-          }
-        }
-      }
+      color: var(--secondary);
+      background-color: color(var(--secondary) lightness(95%));
     }
   }
 }

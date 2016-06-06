@@ -71,11 +71,11 @@
     }
 
     &.today {
-      color: var(--invert);
+      color: var(--secondary);
     }
 
     &.selected {
-      color: var(--orange);
+      color: var(--primary);
     }
   }
 }

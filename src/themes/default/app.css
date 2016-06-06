@@ -12,7 +12,7 @@
   left: 0;
   width: 100%;
   height: 4rem;
-  background-color: color(var(--invert) lightness(-30%));
+  background-color: var(--secondary);
 }
 
 .router-view {
@@ -30,20 +30,20 @@
 }
 
 /*.link {
-  color: var(--invert);
+  color: var(--secondary);
 
   &:active {
-    color: var(--orange);
+    color: var(--primary);
   }
 
   &:disabled {
     cursor: not-allowed;
-    color: color(var(--orange) saturation(0%));
+    color: color(var(--primary) saturation(0%));
   }
 }*/
 
 .link-active {
-  color: var(--orange);
+  color: var(--primary);
 }
 
 .slide-transition {

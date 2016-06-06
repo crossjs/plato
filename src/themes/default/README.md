@@ -4,3 +4,6 @@ z-index
   - modal > 1000
   - toasts > 10000
   - progress > 100000
+colors:
+  - green: #39b983
+  - blue: #34495e

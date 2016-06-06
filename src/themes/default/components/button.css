@@ -27,10 +27,10 @@
   }
 
   &.primary {
-    background-color: var(--invert);
+    background-color: var(--primary);
 
     &:active {
-      background-color: color(var(--invert) lightness(+10%));
+      background-color: color(var(--primary) lightness(+10%));
     }
 
     &:disabled {
@@ -41,10 +41,10 @@
   }
 
   &.warning {
-    background-color: var(--orange);
+    background-color: var(--error);
 
     &:active {
-      background-color: color(var(--orange) lightness(+10%));
+      background-color: color(var(--error) lightness(+10%));
     }
 
     &:disabled {
