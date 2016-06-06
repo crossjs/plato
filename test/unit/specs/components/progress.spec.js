@@ -8,13 +8,14 @@ describe('progress.vue', () => {
     document.body.appendChild(el)
   })
 
-  afterEach(() => {
-    // document.body.removeChild(el)
+  after(() => {
+    document.body.removeChild(el)
   })
 
   it('should render correct contents', done => {
     const vm = new Vue({
       el,
+      replace: false,
       template: `<progress class="progress"
         :progress="progress"></progress>`,
       data: {

@@ -8,13 +8,14 @@ describe('logo.vue', () => {
     document.body.appendChild(el)
   })
 
-  afterEach(() => {
-    // document.body.removeChild(el)
+  after(() => {
+    document.body.removeChild(el)
   })
 
   it('should render correct contents', () => {
     const vm = new Vue({
       el,
+      replace: false,
       template: '<logo class="logo"><em>plato</em></logo>',
       components: {
         Logo

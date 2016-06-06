@@ -8,13 +8,14 @@ describe('button.vue', () => {
     document.body.appendChild(el)
   })
 
-  afterEach(() => {
-    // document.body.removeChild(el)
+  after(() => {
+    document.body.removeChild(el)
   })
 
   it('should render correct contents', () => {
     const vm = new Vue({
       el,
+      replace: false,
       template: '<c-button>plato</c-button>',
       components: {
         CButton
@@ -30,6 +31,7 @@ describe('button.vue', () => {
   it('type', () => {
     const vm = new Vue({
       el,
+      replace: false,
       template: '<c-button type="submit">plato</c-button>',
       components: {
         CButton

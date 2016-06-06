@@ -9,13 +9,14 @@ describe('modal.vue', () => {
     document.body.appendChild(el)
   })
 
-  afterEach(() => {
-    // document.body.removeChild(el)
+  after(() => {
+    document.body.removeChild(el)
   })
 
   it('should render correct contents', done => {
     const vm = new Vue({
       el,
+      replace: false,
       template: `<modal
         :show.sync="show"
         :body="body"

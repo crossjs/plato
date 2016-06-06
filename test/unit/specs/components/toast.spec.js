@@ -8,8 +8,8 @@ describe('toast.vue', () => {
     document.body.appendChild(el)
   })
 
-  afterEach(() => {
-    // document.body.removeChild(el)
+  after(() => {
+    document.body.removeChild(el)
   })
 
   it('should render correct contents', () => {
@@ -24,6 +24,7 @@ describe('toast.vue', () => {
     }]
     const vm = new Vue({
       el,
+      replace: false,
       template: `<toast
         class="toast"
         :transition="transition"
