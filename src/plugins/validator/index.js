@@ -25,22 +25,14 @@ export function install (Vue) {
         valid: true,
         invalid: false
       })
+      handleNextTick(this, validator.auto)
     } else {
       // 寻找父级带 validator 的组件
       const validatorVm = getValidatorVm(this)
       if (validatorVm) {
         // set references
         this.$validation = validatorVm.$validation
-        this.$nextTick(function () {
-          // 定义了验证规则
-          if (this.validate) {
-            validatorVm.$validation.fields.push(this)
-            // 加载完成自动检查
-            if (validatorVm.$options.validator.auto) {
-              this.$validate()
-            }
-          }
-        })
+        handleNextTick(this, validatorVm.$options.validator.auto)
       }
     }
   }
@@ -90,6 +82,19 @@ function getValidatorVm (vm) {
       return vm
     }
   }
+}
+
+function handleNextTick (vm, auto) {
+  vm.$nextTick(function () {
+    // 定义了验证规则
+    if (vm.validate) {
+      vm.$validation.fields.push(vm)
+      // 加载完成自动检查
+      if (auto) {
+        vm.$validate()
+      }
+    }
+  })
 }
 
 export default {
