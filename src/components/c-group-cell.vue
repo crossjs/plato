@@ -45,3 +45,5 @@ export default {
   }
 }
 </script>
+
+<style src="styles/components/group-cell"></style>

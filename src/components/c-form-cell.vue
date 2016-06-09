@@ -64,3 +64,5 @@ export default {
   }
 }
 </script>
+
+<style src="styles/components/form-cell"></style>
