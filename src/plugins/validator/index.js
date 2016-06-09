@@ -18,6 +18,7 @@ export function install (Vue) {
     const { validator } = this.$options
 
     if (validator) {
+      this.$validator = this
       // 在入口处定义 $validation
       Vue.util.defineReactive(this, '$validation', {
         fields: [],
@@ -31,6 +32,7 @@ export function install (Vue) {
       const validatorVm = getValidatorVm(this)
       if (validatorVm) {
         // set references
+        this.$validator = validatorVm
         this.$validation = validatorVm.$validation
         handleNextTick(this, validatorVm.$options.validator.auto)
       }
@@ -46,14 +48,15 @@ export function install (Vue) {
    */
   Vue.prototype.$validate = function () {
     const validate = this.validate
+    const $validator = this.$validator
     const $validation = this.$validation
 
-    if (validate) { // 带有验证配置的表单控件
+    if (validate) { // 带有校验配置
       // 重设当前 field 对应的错误信息
       const errors = $validation.errors.filter(error => {
         return error.field !== this.field
       })
-      // 验证当前 field
+      // 校验当前 field
       Object.keys(validate).some(key => {
         if (rules.hasOwnProperty(key)) {
           const { rule, message } = validate[key]
@@ -72,8 +75,8 @@ export function install (Vue) {
       $validation.errors = errors
       $validation.valid = errors.length === 0
       $validation.invalid = errors.length > 0
-    } else if ($validation) { // 带有验证结果对象
-      // 验证所有子组件
+    } else if ($validator === this) {
+      // 顶级往下校验所有子组件
       $validation.fields.forEach(field => field.$validate())
     }
 
@@ -98,7 +101,7 @@ function getValidatorVm (vm) {
 
 function handleNextTick (vm, auto) {
   vm.$nextTick(function () {
-    // 定义了验证规则
+    // 定义了校验规则
     if (vm.validate) {
       vm.$validation.fields.push(vm)
       // 加载完成自动检查
