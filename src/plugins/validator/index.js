@@ -37,6 +37,13 @@ export function install (Vue) {
     }
   }
 
+  /**
+   * $validate
+   *
+   * validate vm recursively.
+   *
+   * @return {Promise}
+   */
   Vue.prototype.$validate = function () {
     const validate = this.validate
     const $validation = this.$validation
@@ -76,6 +83,11 @@ export function install (Vue) {
   }
 }
 
+/**
+ * Get the ancestor vm that own validator
+ * @param  {Vue} vm vm
+ * @return {Vue}    vm
+ */
 function getValidatorVm (vm) {
   while ((vm = vm.$parent)) {
     if (vm.$options.validator) {
