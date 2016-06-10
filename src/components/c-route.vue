@@ -2,19 +2,20 @@
   <div class="c-route">
     <ul>
       <li v-for="route in _routes">
-        <a v-link="{
-            path: father + route.path,
-            name: route.name,
-            exact: route.exact
-          }">
-            <c-icon v-if="route.icon"
-              :value="route.icon"></c-icon>
-          {{route.title}}</a>
+        <c-route-link :route="{
+            link: {
+              path: father + route.path,
+              name: route.name,
+              exact: route.exact
+            },
+            icon: route.icon,
+            title: route.title
+          }"></c-route-link>
         <template v-if="recursive && route.subRoutes">
-          <route
+          <c-route
             :father="route.path"
             :filter="filter"
-            :routes="route.subRoutes"></route>
+            :routes="route.subRoutes"></c-route>
         </template>
       </li>
     </ul>
@@ -22,9 +23,9 @@
 </template>
 
 <script>
-import CIcon from 'components/c-icon'
+import CRouteLink from 'components/c-route-link'
 export default {
-  name: 'route',
+  name: 'c-route',
   props: {
     recursive: {
       type: Boolean,
@@ -36,11 +37,13 @@ export default {
     },
     routes: {
       type: Object,
-      default: {}
+      default () {
+        return {}
+      }
     },
     filter: {
-      type: [Function, Object],
-      default: null
+      type: Function,
+      default: val => val
     }
   },
 
@@ -51,20 +54,15 @@ export default {
   },
 
   components: {
-    CIcon
+    CRouteLink
   }
 }
 
 function walkRoutes (routes, filter, __ = val => val) {
-  let keys = Object.keys(routes)
-
-  keys = keys.filter(key => !routes[key].hidden)
-
-  if (filter) {
-    keys = keys.filter(key => filter(key, routes[key]))
-  }
-
-  return keys.map(key => {
+  return Object.keys(routes)
+  .filter(key => !routes[key].hidden)
+  .filter(key => filter(key, routes[key]))
+  .map(key => {
     const route = routes[key]
     return {
       path: route.path || key,
@@ -76,5 +74,4 @@ function walkRoutes (routes, filter, __ = val => val) {
     }
   })
 }
-
 </script>

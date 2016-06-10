@@ -5,9 +5,17 @@
     <c-toast class="toast"
       :toasts="toasts"></c-toast>
     <header class="header">
-      <c-logo class="logo">
-        <a v-link="{ path: '/', exact: true }">PLATO</a>
-      </c-logo>
+      <div class="logo">
+        <c-route-link :route="{
+            link: { path: '/', exact: true },
+            title: 'PLATO'
+          }"></c-route-link>
+      </div>
+      <div class="history">
+        <c-button class="none" @click="historyBack">
+          <c-icon :value="0xe60d"></c-icon>
+        </c-button>
+      </div>
       <c-navbar class="navbar">
         <c-route
           :recursive="recursive"
@@ -25,7 +33,9 @@
 <script>
 import CProgress from 'components/c-progress'
 import CToast from 'components/c-toast'
-import CLogo from 'components/c-logo'
+import CButton from 'components/c-button'
+import CIcon from 'components/c-icon'
+import CRouteLink from 'components/c-route-link'
 import CNavbar from 'components/c-navbar'
 import CRoute from 'components/c-route'
 import store from 'vx/store'
@@ -61,6 +71,9 @@ export default {
       GET(`./i18n/${lang}.json`).then(resources => {
         this.$i18n.resources = resources
       })
+    },
+    historyBack () {
+      history.back()
     }
   },
 
@@ -87,7 +100,9 @@ export default {
   components: {
     CProgress,
     CToast,
-    CLogo,
+    CButton,
+    CIcon,
+    CRouteLink,
     CNavbar,
     CRoute
   }
@@ -95,4 +110,3 @@ export default {
 </script>
 
 <style src="styles/app"></style>
-<style src="styles/views/components/logo"></style>
