@@ -3,7 +3,7 @@ import CopyWebpackPlugin from 'copy-webpack-plugin'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import _debug from 'debug'
-import config, { paths } from '../config'
+import config, { paths, pkg } from '../config'
 const { __DEV__, __PROD__, __TEST__ } = config.globals
 
 const debug = _debug('koa:webpack:config')
@@ -156,8 +156,9 @@ webpackConfig.plugins = [
   // see https://github.com/ampedandwired/html-webpack-plugin
   new HtmlWebpackPlugin({
     filename: 'index.html',
-    template: paths.src('index.html'),
-    favicon: paths.src('static/favicon.ico'),
+    template: paths.src('index.ejs'),
+    title: `${pkg.name} - ${pkg.description}`,
+    favicon: paths.src('static/favicon.png'),
     hash: false,
     inject: true,
     minify: {
