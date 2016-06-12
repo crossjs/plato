@@ -10,6 +10,9 @@ const debug = _debug('koa:webpack:config')
 
 debug('Create configuration.')
 const webpackConfig = {
+  __DEV__,
+  __PROD__,
+  __TEST__,
   name: 'client',
   target: 'web',
   devtool: config.compiler_devtool,
@@ -157,7 +160,8 @@ webpackConfig.plugins = [
   new HtmlWebpackPlugin({
     filename: 'index.html',
     template: paths.src('index.ejs'),
-    title: `${pkg.name} - ${pkg.description}`,
+    // title: `${pkg.name} - ${pkg.description}`,
+    title: pkg.name,
     favicon: paths.src('static/favicon.png'),
     hash: false,
     inject: true,
