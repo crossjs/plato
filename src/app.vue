@@ -16,7 +16,7 @@
           <c-icon :value="0xe60d"></c-icon>
         </c-button>
       </div>
-      <c-navbar class="navbar">
+      <c-navbar class="navbar" :icon="0xe603">
         <c-route
           :recursive="recursive"
           :filter="filter"
