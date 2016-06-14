@@ -1,7 +1,11 @@
 import Promise from 'nd-promise'
 import * as rules from './rules'
 
-export function install (Vue) {
+export default function plugin (Vue) {
+  if (plugin.installed) {
+    return
+  }
+
   if (Vue.config.debug) {
     console.log('[Validator] Vue Validator Plugin Installed.')
   }
@@ -110,8 +114,4 @@ function handleNextTick (vm, auto) {
       }
     }
   })
-}
-
-export default {
-  install
 }

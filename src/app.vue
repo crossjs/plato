@@ -40,8 +40,8 @@ import CNavbar from 'components/c-navbar'
 import CRoute from 'components/c-route'
 import store from 'vx/store'
 import { toasts } from 'vx/getters'
+import { setProgress } from 'vx/utils'
 import { routes } from 'routes'
-import { GET } from 'utils/ajax'
 
 export default {
   name: 'App',
@@ -60,15 +60,24 @@ export default {
   computed: {
     filter () {
       return (key, route) => {
-        return key !== '/' && route.auth !== !this.auth
+        return key !== '/' && route.auth !== !this.env.authorized
       }
+    }
+  },
+
+  ajax: {
+    before () {
+      setProgress(60)
+    },
+    after () {
+      setProgress(100)
     }
   },
 
   methods: {
     getResources () {
       const { lang } = this.env
-      GET(`./i18n/${lang}.json`).then(resources => {
+      this.$GET(`./i18n/${lang}.json`).then(resources => {
         this.$i18n.resources = resources
       })
     },

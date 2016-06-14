@@ -1,5 +1,5 @@
 <template>
-  <div class="logout">
+  <div class="v-logout">
     <c-image
       src="images/logo.png"></c-image>
     <modal
@@ -12,13 +12,15 @@
 <script>
 import CImage from 'components/c-image'
 import Modal from 'components/c-modal'
-import { deleteAuth } from 'vx/actions'
+import { setEnv } from 'vx/actions'
 export default {
   data () {
     return {
       callback (key) {
         if (key === 'submit') {
-          this.$parent.deleteAuth()
+          this.$parent.setEnv({
+            authorized: false
+          })
         } else {
           history.back()
         }
@@ -30,7 +32,7 @@ export default {
 
   route: {
     activate () {
-      if (!this.auth) {
+      if (!this.env.authorized) {
         history.back()
         return
       }
@@ -39,14 +41,14 @@ export default {
 
   vuex: {
     actions: {
-      deleteAuth
+      setEnv
     }
   },
 
   watch: {
-    auth (val) {
+    env (val) {
       this.$nextTick(() => {
-        if (!val) {
+        if (!val.authorized) {
           this.$route.router.go('/')
         }
       })

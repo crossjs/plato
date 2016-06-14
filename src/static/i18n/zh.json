@@ -3,6 +3,8 @@
     "plato": "好的开始是成功的一半！"
   },
   "routes": {
-    "login": "登录"
+    "about": "关于",
+    "login": "登录",
+    "logout": "注销"
   }
 }

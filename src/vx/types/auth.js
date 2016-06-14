@@ -1,5 +1,0 @@
-const GET_AUTH = 'GET_AUTH'
-const DELETE_AUTH = 'DELETE_AUTH'
-const CREATE_USER = 'CREATE_USER'
-
-export default { GET_AUTH, DELETE_AUTH, CREATE_USER }

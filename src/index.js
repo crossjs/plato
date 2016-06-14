@@ -2,10 +2,11 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Validator from 'plugins/validator'
 import I18n from 'plugins/i18n'
+import Ajax from 'plugins/ajax'
 import App from 'app'
 import { routes, alias } from 'routes'
-import { env, auth, progress } from 'vx/getters'
-import utils from 'vx/utils'
+import { env, progress } from 'vx/getters'
+import { getEnv, setProgress } from 'vx/utils'
 
 if (module.hot) {
   module.hot.accept()
@@ -16,13 +17,13 @@ Vue.config.debug = __DEV__
 Vue.use(Router)
 Vue.use(Validator)
 Vue.use(I18n)
+Vue.use(Ajax)
 
 // global mixins
 Vue.mixin({
   vuex: {
     getters: {
       env,
-      auth,
       progress
     }
   }
@@ -39,17 +40,17 @@ router.map(routes)
 router.alias(alias)
 
 router.beforeEach(transition => {
-  if (transition.to.auth && !utils.getAuth()) {
+  if (transition.to.auth && !getEnv().authorized) {
     transition.abort()
   } else {
-    utils.setProgress(60)
+    setProgress(60)
     transition.next()
   }
 })
 
 router.afterEach(transition => {
   window.scrollTo(0, 0)
-  utils.setProgress(100)
+  setProgress(100)
 })
 
 router.start(App, 'app')

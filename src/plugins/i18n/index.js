@@ -1,6 +1,10 @@
 import format from 'string-template'
 
-export function install (Vue) {
+export default function plugin (Vue) {
+  if (plugin.installed) {
+    return
+  }
+
   if (Vue.config.debug) {
     console.log('[I18n] Vue I18n Plugin Installed.')
   }
@@ -49,8 +53,4 @@ function getI18nVm (vm) {
       return vm
     }
   }
-}
-
-export default {
-  install
 }

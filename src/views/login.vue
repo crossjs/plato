@@ -24,15 +24,63 @@ import CValidation from 'components/c-validation'
 import CPane from 'components/c-pane'
 import CForm from 'components/c-form'
 import CButton from 'components/c-button'
-import md5 from 'utils/md5'
-import { getAuth } from 'vx/actions'
-import { username, password } from 'utils/userFields'
+import { setEnv } from 'vx/actions'
 export default {
   data () {
     return {
       cells: {
-        username,
-        password
+        username: {
+          label: '账号',
+          icon: 0xe616,
+          type: 'textfield',
+          attrs: {
+            placeholder: '只能包含小写英文字母'
+          },
+          validate: {
+            required: {
+              rule: true,
+              message: '请输入账号'
+            },
+            minlength: {
+              rule: 4,
+              message: '账号不能少于 4 个字符'
+            },
+            maxlength: {
+              rule: 20,
+              message: '账号不能多于 20 个字符'
+            },
+            pattern: {
+              rule: '/^[a-z]{4,20}$/',
+              message: '账号不符合规则'
+            }
+          }
+        },
+        password: {
+          label: '密码',
+          icon: 0xe602,
+          type: 'password',
+          attrs: {
+            placeholder: '字母、数字或标点符号'
+          },
+          validate: {
+            required: {
+              rule: true,
+              message: '请输入密码'
+            },
+            minlength: {
+              rule: 8,
+              message: '密码不能少于 8 个字符'
+            },
+            maxlength: {
+              rule: 20,
+              message: '密码不能多于 20 个字符'
+            },
+            pattern: {
+              rule: '/^[`~!@#$%^&*_+=,.;\'?:"()<>{}\\-\\/\\[\\]\\\\ 0-9a-zA-Z]{8,20}$/',
+              message: '密码不符合规则'
+            }
+          }
+        }
       },
       items: {
         username: this.$route.query.username,
@@ -63,9 +111,9 @@ export default {
       }
       // validate then submit
       this.$validate().then(() => {
-        const $payload = { ...this.payload }
-        $payload.password = md5($payload.password)
-        this.getAuth($payload)
+        this.setEnv({
+          authorized: true
+        })
       }).catch($validation => {
         // this.$emit('error', $validation)
       })
@@ -79,21 +127,21 @@ export default {
   route: {
     activate (transition) {
       transition.next()
-      this.auth && this.$route.router.go('/user')
+      this.env.authorized && this.$route.router.go('/')
     }
   },
 
   vuex: {
     actions: {
-      getAuth
+      setEnv
     }
   },
 
   watch: {
-    auth (val) {
+    env (val) {
       this.$nextTick(() => {
-        if (val) {
-          this.$route.router.go('/user')
+        if (val.authorized) {
+          this.$route.router.go('/logout')
         }
       })
     }

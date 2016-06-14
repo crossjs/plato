@@ -9,7 +9,8 @@ import {
 } from '../constants'
 
 const persist = createPersist(ENV_KEY, {
-  lang: navigator.language.split('-')[0]
+  lang: navigator.language.split('-')[0],
+  authorized: false
 })
 
 const state = {
