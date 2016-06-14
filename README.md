@@ -18,20 +18,17 @@
 
 ## Dependencies
 
-- Client
-  - vue
-    - vuex-fsa
-    - vuex-promise
-    - vue-router
-    - i18n
-    - validator
-  - postCSS
-  - webpack
-  - karma
-  - mocha
-- Server
-  - koa
-  - mongodb
+- vue
+  - vuex-fsa
+  - vuex-promise
+  - vue-router
+  - plugins/i18n
+  - plugins/validator
+  - plugins/ajax
+- postCSS
+- webpack
+- karma
+- mocha
 
 ## Principles
 
@@ -157,9 +154,6 @@ require('postcss-cssnext')({
 ## Usage
 
 ``` bash
-# 可选。启动 mongodb，体验前后端交互
-mongod -dbpath <path/to/data/db>
-
 # install dependencies
 npm install
 
