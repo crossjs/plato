@@ -91,16 +91,6 @@ export default function plugin (Vue) {
     })
   }
 
-  function translate (options, method) {
-    if (typeof options === 'string') {
-      options = {
-        url: options
-      }
-    }
-    options.method = method
-    return this.$ajax(options)
-  }
-
   Vue.prototype.$GET = function (options = {}) {
     return translate.call(this, options, 'GET')
   }
@@ -167,6 +157,16 @@ function mutateOptions ({ url, query, params, body, mutate, ...options }) {
   }
 
   return Promise.resolve(options)
+}
+
+function translate (options, method) {
+  if (typeof options === 'string') {
+    options = {
+      url: options
+    }
+  }
+  options.method = method
+  return this.$ajax(options)
 }
 
 function hook (fn, ...args) {
