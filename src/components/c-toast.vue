@@ -6,7 +6,7 @@
       :transition="transition"
       v-for="toast in toasts"
       track-by="_id">
-      <pre class="code"><code> {{toast.code}} </code></pre>
+      <pre class="name"><code> {{toast.name}} </code></pre>
       <pre class="message"><code> {{toast.message}} </code></pre>
     </div>
   </div>
@@ -25,7 +25,9 @@ export default {
     },
     toasts: {
       type: Array,
-      default: () => []
+      default () {
+        return []
+      }
     }
   },
 

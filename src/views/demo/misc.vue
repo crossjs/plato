@@ -5,21 +5,21 @@
       width="500"
       height="500"></c-image>
     <c-pane>pane</c-pane>
-    <c-flex-box>
-      <c-flex-item>flex-item-1</c-flex-item>
-      <c-flex-item>flex-item-2</c-flex-item>
-      <c-flex-item>flex-item-3</c-flex-item>
-    </c-flex-box>
-    <c-cell>
+    <c-cell direction="row">
+      <c-flex>flex-item-1</c-flex>
+      <c-flex>flex-item-2</c-flex>
+      <c-flex>flex-item-3</c-flex>
+    </c-cell>
+    <c-cell direction="row">
       <c-icon class="c-cell-icon" :value="0xe619"></c-icon>
       <c-label class="c-cell-label">Label1</c-label>
       <c-value class="c-cell-value">
         <c-checkbox :value.sync="model2.value"></c-checkbox>
       </c-value>
     </c-cell>
-    <c-cell>
-      <c-icon :value="0xe606"></c-icon>
-      <c-label>Label2</c-label>
+    <c-cell direction="row">
+      <c-icon class="c-cell-icon" :value="0xe606"></c-icon>
+      <c-label class="c-cell-label">Label2</c-label>
       <c-value class="c-cell-value">
         <c-checkbox :value.sync="model1.value"></c-checkbox>
       </c-value>
@@ -35,8 +35,7 @@ import CIcon from 'components/c-icon'
 import CLabel from 'components/c-label'
 import CValue from 'components/c-value'
 import CCheckbox from 'components/c-checkbox'
-import CFlexBox from 'components/c-flex-box'
-import CFlexItem from 'components/c-flex-item'
+import CFlex from 'components/c-flex'
 export default {
   data () {
     return {
@@ -54,13 +53,12 @@ export default {
   components: {
     CImage,
     CPane,
-    CCell,
     CIcon,
     CLabel,
     CValue,
     CCheckbox,
-    CFlexBox,
-    CFlexItem
+    CCell,
+    CFlex
   }
 }
 </script>

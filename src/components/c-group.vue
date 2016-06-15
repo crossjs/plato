@@ -1,7 +1,7 @@
 <template>
   <div :class="['c-group', class]">
-    <h5 class="c-group-title"
-      v-if="title">{{title}}</h5>
+    <c-title class="c-group-title"
+      v-if="title">{{title}}</c-title>
     <div class="c-group-cells"
       v-if="cells">
       <c-group-cell v-for="cell in cells"
@@ -11,6 +11,7 @@
 </template>
 
 <script>
+import CTitle from './c-title'
 import CGroupCell from './c-group-cell'
 export default {
   props: {
@@ -31,6 +32,7 @@ export default {
   },
 
   components: {
+    CTitle,
     CGroupCell
   }
 }

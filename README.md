@@ -137,6 +137,37 @@ methods: {
 }
 ```
 
+## Ajax
+
+Based on fetch
+
+``` js
+// use plugin
+// details in `src/index.js`
+import Vue from 'vue'
+import Ajax from 'plugins/ajax'
+
+Vue.use(Ajax)
+
+// set ajax,
+// details in `src/views/app.vue`
+export default {
+  // optional
+  ajax: {
+    ...
+  }
+
+  ready () {
+    this.$ajax(...)
+    this.$GET(...)
+    this.$POST(...)
+    this.$DELETE(...)
+    this.$PATCH(...)
+    this.$PUT(...)
+  }
+}
+```
+
 ## Theming
 
 - use [postcss](http://postcss.org/), for the future

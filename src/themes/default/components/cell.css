@@ -1,8 +1,16 @@
 .c-cell {
-  display: flex;
-  flex-direction: row;
   padding: 1rem;
   border-top: 1px solid color(white lightness(-10%));
+
+  &.row {
+    display: flex;
+    flex-direction: row;
+  }
+
+  &.column {
+    display: flex;
+    flex-direction: column;
+  }
 
   &:first-child {
     border-top: none;

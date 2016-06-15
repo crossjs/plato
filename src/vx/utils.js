@@ -12,14 +12,24 @@ export function setProgress (progress) {
 }
 
 export function addToast (toast) {
+  if (toast) {
+    if (toast.then) {
+      toast.then(_addToast).catch(_addToast)
+    } else {
+      _addToast(toast)
+    }
+  }
+}
+
+export function getEnv () {
+  return env(store.state)
+}
+
+function _addToast (toast) {
   toast._id = Date.now()
 
   store.dispatch(ADD_TOAST, toast)
   setTimeout(() => {
     store.dispatch(DELETE_TOAST, toast)
   }, 3000)
-}
-
-export function getEnv () {
-  return env(store.state)
 }

@@ -40,7 +40,7 @@ import CNavbar from 'components/c-navbar'
 import CRoute from 'components/c-route'
 import store from 'vx/store'
 import { toasts } from 'vx/getters'
-import { setProgress } from 'vx/utils'
+import { setProgress, addToast } from 'vx/utils'
 import { routes } from 'routes'
 
 export default {
@@ -66,11 +66,16 @@ export default {
   },
 
   ajax: {
-    before () {
-      setProgress(60)
-    },
-    after () {
-      setProgress(100)
+    hooks: {
+      before () {
+        setProgress(60)
+      },
+      failure (err) {
+        addToast(err)
+      },
+      after () {
+        setProgress(100)
+      }
     }
   },
 

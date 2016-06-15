@@ -12,9 +12,9 @@
     min-width: 12rem;
     background: white;
 
-    & .code {
+    & .name {
       &:before {
-        content: "code: ";
+        content: "name: ";
       }
     }
     & .message {

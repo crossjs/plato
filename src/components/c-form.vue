@@ -4,8 +4,8 @@
       autocomplete="off"
       novalidate>
       <slot name="header"></slot>
-      <h5 class="c-form-title"
-        v-if="title">{{title}}</h5>
+      <c-title class="c-form-title"
+        v-if="title">{{title}}</c-title>
       <div class="c-form-cells"
         v-if="items">
         <c-form-cell
@@ -21,6 +21,7 @@
 </template>
 
 <script>
+import CTitle from './c-title'
 import CFormCell from './c-form-cell'
 export default {
   props: {
@@ -61,6 +62,7 @@ export default {
   },
 
   components: {
+    CTitle,
     CFormCell
   }
 }

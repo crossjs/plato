@@ -1,7 +1,5 @@
 <template>
-  <div :class="['c-pane', class, dir]">
-    <slot></slot>
-  </div>
+  <div :class="['c-pane', class, dir]"><slot></slot></div>
 </template>
 
 <script>
@@ -13,7 +11,7 @@ export default {
     },
     dir: {
       type: String,
-      default: ''
+      default: 'all'
     }
   }
 }

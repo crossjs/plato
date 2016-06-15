@@ -14,7 +14,6 @@
 <script>
 import CPane from 'components/c-pane'
 import CForm from 'components/c-form'
-import { ROLE_LEVEL_OPTIONS } from 'vx/constants'
 export default {
   data () {
     return {
@@ -47,7 +46,13 @@ export default {
             label: '默认',
             type: 'dropdown',
             extra: {
-              options: ROLE_LEVEL_OPTIONS
+              options: [{
+                label: '柏拉图',
+                value: 'Plato'
+              }, {
+                label: '苏格拉底',
+                value: 'Socrates'
+              }]
             }
           }
         },

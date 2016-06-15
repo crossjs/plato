@@ -10,6 +10,14 @@
       {{__('message.plato')}}
     </c-pane>
     <c-pane>
+      <c-title>最新提交</c-title>
+      <c-loading v-show="!commits"></c-loading>
+      <c-cell v-for="record in commits" transition="fade">
+        <a :href="record.html_url" target="_blank" class="commit">{{record.commit.message}}</a><br>
+        at <span class="date">{{record.commit.author.date | datetime 'yyyy-MM-dd hh:mm'}}</span>
+      </c-cell>
+    </c-pane>
+    <c-pane>
       <c-group
         v-for="demo in demos"
         :title="demo.title"
@@ -20,9 +28,13 @@
 </template>
 
 <script>
+import datetime from 'nd-datetime'
 import CForm from 'components/c-form'
 import CPane from 'components/c-pane'
 import CGroup from 'components/c-group'
+import CTitle from 'components/c-title'
+import CLoading from 'components/c-loading'
+import CCell from 'components/c-cell'
 import { setEnv } from 'vx/actions'
 export default {
   data () {
@@ -39,6 +51,9 @@ export default {
             }, {
               value: 'zh',
               label: '中文'
+            }, {
+              value: 'none',
+              label: '不存在的语言'
             }]
           }
         }
@@ -77,7 +92,6 @@ export default {
       }, {
         title: '关于',
         cells: [{
-          // icon: 'iconfont-github',
           icon: 0xe60f,
           label: 'Fork',
           value: 'github.com/crossjs/plato',
@@ -92,8 +106,23 @@ export default {
             window.open('https://github.com/crossjs')
           }
         }]
-      }]
+      }],
+      commits: null
     }
+  },
+
+  ajax: {
+    // without `root: true`, will inherit parents' options
+    headers: {
+      'Accept': 'application/vnd.github.v3+json'
+    }
+  },
+
+  ready () {
+    this.$GET('https://api.github.com/repos/crossjs/plato/commits?per_page=3&sha=')
+    .then(res => {
+      this.commits = res
+    })
   },
 
   vuex: {
@@ -102,10 +131,17 @@ export default {
     }
   },
 
+  filters: {
+    datetime
+  },
+
   components: {
     CForm,
     CPane,
-    CGroup
+    CGroup,
+    CTitle,
+    CLoading,
+    CCell
   }
 }
 </script>

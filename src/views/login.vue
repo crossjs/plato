@@ -2,8 +2,7 @@
   <div class="v-login">
     <c-pane>
       <c-validation
-        :validation="$validation"
-        ></c-validation>
+        :validation="$validation"></c-validation>
       <c-form
         :submit="login"
         :cells="cells"

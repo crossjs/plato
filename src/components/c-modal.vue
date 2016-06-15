@@ -11,13 +11,13 @@
       <div class="c-modal-body"><slot></slot></div>
       <c-pane class="c-modal-footer"
         v-if="actions">
-        <c-flex-box>
-          <c-flex-item v-for="action in actions">
+        <c-cell direction="row">
+          <c-flex v-for="action in actions">
             <c-button :class="action.class"
               :type="action.type"
               @click="_click($key)">{{action.label}}</c-button>
-          </c-flex-item>
-        </c-flex-box>
+          </c-flex>
+        </c-cell>
       </c-pane>
     </div>
   </div>
@@ -26,8 +26,8 @@
 <script>
 import CPane from './c-pane'
 import CMask from './c-mask'
-import CFlexBox from './c-flex-box'
-import CFlexItem from './c-flex-item'
+import CCell from './c-cell'
+import CFlex from './c-flex'
 import CButton from './c-button'
 export default {
   props: {
@@ -78,8 +78,8 @@ export default {
   components: {
     CMask,
     CPane,
-    CFlexBox,
-    CFlexItem,
+    CCell,
+    CFlex,
     CButton
   }
 }

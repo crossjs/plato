@@ -3,11 +3,6 @@
 }
 
 .c-group-title {
-  padding: 0.5rem 1rem;
-  color: color(white lightness(-40%));
-  font-size: 1rem;
-  font-weight: normal;
-  text-align: center;
 }
 
 .c-group-cells {

@@ -11,6 +11,14 @@ export default function plugin (Vue) {
     console.log('[Ajax] Vue Ajax Plugin Installed.')
   }
 
+  const _init = Vue.prototype._init
+  Vue.prototype._init = function (options = {}) {
+    options.init = options.init
+      ? [ajaxInit].concat(options.init)
+      : ajaxInit
+    _init.call(this, options)
+  }
+
   const defaultOptions = {
     headers: {
       'Accept': 'application/json',
@@ -18,73 +26,103 @@ export default function plugin (Vue) {
     }
   }
 
+  function merge (src, obj) {
+    Object.keys(obj).forEach(key => {
+      if (!src.hasOwnProperty(key)) {
+        src[key] = {}
+      }
+
+      Object.assign(src[key], obj[key])
+    })
+  }
+
+  function ajaxInit () {
+    const { ajax } = this.$options
+
+    if (ajax) {
+      const defaults = {}
+      merge(defaults, defaultOptions)
+      // 未声明为根，则会自动继承父级的配置
+      if (!ajax.root && this.$parent) {
+        merge(defaults, this.$parent.$options.ajax)
+      }
+      merge(defaults, ajax)
+      this.$options.ajax = defaults
+    }
+  }
+
+  function RequestError (message) {
+    this.name = 'RequestError'
+    this.message = message
+    this.stack = (new Error()).stack
+  }
+  RequestError.prototype = Object.create(Error.prototype)
+  RequestError.prototype.constructor = RequestError
+
   /**
    * $ajax
    * @param  {Object} options   Options
    * @return {Promise}          Request Promise
    */
   Vue.prototype.$ajax = function (_options = {}) {
-    const { before = noop, after = noop, ...options } = { ...defaultOptions, ...this.$options.ajax, ..._options }
-    before.call(this)
+    const { hooks = {}, ...options } = { ...this.$options.ajax, ..._options }
+    hook.call(this, hooks.before)
     return mutateOptions(options)
     .then(({ url, ...options }) => fetch(url, options))
     .then(res => {
       if (res.status >= 200 && res.status < 400) {
+        hook.call(this, hooks.success, res)
+        // 总是返回 JSON
         return res.json()
       } else {
+        // 比如 404
+        if (res.headers.get('Content-Type').indexOf('json') === -1) {
+          throw new RequestError(res.statusText)
+        }
         throw res
       }
     })
-    // .then(res => {
-    //   return res.json()
-    // })
-    // .catch(err => {
-    //   throw err
-    // })
+    .catch(err => {
+      hook.call(this, hooks.failure, err)
+      throw err
+    })
     .finally(() => {
-      after.call(this)
+      hook.call(this, hooks.after)
     })
   }
 
-  Vue.prototype.$GET = function (url, options = {}) {
-    options.url = url
-    options.method = 'GET'
+  function translate (options, method) {
+    if (typeof options === 'string') {
+      options = {
+        url: options
+      }
+    }
+    options.method = method
     return this.$ajax(options)
   }
 
-  Vue.prototype.$POST = function (url, options = {}) {
-    options.url = url
-    options.method = 'POST'
-    return this.$ajax(options)
+  Vue.prototype.$GET = function (options = {}) {
+    return translate.call(this, options, 'GET')
   }
 
-  Vue.prototype.$PUT = function (url, options = {}) {
-    options.url = url
-    options.method = 'PUT'
-    return this.$ajax(options)
+  Vue.prototype.$POST = function (options = {}) {
+    return translate.call(this, options, 'POST')
   }
 
-  Vue.prototype.$PATCH = function (url, options = {}) {
-    options.url = url
-    options.method = 'PATCH'
-    return this.$ajax(options)
+  Vue.prototype.$PUT = function (options = {}) {
+    return translate.call(this, options, 'PUT')
   }
 
-  Vue.prototype.$DELETE = function (url, options = {}) {
-    options.url = url
-    options.method = 'DELETE'
-    return this.$ajax(options)
+  Vue.prototype.$PATCH = function (options = {}) {
+    return translate.call(this, options, 'PATCH')
+  }
+
+  Vue.prototype.$DELETE = function (options = {}) {
+    return translate.call(this, options, 'DELETE')
   }
 }
 
-function mutateOptions ({ url, params, body, query, mutate, ...options }) {
-  if (body) {
-    if (typeof body === 'object') {
-      body = JSON.stringify(body)
-    }
-    options.body = body
-  }
-
+function mutateOptions ({ url, query, params, body, mutate, ...options }) {
   if (query) {
     if (typeof query === 'object') {
       query = qs.stringify(query)
@@ -95,8 +133,8 @@ function mutateOptions ({ url, params, body, query, mutate, ...options }) {
 
   // 替换地址中的宏变量：{xyz}
   if (params) {
-    // https://github.com/Matt-Esch/string-template
-    const nargs = /\{([0-9a-zA-Z_]+)\}/g
+    // from: https://github.com/Matt-Esch/string-template
+    const nargs = /\{(\w+)\}/g
     url = url.replace(nargs, function replaceArg (match, i, index) {
       let result
 
@@ -116,6 +154,13 @@ function mutateOptions ({ url, params, body, query, mutate, ...options }) {
 
   options.url = url
 
+  if (body) {
+    if (typeof body === 'object') {
+      body = JSON.stringify(body)
+    }
+    options.body = body
+  }
+
   // mutate must be a function and return a promise
   if (mutate) {
     return mutate(options)
@@ -124,4 +169,8 @@ function mutateOptions ({ url, params, body, query, mutate, ...options }) {
   return Promise.resolve(options)
 }
 
-function noop () {}
+function hook (fn, ...args) {
+  if (fn) {
+    fn.apply(this, args)
+  }
+}
