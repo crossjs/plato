@@ -13,8 +13,36 @@ Vue.use(Ajax, {
 
 // todo: ...
 describe('ajax/core', () => {
-  // todo: ...
+  it('should have default options', () => {
+    expect(new Core().defaultOptions).to.eql({
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    })
+  })
+
+  it('should merge options', () => {
+    expect(new Core({
+      hooks: {
+        before
+      }
+    }).defaultOptions.hooks.before).to.equal(before)
+  })
+
   describe('ajax/core/merge', () => {
+    it('should return source', () => {
+      const src = {}
+      expect(merge(src, { x: 1 })).to.equal(src)
+    })
+
+    it('should merge 1st level', () => {
+      expect(merge({ a: { y: 1 } }, { a: { x: 1 } })).to.eql({ a: { x: 1, y: 1 } })
+    })
+
+    it('should NOT merge 2nd level', () => {
+      expect(merge({ a: { x: { m: 1 } } }, { a: { x: { n: 1 } } })).to.eql({ a: { x: { n: 1 } } })
+    })
   })
 })
 
