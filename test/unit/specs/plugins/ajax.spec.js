@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Promise from 'nd-promise'
 import Ajax from 'plugins/ajax'
+import Core, { merge } from 'plugins/ajax/core'
 
 function before () {}
 
@@ -8,6 +9,13 @@ Vue.use(Ajax, {
   hooks: {
     before
   }
+})
+
+// todo: ...
+describe('ajax/core', () => {
+  // todo: ...
+  describe('ajax/core/merge', () => {
+  })
 })
 
 describe('plugins/ajax', () => {

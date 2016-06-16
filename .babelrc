@@ -20,7 +20,7 @@
       ],
       "plugins": [
         "add-module-exports",
-        "__coverage__",
+        ["__coverage__", { "ignore": "test/" }],
         "transform-async-to-generator",
         "transform-runtime"
       ],
