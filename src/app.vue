@@ -40,7 +40,6 @@ import CNavbar from 'components/c-navbar'
 import CRoute from 'components/c-route'
 import store from 'vx/store'
 import { toasts } from 'vx/getters'
-import { setProgress, addToast } from 'vx/utils'
 import { routes } from 'routes'
 
 export default {
@@ -65,19 +64,8 @@ export default {
     }
   },
 
-  ajax: {
-    hooks: {
-      before () {
-        setProgress(60)
-      },
-      failure (err) {
-        addToast(err)
-      },
-      after () {
-        setProgress(100)
-      }
-    }
-  },
+  // 必须定义 ajax，才能使用父辈与全局的配置
+  ajax: {},
 
   methods: {
     getResources () {

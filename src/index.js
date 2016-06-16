@@ -6,21 +6,13 @@ import Ajax from 'plugins/ajax'
 import App from 'app'
 import { routes, alias } from 'routes'
 import { env, progress } from 'vx/getters'
-import { getEnv, setProgress } from 'vx/utils'
+import { getEnv, setProgress, addToast } from 'vx/utils'
 
 if (module.hot) {
   module.hot.accept()
 }
 
 Vue.config.debug = __DEV__
-
-Vue.use(Router)
-
-// (表单)验证，如果未使用，请移除
-Vue.use(Validator)
-// 国际化，如果未使用，请移除
-Vue.use(I18n)
-Vue.use(Ajax)
 
 // global mixins
 Vue.mixin({
@@ -31,6 +23,31 @@ Vue.mixin({
     }
   }
 })
+
+// (表单)验证，如果未使用，请移除
+Vue.use(Validator)
+
+// 国际化，如果未使用，请移除
+Vue.use(I18n)
+
+Vue.use(Ajax, {
+  // headers: {
+  //   'Accept-Language': getEnv().lang
+  // },
+  hooks: {
+    before () {
+      setProgress(60)
+    },
+    failure (err) {
+      addToast(err)
+    },
+    after () {
+      setProgress(100)
+    }
+  }
+})
+
+Vue.use(Router)
 
 const router = new Router({
   history: false,
