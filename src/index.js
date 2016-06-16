@@ -15,7 +15,10 @@ if (module.hot) {
 Vue.config.debug = __DEV__
 
 Vue.use(Router)
+
+// (表单)验证，如果未使用，请移除
 Vue.use(Validator)
+// 国际化，如果未使用，请移除
 Vue.use(I18n)
 Vue.use(Ajax)
 

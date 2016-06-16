@@ -2,7 +2,7 @@ import 'whatwg-fetch'
 import qs from 'querystring'
 import Promise from 'nd-promise'
 
-export default function plugin (Vue) {
+export default function plugin (Vue, options = {}) {
   if (plugin.installed) {
     return
   }
@@ -26,15 +26,7 @@ export default function plugin (Vue) {
     }
   }
 
-  function merge (src, obj) {
-    Object.keys(obj).forEach(key => {
-      if (!src.hasOwnProperty(key)) {
-        src[key] = {}
-      }
-
-      Object.assign(src[key], obj[key])
-    })
-  }
+  merge(defaultOptions, options)
 
   function ajaxInit () {
     const { ajax } = this.$options
@@ -51,14 +43,6 @@ export default function plugin (Vue) {
     }
   }
 
-  function RequestError (message) {
-    this.name = 'RequestError'
-    this.message = message
-    this.stack = (new Error()).stack
-  }
-  RequestError.prototype = Object.create(Error.prototype)
-  RequestError.prototype.constructor = RequestError
-
   /**
    * $ajax
    * @param  {Object} options   Options
@@ -67,7 +51,7 @@ export default function plugin (Vue) {
   Vue.prototype.$ajax = function (_options = {}) {
     const { hooks = {}, ...options } = { ...this.$options.ajax, ..._options }
     hook.call(this, hooks.before)
-    return mutateOptions(options)
+    return parse(options)
     .then(({ url, ...options }) => fetch(url, options))
     .then(res => {
       if (res.status >= 200 && res.status < 400) {
@@ -92,27 +76,27 @@ export default function plugin (Vue) {
   }
 
   Vue.prototype.$GET = function (options = {}) {
-    return translate.call(this, options, 'GET')
+    return convert.call(this, options, 'GET')
   }
 
   Vue.prototype.$POST = function (options = {}) {
-    return translate.call(this, options, 'POST')
+    return convert.call(this, options, 'POST')
   }
 
   Vue.prototype.$PUT = function (options = {}) {
-    return translate.call(this, options, 'PUT')
+    return convert.call(this, options, 'PUT')
   }
 
   Vue.prototype.$PATCH = function (options = {}) {
-    return translate.call(this, options, 'PATCH')
+    return convert.call(this, options, 'PATCH')
   }
 
   Vue.prototype.$DELETE = function (options = {}) {
-    return translate.call(this, options, 'DELETE')
+    return convert.call(this, options, 'DELETE')
   }
 }
 
-function mutateOptions ({ url, query, params, body, mutate, ...options }) {
+function parse ({ url, query, params, body, mutate, ...options }) {
   if (query) {
     if (typeof query === 'object') {
       query = qs.stringify(query)
@@ -152,6 +136,7 @@ function mutateOptions ({ url, query, params, body, mutate, ...options }) {
   }
 
   // mutate must be a function and return a promise
+  // useful for add authorization
   if (mutate) {
     return mutate(options)
   }
@@ -159,7 +144,7 @@ function mutateOptions ({ url, query, params, body, mutate, ...options }) {
   return Promise.resolve(options)
 }
 
-function translate (options, method) {
+function convert (options, method) {
   if (typeof options === 'string') {
     options = {
       url: options
@@ -174,3 +159,21 @@ function hook (fn, ...args) {
     fn.apply(this, args)
   }
 }
+
+function merge (src, obj) {
+  Object.keys(obj).forEach(key => {
+    if (!src.hasOwnProperty(key)) {
+      src[key] = {}
+    }
+
+    Object.assign(src[key], obj[key])
+  })
+}
+
+function RequestError (message) {
+  this.name = 'RequestError'
+  this.message = message
+  this.stack = (new Error()).stack
+}
+RequestError.prototype = Object.create(Error.prototype)
+RequestError.prototype.constructor = RequestError
