@@ -3,12 +3,13 @@ import CButton from 'components/c-button'
 
 describe('button.vue', () => {
   let el
-  before(() => {
+
+  beforeEach(() => {
     el = document.createElement('div')
     document.body.appendChild(el)
   })
 
-  after(() => {
+  afterEach(() => {
     document.body.removeChild(el)
   })
 
@@ -16,7 +17,7 @@ describe('button.vue', () => {
     const vm = new Vue({
       el,
       replace: false,
-      template: '<c-button>plato</c-button>',
+      template: '<c-button>PLATO</c-button>',
       components: {
         CButton
       }
@@ -24,7 +25,7 @@ describe('button.vue', () => {
 
     expect(vm.$children.length).to.equal(1)
     const el0 = vm.$children[0].$el
-    expect(el0.textContent).to.equal('plato')
+    expect(el0.textContent).to.equal('PLATO')
     expect(el0.type).to.equal('button')
   })
 
@@ -32,7 +33,7 @@ describe('button.vue', () => {
     const vm = new Vue({
       el,
       replace: false,
-      template: '<c-button type="submit">plato</c-button>',
+      template: '<c-button type="submit">PLATO</c-button>',
       components: {
         CButton
       }

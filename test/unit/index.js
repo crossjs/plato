@@ -3,10 +3,13 @@
 // ---------------------------------------
 import chai from 'chai'
 import sinonChai from 'sinon-chai'
+import { triggerHTMLEvents, triggerMouseEvents } from './utils'
 
 chai.use(sinonChai)
 
 global.chai = chai
+global.triggerHTMLEvents = triggerHTMLEvents
+global.triggerMouseEvents = triggerMouseEvents
 global.assert = chai.assert
 global.expect = chai.expect
 global.should = chai.should()

@@ -8,6 +8,8 @@
     "chai": false,
     "assert": false,
     "expect": false,
-    "should": false
+    "should": false,
+    "triggerHTMLEvents": false,
+    "triggerMouseEvents": false
   }
 }

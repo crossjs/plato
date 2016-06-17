@@ -1,11 +1,11 @@
 <template>
-  <div :class="['c-paginator', class]"
-     v-if="maxpage > 1">
-    <a v-for="page in pages"
-      href="javascript:;"
-      :class="{current: page.current, disabled: page.disabled}"
-      @click="paginate(page)">
-      {{page.label}}</a>
+  <div :class="['c-paginator', class]">
+    <template v-if="maxpage > 1">
+      <a v-for="page in pages"
+        href="javascript:;"
+        :class="{current: page.current, disabled: page.disabled}"
+        @click="paginate(page)">{{page.label}}</a>
+    </template>
   </div>
 </template>
 
@@ -18,7 +18,9 @@ export default {
     },
     query: {
       type: Object,
-      default: () => {}
+      default () {
+        return {}
+      }
     },
     count: {
       type: Number,
@@ -28,11 +30,11 @@ export default {
 
   computed: {
     current () {
-      const { $offset, $limit } = this.query
+      const { $offset = 0, $limit = 1 } = this.query
       return Math.floor($offset / $limit) + 1
     },
     maxpage () {
-      const { $limit } = this.query
+      const { $limit = 1 } = this.query
       return Math.ceil(this.count / $limit)
     },
     pages () {
@@ -109,7 +111,7 @@ export default {
 
   methods: {
     paginate ({ page, disabled }) {
-      if (!disabled) {
+      if (page && !disabled) {
         const $offset = this.query.$limit * (page - 1)
         this.$emit('paginate', { ...this.query, $offset })
       }

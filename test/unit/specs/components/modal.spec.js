@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Modal from 'components/c-modal'
-import { triggerMouseEvents } from '../../utils'
 
 describe('modal.vue', () => {
   let el
