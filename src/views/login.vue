@@ -27,10 +27,19 @@ import { setEnv } from 'vx/actions'
 export default {
   data () {
     return {
-      cells: {
+      items: {
+        username: this.$route.query.username,
+        password: ''
+      }
+    }
+  },
+
+  computed: {
+    cells () {
+      return {
         username: {
           label: '账号',
-          icon: 0xe616,
+          icon: this.iconmap.username,
           type: 'textfield',
           attrs: {
             placeholder: '只能包含小写英文字母'
@@ -56,7 +65,7 @@ export default {
         },
         password: {
           label: '密码',
-          icon: 0xe602,
+          icon: this.iconmap.password,
           type: 'password',
           attrs: {
             placeholder: '字母、数字或标点符号'
@@ -80,15 +89,8 @@ export default {
             }
           }
         }
-      },
-      items: {
-        username: this.$route.query.username,
-        password: ''
       }
-    }
-  },
-
-  computed: {
+    },
     action () {
       return {
         type: 'submit',

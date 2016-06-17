@@ -1,41 +1,46 @@
 import 'whatwg-fetch'
 import Promise from 'nd-promise'
 import qs from 'querystring'
+import isPlainObj from 'is-plain-obj'
 
 const defaultOptions = {
   headers: {
     'Accept': 'application/json',
     'Content-Type': 'application/json'
-  }
+  },
+  method: 'GET'
 }
 
 export function merge (src, ...args) {
   args.forEach(arg => {
     Object.keys(arg).forEach(key => {
-      if (!src.hasOwnProperty(key)) {
-        src[key] = {}
+      if (isPlainObj(arg[key])) {
+        if (!src.hasOwnProperty(key)) {
+          src[key] = {}
+        }
+        Object.assign(src[key], arg[key])
+      } else {
+        src[key] = arg[key]
       }
-
-      Object.assign(src[key], arg[key])
     })
   })
   return src
 }
 
-export default function Core (options = {}) {
-  this.defaultOptions = merge({}, defaultOptions, options)
-}
-
 /**
- * $ajax
+ * request
  * @param  {Object} options   Options
  * @return {Promise}          Request Promise
  */
-Core.prototype.$ajax = function (_options = {}) {
-  const { hooks = {}, ...options } = { ...this.defaultOptions, ..._options }
+export default function request (_options = {}) {
+  const { hooks = {}, ...options } = merge({}, defaultOptions, _options)
   hook(hooks.before)
-  return parse(options)
-  .then(({ url, ...options }) => fetch(url, options))
+  return new Promise((resolve, reject) => {
+    parse(options)
+    .then(({ url, ...options }) => fetch(url, options))
+    .then(resolve)
+    .catch(reject)
+  })
   .then(res => {
     if (res.status >= 200 && res.status < 400) {
       hook(hooks.success, res)
@@ -59,12 +64,25 @@ Core.prototype.$ajax = function (_options = {}) {
 }
 
 function parse ({ url, query, params, body, mutate, ...options }) {
+  if (body) {
+    if (typeof body === 'object') {
+      if (/^(POST|PUT|PATCH)$/i.test(options.method)) {
+        body = JSON.stringify(body)
+      } else {
+        url += ((url.indexOf('?') !== -1) ? '&' : '?') + qs.stringify(body)
+        body = null
+      }
+    }
+    if (body) {
+      options.body = body
+    }
+  }
+
   if (query) {
     if (typeof query === 'object') {
       query = qs.stringify(query)
     }
-    url += (url.indexOf('?') !== -1) ? '&' : '?'
-    url += query
+    url += ((url.indexOf('?') !== -1) ? '&' : '?') + query
   }
 
   // 替换地址中的宏变量：{xyz}
@@ -89,13 +107,6 @@ function parse ({ url, query, params, body, mutate, ...options }) {
   }
 
   options.url = url
-
-  if (body) {
-    if (typeof body === 'object') {
-      body = JSON.stringify(body)
-    }
-    options.body = body
-  }
 
   // mutate must be a function and return a promise
   // useful for add authorization

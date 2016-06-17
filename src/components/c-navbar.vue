@@ -27,7 +27,6 @@ export default {
       default: ''
     },
     icon: {
-      type: Number,
       required: true
     }
   },

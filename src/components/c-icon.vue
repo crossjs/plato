@@ -10,14 +10,13 @@ export default {
       default: ''
     },
     value: {
-      type: Number,
-      default: 0
+      required: true
     }
   },
 
   computed: {
     _value () {
-      return String.fromCharCode(this.value)
+      return String.fromCharCode(+this.value)
     }
   }
 }

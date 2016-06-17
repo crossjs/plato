@@ -1,4 +1,4 @@
-import Core, { merge } from './core'
+import request, { merge } from 'utils/request'
 
 export default function plugin (Vue, globalOptions = {}) {
   if (plugin.installed) {
@@ -16,8 +16,6 @@ export default function plugin (Vue, globalOptions = {}) {
       : ajaxInit
     _init.call(this, options)
   }
-
-  const core = new Core()
 
   function ajaxInit () {
     const { ajax } = this.$options
@@ -48,7 +46,7 @@ export default function plugin (Vue, globalOptions = {}) {
    * @return {Promise}          Request Promise
    */
   Vue.prototype.$ajax = function (options = {}) {
-    return core.$ajax({ ...this.$options.ajax, ...options })
+    return request(merge({}, this.$options.ajax, options))
   }
 
   Vue.prototype.$GET = function (...args) {

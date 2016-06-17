@@ -1,5 +1,5 @@
 export default {
-  icon: 0xe60c,
+  icon: 'about',
   title: 'routes.about',
   name: 'about',
   component: resolve => require(['views/about'], resolve)

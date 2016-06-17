@@ -13,14 +13,11 @@
       </div>
       <div class="history">
         <c-button class="none" @click="historyBack">
-          <c-icon :value="0xe60d"></c-icon>
+          <c-icon :value="iconmap.back"></c-icon>
         </c-button>
       </div>
-      <c-navbar class="navbar" :icon="0xe603">
-        <c-route
-          :recursive="recursive"
-          :filter="filter"
-          :routes="routes"></c-route>
+      <c-navbar class="navbar" :icon="iconmap.menu">
+        <c-route :routes="_routes"></c-route>
       </c-navbar>
     </header>
     <router-view class="router-view"
@@ -49,18 +46,11 @@ export default {
     resources: {}
   },
 
-  data () {
-    return {
-      recursive: false,
-      routes
-    }
-  },
-
   computed: {
-    filter () {
-      return (key, route) => {
+    _routes () {
+      return walkRoutes.call(this, routes, (key, route) => {
         return key !== '/' && route.auth !== !this.env.authorized
-      }
+      })
     }
   },
 
@@ -108,6 +98,23 @@ export default {
     CNavbar,
     CRoute
   }
+}
+
+function walkRoutes (routes, filter) {
+  return Object.keys(routes)
+  .filter(key => !routes[key].hidden)
+  .filter(key => filter(key, routes[key]))
+  .map(key => {
+    const route = routes[key]
+    return {
+      path: route.path || key,
+      name: route.name,
+      exact: route.exact,
+      icon: this.iconmap[route.icon],
+      title: this.__(route.title),
+      subRoutes: route.subRoutes
+    }
+  })
 }
 </script>
 
