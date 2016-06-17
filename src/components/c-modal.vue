@@ -46,7 +46,7 @@ export default {
     },
     actions: {
       type: Object,
-      default: () => {
+      default () {
         return {
           submit: {
             label: '确定',
