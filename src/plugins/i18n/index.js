@@ -33,6 +33,27 @@ export default function plugin (Vue) {
     }
   }
 
+  /**
+   * 翻译字符串
+   *
+   * Example:
+   * ```
+   * const resources = {
+   *   foo: { bar: 'baz' },
+   *   v: { a: '1{r}2' },
+   *   x: { a: '3{0}4' }
+   * }
+   * __('foo.bar') -> 'baz'
+   * __('v.a', { r: 'hello' }) -> '1hello2'
+   * __('x.a', ['world']) -> '3world4'
+   * ```
+   *
+   * @method $translate
+   * @alias  __
+   * @param  {String}         keys    待翻译 Key
+   * @param  {Array|Object}   [args]  模板变量
+   * @return {String}                 翻译结果
+   */
   Vue.prototype.__ = Vue.prototype.$translate = function (keys, ...args) {
     if (!keys || !this.$i18n) {
       return keys

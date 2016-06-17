@@ -78,7 +78,7 @@
   "dependencies": {
     "chartist": "^0.9.7",
     "nd-browser": "^3.0.0",
-    "nd-datetime": "^3.0.4",
+    "nd-datetime": "^3.0.5",
     "nd-promise": "^3.0.2",
     "querystring": "^0.2.0",
     "string-template": "^1.0.0",
