@@ -29,12 +29,6 @@ export default {
         return []
       }
     }
-  },
-
-  methods: {
-    _remove (toast) {
-      this.$emit('remove', toast)
-    }
   }
 }
 </script>
