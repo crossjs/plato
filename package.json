@@ -1,7 +1,7 @@
 {
   "name": "PLATO",
   "version": "1.0.0",
-  "description": "A plat<del>form</del> built with koa and vue",
+  "description": ":heart: a Boilerplate for SPAs use vue, vuex-fsa, vue-router",
   "license": "MIT",
   "main": "index.js",
   "scripts": {

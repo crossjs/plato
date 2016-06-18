@@ -2,7 +2,7 @@
 
 # PLATO
 
-> A plat<del>form</del> built with [koa](http://koajs.com/) and [vue](http://vuejs.org/)
+> :heart: a Boilerplate for SPAs use vue, [vuex-fsa](https://www.npmjs.com/package/vuex-fsa), vue-router
 
 [See online demo](http://crossjs.com/plato)
 
