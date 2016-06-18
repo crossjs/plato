@@ -3,12 +3,13 @@ import Progress from 'components/c-progress'
 
 describe('progress.vue', () => {
   let el
-  before(() => {
+
+  beforeEach(() => {
     el = document.createElement('div')
     document.body.appendChild(el)
   })
 
-  after(() => {
+  afterEach(() => {
     document.body.removeChild(el)
   })
 

@@ -25,10 +25,6 @@ describe('plugins/i18n', () => {
     <div>{{__('b.e', ['bar'])}}</div>
   `
 
-  const comp = Vue.component('comp', {
-    template: `<div>${fragment}</div>`
-  })
-
   const resources = {
     a: 'A',
     b: {
@@ -98,15 +94,16 @@ describe('plugins/i18n', () => {
 
   describe('child component', () => {
     it('should translate correctly', () => {
+      Vue.component('comp', {
+        template: `<div>${fragment}</div>`
+      })
+
       const vm = new Vue({
         el,
         replace: false,
         template: '<comp></comp>',
         i18n: {
           resources
-        },
-        components: {
-          comp
         }
       })
 
@@ -120,15 +117,16 @@ describe('plugins/i18n', () => {
     })
 
     it('should update translate correctly', done => {
+      Vue.component('comp', {
+        template: `<div>${fragment}</div>`
+      })
+
       const vm = new Vue({
         el,
         replace: false,
         template: '<comp></comp>',
         i18n: {
           resources
-        },
-        components: {
-          comp
         }
       })
 

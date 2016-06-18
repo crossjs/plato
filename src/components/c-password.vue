@@ -1,9 +1,8 @@
 <template>
   <div :class="['c-password', class]">
-    <button :class="['c-password-toggle', {active: showPassword}]"
+    <span :class="['c-password-toggle', {active: showPassword}]"
       type="button"
-      @click="_toggle">
-    </button>
+      @click="_toggle"></span>
     <input class="c-form-field c-password-input"
       :type="showPassword ? 'text' : 'password'"
       :field="field"

@@ -5,12 +5,13 @@ Vue.use(Validator)
 
 describe('validator', () => {
   let el
-  before(() => {
+
+  beforeEach(() => {
     el = document.createElement('div')
     document.body.appendChild(el)
   })
 
-  after(() => {
+  afterEach(() => {
     document.body.removeChild(el)
   })
 
@@ -113,7 +114,7 @@ describe('validator', () => {
 
     describe('child components', () => {
       it('should has $validation, $validate', () => {
-        const comp = Vue.component('comp', {
+        Vue.component('comp', {
           data () {
             return {
               validate: {
@@ -129,10 +130,7 @@ describe('validator', () => {
           el,
           replace: false,
           validator: {},
-          template: '<comp></comp>',
-          components: {
-            comp
-          }
+          template: '<comp></comp>'
         })
 
         expect(vm.$children[0]).to.have.property('$validation')
@@ -140,17 +138,14 @@ describe('validator', () => {
       })
 
       it('should has $validation, $validate 2', () => {
-        const comp = Vue.component('comp', {})
+        Vue.component('comp', {})
         const vm = new Vue({
           el,
           replace: false,
           validator: {
             auto: true
           },
-          template: '<comp></comp>',
-          components: {
-            comp
-          }
+          template: '<comp></comp>'
         })
 
         expect(vm.$children[0]).to.have.property('$validation')
@@ -158,7 +153,7 @@ describe('validator', () => {
       })
 
       it('should validate successfully', done => {
-        const comp = Vue.component('comp', {
+        Vue.component('comp', {
           props: ['value'],
           data () {
             return {
@@ -180,10 +175,7 @@ describe('validator', () => {
           data: {
             value: 'hello'
           },
-          template: '<comp :value="value"></comp>',
-          components: {
-            comp
-          }
+          template: '<comp :value="value"></comp>'
         })
 
         const child = vm.$children[0]

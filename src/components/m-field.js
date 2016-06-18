@@ -23,8 +23,7 @@ export default {
         return {}
       }
     },
-    validate: {
-    }
+    validate: null
   },
 
   computed: {

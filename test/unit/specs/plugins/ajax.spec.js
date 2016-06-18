@@ -12,6 +12,7 @@ Vue.use(Ajax, {
 
 describe('plugins/ajax', () => {
   let el
+
   beforeEach(() => {
     el = document.createElement('div')
     document.body.appendChild(el)
@@ -62,7 +63,7 @@ describe('plugins/ajax', () => {
   })
 
   it('should extend parents\' options', () => {
-    const comp = Vue.component('comp', {
+    Vue.component('comp', {
       ajax: {
         hooks: {
           failure
@@ -77,10 +78,7 @@ describe('plugins/ajax', () => {
           after
         }
       },
-      template: '<comp></comp>',
-      components: {
-        comp
-      }
+      template: '<comp></comp>'
     })
 
     function failure () {}
