@@ -76,7 +76,7 @@ export default {
             isLink: true
           }
         }, {
-          icon: this.iconmap.chart,
+          icon: 'chart',
           label: 'chart',
           value: '一些图表',
           click () {
@@ -98,14 +98,14 @@ export default {
       }, {
         title: '关于',
         cells: [{
-          icon: this.iconmap.github,
+          icon: 'github',
           label: 'Fork',
           value: 'github.com/crossjs/plato',
           click () {
             window.open('https://github.com/crossjs/plato')
           }
         }, {
-          icon: this.iconmap.author,
+          icon: 'demo',
           label: 'Author',
           value: 'github.com/crossjs',
           click () {

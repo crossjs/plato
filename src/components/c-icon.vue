@@ -1,5 +1,5 @@
 <template>
-  <div :class="['c-icon', class]">{{_value}}</div>
+  <div :class="['c-icon', class]"><slot>{{value}}</slot></div>
 </template>
 
 <script>
@@ -10,13 +10,7 @@ export default {
       default: ''
     },
     value: {
-      required: true
-    }
-  },
-
-  computed: {
-    _value () {
-      return String.fromCharCode(+this.value)
+      default: ''
     }
   }
 }

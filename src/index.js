@@ -4,7 +4,6 @@ import Validator from 'plugins/validator'
 import I18n from 'plugins/i18n'
 import Ajax from 'plugins/ajax'
 import App from 'app'
-import iconmap from 'utils/iconmap'
 import { routes, alias } from 'routes'
 import { env, progress } from 'vx/getters'
 import { getEnv, setProgress, addToast } from 'vx/utils'
@@ -17,9 +16,6 @@ Vue.config.debug = __DEV__
 
 // global mixins
 Vue.mixin({
-  data () {
-    return { iconmap }
-  },
   vuex: {
     getters: {
       env,

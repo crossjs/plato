@@ -13,10 +13,10 @@
       </div>
       <div class="history">
         <c-button class="none" @click="historyBack">
-          <c-icon :value="iconmap.back"></c-icon>
+          <c-icon value="back"></c-icon>
         </c-button>
       </div>
-      <c-navbar class="navbar" :icon="iconmap.menu">
+      <c-navbar class="navbar" icon="menu">
         <c-route :routes="_routes"></c-route>
       </c-navbar>
     </header>
@@ -110,7 +110,7 @@ function walkRoutes (routes, filter) {
       path: route.path || key,
       name: route.name,
       exact: route.exact,
-      icon: this.iconmap[route.icon],
+      icon: route.icon,
       title: this.__(route.title),
       subRoutes: route.subRoutes
     }

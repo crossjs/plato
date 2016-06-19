@@ -16,6 +16,11 @@
 [![dependencies](https://david-dm.org/crossjs/plato.svg?style=flat-square)](https://david-dm.org/crossjs/plato)
 [![devDependency Status](https://david-dm.org/crossjs/plato/dev-status.svg?style=flat-square)](https://david-dm.org/crossjs/plato#info=devDependencies)
 
+## Change Log
+
+- 20160619
+  - 使用 icomoon 管理图标字体，因为 iconfont 不支持连体字符
+
 ## Dependencies
 
 - vue

@@ -39,7 +39,7 @@ export default {
       return {
         username: {
           label: '账号',
-          icon: this.iconmap.username,
+          icon: 'user',
           type: 'textfield',
           attrs: {
             placeholder: '只能包含小写英文字母'
@@ -65,7 +65,7 @@ export default {
         },
         password: {
           label: '密码',
-          icon: this.iconmap.password,
+          icon: 'lock',
           type: 'password',
           attrs: {
             placeholder: '字母、数字或标点符号'
