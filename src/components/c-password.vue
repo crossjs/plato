@@ -2,7 +2,7 @@
   <div :class="['c-password', class]">
     <span :class="['c-password-toggle', {active: showPassword}]"
       type="button"
-      @click="_toggle"></span>
+      @click="_toggle">view</span>
     <input class="c-form-field c-password-input"
       :type="showPassword ? 'text' : 'password'"
       :field="field"

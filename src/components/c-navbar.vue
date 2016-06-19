@@ -6,7 +6,7 @@
     <button :class="['c-navbar-toggle', {active: opened}]"
       type="button"
       @click="opened = !opened">
-        <c-icon :value="icon"></c-icon>
+        <c-icon value="menu"></c-icon>
     </button>
     <nav class="c-navbar-menu"
       v-show="opened"
@@ -25,9 +25,6 @@ export default {
     class: {
       type: String,
       default: ''
-    },
-    icon: {
-      required: true
     }
   },
 

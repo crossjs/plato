@@ -16,7 +16,7 @@
           <c-icon value="back"></c-icon>
         </c-button>
       </div>
-      <c-navbar class="navbar" icon="menu">
+      <c-navbar class="navbar">
         <c-route :routes="_routes"></c-route>
       </c-navbar>
     </header>

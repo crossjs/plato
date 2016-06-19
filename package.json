@@ -18,7 +18,8 @@
     "clean": "better-npm-run clean",
     "compile": "better-npm-run compile",
     "deploy": "better-npm-run deploy",
-    "demo": "bash .tools/bash/demo.sh"
+    "demo": "bash .tools/bash/demo.sh",
+    "push": "bash .tools/bash/push.sh"
   },
   "betterScripts": {
     "compile": {
