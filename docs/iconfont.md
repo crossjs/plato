@@ -34,3 +34,7 @@ iconfont 采用连体字符，参见 [维基百科 - 合字](https://zh.wikipedi
 <!-- 或直接使用 slot -->
 <c-icon>menu</c-icon>
 ```
+
+## 存在问题
+
+- 与 `transition-mode="out-in/in-out"` 共用导致页面假死
