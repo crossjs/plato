@@ -18,6 +18,8 @@
 
 ## Change Log
 
+- 20160620
+  - 移除 `<router-view>` 中的 `transition-mode` [#5](https://github.com/crossjs/plato/issues/5)
 - 20160619
   - 使用 icomoon 管理图标字体，因为 iconfont 不支持连体字符
 
@@ -225,3 +227,4 @@ Latest mobile browsers
 ## Appendix
 
 - [vue-devtools](https://github.com/vuejs/vue-devtools)
+- [awesome-vue](https://github.com/vuejs/awesome-vue)

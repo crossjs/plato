@@ -1,8 +1,8 @@
 export default {
   routes: {
     '/': require('./home'),
-    '/about': require('./about'),
     '/demo': require('./demo'),
+    '/about': require('./about'),
     '/login': require('./login'),
     '/logout': require('./logout')
   },

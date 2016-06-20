@@ -1,8 +1,6 @@
 <template>
-  <div :class="['c-password', class]">
-    <span :class="['c-password-toggle', {active: showPassword}]"
-      type="button"
-      @click="_toggle">view</span>
+  <div :class="['c-password', class, {'show-password': showPassword}]">
+    <c-icon class="c-password-toggle" @click="_toggle">view</c-icon>
     <input class="c-form-field c-password-input"
       :type="showPassword ? 'text' : 'password'"
       :field="field"
@@ -15,6 +13,7 @@
 
 <script>
 import mField from './m-field'
+import CIcon from './c-icon'
 export default {
   mixins: [mField],
 
@@ -28,6 +27,10 @@ export default {
     _toggle () {
       this.showPassword = !this.showPassword
     }
+  },
+
+  components: {
+    CIcon
   }
 }
 </script>

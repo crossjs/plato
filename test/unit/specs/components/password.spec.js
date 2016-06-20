@@ -25,7 +25,7 @@ describe('button.vue', () => {
 
     expect(vm.$children.length).to.equal(1)
     const { children } = vm.$children[0].$el
-    expect(children[0].tagName).to.equal('SPAN')
+    expect(children[0].tagName).to.equal('DIV')
     expect(children[1].tagName).to.equal('INPUT')
     expect(children[1].type).to.equal('password')
 

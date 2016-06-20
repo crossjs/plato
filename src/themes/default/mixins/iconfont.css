@@ -1,6 +1,5 @@
 @define-mixin iconfont {
-  /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: "plato" !important;
+  font-family: "plato";
   speak: none;
   font-style: normal;
   font-weight: normal;
@@ -14,5 +13,4 @@
 
   /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }

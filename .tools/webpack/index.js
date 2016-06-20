@@ -138,6 +138,7 @@ webpackConfig.vue = {
         // see: https://github.com/ai/browserslist#queries
         browsers: 'Android >= 4, iOS >= 7'
       }),
+      require('postcss-font-variant')(),
       require('postcss-browser-reporter')(),
       require('postcss-reporter')()
     ]

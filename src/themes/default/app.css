@@ -38,7 +38,6 @@
   position: absolute;
   z-index: 1;
   width: 100%;
-  /*background-color: inherit;*/
 
   & a {
     display: block;
@@ -57,6 +56,10 @@
   }
 }
 
+[v-cloak] {
+  display: none;
+}
+
 .router-view {
   transition: all .5s ease;
 }
@@ -66,23 +69,6 @@
   opacity: 0;
   transform: translate3d(0, 1rem, 0);
 }
-
-[v-cloak] {
-  display: none;
-}
-
-/*.link {
-  color: var(--secondary);
-
-  &:active {
-    color: var(--primary);
-  }
-
-  &:disabled {
-    cursor: not-allowed;
-    color: color(var(--primary) saturation(0%));
-  }
-}*/
 
 .link-active {
   color: var(--primary);

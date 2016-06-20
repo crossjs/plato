@@ -1,7 +1,6 @@
 export default {
   name: 'demo',
-  hidden: true,
-  component: resolve => require(['views/demo'], resolve),
+  component: resolve => require(['views/demo/index'], resolve),
   subRoutes: {
     '/form': {
       name: 'demo/form',
