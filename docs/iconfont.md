@@ -1,6 +1,6 @@
 # 使用 iconfont
 
-- `c-icon.vue`
+文件：`components/c-icon.vue`
 
 ## 样式
 
