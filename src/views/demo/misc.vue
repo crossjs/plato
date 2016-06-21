@@ -13,16 +13,16 @@
     <c-cell direction="row">
       <c-icon class="c-cell-icon">user</c-icon>
       <c-label class="c-cell-label">Label1</c-label>
-      <c-value class="c-cell-value">
+      <c-flex align="right">
         <c-checkbox :value.sync="model2.value"></c-checkbox>
-      </c-value>
+      </c-flex>
     </c-cell>
     <c-cell direction="row">
       <c-icon class="c-cell-icon">lock</c-icon>
       <c-label class="c-cell-label">Label2</c-label>
-      <c-value class="c-cell-value">
+      <c-flex align="right">
         <c-checkbox :value.sync="model1.value"></c-checkbox>
-      </c-value>
+      </c-flex>
     </c-cell>
   </div>
 </template>
@@ -33,9 +33,9 @@ import CPane from 'components/c-pane'
 import CCell from 'components/c-cell'
 import CIcon from 'components/c-icon'
 import CLabel from 'components/c-label'
-import CValue from 'components/c-value'
 import CCheckbox from 'components/c-checkbox'
 import CFlex from 'components/c-flex'
+import CModal from 'components/c-modal'
 export default {
   data () {
     return {
@@ -55,10 +55,10 @@ export default {
     CPane,
     CIcon,
     CLabel,
-    CValue,
     CCheckbox,
     CCell,
-    CFlex
+    CFlex,
+    CModal
   }
 }
 </script>

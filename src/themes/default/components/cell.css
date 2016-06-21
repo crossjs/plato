@@ -26,18 +26,3 @@
     background-color: color(var(--secondary) alpha(10%))
   }
 }
-
-.c-cell-icon {
-  flex: none;
-  margin-right: 0.3em;
-}
-
-.c-cell-label {
-  flex: none;
-  margin-right: 0.3em;
-}
-
-.c-cell-value {
-  flex: auto;
-  text-align: right;
-}
