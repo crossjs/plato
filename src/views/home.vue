@@ -24,6 +24,9 @@
         :cells="demo.cells"
         :items="demo.items"></c-group>
     </c-pane>
+    <c-pane class="quatation">
+      {{ua}}
+    </c-pane>
   </div>
 </template>
 
@@ -40,6 +43,7 @@ import { setEnv, getCommits } from 'vx/actions'
 export default {
   data () {
     return {
+      ua: navigator.userAgent,
       cells: {
         lang: {
           label: '语言',

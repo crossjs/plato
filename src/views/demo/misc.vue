@@ -11,14 +11,14 @@
       <c-flex>flex-item-3</c-flex>
     </c-cell>
     <c-cell direction="row">
-      <c-icon class="c-cell-icon" :value="0xe619"></c-icon>
+      <c-icon class="c-cell-icon">user</c-icon>
       <c-label class="c-cell-label">Label1</c-label>
       <c-value class="c-cell-value">
         <c-checkbox :value.sync="model2.value"></c-checkbox>
       </c-value>
     </c-cell>
     <c-cell direction="row">
-      <c-icon class="c-cell-icon" :value="0xe606"></c-icon>
+      <c-icon class="c-cell-icon">lock</c-icon>
       <c-label class="c-cell-label">Label2</c-label>
       <c-value class="c-cell-value">
         <c-checkbox :value.sync="model1.value"></c-checkbox>

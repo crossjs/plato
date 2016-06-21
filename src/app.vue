@@ -17,7 +17,7 @@
         </c-button>
       </div>
       <c-navbar class="navbar">
-        <c-route :routes="_routes"></c-route>
+        <c-route :routes="routes"></c-route>
       </c-navbar>
     </header>
     <router-view class="router-view"
@@ -46,7 +46,7 @@ export default {
   },
 
   computed: {
-    _routes () {
+    routes () {
       return walkRoutes.call(this, routes, (key, route) => {
         return key !== '/' && route.auth !== !this.env.authorized
       })
@@ -101,6 +101,9 @@ export default {
 }
 
 function walkRoutes (routes, filter) {
+  if (!routes) {
+    return []
+  }
   return Object.keys(routes)
   .filter(key => !routes[key].hidden)
   .filter(key => filter(key, routes[key]))
@@ -111,8 +114,9 @@ function walkRoutes (routes, filter) {
       name: route.name,
       exact: route.exact,
       icon: route.icon,
-      title: this.__(route.title),
-      subRoutes: route.subRoutes
+      title: this.__(route.title)
+      // comment out for subRoutes
+      // ,subRoutes: walkRoutes.call(this, route.subRoutes, filter)
     }
   })
 }

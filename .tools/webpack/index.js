@@ -33,12 +33,12 @@ const webpackConfig = {
 // ------------------------------------
 // Entry Points
 // ------------------------------------
-const APP_ENTRY_PATH = paths.src('index.js')
+const APP_ENTRY_PATH = ['babel-polyfill', paths.src('index.js')]
 
 webpackConfig.entry = {
   app: __DEV__
-    ? ['babel-polyfill', APP_ENTRY_PATH, 'webpack-hot-middleware/client']
-    : ['babel-polyfill', APP_ENTRY_PATH],
+    ? APP_ENTRY_PATH.concat('webpack-hot-middleware/client')
+    : APP_ENTRY_PATH,
   vendor: config.compiler_vendor
 }
 
