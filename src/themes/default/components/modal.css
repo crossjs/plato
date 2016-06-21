@@ -12,11 +12,15 @@
 
 .c-modal-body {
   text-align: center;
-  padding: 1rem 1rem 0;
+  padding: 1rem;
 }
 
 .c-modal-footer {
   border-top: 1px solid color(white lightness(90%));
+
+  &:empty {
+    border-top: none;
+  }
 
   & .c-cell {
     padding: 1rem 0 0;

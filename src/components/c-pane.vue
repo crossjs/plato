@@ -11,7 +11,7 @@ export default {
     },
     dir: {
       type: String,
-      default: 'all'
+      default: ''
     }
   }
 }

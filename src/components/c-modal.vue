@@ -10,9 +10,9 @@
       transition="slide-up">
       <div class="c-modal-body"><slot></slot></div>
       <c-pane class="c-modal-footer"
-        v-if="actions">
+        v-if="_actions">
         <c-cell direction="row">
-          <c-flex v-for="action in actions">
+          <c-flex v-for="action in _actions">
             <c-button :class="action.class"
               :type="action.type"
               @click="_click($key)">{{action.label}}</c-button>
@@ -64,6 +64,15 @@ export default {
     callback: {
       type: Function,
       default: () => Promise.resolve(true)
+    }
+  },
+
+  computed: {
+    _actions () {
+      if (!this.actions || Object.keys(this.actions).length === 0) {
+        return null
+      }
+      return this.actions
     }
   },
 
