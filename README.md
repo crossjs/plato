@@ -14,6 +14,10 @@
 
 ## Change Log
 
+- 20160622
+  - 移除 c-value
+  - 优化 c-modal
+  - 增加 action sheet 演示（基于 c-modal）
 - 20160620
   - 移除 `<router-view>` 中的 `transition-mode` [#5](https://github.com/crossjs/plato/issues/5)
 - 20160619
