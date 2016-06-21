@@ -1,20 +1,16 @@
-# PLATO
+# PLATO :construction:
 
 > :heart: a Boilerplate for SPAs use vue, [vuex-fsa](https://www.npmjs.com/package/vuex-fsa), vue-router
 
-[See online demo](http://crossjs.com/plato)
-
-:construction: coding hard, coding with :heart:
-
-- :white_check_mark: Plugins like vuex, i18n, validator and ajax are almost ready, could be used in production amusedly.
-- :negative_squared_cross_mark: UI components are NOT stable, could be changed anytime.
+[Online Demo](http://crossjs.com/plato), [Documentation](docs/README.md)
 
 [![Travis](https://img.shields.io/travis/crossjs/plato.svg?style=flat-square)](https://travis-ci.org/crossjs/plato)
 [![Coveralls](https://img.shields.io/coveralls/crossjs/plato.svg?style=flat-square)](https://coveralls.io/github/crossjs/plato)
 [![dependencies](https://david-dm.org/crossjs/plato.svg?style=flat-square)](https://david-dm.org/crossjs/plato)
 [![devDependency Status](https://david-dm.org/crossjs/plato/dev-status.svg?style=flat-square)](https://david-dm.org/crossjs/plato#info=devDependencies)
 
-寻找“完整”的后端，请访问分支 [backend](https://github.com/crossjs/plato/tree/backend)
+- :white_check_mark: Plugins like vuex, i18n, validator and ajax are almost ready, could be used in production amusedly.
+- :negative_squared_cross_mark: UI components are NOT stable, could be changed anytime.
 
 ## Change Log
 
@@ -45,149 +41,6 @@
 - 向 vue@2 靠拢
 - **不限制使用何种 UI 组件，可以使用第三方，或自己开发（请尽量考虑复用性）**
 - 尽量使用小的依赖库
-
-## Data
-
-- 使用 [vuex](https://github.com/vuejs/vuex/) 进行数据管理
-- 数据按模块分文件存放于 `src/vx/modules` 目录，并确保模块间数据不互相干扰
-- 严格遵循单向数据流
-- 组件间通过事件传递数据
-  - 使用 $emit
-  - 禁止使用 $dispatch 或 $broadcast，因为此特性在 vue@2 中不可用
-
-``` js
-// file: src/vx/store.js
-import Vue from 'vue'
-import Vuex from 'vuex-fsa'
-import modules from './modules'
-import middlewares from './middlewares'
-
-Vue.use(Vuex)
-
-export default new Vuex.Store({
-  strict: process.env.NODE_ENV === 'development',
-  modules,
-  middlewares
-})
-```
-
-## Router
-
-- 使用 [vue-router](https://github.com/vuejs/vue-router/) 进行路由管理
-- 路由按模块分文件存放于 `src/routes` 目录
-- 配合 Webpack 实现 [动态载入](http://router.vuejs.org/zh-cn/lazy.html)
-
-## Localization
-
-``` js
-// use plugin
-import Vue from 'vue'
-import I18n from 'plugins/i18n'
-Vue.use(I18n)
-
-// set resources
-export default {
-  name: 'App',
-  i18n: {
-    resources: {
-      message: {
-        plato: '...'
-      }
-    }
-  }
-}
-```
-
-``` vuex
-// use translate
-// see: https://github.com/Matt-Esch/string-template
-<template>
-{{__('message.plato')}}
-</template>
-```
-
-## Validation
-
-``` js
-// use plugin
-// details in `src/index.js`
-import Vue from 'vue'
-import Validator from 'plugins/validator'
-
-Vue.use(Validator)
-
-// set validator
-// details in `src/views/login.vue`
-export default {
-  ...
-  validator: {
-    // 设置初始化后自动检查
-    auto: true
-  }
-  ...
-}
-
-// use validator
-// in `src/components/c-textfield.vue`
-// template:
-<input ...
-  @change="_validate">
-
-// script:
-methods: {
-  _validate () {
-    if (!this.validate || !this.$validation) {
-      return
-    }
-    this.$validate()
-  }
-}
-```
-
-## Ajax
-
-Based on fetch
-
-``` js
-// use plugin
-// details in `src/index.js`
-import Vue from 'vue'
-import Ajax from 'plugins/ajax'
-
-Vue.use(Ajax)
-
-// set ajax,
-// details in `src/views/app.vue`
-export default {
-  // optional
-  ajax: {
-    ...
-  }
-
-  ready () {
-    this.$ajax(...)
-    this.$GET(...)
-    this.$POST(...)
-    this.$DELETE(...)
-    this.$PATCH(...)
-    this.$PUT(...)
-  }
-}
-```
-
-## Theming
-
-- use [postcss](http://postcss.org/), for the future
-- use [scoped css](http://vue-loader.vuejs.org/en/features/scoped-css.html) carefully
-  - do NOT use `@import` in scoped css
-- *modifying `postcss-cssnext` to adjust compatibilities：*
-
-``` js
-// .tools/webpack/index.js
-require('postcss-cssnext')({
-  browsers: 'last 1 version'
-}),
-```
 
 ## Usage
 
@@ -220,9 +73,11 @@ npm run e2e
 npm test
 ```
 
-## Compatibility
+## Backend
 
-Latest mobile browsers
+使用 koa@2 实现开发调试服务
+
+若要寻找“完整”的后端，请访问分支 [backend](https://github.com/crossjs/plato/tree/backend)
 
 ## Appendix
 

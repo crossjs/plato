@@ -8,6 +8,8 @@
 
 ## 用法
 
+常规用法
+
 ``` js
 import request from 'utils/request'
 
@@ -45,6 +47,29 @@ request({
     // 做些事情
     // 比如计算 Authorization
     return Promise.resolve(options)
+  }
+})
+```
+
+在 action 里使用
+**在 vuex 环境下，应统一使用此方法，即数据请求只出现在 action 里**
+
+``` js
+// define action
+import { GET_COMMITS } from '../types'
+import request from 'utils/request'
+
+export default {
+  getCommits ({ dispatch }, payload) {
+    dispatch(GET_COMMITS, request(payload))
+  }
+}
+
+// call action, in components
+this.getCommits({
+  url: 'https://api.github.com/repos/crossjs/plato/commits?per_page=3&sha=',
+  headers: {
+    'Accept': 'application/vnd.github.v3+json'
   }
 })
 ```

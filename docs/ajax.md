@@ -1,6 +1,11 @@
 # 使用 ajax
 
-文件：`plugins/ajax`
+- 基于 request 封装的 vue 插件
+- 在 vuex 的环境里，应尽量避免使用，参见 [`utils/request`](requst.md)
+
+## 文件
+
+`plugins/ajax`
 
 ## 依赖
 

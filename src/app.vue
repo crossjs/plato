@@ -59,6 +59,7 @@ export default {
   methods: {
     getResources () {
       const { lang } = this.env
+      // 应该用 action，此处如此使用，只是为了演示 ajax 插件
       this.$GET(`./i18n/${lang}.json`).then(resources => {
         this.$i18n.resources = resources
       })
