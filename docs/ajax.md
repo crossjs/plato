@@ -1,7 +1,7 @@
 # 使用 ajax
 
 - 基于 request 封装的 vue 插件
-- 在 vuex 的环境里，应尽量避免使用，参见 [`utils/request`](requst.md)
+- 在 vuex 的环境里，为保证单向数据流，应尽量避免使用，参见 [`utils/request`](requst.md)
 
 ## 文件
 
