@@ -52,7 +52,8 @@ request({
 ```
 
 在 action 里使用
-**在 vuex 环境下，应统一使用此方法，即数据请求只出现在 action 里**
+
+**在 vuex 环境下，应统一采用这个模式，即数据请求只出现在 action 里**
 
 ``` js
 // define action
