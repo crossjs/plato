@@ -55,7 +55,9 @@ describe('plugins/i18n', () => {
       replace: false,
       template: fragment,
       i18n: {
-        resources
+        getter () {
+          return resources
+        }
       }
     })
 
@@ -76,11 +78,15 @@ describe('plugins/i18n', () => {
       replace: false,
       template: fragment,
       i18n: {
-        resources
+        getter () {
+          return resources
+        }
       }
     })
 
-    vm.$i18n.resources = resources2
+    vm.$i18n.getter = function () {
+      return resources2
+    }
 
     vm.$nextTick(() => {
       const { children } = vm.$el
@@ -103,7 +109,9 @@ describe('plugins/i18n', () => {
         replace: false,
         template: '<comp></comp>',
         i18n: {
-          resources
+          getter () {
+            return resources
+          }
         }
       })
 
@@ -126,11 +134,15 @@ describe('plugins/i18n', () => {
         replace: false,
         template: '<comp></comp>',
         i18n: {
-          resources
+          getter () {
+            return resources
+          }
         }
       })
 
-      vm.$i18n.resources = resources2
+      vm.$i18n.getter = function () {
+        return resources2
+      }
 
       vm.$nextTick(() => {
         const { children } = vm.$children[0].$el

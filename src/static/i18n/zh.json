@@ -1,10 +1,21 @@
 {
   "message": {
-    "plato": "好的开始是成功的一半！"
+    "plato": "{0}，好的开始是成功的一半！"
   },
   "routes": {
     "about": "关于",
     "login": "登录",
     "logout": "注销"
+  },
+  "view": {
+    "home": {
+      "language": "语言",
+      "example": "例子",
+      "form": "表单",
+      "charts": "一些图表",
+      "misc": "杂七杂八",
+      "about": "关于",
+      "latest_commits": "最新提交"
+    }
   }
 }

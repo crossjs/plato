@@ -1,6 +1,6 @@
 import format from 'string-template'
 
-export default function plugin (Vue) {
+export default function plugin (Vue, globalOptions = {}) {
   if (plugin.installed) {
     return
   }
@@ -22,13 +22,15 @@ export default function plugin (Vue) {
 
     if (i18n) {
       // 在入口处定义 $i18n
-      Vue.util.defineReactive(this, '$i18n', i18n)
+      Vue.util.defineReactive(this, '$i18n', { ...globalOptions, ...i18n })
     } else {
       // 寻找父级带 i18n 的组件
       const i18nVm = getI18nVm(this)
       if (i18nVm) {
         // set references
         this.$i18n = i18nVm.$i18n
+      } else {
+        Vue.util.defineReactive(this, '$i18n', { ...globalOptions })
       }
     }
   }
@@ -38,7 +40,7 @@ export default function plugin (Vue) {
    *
    * Example:
    * ```
-   * const resources = {
+   * {
    *   foo: { bar: 'baz' },
    *   v: { a: '1{r}2' },
    *   x: { a: '3{0}4' }
@@ -55,7 +57,7 @@ export default function plugin (Vue) {
    * @return {String}                 翻译结果
    */
   Vue.prototype.__ = Vue.prototype.$translate = function (keys, ...args) {
-    if (!keys || !this.$i18n) {
+    if (!keys || !this.$i18n || typeof this.$i18n.getter !== 'function') {
       return keys
     }
     // `.` 作为分隔符
@@ -64,7 +66,7 @@ export default function plugin (Vue) {
         return res[key]
       }
       return keys
-    }, this.$i18n.resources), ...args)
+    }, this.$i18n.getter()), ...args)
   }
 }
 

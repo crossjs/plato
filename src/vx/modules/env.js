@@ -1,15 +1,18 @@
 import createPersist from 'vuex-localstorage'
 
 import {
-  SET_ENV
+  SET_ENV,
+  SET_ENV_I18N
 } from '../types'
 
 import {
-  ENV_KEY
+  ENV_KEY,
+  PROMISE_SUCCESS
 } from '../constants'
 
 const persist = createPersist(ENV_KEY, {
   lang: navigator.language.split('-')[0],
+  i18n: {},
   authorized: false
 })
 
@@ -18,9 +21,18 @@ const state = {
 }
 
 const mutations = {
-  [SET_ENV] (state, { payload }) {
+  [SET_ENV] (state, { payload, meta }) {
     state.env = Object.assign({}, state.env, payload)
     persist.set(state.env)
+  },
+
+  [SET_ENV_I18N] (state, { payload, meta }) {
+    if (meta === PROMISE_SUCCESS) {
+      state.env = Object.assign({}, state.env, {
+        i18n: payload
+      })
+      persist.set(state.env)
+    }
   }
 }
 

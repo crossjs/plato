@@ -36,14 +36,19 @@ import CNavbar from 'components/c-navbar'
 import CRoute from 'components/c-route'
 import store from 'vx/store'
 import { toasts } from 'vx/getters'
+import { setEnv } from 'vx/actions'
 import { routes } from 'routes'
 
 export default {
   name: 'App',
   store,
-  i18n: {
-    resources: {}
-  },
+  // i18n: {
+  //   // 翻译资源库
+  //   // 覆盖上级（或全局）
+  //   getter () {
+  //     return {}
+  //   }
+  // },
 
   computed: {
     routes () {
@@ -54,38 +59,25 @@ export default {
   },
 
   // 必须定义 ajax，才能使用父辈与全局的配置
-  ajax: {},
+  // ajax: {},
 
   methods: {
-    getResources () {
-      const { lang } = this.env
-      // 应该用 action，此处如此使用，只是为了演示 ajax 插件
-      this.$GET(`./i18n/${lang}.json`).then(resources => {
-        this.$i18n.resources = resources
-      })
-    },
     historyBack () {
       history.back()
     }
   },
 
   created () {
-    this.getResources()
-  },
-
-  watch: {
-    env (val, old) {
-      if (val.lang !== old.lang) {
-        this.$nextTick(() => {
-          this.getResources()
-        })
-      }
-    }
+    // for get i18n
+    this.setEnv(this.env)
   },
 
   vuex: {
     getters: {
       toasts
+    },
+    actions: {
+      setEnv
     }
   },
 

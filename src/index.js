@@ -2,11 +2,11 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Validator from 'plugins/validator'
 import I18n from 'plugins/i18n'
-import Ajax from 'plugins/ajax'
+// import Ajax from 'plugins/ajax'
 import App from 'app'
 import { routes, alias } from 'routes'
 import { env, progress } from 'vx/getters'
-import { getEnv, setProgress, addToast } from 'vx/utils'
+import { getEnv, setProgress } from 'vx/utils'
 
 if (module.hot) {
   module.hot.accept()
@@ -28,24 +28,16 @@ Vue.mixin({
 Vue.use(Validator)
 
 // 国际化，如果未使用，请移除
-Vue.use(I18n)
-
-Vue.use(Ajax, {
-  // headers: {
-  //   'Accept-Language': getEnv().lang
-  // },
-  hooks: {
-    before () {
-      setProgress(60)
-    },
-    failure (err) {
-      addToast(err)
-    },
-    after () {
-      setProgress(100)
-    }
+Vue.use(I18n, {
+  // 翻译资源库
+  getter () {
+    return getEnv().i18n
   }
 })
+
+// 不推荐使用，应该直接在 vx/actions/**.* 里使用 utils/requrest
+// 此处仅为演示，参见 docs
+// Vue.use(Ajax)
 
 Vue.use(Router)
 

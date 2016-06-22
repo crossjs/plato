@@ -7,23 +7,24 @@
         @mutate="setEnv"></c-form>
     </c-pane>
     <c-pane class="quatation">
-      {{__('message.plato')}}
+      {{ __('message.plato', [hello]) }}
     </c-pane>
     <c-pane>
-      <c-title>最新提交</c-title>
+      <c-title>{{ __('view.home.latest_commits') }}</c-title>
       <c-loading v-show="!commits"></c-loading>
       <c-cell v-for="record in commits" transition="fade">
         <a :href="record.html_url" target="_blank" class="commit">{{record.commit.message}}</a><br>
-        at <span class="date">{{record.commit.author.date | datetime 'yyyy-MM-dd hh:mm'}}</span>
+        <small class="date">@ {{record.commit.author.date | datetime 'yyyy-MM-dd hh:mm'}}</small>
       </c-cell>
     </c-pane>
     <c-pane>
       <c-group
         v-for="demo in demos"
-        :title="demo.title"
+        :title="__(demo.title)"
         :cells="demo.cells"
         :items="demo.items"></c-group>
     </c-pane>
+    <c-title>User Agent</c-title>
     <c-pane class="quatation">
       {{ua}}
     </c-pane>
@@ -44,9 +45,15 @@ export default {
   data () {
     return {
       ua: navigator.userAgent,
-      cells: {
+      hello: 'Bello'
+    }
+  },
+
+  computed: {
+    cells () {
+      return {
         lang: {
-          label: '语言',
+          label: this.__('view.home.language'),
           type: 'dropdown',
           extra: {
             options: [{
@@ -62,17 +69,14 @@ export default {
           }
         }
       }
-    }
-  },
-
-  computed: {
+    },
     demos () {
       const { router } = this.$route
       return [{
-        title: '示例',
+        title: 'view.home.example',
         cells: [{
           label: 'form',
-          value: '一些表单组件',
+          value: this.__('view.home.form'),
           click () {
             router.go('demo/form')
           },
@@ -82,7 +86,7 @@ export default {
         }, {
           icon: 'chart',
           label: 'chart',
-          value: '一些图表',
+          value: this.__('view.home.charts'),
           click () {
             router.go('demo/chart')
           },
@@ -90,7 +94,7 @@ export default {
             isLink: true
           }
         }, {
-          value: '<i>杂七杂八</i>',
+          value: `<i>${this.__('view.home.misc')}</i>`,
           click () {
             router.go('demo/misc')
           },
@@ -100,7 +104,7 @@ export default {
           }
         }]
       }, {
-        title: '关于',
+        title: 'view.home.about',
         cells: [{
           icon: 'github',
           label: 'Fork',
