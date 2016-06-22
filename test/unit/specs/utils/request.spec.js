@@ -1,20 +1,6 @@
 import request, { merge } from 'utils/request'
 
 describe('request', () => {
-  it('should call hooks', () => {
-    const hooks = {
-      before () {}
-    }
-
-    const spy = sinon.spy(hooks, 'before')
-
-    expect(spy).callCount(0)
-    request({
-      hooks
-    })
-    expect(spy).callCount(1)
-  })
-
   it('should add query to url', () => {
     request({
       url: 'a',

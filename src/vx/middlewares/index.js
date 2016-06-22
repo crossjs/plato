@@ -1,6 +1,11 @@
 import createLogger from 'vuex-fsa/logger'
 import createPromise from 'vuex-promise'
-import { setProgress } from 'vx/utils'
+
+import {
+  SET_PROGRESS,
+  ADD_TOAST,
+  DELETE_TOAST
+} from '../types'
 
 import {
   PROMISE_PENDING,
@@ -16,19 +21,18 @@ const middlewares = [createPromise({
     FAILURE: PROMISE_FAILURE
   }
 }), {
-  onInit () {
-    console.log('==================')
-  },
-  onMutation ({ meta }, state, store) {
+  // 实现进度掉、错误提示
+  onMutation ({ meta, payload }, state, store) {
     switch (meta) {
       case PROMISE_PENDING:
-        setProgress(60)
+        setProgress(60, store)
         break
       case PROMISE_SUCCESS:
-        setProgress(100)
+        setProgress(100, store)
         break
       case PROMISE_FAILURE:
-        setProgress(100)
+        setProgress(100, store)
+        addToast(payload, store)
         break
       default:
         // setProgress(0)
@@ -38,6 +42,22 @@ const middlewares = [createPromise({
 
 if (__DEV__) {
   middlewares.unshift(createLogger())
+}
+
+function setProgress (progress, store) {
+  store.dispatch(SET_PROGRESS, progress)
+  if (progress === 100) {
+    setTimeout(() => {
+      store.dispatch(SET_PROGRESS, 0)
+    }, 500)
+  }
+}
+
+function addToast (toast, store) {
+  store.dispatch(ADD_TOAST, toast)
+  setTimeout(() => {
+    store.dispatch(DELETE_TOAST, toast)
+  }, 3000)
 }
 
 export default middlewares

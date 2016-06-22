@@ -33,8 +33,7 @@ export function merge (src, ...args) {
  * @return {Promise}          Request Promise
  */
 export default function request (_options = {}) {
-  const { hooks = {}, ...options } = merge({}, defaultOptions, _options)
-  hook(hooks.before)
+  const options = merge({}, defaultOptions, _options)
   return new Promise((resolve, reject) => {
     parse(options)
     .then(({ url, ...options }) => fetch(url, options))
@@ -43,24 +42,24 @@ export default function request (_options = {}) {
   })
   .then(res => {
     if (res.status >= 200 && res.status < 400) {
-      hook(hooks.success, res)
-      // 总是返回 JSON
       return res.json()
     } else {
-      // 比如 404
-      if (res.headers.get('Content-Type').indexOf('json') === -1) {
-        throw new RequestError(res.statusText)
+      if (jsonable(res)) {
+        throw res.json()
       }
-      throw res
+      // 比如 404、403
+      throw new Error(res.statusText)
     }
-  })
-  .catch(err => {
-    hook(hooks.failure, err)
+  }).catch(err => {
+    if (err instanceof Error) {
+      throw Promise.reject(new RequestError(err.message))
+    }
     throw err
   })
-  .finally(() => {
-    hook(hooks.after)
-  })
+}
+
+function jsonable (res) {
+  return res.headers.get('Content-Type').indexOf('json') !== -1
 }
 
 function parse ({ url, query, params, body, mutate, ...options }) {
@@ -117,14 +116,8 @@ function parse ({ url, query, params, body, mutate, ...options }) {
   return Promise.resolve(options)
 }
 
-function hook (fn, ...args) {
-  if (fn) {
-    fn.apply(null, args)
-  }
-}
-
 function RequestError (message) {
-  this.name = 'RequestError'
+  this.name = 'Request Error'
   this.message = message
   this.stack = (new Error()).stack
 }

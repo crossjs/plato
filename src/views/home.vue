@@ -25,7 +25,8 @@
         :items="demo.items"></c-group>
     </c-pane>
     <c-title>User Agent</c-title>
-    <c-pane class="quatation">
+    <c-pane>
+      <c-cell @click=""></c-cell>
       {{ua}}
     </c-pane>
   </div>

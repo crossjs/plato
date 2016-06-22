@@ -35,7 +35,7 @@ import CRouteLink from 'components/c-route-link'
 import CNavbar from 'components/c-navbar'
 import CRoute from 'components/c-route'
 import store from 'vx/store'
-import { toasts } from 'vx/getters'
+import { progress, toasts } from 'vx/getters'
 import { setEnv } from 'vx/actions'
 import { routes } from 'routes'
 
@@ -58,9 +58,6 @@ export default {
     }
   },
 
-  // 必须定义 ajax，才能使用父辈与全局的配置
-  // ajax: {},
-
   methods: {
     historyBack () {
       history.back()
@@ -68,12 +65,13 @@ export default {
   },
 
   created () {
-    // for get i18n
+    // for get i18n in first
     this.setEnv(this.env)
   },
 
   vuex: {
     getters: {
+      progress,
       toasts
     },
     actions: {

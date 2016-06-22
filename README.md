@@ -14,6 +14,13 @@
 
 ## Change Log
 
+- 20160623
+  - 移除 vx/utils
+  - 移除 request 的 hooks
+  - 优化 request 的错误处理
+  - progress、toasts 移到 vx/middlewares 中处理
+  - toasts 只接收 Promise 对象
+  - 升级 vuex-promise
 - 20160622
   - :construction: 简化 i18n 使用
   - 为保证数据都在 vuex 管理，默认不启用 plugins/ajax

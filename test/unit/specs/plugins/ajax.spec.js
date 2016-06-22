@@ -2,11 +2,9 @@ import Vue from 'vue'
 import Promise from 'nd-promise'
 import Ajax from 'plugins/ajax'
 
-function before () {}
-
 Vue.use(Ajax, {
-  hooks: {
-    before
+  headers: {
+    'Accept-Language': 'en'
   }
 })
 
@@ -27,16 +25,14 @@ describe('plugins/ajax', () => {
       el,
       replace: false,
       ajax: {
-        hooks: {
-          after
+        headers: {
+          'Content-Type': 'text'
         }
       }
     })
 
-    function after () {}
-
-    expect(vm.$options.ajax.hooks.before).to.equal(before)
-    expect(vm.$options.ajax.hooks.after).to.equal(after)
+    expect(vm.$options.ajax.headers['Content-Type']).to.equal('text')
+    expect(vm.$options.ajax.headers['Accept-Language']).to.equal('en')
   })
 
   it('should NOT extend global options, while no ajax in $options', () => {
@@ -48,25 +44,11 @@ describe('plugins/ajax', () => {
     expect(vm.$options.ajax).to.equal(undefined)
   })
 
-  it('should call hooks', () => {
-    const vm = new Vue({
-      el,
-      replace: false,
-      ajax: {}
-    })
-
-    const spy = sinon.spy(vm.$options.ajax.hooks, 'before')
-
-    expect(spy).callCount(0)
-    vm.$GET('')
-    expect(spy).callCount(1)
-  })
-
   it('should extend parents\' options', () => {
     Vue.component('comp', {
       ajax: {
-        hooks: {
-          failure
+        headers: {
+          'Accept': 'json'
         }
       }
     })
@@ -74,19 +56,16 @@ describe('plugins/ajax', () => {
       el,
       replace: false,
       ajax: {
-        hooks: {
-          after
+        headers: {
+          'Content-Type': 'text'
         }
       },
       template: '<comp></comp>'
     })
 
-    function failure () {}
-    function after () {}
-
-    expect(vm.$children[0].$options.ajax.hooks.before).to.equal(before)
-    expect(vm.$children[0].$options.ajax.hooks.failure).to.equal(failure)
-    expect(vm.$children[0].$options.ajax.hooks.after).to.equal(after)
+    expect(vm.$children[0].$options.ajax.headers['Accept-Language']).to.equal('en')
+    expect(vm.$children[0].$options.ajax.headers['Content-Type']).to.equal('text')
+    expect(vm.$children[0].$options.ajax.headers['Accept']).to.equal('json')
   })
 
   // todo: fake server

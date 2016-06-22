@@ -2,11 +2,10 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Validator from 'plugins/validator'
 import I18n from 'plugins/i18n'
-// import Ajax from 'plugins/ajax'
 import App from 'app'
 import { routes, alias } from 'routes'
-import { env, progress } from 'vx/getters'
-import { getEnv, setProgress } from 'vx/utils'
+import store from 'vx/store'
+import { env } from 'vx/getters'
 
 if (module.hot) {
   module.hot.accept()
@@ -18,8 +17,7 @@ Vue.config.debug = __DEV__
 Vue.mixin({
   vuex: {
     getters: {
-      env,
-      progress
+      env
     }
   }
 })
@@ -31,13 +29,9 @@ Vue.use(Validator)
 Vue.use(I18n, {
   // 翻译资源库
   getter () {
-    return getEnv().i18n
+    return env(store.state).i18n
   }
 })
-
-// 不推荐使用，应该直接在 vx/actions/**.* 里使用 utils/requrest
-// 此处仅为演示，参见 docs
-// Vue.use(Ajax)
 
 Vue.use(Router)
 
@@ -52,17 +46,15 @@ router.map(routes)
 router.alias(alias)
 
 router.beforeEach(transition => {
-  if (transition.to.auth && !getEnv().authorized) {
+  if (transition.to.auth && !env(store.state).authorized) {
     transition.abort()
   } else {
-    setProgress(60)
     transition.next()
   }
 })
 
 router.afterEach(transition => {
   window.scrollTo(0, 0)
-  setProgress(100)
 })
 
 router.start(App, 'app')
