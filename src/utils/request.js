@@ -11,6 +11,34 @@ const defaultOptions = {
   method: 'GET'
 }
 
+/**
+ * request
+ * @param  {Object} options   Options
+ * @return {Promise}          Request Promise
+ */
+export default function request (_options = {}) {
+  const options = merge({}, defaultOptions, _options)
+  return new Promise((resolve, reject) => {
+    parseOptions(options)
+    .then(({ url, ...options }) => fetch(url, options))
+    .then(res => {
+      if (res.status >= 200 && res.status < 400) {
+        res.json().then(resolve, reject)
+      } else {
+        if (jsonable(res)) {
+          res.json().then(reject)
+        } else {
+          // 比如 404、403
+          reject(new RequestError(res.statusText))
+        }
+      }
+    })
+    .catch(err => {
+      reject(new RequestError(err.message))
+    })
+  })
+}
+
 export function merge (src, ...args) {
   args.forEach(arg => {
     Object.keys(arg).forEach(key => {
@@ -27,42 +55,12 @@ export function merge (src, ...args) {
   return src
 }
 
-/**
- * request
- * @param  {Object} options   Options
- * @return {Promise}          Request Promise
- */
-export default function request (_options = {}) {
-  const options = merge({}, defaultOptions, _options)
-  return new Promise((resolve, reject) => {
-    parse(options)
-    .then(({ url, ...options }) => fetch(url, options))
-    .then(resolve)
-    .catch(reject)
-  })
-  .then(res => {
-    if (res.status >= 200 && res.status < 400) {
-      return res.json()
-    } else {
-      if (jsonable(res)) {
-        throw res.json()
-      }
-      // 比如 404、403
-      throw new Error(res.statusText)
-    }
-  }).catch(err => {
-    if (err instanceof Error) {
-      throw Promise.reject(new RequestError(err.message))
-    }
-    throw err
-  })
-}
-
 function jsonable (res) {
-  return res.headers.get('Content-Type').indexOf('json') !== -1
+  const type = res.headers.get('Content-Type')
+  return type && type.indexOf('json') !== -1
 }
 
-function parse ({ url, query, params, body, mutate, ...options }) {
+function parseOptions ({ url = '', query, params, body, mutate, ...options }) {
   if (body) {
     if (typeof body === 'object') {
       if (/^(POST|PUT|PATCH)$/i.test(options.method)) {
@@ -86,23 +84,7 @@ function parse ({ url, query, params, body, mutate, ...options }) {
 
   // 替换地址中的宏变量：{xyz}
   if (params) {
-    // from: https://github.com/Matt-Esch/string-template
-    const nargs = /\{(\w+)\}/g
-    url = url.replace(nargs, function replaceArg (match, i, index) {
-      let result
-
-      if (url[index - 1] === '{' &&
-        url[index + match.length] === '}') {
-        return i
-      } else {
-        result = params.hasOwnProperty(i) ? params[i] : null
-        if (result === null || result === undefined) {
-          return ''
-        }
-
-        return result
-      }
-    })
+    url = replaceUrlWithParams(url, params)
   }
 
   options.url = url
@@ -114,6 +96,27 @@ function parse ({ url, query, params, body, mutate, ...options }) {
   }
 
   return Promise.resolve(options)
+}
+
+function replaceUrlWithParams (url, params) {
+  // from: https://github.com/Matt-Esch/string-template
+  return url.replace(/\{(\w+)\}/g, function (match, key, index) {
+    let result
+
+    // {{x}} -> {x}
+    if (url.charAt(index - 1) === '{' &&
+      url.charAt(index + match.length) === '}') {
+      return key
+    } else {
+      // {x} -> *
+      result = params.hasOwnProperty(key) ? params[key] : null
+      if (result === null || result === undefined) {
+        return ''
+      }
+
+      return result
+    }
+  })
 }
 
 function RequestError (message) {
