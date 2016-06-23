@@ -78,7 +78,7 @@ const cssLoaders = (loaders => {
   }
   const [first, ...rest] = loaders
   return ExtractTextPlugin.extract(first, rest.join('!'))
-})(['vue-style', 'css?sourceMap'])
+})(['vue-style-loader', 'css-loader?sourceMap'])
 
 webpackConfig.module.loaders = [
   {
@@ -107,13 +107,6 @@ webpackConfig.module.loaders = [
     }
   }
 ]
-
-if (__DEV__) {
-  webpackConfig.module.loaders.push({
-    test: /\.css$/,
-    loader: cssLoaders
-  })
-}
 
 webpackConfig.vue = {
   loaders: {
