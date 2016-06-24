@@ -15,8 +15,10 @@
 ## Change Log
 
 - 20160624
+  - 演示网站增加文档页面
   - c-textfield 支持自定义 type
   - m-field 移除 `_attrs`，validate 不再合入 `attrs`
+  - m-field 增加 align 属性
 - 20160623
   - 移除 vx/utils
   - 移除 request 的 hooks
