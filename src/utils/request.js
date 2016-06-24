@@ -13,37 +13,58 @@ const defaultOptions = {
 
 /**
  * request
- * @param  {Object} options   Options
- * @return {Promise}          Request Promise
+ *
+ *   request({
+ *     url: 'path',
+ *     query: { ... },
+ *     params: { ... },
+ *     body: { ... }
+ *     headers: { ... }
+ *   })
+ *   request('path')
+ *   request('path', { ... })
+ *
+ * @param  {String|Object} options   Options
+ * @return {Promise}                 Promise
  */
-export default function request (_options = {}) {
-  if (typeof _options === 'string') {
-    _options = {
-      url: _options
-    }
+export default function request (...args) {
+  if (args.length === 0) {
+    console.warn('URL or Options is Required!')
+    return
   }
-  const options = merge({}, defaultOptions, _options)
+
+  if (typeof args[0] === 'string') {
+    if (args[1] === undefined) {
+      args[1] = {}
+    } else if (!isPlainObj(args[1])) {
+      console.warn('Options MUST be Object!')
+      return
+    }
+    args[1].url = args[0]
+    args[0] = args[1]
+  }
+
+  if (!isPlainObj(args[0])) {
+    console.warn('Options MUST be Object!')
+    return
+  }
+
+  const options = merge({}, defaultOptions, args[0])
   return new Promise((resolve, reject) => {
     parseOptions(options)
     .then(({ url, ...options }) => fetch(url, options))
     .then(res => {
       if (res && res.status >= 200 && res.status < 400) {
-        getResponseContent(res).then(resolve, reject)
+        getBody(res).then(resolve, reject)
       } else {
-        getResponseContent(res).then(reject)
-        // if (jsonable(res)) {
-        //   res.json().then(reject)
-        // } else {
-        //   // 比如 404、403
-        //   reject(new RequestError(res.statusText))
-        // }
+        getBody(res).then(reject)
       }
     })
     .catch(reject)
   })
 }
 
-export function merge (src, ...args) {
+function merge (src, ...args) {
   args.forEach(arg => {
     Object.keys(arg).forEach(key => {
       if (isPlainObj(arg[key])) {
@@ -59,7 +80,7 @@ export function merge (src, ...args) {
   return src
 }
 
-function getResponseContent (res) {
+function getBody (res) {
   const type = res.headers.get('Content-Type')
   return (type && type.indexOf('json') !== -1) ? res.json() : res.text()
 }

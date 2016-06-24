@@ -55,7 +55,7 @@ describe('plugins/i18n', () => {
       replace: false,
       template: fragment,
       i18n: {
-        getter () {
+        data () {
           return resources
         }
       }
@@ -78,13 +78,13 @@ describe('plugins/i18n', () => {
       replace: false,
       template: fragment,
       i18n: {
-        getter () {
+        data () {
           return resources
         }
       }
     })
 
-    vm.$i18n.getter = function () {
+    vm.$i18n.data = function () {
       return resources2
     }
 
@@ -109,7 +109,7 @@ describe('plugins/i18n', () => {
         replace: false,
         template: '<comp></comp>',
         i18n: {
-          getter () {
+          data () {
             return resources
           }
         }
@@ -134,13 +134,13 @@ describe('plugins/i18n', () => {
         replace: false,
         template: '<comp></comp>',
         i18n: {
-          getter () {
+          data () {
             return resources
           }
         }
       })
 
-      vm.$i18n.getter = function () {
+      vm.$i18n.data = function () {
         return resources2
       }
 

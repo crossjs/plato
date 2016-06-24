@@ -1,4 +1,4 @@
-import request, { merge } from 'utils/request'
+import request from 'utils/request'
 
 const headers = {
   'Content-Type': 'application/json'
@@ -119,6 +119,28 @@ describe('request', () => {
       window.fetch.restore()
     })
 
+    it('should NOT ok', () => {
+      expect(request()).to.equal(undefined)
+      expect(request('a', 'b')).to.equal(undefined)
+      expect(request(false)).to.equal(undefined)
+    })
+
+    it('should ok', done => {
+      request('a').then(json => {
+        expect(json.hello).to.equal('world')
+        done()
+      })
+    })
+
+    it('should translate arguments', () => {
+      request('a', {
+        mutate (options) {
+          expect(options.url).to.equal('a')
+          return Promise.resolve({})
+        }
+      })
+    })
+
     it('should add query to url', () => {
       request({
         url: 'a',
@@ -189,22 +211,6 @@ describe('request', () => {
           expect(options.body).to.equal('{"x":1}')
           return Promise.resolve({})
         }
-      })
-    })
-
-    describe('merge', () => {
-      it('should return source', () => {
-        const src = {}
-        expect(merge(src, { x: 1 })).to.equal(src)
-      })
-
-      it('should merge 1st level', () => {
-        expect(merge({ a: { y: 1 } }, { a: { x: 1 } })).to.eql({ a: { x: 1, y: 1 } })
-        expect(merge({ a: { y: 1 } }, { a: 1 })).to.eql({ a: 1 })
-      })
-
-      it('should NOT merge 2nd level', () => {
-        expect(merge({ a: { x: { m: 1 } } }, { a: { x: { n: 1 } } })).to.eql({ a: { x: { n: 1 } } })
       })
     })
   })

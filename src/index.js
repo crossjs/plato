@@ -28,7 +28,7 @@ Vue.use(Validator)
 // 国际化，如果未使用，请移除
 Vue.use(I18n, {
   // 翻译资源库
-  getter () {
+  data () {
     return env(store.state).i18n
   }
 })

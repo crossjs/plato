@@ -57,7 +57,7 @@ export default function plugin (Vue, globalOptions = {}) {
    * @return {String}                 翻译结果
    */
   Vue.prototype.__ = Vue.prototype.$translate = function (keys, ...args) {
-    if (!keys || !this.$i18n || typeof this.$i18n.getter !== 'function') {
+    if (!keys || !this.$i18n || typeof this.$i18n.data !== 'function') {
       return keys
     }
     // `.` 作为分隔符
@@ -66,7 +66,7 @@ export default function plugin (Vue, globalOptions = {}) {
         return res[key]
       }
       return keys
-    }, this.$i18n.getter()), ...args)
+    }, this.$i18n.data()), ...args)
   }
 }
 

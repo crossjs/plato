@@ -45,7 +45,7 @@ export default {
   // i18n: {
   //   // 翻译资源库
   //   // 覆盖上级（或全局）
-  //   getter () {
+  //   data () {
   //     return {}
   //   }
   // },
