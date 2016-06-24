@@ -2,7 +2,7 @@
 
 > :heart: a Boilerplate for SPAs use vue, [vuex-fsa](https://www.npmjs.com/package/vuex-fsa), vue-router
 
-[Online Demo](http://crossjs.com/plato), [Documentation](docs/)
+[Online Demo](http://crossjs.com/plato), [Documentation](http://crossjs.com/plato/#!/docs)
 
 [![Travis](https://img.shields.io/travis/crossjs/plato.svg?style=flat-square)](https://travis-ci.org/crossjs/plato)
 [![Coveralls](https://img.shields.io/coveralls/crossjs/plato.svg?style=flat-square)](https://coveralls.io/github/crossjs/plato)
