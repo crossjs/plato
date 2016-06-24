@@ -26,10 +26,11 @@
   "rules": {
     "arrow-parens": 0,
     "camelcase": 0,
+    "generator-star-spacing": 0,
     "prefer-const": 2,
 
     "babel/generator-star-spacing": 2,
-    "babel/new-cap": [2, {capIsNewExceptions: ["GET", "POST", "PATCH", "PUT", "DELETE"]}],
+    "babel/new-cap": [2, {"capIsNewExceptions": ["GET", "POST", "PATCH", "PUT", "DELETE"]}],
     "babel/array-bracket-spacing": 2,
     "babel/object-curly-spacing": [2, "always"],
     "babel/object-shorthand": 2,
