@@ -68,7 +68,7 @@ describe('request', () => {
       request({
         url: ''
       }).catch(err => {
-        expect(err.message).to.equal('Not Found')
+        expect(err).to.equal('Not Found')
         done()
       })
     })

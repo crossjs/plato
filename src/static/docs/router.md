@@ -1,16 +1,16 @@
-# 使用 router
+## Router
 
-## 文件
+### 文件
 
-路由按模块分文件存放于 `routes` 目录
+`routes/**.*`
 
-## 依赖
+### 依赖
 
 [`vue-router`](https://github.com/vuejs/vue-router/)
 
-## 用法
+### 用法
 
-在 index.js 引入 Router 插件
+#### 在 index.js 引入 Router 插件
 
 ``` js
 import Vue from 'vue'
@@ -36,7 +36,7 @@ router.alias(alias)
 router.start(App, 'app')
 ```
 
-管理入口
+#### 管理入口
 
 ``` js
 // routes/index.js
@@ -55,7 +55,7 @@ export default {
 }
 ```
 
-定义路由
+#### 定义路由
 
 ``` js
 // routes/demo.js

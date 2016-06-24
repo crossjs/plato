@@ -1,10 +1,10 @@
 <template>
-  <div :class="['c-dropdown', class]">
+  <div :class="['c-dropdown', class, align]">
     <select
       class="c-dropdown-select"
       :field="field"
       v-model="value"
-      v-bind="_attrs">
+      v-bind="attrs">
       <option v-for="option in _options" :value="option.value">
         {{ option.label }}
       </option>

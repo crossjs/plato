@@ -5,7 +5,7 @@
     <input type="hidden"
       :field="field"
       v-model="value"
-      v-bind="_attrs"
+      v-bind="attrs"
       number>
     <c-datepicker v-if="showPicker"
       :value.sync="value"

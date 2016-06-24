@@ -4,6 +4,10 @@ export default {
       type: String,
       default: ''
     },
+    align: {
+      type: String,
+      default: ''
+    },
     value: {
       twoWay: true
     },
@@ -26,12 +30,6 @@ export default {
     validate: null
   },
 
-  computed: {
-    _attrs () {
-      return { ...this.attrs, ...extractValidate(this.validate) }
-    }
-  },
-
   methods: {
     _validate () {
       if (!this.validate || !this.$validation) {
@@ -40,14 +38,4 @@ export default {
       this.$validate()
     }
   }
-}
-
-function extractValidate (validate) {
-  if (!validate) {
-    return null
-  }
-  return Object.keys(validate).reduce((obj, key) => {
-    obj[key] = validate[key].rule
-    return obj
-  }, {})
 }

@@ -6,7 +6,7 @@
     <input type="hidden"
       :field="field"
       v-model="value"
-      v-bind="_attrs"
+      v-bind="attrs"
       number>
     <div class="c-picker-popup"
       v-focus="show"

@@ -1,10 +1,10 @@
 <template>
   <div :class="['c-textfield', class]">
-    <input class="c-form-field c-textfield-input"
-      type="text"
+    <input class="c-textfield-input"
+      :type="type"
       :field="field"
       v-model="value"
-      v-bind="_attrs"
+      v-bind="attrs"
       @change="_validate"
       debounce="500">
   </div>
@@ -13,7 +13,14 @@
 <script>
 import mField from './m-field'
 export default {
-  mixins: [mField]
+  mixins: [mField],
+
+  props: {
+    type: {
+      type: String,
+      default: 'text'
+    }
+  }
 }
 </script>
 

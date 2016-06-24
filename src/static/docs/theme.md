@@ -1,12 +1,13 @@
-# 使用主题
+## CSS
 
-不要在组件内部直接写 css 代码；统一外部引用，方便自定义皮肤
+- 不要在组件内部直接写 CSS 代码
+- 统一外部引用，方便自定义皮肤
 
-## 文件
+### 文件
 
-- `themes/default/**.*`
+`themes/default/**.*`
 
-## 说明
+### 说明
 
 - use [postcss](http://postcss.org/), for the future
 - use [scoped css](http://vue-loader.vuejs.org/en/features/scoped-css.html) carefully

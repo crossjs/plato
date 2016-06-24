@@ -1,11 +1,11 @@
 <template>
   <div :class="['c-password', class, {'show-password': showPassword}]">
     <c-icon class="c-password-toggle" @click="_toggle">view</c-icon>
-    <input class="c-form-field c-password-input"
+    <input class="c-password-input"
       :type="showPassword ? 'text' : 'password'"
       :field="field"
       v-model="value"
-      v-bind="_attrs"
+      v-bind="attrs"
       @change="_validate"
       debounce="500">
   </div>

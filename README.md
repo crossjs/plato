@@ -14,6 +14,9 @@
 
 ## Change Log
 
+- 20160624
+  - c-textfield 支持自定义 type
+  - m-field 移除 `_attrs`，validate 不再合入 `attrs`
 - 20160623
   - 移除 vx/utils
   - 移除 request 的 hooks

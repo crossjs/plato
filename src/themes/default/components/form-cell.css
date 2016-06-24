@@ -55,7 +55,8 @@
     text-align: left;
   }
 
-  & .c-form-field {
+  & .c-textfield-input,
+  & .c-password-input {
     text-align: left;
   }
 

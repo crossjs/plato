@@ -3,6 +3,7 @@
     "plato": "{0}，好的开始是成功的一半！"
   },
   "routes": {
+    "docs": "文档",
     "about": "关于",
     "login": "登录",
     "logout": "注销"

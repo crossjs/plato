@@ -17,25 +17,29 @@ const defaultOptions = {
  * @return {Promise}          Request Promise
  */
 export default function request (_options = {}) {
+  if (typeof _options === 'string') {
+    _options = {
+      url: _options
+    }
+  }
   const options = merge({}, defaultOptions, _options)
   return new Promise((resolve, reject) => {
     parseOptions(options)
     .then(({ url, ...options }) => fetch(url, options))
     .then(res => {
-      if (res.status >= 200 && res.status < 400) {
-        res.json().then(resolve, reject)
+      if (res && res.status >= 200 && res.status < 400) {
+        getResponseContent(res).then(resolve, reject)
       } else {
-        if (jsonable(res)) {
-          res.json().then(reject)
-        } else {
-          // 比如 404、403
-          reject(new RequestError(res.statusText))
-        }
+        getResponseContent(res).then(reject)
+        // if (jsonable(res)) {
+        //   res.json().then(reject)
+        // } else {
+        //   // 比如 404、403
+        //   reject(new RequestError(res.statusText))
+        // }
       }
     })
-    .catch(err => {
-      reject(new RequestError(err.message))
-    })
+    .catch(reject)
   })
 }
 
@@ -55,9 +59,9 @@ export function merge (src, ...args) {
   return src
 }
 
-function jsonable (res) {
+function getResponseContent (res) {
   const type = res.headers.get('Content-Type')
-  return type && type.indexOf('json') !== -1
+  return (type && type.indexOf('json') !== -1) ? res.json() : res.text()
 }
 
 function parseOptions ({ url = '', query, params, body, mutate, ...options }) {
@@ -118,11 +122,3 @@ function replaceUrlWithParams (url, params) {
     }
   })
 }
-
-function RequestError (message) {
-  this.name = 'Request Error'
-  this.message = message
-  this.stack = (new Error()).stack
-}
-RequestError.prototype = Object.create(Error.prototype)
-RequestError.prototype.constructor = RequestError

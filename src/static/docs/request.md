@@ -1,21 +1,21 @@
-# 使用 request
+## Request
 
 简单的 [fetch](https://github.com/github/fetch) 封装
 
-## 文件
+### 文件
 
 `utils/request`
 
-## 用法
+### 用法
 
-常规用法
+#### 常规用法
 
 ``` js
 import request from 'utils/request'
 
 request({
   method: 'GET', // 默认
-  url: 'https://api.github.com/repos/{user}/{repo}/commits',
+  url: 'https://.../{user}/{repo}/commits',
   params: {
     user: 'crossjs',
     repo: 'plato'
@@ -25,18 +25,11 @@ request({
   }
   headers: {
     'Accept': 'application/vnd.github.v3+json'
-  },
-  // 各请求阶段回调
-  hooks: {
-    before,
-    success,
-    failure,
-    after
   }
 })
 ```
 
-使用 `mutate`
+#### 使用 `mutate`
 
 ``` js
 
@@ -51,9 +44,9 @@ request({
 })
 ```
 
-在 action 里使用
+#### 在 action 里使用
 
-**在 vuex 环境下，应统一采用这个模式，即数据请求只出现在 action 里**
+*在 vuex 环境下，应统一采用这个模式，即数据请求只出现在 action 里*
 
 ``` js
 // define action
@@ -68,7 +61,7 @@ export default {
 
 // call action, in components
 this.getCommits({
-  url: 'https://api.github.com/repos/crossjs/plato/commits?per_page=3&sha=',
+  url: 'https://.../commits?per_page=3&sha=',
   headers: {
     'Accept': 'application/vnd.github.v3+json'
   }

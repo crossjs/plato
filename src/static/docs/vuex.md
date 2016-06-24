@@ -1,18 +1,18 @@
-# 使用 vuex 进行数据管理
+## vuex
 
 类似 Redux 但更简单的单向数据流实现
 
-## 文件
+### 文件
 
-- `vx/**.*`
+`vx/**.*`
 
-## 依赖
+### 依赖
 
 [`vuex-fsa`](https://www.npmjs.com/package/vuex-fsa)：支持 FSA ([flux-standard-action](https://github.com/acdlite/flux-standard-action)) 的 vuex
 
-## 用法
+### 用法
 
-在 store.js 引入 Vuex 插件
+#### 在 store.js 引入 Vuex 插件
 
 ``` js
 // vx/store.js
@@ -30,7 +30,7 @@ export default new Vuex.Store({
 })
 ```
 
-在 app.vue 中使用 store
+#### 在 app.vue 中使用 store
 
 ``` js
 import store from 'vx/store'
@@ -41,7 +41,7 @@ export default {
 }
 ```
 
-## 要求
+### 要求
 
 数据按模块分文件存放于 `src/vx/modules` 目录，并确保模块间数据不互相干扰
 

@@ -3,6 +3,7 @@
     "plato": "{0}，The beginning is the most important part of the work."
   },
   "routes": {
+    "docs": "Documentation",
     "about": "About",
     "login": "Login",
     "logout": "Logout"

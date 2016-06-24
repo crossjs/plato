@@ -4,7 +4,7 @@ const debug = require('debug')('koa:bin:clean')
 
 debug('Clean files...')
 
-require('rimraf')(require('../config').paths.dist('**/*.*'), err => {
+require('rimraf')(require('../config').paths.dist('**'), err => {
   if (err) {
     debug(err)
   } else {

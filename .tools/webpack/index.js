@@ -167,7 +167,7 @@ webpackConfig.plugins = [
   new CopyWebpackPlugin([{
     from: paths.src('static')
   }], {
-    ignore: ['*.ico', '*.md']
+    // ignore: ['*.ico', '*.md']
   })
 ]
 

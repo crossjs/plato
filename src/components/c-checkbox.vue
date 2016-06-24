@@ -8,7 +8,7 @@
       :false-value="_falsy"
       :aria-label="_label"
       v-model="value"
-      v-bind="_attrs">
+      v-bind="attrs">
     </label>
   </div>
 </template>
