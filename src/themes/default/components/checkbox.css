@@ -68,3 +68,16 @@
     }
   }
 }
+
+html[dir=rtl] {
+  & .c-checkbox {
+    & span {
+      margin: 0 0 0 -1rem;
+    }
+    &.checked {
+      & span {
+        margin: 0 -1rem 0 0;
+      }
+    }
+  }
+}

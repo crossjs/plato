@@ -72,3 +72,17 @@
     padding-left: 0;
   }
 }
+
+html[dir=rtl] {
+  & .c-form-cell-icon {
+    margin: 0 0 0 0.3em;
+  }
+
+  & .c-form-cell-label {
+    margin: 0 0 0 0.3em;
+  }
+
+  & .c-form-cell-value {
+    text-align: left;
+  }
+}

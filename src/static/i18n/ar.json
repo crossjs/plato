@@ -1,0 +1,22 @@
+{
+  "message": {
+    "plato": "{0}, بداية هي لهم جزءا هاما OST العمل."
+  },
+  "routes": {
+    "docs": "توثيق",
+    "about": "حول",
+    "login": "دخول",
+    "logout": "الخروج"
+  },
+  "view": {
+    "home": {
+      "language": "لغة",
+      "example": "أمثلة",
+      "form": "شكل",
+      "charts": "الرسوم البيانية",
+      "misc": "متنوع",
+      "about": "حول",
+      "latest_commits": "أحدث ارتكاب هو"
+    }
+  }
+}

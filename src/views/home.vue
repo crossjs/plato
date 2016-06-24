@@ -64,6 +64,9 @@ export default {
               value: 'zh',
               label: '中文'
             }, {
+              value: 'ar',
+              label: 'لعربية'
+            }, {
               value: 'none',
               label: '不存在的语言'
             }]

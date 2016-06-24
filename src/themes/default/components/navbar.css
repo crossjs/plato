@@ -65,3 +65,10 @@
     }
   }
 }
+
+html[dir=rtl] {
+  & .c-navbar-toggle {
+    right: auto;
+    left: 0;
+  }
+}

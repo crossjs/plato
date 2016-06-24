@@ -58,3 +58,15 @@
     }
   }
 }
+
+html[dir=rtl] {
+  & .c-group-cell-value {
+    &.link {
+      position: relative;
+      &:after {
+        border-width: 0 0 0.125em 0.125em;
+        position: absolute;
+      }
+    }
+  }
+}

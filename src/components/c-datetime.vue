@@ -1,7 +1,7 @@
 <template>
   <div :class="['c-datetime', class]">
     <span class="c-datetime-input"
-      @click="showPicker = !showPicker">{{value | datetime _attrs.format}}</span>
+      @click="showPicker = !showPicker">{{value | datetime attrs.format}}</span>
     <input type="hidden"
       :field="field"
       v-model="value"
@@ -9,7 +9,7 @@
       number>
     <c-datepicker v-if="showPicker"
       :value.sync="value"
-      :format="_attrs.format"
+      :format="attrs.format"
       :show.sync="showPicker"></c-datepicker>
   </div>
 </template>

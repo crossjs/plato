@@ -67,6 +67,19 @@ export default {
   created () {
     // for get i18n in first
     this.setEnv(this.env)
+    if (this.env.lang) {
+      document.documentElement.dir = this.env.lang === 'ar' ? 'rtl' : 'ltr'
+    }
+  },
+
+  watch: {
+    env (val, old) {
+      if (val.lang !== old.lang) {
+        this.$nextTick(() => {
+          document.documentElement.dir = val.lang === 'ar' ? 'rtl' : 'ltr'
+        })
+      }
+    }
   },
 
   vuex: {
