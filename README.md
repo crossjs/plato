@@ -41,16 +41,16 @@
 ## Dependencies
 
 - vue
-  - vuex-fsa
-  - vuex-promise
   - vue-router
-  - plugins/i18n
-  - plugins/validator
-  - plugins/ajax
+- vuex-fsa
+  - vuex-promise
+  - vuex-localstorage
 - postCSS
 - webpack
 - karma
-- mocha
+  - mocha
+  - sinon
+- eslint
 
 ## Principles
 
@@ -88,7 +88,7 @@ npm run unit
 # run e2e tests
 npm run e2e
 
-# run all tests, currently only run unit
+# run all tests, currently only run lint and unit
 npm test
 ```
 
