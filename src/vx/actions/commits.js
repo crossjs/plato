@@ -1,5 +1,5 @@
 import { GET_COMMITS } from '../types'
-import request from 'utils/request'
+import request from 'plato-request'
 
 export default {
   getCommits ({ dispatch }, payload) {

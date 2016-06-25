@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Validator from 'plugins/validator'
-import I18n from 'plugins/i18n'
+import I18n from 'plato-i18n'
+import Validator from 'plato-validator'
 import App from 'app'
 import { routes, alias } from 'routes'
 import store from 'vx/store'
@@ -22,9 +22,6 @@ Vue.mixin({
   }
 })
 
-// (表单)验证，如果未使用，请移除
-Vue.use(Validator)
-
 // 国际化，如果未使用，请移除
 Vue.use(I18n, {
   // 翻译资源库
@@ -32,6 +29,9 @@ Vue.use(I18n, {
     return env(store.state).i18n
   }
 })
+
+// (表单)验证，如果未使用，请移除
+Vue.use(Validator)
 
 Vue.use(Router)
 

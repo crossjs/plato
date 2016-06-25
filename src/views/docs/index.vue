@@ -11,9 +11,9 @@
 </template>
 
 <script>
+import request from 'plato-request'
 import CPane from 'components/c-pane'
 import CDropdown from 'components/c-dropdown'
-import request from 'utils/request'
 export default {
   data () {
     return {

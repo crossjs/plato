@@ -1,5 +1,5 @@
 import { SET_ENV, SET_ENV_I18N } from '../types'
-import request from 'utils/request'
+import request from 'plato-request'
 
 export default {
   setEnv ({ dispatch }, payload) {

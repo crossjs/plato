@@ -1,13 +1,13 @@
 <template>
   <div class="v-docs-read">
-    <c-pane class="markdown-body">{{{ content | marked }}}</c-pane>
+    <c-pane class="markdown-body">{{{ content }}}</c-pane>
   </div>
 </template>
 
 <script>
 import marked from 'marked'
+import request from 'plato-request'
 import CPane from 'components/c-pane'
-import request from 'utils/request'
 export default {
   data () {
     return {
@@ -18,13 +18,9 @@ export default {
   route: {
     data () {
       request(`./docs/${this.$route.params.name}`).then(text => {
-        this.content = text
+        this.content = marked(text)
       })
     }
-  },
-
-  filters: {
-    marked
   },
 
   components: {

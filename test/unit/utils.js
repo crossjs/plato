@@ -5,6 +5,7 @@ export function triggerHTMLEvents (target, event, process) {
   target.dispatchEvent(e)
   return e
 }
+
 export function triggerMouseEvents (target, event, process) {
   const e = document.createEvent('MouseEvents')
   e.initEvent(event, true, true)
