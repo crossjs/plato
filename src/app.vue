@@ -20,8 +20,7 @@
         <c-route :routes="routes"></c-route>
       </c-navbar>
     </header>
-    <router-view
-      class="router-view"
+    <router-view class="router-view"
       transition="slide-up"
       keep-alive></router-view>
   </div>
@@ -74,10 +73,10 @@ export default {
   },
 
   watch: {
-    env (val, old) {
-      if (val.lang !== old.lang) {
+    'env.lang' (val) {
+      if (val) {
         this.$nextTick(() => {
-          document.documentElement.dir = val.lang === 'ar' ? 'rtl' : 'ltr'
+          document.documentElement.dir = val === 'ar' ? 'rtl' : 'ltr'
         })
       }
     }

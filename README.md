@@ -42,9 +42,12 @@
 
 - vue
   - vue-router
+  - plato-i18n
+  - plato-validator
 - vuex-fsa
   - vuex-promise
   - vuex-localstorage
+- plato-request
 - postCSS
 - webpack
 - karma
@@ -85,10 +88,7 @@ npm start
 # run unit tests
 npm run unit
 
-# run e2e tests
-npm run e2e
-
-# run all tests, currently only run lint and unit
+# run lint and unit
 npm test
 ```
 

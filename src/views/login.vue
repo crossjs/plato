@@ -139,8 +139,8 @@ export default {
   },
 
   watch: {
-    env (val) {
-      if (val.authorized) {
+    'env.authorized' (val) {
+      if (val) {
         this.$nextTick(() => {
           this.$route.router.go('/logout')
         })
