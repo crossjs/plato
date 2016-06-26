@@ -1,26 +1,22 @@
 import { argv } from 'yargs'
 
-const threshold = 0
+const coverage_enabled = !argv.watch
+
+const coverage_reporters = []
+
+if (coverage_enabled) {
+  coverage_reporters.push(
+    { type: 'lcov' },
+    { type: 'json-summary', file: 'lcov.json' }
+  )
+} else {
+  coverage_reporters.push(
+    { type: 'text-summary' }
+  )
+}
 
 export default config => ({
   compiler_devtool: 'inline-source-map',
-  coverage_enabled: !argv.watch,
-  coverage_reporters: [
-    { type: 'text-summary' },
-    { type: 'lcov', dir: 'coverage' }
-  ],
-  coverage_check: {
-    global: {
-      statements: threshold,
-      branches: threshold,
-      functions: threshold,
-      lines: threshold
-    },
-    each: {
-      statements: threshold,
-      branches: threshold,
-      functions: threshold,
-      lines: threshold
-    }
-  }
+  coverage_enabled,
+  coverage_reporters
 })

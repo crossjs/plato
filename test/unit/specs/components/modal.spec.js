@@ -13,7 +13,7 @@ describe('modal.vue', () => {
     document.body.removeChild(el)
   })
 
-  it('should show modal', done => {
+  it('should show/hide modal', done => {
     const vm = new Vue({
       el,
       replace: false,
@@ -33,7 +33,12 @@ describe('modal.vue', () => {
     vm.show = true
     vm.$nextTick(() => {
       expect(style.display).to.equal('')
-      done()
+
+      vm.show = false
+      vm.$nextTick(() => {
+        expect(style.display).to.equal('none')
+        done()
+      })
     })
   })
 
@@ -50,16 +55,32 @@ describe('modal.vue', () => {
       }
     })
 
-    const { classList, style } = vm.$children[0].$children[1].$el
+    const mask = vm.$el.querySelector('.c-mask')
 
-    expect(classList.contains('c-mask')).to.be.ok
-    expect(style.display).to.equal('none')
+    expect(mask).to.be.ok
+    expect(mask.style.display).to.equal('none')
 
     vm.show = true
     vm.$nextTick(() => {
-      expect(style.display).to.equal('')
+      expect(mask.style.display).to.equal('')
       done()
     })
+  })
+
+  it('should NOT have backdrop', () => {
+    const vm = new Vue({
+      el,
+      replace: false,
+      template: '<modal :show.sync="show" :backdrop="false">hello?</modal>',
+      data: {
+        show: false
+      },
+      components: {
+        Modal
+      }
+    })
+
+    expect(vm.$el.querySelector('.c-mask')).to.equal(null)
   })
 
   it('should render correct contents', done => {

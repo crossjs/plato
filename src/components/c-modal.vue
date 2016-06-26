@@ -2,7 +2,7 @@
   <div :class="['c-modal', class]"
     v-show="show"
     transition="fade">
-    <c-mask v-show="backdrop && show"
+    <c-mask v-if="backdrop" v-show="show"
       @touchend.prevent="show = false"
       transition="fade"></c-mask>
     <div class="c-modal-content"
@@ -31,6 +31,10 @@ import CFlex from './c-flex'
 import CButton from './c-button'
 export default {
   props: {
+    class: {
+      type: String,
+      default: ''
+    },
     show: {
       twoWay: true,
       type: Boolean,
@@ -39,10 +43,6 @@ export default {
     backdrop: {
       type: Boolean,
       default: true
-    },
-    class: {
-      type: String,
-      default: ''
     },
     actions: {
       type: Object,
@@ -63,7 +63,9 @@ export default {
     },
     callback: {
       type: Function,
-      default: () => Promise.resolve(true)
+      default () {
+        return Promise.resolve(true)
+      }
     }
   },
 
@@ -79,8 +81,7 @@ export default {
   methods: {
     _click (key) {
       promisify(this.callback(key))
-        .then(() => { this.show = false })
-        .catch(() => { this.show = true })
+        .then(() => { this.show = false }, () => { this.show = true })
     }
   },
 

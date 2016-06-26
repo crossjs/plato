@@ -26,8 +26,7 @@ const karmaConfig = {
   },
   reporters: ['mocha', 'coverage'],
   coverageReporter: {
-    reporters: config.coverage_reporters,
-    check: config.coverage_check
+    reporters: config.coverage_reporters
   },
   browsers: ['PhantomJS'],
   webpack: {
