@@ -63,9 +63,7 @@ export default {
     },
     callback: {
       type: Function,
-      default () {
-        return Promise.resolve(true)
-      }
+      default: () => Promise.resolve(true)
     }
   },
 

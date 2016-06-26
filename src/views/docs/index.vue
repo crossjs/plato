@@ -5,7 +5,9 @@
         :value.sync="chapter"
         :extra="{options: chapters}"></c-dropdown>
     </c-pane>
-    <router-view class="router-view"
+    <router-view
+      class="router-view"
+      transition="slide-up"
       keep-alive></router-view>
   </div>
 </template>

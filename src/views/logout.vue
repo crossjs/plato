@@ -47,11 +47,11 @@ export default {
 
   watch: {
     env (val) {
-      this.$nextTick(() => {
-        if (!val.authorized) {
+      if (!val.authorized) {
+        this.$nextTick(() => {
           this.$route.router.go('/')
-        }
-      })
+        })
+      }
     }
   },
 
