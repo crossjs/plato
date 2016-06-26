@@ -60,16 +60,6 @@
   display: none;
 }
 
-.router-view {
-  transition: all .5s ease;
-}
-
-.router-view-transition-enter,
-.router-view-transition-leave {
-  opacity: 0;
-  transform: translate3d(0, 1rem, 0);
-}
-
 .link-active {
   color: var(--primary);
 }

@@ -21,7 +21,7 @@
       </c-navbar>
     </header>
     <router-view class="router-view"
-      transition="router-view-transition"
+      transition="slide-up"
       keep-alive></router-view>
   </div>
 </template>
@@ -73,10 +73,10 @@ export default {
   },
 
   watch: {
-    env (val, old) {
-      if (val.lang !== old.lang) {
+    'env.lang' (val) {
+      if (val) {
         this.$nextTick(() => {
-          document.documentElement.dir = val.lang === 'ar' ? 'rtl' : 'ltr'
+          document.documentElement.dir = val === 'ar' ? 'rtl' : 'ltr'
         })
       }
     }

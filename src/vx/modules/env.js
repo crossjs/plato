@@ -21,14 +21,14 @@ const state = {
 }
 
 const mutations = {
-  [SET_ENV] (state, { payload, meta }) {
-    state.env = Object.assign({}, state.env, payload)
+  [SET_ENV] (state, { payload }) {
+    Object.assign(state.env, payload)
     persist.set(state.env)
   },
 
   [SET_ENV_I18N] (state, { payload, meta }) {
     if (meta === PROMISE_SUCCESS) {
-      state.env = Object.assign({}, state.env, {
+      Object.assign(state.env, {
         i18n: payload
       })
       persist.set(state.env)
