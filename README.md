@@ -64,6 +64,10 @@
 - **不限制使用何种 UI 组件，可以使用第三方，或自己开发（请尽量考虑复用性）**
 - 尽量使用小的依赖库
 
+## Troubleshooting
+
+- Nodemon has error with node@6.x, so please use node@5.12.0
+
 ## Usage
 
 ``` bash

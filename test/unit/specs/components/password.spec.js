@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import CPassword from 'components/c-password'
 
-describe('button.vue', () => {
+describe('password.vue', () => {
   let el
 
   beforeEach(() => {
