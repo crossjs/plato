@@ -2,11 +2,12 @@ import { argv } from 'yargs'
 
 const coverage_enabled = !argv.watch
 
-const coverage_reporters = []
+const coverage_reporters = [
+  { type: 'lcov' }
+]
 
 if (coverage_enabled) {
   coverage_reporters.push(
-    { type: 'lcov' },
     { type: 'json-summary', file: 'lcov.json' }
   )
 } else {
