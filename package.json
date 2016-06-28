@@ -11,7 +11,6 @@
     "debug": "better-npm-run debug",
     "unit": "better-npm-run unit",
     "unit:dev": "npm run unit -- --watch",
-    "e2e": "better-npm-run e2e",
     "test": "npm run lint && npm run unit",
     "lint": "eslint --max-warnings 10 .",
     "lint:fix": "npm run lint -- --fix",
@@ -63,13 +62,6 @@
     },
     "unit": {
       "command": "node --harmony .tools/bin/unit",
-      "env": {
-        "NODE_ENV": "test",
-        "DEBUG": "koa*"
-      }
-    },
-    "e2e": {
-      "command": "node --harmony .tools/bin/e2e",
       "env": {
         "NODE_ENV": "test",
         "DEBUG": "koa*"

@@ -12,6 +12,8 @@
 - :white_check_mark: Plugins like vuex, i18n, validator and ajax are almost ready, could be used in production amusedly.
 - :negative_squared_cross_mark: UI components are NOT stable, could be changed anytime.
 
+![](plato.svg)
+
 ## Change Log
 
 - 20160625
@@ -37,23 +39,6 @@
   - 移除 `<router-view>` 中的 `transition-mode` [#5](https://github.com/crossjs/plato/issues/5)
 - 20160619
   - 使用 icomoon 管理图标字体，因为 iconfont 不支持连体字符
-
-## Dependencies
-
-- vue
-  - vue-router
-  - plato-i18n
-  - plato-validator
-- vuex-fsa
-  - vuex-promise
-  - vuex-localstorage
-- plato-request
-- postCSS
-- webpack
-- karma
-  - mocha
-  - sinon
-- eslint
 
 ## Principles
 
