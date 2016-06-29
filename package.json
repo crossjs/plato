@@ -79,7 +79,7 @@
     "plato-validator": "^0.0.2",
     "querystring": "^0.2.0",
     "string-template": "^1.0.0",
-    "vue": "^1.0.25",
+    "vue": "^1.0.26",
     "vue-router": "^0.7.13",
     "vuex-fsa": "^0.7.1",
     "vuex-localstorage": "^0.1.2",

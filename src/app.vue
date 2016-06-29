@@ -22,6 +22,7 @@
     </header>
     <router-view class="router-view"
       transition="slide-up"
+      transition-mode="out-in"
       keep-alive></router-view>
   </div>
 </template>

@@ -16,6 +16,8 @@
 
 ## Change Log
 
+- 20160629
+  - 升级 vue@1.0.26，解决 [#5](https://github.com/crossjs/plato/issues/5)
 - 20160625
   - 增加阿拉伯语演示
 - 20160624
