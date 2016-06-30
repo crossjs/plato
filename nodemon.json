@@ -1,13 +1,14 @@
 {
   "verbose": false,
+  "execMap": {
+    "js": "node --harmony"
+  },
   "ignore": [
-    "apis",
     "coverage",
-    "data",
     "dist",
-    "docs",
     "node_modules",
     "src",
-    "test"
+    "test",
+    "package.json"
   ]
 }

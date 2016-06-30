@@ -1,14 +1,14 @@
 <template>
-  <div class="view-about">
-    <pane>About</pane>
+  <div class="v-about">
+    <c-pane>About</c-pane>
   </div>
 </template>
 
 <script>
-import Pane from 'components/c-pane'
+import CPane from 'plato-components/c-pane'
 export default {
   components: {
-    Pane
+    CPane
   }
 }
 </script>

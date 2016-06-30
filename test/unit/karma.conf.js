@@ -35,10 +35,32 @@ const karmaConfig = {
     plugins: webpackConfig.plugins,
     module: {
       loaders: webpackConfig.module.loaders
+    },
+    vue: webpackConfig.vue,
+    // if you are using babel-loader directly then
+    // the babel config block becomes required.
+    babel: {
+      presets: [
+        'es2015',
+        'stage-0'
+      ],
+      plugins: [
+        'add-module-exports',
+        ['__coverage__', { ignore: 'test/' }],
+        'transform-async-to-generator',
+        'transform-runtime'
+      ],
+      comments: false
     }
   },
   webpackMiddleware: {
     noInfo: true
+  },
+  env: {
+    type: 'node',
+    params: {
+      runner: '--harmony --harmony_arrow_functions'
+    }
   }
 }
 

@@ -34,12 +34,12 @@
 
 <script>
 import datetime from 'nd-datetime'
-import CForm from 'components/c-form'
-import CPane from 'components/c-pane'
-import CGroup from 'components/c-group'
-import CTitle from 'components/c-title'
-import CLoading from 'components/c-loading'
-import CCell from 'components/c-cell'
+import CForm from 'plato-components/c-form'
+import CPane from 'plato-components/c-pane'
+import CGroup from 'plato-components/c-group'
+import CTitle from 'plato-components/c-title'
+import CLoading from 'plato-components/c-loading'
+import CCell from 'plato-components/c-cell'
 import { commits } from 'vx/getters'
 import { setEnv, getCommits } from 'vx/actions'
 export default {

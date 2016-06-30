@@ -7,7 +7,7 @@
 <script>
 import marked from 'marked'
 import request from 'plato-request'
-import CPane from 'components/c-pane'
+import CPane from 'plato-components/c-pane'
 export default {
   data () {
     return {

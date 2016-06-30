@@ -28,13 +28,13 @@
 </template>
 
 <script>
-import CProgress from 'components/c-progress'
-import CToast from 'components/c-toast'
-import CButton from 'components/c-button'
-import CIcon from 'components/c-icon'
-import CRouteLink from 'components/c-route-link'
-import CNavbar from 'components/c-navbar'
-import CRoute from 'components/c-route'
+import CProgress from 'plato-components/c-progress'
+import CToast from 'plato-components/c-toast'
+import CButton from 'plato-components/c-button'
+import CIcon from 'plato-components/c-icon'
+import CRouteLink from 'plato-components/c-route-link'
+import CNavbar from 'plato-components/c-navbar'
+import CRoute from 'plato-components/c-route'
 import store from 'vx/store'
 import { progress, toasts } from 'vx/getters'
 import { setEnv } from 'vx/actions'

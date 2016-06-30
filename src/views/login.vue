@@ -19,10 +19,10 @@
 </template>
 
 <script>
-import CValidation from 'components/c-validation'
-import CPane from 'components/c-pane'
-import CForm from 'components/c-form'
-import CButton from 'components/c-button'
+import CValidation from 'plato-components/c-validation'
+import CPane from 'plato-components/c-pane'
+import CForm from 'plato-components/c-form'
+import CButton from 'plato-components/c-button'
 import { setEnv } from 'vx/actions'
 export default {
   data () {

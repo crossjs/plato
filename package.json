@@ -10,10 +10,10 @@
     "dev:mock": "better-npm-run dev -- --mock",
     "debug": "better-npm-run debug",
     "unit": "better-npm-run unit",
-    "unit:dev": "npm run unit -- --watch",
-    "test": "npm run lint && npm run unit",
+    "unit:dev": "better-npm-run unit:dev",
     "lint": "eslint --max-warnings 10 .",
     "lint:fix": "npm run lint -- --fix",
+    "test": "npm run lint && npm run unit",
     "clean": "better-npm-run clean",
     "compile": "better-npm-run compile",
     "deploy": "better-npm-run deploy",
@@ -29,20 +29,20 @@
       }
     },
     "start": {
-      "command": "nodemon --harmony .tools/bin/start",
+      "command": "nodemon .tools/bin/start",
       "env": {
         "NODE_ENV": "production",
         "DEBUG": "koa*"
       }
     },
     "dev": {
-      "command": "nodemon --harmony .tools/bin/start",
+      "command": "nodemon .tools/bin/start",
       "env": {
         "DEBUG": "koa*"
       }
     },
     "debug": {
-      "command": "nodemon --harmony --debug .tools/bin/start",
+      "command": "nodemon --debug .tools/bin/start",
       "env": {
         "DEBUG": "koa*"
       }
@@ -61,7 +61,14 @@
       }
     },
     "unit": {
-      "command": "node --harmony .tools/bin/unit",
+      "command": "karma start ./test/unit/runner.js",
+      "env": {
+        "NODE_ENV": "test",
+        "DEBUG": "koa*"
+      }
+    },
+    "unit:dev": {
+      "command": "karma start ./test/unit/runner.js --watch",
       "env": {
         "NODE_ENV": "test",
         "DEBUG": "koa*"
@@ -71,11 +78,14 @@
   "dependencies": {
     "chartist": "^0.9.8",
     "is-plain-obj": "^1.1.0",
+    "marked": "^0.3.5",
     "nd-browser": "^3.0.0",
     "nd-datetime": "^3.0.5",
     "nd-promise": "^3.0.2",
+    "plato-components": "^0.0.0",
     "plato-i18n": "^0.0.1",
     "plato-request": "^0.0.1",
+    "plato-styles": "^0.0.0",
     "plato-validator": "^0.0.2",
     "querystring": "^0.2.0",
     "string-template": "^1.0.0",
@@ -95,7 +105,7 @@
     "babel-plugin-transform-async-to-generator": "^6.8.0",
     "babel-plugin-transform-runtime": "^6.9.0",
     "babel-polyfill": "^6.9.1",
-    "babel-preset-es2015-rollup": "^1.1.1",
+    "babel-preset-es2015": "^6.9.0",
     "babel-preset-stage-0": "^6.5.0",
     "babel-register": "^6.9.0",
     "babel-runtime": "^6.9.2",
@@ -132,7 +142,6 @@
     "koa-favicon": "^2.0.0",
     "koa-logger": "^2.0.0",
     "koa-static": "^3.0.0",
-    "marked": "^0.3.5",
     "mocha": "^2.5.3",
     "nodemon": "^1.9.2",
     "phantomjs-polyfill": "0.0.2",
@@ -143,7 +152,6 @@
     "postcss-font-variant": "^2.0.0",
     "postcss-import": "^8.1.2",
     "postcss-loader": "^0.9.1",
-    "postcss-mixins": "^4.0.2",
     "postcss-reporter": "^1.3.3",
     "postcss-url": "^5.1.2",
     "rimraf": "^2.5.2",

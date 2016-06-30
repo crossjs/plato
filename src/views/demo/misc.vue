@@ -38,14 +38,14 @@
 </template>
 
 <script>
-import CImage from 'components/c-image'
-import CPane from 'components/c-pane'
-import CCell from 'components/c-cell'
-import CIcon from 'components/c-icon'
-import CLabel from 'components/c-label'
-import CCheckbox from 'components/c-checkbox'
-import CFlex from 'components/c-flex'
-import CModal from 'components/c-modal'
+import CImage from 'plato-components/c-image'
+import CPane from 'plato-components/c-pane'
+import CCell from 'plato-components/c-cell'
+import CIcon from 'plato-components/c-icon'
+import CLabel from 'plato-components/c-label'
+import CCheckbox from 'plato-components/c-checkbox'
+import CFlex from 'plato-components/c-flex'
+import CModal from 'plato-components/c-modal'
 export default {
   data () {
     return {

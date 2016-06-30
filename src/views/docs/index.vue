@@ -14,8 +14,8 @@
 
 <script>
 import request from 'plato-request'
-import CPane from 'components/c-pane'
-import CDropdown from 'components/c-dropdown'
+import CPane from 'plato-components/c-pane'
+import CDropdown from 'plato-components/c-dropdown'
 export default {
   data () {
     return {

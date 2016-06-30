@@ -10,8 +10,8 @@
 </template>
 
 <script>
-import CImage from 'components/c-image'
-import Modal from 'components/c-modal'
+import CImage from 'plato-components/c-image'
+import Modal from 'plato-components/c-modal'
 import { setEnv } from 'vx/actions'
 export default {
   data () {

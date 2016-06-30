@@ -15,8 +15,8 @@
 
 <script>
 import { Svg } from 'chartist'
-import Pane from 'components/c-pane'
-import Chartist from 'components/c-chartist'
+import Pane from 'plato-components/c-pane'
+import Chartist from './c-chartist'
 export default {
   data () {
     return {

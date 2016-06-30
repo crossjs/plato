@@ -20,6 +20,9 @@ const webpackConfig = {
     root: paths.src(),
     extensions: ['', '.css', '.js', '.json', '.vue'],
     alias: {
+      // components: 'plato-components',
+      // comment out for customizing styles
+      // 'plato-styles': paths.src('themes/default/components'),
       styles: paths.src('themes/default')
     },
     modulesDirectories: ['node_modules']
@@ -91,6 +94,11 @@ webpackConfig.module.loaders = [
     exclude: /node_modules/
   },
   {
+    test: /\.js$/,
+    loader: 'babel',
+    include: /plato\-components/
+  },
+  {
     test: /\.json$/,
     loader: 'json'
   },
@@ -113,19 +121,16 @@ webpackConfig.vue = {
     css: cssLoaders
   },
   postcss: pack => {
-    // use webpack context
     return [
       require('postcss-import')({
         root: paths.src('themes/default'),
         path: paths.src('themes/default'),
+        // use webpack context
         addDependencyTo: pack
       }),
       require('postcss-url')(),
       require('postcss-custom-properties')({
         variables: require(paths.src('themes/default/variables'))
-      }),
-      require('postcss-mixins')({
-        mixinsDir: paths.src('themes/default/mixins')
       }),
       require('postcss-cssnext')({
         // see: https://github.com/ai/browserslist#queries

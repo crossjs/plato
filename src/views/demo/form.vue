@@ -12,8 +12,8 @@
 </template>
 
 <script>
-import CPane from 'components/c-pane'
-import CForm from 'components/c-form'
+import CPane from 'plato-components/c-pane'
+import CForm from 'plato-components/c-form'
 export default {
   data () {
     return {
