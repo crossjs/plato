@@ -2,6 +2,7 @@ import webpack from 'webpack'
 import CopyWebpackPlugin from 'copy-webpack-plugin'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
+import fs from 'fs'
 import _debug from 'debug'
 import config, { paths, pkg } from '../config'
 const { __DEV__, __PROD__, __TEST__ } = config.globals
@@ -116,9 +117,12 @@ webpackConfig.module.loaders = [
   }
 ]
 
+webpackConfig.babel = JSON.parse(fs.readFileSync('.babelrc')).env[config.env] || {}
+
 webpackConfig.vue = {
   loaders: {
-    css: cssLoaders
+    css: cssLoaders,
+    js: 'babel'
   },
   postcss: pack => {
     return [
