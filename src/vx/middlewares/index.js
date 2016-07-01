@@ -54,6 +54,13 @@ function setProgress (progress, store) {
 }
 
 function addToast (toast, store) {
+  if (typeof toast === 'string') {
+    toast = {
+      name: 'Error',
+      message: toast
+    }
+  }
+  toast._id = Date.now()
   store.dispatch(ADD_TOAST, toast)
   setTimeout(() => {
     store.dispatch(DELETE_TOAST, toast)
