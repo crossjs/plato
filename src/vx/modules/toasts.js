@@ -8,11 +8,11 @@ const state = {
 }
 
 const mutations = {
-  [ADD_TOAST] (state, { payload }) {
+  [ADD_TOAST] (state, payload) {
     state.toasts.push(payload)
   },
 
-  [DELETE_TOAST] (state, { payload }) {
+  [DELETE_TOAST] (state, payload) {
     state.toasts.$remove(payload)
   }
 }

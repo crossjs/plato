@@ -16,6 +16,12 @@
 
 ## Change Log
 
+- 20160704 :warning: *Breaking Changes*
+  - use [vuex@1.0.0-rc](https://github.com/vuejs/vuex/releases/tag/v1.0.0-rc)
+  - update vuex-promise@1.0.1
+  - rewite vx/modules
+- 20160701
+  - make plato simple: remove built-in components, use plato-components
 - 20160630
   - update npm scripts
 - 20160629

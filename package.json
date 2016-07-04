@@ -1,7 +1,7 @@
 {
   "name": "PLATO",
   "version": "1.0.0",
-  "description": ":heart: a Boilerplate for SPAs use vue, vuex-fsa, vue-router",
+  "description": ":heart: a Boilerplate for SPAs use vue, vuex, vue-router",
   "license": "MIT",
   "main": "index.js",
   "scripts": {
@@ -78,7 +78,6 @@
   "dependencies": {
     "chartist": "^0.9.8",
     "is-plain-obj": "^1.1.0",
-    "marked": "^0.3.5",
     "nd-browser": "^3.0.0",
     "nd-datetime": "^3.0.5",
     "nd-promise": "^3.0.2",
@@ -91,9 +90,9 @@
     "string-template": "^1.0.0",
     "vue": "^1.0.26",
     "vue-router": "^0.7.13",
-    "vuex-fsa": "^0.7.1",
+    "vuex": "^1.0.0-rc",
     "vuex-localstorage": "^0.1.2",
-    "vuex-promise": "^0.1.4",
+    "vuex-promise": "^1.0.1",
     "whatwg-fetch": "^1.0.0"
   },
   "devDependencies": {
@@ -116,10 +115,10 @@
     "cross-spawn": "^4.0.0",
     "css-loader": "^0.23.1",
     "debug": "^2.2.0",
-    "eslint": "^2.13.1",
+    "eslint": "^3.0.0",
     "eslint-config-standard": "^5.3.1",
     "eslint-friendly-formatter": "^2.0.5",
-    "eslint-loader": "^1.3.0",
+    "eslint-loader": "^1.4.0",
     "eslint-plugin-babel": "^3.3.0",
     "eslint-plugin-html": "^1.5.1",
     "eslint-plugin-promise": "^1.3.2",
@@ -142,6 +141,7 @@
     "koa-favicon": "^2.0.0",
     "koa-logger": "^2.0.0",
     "koa-static": "^3.0.0",
+    "marked": "^0.3.5",
     "mocha": "^2.5.3",
     "nodemon": "^1.9.2",
     "phantomjs-polyfill": "0.0.2",
