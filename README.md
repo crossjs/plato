@@ -1,6 +1,6 @@
 # PLATO :construction: [![Gitter](https://badges.gitter.im/crossjs/plato.svg)](https://gitter.im/crossjs/plato?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
-> :heart: a Boilerplate for SPAs use vue, [vuex-fsa](https://www.npmjs.com/package/vuex-fsa), vue-router
+> :heart: a Boilerplate for SPAs use vue, vuex, vue-router
 
 [Online Demo](http://crossjs.com/plato), [Documentation](http://crossjs.com/plato/#!/docs)
 
@@ -12,7 +12,7 @@
 - :white_check_mark: Plugins like vuex, i18n, validator and ajax are almost ready, could be used in production amusedly.
 - :negative_squared_cross_mark: UI components are NOT stable, could be changed anytime.
 
-[![mindmap](https://cdn.rawgit.com/crossjs/plato/master/plato.svg)](plato.svg)
+[![mindmap](https://cdn.rawgit.com/crossjs/plato/master/src/assets/PLATO.svg)](src/assets/PLATO.svg)
 
 ## Change Log
 
