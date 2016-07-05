@@ -24,7 +24,7 @@ const plugins = [
     silent: false
   }),
   store => {
-    // 实现进度掉、错误提示
+    // 实现进度条、错误提示
     store.on('mutation', ({ meta, payload }) => {
       switch (meta) {
         case PROMISE_PENDING:
