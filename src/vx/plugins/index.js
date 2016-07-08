@@ -2,12 +2,6 @@ import createLogger from 'vuex/logger'
 import createPromise from 'vuex-promise'
 
 import {
-  SET_PROGRESS,
-  ADD_TOAST,
-  DELETE_TOAST
-} from '../types'
-
-import {
   PROMISE_PENDING,
   PROMISE_SUCCESS,
   PROMISE_FAILURE
@@ -28,14 +22,14 @@ const plugins = [
     store.subscribe(({ meta, payload }) => {
       switch (meta) {
         case PROMISE_PENDING:
-          setProgress(60, store)
+          store.dispatch('setProgress', 60)
           break
         case PROMISE_SUCCESS:
-          setProgress(100, store)
+          store.dispatch('setProgress', 100)
           break
         case PROMISE_FAILURE:
-          setProgress(100, store)
-          addToast(payload, store)
+          store.dispatch('setProgress', 100)
+          store.dispatch('addToast', payload)
           break
         default:
           // setProgress(0)
@@ -46,29 +40,6 @@ const plugins = [
 
 if (__DEV__) {
   plugins.unshift(createLogger())
-}
-
-function setProgress (progress, store) {
-  store.dispatch(SET_PROGRESS, progress)
-  if (progress === 100) {
-    setTimeout(() => {
-      store.dispatch(SET_PROGRESS, 0)
-    }, 500)
-  }
-}
-
-function addToast (toast, store) {
-  if (typeof toast === 'string') {
-    toast = {
-      name: 'Error',
-      message: toast
-    }
-  }
-  toast._id = Date.now()
-  store.dispatch(ADD_TOAST, toast)
-  setTimeout(() => {
-    store.dispatch(DELETE_TOAST, toast)
-  }, 3000)
 }
 
 export default plugins

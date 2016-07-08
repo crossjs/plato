@@ -23,7 +23,7 @@ import CValidation from 'plato-components/c-validation'
 import CPane from 'plato-components/c-pane'
 import CForm from 'plato-components/c-form'
 import CButton from 'plato-components/c-button'
-import { setEnv } from 'vx/actions'
+import { mapActions } from 'vuex'
 export default {
   data () {
     return {
@@ -103,6 +103,7 @@ export default {
 
   // methods
   methods: {
+    ...mapActions(['setEnv']),
     mutate ($payload) {
       this.payload = $payload
     },
@@ -129,12 +130,6 @@ export default {
     activate (transition) {
       transition.next()
       this.env.authorized && this.$route.router.go('/')
-    }
-  },
-
-  vuex: {
-    actions: {
-      setEnv
     }
   },
 
