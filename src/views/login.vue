@@ -23,7 +23,7 @@ import CValidation from 'plato-components/c-validation'
 import CPane from 'plato-components/c-pane'
 import CForm from 'plato-components/c-form'
 import CButton from 'plato-components/c-button'
-import { mapActions } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 export default {
   data () {
     return {
@@ -35,6 +35,7 @@ export default {
   },
 
   computed: {
+    ...mapGetters(['authorized']),
     cells () {
       return {
         username: {
@@ -129,12 +130,12 @@ export default {
   route: {
     activate (transition) {
       transition.next()
-      this.env.authorized && this.$route.router.go('/')
+      this.authorized && this.$route.router.go('/')
     }
   },
 
   watch: {
-    'env.authorized' (val) {
+    authorized (val) {
       if (val) {
         this.$nextTick(() => {
           this.$route.router.go('/logout')
