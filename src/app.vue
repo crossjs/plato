@@ -36,7 +36,7 @@ import CRouteLink from 'plato-components/c-route-link'
 import CNavbar from 'plato-components/c-navbar'
 import CRoute from 'plato-components/c-route'
 import store from 'vx/store'
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 import { routes } from 'routes'
 
 export default {
@@ -51,7 +51,7 @@ export default {
   // },
 
   computed: {
-    ...mapGetters(['lang', 'progress', 'toasts']),
+    ...mapGetters(['lang', 'i18n', 'progress', 'toasts']),
     routes () {
       return walkRoutes.call(this, routes, (key, route) => {
         return key !== '/' && route.auth !== !this.authorized
@@ -60,6 +60,7 @@ export default {
   },
 
   methods: {
+    ...mapActions(['setEnv']),
     historyBack () {
       history.back()
     }
@@ -67,7 +68,11 @@ export default {
 
   created () {
     // for get i18n in first
-    // this.$store.dispatch('setEnv', this)
+    if (!this.i18n) {
+      this.setEnv({
+        lang: this.lang
+      })
+    }
     document.documentElement.dir = this.lang === 'ar' ? 'rtl' : 'ltr'
   },
 

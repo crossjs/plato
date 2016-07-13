@@ -13,7 +13,7 @@ import {
 
 const persist = createPersist(ENV_KEY, {
   lang: navigator.language.split('-')[0],
-  i18n: {},
+  i18n: null,
   authorized: false
 })
 

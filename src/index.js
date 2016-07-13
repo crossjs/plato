@@ -36,6 +36,7 @@ router.map(routes)
 router.alias(alias)
 
 router.beforeEach(transition => {
+  store.dispatch('setProgress', 80)
   if (transition.to.auth && !store.getters.authorized) {
     transition.abort()
   } else {
@@ -44,6 +45,7 @@ router.beforeEach(transition => {
 })
 
 router.afterEach(transition => {
+  store.dispatch('setProgress', 100)
   window.scrollTo(0, 0)
 })
 
