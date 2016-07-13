@@ -36,10 +36,11 @@ const config = {
   compiler_public_path: '',
   compiler_vendor: [
     'nd-datetime',
+    'plato-request',
     'querystring',
     'vue',
     'vue-router',
-    'vuex-fsa',
+    'vuex',
     'vuex-localstorage',
     'vuex-promise',
     'whatwg-fetch'

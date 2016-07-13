@@ -3,7 +3,7 @@
     <c-pane>
       <c-form
         :cells="cells"
-        :items="{lang: env.lang}"
+        :items="{lang: lang}"
         @mutate="setEnv"></c-form>
     </c-pane>
     <c-pane class="quatation">
@@ -40,8 +40,7 @@ import CGroup from 'plato-components/c-group'
 import CTitle from 'plato-components/c-title'
 import CLoading from 'plato-components/c-loading'
 import CCell from 'plato-components/c-cell'
-import { commits } from 'vx/getters'
-import { setEnv, getCommits } from 'vx/actions'
+import { mapGetters, mapActions } from 'vuex'
 export default {
   data () {
     return {
@@ -51,6 +50,7 @@ export default {
   },
 
   computed: {
+    ...mapGetters(['lang', 'commits']),
     cells () {
       return {
         lang: {
@@ -128,18 +128,10 @@ export default {
     }
   },
 
+  methods: mapActions(['setEnv', 'getCommits']),
+
   ready () {
     this.getCommits()
-  },
-
-  vuex: {
-    getters: {
-      commits
-    },
-    actions: {
-      setEnv,
-      getCommits
-    }
   },
 
   filters: {

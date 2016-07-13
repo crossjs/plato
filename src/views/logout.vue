@@ -12,7 +12,7 @@
 <script>
 import CImage from 'plato-components/c-image'
 import Modal from 'plato-components/c-modal'
-import { setEnv } from 'vx/actions'
+import { mapActions } from 'vuex'
 export default {
   data () {
     return {
@@ -30,18 +30,14 @@ export default {
     }
   },
 
+  methods: mapActions(['setEnv']),
+
   route: {
     activate () {
       if (!this.env.authorized) {
         history.back()
         return
       }
-    }
-  },
-
-  vuex: {
-    actions: {
-      setEnv
     }
   },
 

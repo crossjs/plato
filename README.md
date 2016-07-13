@@ -16,6 +16,10 @@
 
 ## Change Log
 
+- 20160709 :warning: *Breaking Changes*
+  - use [vuex@2.0.0-rc.1](https://github.com/vuejs/vuex/releases/tag/v2.0.0-rc.1)
+  - update vuex-promise@2.0.0.rc.1
+  - rewite vx/**
 - 20160704 :warning: *Breaking Changes*
   - use [vuex@1.0.0-rc](https://github.com/vuejs/vuex/releases/tag/v1.0.0-rc)
   - update vuex-promise@1.0.1
