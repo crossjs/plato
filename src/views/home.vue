@@ -131,7 +131,10 @@ export default {
   methods: mapActions(['setEnv', 'getCommits']),
 
   ready () {
-    this.getCommits()
+    // only fetch while no cached
+    if (!this.commits) {
+      this.getCommits()
+    }
   },
 
   filters: {

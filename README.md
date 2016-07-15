@@ -16,6 +16,8 @@
 
 ## Change Log
 
+- 20160715
+  - use vuex-localstorage@0.2.0, with expires options
 - 20160709 :warning: *Breaking Changes*
   - use [vuex@2.0.0-rc.1](https://github.com/vuejs/vuex/releases/tag/v2.0.0-rc.1)
   - update vuex-promise@2.0.0.rc.1

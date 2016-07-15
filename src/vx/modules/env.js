@@ -8,6 +8,7 @@ import {
 
 import {
   ENV_KEY,
+  ONE_WEEK,
   PROMISE_SUCCESS
 } from '../constants'
 
@@ -15,6 +16,8 @@ const persist = createPersist(ENV_KEY, {
   lang: navigator.language.split('-')[0],
   i18n: null,
   authorized: false
+}, {
+  expires: ONE_WEEK
 })
 
 const state = persist.get()

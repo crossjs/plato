@@ -1,3 +1,4 @@
+import createPersist from 'vuex-localstorage'
 import request from 'plato-request'
 
 import {
@@ -5,12 +6,18 @@ import {
 } from '../types'
 
 import {
+  COMMIT_KEY,
+  ONE_MINUTE,
   PROMISE_SUCCESS
 } from '../constants'
 
-const state = {
+const persist = createPersist(COMMIT_KEY, {
   commits: null
-}
+}, {
+  expires: ONE_MINUTE
+})
+
+const state = persist.get()
 
 const getters = {
   commits: state => state.commits
@@ -18,9 +25,12 @@ const getters = {
 
 const actions = {
   getCommits ({ commit }, payload) {
-    commit(GET_COMMITS, request('{base}/commits?per_page=3&sha=', {
+    commit(GET_COMMITS, request('{base}/commits?sha=', {
       params: {
         base: 'https://api.github.com/repos/crossjs/plato'
+      },
+      query: {
+        per_page: 3
       },
       headers: {
         'Accept': 'application/vnd.github.v3+json'
@@ -33,6 +43,7 @@ const mutations = {
   [GET_COMMITS] (state, { payload, meta }) {
     if (meta === PROMISE_SUCCESS) {
       state.commits = payload
+      persist.set(state)
     }
   }
 }

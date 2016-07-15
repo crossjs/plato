@@ -1,3 +1,1 @@
-const GET_COMMITS = 'GET_COMMITS'
-
-export default { GET_COMMITS }
+export const GET_COMMITS = 'GET_COMMITS'
