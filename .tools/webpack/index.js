@@ -40,9 +40,9 @@ const webpackConfig = {
 const APP_ENTRY_PATH = ['babel-polyfill', paths.src('index.js')]
 
 webpackConfig.entry = {
-  app: __DEV__
-    ? APP_ENTRY_PATH.concat('webpack-hot-middleware/client')
-    : APP_ENTRY_PATH,
+  app: __PROD__
+    ? APP_ENTRY_PATH
+    : APP_ENTRY_PATH.concat('webpack-hot-middleware/client'),
   vendor: config.compiler_vendor
 }
 
@@ -180,14 +180,6 @@ webpackConfig.plugins = [
   })
 ]
 
-if (__DEV__) {
-  debug('Enable plugins for live development (HMR, NoErrors).')
-  webpackConfig.plugins.push(
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
-  )
-}
-
 if (__PROD__) {
   debug('Enable plugins for production (OccurenceOrder, Dedupe & UglifyJS).')
   webpackConfig.plugins.push(
@@ -202,6 +194,12 @@ if (__PROD__) {
     }),
     // extract css into its own file
     new ExtractTextPlugin('[name].[contenthash].css')
+  )
+} else {
+  debug('Enable plugins for live development (HMR, NoErrors).')
+  webpackConfig.plugins.push(
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin()
   )
 }
 
