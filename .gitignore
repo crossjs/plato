@@ -1,11 +1,11 @@
 .DS_STORE
 *.bak
 *.log
-*.old
 *.out
 
 node_modules
 
+coverage
 data
 dist
-coverage
+test/e2e/reports
