@@ -20,9 +20,7 @@ app.use(error())
 // ------------------------------------
 // Apply Webpack DEV/HMR Middleware
 // ------------------------------------
-if (app.env === 'development') {
-  devTools(app)
-} else {
+if (app.env === 'production') {
   // favicon
   app.use(favicon(paths.dist('favicon.ico')))
 
@@ -30,6 +28,8 @@ if (app.env === 'development') {
   app.use(serve(paths.dist(), {
     maxAge: 365 * 24 * 60 * 60
   }))
+} else {
+  devTools(app)
 }
 
 const {
