@@ -2,14 +2,12 @@ import createPersist from 'vuex-localstorage'
 import request from 'plato-request'
 
 import {
-  GET_COMMITS
-} from '../types'
-
-import {
-  COMMIT_KEY,
   ONE_MINUTE,
   PROMISE_SUCCESS
 } from '../constants'
+
+const COMMIT_KEY = 'COMMIT_KEY'
+const GET_COMMITS = 'GET_COMMITS'
 
 const persist = createPersist(COMMIT_KEY, {
   commits: null

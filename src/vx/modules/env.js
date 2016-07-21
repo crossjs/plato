@@ -2,15 +2,13 @@ import createPersist from 'vuex-localstorage'
 import request from 'plato-request'
 
 import {
-  SET_ENV,
-  SET_ENV_I18N
-} from '../types'
-
-import {
-  ENV_KEY,
   ONE_WEEK,
   PROMISE_SUCCESS
 } from '../constants'
+
+const ENV_KEY = 'ENV_KEY'
+const SET_ENV = 'SET_ENV'
+const SET_ENV_I18N = 'SET_ENV_I18N'
 
 const persist = createPersist(ENV_KEY, {
   lang: navigator.language.split('-')[0],

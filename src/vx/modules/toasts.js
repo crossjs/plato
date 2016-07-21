@@ -1,7 +1,5 @@
-import {
-  ADD_TOAST,
-  DELETE_TOAST
-} from '../types'
+const ADD_TOAST = 'ADD_TOAST'
+const DELETE_TOAST = 'DELETE_TOAST'
 
 const state = {
   toasts: []

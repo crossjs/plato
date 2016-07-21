@@ -1,6 +1,4 @@
-import {
-  SET_PROGRESS
-} from '../types'
+const SET_PROGRESS = 'SET_PROGRESS'
 
 const state = {
   progress: 0
