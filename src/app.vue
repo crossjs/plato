@@ -35,9 +35,9 @@ import CIcon from 'plato-components/c-icon'
 import CRouteLink from 'plato-components/c-route-link'
 import CNavbar from 'plato-components/c-navbar'
 import CRoute from 'plato-components/c-route'
-import store from 'vx/store'
 import { mapGetters, mapActions } from 'vuex'
 import { routes } from 'routes'
+import store from 'store'
 
 export default {
   name: 'App',

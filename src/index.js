@@ -4,7 +4,7 @@ import I18n from 'plato-i18n'
 import Validator from 'plato-validator'
 import App from 'app'
 import { routes, alias } from 'routes'
-import store from 'vx/store'
+import store from 'store'
 
 if (module.hot) {
   module.hot.accept()

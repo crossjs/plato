@@ -15,6 +15,9 @@
 
 ## Change Log
 
+- 20160721
+  - rename vx to store
+  - move types to modules
 - 20160715
   - use vuex-localstorage@0.2.0, with expires options
 - 20160709 :warning: *Breaking Changes*
