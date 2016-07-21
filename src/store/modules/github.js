@@ -8,9 +8,12 @@ import {
 
 const COMMIT_KEY = 'COMMIT_KEY'
 const GET_COMMITS = 'GET_COMMITS'
+const GET_REPOSITORY = 'GET_REPOSITORY'
 
 const persist = createPersist(COMMIT_KEY, {
-  commits: null
+  commits: null,
+  stars: 0,
+  forks: 0
 }, {
   expires: ONE_MINUTE
 })
@@ -18,26 +21,48 @@ const persist = createPersist(COMMIT_KEY, {
 const state = persist.get()
 
 const getters = {
-  commits: state => state.commits
+  commits: state => state.commits,
+  stars: state => state.stars,
+  forks: state => state.forks
+}
+
+const base = 'https://api.github.com/repos/crossjs/plato'
+const headers = {
+  'Accept': 'application/vnd.github.v3+json'
 }
 
 const actions = {
-  getCommits ({ commit }, payload) {
+  getRepository ({ commit }) {
+    commit(GET_REPOSITORY, request('{base}', {
+      params: {
+        base
+      },
+      headers
+    }))
+  },
+
+  getCommits ({ commit }) {
     commit(GET_COMMITS, request('{base}/commits?sha=', {
       params: {
-        base: 'https://api.github.com/repos/crossjs/plato'
+        base
       },
       query: {
         per_page: 3
       },
-      headers: {
-        'Accept': 'application/vnd.github.v3+json'
-      }
+      headers
     }))
   }
 }
 
 const mutations = {
+  [GET_REPOSITORY] (state, { payload, meta }) {
+    if (meta === PROMISE_SUCCESS) {
+      state.stars = payload.stargazers_count
+      state.forks = payload.forks_count
+      persist.set(state)
+    }
+  },
+
   [GET_COMMITS] (state, { payload, meta }) {
     if (meta === PROMISE_SUCCESS) {
       state.commits = payload

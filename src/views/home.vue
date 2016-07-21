@@ -24,11 +24,6 @@
         :cells="demo.cells"
         :items="demo.items"></c-group>
     </c-pane>
-    <c-title>User Agent</c-title>
-    <c-pane>
-      <c-cell @click=""></c-cell>
-      {{ua}}
-    </c-pane>
   </div>
 </template>
 
@@ -44,13 +39,12 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
   data () {
     return {
-      ua: navigator.userAgent,
       hello: 'Bello'
     }
   },
 
   computed: {
-    ...mapGetters(['lang', 'commits']),
+    ...mapGetters(['lang', 'commits', 'stars', 'forks']),
     cells () {
       return {
         lang: {
@@ -111,29 +105,29 @@ export default {
         title: 'view.home.about',
         cells: [{
           icon: 'github',
-          label: 'Fork',
+          label: 'Home',
           value: 'github.com/crossjs/plato',
           click () {
             window.open('https://github.com/crossjs/plato')
           }
         }, {
           icon: 'demo',
-          label: 'Author',
-          value: 'github.com/crossjs',
-          click () {
-            window.open('https://github.com/crossjs')
-          }
+          label: 'Stat',
+          value: `Stars(${this.stars}) Forks(${this.forks})`
         }]
       }]
     }
   },
 
-  methods: mapActions(['setEnv', 'getCommits']),
+  methods: mapActions(['setEnv', 'getCommits', 'getRepository']),
 
   ready () {
     // only fetch while no cached
     if (!this.commits) {
       this.getCommits()
+    }
+    if (!this.stars && !this.forks) {
+      this.getRepository()
     }
   },
 
