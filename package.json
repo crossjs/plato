@@ -56,7 +56,7 @@
       }
     },
     "deploy": {
-      "command": "npm test && npm run clean && npm run compile",
+      "command": "npm run lint && npm run unit && npm run clean && npm run compile",
       "env": {
         "NODE_ENV": "production",
         "DEBUG": "koa*"
@@ -93,10 +93,10 @@
   "dependencies": {
     "chartist": "^0.9.8",
     "nd-datetime": "^3.0.5",
-    "nd-promise": "^3.0.2",
+    "nd-promise": "^3.1.0",
     "plato-components": "^0.0.0",
     "plato-i18n": "^0.0.1",
-    "plato-request": "^0.0.3",
+    "plato-request": "^0.1.0",
     "plato-styles": "^0.0.0",
     "plato-validator": "^0.0.3",
     "vue": "^1.0.26",
@@ -106,7 +106,7 @@
     "vuex-promise": "^2.0.0-rc.1"
   },
   "devDependencies": {
-    "babel-core": "^6.10.4",
+    "babel-core": "^6.11.4",
     "babel-loader": "^6.2.4",
     "babel-plugin-__coverage__": "^11.0.0",
     "babel-plugin-add-module-exports": "^0.2.1",
@@ -127,7 +127,7 @@
     "debug": "^2.2.0",
     "eslint": "^3.1.1",
     "eslint-config-plato": "^0.0.0",
-    "eslint-friendly-formatter": "^2.0.5",
+    "eslint-friendly-formatter": "^2.0.6",
     "eslint-loader": "^1.4.0",
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.9.0",
@@ -154,14 +154,14 @@
     "phantomjs-polyfill": "0.0.2",
     "phantomjs-prebuilt": "^2.1.7",
     "postcss-browser-reporter": "^0.5.0",
-    "postcss-cssnext": "^2.6.0",
+    "postcss-cssnext": "^2.7.0",
     "postcss-custom-properties": "^5.0.1",
-    "postcss-font-variant": "^2.0.0",
+    "postcss-font-variant": "^2.0.1",
     "postcss-import": "^8.1.2",
     "postcss-loader": "^0.9.1",
     "postcss-reporter": "^1.4.1",
     "postcss-url": "^5.1.2",
-    "rimraf": "^2.5.2",
+    "rimraf": "^2.5.3",
     "selenium-server": "^2.53.1",
     "sinon": "^1.17.4",
     "sinon-chai": "^2.8.0",
@@ -174,7 +174,7 @@
     "webpack": "^1.13.1",
     "webpack-dev-middleware": "^1.6.1",
     "webpack-hot-middleware": "^2.12.1",
-    "yargs": "^4.7.1"
+    "yargs": "^4.8.1"
   },
   "engines": {
     "node": ">= 5.10.0 <= 5.12.0",
