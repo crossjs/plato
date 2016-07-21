@@ -18,10 +18,12 @@ import { ROLE_LEVEL_OPTIONS } from 'vx/constants'
 export default {
   data () {
     return {
+      payload: null,
+      title: '角色管理',
       cells: {
         name: {
           label: '名称',
-          type: 'text',
+          type: 'textfield',
           attrs: {
             readonly: true
           },
@@ -31,7 +33,7 @@ export default {
         },
         desc: {
           label: '描述',
-          type: 'text',
+          type: 'textfield',
           validate: {
             maxlength: 50
           }

@@ -10,27 +10,29 @@ import {
 } from '../constants'
 
 const state = {
-  // disable pagination
-  count: -1,
-  items: [],
-  query: {}
+  roles: {
+    // disable pagination
+    count: -1,
+    items: [],
+    query: {}
+  }
 }
 
 const mutations = {
-  [GET_ROLES] (state, { payload, meta }) {
+  [GET_ROLES](state, { payload, meta }) {
     if (meta === PROMISE_SUCCESS) {
-      Object.assign(state, payload)
+      Object.assign(state.roles, payload)
     }
   },
 
-  [CREATE_ROLE] (state, { payload, meta }) {
+  [CREATE_ROLE](state, { payload, meta }) {
     if (meta === PROMISE_SUCCESS) {
       state.count += 1
       state.items.push(payload)
     }
   },
 
-  [DELETE_ROLE] (state, { payload, meta }) {
+  [DELETE_ROLE](state, { payload, meta }) {
     if (meta === PROMISE_SUCCESS) {
       const { items } = state
       items.some((role, index) => {
@@ -43,7 +45,7 @@ const mutations = {
     }
   },
 
-  [UPDATE_ROLE] (state, { payload, meta }) {
+  [UPDATE_ROLE](state, { payload, meta }) {
     if (meta === PROMISE_SUCCESS) {
       const { items } = state.roles
       items.some((role, index) => {
