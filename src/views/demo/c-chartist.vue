@@ -1,12 +1,12 @@
 <template>
-  <div :class="['c-chartist', class, ratio, noData]">{{message}}</div>
+  <div :class="['c-chartist', className, ratio, noData]">{{message}}</div>
 </template>
 
 <script>
 import Chartist from 'chartist'
 export default {
   props: {
-    class: {
+    className: {
       type: String,
       default: ''
     },

@@ -36,6 +36,7 @@ import CTitle from 'plato-components/c-title'
 import CLoading from 'plato-components/c-loading'
 import CCell from 'plato-components/c-cell'
 import { mapGetters, mapActions } from 'vuex'
+
 export default {
   data () {
     return {

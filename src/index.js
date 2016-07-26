@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import I18n from 'plato-i18n'
 import Validator from 'plato-validator'
 import App from 'app'
-import { routes, alias } from 'routes'
+import routes from 'routes'
 import store from 'store'
 
 if (module.hot) {
@@ -26,27 +26,29 @@ Vue.use(Validator)
 Vue.use(Router)
 
 const router = new Router({
-  history: false,
-  saveScrollPosition: true,
-  linkActiveClass: 'link-active'
-})
-
-// register routes
-router.map(routes)
-router.alias(alias)
-
-router.beforeEach(transition => {
-  store.dispatch('setProgress', 80)
-  if (transition.to.auth && !store.getters.authorized) {
-    transition.abort()
-  } else {
-    transition.next()
+  mode: 'history',
+  routes,
+  linkActiveClass: 'link-active',
+  beforeEach (route, redirect, next) {
+    store.dispatch('setProgress', 80)
+    if (route.matched.some(m => m.meta.auth) && !store.getters.authorized) {
+      redirect('/')
+    } else {
+      next()
+    }
+  },
+  afterEach (/* route, redirect, next */) {
+    store.dispatch('setProgress', 100)
+    window.scrollTo(0, 0)
   }
 })
 
-router.afterEach(transition => {
-  store.dispatch('setProgress', 100)
-  window.scrollTo(0, 0)
+/* eslint no-new: 0 */
+new Vue({
+  store,
+  router,
+  el: '#app',
+  render: h => h(App)
 })
 
-router.start(App, 'app')
+// new Vue(Vue.util.extend({ store, router }, App)).$mount('#app')

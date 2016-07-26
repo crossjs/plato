@@ -1,6 +1,6 @@
 <template>
   <div class="v-docs-read">
-    <c-pane class="markdown-body">{{{ content }}}</c-pane>
+    <c-pane class="markdown-body" v-html="content"></c-pane>
   </div>
 </template>
 

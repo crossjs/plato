@@ -1,14 +1,8 @@
-export default {
-  routes: {
-    '/': require('./home'),
-    '/demo': require('./demo'),
-    '/docs': require('./docs'),
-    '/about': require('./about'),
-    '/login': require('./login'),
-    '/logout': require('./logout')
-  },
-
-  alias: {
-    // '/login/:username': '/login'
-  }
-}
+export default [
+  { path: '/', component: require('./home') },
+  { path: '/demo', component: require('./demo') },
+  { path: '/docs', component: require('./docs') },
+  { path: '/about', component: require('./about') },
+  { path: '/login', component: require('./login') },
+  { path: '/logout', component: require('./logout') }
+]

@@ -36,12 +36,9 @@ import CRouteLink from 'plato-components/c-route-link'
 import CNavbar from 'plato-components/c-navbar'
 import CRoute from 'plato-components/c-route'
 import { mapGetters, mapActions } from 'vuex'
-import { routes } from 'routes'
-import store from 'store'
+import routes from 'routes'
 
 export default {
-  name: 'App',
-  store,
   // i18n: {
   //   // 翻译资源库
   //   // 覆盖上级（或全局）
@@ -53,8 +50,8 @@ export default {
   computed: {
     ...mapGetters(['lang', 'i18n', 'progress', 'toasts']),
     routes () {
-      return walkRoutes.call(this, routes, (key, route) => {
-        return key !== '/' && route.auth !== !this.authorized
+      return walkRoutes.call(this, routes, route => {
+        return route.path !== '/' && route.auth !== !this.authorized
       })
     }
   },
@@ -97,13 +94,12 @@ function walkRoutes (routes, filter) {
   if (!routes) {
     return []
   }
-  return Object.keys(routes)
-  .filter(key => !routes[key].hidden)
-  .filter(key => filter(key, routes[key]))
-  .map(key => {
-    const route = routes[key]
+  return routes
+  .filter(route => !route.hidden)
+  .filter(route => filter(route))
+  .map(route => {
     return {
-      path: route.path || key,
+      path: route.path,
       name: route.name,
       exact: route.exact,
       icon: route.icon,
