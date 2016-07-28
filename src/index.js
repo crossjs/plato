@@ -28,27 +28,32 @@ Vue.use(Router)
 const router = new Router({
   mode: 'history',
   routes,
-  linkActiveClass: 'link-active',
-  beforeEach (route, redirect, next) {
-    store.dispatch('setProgress', 80)
-    if (route.matched.some(m => m.meta.auth) && !store.getters.authorized) {
-      redirect('/')
-    } else {
-      next()
-    }
-  },
-  afterEach (/* route, redirect, next */) {
-    store.dispatch('setProgress', 100)
-    window.scrollTo(0, 0)
+  linkActiveClass: 'link-active'
+})
+
+router.beforeEach((route, redirect, next) => {
+  store.dispatch('setProgress', 80)
+  if (route.matched.some(m => m.meta.auth) && !store.getters.authorized) {
+    redirect('/')
+  } else {
+    next()
   }
 })
 
-/* eslint no-new: 0 */
-new Vue({
-  store,
-  router,
-  el: '#app',
-  render: h => h(App)
+router.afterEach((/* route, redirect, next */) => {
+  store.dispatch('setProgress', 100)
+  window.scrollTo(0, 0)
 })
 
-// new Vue(Vue.util.extend({ store, router }, App)).$mount('#app')
+// /* eslint no-new: 0 */
+// new Vue({
+//   el: '#app',
+//   router,
+//   store,
+//   // template: '<div><router-view></router-view></div>',
+//   render (createElement) {
+//     return createElement(App)
+//   }
+// })
+
+new Vue(Vue.util.extend({ router, store }, App)).$mount('#app')

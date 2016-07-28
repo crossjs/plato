@@ -1,7 +1,5 @@
 <template>
   <div>
-    <router-view class="router-view"
-      transition="slide-up"
-      keep-alive></router-view>
+    <router-view></router-view>
   </div>
 </template>

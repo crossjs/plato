@@ -6,10 +6,9 @@
       :toasts="toasts"></c-toast>
     <header class="header">
       <div class="logo">
-        <c-route-link :route="{
-            link: { path: '/', exact: true },
-            title: 'PLATO'
-          }"></c-route-link>
+        <router-link class="c-route-link" to="/">
+          PLATO
+        </router-link>
       </div>
       <div class="history">
         <c-button class="none" @click="historyBack">
@@ -20,10 +19,7 @@
         <c-route :routes="routes"></c-route>
       </c-navbar>
     </header>
-    <router-view class="router-view"
-      transition="slide-up"
-      transition-mode="out-in"
-      keep-alive></router-view>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -32,7 +28,6 @@ import CProgress from 'plato-components/c-progress'
 import CToast from 'plato-components/c-toast'
 import CButton from 'plato-components/c-button'
 import CIcon from 'plato-components/c-icon'
-import CRouteLink from 'plato-components/c-route-link'
 import CNavbar from 'plato-components/c-navbar'
 import CRoute from 'plato-components/c-route'
 import { mapGetters, mapActions } from 'vuex'
@@ -84,7 +79,6 @@ export default {
     CToast,
     CButton,
     CIcon,
-    CRouteLink,
     CNavbar,
     CRoute
   }
