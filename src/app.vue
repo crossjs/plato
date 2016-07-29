@@ -11,7 +11,7 @@
         </router-link>
       </div>
       <div class="history">
-        <c-button class="none" @click="historyBack">
+        <c-button className="none" @click="historyBack">
           <c-icon value="back"></c-icon>
         </c-button>
       </div>
@@ -34,13 +34,13 @@ import { mapGetters, mapActions } from 'vuex'
 import routes from 'routes'
 
 export default {
-  // i18n: {
+  i18n: {
   //   // 翻译资源库
   //   // 覆盖上级（或全局）
   //   data () {
   //     return {}
   //   }
-  // },
+  },
 
   computed: {
     ...mapGetters(['lang', 'i18n', 'progress', 'toasts']),

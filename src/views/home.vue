@@ -14,7 +14,7 @@
       <c-loading v-show="!commits"></c-loading>
       <c-cell v-for="record in commits" transition="fade">
         <a :href="record.html_url" target="_blank" class="commit">{{record.commit.message}}</a><br>
-        <small class="date">@ {{record.commit.author.date | datetime 'yyyy-MM-dd hh:mm'}}</small>
+        <small class="date">@ {{datetime(record.commit.author.date, 'yyyy-MM-dd hh:mm').format()}}</small>
       </c-cell>
     </c-pane>
     <c-pane>
@@ -120,9 +120,12 @@ export default {
     }
   },
 
-  methods: mapActions(['setEnv', 'getCommits', 'getRepository']),
+  methods: {
+    ...mapActions(['setEnv', 'getCommits', 'getRepository']),
+    datetime
+  },
 
-  ready () {
+  created () {
     // only fetch while no cached
     if (!this.commits) {
       this.getCommits()
@@ -130,10 +133,6 @@ export default {
     if (!this.stars && !this.forks) {
       this.getRepository()
     }
-  },
-
-  filters: {
-    datetime
   },
 
   components: {
