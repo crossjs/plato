@@ -1,4 +1,4 @@
-# PLATO <sub>for vue@2.0.0-beta</sub> :construction: [![Gitter](https://badges.gitter.im/crossjs/plato.svg)](https://gitter.im/crossjs/plato?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+# PLATO <sub>for vue 2.0.0-beta</sub> :construction: [![Gitter](https://badges.gitter.im/crossjs/plato.svg)](https://gitter.im/crossjs/plato?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 > :heart: a Boilerplate for SPAs use vue, vuex, vue-router
 
