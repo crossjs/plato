@@ -1,22 +1,23 @@
 <template>
   <div class="demo-chart">
-    <pane>
-      <chartist
-        v-for="chart of charts"
+    <c-pane>
+      <c-chartist
+        v-for="(chart, index) of charts"
+        :key="index"
         :ratio="chart.ratio"
         :type="chart.type"
         :data="chart.data"
         :options="chart.options"
         :responsive="chart.responsive"
-        :events="chart.events"></chartist>
-    </pane>
+        :events="chart.events"></c-chartist>
+    </c-pane>
   </div>
 </template>
 
 <script>
 import { Svg } from 'chartist'
-import Pane from 'plato-components/c-pane'
-import Chartist from './c-chartist'
+import CPane from 'plato-components/c-pane'
+import CChartist from './c-chartist'
 export default {
   data () {
     return {
@@ -95,8 +96,8 @@ export default {
   },
 
   components: {
-    Pane,
-    Chartist
+    CPane,
+    CChartist
   }
 }
 </script>

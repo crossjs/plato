@@ -11,7 +11,7 @@
         </router-link>
       </div>
       <div class="history">
-        <c-button className="none" @click="historyBack">
+        <c-button className="none" @click.native="_back">
           <c-icon value="back"></c-icon>
         </c-button>
       </div>
@@ -34,14 +34,6 @@ import { mapGetters, mapActions } from 'vuex'
 import routes from 'routes'
 
 export default {
-  i18n: {
-  //   // 翻译资源库
-  //   // 覆盖上级（或全局）
-  //   data () {
-  //     return {}
-  //   }
-  },
-
   computed: {
     ...mapGetters(['lang', 'i18n', 'progress', 'toasts']),
     routes () {
@@ -53,8 +45,8 @@ export default {
 
   methods: {
     ...mapActions(['setEnv']),
-    historyBack () {
-      history.back()
+    _back () {
+      this.$router.back()
     }
   },
 
@@ -97,9 +89,9 @@ function walkRoutes (routes, filter) {
       name: route.name,
       exact: route.exact,
       icon: route.icon,
-      title: this.__(route.title)
-      // comment out for subRoutes
-      // ,subRoutes: walkRoutes.call(this, route.subRoutes, filter)
+      title: route.title
+      // comment out for children
+      // ,children: walkRoutes.call(this, route.children, filter)
     }
   })
 }

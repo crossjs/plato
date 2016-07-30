@@ -9,7 +9,7 @@
         :items="items"
         @mutate="mutate">
         <c-pane dir="vertical" slot="footer">
-          <c-button :class="action.class"
+          <c-button :className="action.className"
             :type="action.type"
             :disabled="action.disabled">{{action.label}}</c-button>
         </c-pane>
@@ -28,7 +28,7 @@ export default {
   data () {
     return {
       items: {
-        username: this.$route.query.username,
+        username: this.$route.query.username || '',
         password: ''
       }
     }
@@ -95,7 +95,7 @@ export default {
     action () {
       return {
         type: 'submit',
-        class: 'primary',
+        className: 'primary',
         label: this.progress ? '提交登录中...' : '提交登录',
         disabled: !!this.progress || (this.$validation && this.$validation.invalid)
       }
@@ -106,10 +106,10 @@ export default {
   methods: {
     ...mapActions(['setEnv']),
     mutate ($payload) {
-      this.payload = $payload
+      this.items = $payload
     },
     login () {
-      if (!this.payload) {
+      if (!this.items) {
         return
       }
       // validate then submit
@@ -127,18 +127,15 @@ export default {
     auto: true
   },
 
-  route: {
-    activate (transition) {
-      transition.next()
-      this.authorized && this.$route.router.go('/')
-    }
+  created () {
+    this.authorized && this.$router.replace('/')
   },
 
   watch: {
     authorized (val) {
       if (val) {
         this.$nextTick(() => {
-          this.$route.router.go('/logout')
+          this.$router.replace('/logout')
         })
       }
     }

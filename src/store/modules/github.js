@@ -42,12 +42,13 @@ const actions = {
   },
 
   getCommits ({ commit }) {
-    commit(GET_COMMITS, request('{base}/commits?sha=', {
+    commit(GET_COMMITS, request('{base}/commits', {
       params: {
         base
       },
       query: {
-        per_page: 3
+        per_page: 3,
+        sha: 'next'
       },
       headers
     }))

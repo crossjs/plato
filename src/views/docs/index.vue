@@ -27,7 +27,7 @@ export default {
   watch: {
     chapter (val) {
       this.$nextTick(() => {
-        this.$route.router.go({
+        this.$router.replace({
           name: 'docs/read',
           params: {
             name: val

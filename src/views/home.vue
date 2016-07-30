@@ -70,24 +70,15 @@ export default {
       }
     },
     demos () {
-      const { router } = this.$route
+      const { $router } = this
       return [{
         title: 'view.home.example',
         cells: [{
-          label: 'form',
-          value: this.__('view.home.form'),
-          click () {
-            router.go('demo/form')
-          },
-          extra: {
-            isLink: true
-          }
-        }, {
           icon: 'chart',
           label: 'chart',
           value: this.__('view.home.charts'),
           click () {
-            router.go('demo/chart')
+            $router.push('demo/chart')
           },
           extra: {
             isLink: true
@@ -95,7 +86,7 @@ export default {
         }, {
           value: `<i>${this.__('view.home.misc')}</i>`,
           click () {
-            router.go('demo/misc')
+            $router.push('demo/misc')
           },
           extra: {
             isLink: true,

@@ -47,7 +47,7 @@ export default {
     authorized (val) {
       if (!val) {
         this.$nextTick(() => {
-          this.$route.router.go('/')
+          this.$router.replace('/')
         })
       }
     }

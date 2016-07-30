@@ -35,7 +35,7 @@ export default {
     }
   },
 
-  ready () {
+  mounted () {
     this.draw()
   },
 
