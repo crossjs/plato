@@ -1,6 +1,6 @@
 {
   "name": "PLATO",
-  "version": "1.0.0",
+  "version": "2.0.0-beta.1",
   "description": ":heart: a Boilerplate for SPAs use vue, vuex, vue-router",
   "license": "MIT",
   "main": "index.js",
@@ -94,7 +94,7 @@
     "chartist": "^0.9.8",
     "nd-datetime": "^3.0.5",
     "nd-promise": "^3.1.0",
-    "plato-components": "^2.0.0-beta.1",
+    "plato-components": "^2.0.0-beta.2",
     "plato-i18n": "^2.0.0-beta.3",
     "plato-request": "^0.1.0",
     "plato-styles": "^0.0.0",

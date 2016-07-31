@@ -15,8 +15,14 @@ export default {
     }
   },
 
-  route: {
-    data () {
+  created () {
+    request(`./docs/${this.$route.params.name}`).then(text => {
+      this.content = marked(text)
+    })
+  },
+
+  watch: {
+    $route () {
       request(`./docs/${this.$route.params.name}`).then(text => {
         this.content = marked(text)
       })

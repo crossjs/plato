@@ -5,21 +5,17 @@ export default [
   },
   {
     path: '/demo',
-    component: resolve => require(['views/demo/index'], resolve),
-    children: [{
-      path: 'chart',
-      name: 'demo/chart',
-      component: resolve => require(['views/demo/chart'], resolve)
-    }, {
-      path: 'misc',
-      name: 'demo/misc',
-      component: resolve => require(['views/demo/misc'], resolve)
-    }]
+    component: resolve => require(['views/demo'], resolve)
   },
   {
     path: '/docs',
     title: 'routes.docs',
-    component: resolve => require(['views/docs'], resolve)
+    component: resolve => require(['views/docs'], resolve),
+    children: [{
+      path: 'read/:name',
+      name: 'docs/read',
+      component: resolve => require(['views/docs/read'], resolve)
+    }]
   },
   {
     path: '/about',
@@ -29,11 +25,13 @@ export default [
   {
     path: '/login',
     title: 'routes.login',
+    auth: false,
     component: resolve => require(['views/login'], resolve)
   },
   {
     path: '/logout',
     title: 'routes.logout',
+    auth: true,
     component: resolve => require(['views/logout'], resolve)
   }
 ]

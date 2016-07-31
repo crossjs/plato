@@ -7,7 +7,7 @@
     <header class="header">
       <div class="logo">
         <router-link class="c-route-link" to="/">
-          PLATO
+          PLATO <sub>based on vue@2</sub>
         </router-link>
       </div>
       <div class="history">
@@ -29,13 +29,13 @@ import CToast from 'plato-components/c-toast'
 import CButton from 'plato-components/c-button'
 import CIcon from 'plato-components/c-icon'
 import CNavbar from 'plato-components/c-navbar'
-import CRoute from 'plato-components/c-route'
+import CRoute from 'components/c-route'
 import { mapGetters, mapActions } from 'vuex'
 import routes from 'routes'
 
 export default {
   computed: {
-    ...mapGetters(['lang', 'i18n', 'progress', 'toasts']),
+    ...mapGetters(['authorized', 'lang', 'i18n', 'progress', 'toasts']),
     routes () {
       return walkRoutes.call(this, routes, route => {
         return route.path !== '/' && route.auth !== !this.authorized

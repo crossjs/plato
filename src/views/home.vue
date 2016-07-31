@@ -72,21 +72,13 @@ export default {
     demos () {
       const { $router } = this
       return [{
-        title: 'view.home.example',
+        title: 'view.home.demo',
         cells: [{
-          icon: 'chart',
-          label: 'chart',
-          value: this.__('view.home.charts'),
+          icon: 'demo',
+          label: 'demo',
+          value: `<b>${this.__('view.home.demo')}</b>`,
           click () {
-            $router.push('demo/chart')
-          },
-          extra: {
-            isLink: true
-          }
-        }, {
-          value: `<i>${this.__('view.home.misc')}</i>`,
-          click () {
-            $router.push('demo/misc')
+            $router.push('demo')
           },
           extra: {
             isLink: true,

@@ -2,13 +2,11 @@
   <div class="v-docs">
     <c-pane>
       <c-dropdown
-        :value.sync="chapter"
-        :extra="{options: chapters}"></c-dropdown>
+        :value="chapter"
+        :extra="{options: chapters}"
+        @mutate="_mutate"></c-dropdown>
     </c-pane>
-    <router-view
-      class="router-view"
-      transition="slide-up"
-      keep-alive></router-view>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -24,36 +22,45 @@ export default {
     }
   },
 
-  watch: {
-    chapter (val) {
-      this.$nextTick(() => {
-        this.$router.replace({
-          name: 'docs/read',
-          params: {
-            name: val
-          }
-        })
+  methods: {
+    _mutate (val) {
+      this.$router.push({
+        name: 'docs/read',
+        params: {
+          name: val
+        }
       })
+      this.chapter = val
     }
   },
 
-  route: {
-    data () {
-      request('./docs/README.md').then(text => {
-        const chapters = []
-        // - [使用 vuex](vuex.md)
-        const RE = /\-\s+\[([^\[\]\(\)]+)\]\(([^\[\]\(\)]+)\)\n/img
-        let matched
-        while ((matched = RE.exec(text))) {
-          chapters.push({
-            label: matched[1],
-            value: matched[2]
-          })
-        }
-        this.chapter = this.$route.params.name || chapters[0].value
-        this.chapters = chapters
-      })
-    }
+  created () {
+    request('./docs/README.md').then(text => {
+      const chapters = []
+      // - [使用 vuex](vuex.md)
+      const RE = /\-\s+\[([^\[\]\(\)]+)\]\(([^\[\]\(\)]+)\)\n/img
+      let matched
+      while ((matched = RE.exec(text))) {
+        chapters.push({
+          label: matched[1],
+          value: matched[2]
+        })
+      }
+      this.chapter = chapters[0].value
+      this.chapters = chapters
+
+      if (!this.$route.params.name) {
+        this.chapter = chapters[0].value
+        this.$router.replace({
+          name: 'docs/read',
+          params: {
+            name: this.chapter
+          }
+        })
+      } else {
+        this.chapter = this.$route.params.name
+      }
+    })
   },
 
   components: {

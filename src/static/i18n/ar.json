@@ -11,10 +11,7 @@
   "view": {
     "home": {
       "language": "لغة",
-      "example": "أمثلة",
-      "form": "شكل",
-      "charts": "الرسوم البيانية",
-      "misc": "متنوع",
+      "demo": "مظاهرة",
       "about": "حول",
       "latest_commits": "أحدث ارتكاب هو"
     }

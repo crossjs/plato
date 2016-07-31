@@ -11,10 +11,7 @@
   "view": {
     "home": {
       "language": "Language",
-      "example": "Examples",
-      "form": "Form",
-      "charts": "Charts",
-      "misc": "Miscellaneous",
+      "demo": "Demonstration",
       "about": "About",
       "latest_commits": "Latest Commits"
     }
