@@ -15,8 +15,10 @@
 
 ## Change Log
 
+- 20160805
+  - add transition
 - 20160730 :warning: *Breaking Changes*
- - use vue@2.0.0-beta
+  - use vue@2.0.0-beta
 - 20160721
   - rename vx to store
   - move types to modules

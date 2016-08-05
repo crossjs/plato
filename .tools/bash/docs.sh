@@ -4,8 +4,8 @@ read MESSAGE
 
 echo "Deploying ..."
 
-# deploy
-npm run deploy
+# build
+npm run build
 
 # commit
 cd dist

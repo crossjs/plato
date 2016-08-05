@@ -1,6 +1,6 @@
 {
   "name": "PLATO",
-  "version": "2.0.0-beta.1",
+  "version": "2.0.0-beta.2",
   "description": ":heart: a Boilerplate for SPAs use vue, vuex, vue-router",
   "license": "MIT",
   "main": "index.js",
@@ -18,7 +18,7 @@
     "test": "npm run lint && npm run unit && npm run e2e",
     "clean": "better-npm-run clean",
     "compile": "better-npm-run compile",
-    "deploy": "better-npm-run deploy",
+    "build": "better-npm-run build",
     "docs": "bash .tools/bash/docs.sh",
     "push": "bash .tools/bash/push.sh"
   },
@@ -55,7 +55,7 @@
         "DEBUG": "koa*"
       }
     },
-    "deploy": {
+    "build": {
       "command": "npm run lint && npm run unit && npm run clean && npm run compile",
       "env": {
         "NODE_ENV": "production",
@@ -94,13 +94,13 @@
     "chartist": "^0.9.8",
     "nd-datetime": "^3.0.5",
     "nd-promise": "^3.1.0",
-    "plato-components": "^2.0.0-beta.2",
+    "plato-components": "^2.0.0-beta.3",
     "plato-i18n": "^2.0.0-beta.3",
     "plato-request": "^0.1.0",
-    "plato-styles": "^0.0.0",
+    "plato-styles": "^2.0.0-beta.1",
     "plato-validator": "^2.0.0-beta.1",
-    "vue": "^2.0.0-beta.5",
-    "vue-router": "^2.0.0-beta.4",
+    "vue": "^2.0.0-beta.6",
+    "vue-router": "^2.0.0-rc.1",
     "vuex": "^2.0.0-rc.3",
     "vuex-localstorage": "^0.2.0",
     "vuex-promise": "^2.0.0-rc.1"
@@ -169,7 +169,7 @@
     "url-loader": "^0.5.7",
     "vue-hot-reload-api": "^2.0.5",
     "vue-html-loader": "^1.2.3",
-    "vue-loader": "^9.2.2",
+    "vue-loader": "^9.3.2",
     "vue-style-loader": "^1.0.0",
     "webpack": "^1.13.1",
     "webpack-dev-middleware": "^1.6.1",

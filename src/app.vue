@@ -19,7 +19,9 @@
         <c-route :routes="routes"></c-route>
       </c-navbar>
     </header>
-    <router-view></router-view>
+    <transition name="fade" mode="out-in" appear>
+      <router-view keep-alive></router-view>
+    </transition>
   </div>
 </template>
 
