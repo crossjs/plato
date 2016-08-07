@@ -45,7 +45,7 @@ const mutations = {
   },
 
   [SET_ENV_I18N] (state, { payload, meta }) {
-    if (meta === PROMISE_SUCCESS) {
+    if (meta && meta.promise === PROMISE_SUCCESS) {
       Object.assign(state, {
         i18n: payload
       })

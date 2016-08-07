@@ -57,7 +57,7 @@ const actions = {
 
 const mutations = {
   [GET_REPOSITORY] (state, { payload, meta }) {
-    if (meta === PROMISE_SUCCESS) {
+    if (meta && meta.promise === PROMISE_SUCCESS) {
       state.stars = payload.stargazers_count
       state.forks = payload.forks_count
       persist.set(state)
@@ -65,7 +65,7 @@ const mutations = {
   },
 
   [GET_COMMITS] (state, { payload, meta }) {
-    if (meta === PROMISE_SUCCESS) {
+    if (meta && meta.promise === PROMISE_SUCCESS) {
       state.commits = payload
       persist.set(state)
     }

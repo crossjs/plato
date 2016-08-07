@@ -103,7 +103,7 @@
     "vue-router": "^2.0.0-rc.1",
     "vuex": "^2.0.0-rc.3",
     "vuex-localstorage": "^0.2.0",
-    "vuex-promise": "^2.0.0-rc.1"
+    "vuex-promise": "^2.0.0-rc.3"
   },
   "devDependencies": {
     "babel-core": "^6.11.4",

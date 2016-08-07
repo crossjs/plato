@@ -15,6 +15,8 @@
 
 ## Change Log
 
+- 20160807
+  - use new meta format in actions
 - 20160805
   - add transition
 - 20160730 :warning: *Breaking Changes*
