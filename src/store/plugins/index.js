@@ -4,7 +4,8 @@ import createPromise from 'vuex-promise'
 import {
   PROMISE_PENDING,
   PROMISE_SUCCESS,
-  PROMISE_FAILURE
+  PROMISE_FAILURE,
+  PROMISE_FINALLY
 } from '../constants'
 
 const plugins = [
@@ -13,14 +14,15 @@ const plugins = [
     status: {
       PENDING: PROMISE_PENDING,
       SUCCESS: PROMISE_SUCCESS,
-      FAILURE: PROMISE_FAILURE
+      FAILURE: PROMISE_FAILURE,
+      FINALLY: PROMISE_FINALLY
     },
     silent: false
   }),
   store => {
     // 实现进度条、错误提示
-    store.subscribe(({ meta, payload }) => {
-      switch (meta) {
+    store.subscribe(({ meta = {}, payload }) => {
+      switch (meta.promise) {
         case PROMISE_PENDING:
           store.dispatch('setProgress', 60)
           break
