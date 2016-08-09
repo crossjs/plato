@@ -9,3 +9,9 @@ coverage
 data
 dist
 test/e2e/reports
+
+# IntelliJ project files
+.idea
+*.iml
+out
+gen
