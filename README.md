@@ -4,7 +4,7 @@ Please visit [branch next](https://github.com/crossjs/plato/tree/next) for vue@2
 
 > :heart: a Boilerplate for SPAs use vue, vuex, vue-router
 
-[Online Demo](http://crossjs.com/plato), [Documentation](http://crossjs.com/plato/#!/docs)
+[Online Demo](http://crossjs.com/plato), [Documentation](http://crossjs.com/plato/#/docs)
 
 [![Travis](https://img.shields.io/travis/crossjs/plato.svg?style=flat-square)](https://travis-ci.org/crossjs/plato)
 [![dependencies](https://david-dm.org/crossjs/plato.svg?style=flat-square)](https://david-dm.org/crossjs/plato)
