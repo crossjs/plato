@@ -4,18 +4,9 @@ export default [
     component: resolve => require(['views/home'], resolve)
   },
   {
-    path: '/demo',
-    component: resolve => require(['views/demo'], resolve)
-  },
-  {
-    path: '/docs',
-    title: 'routes.docs',
-    component: resolve => require(['views/docs'], resolve),
-    children: [{
-      path: 'read/:name',
-      name: 'docs/read',
-      component: resolve => require(['views/docs/read'], resolve)
-    }]
+    path: '/new',
+    title: 'routes.new',
+    component: resolve => require(['views/new'], resolve)
   },
   {
     path: '/about',
