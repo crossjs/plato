@@ -8,8 +8,7 @@ export default {
       type: String,
       default: ''
     },
-    value: {
-    },
+    value: {},
     field: {
       type: String,
       default: ''
@@ -31,9 +30,6 @@ export default {
 
   methods: {
     _mutate (e) {
-      if (this.validate && this.$validation && this.$validate) {
-        this.$validate()
-      }
       this.$emit('mutate', e.target.value)
     }
   }

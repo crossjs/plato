@@ -5,9 +5,7 @@
       :field="field"
       :value="value"
       v-bind="attrs"
-      @change="_mutate"
-      @input="_mutate"
-      debounce="500">
+      @input="_mutate">
   </div>
 </template>
 

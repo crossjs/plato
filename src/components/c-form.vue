@@ -1,10 +1,8 @@
 <template>
-  <div :class="['c-form', className]">
-    <form @submit.prevent="submit"
-      autocomplete="off" novalidate>
-      <slot></slot>
-    </form>
-  </div>
+  <form :class="['c-form', className]"
+    autocomplete="off" novalidate>
+    <slot></slot>
+  </form>
 </template>
 
 <script>
@@ -16,7 +14,9 @@ export default {
     },
     submit: {
       type: Function,
-      default: () => true
+      default () {
+        return true
+      }
     }
   }
 }

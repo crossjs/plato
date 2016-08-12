@@ -3,7 +3,8 @@
     <ul class="c-validation-errors"
       v-if="validation.errors">
       <li class="c-validation-error"
-        v-for="error in validation.errors">
+        v-for="error in validation.errors"
+        v-if="!field || field === error.field">
         {{error.message}}
       </li>
     </ul>
@@ -22,6 +23,11 @@ export default {
       default () {
         return {}
       }
+    },
+    // filter errors by field
+    field: {
+      type: String,
+      default: ''
     }
   }
 }

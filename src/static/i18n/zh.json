@@ -1,6 +1,7 @@
 {
   "message": {
-    "plato": "{0}，好的开始是成功的一半！"
+    "plato": "{0}，好的开始是成功的一半！",
+    "required": "请输入{0}"
   },
   "routes": {
     "new": "创建",
@@ -8,12 +9,16 @@
     "login": "登录",
     "logout": "注销"
   },
-  "view": {
+  "views": {
     "home": {
       "language": "语言",
       "demo": "演示",
       "about": "关于",
       "latest_commits": "最新提交"
+    },
+    "new": {
+      "title": "标题",
+      "content": "内容"
     }
   }
 }
