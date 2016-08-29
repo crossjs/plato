@@ -1,4 +1,4 @@
-.c-form-cell {
+.c-field {
   display: flex;
   flex-direction: row;
   padding: 1rem;
@@ -19,38 +19,54 @@
   }
 }
 
-.c-form-cell-icon {
+.c-field-icon {
   flex: none;
   margin-right: 0.3em;
+
+  &:empty {
+    display: none;
+  }
 }
 
-.c-form-cell-label {
+.c-field-label {
   flex: none;
   margin-right: 0.3em;
+
+  &:empty {
+    display: none;
+  }
 }
 
-.c-form-cell-value {
+.c-field-value {
   flex: auto;
   text-align: right;
 }
 
 /* 输入框独占一行 */
 .c-form-expand {
-  & .c-form-cell {
+  & .c-field {
     display: block;
   }
 
-  & .c-form-cell-icon {
+  & .c-field-icon {
     flex: none;
     display: inline-block;
+
+    &:empty {
+      display: none;
+    }
   }
 
-  & .c-form-cell-label {
+  & .c-field-label {
     flex: none;
     display: inline-block;
+
+    &:empty {
+      display: none;
+    }
   }
 
-  & .c-form-cell-value {
+  & .c-field-value {
     flex: none;
     text-align: left;
   }
@@ -74,15 +90,15 @@
 }
 
 html[dir=rtl] {
-  & .c-form-cell-icon {
+  & .c-field-icon {
     margin: 0 0 0 0.3em;
   }
 
-  & .c-form-cell-label {
+  & .c-field-label {
     margin: 0 0 0 0.3em;
   }
 
-  & .c-form-cell-value {
+  & .c-field-value {
     text-align: left;
   }
 }

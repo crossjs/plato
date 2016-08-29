@@ -16,7 +16,7 @@
 export default {
   props: {
     className: {
-      type: String,
+      type: [String, Array],
       default: ''
     },
     size: {

@@ -1,7 +1,7 @@
 <template>
-  <div :class="['c-form-cell', className]">
-    <c-icon class="c-form-cell-icon">{{icon}}</c-icon>
-    <c-label class="c-form-cell-label">{{label}}</c-label>
+  <div :class="['c-field', className]">
+    <c-icon class="c-field-icon"><slot name="icon">{{icon}}</slot></c-icon>
+    <c-label class="c-field-label"><slot name="label">{{label}}</slot></c-label>
     <slot></slot>
   </div>
 </template>
@@ -12,7 +12,7 @@ import CLabel from './c-label'
 export default {
   props: {
     className: {
-      type: String,
+      type: [String, Array],
       default: ''
     },
     icon: {
@@ -32,4 +32,4 @@ export default {
 }
 </script>
 
-<style src="plato-styles/form-cell"></style>
+<style src="plato-styles/field"></style>

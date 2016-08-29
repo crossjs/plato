@@ -35,7 +35,7 @@ import CPickerColumn from './c-picker-column'
 export default {
   props: {
     className: {
-      type: String,
+      type: [String, Array],
       default: ''
     },
     show: {

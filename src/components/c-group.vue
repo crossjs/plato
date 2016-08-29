@@ -16,7 +16,7 @@ import CGroupCell from './c-group-cell'
 export default {
   props: {
     className: {
-      type: String,
+      type: [String, Array],
       default: ''
     },
     title: {

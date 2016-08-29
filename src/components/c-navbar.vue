@@ -25,7 +25,7 @@ import CIcon from './c-icon'
 export default {
   props: {
     className: {
-      type: String,
+      type: [String, Array],
       default: ''
     }
   },

@@ -16,7 +16,7 @@ import CLabel from './c-label'
 export default {
   props: {
     className: {
-      type: String,
+      type: [String, Array],
       default: ''
     },
     model: {

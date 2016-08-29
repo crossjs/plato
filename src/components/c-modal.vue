@@ -31,7 +31,7 @@ import CButton from './c-button'
 export default {
   props: {
     className: {
-      type: String,
+      type: [String, Array],
       default: ''
     },
     show: {

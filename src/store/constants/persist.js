@@ -1,7 +1,3 @@
-export const ENV_KEY = 'ENV_KEY'
-export const COMMIT_KEY = 'COMMIT_KEY'
-export const FAQ_KEY = 'FAQ_KEY'
-
 // one second
 export const ONE_SECOND = 1e3
 

@@ -1,7 +1,7 @@
 export default {
   props: {
     className: {
-      type: String,
+      type: [String, Array],
       default: ''
     },
     align: {
@@ -31,6 +31,14 @@ export default {
   methods: {
     _mutate (e) {
       this.$emit('mutate', e.target.value)
+    }
+  },
+
+  watch: {
+    value () {
+      if (this.validate) {
+        this.$validate()
+      }
     }
   }
 }
