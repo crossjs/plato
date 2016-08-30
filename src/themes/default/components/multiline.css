@@ -1,0 +1,16 @@
+.c-multiline {
+}
+
+.c-multiline-textarea {
+  color: color(black lightness(+40%));
+  text-align: right;
+  outline: none;
+  box-sizing: border-box;
+  background-color: transparent;
+  border: none;
+  width: 100%;
+  height: inherit;
+  resize: none;
+  display: block;
+  text-align: left;
+}

@@ -34,6 +34,22 @@ const config = {
   compiler_hash_type: 'hash',
   compiler_quiet: false,
   compiler_public_path: '',
+  compiler_stats: {
+    colors: true,
+    hash: false,
+    version: false,
+    timings: false,
+    assets: false,
+    chunks: false,
+    modules: false,
+    reasons: true,
+    children: false,
+    source: false,
+    errors: true,
+    errorDetails: true,
+    warnings: true,
+    publicPath: false
+  },
   compiler_vendor: [
     'nd-datetime',
     'nd-promise',

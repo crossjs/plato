@@ -1,0 +1,31 @@
+.c-dropdown {
+  height: 1.5rem;
+
+  &.right {
+    & .c-dropdown-select {
+      direction: rtl;
+    }
+  }
+}
+
+.c-dropdown-select {
+  color: color(black lightness(+40%));
+  text-align: right;
+  outline: none;
+  box-sizing: border-box;
+  border: none;
+  width: 100%;
+  height: inherit;
+
+  appearance: none;
+  border-radius: 0.25rem;
+  margin: 0;
+  padding: 0 1.1rem 0 0.3rem;
+  background: transparent url("./images/down.svg") no-repeat right center;
+}
+
+html[dir=rtl] {
+  & .c-dropdown-select {
+    background-position: left center;
+  }
+}

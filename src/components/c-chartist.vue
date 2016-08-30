@@ -7,7 +7,7 @@ import Chartist from 'chartist'
 export default {
   props: {
     className: {
-      type: String,
+      type: [String, Array],
       default: ''
     },
     ratio: {

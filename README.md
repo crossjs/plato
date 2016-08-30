@@ -2,7 +2,7 @@
 
 > :heart: a Boilerplate for SPAs use vue, vuex, vue-router
 
-[Online Demo](http://crossjs.com/plato), [Documentation](http://crossjs.com/plato/#!/docs)
+**[WIP] Rewrite Components**
 
 [![Travis](https://img.shields.io/travis/crossjs/plato.svg?style=flat-square)](https://travis-ci.org/crossjs/plato)
 [![dependencies](https://david-dm.org/crossjs/plato.svg?style=flat-square)](https://david-dm.org/crossjs/plato)
