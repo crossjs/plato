@@ -1,119 +1,105 @@
 <template>
   <div class="v-login">
-    <c-pane>
-      <c-validation
-        :validation="$validation"></c-validation>
-      <c-form
-        :submit="login"
-        :cells="cells"
-        :items="items"
-        @mutate="mutate">
-        <c-pane dir="vertical" slot="footer">
-          <c-button :className="action.className"
-            :type="action.type"
-            :disabled="action.disabled">{{action.label}}</c-button>
-        </c-pane>
-      </c-form>
-    </c-pane>
+    <c-form @submit.native.prevent="login">
+      <c-field :label="__(username.label)">
+        <c-textfield className="c-field-value"
+          :field="username.field"
+          :validate="username.validate"
+          :value="username.value"
+          @mutate="username.value = arguments[0]"
+          ></c-textfield>
+      </c-field>
+      <c-validation :validation="$validation" field="username"></c-validation>
+      <c-field :label="__(password.label)">
+        <c-password className="c-field-value"
+          :field="password.field"
+          :validate="password.validate"
+          :value="password.value"
+          @mutate="password.value = arguments[0]"
+          ></c-password>
+      </c-field>
+      <c-validation :validation="$validation" field="password"></c-validation>
+      <c-cell>
+        <c-button className="primary" type="submit"
+          :disabled="$validation.errors.length > 0">{{ __('views.login.submit') }}</c-button>
+      </c-cell>
+    </c-form>
   </div>
 </template>
 
 <script>
 import CValidation from 'plato-components/c-validation'
-import CPane from 'plato-components/c-pane'
+import CCell from 'plato-components/c-cell'
 import CForm from 'plato-components/c-form'
+import CField from 'plato-components/c-field'
+import CTextfield from 'plato-components/c-textfield'
+import CPassword from 'plato-components/c-password'
 import CButton from 'plato-components/c-button'
 import { mapGetters, mapActions } from 'vuex'
+
 export default {
   data () {
     return {
-      items: {
-        username: this.$route.query.username || '',
-        password: ''
+      username: {
+        field: 'username',
+        label: 'views.login.username',
+        value: '',
+        validate: {
+          required: {
+            rule: true,
+            message: this.__('message.required', this.__('views.login.username'))
+          },
+          minlength: {
+            rule: 4,
+            message: this.__('message.minlength', this.__('views.login.username'), 4)
+          },
+          maxlength: {
+            rule: 20,
+            message: this.__('message.maxlength', this.__('views.login.username'), 20)
+          },
+          pattern: {
+            rule: '/^[a-z]{4,20}$/',
+            message: this.__('message.pattern', this.__('views.login.username'))
+          }
+        }
+      },
+      password: {
+        field: 'password',
+        label: 'views.login.password',
+        value: '',
+        validate: {
+          required: {
+            message: this.__('message.required', this.__('views.login.password'))
+          },
+          minlength: {
+            rule: 8,
+            message: this.__('message.minlength', this.__('views.login.password'), 8)
+          },
+          maxlength: {
+            rule: 20,
+            message: this.__('message.maxlength', this.__('views.login.password'), 20)
+          },
+          pattern: {
+            rule: '/^[`~!@#$%^&*_+=,.;\'?:"()<>{}\\-\\/\\[\\]\\\\ 0-9a-zA-Z]{8,20}$/',
+            message: this.__('message.pattern', this.__('views.login.password'))
+          }
+        }
       }
     }
   },
 
-  computed: {
-    ...mapGetters(['authorized']),
-    cells () {
-      return {
-        username: {
-          label: '账号',
-          icon: 'user',
-          type: 'textfield',
-          attrs: {
-            placeholder: '只能包含小写英文字母'
-          },
-          validate: {
-            required: {
-              rule: true,
-              message: '请输入账号'
-            },
-            minlength: {
-              rule: 4,
-              message: '账号不能少于 4 个字符'
-            },
-            maxlength: {
-              rule: 20,
-              message: '账号不能多于 20 个字符'
-            },
-            pattern: {
-              rule: '/^[a-z]{4,20}$/',
-              message: '账号不符合规则'
-            }
-          }
-        },
-        password: {
-          label: '密码',
-          icon: 'lock',
-          type: 'password',
-          attrs: {
-            placeholder: '字母、数字或标点符号'
-          },
-          validate: {
-            required: {
-              rule: true,
-              message: '请输入密码'
-            },
-            minlength: {
-              rule: 8,
-              message: '密码不能少于 8 个字符'
-            },
-            maxlength: {
-              rule: 20,
-              message: '密码不能多于 20 个字符'
-            },
-            pattern: {
-              rule: '/^[`~!@#$%^&*_+=,.;\'?:"()<>{}\\-\\/\\[\\]\\\\ 0-9a-zA-Z]{8,20}$/',
-              message: '密码不符合规则'
-            }
-          }
-        }
-      }
-    },
-    action () {
-      return {
-        type: 'submit',
-        className: 'primary',
-        label: this.progress ? '提交登录中...' : '提交登录',
-        disabled: !!this.progress || (this.$validation && this.$validation.invalid)
-      }
-    }
-  },
+  computed: mapGetters(['authorized']),
 
   // methods
   methods: {
     ...mapActions(['setEnv']),
-    mutate ($payload) {
-      this.items = $payload
-    },
     login () {
-      if (!this.items) {
+      if (!this.username.value || !this.password.value) {
         return
       }
       // validate then submit
       this.$validate().then(() => {
+        // mocking login
         this.setEnv({
           authorized: true
         })
@@ -143,8 +129,11 @@ export default {
 
   components: {
     CValidation,
-    CPane,
     CForm,
+    CField,
+    CTextfield,
+    CPassword,
+    CCell,
     CButton
   }
 }

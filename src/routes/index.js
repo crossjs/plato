@@ -4,9 +4,9 @@ export default [
     component: resolve => require(['views/home'], resolve)
   },
   {
-    path: '/new',
-    title: 'routes.new',
-    component: resolve => require(['views/new'], resolve)
+    path: '/create',
+    title: 'routes.create',
+    component: resolve => require(['views/create'], resolve)
   },
   {
     path: '/about',

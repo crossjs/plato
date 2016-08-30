@@ -1,14 +1,12 @@
 <template>
   <div :class="['c-password', className, {'show-password': showPassword}]">
-    <c-icon className="c-password-toggle" @click="_toggle">view</c-icon>
+    <c-icon className="c-password-toggle" @click.native="_toggle">view</c-icon>
     <input class="c-password-input"
       :type="showPassword ? 'text' : 'password'"
       :field="field"
       :value="value"
       v-bind="attrs"
-      @change="_mutate"
-      @input="_mutate"
-      debounce="500">
+      @input="_mutate">
   </div>
 </template>
 

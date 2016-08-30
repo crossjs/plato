@@ -32,7 +32,7 @@ const config = {
   compiler_css_modules: false,
   compiler_devtool: 'source-map',
   compiler_hash_type: 'hash',
-  compiler_quiet: true,
+  compiler_quiet: false,
   compiler_public_path: '',
   compiler_stats: {
     colors: true,
@@ -42,12 +42,12 @@ const config = {
     assets: false,
     chunks: false,
     modules: false,
-    reasons: false,
+    reasons: true,
     children: false,
     source: false,
-    errors: false,
-    errorDetails: false,
-    warnings: false,
+    errors: true,
+    errorDetails: true,
+    warnings: true,
     publicPath: false
   },
   compiler_vendor: [

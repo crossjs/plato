@@ -2,7 +2,7 @@
   <div :class="['c-navbar', className]">
     <transition name="fade">
       <c-mask v-show="opened"
-      @touchend.prevent="opened = false"></c-mask>
+        @touchend.native.prevent="opened = false"></c-mask>
     </transition>
     <button :class="['c-navbar-toggle', {active: opened}]"
       type="button"

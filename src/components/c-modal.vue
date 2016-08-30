@@ -3,7 +3,7 @@
     <div :class="['c-modal', className]"
       v-show="show">
       <c-mask v-if="backdrop"
-        @touchend.native.prevent="$emit('close')"></c-mask>
+        @touchend.native.prevent="_click()"></c-mask>
       <transition name="slide-up">
         <div class="c-modal-content" v-show="show">
           <div class="c-modal-body"><slot></slot></div>

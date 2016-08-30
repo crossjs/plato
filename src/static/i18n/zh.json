@@ -1,24 +1,26 @@
 {
   "message": {
     "plato": "{0}，好的开始是成功的一半！",
-    "required": "请输入{0}"
+    "required": "请输入 {0}",
+    "minlength": "{0} 不能少于 {1} 个字符",
+    "maxlength": "{0} 不能多于 {1} 个字符",
+    "pattern": "{0} 不是合法的"
   },
   "routes": {
-    "new": "创建",
+    "create": "创建",
     "about": "关于",
     "login": "登录",
     "logout": "注销"
   },
   "views": {
     "home": {
-      "language": "语言",
-      "demo": "演示",
-      "about": "关于",
-      "latest_commits": "最新提交"
+      "language": "语言"
     },
-    "new": {
+    "create": {
       "title": "标题",
-      "content": "内容"
+      "content": "内容",
+      "submit": "提交",
+      "confirm": "确认提交？"
     }
   }
 }
