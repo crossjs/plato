@@ -1,5 +1,5 @@
 import store from 'store'
-import Vuex, { mapState, mapMutations, mapGetters, mapActions } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
 describe('store', () => {
   describe('env', () => {
