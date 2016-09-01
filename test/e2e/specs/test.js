@@ -9,7 +9,8 @@ module.exports = {
       .assert.elementPresent('.logo')
       .assert.containsText('a', 'PLATO')
       .assert.containsText('.history', 'back')
-      .assert.elementCount('.router-view', 1)
+      // there is no router-view tag in vue 2
+      .assert.elementCount('.router-view', 0)
       .end()
   }
 }
