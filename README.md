@@ -15,6 +15,8 @@
 
 ## Change Log
 
+- 20160907 :warning: *Breaking Changes*
+  - fix #22 use vuex-actions instead of vuex-promise
 - 20160807
   - use new meta format in actions
 - 20160805

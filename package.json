@@ -21,7 +21,8 @@
     "compile": "better-npm-run compile",
     "build": "better-npm-run build",
     "docs": "bash .tools/bash/docs.sh",
-    "push": "bash .tools/bash/push.sh"
+    "push": "bash .tools/bash/push.sh",
+    "init": "CHROMEDRIVER_CDNURL=http://cdn.npm.taobao.org/dist/chromedriver npm install -r https://registry.npm.taobao.org"
   },
   "betterScripts": {
     "compile": {
@@ -104,8 +105,8 @@
     "vue": "^2.0.0-rc.4",
     "vue-router": "^2.0.0-rc.4",
     "vuex": "^2.0.0-rc.5",
-    "vuex-localstorage": "^0.2.0",
-    "vuex-promise": "^2.0.0-rc.3"
+    "vuex-actions": "^1.1.0",
+    "vuex-localstorage": "^0.2.0"
   },
   "devDependencies": {
     "babel-core": "^6.14.0",
@@ -151,7 +152,7 @@
     "mocha": "^2.5.3",
     "nightwatch": "^0.9.8",
     "nodemon": "^1.10.2",
-    "phantomjs-polyfill": "0.0.2",
+    "phantomjs-polyfill": "^0.0.2",
     "phantomjs-prebuilt": "^2.1.12",
     "postcss-browser-reporter": "^0.5.0",
     "postcss-cssnext": "^2.7.0",

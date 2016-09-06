@@ -14,13 +14,21 @@
   },
   "views": {
     "home": {
-      "language": "لغة"
+      "language": "لغة",
+      "delete": "حذف",
+      "confirm": "تأكيد لحذف؟"
     },
     "create": {
       "title": "عنوان",
       "content": "محتوى",
       "submit": "عرض",
       "confirm": "إرسال؟"
+    },
+    "login": {
+      "username": "حساب",
+      "password": "كلمة المرور",
+      "submit": "عرض",
+      "confirm": "تأكد من تقديم؟"
     }
   }
 }

@@ -14,11 +14,19 @@
   },
   "views": {
     "home": {
-      "language": "语言"
+      "language": "语言",
+      "delete": "删除",
+      "confirm": "确认删除？"
     },
     "create": {
       "title": "标题",
       "content": "内容",
+      "submit": "提交",
+      "confirm": "确认提交？"
+    },
+    "login": {
+      "username": "账号",
+      "password": "密码",
       "submit": "提交",
       "confirm": "确认提交？"
     }

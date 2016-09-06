@@ -1,4 +1,4 @@
-import createPersist from 'vuex-localstorage'
+import createPersist from 'utils/persist'
 import request from 'plato-request'
 
 import {

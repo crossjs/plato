@@ -1,11 +1,10 @@
-import createPersist from 'vuex-localstorage'
+import createPersist from 'utils/persist'
+import { createAction, handleAction, $inject } from 'vuex-actions'
 import db from 'store/db'
+import normalize from 'utils/normalize'
 
 import {
-  ONE_SECOND,
-  PROMISE_PENDING,
-  PROMISE_SUCCESS,
-  PROMISE_FINALLY
+  ONE_SECOND
 } from '../constants'
 
 const FAQ_KEY = 'FAQ_KEY'
@@ -14,6 +13,7 @@ const ADD_ITEM = 'ADD_ITEM'
 const DELETE_ITEM = 'DELETE_ITEM'
 
 const persist = createPersist(FAQ_KEY, {
+  faq_is_fetching: false,
   entities: {},
   meta: {}
 }, {
@@ -24,10 +24,7 @@ const state = persist.get()
 
 const getters = {
   faq_items: state => state.entities,
-  faq_items_pending: ({ meta }) => meta.promise === PROMISE_PENDING && meta.type === GET_ITEMS,
-  faq_items_finally: ({ meta }) => meta.promise === PROMISE_FINALLY && meta.type === GET_ITEMS,
-  faq_create_pending: ({ meta }) => meta.promise === PROMISE_PENDING && meta.type === ADD_ITEM,
-  faq_create_finally: ({ meta }) => meta.promise === PROMISE_FINALLY && meta.type === ADD_ITEM
+  faq_is_fetching: state => state.faq_is_fetching
 }
 
 const DB_CLASS = 'Faq'
@@ -35,71 +32,67 @@ const Faq = db.Object.extend(DB_CLASS)
 const faq = new Faq()
 
 const actions = {
-  getItems ({ commit }) {
-    commit({
-      type: GET_ITEMS,
-      payload: new db.Query(Faq).find(),
-      meta: {
-        type: GET_ITEMS
-      }
-    })
-  },
-
-  addItem ({ commit }, payload) {
-    commit({
-      type: ADD_ITEM,
-      payload: faq.set(payload).save(),
-      meta: {
-        type: ADD_ITEM
-      }
-    })
-  },
-
-  deleteItem ({ commit }, payload) {
-    commit({
-      type: DELETE_ITEM,
-      payload: db.Object.createWithoutData(DB_CLASS, payload).destroy(),
-      // store id for remove
-      meta: {
-        type: DELETE_ITEM,
-        id: payload
-      }
-    })
-  }
+  getItems: createAction(GET_ITEMS, () =>
+    new db.Query(Faq).find()),
+  addItem: createAction(ADD_ITEM, payload =>
+    faq.set(payload).save()),
+  deleteItem: createAction(DELETE_ITEM, payload => ({
+    p1: db.Object.createWithoutData(DB_CLASS, payload).destroy(),
+    p2: $inject(() => payload)('p1')
+  }))
 }
 
 const mutations = {
-  [GET_ITEMS] (state, { payload, meta }) {
-    state.meta = meta
-    if (meta.promise === PROMISE_SUCCESS && payload) {
-      const { entities } = state
-      payload.forEach(item => {
-        entities[item.id] = item.toJSON()
+  [GET_ITEMS]: handleAction({
+    pending (state) {
+      state.faq_is_fetching = true
+    },
+    success (state, mutation) {
+      state.faq_is_fetching = false
+      const { entities } = normalize(mutation, {
+        value (item) {
+          return item.toJSON()
+        }
       })
-      state.entities = { ...entities }
+      state.entities = { ...state.entities, ...entities }
       persist.set(state)
+    },
+    error (state) {
+      state.faq_is_fetching = false
     }
-  },
+  }),
 
-  [ADD_ITEM] (state, { payload, meta }) {
-    state.meta = meta
-    if (meta.promise === PROMISE_SUCCESS && payload) {
+  [ADD_ITEM]: handleAction({
+    pending (state) {
+      state.faq_is_fetching = true
+    },
+    success (state, mutation) {
+      state.faq_is_fetching = false
       const { entities } = state
-      entities[payload.id] = payload.toJSON()
+      entities[mutation.id] = mutation.toJSON()
       state.entities = { ...entities }
       persist.set(state)
+    },
+    error (state) {
+      state.faq_is_fetching = false
     }
-  },
+  }),
 
-  [DELETE_ITEM] (state, { meta }) {
-    state.meta = meta
-    if (meta.promise === PROMISE_SUCCESS) {
+  [DELETE_ITEM]: handleAction({
+    pending (state) {
+      state.faq_is_fetching = true
+    },
+    success (state, mutation) {
+      state.faq_is_fetching = false
       const { entities } = state
-      delete entities[meta.id]
+      delete entities[mutation.p2]
       state.entities = { ...entities }
       persist.set(state)
+    },
+    error (state) {
+      state.faq_is_fetching = false
     }
-  }
+  })
 }
 
 export default {

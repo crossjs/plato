@@ -4,7 +4,7 @@
       :show="show_modal"
       :callback="callback"
       @close="show_modal = false">{{ __('views.create.confirm') }}</c-modal>
-    <c-loading v-show="faq_create_pending"></c-loading>
+    <c-loading v-show="faq_is_fetching"></c-loading>
     <c-form className="c-form-expand"
       @submit.native.prevent="submit">
       <c-field :label="__(title.label)">
@@ -81,7 +81,7 @@ export default {
     }
   },
 
-  computed: mapGetters(['faq_create_pending', 'faq_create_finally']),
+  computed: mapGetters(['faq_is_fetching']),
 
   methods: {
     ...mapActions(['addItem']),
@@ -104,8 +104,8 @@ export default {
   },
 
   watch: {
-    faq_create_finally (val) {
-      if (val) {
+    faq_is_fetching (val) {
+      if (!val) {
         this.$router.push('/')
       }
     }
