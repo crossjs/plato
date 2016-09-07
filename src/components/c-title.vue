@@ -1,11 +1,11 @@
 <template>
-  <div :class="['c-title', className]"><slot></slot></div>
+  <div :class="['c-title', cls]"><slot></slot></div>
 </template>
 
 <script>
 export default {
   props: {
-    className: {
+    cls: {
       type: [String, Array],
       default: ''
     }
@@ -13,4 +13,4 @@ export default {
 }
 </script>
 
-<style src="plato-styles/title"></style>
+<style src="styles/components/title"></style>

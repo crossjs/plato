@@ -1,5 +1,5 @@
 <template>
-  <div :class="['c-image', className]">
+  <div :class="['c-image', cls]">
     <img class="c-image-img"
       :src="src"
       :width="width"
@@ -13,7 +13,7 @@
 <script>
 export default {
   props: {
-    className: {
+    cls: {
       type: [String, Array],
       default: ''
     },
@@ -76,4 +76,4 @@ function getSize (src) {
 }
 </script>
 
-<style src="plato-styles/image"></style>
+<style src="styles/components/image"></style>

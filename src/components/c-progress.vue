@@ -1,12 +1,12 @@
 <template>
-  <div :class="['c-progress', className]"
+  <div :class="['c-progress', cls]"
     :style="{width: '' + progress + '%'}"></div>
 </template>
 
 <script>
 export default {
   props: {
-    className: {
+    cls: {
       type: [String, Array],
       default: ''
     },
@@ -18,4 +18,4 @@ export default {
 }
 </script>
 
-<style src="plato-styles/progress"></style>
+<style src="styles/components/progress"></style>

@@ -1,6 +1,6 @@
 <!-- Inspired by https://facebook.github.io/react-native/docs/picker.html -->
 <template>
-  <div :class="['c-picker', className]">
+  <div :class="['c-picker', cls]">
     <span class="c-picker-input"
       @click="show = !show">{{value.join(extra.sep)}}</span>
     <input type="hidden"
@@ -13,7 +13,7 @@
       v-show="show"
       tabindex="-1"
       transition="fade">
-      <c-mask className="c-picker-popup-mask"
+      <c-mask cls="c-picker-popup-mask"
         @touchend.prevent="show = false"></c-mask>
       <div class="c-picker-popup-body"
         @touchmove.prevent>
@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import mField from './m-field'
+import mField from './mixins/field'
 import CMask from './c-mask'
 import CPickerColumn from './c-picker-column'
 export default {
@@ -81,4 +81,4 @@ export default {
 }
 </script>
 
-<style src="plato-styles/picker"></style>
+<style src="styles/components/picker"></style>

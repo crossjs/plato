@@ -1,5 +1,5 @@
 <template>
-  <div :class="['c-paginator', className]">
+  <div :class="['c-paginator', cls]">
     <template v-if="maxpage > 1">
       <a v-for="page in pages"
         href="javascript:;"
@@ -12,7 +12,7 @@
 <script>
 export default {
   props: {
-    className: {
+    cls: {
       type: [String, Array],
       default: ''
     },
@@ -120,4 +120,4 @@ export default {
 }
 </script>
 
-<style src="plato-styles/paginator"></style>
+<style src="styles/components/paginator"></style>

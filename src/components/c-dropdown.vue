@@ -1,5 +1,5 @@
 <template>
-  <div :class="['c-dropdown', className, align]">
+  <div :class="['c-dropdown', cls, align]">
     <select
       class="c-dropdown-select"
       :field="field"
@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import mField from './m-field'
+import mField from './mixins/field'
 export default {
   mixins: [mField],
 
@@ -26,4 +26,4 @@ export default {
 }
 </script>
 
-<style src="plato-styles/dropdown"></style>
+<style src="styles/components/dropdown"></style>

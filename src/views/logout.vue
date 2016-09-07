@@ -10,8 +10,8 @@
 </template>
 
 <script>
-import CImage from 'plato-components/c-image'
-import CModal from 'plato-components/c-modal'
+import CImage from 'components/c-image'
+import CModal from 'components/c-modal'
 import { mapGetters, mapActions } from 'vuex'
 export default {
   data () {

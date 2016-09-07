@@ -1,5 +1,5 @@
 <template>
-  <div :class="['c-navbar', className]">
+  <div :class="['c-navbar', cls]">
     <transition name="fade">
       <c-mask v-show="opened"
         @touchend.native.prevent="opened = false"></c-mask>
@@ -24,7 +24,7 @@ import CMask from './c-mask'
 import CIcon from './c-icon'
 export default {
   props: {
-    className: {
+    cls: {
       type: [String, Array],
       default: ''
     }
@@ -43,4 +43,4 @@ export default {
 }
 </script>
 
-<style src="plato-styles/navbar"></style>
+<style src="styles/components/navbar"></style>

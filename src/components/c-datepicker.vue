@@ -1,9 +1,9 @@
 <template>
-  <div :class="['c-datepicker', className]"
+  <div :class="['c-datepicker', cls]"
     v-show="show"
     tabindex="-1"
     transition="fade">
-    <c-mask className="c-datepicker-mask"
+    <c-mask cls="c-datepicker-mask"
       @touchend.native.prevent="show = false"></c-mask>
     <div class="c-datepicker-body"
       @touchmove.native.prevent>
@@ -16,7 +16,7 @@
       <div class="c-datepicker-content">
         <template v-for="(column, index) in columns" :key="index">
           <c-picker-column v-if="column.type === 'picker'"
-            :className="column.class"
+            :cls="column.class"
             :size="size"
             :value="column.value"
             :items="column.items"
@@ -34,7 +34,7 @@ import CMask from './c-mask'
 import CPickerColumn from './c-picker-column'
 export default {
   props: {
-    className: {
+    cls: {
       type: [String, Array],
       default: ''
     },
@@ -162,4 +162,4 @@ function makeArrayByRange (start, end) {
 }
 </script>
 
-<style src="plato-styles/datepicker"></style>
+<style src="styles/components/datepicker"></style>

@@ -1,5 +1,5 @@
 <template>
-  <div :class="['c-multiline', className]">
+  <div :class="['c-multiline', cls]">
     <textarea class="c-multiline-textarea"
       :field="field"
       :value="value"
@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import mField from './m-field'
+import mField from './mixins/field'
 
 export default {
   mixins: [mField],
@@ -23,4 +23,4 @@ export default {
 }
 </script>
 
-<style src="plato-styles/multiline"></style>
+<style src="styles/components/multiline"></style>

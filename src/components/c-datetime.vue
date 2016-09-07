@@ -1,5 +1,5 @@
 <template>
-  <div :class="['c-datetime', className]">
+  <div :class="['c-datetime', cls]">
     <span class="c-datetime-input"
       @click="showPicker = !showPicker">{{datetime(value, attrs.format).format()}}</span>
     <input type="hidden"
@@ -16,7 +16,7 @@
 
 <script>
 import datetime from 'nd-datetime'
-import mField from './m-field'
+import mField from './mixins/field'
 import CDatepicker from './c-datepicker'
 export default {
   mixins: [mField],
@@ -37,4 +37,4 @@ export default {
 }
 </script>
 
-<style src="plato-styles/datetime"></style>
+<style src="styles/components/datetime"></style>

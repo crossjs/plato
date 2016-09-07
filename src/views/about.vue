@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import CPane from 'plato-components/c-pane'
+import CPane from 'components/c-pane'
 export default {
   components: {
     CPane

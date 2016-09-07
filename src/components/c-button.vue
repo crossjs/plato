@@ -1,5 +1,5 @@
 <template>
-  <button :class="['c-button', className]"
+  <button :class="['c-button', cls]"
     :type="type"
     v-bind="attrs"><slot></slot></button>
 </template>
@@ -7,8 +7,8 @@
 <script>
 export default {
   props: {
-    className: {
-      type: String,
+    cls: {
+      type: [String, Array],
       default: 'default'
     },
     type: {
@@ -25,4 +25,4 @@ export default {
 }
 </script>
 
-<style src="plato-styles/button"></style>
+<style src="styles/components/button"></style>

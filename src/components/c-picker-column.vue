@@ -1,6 +1,6 @@
 <!-- Inspired by https://facebook.github.io/react-native/docs/picker.html -->
 <template>
-  <div :class="['c-picker-column', className]"
+  <div :class="['c-picker-column', cls]"
     @touchstart.prevent="_dragstart($event)"
     @touchmove.prevent="_drag($event)"
     @touchend.prevent="_dragend($event)">
@@ -15,7 +15,7 @@
 <script>
 export default {
   props: {
-    className: {
+    cls: {
       type: [String, Array],
       default: ''
     },
@@ -108,4 +108,4 @@ export default {
 }
 </script>
 
-<style src="plato-styles/picker"></style>
+<style src="styles/components/picker"></style>

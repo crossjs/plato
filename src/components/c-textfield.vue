@@ -1,5 +1,5 @@
 <template>
-  <div :class="['c-textfield', className]">
+  <div :class="['c-textfield', cls]">
     <input class="c-textfield-input"
       :type="type"
       :field="field"
@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import mField from './m-field'
+import mField from './mixins/field'
 export default {
   mixins: [mField],
 
@@ -23,4 +23,4 @@ export default {
 }
 </script>
 
-<style src="plato-styles/textfield"></style>
+<style src="styles/components/textfield"></style>

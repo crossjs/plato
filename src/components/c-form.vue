@@ -1,5 +1,5 @@
 <template>
-  <form :class="['c-form', className]"
+  <form :class="['c-form', cls]"
     autocomplete="off" novalidate>
     <slot></slot>
   </form>
@@ -8,7 +8,7 @@
 <script>
 export default {
   props: {
-    className: {
+    cls: {
       type: [String, Array],
       default: ''
     },
@@ -22,4 +22,4 @@ export default {
 }
 </script>
 
-<style src="plato-styles/form"></style>
+<style src="styles/components/form"></style>

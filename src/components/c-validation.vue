@@ -1,5 +1,5 @@
 <template>
-  <div :class="['c-validation', className]">
+  <div :class="['c-validation', cls]">
     <ul class="c-validation-errors"
       v-if="validation.errors">
       <li class="c-validation-error"
@@ -14,7 +14,7 @@
 <script>
 export default {
   props: {
-    className: {
+    cls: {
       type: [String, Array],
       default: ''
     },
@@ -33,4 +33,4 @@ export default {
 }
 </script>
 
-<style src="plato-styles/validation"></style>
+<style src="styles/components/validation"></style>

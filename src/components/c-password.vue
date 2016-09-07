@@ -1,6 +1,6 @@
 <template>
-  <div :class="['c-password', className, {'show-password': showPassword}]">
-    <c-icon className="c-password-toggle" @click.native="_toggle">view</c-icon>
+  <div :class="['c-password', cls, {'show-password': showPassword}]">
+    <c-icon cls="c-password-toggle" @click.native="_toggle">view</c-icon>
     <input class="c-password-input"
       :type="showPassword ? 'text' : 'password'"
       :field="field"
@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import mField from './m-field'
+import mField from './mixins/field'
 import CIcon from './c-icon'
 export default {
   mixins: [mField],
@@ -34,4 +34,4 @@ export default {
 }
 </script>
 
-<style src="plato-styles/password"></style>
+<style src="styles/components/password"></style>

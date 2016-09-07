@@ -11,7 +11,7 @@
         </router-link>
       </div>
       <div class="history">
-        <c-button className="none" @click.native="_back">
+        <c-button cls="none" @click.native="_back">
           <c-icon value="back"></c-icon>
         </c-button>
       </div>
@@ -26,11 +26,11 @@
 </template>
 
 <script>
-import CProgress from 'plato-components/c-progress'
-import CToast from 'plato-components/c-toast'
-import CButton from 'plato-components/c-button'
-import CIcon from 'plato-components/c-icon'
-import CNavbar from 'plato-components/c-navbar'
+import CProgress from 'components/c-progress'
+import CToast from 'components/c-toast'
+import CButton from 'components/c-button'
+import CIcon from 'components/c-icon'
+import CNavbar from 'components/c-navbar'
 import CRoute from 'components/c-route'
 import { mapGetters, mapActions } from 'vuex'
 import routes from 'routes'

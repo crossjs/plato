@@ -21,9 +21,6 @@ const webpackConfig = {
     root: paths.src(),
     extensions: ['', '.css', '.js', '.json', '.vue'],
     alias: {
-      'plato-components': paths.src('components'),
-      // comment out for customizing styles
-      'plato-styles': paths.src('themes/default/components'),
       styles: paths.src('themes/default')
     },
     modulesDirectories: ['node_modules']

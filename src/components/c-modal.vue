@@ -1,18 +1,18 @@
 <template>
   <transition name="fade">
-    <div :class="['c-modal', className]"
+    <div :class="['c-modal', cls]"
       v-show="show">
       <c-mask v-if="backdrop"
-        @touchend.native.prevent="_click()"></c-mask>
+        @touchend.native.prevent="callback()"></c-mask>
       <transition name="slide-up">
         <div class="c-modal-content" v-show="show">
           <div class="c-modal-body"><slot></slot></div>
-          <c-pane className="c-modal-footer" v-if="_actions">
+          <c-pane cls="c-modal-footer" v-if="_actions">
             <c-cell direction="row">
               <c-flex v-for="(action, key) in _actions">
-                <c-button :className="action.className"
+                <c-button :cls="action.cls"
                   :type="action.type"
-                  @click.native="_click(key)">{{action.label}}</c-button>
+                  @click.native="callback(key)">{{action.label}}</c-button>
               </c-flex>
             </c-cell>
           </c-pane>
@@ -30,7 +30,7 @@ import CFlex from './c-flex'
 import CButton from './c-button'
 export default {
   props: {
-    className: {
+    cls: {
       type: [String, Array],
       default: ''
     },
@@ -48,12 +48,12 @@ export default {
         return {
           submit: {
             label: '确定',
-            className: 'warning',
+            cls: 'warning',
             type: 'submit'
           },
           cancel: {
             label: '取消',
-            className: 'default',
+            cls: 'default',
             type: 'button'
           }
         }
@@ -61,7 +61,7 @@ export default {
     },
     callback: {
       type: Function,
-      default: () => Promise.resolve(true)
+      default () {}
     }
   },
 
@@ -74,13 +74,6 @@ export default {
     }
   },
 
-  methods: {
-    _click (key) {
-      promisify(this.callback(key))
-        .then(() => { this.$emit('close') }, () => { /* this.$emit('hold') */ })
-    }
-  },
-
   components: {
     CMask,
     CPane,
@@ -89,18 +82,6 @@ export default {
     CButton
   }
 }
-
-function promisify (val) {
-  if (!val) {
-    return val === false ? Promise.reject(val) : Promise.resolve(val)
-  }
-
-  if (typeof val.then === 'function') {
-    return val
-  }
-
-  return Promise.resolve(val)
-}
 </script>
 
-<style src="plato-styles/modal"></style>
+<style src="styles/components/modal"></style>

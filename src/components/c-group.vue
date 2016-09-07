@@ -1,6 +1,6 @@
 <template>
-  <div :class="['c-group', className]">
-    <c-title className="c-group-title"
+  <div :class="['c-group', cls]">
+    <c-title cls="c-group-title"
       v-if="title">{{title}}</c-title>
     <div class="c-group-cells"
       v-if="cells">
@@ -15,7 +15,7 @@ import CTitle from './c-title'
 import CGroupCell from './c-group-cell'
 export default {
   props: {
-    className: {
+    cls: {
       type: [String, Array],
       default: ''
     },
@@ -38,4 +38,4 @@ export default {
 }
 </script>
 
-<style src="plato-styles/group"></style>
+<style src="styles/components/group"></style>

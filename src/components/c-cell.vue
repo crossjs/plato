@@ -1,11 +1,11 @@
 <template>
-  <div :class="['c-cell', className, direction]"><slot></slot></div>
+  <div :class="['c-cell', cls, direction]"><slot></slot></div>
 </template>
 
 <script>
 export default {
   props: {
-    className: {
+    cls: {
       type: [String, Array],
       default: ''
     },
@@ -17,4 +17,4 @@ export default {
 }
 </script>
 
-<style src="plato-styles/cell"></style>
+<style src="styles/components/cell"></style>

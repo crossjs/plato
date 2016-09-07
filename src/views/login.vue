@@ -2,7 +2,7 @@
   <div class="v-login">
     <c-form @submit.native.prevent="login">
       <c-field :label="__(username.label)">
-        <c-textfield className="c-field-value"
+        <c-textfield cls="c-field-value"
           :field="username.field"
           :validate="username.validate"
           :value="username.value"
@@ -11,7 +11,7 @@
       </c-field>
       <c-validation :validation="$validation" field="username"></c-validation>
       <c-field :label="__(password.label)">
-        <c-password className="c-field-value"
+        <c-password cls="c-field-value"
           :field="password.field"
           :validate="password.validate"
           :value="password.value"
@@ -20,7 +20,7 @@
       </c-field>
       <c-validation :validation="$validation" field="password"></c-validation>
       <c-cell>
-        <c-button className="primary" type="submit"
+        <c-button cls="primary" type="submit"
           :disabled="$validation.errors.length > 0">{{ __('views.login.submit') }}</c-button>
       </c-cell>
     </c-form>
@@ -28,13 +28,13 @@
 </template>
 
 <script>
-import CValidation from 'plato-components/c-validation'
-import CCell from 'plato-components/c-cell'
-import CForm from 'plato-components/c-form'
-import CField from 'plato-components/c-field'
-import CTextfield from 'plato-components/c-textfield'
-import CPassword from 'plato-components/c-password'
-import CButton from 'plato-components/c-button'
+import CValidation from 'components/c-validation'
+import CCell from 'components/c-cell'
+import CForm from 'components/c-form'
+import CField from 'components/c-field'
+import CTextfield from 'components/c-textfield'
+import CPassword from 'components/c-password'
+import CButton from 'components/c-button'
 import { mapGetters, mapActions } from 'vuex'
 
 export default {

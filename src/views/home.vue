@@ -14,10 +14,10 @@
 </template>
 
 <script>
-import CModal from 'plato-components/c-modal'
-import CLoading from 'plato-components/c-loading'
-import CCell from 'plato-components/c-cell'
-import CButton from 'plato-components/c-button'
+import CModal from 'components/c-modal'
+import CLoading from 'components/c-loading'
+import CCell from 'components/c-cell'
+import CButton from 'components/c-button'
 import { mapGetters, mapActions } from 'vuex'
 
 export default {

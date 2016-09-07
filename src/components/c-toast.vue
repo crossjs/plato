@@ -1,6 +1,6 @@
 <template>
   <transition :name="transition">
-    <div :class="['c-toast', className]"
+    <div :class="['c-toast', cls]"
       v-show="toasts.length">
       <transition-group tag="div" :name="transition">
         <div class="toast"
@@ -17,7 +17,7 @@
 <script>
 export default {
   props: {
-    className: {
+    cls: {
       type: [String, Array],
       default: ''
     },
@@ -35,4 +35,4 @@ export default {
 }
 </script>
 
-<style src="plato-styles/toast"></style>
+<style src="styles/components/toast"></style>

@@ -1,11 +1,11 @@
 <template>
-  <div :class="['c-loading', className]"><div :class="['c-loading-' + theme]"></div><slot></slot></div>
+  <div :class="['c-loading', cls]"><div :class="['c-loading-' + theme]"></div><slot></slot></div>
 </template>
 
 <script>
 export default {
   props: {
-    className: {
+    cls: {
       type: [String, Array],
       default: ''
     },
@@ -17,4 +17,4 @@ export default {
 }
 </script>
 
-<style src="plato-styles/loading"></style>
+<style src="styles/components/loading"></style>

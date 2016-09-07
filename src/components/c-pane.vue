@@ -1,11 +1,11 @@
 <template>
-  <div :class="['c-pane', className, dir]"><slot></slot></div>
+  <div :class="['c-pane', cls, dir]"><slot></slot></div>
 </template>
 
 <script>
 export default {
   props: {
-    className: {
+    cls: {
       type: [String, Array],
       default: ''
     },
@@ -17,4 +17,4 @@ export default {
 }
 </script>
 
-<style src="plato-styles/pane"></style>
+<style src="styles/components/pane"></style>

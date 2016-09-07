@@ -5,10 +5,10 @@
       :callback="callback"
       @close="show_modal = false">{{ __('views.create.confirm') }}</c-modal>
     <c-loading v-show="faq_is_fetching"></c-loading>
-    <c-form className="c-form-expand"
+    <c-form cls="c-form-expand"
       @submit.native.prevent="submit">
       <c-field :label="__(title.label)">
-        <c-textfield className="c-field-value"
+        <c-textfield cls="c-field-value"
           :field="title.field"
           :validate="title.validate"
           :value="title.value"
@@ -17,7 +17,7 @@
           <c-validation :validation="$validation" field="title"></c-validation>
       </c-field>
       <c-field :label="__(content.label)">
-        <c-multiline className="c-field-value"
+        <c-multiline cls="c-field-value"
           rows="10"
           :field="content.field"
           :validate="content.validate"
@@ -27,7 +27,7 @@
           <c-validation :validation="$validation" field="content"></c-validation>
       </c-field>
       <c-cell>
-        <c-button className="primary" type="submit"
+        <c-button cls="primary" type="submit"
           :disabled="$validation.errors.length > 0">{{ __('views.create.submit') }}</c-button>
       </c-cell>
     </c-form>
@@ -35,15 +35,15 @@
 </template>
 
 <script>
-import CModal from 'plato-components/c-modal'
-import CValidation from 'plato-components/c-validation'
-import CCell from 'plato-components/c-cell'
-import CForm from 'plato-components/c-form'
-import CField from 'plato-components/c-field'
-import CTextfield from 'plato-components/c-textfield'
-import CMultiline from 'plato-components/c-multiline'
-import CLoading from 'plato-components/c-loading'
-import CButton from 'plato-components/c-button'
+import CModal from 'components/c-modal'
+import CValidation from 'components/c-validation'
+import CCell from 'components/c-cell'
+import CForm from 'components/c-form'
+import CField from 'components/c-field'
+import CTextfield from 'components/c-textfield'
+import CMultiline from 'components/c-multiline'
+import CLoading from 'components/c-loading'
+import CButton from 'components/c-button'
 import { mapGetters, mapActions } from 'vuex'
 
 export default {

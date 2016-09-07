@@ -1,11 +1,11 @@
 <template>
-  <div :class="['c-flex', className, align]"><slot></slot></div>
+  <div :class="['c-flex', cls, align]"><slot></slot></div>
 </template>
 
 <script>
 export default {
   props: {
-    className: {
+    cls: {
       type: [String, Array],
       default: ''
     },
@@ -17,4 +17,4 @@ export default {
 }
 </script>
 
-<style src="plato-styles/flex"></style>
+<style src="styles/components/flex"></style>

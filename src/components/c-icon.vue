@@ -1,5 +1,5 @@
 <template>
-  <div :class="['c-icon', className]"><slot>{{value}}</slot></div>
+  <div :class="['c-icon', cls]"><slot>{{value}}</slot></div>
 </template>
 
 <script>
@@ -17,7 +17,7 @@
  */
 export default {
   props: {
-    className: {
+    cls: {
       type: [String, Array],
       default: ''
     },
@@ -28,4 +28,4 @@ export default {
 }
 </script>
 
-<style src="plato-styles/icon"></style>
+<style src="styles/components/icon"></style>
