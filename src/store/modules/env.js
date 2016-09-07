@@ -1,16 +1,16 @@
-import createPersist from 'utils/persist'
+import createPersist from 'vuex-localstorage'
+import { createAction, handleAction } from 'vuex-actions'
 import request from 'plato-request'
 
 import {
-  ONE_WEEK,
-  PROMISE_SUCCESS
+  ONE_WEEK
 } from '../constants'
 
 const ENV_KEY = 'ENV_KEY'
 const SET_ENV = 'SET_ENV'
-const SET_ENV_I18N = 'SET_ENV_I18N'
 
 const persist = createPersist(ENV_KEY, {
+  env_is_fetching: false,
   lang: navigator.language.split('-')[0],
   i18n: null,
   authorized: false
@@ -27,31 +27,21 @@ const getters = {
 }
 
 const actions = {
-  setEnv ({ commit }, payload) {
-    commit(SET_ENV, payload)
-
+  setEnv: createAction(SET_ENV, payload => {
     if (payload.lang) {
-      commit(SET_ENV_I18N, request({
+      return request({
         url: `./i18n/${payload.lang}.json`
-      }))
+      }).then(i18n => ({ ...payload, i18n }))
     }
-  }
+    return Promise.resolve(payload)
+  })
 }
 
 const mutations = {
-  [SET_ENV] (state, payload) {
-    Object.assign(state, payload)
+  [SET_ENV]: handleAction((state, mutation) => {
+    Object.assign(state, mutation)
     persist.set(state)
-  },
-
-  [SET_ENV_I18N] (state, { payload, meta }) {
-    if (meta && meta.promise === PROMISE_SUCCESS) {
-      Object.assign(state, {
-        i18n: payload
-      })
-      persist.set(state)
-    }
-  }
+  })
 }
 
 export default {

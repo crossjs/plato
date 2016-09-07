@@ -1,3 +1,4 @@
+import Vue from 'vue'
 import store from 'store'
 import { mapGetters, mapActions } from 'vuex'
 
@@ -30,20 +31,27 @@ describe('store', () => {
       expect(vm.authorized).to.equal(false)
     })
 
-    it('should map actions', () => {
+    it('should map actions', done => {
       vm = new Vue({
         el,
         store,
         template: '<div></div>',
         computed: mapGetters(['authorized']),
-        methods: mapActions(['setEnv'])
+        methods: mapActions(['setEnv']),
+        watch: {
+          authorized (val) {
+            if (val) {
+              done()
+            }
+          }
+        }
       })
 
       expect(vm.authorized).to.equal(false)
+      // async
       vm.setEnv({
         authorized: true
       })
-      expect(vm.authorized).to.equal(true)
     })
   })
 })

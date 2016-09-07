@@ -4,12 +4,14 @@ import webpackConfig from '../../.tools/webpack'
 const debug = require('debug')('app:karma')
 debug('Create configuration.')
 
+const alias = { ...webpackConfig.resolve.alias, vue: 'vue/dist/vue' }
+
 const karmaConfig = {
   basePath: '../../', // project root in relation to bin/karma.js
   files: [
     './node_modules/phantomjs-polyfill/bind-polyfill.js',
     './node_modules/sinon/pkg/sinon.js',
-    './node_modules/vue/dist/vue.js',
+    // './node_modules/vue/dist/vue.js',
     {
       pattern: `./${config.dir_test}/unit/index.js`,
       watched: false,
@@ -32,7 +34,7 @@ const karmaConfig = {
   browsers: ['PhantomJS'],
   webpack: {
     devtool: webpackConfig.devtool,
-    resolve: webpackConfig.resolve,
+    resolve: { ...webpackConfig.resolve, alias },
     plugins: webpackConfig.plugins,
     module: {
       loaders: webpackConfig.module.loaders

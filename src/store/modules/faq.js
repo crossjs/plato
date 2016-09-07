@@ -1,4 +1,4 @@
-import createPersist from 'utils/persist'
+import createPersist from 'vuex-localstorage'
 import { createAction, handleAction, $inject } from 'vuex-actions'
 import db from 'store/db'
 import normalize from 'utils/normalize'

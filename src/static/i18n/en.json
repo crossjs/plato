@@ -15,13 +15,14 @@
   "views": {
     "home": {
       "language": "Language",
-      "delete": "删除",
-      "confirm": "确认删除？"
+      "delete": "Delete",
+      "confirm": "Delete?"
     },
     "create": {
       "title": "Title",
       "content": "Content",
-      "submit": "Submit"
+      "submit": "Submit",
+      "confirm": "Submit?"
     },
     "login": {
       "username": "Username",

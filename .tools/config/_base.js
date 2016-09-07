@@ -59,7 +59,7 @@ const config = {
     'vue',
     'vue-router',
     'vuex',
-    'vuex-localstorage',
+    'vuex-actions',
     'vuex-promise'
   ]
 }

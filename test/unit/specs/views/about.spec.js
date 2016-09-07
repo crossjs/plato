@@ -1,3 +1,4 @@
+import Vue from 'vue'
 import VAbout from 'views/about.vue'
 
 describe('about.vue', () => {

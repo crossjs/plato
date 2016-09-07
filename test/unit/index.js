@@ -5,6 +5,8 @@ import chai from 'chai'
 import sinonChai from 'sinon-chai'
 import { triggerHTMLEvents, triggerMouseEvents } from './utils'
 
+localStorage.clear()
+
 chai.use(sinonChai)
 
 global.chai = chai
