@@ -1,4 +1,4 @@
-# PLATO <sub>for vue 2.0.0-rc.4</sub> :construction: [![Gitter](https://badges.gitter.im/crossjs/plato.svg)](https://gitter.im/crossjs/plato?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+# PLATO <sub>for vue 2.0.0-rc.5</sub> :construction: [![Gitter](https://badges.gitter.im/crossjs/plato.svg)](https://gitter.im/crossjs/plato?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 > :heart: a Boilerplate for SPAs use vue, vuex, vue-router
 
@@ -77,7 +77,7 @@
 
 ## Troubleshooting
 
-- Nodemon has error with node@6.x, so please use node@5.12.0
+- Nodemon has error with node 6.x, so please use node 5.12.0
 
 ## Usage
 
@@ -109,7 +109,7 @@ npm test
 
 ## Backend
 
-使用 koa@2 实现开发调试服务
+使用 koa 2 实现开发调试服务
 
 若要寻找“完整”的后端，请访问分支 [backend](https://github.com/crossjs/plato/tree/backend)
 

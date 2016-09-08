@@ -7,7 +7,7 @@
     <header class="header">
       <div class="logo">
         <router-link class="c-route-link" to="/">
-          PLATO <sub>based on vue@2</sub>
+          PLATO <sub>based on vue 2.x</sub>
         </router-link>
       </div>
       <div class="history">
