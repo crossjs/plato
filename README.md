@@ -11,7 +11,7 @@
 - :white_check_mark: Plugins like vuex, i18n, validator and ajax are almost ready, could be used in production amusedly.
 - :negative_squared_cross_mark: UI components are NOT stable, could be changed anytime.
 
-[![mindmap](https://cdn.rawgit.com/crossjs/plato/master/src/assets/PLATO.svg)](src/assets/PLATO.svg)
+[![mindmap](https://cdn.rawgit.com/crossjs/plato/next/src/assets/PLATO.svg)](src/assets/PLATO.svg)
 
 ## Change Log
 
