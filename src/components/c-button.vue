@@ -1,5 +1,5 @@
 <template>
-  <button :class="['c-button', cls]"
+  <button :class="['c-button', cls, size]"
     :type="type"
     v-bind="attrs"><slot></slot></button>
 </template>
@@ -14,6 +14,13 @@ export default {
     type: {
       type: String,
       default: 'button'
+    },
+    size: {
+      type: String,
+      default: '',
+      validator (value) {
+        return !value || /^x(large|small)$/.test(value)
+      }
     },
     attrs: {
       type: Object,

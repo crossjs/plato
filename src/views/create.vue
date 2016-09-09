@@ -7,16 +7,18 @@
     <c-loading v-show="faq_is_fetching"></c-loading>
     <c-form cls="c-form-expand"
       @submit.native.prevent="submit">
-      <c-field :label="__(title.label)">
+      <c-field>
+        <c-label cls="c-field-col c-field-label">{{__(title.label)}}</c-label>
         <c-textfield cls="c-field-value"
           :field="title.field"
           :validate="title.validate"
           :value="title.value"
           @mutate="title.value = arguments[0]"
           ></c-textfield>
-          <c-validation :validation="$validation" field="title"></c-validation>
       </c-field>
-      <c-field :label="__(content.label)">
+      <c-validation :validation="$validation" field="title"></c-validation>
+      <c-field>
+        <c-label cls="c-field-col c-field-label">{{__(content.label)}}</c-label>
         <c-multiline cls="c-field-value"
           rows="10"
           :field="content.field"
@@ -24,12 +26,12 @@
           :value="content.value"
           @mutate="content.value = arguments[0]"
           ></c-multiline>
-          <c-validation :validation="$validation" field="content"></c-validation>
       </c-field>
-      <c-cell>
+      <c-validation :validation="$validation" field="content"></c-validation>
+      <c-pane>
         <c-button cls="primary" type="submit"
           :disabled="$validation.errors.length > 0">{{ __('views.create.submit') }}</c-button>
-      </c-cell>
+      </c-pane>
     </c-form>
   </div>
 </template>
@@ -37,9 +39,11 @@
 <script>
 import CModal from 'components/c-modal'
 import CValidation from 'components/c-validation'
-import CCell from 'components/c-cell'
+import CPane from 'components/c-pane'
 import CForm from 'components/c-form'
 import CField from 'components/c-field'
+// import CIcon from 'components/c-icon'
+import CLabel from 'components/c-label'
 import CTextfield from 'components/c-textfield'
 import CMultiline from 'components/c-multiline'
 import CLoading from 'components/c-loading'
@@ -120,10 +124,12 @@ export default {
     CValidation,
     CForm,
     CField,
+    // CIcon,
+    CLabel,
     CTextfield,
     CMultiline,
     CLoading,
-    CCell,
+    CPane,
     CButton
   }
 }

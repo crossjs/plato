@@ -1,14 +1,10 @@
 <template>
-  <div :class="['c-validation', cls]">
-    <ul class="c-validation-errors"
-      v-if="validation.errors">
-      <li class="c-validation-error"
-        v-for="error in validation.errors"
-        v-if="!field || field === error.field">
-        {{error.message}}
-      </li>
-    </ul>
-  </div>
+  <ul :class="['c-validation', cls]"
+    v-if="errors.length">
+    <li v-for="error in errors">
+      {{error.message}}
+    </li>
+  </ul>
 </template>
 
 <script>
@@ -28,6 +24,12 @@ export default {
     field: {
       type: String,
       default: ''
+    }
+  },
+
+  computed: {
+    errors () {
+      return this.validation.errors.filter(error => !this.field || this.field === error.field)
     }
   }
 }

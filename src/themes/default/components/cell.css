@@ -1,6 +1,8 @@
 .c-cell {
   padding: 1rem;
-  border-top: 1px solid color(white lightness(-10%));
+  /* preventing horizontal scrollbar */
+  position: relative;
+  overflow: hidden;
 
   &.row {
     padding: 0.5rem;
@@ -14,14 +16,37 @@
     flex-direction: column;
   }
 
-  &:first-child {
-    border-top: none;
-    border-radius: inherit;
+  &:before {
+    content: ' ';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    margin-top: -1rem;
+    border-top: 1px solid color(white lightness(-20%));
+    transform-origin: 0 0;
+    transform: scaleY(.5);
+  }
+
+  &:after {
+    content: ' ';
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    border-top: 1px solid color(white lightness(-20%));
+    transform-origin: 0 0;
+    transform: scaleY(.5);
+  }
+
+  & ~ .c-field {
+    &:before {
+      content: none;
+    }
   }
 
   &:last-child {
-    border-bottom-left-radius: inherit;
-    border-bottom-right-radius: inherit;
+    &:after {
+      left: 0;
+    }
   }
 
   &:active {

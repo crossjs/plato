@@ -1,7 +1,8 @@
 <template>
   <div class="v-login">
     <c-form @submit.native.prevent="login">
-      <c-field :label="__(username.label)">
+      <c-field>
+        <c-label cls="c-field-col c-field-label">{{__(username.label)}}</c-label>
         <c-textfield cls="c-field-value"
           :field="username.field"
           :validate="username.validate"
@@ -10,7 +11,8 @@
           ></c-textfield>
       </c-field>
       <c-validation :validation="$validation" field="username"></c-validation>
-      <c-field :label="__(password.label)">
+      <c-field>
+        <c-label cls="c-field-col c-field-label">{{__(password.label)}}</c-label>
         <c-password cls="c-field-value"
           :field="password.field"
           :validate="password.validate"
@@ -19,19 +21,21 @@
           ></c-password>
       </c-field>
       <c-validation :validation="$validation" field="password"></c-validation>
-      <c-cell>
+      <c-pane>
         <c-button cls="primary" type="submit"
           :disabled="$validation.errors.length > 0">{{ __('views.login.submit') }}</c-button>
-      </c-cell>
+      </c-pane>
     </c-form>
   </div>
 </template>
 
 <script>
 import CValidation from 'components/c-validation'
-import CCell from 'components/c-cell'
+import CPane from 'components/c-pane'
 import CForm from 'components/c-form'
 import CField from 'components/c-field'
+// import CIcon from 'components/c-icon'
+import CLabel from 'components/c-label'
 import CTextfield from 'components/c-textfield'
 import CPassword from 'components/c-password'
 import CButton from 'components/c-button'
@@ -131,9 +135,11 @@ export default {
     CValidation,
     CForm,
     CField,
+    // CIcon,
+    CLabel,
     CTextfield,
     CPassword,
-    CCell,
+    CPane,
     CButton
   }
 }

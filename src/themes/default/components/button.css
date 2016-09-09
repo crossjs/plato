@@ -10,7 +10,7 @@
     background-color: color(white lightness(80%));
   }
 
-  &.x-large {
+  &.xlarge {
     line-height: 4.2;
   }
 
@@ -22,7 +22,7 @@
     line-height: 2.4;
   }
 
-  &.x-small {
+  &.xsmall {
     line-height: 1.8;
   }
 
