@@ -1,6 +1,5 @@
 <template>
-  <form :class="['c-form', cls]"
-    autocomplete="off" novalidate><slot></slot></form>
+  <div :class="['c-row', cls]"><slot></slot></div>
 </template>
 
 <script>
@@ -14,4 +13,4 @@ export default {
 }
 </script>
 
-<style src="styles/components/form"></style>
+<style src="styles/components/row"></style>

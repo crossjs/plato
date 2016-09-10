@@ -8,7 +8,10 @@ export default {
       type: String,
       default: ''
     },
-    value: null,
+    value: {
+      type: String,
+      default: ''
+    },
     field: {
       type: String,
       default: ''

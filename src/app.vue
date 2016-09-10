@@ -15,7 +15,7 @@
           <c-icon value="back"></c-icon>
         </c-button>
       </div>
-      <c-navbar class="navbar">
+      <c-navbar cls="navbar">
         <c-route :routes="routes"></c-route>
       </c-navbar>
     </header>
@@ -40,7 +40,7 @@ export default {
     ...mapGetters(['authorized', 'lang', 'i18n', 'progress', 'toasts']),
     routes () {
       return walkRoutes.call(this, routes, route => {
-        return route.path !== '/' && route.auth !== !this.authorized
+        return !route.hidden && route.path !== '/' && route.auth !== !this.authorized
       })
     }
   },

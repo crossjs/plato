@@ -19,7 +19,7 @@ export default {
       type: String,
       default: '',
       validator (value) {
-        return !value || /^x(large|small)$/.test(value)
+        return !value || /^x?(large|small)$/.test(value)
       }
     },
     attrs: {

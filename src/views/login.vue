@@ -1,25 +1,25 @@
 <template>
   <div class="v-login">
     <c-form @submit.native.prevent="login">
-      <c-field>
-        <c-label cls="c-field-col c-field-label">{{__(username.label)}}</c-label>
-        <c-textfield cls="c-field-value"
+      <c-row>
+        <c-label cls="col c-row-label">{{__(username.label)}}</c-label>
+        <c-textfield cls="c-row-value"
           :field="username.field"
           :validate="username.validate"
           :value="username.value"
           @mutate="username.value = arguments[0]"
           ></c-textfield>
-      </c-field>
+      </c-row>
       <c-validation :validation="$validation" field="username"></c-validation>
-      <c-field>
-        <c-label cls="c-field-col c-field-label">{{__(password.label)}}</c-label>
-        <c-password cls="c-field-value"
+      <c-row>
+        <c-label cls="col c-row-label">{{__(password.label)}}</c-label>
+        <c-password cls="c-row-value"
           :field="password.field"
           :validate="password.validate"
           :value="password.value"
           @mutate="password.value = arguments[0]"
           ></c-password>
-      </c-field>
+      </c-row>
       <c-validation :validation="$validation" field="password"></c-validation>
       <c-pane>
         <c-button cls="primary" type="submit"
@@ -33,7 +33,7 @@
 import CValidation from 'components/c-validation'
 import CPane from 'components/c-pane'
 import CForm from 'components/c-form'
-import CField from 'components/c-field'
+import CRow from 'components/c-row'
 // import CIcon from 'components/c-icon'
 import CLabel from 'components/c-label'
 import CTextfield from 'components/c-textfield'
@@ -134,7 +134,7 @@ export default {
   components: {
     CValidation,
     CForm,
-    CField,
+    CRow,
     // CIcon,
     CLabel,
     CTextfield,

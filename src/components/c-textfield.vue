@@ -1,23 +1,28 @@
 <template>
-  <div :class="['c-textfield', cls]">
-    <input class="c-textfield-input"
+  <label :class="['c-textfield', cls]">
+    <input
       :type="type"
       :field="field"
       :value="value"
       v-bind="attrs"
       @input="_mutate">
-  </div>
+  </label>
 </template>
 
 <script>
 import mField from './mixins/field'
+
 export default {
   mixins: [mField],
 
   props: {
     type: {
       type: String,
-      default: 'text'
+      default: 'text',
+      validator (val) {
+        // time month date datetime-local week
+        return /^(text|password|search|email|tel|url|number)$/.test(val)
+      }
     }
   }
 }

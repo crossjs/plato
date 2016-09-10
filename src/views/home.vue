@@ -5,18 +5,18 @@
       :callback="callback"
       @close="show_modal = false">{{ __('views.home.confirm') }}</c-modal>
     <c-loading v-show="faq_is_fetching"></c-loading>
-    <c-cell v-for="item in faq_items" :key="item.id">
+    <c-row v-for="item in faq_items" :key="item.id">
       <h3>{{ item.title }}</h3>
       <article>{{ item.content }}</article>
       <c-button @click.native="_delete(item.objectId)">{{ __('views.home.delete') }}</c-button>
-    </c-cell>
+    </c-row>
   </div>
 </template>
 
 <script>
 import CModal from 'components/c-modal'
 import CLoading from 'components/c-loading'
-import CCell from 'components/c-cell'
+import CRow from 'components/c-row'
 import CButton from 'components/c-button'
 import { mapGetters, mapActions } from 'vuex'
 
@@ -50,7 +50,7 @@ export default {
   components: {
     CModal,
     CLoading,
-    CCell,
+    CRow,
     CButton
   }
 }

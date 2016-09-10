@@ -1,5 +1,5 @@
 <template>
-  <div :class="['c-icon', cls]"><slot>{{value}}</slot></div>
+  <i :class="['c-icon', cls]"><slot>{{value}}</slot></i>
 </template>
 
 <script>

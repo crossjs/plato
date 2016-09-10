@@ -13,7 +13,7 @@
   }
 }
 
-.c-cell {
+.c-row {
   & .c-flex {
     padding: 0.5rem;
     box-sizing: content-box;

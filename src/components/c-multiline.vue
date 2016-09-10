@@ -1,6 +1,6 @@
 <template>
   <div :class="['c-multiline', cls]">
-    <textarea class="c-multiline-textarea"
+    <textarea
       :field="field"
       :value="value"
       :rows="rows"

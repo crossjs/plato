@@ -4,6 +4,17 @@ export default [
     component: resolve => require(['views/home'], resolve)
   },
   {
+    path: '/demos',
+    title: 'routes.demos',
+    component: resolve => require(['views/demos'], resolve)
+  },
+  {
+    path: '/demos/:component',
+    title: 'routes.demos',
+    hidden: true,
+    component: resolve => require(['views/demos'], resolve)
+  },
+  {
     path: '/create',
     title: 'routes.create',
     component: resolve => require(['views/create'], resolve)

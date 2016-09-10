@@ -7,6 +7,7 @@
     "pattern": "{0} 不是合法的"
   },
   "routes": {
+    "demos": "示例",
     "create": "创建",
     "about": "关于",
     "login": "登录",

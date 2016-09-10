@@ -1,13 +1,15 @@
 .c-textfield {
-}
+  display: block;
 
-.c-textfield-input {
-  color: color(black lightness(+40%));
-  text-align: right;
-  outline: none;
-  box-sizing: border-box;
-  background-color: transparent;
-  border: none;
-  width: 100%;
-  height: inherit;
+  & input {
+    display: block;
+    color: color(black lightness(+40%));
+    outline: none;
+    box-sizing: border-box;
+    background-color: inherit;
+    border: none;
+    width: 100%;
+    height: inherit;
+    appearance: none;
+  }
 }

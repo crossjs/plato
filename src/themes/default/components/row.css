@@ -1,20 +1,10 @@
-.c-cell {
+.c-row {
   padding: 1rem;
+  display: flex;
+  flex-direction: row;
   /* preventing horizontal scrollbar */
   position: relative;
   overflow: hidden;
-
-  &.row {
-    padding: 0.5rem;
-    display: flex;
-    flex-direction: row;
-  }
-
-  &.column {
-    padding: 0.5rem;
-    display: flex;
-    flex-direction: column;
-  }
 
   &:before {
     content: ' ';
@@ -30,6 +20,7 @@
   &:after {
     content: ' ';
     position: absolute;
+    left: 1rem;
     bottom: 0;
     width: 100%;
     border-top: 1px solid color(white lightness(-20%));
@@ -37,7 +28,7 @@
     transform: scaleY(.5);
   }
 
-  & ~ .c-field {
+  & ~ .c-row {
     &:before {
       content: none;
     }
@@ -51,5 +42,26 @@
 
   &:active {
     background-color: color(var(--secondary) alpha(10%));
+  }
+
+  & .col {
+    display: block;
+    flex: 1 1 auto;
+  }
+
+  & .link {
+    position: relative;
+    &::after {
+      content: ' ';
+      transform: rotateZ(45deg);
+      height: 0.5em;
+      width: 0.5em;
+      border-width: 0.125em 0.125em 0 0;
+      border-color: color(black lightness(+60%));
+      border-style: solid;
+      position: absolute;
+      right: 0.125rem;
+      margin-top: 0.5rem;
+    }
   }
 }

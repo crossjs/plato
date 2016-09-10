@@ -85,7 +85,12 @@ describe('paginator.vue', () => {
     it('while count > $limit 2', done => {
       vm = new Vue({
         el,
-        template: '<c-paginator :count="10" :query="{ $limit: 1 }" @paginate="paginate"></c-paginator>',
+        template: `<c-paginator
+          :count="10"
+          :query="{ $limit: 1 }"
+          :countOut="2"
+          :countIn="2"
+          @paginate="paginate"></c-paginator>`,
         components: {
           CPaginator
         },
@@ -112,7 +117,12 @@ describe('paginator.vue', () => {
     it('while count > $limit 3', done => {
       vm = new Vue({
         el,
-        template: '<c-paginator :count="20" :query="{ $limit: 1, $offset: 10 }" @paginate="paginate"></c-paginator>',
+        template: `<c-paginator
+          :count="20"
+          :query="{ $limit: 1, $offset: 10 }"
+          :countOut="2"
+          :countIn="2"
+          @paginate="paginate"></c-paginator>`,
         components: {
           CPaginator
         },

@@ -8,13 +8,13 @@
         <div class="c-modal-content" v-show="show">
           <div class="c-modal-body"><slot></slot></div>
           <c-pane cls="c-modal-footer" v-if="_actions">
-            <c-cell direction="row">
+            <c-row direction="row">
               <c-flex v-for="(action, key) in _actions">
                 <c-button :cls="action.cls"
                   :type="action.type"
                   @click.native="callback(key)">{{action.label}}</c-button>
               </c-flex>
-            </c-cell>
+            </c-row>
           </c-pane>
         </div>
       </transition>
@@ -25,7 +25,7 @@
 <script>
 import CPane from './c-pane'
 import CMask from './c-mask'
-import CCell from './c-cell'
+import CRow from './c-row'
 import CFlex from './c-flex'
 import CButton from './c-button'
 export default {
@@ -77,7 +77,7 @@ export default {
   components: {
     CMask,
     CPane,
-    CCell,
+    CRow,
     CFlex,
     CButton
   }

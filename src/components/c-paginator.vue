@@ -4,7 +4,7 @@
       <a v-for="page in pages"
         href="javascript:;"
         :class="{current: page.current, disabled: page.disabled}"
-        @click="paginate(page)">{{page.label}}</a>
+        @click="_paginate(page)">{{page.label}}</a>
     </template>
   </div>
 </template>
@@ -25,13 +25,21 @@ export default {
     count: {
       type: Number,
       default: 0
+    },
+    countOut: {
+      type: Number,
+      default: 1
+    },
+    countIn: {
+      type: Number,
+      default: 1
     }
   },
 
   computed: {
     current () {
       const { $offset = 0, $limit = 1 } = this.query
-      return Math.floor($offset / $limit) + 1
+      return Math.min(this.maxpage, Math.floor(Math.max(0, $offset) / Math.min(1, $limit)) + 1)
     },
     maxpage () {
       const { $limit = 1 } = this.query
@@ -40,9 +48,9 @@ export default {
     pages () {
       const maxpage = this.maxpage
       const current = this.current
+      const countOut = this.countOut
+      const countIn = this.countIn
       const pages = []
-      const countOut = 2
-      const countIn = 2
 
       pages.push({
         page: Math.max(1, current - 1),
@@ -61,7 +69,6 @@ export default {
       const useMiddle = (n5 >= n4)
 
       const useN3 = (useMiddle && ((n4 - n2) > 1))
-
       const useN6 = (useMiddle && ((n7 - n5) > 1))
 
       for (let i = n1; i <= n2; i++) {
@@ -110,7 +117,7 @@ export default {
   },
 
   methods: {
-    paginate ({ page, disabled }) {
+    _paginate ({ page, disabled }) {
       if (page && !disabled) {
         const $offset = this.query.$limit * (page - 1)
         this.$emit('paginate', { ...this.query, $offset })

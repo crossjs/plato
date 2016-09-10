@@ -11,19 +11,19 @@
   }
 
   &.xlarge {
-    line-height: 4.2;
+    font-size: 1.44rem;
   }
 
   &.large {
-    line-height: 3.6;
+    font-size: 1.2rem;
   }
 
   &.small {
-    line-height: 2.4;
+    font-size: 0.8rem;
   }
 
   &.xsmall {
-    line-height: 1.8;
+    font-size: 0.64rem;
   }
 
   &.primary {

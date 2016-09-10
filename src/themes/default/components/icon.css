@@ -7,6 +7,7 @@
   text-transform: none;
 
   display: inline-block;
+  vertical-align: top;
 
   /* Enable Ligatures ================ */
   letter-spacing: 0;
