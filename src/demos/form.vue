@@ -2,9 +2,18 @@
   <div>
     <c-form>
       <c-row>
+        <c-checkbox cls="col"
+          :value="check1"
+          @mutate="check1 = arguments[0]"></c-checkbox>
+      </c-row>
+      <c-row>
+        <c-checkbox cls="col"
+          :value="check2"
+          @mutate="check2 = arguments[0]"></c-checkbox>
+      </c-row>
+      <c-row>
         <c-password cls="col"
           :value="value"
-          :attrs="{placeholder: 'password'}"
           @mutate="value = arguments[0]"></c-password>
       </c-row>
       <c-row>
@@ -52,13 +61,16 @@
 <script>
 import CForm from 'components/c-form'
 import CRow from 'components/c-row'
+import CCheckbox from 'components/c-checkbox'
+import CPassword from 'components/c-password'
 import CTextfield from 'components/c-textfield'
 import CMultiline from 'components/c-multiline'
-import CPassword from 'components/c-password'
 
 export default {
   data () {
     return {
+      check1: true,
+      check2: false,
       value: 'password'
     }
   },
@@ -66,9 +78,10 @@ export default {
   components: {
     CForm,
     CRow,
+    CCheckbox,
+    CPassword,
     CTextfield,
-    CMultiline,
-    CPassword
+    CMultiline
   }
 }
 </script>

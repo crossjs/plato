@@ -3,57 +3,44 @@
 
   & input {
     appearance: none;
-    position: absolute;
-    visibility: hidden;
-    z-index: -1;
-  }
-
-  & span {
-    display: inline-block;
-    vertical-align: top;
-    margin: 0 -1rem 0 0;
-    transition: margin 0.5s ease;
-  }
-
-  /* as background */
-  & label {
     display: inline-block;
     text-align: center;
-    min-width: 3rem;
+    width: 2.4rem;
     height: 1.5rem;
     border: 1px solid color(white lightness(80%));
     border-radius: 1.5rem;
     box-sizing: border-box;
     background: color(white lightness(80%));
-    transition: color 0.5s ease;
+    position: relative;
 
-    /* as a dot */
     &::before,
     &::after {
-      content: "\20";
+      content: ' ';
       display: inline-block;
-      vertical-align: top;
-      width: 1.4rem;
-      height: 1.4rem;
-      border-radius: 0.7rem;
       background-color: white;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+      border-radius: 1.5rem;
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 1.375rem;
       transition: transform 0.5s ease;
     }
 
-    /* as label */
+    &::before {
+      width: 2.275rem;
+    }
+
+    /* as a dot */
     &::after {
-      transform: scale3d(0, 0, 0);
+      vertical-align: top;
+      width: 1.375rem;
+      background-color: white;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
     }
   }
 
   &.checked {
-    & span {
-      margin: 0 0 0 -1rem;
-    }
-
-    & label {
-      color: white;
+    & input {
       border-color: var(--primary);
       background-color: var(--primary);
 
@@ -62,20 +49,7 @@
       }
 
       &::after {
-        transform: scale3d(1, 1, 1);
-      }
-    }
-  }
-}
-
-html[dir=rtl] {
-  & .c-checkbox {
-    & span {
-      margin: 0 0 0 -1rem;
-    }
-    &.checked {
-      & span {
-        margin: 0 -1rem 0 0;
+        transform: translate3d(0.9rem, 0, 0);
       }
     }
   }

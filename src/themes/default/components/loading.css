@@ -1,25 +1,36 @@
 .c-loading {
   text-align: center;
-}
 
-.c-loading-snake {
-  animation: c-loading-snake-rotate 0.8s infinite linear;
-  border: 4px solid transparent;
-  border-top-color: rgb(204, 204, 204);
-  border-left-color: rgb(204, 204, 204);
-  border-bottom-color: rgb(204, 204, 204);
-  border-radius: 50%;
-  width: 2rem;
-  height: 2rem;
-  display: inline-block;
-}
-
-@-webkit-keyframes c-loading-snake-rotate {
-  0% {
-    transform: rotate(0deg);
+  & .snake {
+    animation: c-loading-snake-rotate 0.8s infinite linear;
+    border: 0.125rem solid transparent;
+    border-top-color: color(white lightness(80%));
+    border-left-color: color(white lightness(80%));
+    border-bottom-color: color(white lightness(80%));
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+    display: inline-block;
   }
-  to {
-    transform: rotate(1turn);
+
+  & .xlarge {
+    width: 2.88rem;
+    height: 2.88rem;
+  }
+
+  & .large {
+    width: 2.4rem;
+    height: 2.4rem;
+  }
+
+  & .small {
+    width: 1.6rem;
+    height: 1.6rem;
+  }
+
+  & .xsmall {
+    width: 1.24rem;
+    height: 1.24rem;
   }
 }
 

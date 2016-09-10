@@ -1,5 +1,5 @@
 <template>
-  <div :class="['c-loading', cls]"><div :class="['c-loading-' + theme]"></div><slot></slot></div>
+  <div :class="['c-loading', cls]"><i :class="[theme, size]"></i><slot></slot></div>
 </template>
 
 <script>
@@ -8,6 +8,13 @@ export default {
     cls: {
       type: [String, Array],
       default: ''
+    },
+    size: {
+      type: String,
+      default: '',
+      validator (value) {
+        return !value || /^x?(large|small)$/.test(value)
+      }
     },
     theme: {
       type: String,

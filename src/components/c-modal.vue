@@ -9,11 +9,11 @@
           <div class="c-modal-body"><slot></slot></div>
           <c-pane cls="c-modal-footer" v-if="_actions">
             <c-row direction="row">
-              <c-flex v-for="(action, key) in _actions">
+              <div class="col" v-for="(action, key) in _actions">
                 <c-button :cls="action.cls"
                   :type="action.type"
                   @click.native="callback(key)">{{action.label}}</c-button>
-              </c-flex>
+              </div>
             </c-row>
           </c-pane>
         </div>
@@ -26,7 +26,6 @@
 import CPane from './c-pane'
 import CMask from './c-mask'
 import CRow from './c-row'
-import CFlex from './c-flex'
 import CButton from './c-button'
 export default {
   props: {
@@ -78,7 +77,6 @@ export default {
     CMask,
     CPane,
     CRow,
-    CFlex,
     CButton
   }
 }

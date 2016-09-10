@@ -1,24 +1,28 @@
 <template>
-  <div :class="['c-checkbox', cls, {checked: _checked}]">
-    <label>
-      <span v-if="_label">{{_label}}</span>
-      <input type="checkbox"
-        :field="field"
-        :value="value"
-        :checked="_checked"
-        :true-value="_truthy"
-        :false-value="_falsy"
-        :aria-label="_label"
-        @change="_mutate"
-        v-bind="attrs">
-    </label>
-  </div>
+  <label :class="['c-checkbox', cls, {checked: _checked}]">
+    <input type="checkbox"
+      :field="field"
+      :value="value"
+      :checked="_checked"
+      :true-value="_truthy"
+      :false-value="_falsy"
+      v-bind="attrs"
+      @change="_mutate">
+  </label>
 </template>
 
 <script>
 import mField from './mixins/field'
+
 export default {
   mixins: [mField],
+
+  props: {
+    // override
+    value: {
+      default: false
+    }
+  },
 
   computed: {
     _truthy () {
@@ -33,15 +37,13 @@ export default {
       }
       return false
     },
-    _label () {
-      return this.extra[this._checked ? 'true-label' : 'false-label']
-    },
     _checked () {
       return this.value === this._truthy
     }
   },
 
   methods: {
+    // override
     _mutate (e) {
       this.$emit('mutate', e.target.checked ? this._truthy : this._falsy)
     }
