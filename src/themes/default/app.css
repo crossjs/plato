@@ -12,25 +12,21 @@
   left: 0;
   width: 100%;
   height: 4rem;
-  background-color: var(--secondary);
+  background-color: color(white blackness(+5%));
 }
 
 .history {
-  & .c-button {
+  & .c-link {
     position: absolute;
     z-index: 1;
     width: 4rem;
     height: 4rem;
-    background-color: transparent;
+    line-height: 4rem;
+    text-align: center;
 
     &:active {
-      color: var(--primary);
       background-color: transparent;
     }
-  }
-
-  & .c-route-link {
-    color: white;
   }
 }
 
@@ -42,17 +38,13 @@
   & a {
     display: block;
     height: 4rem;
-    color: white;
+    color: var(--text);
     font-size: 1.2em;
     line-height: 4rem;
     text-align: center;
     text-decoration: none;
     text-transform: uppercase;
     font-weight: bold;
-  }
-
-  & .link-active {
-    color: white;
   }
 }
 

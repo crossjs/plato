@@ -1,7 +1,5 @@
 <template>
-  <button :class="['c-button', cls, size]"
-    :type="type"
-    v-bind="attrs"><slot></slot></button>
+  <a :class="['c-link', cls, size]"><slot></slot></a>
 </template>
 
 <script>
@@ -14,25 +12,15 @@ export default {
         return !value || /^(primary|warning)$/.test(value)
       }
     },
-    type: {
-      type: String,
-      default: 'button'
-    },
     size: {
       type: String,
       default: '',
       validator (value) {
         return !value || /^x?(large|small)$/.test(value)
       }
-    },
-    attrs: {
-      type: Object,
-      default () {
-        return {}
-      }
     }
   }
 }
 </script>
 
-<style src="styles/components/button"></style>
+<style src="styles/components/link"></style>

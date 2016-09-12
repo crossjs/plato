@@ -9,6 +9,9 @@ const config = {
 
   pkg: require('../../package.json'),
 
+  // theme name
+  theme: 'default',
+
   // ----------------------------------
   // Project Structure
   // ----------------------------------
@@ -60,7 +63,7 @@ const config = {
     'vue-router',
     'vuex',
     'vuex-actions',
-    'vuex-promise'
+    'vuex-localstorage'
   ]
 }
 

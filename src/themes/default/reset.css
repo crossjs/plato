@@ -1,11 +1,11 @@
 html {
-  font: 1em/1.5 Helvetica Neue,Helvetica,STHeiTi,Arial,sans-serif;
+  font: 1em/1.5 Helvetica Neue, Helvetica, STHeiTi, Arial, sans-serif;
 }
 
 body {
   font-size: 1rem;
-  color: color(black lightness(20%));
-  background-color: var(--background);
+  color: var(--text);
+  background-color: white;
 }
 
 body, h1, h2, h3, h4, h5, h6, p, dl, dd, form, ul, ol, pre, blockquote, textarea, input, figure, button {
@@ -17,8 +17,8 @@ ul, ol, th, td, button, textarea, input {
 }
 
 input, textarea, keygen, select, button {
-  font: 1rem/1.5 Tahoma, Arial, Helvetica, "Microsoft YaHei", "宋体", sans-serif;
-  color: color(black lightness(20%));
+  font: 1rem/1.5 Helvetica Neue, Helvetica, STHeiTi, Arial, sans-serif;
+  color: var(--text);
 }
 
 button, input, textarea {
@@ -37,7 +37,7 @@ ul, ol {
 }
 
 code, kbd, pre, samp {
-  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+  font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
 pre code {

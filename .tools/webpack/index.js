@@ -4,7 +4,7 @@ import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import fs from 'fs'
 import _debug from 'debug'
-import config, { paths, pkg } from '../config'
+import config, { paths } from '../config'
 const { __DEV__, __PROD__, __TEST__ } = config.globals
 
 const debug = _debug('koa:webpack:config')
@@ -21,7 +21,7 @@ const webpackConfig = {
     root: paths.src(),
     extensions: ['', '.css', '.js', '.json', '.vue'],
     alias: {
-      styles: paths.src('themes/default')
+      styles: paths.src(`themes/${config.theme}`)
     },
     modulesDirectories: ['node_modules']
   },
@@ -125,7 +125,7 @@ webpackConfig.vue = {
   postcss: pack => {
     return [
       require('postcss-import')({
-        path: paths.src('themes/default'),
+        path: paths.src(`themes/${config.theme}`),
         // use webpack context
         addDependencyTo: pack
       }),
@@ -135,7 +135,8 @@ webpackConfig.vue = {
         browsers: 'Android >= 4, iOS >= 7',
         features: {
           customProperties: {
-            variables: require(paths.src('themes/default/variables'))
+            // variables: require(paths.src(`themes/${config.theme}/variables`))
+            variables: require(paths.base('variables'))
           }
         }
       }),
@@ -161,7 +162,7 @@ webpackConfig.plugins = [
   new HtmlWebpackPlugin({
     filename: 'index.html',
     template: paths.src('index.ejs'),
-    title: `${pkg.name} - ${pkg.description}`,
+    title: `${config.pkg.name} - ${config.pkg.description}`,
     favicon: paths.src('static/favicon.png'),
     hash: false,
     inject: true,

@@ -4,13 +4,12 @@
       <c-mask v-show="opened"
         @touchend.native.prevent="opened = false"></c-mask>
     </transition>
-    <button :class="['c-navbar-toggle', {active: opened}]"
-      type="button"
-      @click="opened = !opened">
+    <c-button :class="['toggle', {active: opened}]"
+      @click.native="opened = !opened">
         <c-icon value="menu"></c-icon>
-    </button>
+    </c-button>
     <transition name="slide-left">
-      <nav class="c-navbar-menu"
+      <nav class="menu"
         v-show="opened"
         @click="opened = false">
         <slot></slot>
@@ -22,6 +21,7 @@
 <script>
 import CMask from './c-mask'
 import CIcon from './c-icon'
+import CButton from './c-button'
 export default {
   props: {
     cls: {
@@ -38,7 +38,8 @@ export default {
 
   components: {
     CMask,
-    CIcon
+    CIcon,
+    CButton
   }
 }
 </script>

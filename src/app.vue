@@ -11,9 +11,9 @@
         </router-link>
       </div>
       <div class="history">
-        <c-button cls="none" @click.native="_back">
-          <c-icon value="back"></c-icon>
-        </c-button>
+        <c-link @click.native="_back">
+          <c-icon>back</c-icon>
+        </c-link>
       </div>
       <c-navbar cls="navbar">
         <c-route :routes="routes"></c-route>
@@ -29,6 +29,7 @@
 import CProgress from 'components/c-progress'
 import CToast from 'components/c-toast'
 import CButton from 'components/c-button'
+import CLink from 'components/c-link'
 import CIcon from 'components/c-icon'
 import CNavbar from 'components/c-navbar'
 import CRoute from 'components/c-route'
@@ -72,6 +73,7 @@ export default {
     CProgress,
     CToast,
     CButton,
+    CLink,
     CIcon,
     CNavbar,
     CRoute
