@@ -2,26 +2,25 @@
   <div class="v-login">
     <c-form @submit.native.prevent="login">
       <c-row>
-        <c-label cls="col c-row-label">{{__(username.label)}}</c-label>
-        <c-textfield cls="c-row-value"
+        <c-label cls="col col-1">{{__(username.label)}}</c-label>
+        <c-textfield cls="col col-3"
           :field="username.field"
           :validate="username.validate"
           :value="username.value"
           @mutate="username.value = arguments[0]"
           ></c-textfield>
       </c-row>
-      <c-validation :validation="$validation" field="username"></c-validation>
       <c-row>
-        <c-label cls="col c-row-label">{{__(password.label)}}</c-label>
-        <c-password cls="c-row-value"
+        <c-label cls="col col-1">{{__(password.label)}}</c-label>
+        <c-password cls="col col-3"
           :field="password.field"
           :validate="password.validate"
           :value="password.value"
           @mutate="password.value = arguments[0]"
           ></c-password>
       </c-row>
-      <c-validation :validation="$validation" field="password"></c-validation>
       <c-pane>
+        <c-validation :validation="$validation"></c-validation>
         <c-button cls="primary" type="submit"
           :disabled="$validation.errors.length > 0">{{ __('views.login.submit') }}</c-button>
       </c-pane>

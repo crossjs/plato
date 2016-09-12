@@ -4,9 +4,9 @@
       <c-mask v-show="opened"
         @touchend.native.prevent="opened = false"></c-mask>
     </transition>
-    <c-button :class="['toggle', {active: opened}]"
+    <c-button :cls="['toggle', {'active': opened}]"
       @click.native="opened = !opened">
-        <c-icon value="menu"></c-icon>
+        <c-icon>menu</c-icon>
     </c-button>
     <transition name="slide-left">
       <nav class="menu"

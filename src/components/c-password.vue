@@ -4,7 +4,6 @@
       @click.native="showPassword = !showPassword">view</c-icon>
     <input
       :type="showPassword ? 'text' : 'password'"
-      :field="field"
       :value="value"
       v-bind="attrs"
       @input="_mutate">

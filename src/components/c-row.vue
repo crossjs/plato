@@ -1,5 +1,5 @@
 <template>
-  <div :class="['c-row', cls]"><slot></slot></div>
+  <div :class="['c-row', {'flex': flex}, cls]"><slot></slot></div>
 </template>
 
 <script>
@@ -8,6 +8,10 @@ export default {
     cls: {
       type: [String, Array],
       default: ''
+    },
+    flex: {
+      type: Boolean,
+      default: true
     }
   }
 }

@@ -46,6 +46,10 @@
     text-transform: uppercase;
     font-weight: bold;
   }
+
+  & sub {
+    font-size: 0.64rem;
+  }
 }
 
 [v-cloak] {

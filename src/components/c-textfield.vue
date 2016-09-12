@@ -2,7 +2,6 @@
   <label :class="['c-textfield', cls]">
     <input
       :type="type"
-      :field="field"
       :value="value"
       v-bind="attrs"
       @input="_mutate">

@@ -1,14 +1,9 @@
 .c-validation {
-  padding: 0 1rem 0.5rem;
-
+  list-style-type: none;
   & li {
-    margin: 0 0 0.5rem;
-    padding: 0.3rem 0.3rem 0.3rem 0.8rem;
+    margin: 0;
+    padding: 0;
     cursor: default;
     color: var(--warning);
-    border-radius: 0.25rem;
-    background-color: color(var(--warning) lightness(90%));
-    list-style-type: disc;
-    list-style-position: inside;
   }
 }

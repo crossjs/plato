@@ -13,14 +13,20 @@
     text-align: center;
     background: transparent;
     box-shadow: none;
+    border-radius: 0;
+
+    &.active {
+      color: var(--primary)
+    }
   }
 
   & .menu {
     position: fixed;
-    z-index: 103;
-    top: 4rem;
+    z-index: 101;
+    top: 0;
     right: 0;
     width: 4rem;
+    padding-top: 4rem;
     height: 100%;
     background-color: white;
     box-shadow: 0 1px 3px color(white lightness(-20%));
