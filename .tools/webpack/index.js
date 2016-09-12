@@ -135,8 +135,7 @@ webpackConfig.vue = {
         browsers: 'Android >= 4, iOS >= 7',
         features: {
           customProperties: {
-            // variables: require(paths.src(`themes/${config.theme}/variables`))
-            variables: require(paths.base('variables'))
+            variables: require(paths.src(`themes/${config.theme}/variables`))
           }
         }
       }),

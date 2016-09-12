@@ -1,8 +1,8 @@
 {
+  "text": "#333",
+  "disabled": "#CCC",
+
   "primary": "#38ADFF",
   "secondary": "#F43531",
-  "success": "#3ABA58",
-  "error": "#BA3A3A",
-  "warning": "#BA783A",
-  "background": "#FBF9FE"
+  "warning": "#FF6F6F"
 }
