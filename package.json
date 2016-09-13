@@ -155,6 +155,7 @@
     "postcss-cssnext": "^2.8.0",
     "postcss-import": "^8.1.2",
     "postcss-loader": "^0.13.0",
+    "postcss-px2rem": "^0.3.0",
     "postcss-url": "^5.1.2",
     "rimraf": "^2.5.4",
     "selenium-server": "^2.53.1",

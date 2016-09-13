@@ -1,5 +1,6 @@
 .c-row {
-  padding: 1rem;
+  padding: 20px; /*px*/
+  font-size: 32px; /*px*/
   /* preventing horizontal scrollbar */
   position: relative;
   overflow: hidden;
@@ -7,6 +8,10 @@
   &.flex {
     display: flex;
     flex-direction: row;
+
+    &:active {
+      background-color: transparent;
+    }
   }
 
   &:active {
@@ -22,10 +27,10 @@
   &::before {
     content: ' ';
     position: absolute;
+    top: 0;
     left: 0;
     width: 100%;
-    margin-top: -1rem;
-    border-top: 1px solid var(--disabled);
+    border-bottom: 1px solid var(--disabled); /*no*/
     transform-origin: 0 0;
     transform: scaleY(.5);
   }
@@ -33,10 +38,10 @@
   &::after {
     content: ' ';
     position: absolute;
-    left: 1rem;
+    left: 20px;
     bottom: 0;
     width: 100%;
-    border-top: 1px solid var(--disabled);
+    border-top: 1px solid var(--disabled); /*no*/
     transform-origin: 0 0;
     transform: scaleY(.5);
   }
@@ -63,6 +68,10 @@
     flex-basis: 25%;
   }
 
+  & .col-2 {
+    flex-basis: 50%;
+  }
+
   & .col-3 {
     flex-basis: 75%;
   }
@@ -78,8 +87,8 @@
       border-color: var(--disabled);
       border-style: solid;
       position: absolute;
-      right: 0.125rem;
-      margin-top: 0.5rem;
+      right: 5px; /*px*/
+      margin-top: 20px; /*px*/
     }
   }
 }

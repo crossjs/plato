@@ -2,6 +2,7 @@
   display: inline-block;
   line-height: 3;
   color: var(--text);
+  text-align: center;
 
   &:active {
     background-color: color(white blackness(+15%));

@@ -1,16 +1,16 @@
 <template>
-  <div class="container">
-    <c-progress class="progress"
+  <div id="container">
+    <c-progress cls="progress"
       :progress="progress"></c-progress>
-    <c-toast class="toast"
+    <c-toast cls="toast"
       :toasts="toasts"></c-toast>
-    <header class="header">
-      <div class="logo">
+    <header id="header">
+      <div id="logo">
         <router-link class="c-route-link" to="/">
           PLATO <sub>based on vue 2.x</sub>
         </router-link>
       </div>
-      <div class="history">
+      <div id="history">
         <c-link @click.native="_back">
           <c-icon>back</c-icon>
         </c-link>

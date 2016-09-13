@@ -5,17 +5,15 @@
       <c-mask v-if="backdrop"
         @touchend.native.prevent="callback()"></c-mask>
       <transition name="slide-up">
-        <div class="c-modal-content" v-show="show">
-          <div class="c-modal-body"><slot></slot></div>
-          <c-pane cls="c-modal-footer" v-if="_actions">
-            <c-row direction="row">
-              <div class="col" v-for="(action, key) in _actions">
-                <c-button :cls="action.cls"
-                  :type="action.type"
-                  @click.native="callback(key)">{{action.label}}</c-button>
-              </div>
+        <div class="content" v-show="show">
+          <div class="header"><slot name="title"></slot></div>
+          <div class="body"><slot></slot></div>
+          <div class="footer" v-if="_actions">
+            <c-row>
+              <c-link :cls="[action.cls, 'col']" v-for="(action, key) in _actions"
+                @click.native="callback(key)">{{action.label}}</c-link>
             </c-row>
-          </c-pane>
+          </div>
         </div>
       </transition>
     </div>
@@ -23,10 +21,10 @@
 </template>
 
 <script>
-import CPane from './c-pane'
 import CMask from './c-mask'
 import CRow from './c-row'
-import CButton from './c-button'
+import CLink from './c-link'
+
 export default {
   props: {
     cls: {
@@ -45,22 +43,22 @@ export default {
       type: Object,
       default () {
         return {
-          submit: {
-            label: '确定',
-            cls: 'warning',
-            type: 'submit'
-          },
           cancel: {
-            label: '取消',
-            cls: 'default',
-            type: 'button'
+            label: 'Cancel',
+            cls: 'primary'
+          },
+          submit: {
+            label: 'Submit',
+            cls: 'primary'
           }
         }
       }
     },
     callback: {
       type: Function,
-      default () {}
+      default () {
+        return true
+      }
     }
   },
 
@@ -75,9 +73,8 @@ export default {
 
   components: {
     CMask,
-    CPane,
     CRow,
-    CButton
+    CLink
   }
 }
 </script>

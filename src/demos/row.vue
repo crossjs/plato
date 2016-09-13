@@ -1,40 +1,39 @@
 <template>
-  <div>
+  <div class="d-row">
     <div style="margin: 1rem 0">
-      <c-row>one</c-row>
+      <c-row>no cols</c-row>
     </div>
     <div style="margin: 1rem 0">
       <c-row>
-        <div class="col">two</div>
-        <div class="col">two</div>
+        <div class="col">col</div>
+        <div class="col">col</div>
       </c-row>
       <c-row>
-        <div class="col">two</div>
-        <div class="col">two</div>
+        <div class="col col-1">col-1</div>
+        <div class="col col-3">col-3</div>
+      </c-row>
+      <c-row>
+        <div class="col col-3">col-3</div>
+        <div class="col col-1">col-1</div>
       </c-row>
     </div>
     <div style="margin: 1rem 0">
       <c-row>
-        <div class="col">three</div>
-        <div class="col">three three</div>
-        <div class="col">three three three</div>
+        <div class="col">col</div>
+        <div class="col">col</div>
+        <div class="col">col</div>
       </c-row>
       <c-row>
-        <div class="col">three</div>
-        <div class="col">three three</div>
-        <div class="col">three</div>
-      </c-row>
-      <c-row>
-        <div class="col">three</div>
-        <div class="col">three</div>
-        <div class="col">three</div>
+        <div class="col col-1">col-1</div>
+        <div class="col col-2">col-2</div>
+        <div class="col col-1">col-1</div>
       </c-row>
     </div>
     <div style="margin: 1rem 0">
-      <c-row>four</c-row>
-      <c-row>four</c-row>
-      <c-row>four</c-row>
-      <c-row>four</c-row>
+      <c-row>four rows in group</c-row>
+      <c-row>four rows in group</c-row>
+      <c-row>four rows in group</c-row>
+      <c-row>four rows in group</c-row>
     </div>
   </div>
 </template>
@@ -48,3 +47,5 @@ export default {
   }
 }
 </script>
+
+<style src="styles/demo"></style>

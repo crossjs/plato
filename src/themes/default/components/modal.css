@@ -1,35 +1,65 @@
 .c-modal {
   position: fixed;
   z-index: 101;
-}
 
-.c-modal-content {
-  position: fixed;
-  z-index: 1001;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  background-color: white;
-}
-
-.c-modal-body {
-  text-align: center;
-  padding: 1rem;
-}
-
-.c-modal-footer {
-  border-top: 1px solid color(white lightness(90%));
-
-  &:empty {
-    border-top: none;
+  & .content {
+    position: fixed;
+    z-index: 1001;
+    left: 50%;
+    top: 50%;
+    width: 72%;
+    background-color: white;
+    border-radius: 0.5rem;
+    transform: translate3d(-50%, -50%, 0);
   }
 
-  & .c-row {
-    padding: 1rem 0 0;
-    margin: 0 -0.5rem;
+  & .header {
+    text-align: center;
   }
 
-  & .c-flex {
-    margin: 0 0.5rem;
+  & .body {
+    text-align: center;
+    padding: 1rem;
+    font-size: 1rem;
+  }
+
+  & .footer {
+    & .c-row {
+      padding: 0;
+
+      &::after {
+        content: none;
+      }
+    }
+
+    & .c-link {
+      display: block;
+      position: relative;
+
+      &::after {
+        content: ' ';
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 0;
+        height: 100%;
+        border-left: 1px solid var(--disabled);
+        display: block;
+        z-index: 15;
+        transform: scaleX(.5);
+        transform-origin: 100% 50%;
+      }
+
+      &:first-child {
+        border-bottom-left-radius: 0.5rem;
+      }
+
+      &:last-child {
+        border-bottom-right-radius: 0.5rem;
+        &::after {
+          content: none;
+        }
+      }
+    }
   }
 }
