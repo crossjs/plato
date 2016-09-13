@@ -3,8 +3,8 @@
   z-index: 100001;
   top: 0;
   left: 0;
-  background-color: var(--primary);
   width: 100%;
-  height: 0.2rem;
+  height: 5px; /*px*/
+  background-color: var(--primary);
   transition: width 0.5s ease;
 }

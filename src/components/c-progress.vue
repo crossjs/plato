@@ -1,6 +1,6 @@
 <template>
   <div :class="['c-progress', cls]"
-    :style="{width: '' + progress + '%'}"></div>
+    :style="{width: '' + progress + '%'}"><slot></slot></div>
 </template>
 
 <script>
@@ -11,7 +11,7 @@ export default {
       default: ''
     },
     progress: {
-      type: Number,
+      type: [String, Number],
       default: 0
     }
   }

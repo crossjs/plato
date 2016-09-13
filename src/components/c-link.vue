@@ -7,10 +7,7 @@ export default {
   props: {
     cls: {
       type: [String, Array],
-      default: '',
-      validator (value) {
-        return !value || /^(primary|warning)$/.test(value)
-      }
+      default: ''
     },
     size: {
       type: String,

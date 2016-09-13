@@ -99,7 +99,7 @@
     "plato-i18n": "^2.0.0-beta.3",
     "plato-request": "^0.1.0",
     "plato-validator": "^2.0.0-beta.1",
-    "vue": "^2.0.0-rc.5",
+    "vue": "^2.0.0-rc.6",
     "vue-router": "^2.0.0-rc.4",
     "vuex": "^2.0.0-rc.5",
     "vuex-actions": "^1.1.1",

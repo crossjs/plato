@@ -3,7 +3,6 @@
 
   & input {
     display: block;
-    color: color(black lightness(+40%));
     outline: none;
     box-sizing: border-box;
     background-color: inherit;

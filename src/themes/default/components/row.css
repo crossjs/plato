@@ -80,15 +80,16 @@
     position: relative;
     &::after {
       content: ' ';
-      transform: rotateZ(45deg);
-      height: 0.5em;
-      width: 0.5em;
-      border-width: 0.125em 0.125em 0 0;
-      border-color: var(--disabled);
-      border-style: solid;
       position: absolute;
       right: 5px; /*px*/
-      margin-top: 20px; /*px*/
+      top: 20px; /*px*/
+      width: 0.5em;
+      height: 0.5em;
+      border-width: 3px 3px 0 0; /*no*/
+      border-color: var(--disabled);
+      border-style: solid;
+      transform: rotateZ(45deg);
+      transform-origin: 75% 50%;
     }
   }
 }
