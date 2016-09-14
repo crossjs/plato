@@ -3,7 +3,7 @@
   width: 100%;
   line-height: 3;
   color: var(--text);
-  font-size: flexible(32px);
+  font-size: dpr(32px);
   background-color: white;
   border: 1px solid var(--disabled);
   border-radius: 8px;
@@ -19,19 +19,19 @@
   }
 
   &.xlarge {
-    font-size: flexible(40px);
+    font-size: dpr(40px);
   }
 
   &.large {
-    font-size: flexible(36px);
+    font-size: dpr(36px);
   }
 
   &.small {
-    font-size: flexible(28px);
+    font-size: dpr(28px);
   }
 
   &.xsmall {
-    font-size: flexible(24px);
+    font-size: dpr(24px);
   }
 
   &.primary {

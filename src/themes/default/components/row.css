@@ -1,6 +1,6 @@
 .c-row {
-  padding: calc(20/75rem);
-  font-size: flexible(32px);
+  padding: dpr(20px);
+  font-size: dpr(32px);
   /* preventing horizontal scrollbar */
   position: relative;
   overflow: hidden;
@@ -30,20 +30,16 @@
     top: 0;
     left: 0;
     width: 100%;
-    border-bottom: 1px solid var(--disabled); /*no*/
-    transform-origin: 0 0;
-    transform: scaleY(.5);
+    border-bottom: 1px solid var(--disabled);
   }
 
   &::after {
     content: ' ';
     position: absolute;
-    left: calc(20/75rem);
+    left: dpr(20px);
     bottom: 0;
     width: 100%;
-    border-top: 1px solid var(--disabled); /*no*/
-    transform-origin: 0 0;
-    transform: scaleY(.5);
+    border-top: 1px solid var(--disabled);
   }
 
   & ~ .c-row {
@@ -82,10 +78,10 @@
       content: ' ';
       position: absolute;
       right: 5px;
-      top: calc(20/75rem);
+      top: dpr(20px);
       width: 0.5em;
       height: 0.5em;
-      border-width: 3px 3px 0 0; /*no*/
+      border-width: 3px 3px 0 0;
       border-color: var(--disabled);
       border-style: solid;
       transform: rotateZ(45deg);

@@ -110,10 +110,10 @@ describe('modal.vue', () => {
     const modal = vm.$children[0]
 
     expect(modal.$el.children.length).to.equal(2)
-    expect(modal.$el.querySelector('.c-modal-body').textContent).to.equal('hello?')
+    expect(modal.$el.querySelector('.body').textContent).to.equal('hello?')
 
     // button
-    triggerMouseEvents(modal.$el.querySelector('[type="button"]'), 'click')
+    triggerMouseEvents(modal.$el.querySelector('a:first-child'), 'click')
   })
 
   it('should NOT prevent close', done => {
@@ -144,6 +144,6 @@ describe('modal.vue', () => {
     const modal = vm.$children[0]
 
     // button
-    triggerMouseEvents(modal.$el.querySelector('[type="button"]'), 'click')
+    triggerMouseEvents(modal.$el.querySelector('a:first-child'), 'click')
   })
 })

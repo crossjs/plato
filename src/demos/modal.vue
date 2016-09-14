@@ -1,7 +1,7 @@
 <template>
   <div>
-    <c-modal :show="show" :callback="callback">i'm modal, i'm modal, i'm modal, i'm modal, i'm modal, i'm modal, i'm modal.</c-modal>
-    <c-pane><c-button>show modal</c-button></c-pane>
+    <c-modal :show="show" :callback="close">i'm modal, i'm modal, i'm modal, i'm modal, i'm modal, i'm modal, i'm modal.</c-modal>
+    <c-pane><c-button @click.native="click">show modal</c-button></c-pane>
   </div>
 </template>
 
@@ -13,10 +13,16 @@ import CModal from 'components/c-modal'
 export default {
   data () {
     return {
-      show: true,
-      callback () {
-        this.show = false
-      }
+      show: true
+    }
+  },
+
+  methods: {
+    click () {
+      this.show = true
+    },
+    close () {
+      this.show = false
     }
   },
 

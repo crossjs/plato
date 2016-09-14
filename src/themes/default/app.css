@@ -2,7 +2,7 @@
 @import "iconfont";
 
 #container {
-  padding: flexible(88px) 0 0;
+  padding: dpr(88px) 0 0;
 }
 
 #header {
@@ -11,7 +11,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: flexible(88px);
+  height: dpr(88px);
   background-color: color(white blackness(+5%));
 }
 
@@ -19,9 +19,9 @@
   & .c-link {
     position: absolute;
     z-index: 1;
-    width: flexible(88px);
-    height: flexible(88px);
-    line-height: flexible(88px);
+    width: dpr(88px);
+    height: dpr(88px);
+    line-height: dpr(88px);
     text-align: center;
 
     &:active {
@@ -37,10 +37,10 @@
 
   & a {
     display: block;
-    height: flexible(88px);
+    height: dpr(88px);
     color: var(--text);
-    font-size: flexible(32px);
-    line-height: flexible(88px);
+    font-size: dpr(32px);
+    line-height: dpr(88px);
     text-align: center;
     text-decoration: none;
     text-transform: uppercase;
@@ -48,7 +48,7 @@
   }
 
   & sub {
-    font-size: flexible(24px);
+    font-size: dpr(24px);
   }
 }
 

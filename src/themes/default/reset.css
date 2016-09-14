@@ -11,7 +11,7 @@ body {
 
 h1, h2, h3, h4, h5, h6, p, dl, dd, form, ul, ol, pre, blockquote, textarea, input, figure, button {
   margin: 0;
-  font-size: flexible(32px);
+  font-size: dpr(32px);
 }
 
 ul, ol, th, td, button, textarea, input {

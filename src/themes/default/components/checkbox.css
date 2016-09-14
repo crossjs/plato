@@ -1,14 +1,14 @@
 .c-checkbox {
-  height: flexible(48px);
+  height: dpr(48px);
 
   & input {
     appearance: none;
     display: inline-block;
     text-align: center;
-    width: flexible(80px);
-    height: flexible(48px);
+    width: dpr(80px);
+    height: dpr(48px);
     border: 1px solid color(white lightness(80%)); /*no*/
-    border-radius: flexible(24px);
+    border-radius: dpr(24px);
     background: color(white lightness(80%));
     position: relative;
 
@@ -16,11 +16,11 @@
     &::after {
       content: ' ';
       background-color: white;
-      border-radius: flexible(24px);
+      border-radius: dpr(24px);
       position: absolute;
       left: 0;
       top: 0;
-      height: flexible(46px);
+      height: dpr(46px);
       transition: transform 0.5s ease;
     }
 
@@ -31,7 +31,7 @@
     /* as a dot */
     &::after {
       vertical-align: top;
-      width: flexible(46px);
+      width: dpr(46px);
       background-color: white;
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4); /*no*/
     }
@@ -47,7 +47,7 @@
       }
 
       &::after {
-        transform: translate3d(flexible(32px), 0, 0);
+        transform: translate3d(dpr(32px), 0, 0);
       }
     }
   }

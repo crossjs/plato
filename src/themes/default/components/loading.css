@@ -5,35 +5,35 @@
     animation: c-loading-snake-rotate 0.8s infinite linear;
     border-color: color(white lightness(80%)) transparent color(white lightness(80%)) color(white lightness(80%));
     border-style: solid;
-    border-width: flexible(8px);
+    border-width: dpr(8px);
     border-radius: 50%;
-    width: flexible(88px);
-    height: flexible(88px);
+    width: dpr(88px);
+    height: dpr(88px);
     display: inline-block;
   }
 
   & .xlarge {
-    width: flexible(132px);
-    height: flexible(132px);
-    border-width: flexible(12px);
+    width: dpr(132px);
+    height: dpr(132px);
+    border-width: dpr(12px);
   }
 
   & .large {
-    width: flexible(110px);
-    height: flexible(110px);
-    border-width: flexible(10px);
+    width: dpr(110px);
+    height: dpr(110px);
+    border-width: dpr(10px);
   }
 
   & .small {
-    width: flexible(66px);
-    height: flexible(66px);
-    border-width: flexible(6px);
+    width: dpr(66px);
+    height: dpr(66px);
+    border-width: dpr(6px);
   }
 
   & .xsmall {
-    width: flexible(44px);
-    height: flexible(44px);
-    border-width: flexible(4px);
+    width: dpr(44px);
+    height: dpr(44px);
+    border-width: dpr(4px);
   }
 }
 
