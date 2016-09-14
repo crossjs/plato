@@ -6,10 +6,12 @@ body {
   font-size: 1rem;
   color: var(--text);
   background-color: white;
+  margin: 0;
 }
 
-body, h1, h2, h3, h4, h5, h6, p, dl, dd, form, ul, ol, pre, blockquote, textarea, input, figure, button {
+h1, h2, h3, h4, h5, h6, p, dl, dd, form, ul, ol, pre, blockquote, textarea, input, figure, button {
   margin: 0;
+  font-size: flexible(32px);
 }
 
 ul, ol, th, td, button, textarea, input {
@@ -17,7 +19,7 @@ ul, ol, th, td, button, textarea, input {
 }
 
 input, textarea, keygen, select, button {
-  font: 32px/1.5 Helvetica Neue, Helvetica, STHeiTi, Arial, sans-serif; /*px*/
+  font: calc(32/75rem)/1.5 Helvetica Neue, Helvetica, STHeiTi, Arial, sans-serif; /*px*/
   color: var(--text);
 }
 

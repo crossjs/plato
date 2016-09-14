@@ -7,12 +7,12 @@
     position: absolute;
     z-index: 102;
     right: 0;
-    width: 96px; /*px*/
-    font-size: 32px;
-    line-height: 96px; /*px*/
+    width: flexible(88px);
+    font-size: flexible(32px);
+    line-height: flexible(88px);
     text-align: center;
     background: transparent;
-    box-shadow: none;
+    border: none;
     border-radius: 0;
 
     &.active {
@@ -25,8 +25,8 @@
     z-index: 101;
     top: 0;
     right: 0;
-    width: 96px; /*px*/
-    padding-top: 96px; /*px*/
+    width: flexible(88px);
+    padding-top: flexible(88px);
     height: 100%;
     background-color: white;
     box-shadow: 0 1px 3px color(white lightness(-20%));
@@ -54,7 +54,7 @@
 
     & a {
       display: block;
-      line-height: 96px; /*px*/
+      line-height: flexible(88px);
       text-decoration: none;
       text-align: center;
 

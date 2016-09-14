@@ -1,6 +1,6 @@
 .c-row {
-  padding: 20px; /*px*/
-  font-size: 32px; /*px*/
+  padding: calc(20/75rem);
+  font-size: flexible(32px);
   /* preventing horizontal scrollbar */
   position: relative;
   overflow: hidden;
@@ -38,7 +38,7 @@
   &::after {
     content: ' ';
     position: absolute;
-    left: 20px;
+    left: calc(20/75rem);
     bottom: 0;
     width: 100%;
     border-top: 1px solid var(--disabled); /*no*/
@@ -81,8 +81,8 @@
     &::after {
       content: ' ';
       position: absolute;
-      right: 5px; /*px*/
-      top: 20px; /*px*/
+      right: 5px;
+      top: calc(20/75rem);
       width: 0.5em;
       height: 0.5em;
       border-width: 3px 3px 0 0; /*no*/

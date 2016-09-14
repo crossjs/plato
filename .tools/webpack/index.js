@@ -139,7 +139,7 @@ webpackConfig.vue = {
           }
         }
       }),
-      require('postcss-px2rem')({
+      require('postcss-flexible')({
         remUnit: 75
       }),
       require('postcss-browser-reporter')(),

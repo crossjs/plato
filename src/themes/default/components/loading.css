@@ -3,34 +3,37 @@
 
   & .snake {
     animation: c-loading-snake-rotate 0.8s infinite linear;
-    border: 0.125rem solid transparent;
-    border-top-color: color(white lightness(80%));
-    border-left-color: color(white lightness(80%));
-    border-bottom-color: color(white lightness(80%));
+    border-color: color(white lightness(80%)) transparent color(white lightness(80%)) color(white lightness(80%));
+    border-style: solid;
+    border-width: flexible(8px);
     border-radius: 50%;
-    width: 2rem;
-    height: 2rem;
+    width: flexible(88px);
+    height: flexible(88px);
     display: inline-block;
   }
 
   & .xlarge {
-    width: 2.88rem;
-    height: 2.88rem;
+    width: flexible(132px);
+    height: flexible(132px);
+    border-width: flexible(12px);
   }
 
   & .large {
-    width: 2.4rem;
-    height: 2.4rem;
+    width: flexible(110px);
+    height: flexible(110px);
+    border-width: flexible(10px);
   }
 
   & .small {
-    width: 1.6rem;
-    height: 1.6rem;
+    width: flexible(66px);
+    height: flexible(66px);
+    border-width: flexible(6px);
   }
 
   & .xsmall {
-    width: 1.24rem;
-    height: 1.24rem;
+    width: flexible(44px);
+    height: flexible(44px);
+    border-width: flexible(4px);
   }
 }
 

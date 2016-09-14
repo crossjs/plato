@@ -4,7 +4,7 @@ import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import fs from 'fs'
 import _debug from 'debug'
-import config, { paths, pkg } from '../config'
+import config, { paths } from '../config'
 const { __DEV__, __PROD__, __TEST__ } = config.globals
 
 const debug = _debug('koa:webpack:config')
@@ -51,10 +51,7 @@ const webpackConfig = {
     // If false it's also try to use no module extension from above
 
     alias: {
-      'plato-components': paths.src('components'),
-      // comment out for customizing styles
-      'plato-styles': paths.src('themes/default/components'),
-      styles: paths.src('themes/default')
+      styles: paths.src(`themes/${config.theme}`)
     }
     // These aliasing is used when trying to resolve a module
   },
@@ -158,7 +155,7 @@ webpackConfig.vue = {
   postcss: pack => {
     return [
       require('postcss-import')({
-        path: paths.src('themes/default'),
+        path: paths.src(`themes/${config.theme}`),
         // use webpack context
         addDependencyTo: pack
       }),
@@ -168,9 +165,12 @@ webpackConfig.vue = {
         browsers: 'Android >= 4, iOS >= 7',
         features: {
           customProperties: {
-            variables: require(paths.src('themes/default/variables'))
+            variables: require(paths.src(`themes/${config.theme}/variables`))
           }
         }
+      }),
+      require('postcss-px2rem')({
+        remUnit: 75
       }),
       require('postcss-browser-reporter')(),
       require('postcss-reporter')()
@@ -194,7 +194,7 @@ webpackConfig.plugins = [
   new HtmlWebpackPlugin({
     filename: 'index.html',
     template: paths.src('index.ejs'),
-    title: `${pkg.name} - ${pkg.description}`,
+    title: `${config.pkg.name} - ${config.pkg.description}`,
     favicon: paths.src('static/favicon.png'),
     hash: false,
     inject: true,

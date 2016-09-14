@@ -3,10 +3,10 @@
   width: 100%;
   line-height: 3;
   color: var(--text);
-  font-size: 32px;
+  font-size: flexible(32px);
   background-color: white;
-  box-shadow: inset 0 0 1px var(--disabled); /*no*/
-  border-radius: 8px; /*px*/
+  border: 1px solid var(--disabled);
+  border-radius: 8px;
 
   &:active {
     background-color: color(white blackness(+15%));
@@ -19,19 +19,19 @@
   }
 
   &.xlarge {
-    font-size: 40px;
+    font-size: flexible(40px);
   }
 
   &.large {
-    font-size: 36px;
+    font-size: flexible(36px);
   }
 
   &.small {
-    font-size: 28px;
+    font-size: flexible(28px);
   }
 
   &.xsmall {
-    font-size: 24px;
+    font-size: flexible(24px);
   }
 
   &.primary {

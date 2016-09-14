@@ -5,7 +5,7 @@
       :callback="callback"
       @close="show_modal = false">{{ __('views.home.confirm') }}</c-modal>
     <c-loading v-show="faq_is_fetching"></c-loading>
-    <c-row v-for="item in faq_items" :key="item.id">
+    <c-row :flex="false" v-for="item in faq_items" :key="item.id">
       <h3>{{ item.title }}</h3>
       <article>{{ item.content }}</article>
       <c-button @click.native="_delete(item.objectId)">{{ __('views.home.delete') }}</c-button>
