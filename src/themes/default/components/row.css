@@ -1,5 +1,5 @@
 .c-row {
-  padding: dpr(20px);
+  padding: rem(20px);
   font-size: dpr(32px);
   /* preventing horizontal scrollbar */
   position: relative;

@@ -3,9 +3,9 @@
     <c-image
       src="images/logo.png"></c-image>
     <c-modal
-      :show="true"
-      :backdrop="false"
-      :callback="callback">确定退出？</c-modal>
+      :show="show"
+      @cancel="callback('cancel')"
+      @submit="callback('submit')">确定退出？</c-modal>
   </div>
 </template>
 
@@ -16,7 +16,9 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
   data () {
     return {
+      show: true,
       callback (key) {
+        this.show = false
         if (key === 'submit') {
           this.$parent.setEnv({
             authorized: false
@@ -24,8 +26,6 @@ export default {
         } else {
           history.back()
         }
-        // return `false` to prevent hidding modal
-        return false
       }
     }
   },

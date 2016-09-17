@@ -1,9 +1,8 @@
 <template>
   <div class="v-create">
-    <c-modal
-      :show="show_modal"
-      :callback="callback"
-      @close="show_modal = false">{{ __('views.create.confirm') }}</c-modal>
+    <c-modal :show="show_modal"
+      @submit="create"
+      @cancel="show_modal = false">{{ __('views.create.confirm') }}</c-modal>
     <c-loading v-show="faq_is_fetching"></c-loading>
     <c-form cls="c-form-expand"
       @submit.native.prevent="submit">
@@ -44,7 +43,6 @@ import CValidation from 'components/c-validation'
 import CPane from 'components/c-pane'
 import CForm from 'components/c-form'
 import CRow from 'components/c-row'
-// import CIcon from 'components/c-icon'
 import CLabel from 'components/c-label'
 import CTextfield from 'components/c-textfield'
 import CMultiline from 'components/c-multiline'
@@ -94,12 +92,8 @@ export default {
     submit () {
       this.show_modal = true
     },
-    callback (key) {
-      if (key === 'submit') {
-        this.create()
-      }
-    },
     create () {
+      this.show_modal = false
       this.$validate().then(() => {
         this.addItem({
           title: this.title.value,
@@ -126,7 +120,6 @@ export default {
     CValidation,
     CForm,
     CRow,
-    // CIcon,
     CLabel,
     CTextfield,
     CMultiline,

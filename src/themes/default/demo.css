@@ -3,3 +3,12 @@
     border: 1px solid var(--primary);
   }
 }
+
+.d-modal {
+  & .title {
+    font-size: dpr(48px);
+  }
+  & .content {
+    font-size: dpr(32px);
+  }
+}
