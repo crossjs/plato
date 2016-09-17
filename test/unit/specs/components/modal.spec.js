@@ -44,51 +44,12 @@ describe('modal.vue', () => {
     })
   })
 
-  it('should have backdrop', done => {
-    vm = new Vue({
-      el,
-      template: '<c-modal :show="show">hello?</c-modal>',
-      data: {
-        show: false
-      },
-      components: {
-        CModal
-      }
-    })
-
-    const mask = vm.$el.querySelector('.c-mask')
-
-    expect(mask).to.be.ok
-    expect(mask.style.display).to.equal('')
-
-    vm.show = true
-    vm.$nextTick(() => {
-      expect(mask.style.display).to.equal('')
-      done()
-    })
-  })
-
-  it('should NOT have backdrop', () => {
-    vm = new Vue({
-      el,
-      template: '<c-modal :show="show" :backdrop="false">hello?</c-modal>',
-      data: {
-        show: false
-      },
-      components: {
-        CModal
-      }
-    })
-
-    expect(vm.$el.querySelector('.c-mask')).to.equal(null)
-  })
-
   it('should render correct contents', done => {
     vm = new Vue({
       el,
       template: `<c-modal
         :show="show"
-        :callback="callback">hello?</c-modal>`,
+        @cancel="callback">hello?</c-modal>`,
       data: {
         show: true
       },
@@ -109,8 +70,9 @@ describe('modal.vue', () => {
 
     const modal = vm.$children[0]
 
-    expect(modal.$el.children.length).to.equal(2)
-    expect(modal.$el.querySelector('.body').textContent).to.equal('hello?')
+    // only .content
+    expect(modal.$el.children.length).to.equal(1)
+    expect(modal.$el.querySelector('.c-modal-body').textContent).to.equal('hello?')
 
     // button
     triggerMouseEvents(modal.$el.querySelector('a:first-child'), 'click')
@@ -121,12 +83,12 @@ describe('modal.vue', () => {
       el,
       template: `<c-modal
         :show="show"
-        :callback="callback">hello?</c-modal>`,
+        @cancel="callback">hello?</c-modal>`,
       data: {
         show: true
       },
       methods: {
-        callback (key) {
+        callback () {
           expect(vm.show).to.be.ok
           vm.show = false
           vm.$nextTick(() => {
