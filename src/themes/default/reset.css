@@ -1,29 +1,60 @@
 html {
-  font: 1em/1.5 Helvetica Neue, Helvetica, STHeiTi, Arial, sans-serif;
+  font-family: Helvetica Neue, Helvetica, STHeiTi, Arial, sans-serif;
+  line-height: 1.5;
 }
 
 body {
-  font-size: 1rem;
   color: var(--text);
   background-color: white;
   margin: 0;
 }
 
-h1, h2, h3, h4, h5, h6, p, dl, dd, form, ul, ol, pre, blockquote, textarea, input, figure, button {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+dl,
+dd,
+form,
+ul,
+ol,
+pre,
+blockquote,
+textarea,
+input,
+figure,
+button {
   margin: 0;
   font-size: dpr(32px);
 }
 
-ul, ol, th, td, button, textarea, input {
+ul,
+ol,
+th,
+td,
+button,
+textarea,
+input {
   padding: 0;
 }
 
-input, textarea, keygen, select, button {
-  font: calc(32/75rem)/1.5 Helvetica Neue, Helvetica, STHeiTi, Arial, sans-serif;
+input,
+textarea,
+keygen,
+select,
+button {
+  font-family: Helvetica Neue, Helvetica, STHeiTi, Arial, sans-serif;
+  font-size: dpr(32px);
+  line-height: 1.5;
   color: var(--text);
 }
 
-button, input, textarea {
+button,
+input,
+textarea {
   outline: none;
   -webkit-tap-highlight-color: transparent;
 }
@@ -34,21 +65,27 @@ button {
   cursor: pointer;
 }
 
-ul, ol {
+ul,
+ol {
   list-style: none;
 }
 
-code, kbd, pre, samp {
+code,
+kbd,
+pre,
+samp {
   font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
-pre code {
-  padding: 0;
-  font-size: inherit;
-  color: inherit;
-  white-space: pre-wrap;
-  background-color: transparent;
-  border-radius: 0;
+pre {
+  & code {
+    padding: 0;
+    font-size: inherit;
+    color: inherit;
+    white-space: pre-wrap;
+    background-color: transparent;
+    border-radius: 0;
+  }
 }
 
 a {
@@ -65,6 +102,10 @@ a {
   }
 }
 
-article, footer, header, nav, section {
+article,
+footer,
+header,
+nav,
+section {
   display: block;
 }
