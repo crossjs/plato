@@ -7,7 +7,7 @@
     text-align: center;
     width: dpr(80px);
     height: dpr(48px);
-    border: 1px solid color(white lightness(80%)); /*no*/
+    border: 1px solid color(white lightness(80%));
     border-radius: dpr(24px);
     background: color(white lightness(80%));
     position: relative;
@@ -33,7 +33,7 @@
       vertical-align: top;
       width: dpr(46px);
       background-color: white;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4); /*no*/
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
     }
   }
 

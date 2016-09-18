@@ -1,11 +1,11 @@
 .c-pane {
-  margin: 20px; /*px*/
+  margin: 20px;
 
   &.vertical {
-    margin: 20px 0; /*px*/
+    margin: 20px 0;
   }
 
   &.horizontal {
-    margin: 0 20px; /*px*/
+    margin: 0 20px;
   }
 }

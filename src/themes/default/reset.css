@@ -19,7 +19,7 @@ ul, ol, th, td, button, textarea, input {
 }
 
 input, textarea, keygen, select, button {
-  font: calc(32/75rem)/1.5 Helvetica Neue, Helvetica, STHeiTi, Arial, sans-serif; /*px*/
+  font: calc(32/75rem)/1.5 Helvetica Neue, Helvetica, STHeiTi, Arial, sans-serif;
   color: var(--text);
 }
 
