@@ -2,13 +2,14 @@
   <div class="v-home">
     <c-modal
       :show="show_modal"
-      :callback="callback"
+      @cancel="callback('cancel')"
+      @submit="callback('submit')"
       @close="show_modal = false">{{ __('views.home.confirm') }}</c-modal>
     <c-loading v-show="faq_is_fetching"></c-loading>
     <c-row :flex="false" v-for="item in faq_items" :key="item.id">
       <h3>{{ item.title }}</h3>
       <article>{{ item.content }}</article>
-      <c-button @click.native="_delete(item.objectId)">{{ __('views.home.delete') }}</c-button>
+      <c-button size="xsmall" @click.native="_delete(item.objectId)">{{ __('views.home.delete') }}</c-button>
     </c-row>
   </div>
 </template>
@@ -35,6 +36,7 @@ export default {
       this.show_modal = true
     },
     callback (key) {
+      this.show_modal = false
       if (key === 'submit') {
         this.deleteItem(this.id)
       }
