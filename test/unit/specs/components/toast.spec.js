@@ -18,27 +18,21 @@ describe('toast.vue', () => {
   it('should render correct contents', done => {
     vm = new Vue({
       el,
-      template: '<c-toast :toasts="toasts"></c-toast>',
+      template: '<c-toast>{{toasts}}</c-toast>',
       data: {
-        toasts: []
+        toasts: 'toasts'
       },
       components: {
         CToast
       }
     })
 
-    // there is a div for transition group
-    expect(vm.$children[0].$el).to.equal(vm.$el)
-    expect(vm.$children[0].$el.children.length).to.equal(1)
-    expect(vm.$children[0].$el.children[0].nodeName).to.equal('DIV')
+    expect(vm.$el.textContent).to.equal('toasts')
 
-    vm.toasts = [
-      { _id: 1, code: 'code', message: 'message' },
-      { _id: 2, code: 'code', message: 'message' }
-    ]
+    vm.toasts = 'toaststoasts'
 
     vm.$nextTick(() => {
-      expect(vm.$children[0].$el.children[0].children.length).to.equal(2)
+      expect(vm.$el.textContent).to.equal('toaststoasts')
       done()
     })
   })
