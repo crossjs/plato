@@ -8,7 +8,6 @@
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-
 .c-modal-content {
   position: fixed;
   z-index: 1001;
@@ -22,8 +21,8 @@
 
 .c-modal-body {
   text-align: center;
-  padding: rem(48px);
-  font-size: dpr(48px);
+  padding: rem(40px);
+  font-size: dpr(40px);
 
   &:empty {
     display: none;

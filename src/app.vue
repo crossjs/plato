@@ -2,8 +2,7 @@
   <div id="container">
     <c-progress cls="progress"
       :progress="progress"></c-progress>
-    <c-toast cls="toast"
-      :toasts="toasts"></c-toast>
+    <c-toast v-for="toast in toasts" :key="toast._id">{{toast}}</c-toast>
     <header id="header">
       <div id="logo">
         <router-link class="c-route-link" to="/">

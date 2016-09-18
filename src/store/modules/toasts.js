@@ -26,14 +26,18 @@ const actions = {
 }
 
 const mutations = {
-  [ADD_TOAST] (state, payload) {
-    state.toasts.push(payload)
+  [ADD_TOAST] ({ toasts }, payload) {
+    if (toasts.length) {
+      setTimeout(() => {
+        toasts.push(payload)
+      }, 3000)
+    }
   },
 
-  [DELETE_TOAST] (state, payload) {
-    const index = state.toasts.findIndex(toast => toast === payload)
+  [DELETE_TOAST] ({ toasts }, payload) {
+    const index = toasts.findIndex(toast => toast === payload)
     if (index !== -1) {
-      state.toasts.splice(index, 1)
+      toasts.splice(index, 1)
     }
   }
 }

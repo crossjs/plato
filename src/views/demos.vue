@@ -25,6 +25,10 @@
         <router-link class="col link" to="demos/modal">
           <c-icon>github</c-icon> modal</router-link>
       </c-row>
+      <c-row>
+        <router-link class="col link" to="demos/toast">
+          <c-icon>github</c-icon> toast</router-link>
+      </c-row>
     </template>
     <component v-else :is="'demo-' + $route.params.component"></component>
   </div>
@@ -39,6 +43,7 @@ import DemoRow from 'demos/row'
 import DemoPaginator from 'demos/paginator'
 import DemoLoading from 'demos/loading'
 import DemoModal from 'demos/modal'
+import DemoToast from 'demos/toast'
 
 export default {
   data () {
@@ -55,7 +60,8 @@ export default {
     DemoRow,
     DemoPaginator,
     DemoLoading,
-    DemoModal
+    DemoModal,
+    DemoToast
   }
 }
 </script>
