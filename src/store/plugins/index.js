@@ -3,8 +3,11 @@ import createLogger from 'vuex/logger'
 const plugins = [
   store => {
     // 实现进度条、错误提示
-    store.subscribe(({ meta = {}, payload }) => {
-      switch (meta.promise) {
+    store.subscribe(({ payload }) => {
+      if (!payload || !payload.__status__) {
+        return
+      }
+      switch (payload.__status__) {
         case 'pending':
           store.dispatch('setProgress', 60)
           break
