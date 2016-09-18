@@ -62,7 +62,7 @@
         background-color: color(white lightness(-5%));
       }
 
-      &.link-active {
+      &.router-link-active {
         color: var(--secondary);
         background-color: color(var(--secondary) lightness(95%));
       }

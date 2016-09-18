@@ -52,11 +52,13 @@
   }
 }
 
+/* for vue */
+
 [v-cloak] {
   display: none;
 }
 
-.link-active {
+.router-link-active {
   color: var(--primary);
 }
 
