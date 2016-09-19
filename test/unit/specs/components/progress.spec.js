@@ -18,7 +18,7 @@ describe('progress.vue', () => {
   it('should render correct contents', done => {
     vm = new Vue({
       el,
-      template: `<c-progress cls="progress"
+      template: `<c-progress
         :progress="progress"></c-progress>`,
       data: {
         progress: 0
