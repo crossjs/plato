@@ -5,6 +5,13 @@
   padding: dpr(88px) 0 0;
 }
 
+#progress {
+  position: fixed;
+  z-index: 100001;
+  top: 0;
+  left: 0;
+}
+
 #header {
   position: fixed;
   z-index: 11;

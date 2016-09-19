@@ -1,6 +1,6 @@
 <template>
   <div id="container">
-    <c-progress cls="progress"
+    <c-progress id="progress"
       :progress="progress"></c-progress>
     <c-toast v-for="toast in toasts" :key="toast._id">{{toast}}</c-toast>
     <header id="header">

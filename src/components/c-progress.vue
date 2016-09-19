@@ -1,6 +1,6 @@
 <template>
-  <div :class="['c-progress', cls]"
-    :style="{width: '' + progress + '%'}"><slot></slot></div>
+  <i :class="['c-progress', cls]"
+    :style="{width: '' + progress + '%'}"></i>
 </template>
 
 <script>

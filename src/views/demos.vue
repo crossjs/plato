@@ -6,6 +6,10 @@
           <c-icon>github</c-icon> icon</router-link>
       </c-row>
       <c-row>
+        <router-link class="col link" to="demos/progress">
+          <c-icon>github</c-icon> progress</router-link>
+      </c-row>
+      <c-row>
         <router-link class="col link" to="demos/button">
           <c-icon>github</c-icon> button</router-link>
       </c-row>
@@ -42,6 +46,7 @@
 import CRow from 'components/c-row'
 import CIcon from 'components/c-icon'
 import DemoIcon from 'demos/icon'
+import DemoProgress from 'demos/progress'
 import DemoButton from 'demos/button'
 import DemoForm from 'demos/form'
 import DemoRow from 'demos/row'
@@ -61,6 +66,7 @@ export default {
     CRow,
     CIcon,
     DemoIcon,
+    DemoProgress,
     DemoButton,
     DemoForm,
     DemoRow,
