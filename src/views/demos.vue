@@ -2,6 +2,10 @@
   <div class="v-components">
     <template v-if="!$route.params.component">
       <c-row>
+        <router-link class="col link" to="demos/icon">
+          <c-icon>github</c-icon> icon</router-link>
+      </c-row>
+      <c-row>
         <router-link class="col link" to="demos/button">
           <c-icon>github</c-icon> button</router-link>
       </c-row>
@@ -37,6 +41,7 @@
 <script>
 import CRow from 'components/c-row'
 import CIcon from 'components/c-icon'
+import DemoIcon from 'demos/icon'
 import DemoButton from 'demos/button'
 import DemoForm from 'demos/form'
 import DemoRow from 'demos/row'
@@ -55,6 +60,7 @@ export default {
   components: {
     CRow,
     CIcon,
+    DemoIcon,
     DemoButton,
     DemoForm,
     DemoRow,

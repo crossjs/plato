@@ -1,5 +1,5 @@
 <template>
-  <i :class="['c-icon', cls]"><slot>{{value}}</slot></i>
+  <i :class="['c-icon', cls]"><slot></slot></i>
 </template>
 
 <script>
@@ -12,8 +12,8 @@
  * @param {slot}    [slot]    same as value
  *
  * @example
- *   <c-icon class="my-icon" value="back"></c-icon>
- *   <c-icon class="my-icon">back</c-icon>
+ *   <c-icon cls="my-icon" value="back"></c-icon>
+ *   <c-icon cls="my-icon">back</c-icon>
  */
 export default {
   props: {

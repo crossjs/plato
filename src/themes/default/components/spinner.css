@@ -1,6 +1,7 @@
 .c-spinner {
   text-align: center;
   vertical-align: middle;
+  margin: dpr(8px);
 
   &.snake {
     animation: c-spinner-snake 0.8s infinite linear;

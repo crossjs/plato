@@ -3,6 +3,8 @@
     <c-pane><c-button>default</c-button></c-pane>
     <c-pane><c-button cls="primary">primary</c-button></c-pane>
     <c-pane><c-button cls="warning">warning</c-button></c-pane>
+    <c-pane><c-button><c-spinner size="xlarge"></c-spinner></c-button></c-pane>
+    <c-pane><c-button><c-spinner></c-spinner>normal size</c-button></c-pane>
     <c-pane><c-button><c-spinner size="xsmall"></c-spinner></c-button></c-pane>
     <c-pane><c-button size="xlarge">xlarge</c-button></c-pane>
     <c-pane><c-button size="large">large</c-button></c-pane>
