@@ -1,5 +1,5 @@
 <template>
-  <div :class="['c-loading', cls]"><i :class="[theme, size]"></i><slot></slot></div>
+  <i :class="['c-spinner', theme, size, cls]"></i>
 </template>
 
 <script>
@@ -24,4 +24,4 @@ export default {
 }
 </script>
 
-<style src="styles/components/loading"></style>
+<style src="styles/components/spinner"></style>

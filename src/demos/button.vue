@@ -3,6 +3,7 @@
     <c-pane><c-button>default</c-button></c-pane>
     <c-pane><c-button cls="primary">primary</c-button></c-pane>
     <c-pane><c-button cls="warning">warning</c-button></c-pane>
+    <c-pane><c-button><c-spinner size="xsmall"></c-spinner></c-button></c-pane>
     <c-pane><c-button size="xlarge">xlarge</c-button></c-pane>
     <c-pane><c-button size="large">large</c-button></c-pane>
     <c-pane><c-button>default</c-button></c-pane>
@@ -17,11 +18,13 @@
 <script>
 import CPane from 'components/c-pane'
 import CButton from 'components/c-button'
+import CSpinner from 'components/c-spinner'
 
 export default {
   components: {
     CPane,
-    CButton
+    CButton,
+    CSpinner
   }
 }
 </script>

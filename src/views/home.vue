@@ -5,7 +5,7 @@
       @cancel="callback('cancel')"
       @submit="callback('submit')"
       @close="show_modal = false">{{ __('views.home.confirm') }}</c-modal>
-    <c-loading v-show="faq_is_fetching"></c-loading>
+    <c-spinner v-show="faq_is_fetching"></c-spinner>
     <c-row :flex="false" v-for="item in faq_items" :key="item.id">
       <h3>{{ item.title }}</h3>
       <article>{{ item.content }}</article>
@@ -16,7 +16,7 @@
 
 <script>
 import CModal from 'components/c-modal'
-import CLoading from 'components/c-loading'
+import CSpinner from 'components/c-spinner'
 import CRow from 'components/c-row'
 import CButton from 'components/c-button'
 import { mapGetters, mapActions } from 'vuex'
@@ -51,7 +51,7 @@ export default {
 
   components: {
     CModal,
-    CLoading,
+    CSpinner,
     CRow,
     CButton
   }

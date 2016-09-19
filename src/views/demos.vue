@@ -18,8 +18,8 @@
           <c-icon>github</c-icon> paginator</router-link>
       </c-row>
       <c-row>
-        <router-link class="col link" to="demos/loading">
-          <c-icon>github</c-icon> loading</router-link>
+        <router-link class="col link" to="demos/spinner">
+          <c-icon>github</c-icon> spinner</router-link>
       </c-row>
       <c-row>
         <router-link class="col link" to="demos/modal">
@@ -41,7 +41,7 @@ import DemoButton from 'demos/button'
 import DemoForm from 'demos/form'
 import DemoRow from 'demos/row'
 import DemoPaginator from 'demos/paginator'
-import DemoLoading from 'demos/loading'
+import DemoSpinner from 'demos/spinner'
 import DemoModal from 'demos/modal'
 import DemoToast from 'demos/toast'
 
@@ -59,7 +59,7 @@ export default {
     DemoForm,
     DemoRow,
     DemoPaginator,
-    DemoLoading,
+    DemoSpinner,
     DemoModal,
     DemoToast
   }

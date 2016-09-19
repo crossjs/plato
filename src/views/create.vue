@@ -3,7 +3,7 @@
     <c-modal :show="show_modal"
       @submit="create"
       @cancel="show_modal = false">{{ __('views.create.confirm') }}</c-modal>
-    <c-loading v-show="faq_is_fetching"></c-loading>
+    <c-spinner v-show="faq_is_fetching"></c-spinner>
     <c-form cls="c-form-expand"
       @submit.native.prevent="submit">
       <c-row :flex="false">
@@ -46,7 +46,7 @@ import CRow from 'components/c-row'
 import CLabel from 'components/c-label'
 import CTextfield from 'components/c-textfield'
 import CMultiline from 'components/c-multiline'
-import CLoading from 'components/c-loading'
+import CSpinner from 'components/c-spinner'
 import CButton from 'components/c-button'
 import { mapGetters, mapActions } from 'vuex'
 
@@ -123,7 +123,7 @@ export default {
     CLabel,
     CTextfield,
     CMultiline,
-    CLoading,
+    CSpinner,
     CPane,
     CButton
   }

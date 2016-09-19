@@ -1,8 +1,9 @@
-.c-loading {
+.c-spinner {
   text-align: center;
+  vertical-align: middle;
 
-  & .snake {
-    animation: c-loading-snake-rotate 0.8s infinite linear;
+  &.snake {
+    animation: c-spinner-snake 0.8s infinite linear;
     border-color: color(white lightness(80%)) transparent color(white lightness(80%)) color(white lightness(80%));
     border-style: solid;
     border-width: dpr(8px);
@@ -12,32 +13,32 @@
     display: inline-block;
   }
 
-  & .xlarge {
+  &.xlarge {
     width: dpr(132px);
     height: dpr(132px);
     border-width: dpr(12px);
   }
 
-  & .large {
+  &.large {
     width: dpr(110px);
     height: dpr(110px);
     border-width: dpr(10px);
   }
 
-  & .small {
+  &.small {
     width: dpr(66px);
     height: dpr(66px);
     border-width: dpr(6px);
   }
 
-  & .xsmall {
+  &.xsmall {
     width: dpr(44px);
     height: dpr(44px);
     border-width: dpr(4px);
   }
 }
 
-@keyframes c-loading-snake-rotate {
+@keyframes c-spinner-snake {
   0% {
     transform: rotate(0deg);
   }
