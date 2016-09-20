@@ -16,6 +16,6 @@
 
 .d-image {
   & img {
-    background-color: var(--primary)
+    background-color: var(--primary);
   }
 }
