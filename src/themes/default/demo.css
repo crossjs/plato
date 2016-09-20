@@ -13,3 +13,9 @@
     font-size: dpr(32px);
   }
 }
+
+.d-image {
+  & img {
+    background-color: var(--primary)
+  }
+}

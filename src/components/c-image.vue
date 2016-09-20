@@ -1,22 +1,19 @@
 <template>
-  <div :class="['c-image', cls]">
-    <img class="c-image-img"
-      :src="src"
-      :width="width"
-      :height="height"
-      :alt="alt"
-      :title="title"
-      @load="_load">
-  </div>
+  <img :class="['c-image', cls]"
+    :src="src"
+    :width="width"
+    :height="height"
+    :alt="alt"
+    :title="title"
+    @load="_load">
 </template>
 
 <script>
+import mBase from './mixins/base'
+
 export default {
+  mixins: [mBase],
   props: {
-    cls: {
-      type: [String, Array],
-      default: ''
-    },
     src: {
       type: String,
       default: 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=='

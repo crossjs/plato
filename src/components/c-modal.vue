@@ -16,15 +16,13 @@
 </template>
 
 <script>
+import mBase from './mixins/base'
 import CRow from './c-row'
 import CLink from './c-link'
 
 export default {
+  mixins: [mBase],
   props: {
-    cls: {
-      type: [String, Array],
-      default: ''
-    },
     show: {
       type: Boolean,
       default: false

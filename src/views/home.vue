@@ -5,7 +5,9 @@
       @cancel="callback('cancel')"
       @submit="callback('submit')"
       @close="show_modal = false">{{ __('views.home.confirm') }}</c-modal>
-    <c-spinner v-show="faq_is_fetching"></c-spinner>
+    <div class="center">
+      <c-spinner v-show="faq_is_fetching"></c-spinner>
+    </div>
     <c-row :flex="false" v-for="item in faq_items" :key="item.id">
       <h3>{{ item.title }}</h3>
       <article>{{ item.content }}</article>

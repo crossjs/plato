@@ -37,6 +37,10 @@
         <router-link class="col link" to="demos/toast">
           <c-icon>github</c-icon> toast</router-link>
       </c-row>
+      <c-row>
+        <router-link class="col link" to="demos/image">
+          <c-icon>github</c-icon> image</router-link>
+      </c-row>
     </template>
     <component v-else :is="'demo-' + $route.params.component"></component>
   </div>
@@ -54,6 +58,7 @@ import DemoPaginator from 'demos/paginator'
 import DemoSpinner from 'demos/spinner'
 import DemoModal from 'demos/modal'
 import DemoToast from 'demos/toast'
+import DemoImage from 'demos/image'
 
 export default {
   data () {
@@ -73,7 +78,8 @@ export default {
     DemoPaginator,
     DemoSpinner,
     DemoModal,
-    DemoToast
+    DemoToast,
+    DemoImage
   }
 }
 </script>

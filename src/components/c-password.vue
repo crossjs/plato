@@ -1,5 +1,5 @@
 <template>
-  <div :class="['c-password', {'show-password': showPassword}, cls]">
+  <label :class="['c-password', {'show-password': showPassword}, cls]">
     <c-icon cls="toggle"
       @click.native="showPassword = !showPassword">view</c-icon>
     <input
@@ -7,15 +7,16 @@
       :value="value"
       v-bind="attrs"
       @input="_mutate">
-  </div>
+  </label>
 </template>
 
 <script>
-import mField from './mixins/field'
 import CIcon from './c-icon'
+import mBase from './mixins/base'
+import mField from './mixins/field'
 
 export default {
-  mixins: [mField],
+  mixins: [mBase, mField],
 
   data () {
     return {

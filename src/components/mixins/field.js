@@ -1,9 +1,5 @@
 export default {
   props: {
-    cls: {
-      type: [String, Array],
-      default: ''
-    },
     align: {
       type: String,
       default: ''
@@ -36,6 +32,7 @@ export default {
     }
   },
 
+  // dynamically set watcher in created hook?
   watch: {
     value () {
       if (this.validate) {

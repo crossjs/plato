@@ -1,15 +1,12 @@
 <template>
-  <div :class="['c-label', cls]"><slot></slot></div>
+  <label :class="['c-label', cls]"><slot></slot></label>
 </template>
 
 <script>
+import mBase from './mixins/base'
+
 export default {
-  props: {
-    cls: {
-      type: [String, Array],
-      default: ''
-    }
-  }
+  mixins: [mBase]
 }
 </script>
 

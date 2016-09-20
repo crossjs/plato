@@ -10,12 +10,11 @@
 </template>
 
 <script>
+import mBase from './mixins/base'
+
 export default {
+  mixins: [mBase],
   props: {
-    cls: {
-      type: [String, Array],
-      default: ''
-    },
     query: {
       type: Object,
       default () {

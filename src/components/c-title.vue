@@ -3,13 +3,10 @@
 </template>
 
 <script>
+import mBase from './mixins/base'
+
 export default {
-  props: {
-    cls: {
-      type: [String, Array],
-      default: ''
-    }
-  }
+  mixins: [mBase]
 }
 </script>
 

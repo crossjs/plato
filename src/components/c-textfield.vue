@@ -9,10 +9,11 @@
 </template>
 
 <script>
+import mBase from './mixins/base'
 import mField from './mixins/field'
 
 export default {
-  mixins: [mField],
+  mixins: [mBase, mField],
 
   props: {
     type: {

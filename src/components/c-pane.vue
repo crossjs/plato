@@ -1,14 +1,13 @@
 <template>
-  <div :class="['c-pane', cls, dir]"><slot></slot></div>
+  <div :class="['c-pane', dir, cls]"><slot></slot></div>
 </template>
 
 <script>
+import mBase from './mixins/base'
+
 export default {
+  mixins: [mBase],
   props: {
-    cls: {
-      type: [String, Array],
-      default: ''
-    },
     dir: {
       type: String,
       default: ''
