@@ -15,11 +15,11 @@
 }
 
 .d-image {
-  & img {
+  & .no-src {
     background-color: var(--primary);
   }
 
   & .url {
-    background-image: url(/images/qr@2x.png);
+    background-image: url(images/wx@2x.png);
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "PLATO",
-  "version": "2.0.0-beta.2",
+  "version": "2.0.0-beta",
   "description": ":heart: a Boilerplate for SPAs use vue, vuex, vue-router",
   "license": "MIT",
   "main": "index.js",

@@ -106,8 +106,17 @@ webpackConfig.module.loaders = [
     loader: 'vue-html'
   },
   {
+    test: /@[1-3]x\S*\.(png|jpg|gif)(\?.*)?$/,
+    loader: 'file',
+    query: {
+      name: '[name].[ext]?[hash:7]'
+    }
+  },
+  {
     test: /\.(png|jpg|gif|svg|woff2?|eot|ttf)(\?.*)?$/,
     loader: 'url',
+    // do NOT base64encode @1x/@2x/@3x images
+    exclude: /@[1-3]x/,
     query: {
       limit: 10000,
       name: '[name].[ext]?[hash:7]'
@@ -129,7 +138,9 @@ webpackConfig.vue = {
         // use webpack context
         addDependencyTo: pack
       }),
-      require('postcss-url')(),
+      require('postcss-url')({
+        basePath: paths.src('static')
+      }),
       require('postcss-cssnext')({
         // see: https://github.com/ai/browserslist#queries
         browsers: 'Android >= 4, iOS >= 7',

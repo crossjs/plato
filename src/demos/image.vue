@@ -19,8 +19,10 @@
     </c-row>
     <c-row :flex="false">
       <p>no src</p>
-      <c-image
+      <c-image cls="no-src"
         width="80" height="60"></c-image>
+      <c-image cls="no-src"
+        width="60" height="80"></c-image>
     </c-row>
     <c-row :flex="false">
       <p>default</p>
