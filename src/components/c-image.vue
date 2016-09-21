@@ -1,14 +1,17 @@
 <template>
   <img :class="['c-image', cls]"
     :src="flexible ? _src : src"
-    :width="width"
-    :height="height"
+    :width="flexible ? _width : width"
+    :height="flexible ? _height : height"
     :alt="alt"
     :title="title">
 </template>
 
 <script>
 import mBase from './mixins/base'
+
+/* globals lib */
+const { dpr } = typeof lib === 'object' ? lib.flexible : { dpr: 2 }
 
 export default {
   mixins: [mBase],
@@ -41,8 +44,13 @@ export default {
 
   computed: {
     _src () {
-      /* globals lib */
-      return this.src.replace(/@[1-3]x/, '@' + lib.flexible.dpr + 'x')
+      return this.src.replace(/@[1-3]x/, '@' + dpr + 'x')
+    },
+    _width () {
+      return this.width ? this.width * dpr / 2 : this.width
+    },
+    _height () {
+      return this.height ? this.height * dpr / 2 : this.height
     }
   }
 }

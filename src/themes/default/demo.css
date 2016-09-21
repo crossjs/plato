@@ -18,4 +18,8 @@
   & img {
     background-color: var(--primary);
   }
+
+  & .url {
+    background-image: url(/images/qr@2x.png);
+  }
 }
