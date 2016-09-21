@@ -16,6 +16,8 @@
 
 ## Change Log
 
+- 20160921
+  - use [postcss-flexible](https://github.com/crossjs/postcss-flexible)
 - 20160907 :warning: *Breaking Changes*
   - fix #22 use vuex-actions instead of vuex-promise
 - 20160807
