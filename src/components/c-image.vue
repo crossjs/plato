@@ -1,11 +1,10 @@
 <template>
   <img :class="['c-image', cls]"
-    :src="src"
+    :src="flexible ? _src : src"
     :width="width"
     :height="height"
     :alt="alt"
-    :title="title"
-    @load="_load">
+    :title="title">
 </template>
 
 <script>
@@ -34,42 +33,18 @@ export default {
       type: [String, Number],
       default: ''
     },
-    keepRatio: {
+    flexible: {
       type: Boolean,
       default: true
     }
   },
 
-  methods: {
-    _load ($event) {
-      if (this.keepRatio) {
-        const img = $event.path[0]
-        getSize(img.src).then(({ width, height }) => {
-          const ratio = width / height
-          if (ratio !== img.width / img.height) {
-            // 只处理宽度缩小的情况
-            img.height = img.width / ratio
-          }
-        })
-      }
+  computed: {
+    _src () {
+      /* globals lib */
+      return this.src.replace(/@[1-3]x/, '@' + lib.flexible.dpr + 'x')
     }
   }
-}
-
-function getSize (src) {
-  return new Promise((resolve, reject) => {
-    var img = new Image()
-    img.onload = function () {
-      resolve({
-        width: img.width,
-        height: img.height
-      })
-    }
-    img.onerror = function () {
-      reject(null)
-    }
-    img.src = src
-  })
 }
 </script>
 
