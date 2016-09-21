@@ -143,5 +143,3 @@ export default {
   }
 }
 </script>
-
-<style src="styles/views/login"></style>

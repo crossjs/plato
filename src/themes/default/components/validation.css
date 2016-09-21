@@ -1,5 +1,6 @@
 .c-validation {
   list-style-type: none;
+
   & li {
     margin: 0;
     padding: 0;

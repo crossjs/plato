@@ -10,5 +10,3 @@ export default {
   mixins: [mBase]
 }
 </script>
-
-<style src="styles/components/form"></style>

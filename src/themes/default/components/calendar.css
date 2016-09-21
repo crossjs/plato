@@ -87,6 +87,7 @@
   & span {
     &.empty {
       cursor: default;
+
       &:hover {
         background-color: transparent;
       }

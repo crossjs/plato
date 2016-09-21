@@ -3,7 +3,6 @@
 
   & textarea {
     color: color(black lightness(+40%));
-    text-align: right;
     outline: none;
     box-sizing: border-box;
     background-color: transparent;
@@ -12,6 +11,5 @@
     height: inherit;
     resize: none;
     display: block;
-    text-align: left;
   }
 }
