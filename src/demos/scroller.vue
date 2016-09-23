@@ -1,7 +1,9 @@
 <template>
   <div class="d-scroller">
     <c-scroller ref="scroller"
+      :height="height"
       :loading="loading"
+      :drained="drained"
       @pulldown="pulldown"
       @pullup="pullup">
       <p v-for="id in ids">{{id}}</p>
@@ -13,29 +15,38 @@
 import CScroller from 'components/c-scroller'
 
 export default {
-  mounted () {
-    this.$refs.scroller.$el.style.height = window.innerHeight - document.getElementById('header').clientHeight + 'px'
-  },
-
   data () {
     return {
-      ids: 30,
-      loading: false
+      ids: '',
+      loading: false,
+      drained: false,
+      height: 0
     }
+  },
+
+  mounted () {
+    this.height =
+      document.documentElement.clientHeight -
+      document.getElementById('header').clientHeight
   },
 
   methods: {
     pulldown () {
       this.loading = true
       setTimeout(() => {
-        this.ids = 30
+        this.ids = 10
+        this.drained = false
         this.loading = false
       }, 1000)
     },
     pullup () {
       this.loading = true
       setTimeout(() => {
-        this.ids += 30
+        if (Math.random() < 0.5) {
+          this.ids = +this.ids + 10
+        } else {
+          this.drained = true
+        }
         this.loading = false
       }, 1000)
     }

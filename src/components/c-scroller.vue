@@ -1,5 +1,5 @@
 <template>
-  <div :class="['c-scroller', cls]">
+  <div :class="['c-scroller', cls]" :style="{'height': height + 'px'}">
     <div ref="content" class="c-scroller-content"
       :style="{transform: 'translate3d(0, ' + offset + 'px, 0)'}">
       <div class="c-scroller-indicator c-scroller-indicator-down">
@@ -25,6 +25,10 @@ export default {
   mixins: [mBase],
 
   props: {
+    height: {
+      type: Number,
+      default: 160
+    },
     threshold: {
       type: Number,
       default: 160
@@ -32,6 +36,14 @@ export default {
     loading: {
       type: Boolean,
       default: false
+    },
+    drained: {
+      type: Boolean,
+      default: false
+    },
+    autoPullup: {
+      type: Boolean,
+      default: true
     }
   },
 
@@ -40,73 +52,122 @@ export default {
       minOffset: 0,
       maxOffset: 0,
       offset: 0,
-      pull_state: 0
+      pull_state: 0,
+      has_scroll: false
     }
   },
 
   watch: {
     loading (val) {
       if (!val) {
-        this.offset -= this.threshold / 2
+        this.fillContainer()
+        this.relocate()
+      }
+    },
+    drained (val) {
+      if (val) {
+        this.updateMinOffset()
+        this.relocate()
       }
     }
   },
 
   mounted () {
-    this.$el.addEventListener('touchstart', this._dragstart)
-    this.$el.addEventListener('touchmove', this._drag)
-    this.$el.addEventListener('touchend', this._dragend)
+    this.$el.addEventListener('touchstart', this.dragstart)
+    this.$el.addEventListener('touchmove', this.drag)
+    this.$el.addEventListener('touchend', this.dragend)
+    this.fillContainer()
   },
 
   methods: {
-    _dragstart (e) {
+    relocate () {
+      this.$nextTick(() => {
+        this.pull_state = 0
+        // 复位
+        this.offset = this.has_scroll
+        ? Math.max(this.minOffset, Math.min(this.offset, this.maxOffset))
+        : this.maxOffset
+      })
+    },
+    fillContainer () {
+      if (!this.drained && this.autoPullup) {
+        this.$nextTick(() => {
+          this.updateMinOffset()
+          if (this.minOffset > 0) {
+            this.pullup()
+          }
+        })
+      }
+    },
+    updateMinOffset () {
+      this.minOffset = this.$el.clientHeight - this.$refs.content.clientHeight
+      this.has_scroll = this.maxOffset > this.minOffset
+      if (this.has_scroll) {
+        this.minOffset += this.threshold
+      }
+    },
+    dragstart (e) {
       if (!this.dragging && e.touches && e.touches.length === 1) {
         this.dragging = true
         // reset pull state
         this.pull_state = 0
         this.timestamp = new Date().getTime()
-        this.minOffset = this.$el.clientHeight - this.$refs.content.clientHeight + this.threshold
-        this.maxOffset = 0
+        // this.maxOffset = 0
+        this.updateMinOffset()
         this.startY = e.touches[0].pageY - this.offset
       }
     },
-    _drag (e) {
+    drag (e) {
       if (this.dragging) {
         e.preventDefault()
         e.stopPropagation()
-        const distance = e.touches[0].pageY - this.startY
-        this.offset = Math.max(this.minOffset - this.threshold, Math.min(this.maxOffset + this.threshold, distance))
+        // _distance 大于零表示 pulldown
+        const _distance = e.touches[0].pageY - this.startY
+        const distance = Math.min(this.maxOffset + this.threshold, _distance)
+        this.offset = this.has_scroll
+          ? Math.max(this.minOffset - (this.drained ? 0 : this.threshold), distance)
+          : _distance > 0
+            ? distance
+            : this.maxOffset
         if (this.offset > this.maxOffset) {
           this.pull_state = this.offset - this.maxOffset > this.threshold / 2 ? 2 : 1
         } else if (this.offset < this.minOffset) {
-          this.pull_state = this.minOffset - this.offset > this.threshold / 2 ? -2 : -1
+          if (!this.drained) {
+            this.pull_state = this.minOffset - this.offset > this.threshold / 2 ? -2 : -1
+          }
         }
       }
     },
-    _dragend (e) {
+    dragend (e) {
       if (this.dragging) {
         this.dragging = false
         // 开始到结束，至少要间隔 300 毫秒
         if (new Date().getTime() - this.timestamp >= 300) {
-          switch (this.pull_state) {
-            case -2:
-              this.$emit('pullup')
-              // show loading
-              this.pull_state = -3
-              this.offset = this.minOffset - this.threshold / 2
-              return
-            case 2:
-              this.$emit('pulldown')
-              // show loading
-              this.pull_state = 3
-              this.offset = this.maxOffset + this.threshold / 2
-              return
+          if (this.pull_state === -2) {
+            this.pullup()
+            return
+          }
+          if (this.pull_state === 2) {
+            this.pulldown()
+            return
           }
         }
-        this.pull_state = 0
-        // 复位
-        this.offset = Math.max(this.minOffset, Math.min(this.offset, this.maxOffset))
+        this.relocate()
       }
+    },
+    pulldown () {
+      this.$emit('pulldown')
+      // show loading
+      this.pull_state = 3
+      this.offset = this.maxOffset + this.threshold / 2
+    },
+    pullup () {
+      this.$emit('pullup')
+      // show loading
+      this.pull_state = -3
+      this.offset = this.has_scroll
+        ? this.minOffset - this.threshold / 2
+        : this.maxOffset
     }
   },
 
