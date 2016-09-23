@@ -1,8 +1,8 @@
-# PLATO <sub>for vue 2.0.0-rc.6</sub> :construction: [![Gitter](https://badges.gitter.im/crossjs/plato.svg)](https://gitter.im/crossjs/plato?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+# PLATO <sub>BASED ON VUE 2.X</sub> :construction:
 
 > :heart: a Boilerplate for SPAs use vue, vuex, vue-router
 
-**[WIP] Rewrite Components**
+Check out [**UI Components Demos**](http://crossjs.com/plato/#/demos)
 
 [![Travis](https://img.shields.io/travis/crossjs/plato.svg?style=flat-square)](https://travis-ci.org/crossjs/plato)
 [![Coveralls](https://img.shields.io/coveralls/crossjs/plato.svg?style=flat-square)](https://coveralls.io/github/crossjs/plato)
