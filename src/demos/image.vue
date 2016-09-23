@@ -2,9 +2,9 @@
   <div class="d-image">
     <c-row :flex="false">
       <p>flexible: true</p>
-      <c-image src="images/qr@1x.png"></c-image>
-      <c-image src="images/qr@2x.png"></c-image>
-      <c-image src="images/qr@3x.png"></c-image>
+      <c-image src="images/qr@1x.png" alt="qr"></c-image>
+      <c-image src="images/qr@2x.png" alt="qr"></c-image>
+      <c-image src="images/qr@3x.png" alt="qr"></c-image>
     </c-row>
     <c-row :flex="false">
       <p>flexible: false</p>

@@ -23,3 +23,11 @@
     background-image: url(images/wx@2x.png);
   }
 }
+
+.d-scroller {
+  & p {
+    text-align: center;
+    border: 1px solid var(--disabled);
+    margin: 0.5em;
+  }
+}

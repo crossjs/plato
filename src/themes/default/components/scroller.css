@@ -1,0 +1,21 @@
+.c-scroller {
+  overflow: hidden;
+}
+
+.c-scroller-content {
+  transition: transform 0.2s linear;
+}
+
+.c-scroller-indicator {
+  text-align: center;
+  padding: dpr(16px);
+  height: dpr(48px);
+
+  &-down {
+    margin-top: -dpr(80px);
+  }
+
+  &-up {
+    margin-bottom: -dpr(80px);
+  }
+}

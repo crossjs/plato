@@ -2,9 +2,7 @@
   <img :class="['c-image', cls]"
     :src="flexible ? _src : src"
     :width="flexible ? _width : width"
-    :height="flexible ? _height : height"
-    :alt="alt"
-    :title="title">
+    :height="flexible ? _height : height">
 </template>
 
 <script>
@@ -19,14 +17,6 @@ export default {
     src: {
       type: String,
       default: 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=='
-    },
-    alt: {
-      type: String,
-      default: ''
-    },
-    title: {
-      type: String,
-      default: ''
     },
     width: {
       type: [String, Number],

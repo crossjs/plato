@@ -1,41 +1,38 @@
 .c-spinner {
   text-align: center;
-  vertical-align: middle;
-  margin: dpr(8px);
+  display: inline-block;
+  /*vertical-align: middle;*/
+  box-sizing: border-box;
 
   &.snake {
     animation: c-spinner-snake 0.8s infinite linear;
     border-color: color(white lightness(80%)) transparent color(white lightness(80%)) color(white lightness(80%));
     border-style: solid;
-    border-width: dpr(8px);
+    border-width: dpr(4px);
     border-radius: 50%;
-    width: dpr(88px);
-    height: dpr(88px);
+    width: dpr(48px);
+    height: dpr(48px);
     display: inline-block;
   }
 
   &.xlarge {
-    width: dpr(132px);
-    height: dpr(132px);
-    border-width: dpr(12px);
+    width: dpr(80px);
+    height: dpr(80px);
   }
 
   &.large {
-    width: dpr(110px);
-    height: dpr(110px);
-    border-width: dpr(10px);
+    width: dpr(64px);
+    height: dpr(64px);
   }
 
   &.small {
-    width: dpr(66px);
-    height: dpr(66px);
-    border-width: dpr(6px);
+    width: dpr(32px);
+    height: dpr(32px);
   }
 
   &.xsmall {
-    width: dpr(44px);
-    height: dpr(44px);
-    border-width: dpr(4px);
+    width: dpr(16px);
+    height: dpr(16px);
   }
 }
 

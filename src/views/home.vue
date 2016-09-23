@@ -11,7 +11,7 @@
     <c-row :flex="false" v-for="item in faq_items" :key="item.id">
       <h3>{{ item.title }}</h3>
       <article>{{ item.content }}</article>
-      <c-button size="xsmall" @click.native="_delete(item.objectId)">{{ __('views.home.delete') }}</c-button>
+      <c-button v-if="authorized" size="xsmall" @click.native="_delete(item.objectId)">{{ __('views.home.delete') }}</c-button>
     </c-row>
   </div>
 </template>
@@ -30,7 +30,7 @@ export default {
     }
   },
 
-  computed: mapGetters(['faq_items', 'faq_is_fetching']),
+  computed: mapGetters(['authorized', 'faq_items', 'faq_is_fetching']),
 
   methods: {
     _delete (id) {
