@@ -53,9 +53,9 @@ export default {
   },
 
   mounted () {
-    this.$el.addEventListener('touchstart', this._dragstart.bind(this))
-    this.$el.addEventListener('touchmove', this._drag.bind(this))
-    this.$el.addEventListener('touchend', this._dragend.bind(this))
+    this.$el.addEventListener('touchstart', this._dragstart)
+    this.$el.addEventListener('touchmove', this._drag)
+    this.$el.addEventListener('touchend', this._dragend)
   },
 
   methods: {
@@ -72,6 +72,8 @@ export default {
     },
     _drag (e) {
       if (this.dragging) {
+        e.preventDefault()
+        e.stopPropagation()
         const distance = e.touches[0].pageY - this.startY
         this.offset = Math.max(this.minOffset - this.threshold, Math.min(this.maxOffset + this.threshold, distance))
         if (this.offset > this.maxOffset) {
