@@ -115,9 +115,6 @@ export default {
     updateMinOffset () {
       this.minOffset = this.$el.clientHeight - this.$refs.content.clientHeight
       this.has_scroll = this.maxOffset > this.minOffset
-      // if (this.has_scroll) {
-        // this.minOffset += this._threshold
-      // }
     },
     dragstart (e) {
       if (!this.dragging && e.touches && e.touches.length === 1) {
