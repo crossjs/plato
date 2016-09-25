@@ -37,6 +37,7 @@
   &.primary {
     color: white;
     background-color: var(--primary);
+    border: none;
 
     &:active {
       background-color: color(var(--primary) blackness(+15%));
@@ -51,6 +52,7 @@
   &.warning {
     color: white;
     background-color: var(--warning);
+    border: none;
 
     &:active {
       background-color: color(var(--warning) blackness(+15%));
@@ -60,5 +62,9 @@
       color: var(--disabled);
       background-color: white;
     }
+  }
+
+  & i {
+    vertical-align: middle;
   }
 }

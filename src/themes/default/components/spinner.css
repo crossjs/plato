@@ -1,7 +1,6 @@
 .c-spinner {
-  text-align: center;
   display: inline-block;
-  /*vertical-align: middle;*/
+  text-align: center;
   box-sizing: border-box;
 
   &.snake {
@@ -31,8 +30,8 @@
   }
 
   &.xsmall {
-    width: dpr(16px);
-    height: dpr(16px);
+    width: dpr(24px);
+    height: dpr(24px);
   }
 }
 
