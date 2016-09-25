@@ -7,7 +7,7 @@
       @pulldown="pulldown"
       @pullup="pullup">
       <div style="margin:1rem;text-align:center" v-if="!ids">pull down to reload</div>
-      <p v-for="id in ids">{{id}}</p>
+      <p v-for="id in ids">{{height}}, {{id}}</p>
     </c-scroller>
   </div>
 </template>

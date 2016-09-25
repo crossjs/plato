@@ -2,8 +2,12 @@
   overflow: hidden;
 }
 
-.c-scroller-content {
+.c-scroller-container {
   transition: transform 0.2s linear;
+}
+
+.c-scroller-content {
+  overflow: hidden;
 }
 
 .c-scroller-indicator {

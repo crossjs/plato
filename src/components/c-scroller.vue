@@ -1,13 +1,13 @@
 <template>
   <div :class="['c-scroller', cls]" :style="{'height': _height + 'px'}">
-    <div ref="content" class="c-scroller-content"
+    <div class="c-scroller-container"
       :style="{transform: 'translate3d(0, ' + offset + 'px, 0)'}">
       <div class="c-scroller-indicator c-scroller-indicator-down">
         <i v-show="pull_state === 1">↓</i>
         <i v-show="pull_state === 2">↑</i>
         <c-spinner v-show="loading && pull_state === 3"></c-spinner>
       </div>
-      <slot></slot>
+      <div class="c-scroller-content" ref="content"><slot></slot></div>
       <div class="c-scroller-indicator c-scroller-indicator-up">
         <c-spinner v-show="loading && pull_state === -3"></c-spinner>
         <i v-show="pull_state === -2">↓</i>
@@ -98,8 +98,8 @@ export default {
         // this.pull_state = 0
         // 复位
         this.offset = this.has_scroll
-        ? Math.max(this.minOffset, Math.min(this.offset, this.maxOffset))
-        : this.maxOffset
+          ? Math.max(this.minOffset, Math.min(this.offset, this.maxOffset))
+          : this.maxOffset
       })
     },
     fillContainer () {
@@ -115,9 +115,9 @@ export default {
     updateMinOffset () {
       this.minOffset = this.$el.clientHeight - this.$refs.content.clientHeight
       this.has_scroll = this.maxOffset > this.minOffset
-      if (this.has_scroll) {
-        this.minOffset += this._threshold
-      }
+      // if (this.has_scroll) {
+        // this.minOffset += this._threshold
+      // }
     },
     dragstart (e) {
       if (!this.dragging && e.touches && e.touches.length === 1) {
@@ -145,7 +145,7 @@ export default {
         if (this.offset > this.maxOffset) {
           this.pull_state = this.offset - this.maxOffset > this._threshold / 2 ? 2 : 1
         } else if (this.offset < this.minOffset) {
-          if (!this.drained) {
+          if (this.has_scroll && !this.drained) {
             this.pull_state = this.minOffset - this.offset > this._threshold / 2 ? -2 : -1
           }
         }
@@ -173,6 +173,12 @@ export default {
       this.pull_state = 3
       this.offset = this.maxOffset + this._threshold / 2
       this.$emit('pulldown')
+      this.$nextTick(() => {
+        if (!this.loading) {
+          // this.pull_state = 0
+          this.relocate()
+        }
+      })
     },
     pullup () {
       // show loading
@@ -181,6 +187,12 @@ export default {
         ? this.minOffset - this._threshold / 2
         : this.maxOffset
       this.$emit('pullup')
+      this.$nextTick(() => {
+        if (!this.loading) {
+          // this.pull_state = 0
+          this.relocate()
+        }
+      })
     }
   },
 
