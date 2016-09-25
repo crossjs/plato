@@ -1,5 +1,5 @@
 <template>
-  <div :class="['c-scroller', cls]" :style="{'height': height + 'px'}">
+  <div :class="['c-scroller', cls]" :style="{'height': _height + 'px'}">
     <div ref="content" class="c-scroller-content"
       :style="{transform: 'translate3d(0, ' + offset + 'px, 0)'}">
       <div class="c-scroller-indicator c-scroller-indicator-down">
@@ -21,13 +21,16 @@
 import CSpinner from './c-spinner'
 import mBase from './mixins/base'
 
+/* globals lib */
+const { dpr } = typeof lib === 'object' ? lib.flexible : { dpr: 2 }
+
 export default {
   mixins: [mBase],
 
   props: {
     height: {
       type: Number,
-      default: 160
+      default: 0
     },
     threshold: {
       type: Number,
@@ -49,11 +52,21 @@ export default {
 
   data () {
     return {
+      dpr,
       minOffset: 0,
       maxOffset: 0,
       offset: 0,
       pull_state: 0,
       has_scroll: false
+    }
+  },
+
+  computed: {
+    _height () {
+      return this.height || this._threshold
+    },
+    _threshold () {
+      return this.threshold * dpr / 2
     }
   },
 
@@ -82,7 +95,7 @@ export default {
   methods: {
     relocate () {
       this.$nextTick(() => {
-        this.pull_state = 0
+        // this.pull_state = 0
         // 复位
         this.offset = this.has_scroll
         ? Math.max(this.minOffset, Math.min(this.offset, this.maxOffset))
@@ -103,7 +116,7 @@ export default {
       this.minOffset = this.$el.clientHeight - this.$refs.content.clientHeight
       this.has_scroll = this.maxOffset > this.minOffset
       if (this.has_scroll) {
-        this.minOffset += this.threshold
+        this.minOffset += this._threshold
       }
     },
     dragstart (e) {
@@ -123,17 +136,17 @@ export default {
         e.stopPropagation()
         // _distance 大于零表示 pulldown
         const _distance = e.touches[0].pageY - this.startY
-        const distance = Math.min(this.maxOffset + this.threshold, _distance)
+        const distance = Math.min(this.maxOffset + this._threshold, _distance)
         this.offset = this.has_scroll
-          ? Math.max(this.minOffset - (this.drained ? 0 : this.threshold), distance)
+          ? Math.max(this.minOffset - (this.drained ? 0 : this._threshold), distance)
           : _distance > 0
             ? distance
             : this.maxOffset
         if (this.offset > this.maxOffset) {
-          this.pull_state = this.offset - this.maxOffset > this.threshold / 2 ? 2 : 1
+          this.pull_state = this.offset - this.maxOffset > this._threshold / 2 ? 2 : 1
         } else if (this.offset < this.minOffset) {
           if (!this.drained) {
-            this.pull_state = this.minOffset - this.offset > this.threshold / 2 ? -2 : -1
+            this.pull_state = this.minOffset - this.offset > this._threshold / 2 ? -2 : -1
           }
         }
       }
@@ -156,18 +169,18 @@ export default {
       }
     },
     pulldown () {
-      this.$emit('pulldown')
       // show loading
       this.pull_state = 3
-      this.offset = this.maxOffset + this.threshold / 2
+      this.offset = this.maxOffset + this._threshold / 2
+      this.$emit('pulldown')
     },
     pullup () {
-      this.$emit('pullup')
       // show loading
       this.pull_state = -3
       this.offset = this.has_scroll
-        ? this.minOffset - this.threshold / 2
+        ? this.minOffset - this._threshold / 2
         : this.maxOffset
+      this.$emit('pullup')
     }
   },
 
