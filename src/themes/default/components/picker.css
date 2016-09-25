@@ -1,93 +1,20 @@
 .c-picker {
-  & .popup {
-    position: fixed;
-    z-index: 1001;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-  }
+  position: relative;
+  height: dpr(420px);
+  overflow: hidden;
+}
 
-  & .popup-body {
-    position: fixed;
-    z-index: 1001;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: white;
-    outline: none;
-    text-align: center;
+.c-picker-scroller {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.6)), linear-gradient(0deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.6));
+  background-repeat: no-repeat;
+  background-position: top, bottom;
+  background-size: 100% 43%;
+}
 
-    & a {
-      cursor: pointer;
-    }
-
-    & i {
-      width: 2rem;
-      text-align: center;
-      font-style: normal;
-      font-size: 0.8rem;
-    }
-
-    & b {
-      flex: auto;
-      font-weight: normal;
-    }
-  }
-
-  & .popup-header {
-    display: flex;
-    flex-direction: row;
-    line-height: 2rem;
-    border-bottom: 1px solid color(white lightness(-10%));
-  }
-
-  & .popup-content {
-    display: flex;
-    flex-direction: row;
-    height: 14rem;
-
-    & i {
-      line-height: 14rem;
-    }
-
-    & > div {
-      flex: auto;
-      position: relative;
-      overflow: hidden;
-    }
-
-    & span {
-      cursor: pointer;
-      display: block;
-      height: 2rem;
-      line-height: 2rem;
-
-      &:hover {
-        background-color: color(white lightness(90%));
-      }
-
-      &.today {
-        color: var(--secondary);
-      }
-
-      &.selected {
-        color: var(--primary);
-      }
-    }
-  }
-
-  & .column-scroller {
-    position: absolute;
-    width: 100%;
-    height: 14rem;
-    z-index: 3;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.6)), linear-gradient(0deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.6));
-    background-repeat: no-repeat;
-    background-position: top, bottom;
-    background-size: 100% 6rem;
-  }
-
-  & .column-content {
-    transition: transform 0.5s ease;
-  }
+.c-picker-content {
+  transition: transform 0.2s linear;
 }

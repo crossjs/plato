@@ -1,82 +1,81 @@
 <!-- Inspired by https://facebook.github.io/react-native/docs/picker.html -->
 <template>
   <div :class="['c-picker', cls]">
-    <span class="c-picker-input"
-      @click="show = !show">{{value.join(extra.sep)}}</span>
-    <input type="hidden"
-      :field="field"
-      :value="value"
-      v-bind="attrs"
-      number>
-    <div class="c-picker-popup"
-      v-focus="show"
-      v-show="show"
-      tabindex="-1"
-      transition="fade">
-      <c-mask cls="c-picker-popup-mask"
-        @touchend.prevent="show = false"></c-mask>
-      <div class="c-picker-popup-body"
-        @touchmove.prevent>
-        <div class="c-picker-popup-header">
-        </div>
-        <div class="c-picker-popup-content">
-          <c-picker-column v-for="(items, index) in extra.data"
-            :key="index"
-            :value="value[index]"
-            :items="items"
-            @mutate="mutate(index, arguments)"
-            ></c-picker-column>
-        </div>
-      </div>
+    <div class="c-picker-scroller"></div>
+    <div class="c-picker-content"
+      :style="{transform: 'translate3d(0, ' + offset + 'px, 0)'}">
+      <slot></slot>
     </div>
   </div>
 </template>
 
 <script>
-import mField from './mixins/field'
-import CMask from './c-mask'
-import CPickerColumn from './c-picker-column'
+import mBase from './mixins/base'
+
+/* globals lib */
+const { dpr } = typeof lib === 'object' ? lib.flexible : { dpr: 2 }
+
 export default {
-  mixins: [mField],
+  mixins: [mBase],
 
   props: {
-    value: {
-      twoWay: true,
-      type: Array,
-      default () {
-        return []
-      }
+    itemHeight: {
+      type: Number,
+      default: 60
     },
-    show: {
-      type: Boolean,
-      default: false
+    index: {
+      type: Number,
+      default: 0
     }
+  },
+
+  data () {
+    return {
+      offset: 0
+    }
+  },
+
+  computed: {
+    _itemHeight () {
+      return this.itemHeight * dpr / 2
+    },
+    maxOffset () {
+      return this._itemHeight * 3
+    },
+    minOffset () {
+      return this._itemHeight * (4 - this.$slots.default.length)
+    }
+  },
+
+  mounted () {
+    this.$el.addEventListener('touchstart', this.dragstart)
+    this.$el.addEventListener('touchmove', this.drag)
+    this.$el.addEventListener('touchend', this.dragend)
+    this.offset = this._itemHeight * (this.index + 3)
   },
 
   methods: {
-    mutate (index, [val]) {
-      const value = [...this.value]
-      value[index] = val
-      this.value = value
+    dragstart (e) {
+      if (!this.dragging && e.touches && e.touches.length === 1) {
+        this.dragging = true
+        this.startY = e.touches[0].pageY - this.offset
+      }
+    },
+    drag (e) {
+      if (this.dragging) {
+        e.preventDefault()
+        e.stopPropagation()
+        this.offset = Math.min(this.maxOffset, Math.max(this.minOffset, e.touches[0].pageY - this.startY))
+      }
+    },
+    dragend (e) {
+      if (this.dragging) {
+        this.dragging = false
+        const index = Math.round(this.offset / this._itemHeight)
+        this.offset = this._itemHeight * index
+        this.$emit('pick', 3 - index)
+      }
     }
-  },
-
-  components: {
-    CMask,
-    CPickerColumn
-  },
-
-  // a custom directive to wait for the DOM to be updated
-  // before focusing on the input field.
-  // http://vuejs.org/guide/custom-directive.html
-  directives: {
-    // focus (val) {
-    //   if (val) {
-    //     this.vm.$nextTick(function () {
-    //       this.$el.focus()
-    //     })
-    //   }
-    // }
   }
 }
 </script>

@@ -52,10 +52,9 @@ export default {
 
   data () {
     return {
-      dpr,
+      offset: 0,
       minOffset: 0,
       maxOffset: 0,
-      offset: 0,
       pull_state: 0,
       has_scroll: false
     }

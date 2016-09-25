@@ -31,3 +31,11 @@
     margin: 0.5em;
   }
 }
+
+.d-picker {
+  & p {
+    font-size: dpr(48px);
+    line-height: dpr(60px);
+    text-align: center;
+  }
+}
