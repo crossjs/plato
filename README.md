@@ -16,6 +16,8 @@ Check out [**UI Components Demos**](http://crossjs.com/plato/#/demos)
 
 ## Change Log
 
+- 20160925
+  - update dependencies, use `vuex/dist/logger` instead of `vuex/logger`
 - 20160921
   - use [postcss-flexible](https://github.com/crossjs/postcss-flexible)
 - 20160907 :warning: *Breaking Changes*
