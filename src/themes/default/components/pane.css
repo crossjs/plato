@@ -1,11 +1,11 @@
 .c-pane {
-  margin: 20px;
+  margin: dpr(20px);
 
   &.vertical {
-    margin: 20px 0;
+    margin: dpr(20px) 0;
   }
 
   &.horizontal {
-    margin: 0 20px;
+    margin: 0 dpr(20px);
   }
 }

@@ -77,11 +77,11 @@
     &::after {
       content: ' ';
       position: absolute;
-      right: 5px;
+      right: dpr(5px);
       top: dpr(20px);
       width: 0.5em;
       height: 0.5em;
-      border-width: 3px 3px 0 0;
+      border-width: dpr(4px) dpr(4px) 0 0;
       border-color: var(--disabled);
       border-style: solid;
       transform: rotateZ(45deg);
