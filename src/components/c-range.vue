@@ -1,0 +1,94 @@
+<template>
+  <div :class="['c-range', cls]">
+    <div class="c-range-content"
+      :style="{'padding-left': realOffset + 'px'}"></div>
+  </div>
+</template>
+
+<script>
+import mBase from './mixins/base'
+
+export default {
+  mixins: [mBase],
+  props: {
+    min: {
+      type: Number,
+      default: 0
+    },
+    max: {
+      type: Number,
+      default: 100
+    },
+    step: {
+      type: Number,
+      default: 1
+    },
+    disabled: {
+      type: Boolean,
+      default: false
+    },
+    value: {
+      type: Number
+    }
+  },
+
+  data () {
+    return {
+      offset: 0,
+      minOffset: 0,
+      maxOffset: 0,
+      realOffset: 0
+    }
+  },
+
+  computed: {
+    realOffset () {
+      const stepOffset = this.maxOffset / Math.ceil((this.max - this.min) / this.step)
+      return Math.round(this.offset / stepOffset) * stepOffset
+    }
+  },
+
+  watch: {
+    value (val) {
+      if (!this.dragging) {
+        this.offset = (this.value - this.min) / (this.max - this.min) * this.maxOffset
+      }
+    },
+    realOffset (val) {
+      this.$emit('change', parseInt(this.min + (this.max - this.min) * (val / this.maxOffset), 10))
+    }
+  },
+
+  mounted () {
+    this.$el.addEventListener('touchstart', this.dragstart)
+    this.$el.addEventListener('touchmove', this.drag)
+    this.$el.addEventListener('touchend', this.dragend)
+    this.maxOffset = this.$el.clientWidth
+    this.offset = (this.value - this.min) / (this.max - this.min) * this.maxOffset
+  },
+
+  methods: {
+    dragstart (e) {
+      if (!this.dragging && e.touches && e.touches.length === 1) {
+        this.dragging = true
+        // this.maxOffset = this.$el.clientWidth
+        this.startY = e.touches[0].pageX - this.offset
+      }
+    },
+    drag (e) {
+      if (this.dragging) {
+        e.preventDefault()
+        e.stopPropagation()
+        this.offset = Math.min(this.maxOffset, Math.max(this.minOffset, e.touches[0].pageX - this.startY))
+      }
+    },
+    dragend (e) {
+      if (this.dragging) {
+        this.dragging = false
+      }
+    }
+  }
+}
+</script>
+
+<style src="styles/components/range"></style>

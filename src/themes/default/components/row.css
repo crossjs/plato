@@ -14,7 +14,7 @@
   }
 
   &:active {
-    background-color: var(--disabled);
+    background-color: color(var(--disabled) alpha(0.4));
 
     & .link {
       &::after {
@@ -79,8 +79,8 @@
       position: absolute;
       right: dpr(5px);
       top: dpr(20px);
-      width: 0.5em;
-      height: 0.5em;
+      width: 0.3em;
+      height: 0.3em;
       border-width: dpr(4px) dpr(4px) 0 0;
       border-color: var(--disabled);
       border-style: solid;

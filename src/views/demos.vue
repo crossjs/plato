@@ -49,6 +49,10 @@
         <router-link class="col link" to="demos/picker">
           <c-icon>github</c-icon> picker</router-link>
       </c-row>
+      <c-row>
+        <router-link class="col link" to="demos/range">
+          <c-icon>github</c-icon> range</router-link>
+      </c-row>
     </template>
     <component v-else :is="'demo-' + $route.params.component"></component>
   </div>
@@ -69,6 +73,7 @@ import DemoToast from 'demos/toast'
 import DemoImage from 'demos/image'
 import DemoScroller from 'demos/scroller'
 import DemoPicker from 'demos/picker'
+import DemoRange from 'demos/range'
 
 export default {
   data () {
@@ -91,7 +96,8 @@ export default {
     DemoToast,
     DemoImage,
     DemoScroller,
-    DemoPicker
+    DemoPicker,
+    DemoRange
   }
 }
 </script>

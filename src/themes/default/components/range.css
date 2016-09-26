@@ -1,0 +1,33 @@
+.c-range {
+  padding: dpr(28px);
+  position: relative;
+  margin-right: dpr(60px);
+}
+
+.c-range-content {
+  background-color: var(--disabled);
+  height: dpr(4px);
+  position: relative;
+  margin-right: -dpr(60px);
+
+  &::before {
+    padding-left: inherit;
+    min-height: dpr(4px);
+    content: ' ';
+    position: absolute;
+    left: 0;
+    background-color: var(--primary);
+  }
+
+  &::after {
+    content: ' ';
+    position: absolute;
+    margin-top: -dpr(28px);
+    margin-left: -dpr(28px);
+    width: dpr(60px);
+    height: dpr(60px);
+    border-radius: 50%;
+    background-color: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  }
+}
