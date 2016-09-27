@@ -20,7 +20,7 @@
       position: absolute;
       left: 0;
       top: 0;
-      height: dpr(46px);
+      height: dpr(44px);
       transition: transform 0.5s ease;
     }
 
@@ -31,7 +31,7 @@
     /* as a dot */
     &::after {
       vertical-align: top;
-      width: dpr(46px);
+      width: dpr(44px);
       background-color: white;
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
     }
