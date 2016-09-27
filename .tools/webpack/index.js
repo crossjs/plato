@@ -203,7 +203,7 @@ webpackConfig.plugins = [
     }
   }),
   new FaviconsWebpackPlugin({
-    logo: paths.src('assets/PLATO-256.png'),
+    logo: paths.src('assets/logo.svg'),
     prefix: 'icons-[hash:7]/',
     icons: {
       android: true,
