@@ -2,22 +2,28 @@
   <div class="v-login">
     <c-form @submit.native.prevent="login">
       <c-row>
-        <c-label cls="col col-1">{{__(username.label)}}</c-label>
-        <c-textfield cls="col col-3"
-          :field="username.field"
-          :validate="username.validate"
-          :value="username.value"
-          @mutate="username.value = arguments[0]"
-          ></c-textfield>
+        <c-col :size="1">
+          <c-label cls="col col-1">{{__(username.label)}}</c-label>
+        </c-col>
+        <c-col :size="3">
+          <c-textfield
+            :field="username.field"
+            :validate="username.validate"
+            :value="username.value"
+            @mutate="username.value = arguments[0]"></c-textfield>
+        </c-col>
       </c-row>
       <c-row>
-        <c-label cls="col col-1">{{__(password.label)}}</c-label>
-        <c-password cls="col col-3"
-          :field="password.field"
-          :validate="password.validate"
-          :value="password.value"
-          @mutate="password.value = arguments[0]"
-          ></c-password>
+        <c-col :size="1">
+          <c-label cls="col col-1">{{__(password.label)}}</c-label>
+        </c-col>
+        <c-col :size="3">
+          <c-password
+            :field="password.field"
+            :validate="password.validate"
+            :value="password.value"
+            @mutate="password.value = arguments[0]"></c-password>
+        </c-col>
       </c-row>
       <c-pane>
         <c-validation :validation="$validation"></c-validation>
@@ -33,7 +39,7 @@ import CValidation from 'components/c-validation'
 import CPane from 'components/c-pane'
 import CForm from 'components/c-form'
 import CRow from 'components/c-row'
-// import CIcon from 'components/c-icon'
+import CCol from 'components/c-col'
 import CLabel from 'components/c-label'
 import CTextfield from 'components/c-textfield'
 import CPassword from 'components/c-password'
@@ -134,7 +140,7 @@ export default {
     CValidation,
     CForm,
     CRow,
-    // CIcon,
+    CCol,
     CLabel,
     CTextfield,
     CPassword,

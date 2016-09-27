@@ -13,8 +13,7 @@
           :row="title.row"
           :validate="title.validate"
           :value="title.value"
-          @mutate="title.value = arguments[0]"
-          ></c-textfield>
+          @mutate="title.value = arguments[0]"></c-textfield>
           <c-validation :validation="$validation" field="title"></c-validation>
       </c-row>
       <c-row :flex="false">
@@ -25,8 +24,7 @@
           :row="content.row"
           :validate="content.validate"
           :value="content.value"
-          @mutate="content.value = arguments[0]"
-          ></c-multiline>
+          @mutate="content.value = arguments[0]"></c-multiline>
           <c-validation :validation="$validation" field="content"></c-validation>
       </c-row>
       <c-pane>
