@@ -2,6 +2,7 @@ import webpack from 'webpack'
 import CopyWebpackPlugin from 'copy-webpack-plugin'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
+import FaviconsWebpackPlugin from 'favicons-webpack-plugin'
 import fs from 'fs'
 import _debug from 'debug'
 import config, { paths } from '../config'
@@ -176,12 +177,28 @@ webpackConfig.plugins = [
     filename: 'index.html',
     template: paths.src('index.ejs'),
     title: `${config.pkg.name} - ${config.pkg.description}`,
-    favicon: paths.src('static/favicon.png'),
+    // favicon: paths.src('static/favicon.png'),
     hash: false,
     inject: true,
     minify: {
       collapseWhitespace: config.compiler_html_minify,
       minifyJS: config.compiler_html_minify
+    }
+  }),
+  new FaviconsWebpackPlugin({
+    logo: paths.src('assets/PLATO-256.png'),
+    prefix: 'icons-[hash:7]/',
+    icons: {
+      android: true,
+      appleIcon: true,
+      appleStartup: true,
+      coast: false,
+      favicons: true,
+      firefox: false,
+      opengraph: false,
+      twitter: false,
+      yandex: false,
+      windows: false
     }
   }),
   new CopyWebpackPlugin([{
