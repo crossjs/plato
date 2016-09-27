@@ -1,6 +1,6 @@
 <template>
   <div class="d-scroller">
-    <c-scroller ref="scroller"
+    <c-scroller
       :height="height"
       :loading="loading"
       :drained="drained"

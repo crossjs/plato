@@ -1,35 +1,37 @@
 <template>
   <div class="d-row">
-    <div style="margin: 1rem 0">
-      <c-row>no cols</c-row>
-    </div>
-    <div style="margin: 1rem 0">
+    <div>
       <c-row>
-        <div class="col">col</div>
-        <div class="col">col</div>
-      </c-row>
-      <c-row>
-        <div class="col col-1">col-1</div>
-        <div class="col col-3">col-3</div>
-      </c-row>
-      <c-row>
-        <div class="col col-3">col-3</div>
-        <div class="col col-1">col-1</div>
+        <p>no cols</p>
       </c-row>
     </div>
-    <div style="margin: 1rem 0">
+    <div>
       <c-row>
-        <div class="col">col</div>
-        <div class="col">col</div>
-        <div class="col">col</div>
+        <c-col>col</c-col>
+        <c-col>col</c-col>
       </c-row>
       <c-row>
-        <div class="col col-1">col-1</div>
-        <div class="col col-2">col-2</div>
-        <div class="col col-1">col-1</div>
+        <c-col :size="1">col-1</c-col>
+        <c-col :size="3">col-3</c-col>
+      </c-row>
+      <c-row>
+        <c-col :size="3">col-3</c-col>
+        <c-col :size="1">col-1</c-col>
       </c-row>
     </div>
-    <div style="margin: 1rem 0">
+    <div>
+      <c-row>
+        <c-col>col</c-col>
+        <c-col>col</c-col>
+        <c-col>col</c-col>
+      </c-row>
+      <c-row>
+        <c-col :size="1">col-1</c-col>
+        <c-col :size="2">col-2</c-col>
+        <c-col :size="1">col-1</c-col>
+      </c-row>
+    </div>
+    <div>
       <c-row>four rows in group</c-row>
       <c-row>four rows in group</c-row>
       <c-row>four rows in group</c-row>
@@ -40,10 +42,12 @@
 
 <script>
 import CRow from 'components/c-row'
+import CCol from 'components/c-col'
 
 export default {
   components: {
-    CRow
+    CRow,
+    CCol
   }
 }
 </script>

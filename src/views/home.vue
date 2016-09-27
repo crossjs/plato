@@ -5,19 +5,23 @@
       @cancel="callback('cancel')"
       @submit="callback('submit')"
       @close="show_modal = false">{{ __('views.home.confirm') }}</c-modal>
-    <div class="center">
-      <c-spinner v-show="faq_is_fetching"></c-spinner>
-    </div>
-    <c-row :flex="false" v-for="item in faq_items" :key="item.id">
-      <h3>{{ item.title }}</h3>
-      <article>{{ item.content }}</article>
-      <c-button v-if="authorized" size="xsmall" @click.native="_delete(item.objectId)">{{ __('views.home.delete') }}</c-button>
-    </c-row>
+    <c-scroller
+      :height="height"
+      :loading="faq_is_fetching"
+      :drained="drained"
+      @pulldown="getItems">
+      <c-row :flex="false" v-for="item in faq_items" :key="item.id">
+        <h3>{{ item.title }}</h3>
+        <article>{{ item.content }}</article>
+        <c-button v-if="authorized" size="xsmall" @click.native="_delete(item.objectId)">{{ __('views.home.delete') }}</c-button>
+      </c-row>
+    </c-scroller>
   </div>
 </template>
 
 <script>
 import CModal from 'components/c-modal'
+import CScroller from 'components/c-scroller'
 import CSpinner from 'components/c-spinner'
 import CRow from 'components/c-row'
 import CButton from 'components/c-button'
@@ -26,11 +30,19 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
   data () {
     return {
-      show_modal: false
+      show_modal: false,
+      drained: true,
+      height: 0
     }
   },
 
   computed: mapGetters(['authorized', 'faq_items', 'faq_is_fetching']),
+
+  mounted () {
+    this.height =
+      document.documentElement.clientHeight -
+      document.getElementById('header').clientHeight
+  },
 
   methods: {
     _delete (id) {
@@ -53,6 +65,7 @@ export default {
 
   components: {
     CModal,
+    CScroller,
     CSpinner,
     CRow,
     CButton

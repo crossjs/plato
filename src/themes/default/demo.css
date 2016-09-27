@@ -1,5 +1,9 @@
 .d-row {
-  & .col {
+  & > div {
+    margin: 1rem 0;
+  }
+
+  & .c-col {
     border: 1px solid var(--primary);
   }
 }
