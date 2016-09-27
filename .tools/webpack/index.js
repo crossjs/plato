@@ -1,4 +1,5 @@
 import webpack from 'webpack'
+import chalk from 'chalk'
 import CopyWebpackPlugin from 'copy-webpack-plugin'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
@@ -165,10 +166,26 @@ webpackConfig.eslint = {
   formatter: require('eslint-friendly-formatter')
 }
 
+let charIndex = 0
+
 // ------------------------------------
 // Plugins
 // ------------------------------------
 webpackConfig.plugins = [
+  new webpack.ProgressPlugin((percentage, message) => {
+    const color = ['red', 'yellow', 'green', 'green'][Math.floor(percentage * 3)]
+    const cchar = ['-', '\\', '|', '/'][charIndex++ % 4]
+    if (percentage === 0) {
+      charIndex = 0
+    } else if (percentage === 1) {
+      process.stdout.clearLine()
+      process.stdout.write('\n')
+    } else {
+      process.stdout.clearLine()
+      process.stdout.write(chalk.cyan(cchar) + ' ' + chalk[color](message))
+      process.stdout.cursorTo(0)
+    }
+  }),
   new webpack.DefinePlugin(config.globals),
   // generate dist index.html with correct asset hash for caching.
   // you can customize output by editing /index.html
