@@ -1,3 +1,11 @@
+.v-demos {
+  & .c-col {
+    & a {
+      display: block;
+    }
+  }
+}
+
 .d-row {
   & > div {
     margin: 1rem 0;
