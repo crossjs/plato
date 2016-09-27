@@ -2,7 +2,9 @@
   <div id="container">
     <c-progress id="progress"
       :progress="progress"></c-progress>
-    <c-toast v-if="toast">{{toast}}</c-toast>
+    <transition name="fade">
+      <c-toast v-if="toast">{{toast}}</c-toast>
+    </transition>
     <header id="header">
       <div id="logo">
         <router-link class="c-route-link" to="/">

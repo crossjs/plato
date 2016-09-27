@@ -1,21 +1,12 @@
 <template>
-  <transition :name="transition">
-    <div :class="['c-toast', cls]"><slot></slot></div>
-  </transition>
+  <div :class="['c-toast', cls]"><slot></slot></div>
 </template>
 
 <script>
 import mBase from './mixins/base'
 
 export default {
-  mixins: [mBase],
-  props: {
-    // remove transition?
-    transition: {
-      type: String,
-      default: 'fade'
-    }
-  }
+  mixins: [mBase]
 }
 </script>
 
