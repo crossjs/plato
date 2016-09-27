@@ -12,6 +12,7 @@
   }
 
   & .c-col {
+    box-sizing: border-box;
     border: 1px solid var(--primary);
   }
 }

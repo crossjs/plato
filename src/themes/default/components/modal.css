@@ -14,13 +14,13 @@
   left: 50%;
   top: 50%;
   width: 72%;
+  text-align: center;
   background-color: white;
   border-radius: dpr(30px);
   transform: translate3d(-50%, -50%, 0);
 }
 
 .c-modal-body {
-  text-align: center;
   padding: rem(40px);
   font-size: dpr(40px);
 
@@ -70,4 +70,5 @@
 
 .c-modal-link {
   border-radius: inherit;
+  display: block;
 }

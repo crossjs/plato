@@ -1,6 +1,6 @@
 <template>
-  <div class="v-demos">
-    <template v-if="!$route.params.component">
+  <div>
+    <div class="v-demos" v-if="!$route.params.component">
       <c-row>
         <c-col>
           <router-link class="link" to="demos/icon">
@@ -79,7 +79,7 @@
             <c-icon>github</c-icon> range</router-link>
         </c-col>
       </c-row>
-    </template>
+    </div>
     <component v-else :is="'demo-' + $route.params.component"></component>
   </div>
 </template>

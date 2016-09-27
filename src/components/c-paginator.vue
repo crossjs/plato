@@ -45,10 +45,7 @@ export default {
       return Math.ceil(this.count / $limit)
     },
     pages () {
-      const maxpage = this.maxpage
-      const current = this.current
-      const countOut = this.countOut
-      const countIn = this.countIn
+      const { maxpage, current, countOut, countIn } = this
       const pages = []
 
       pages.push({
