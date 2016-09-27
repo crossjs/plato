@@ -16,7 +16,7 @@ const plugins = [
           break
         case 'error':
           store.dispatch('setProgress', 100)
-          store.dispatch('addToast', payload)
+          store.dispatch('addToast', payload.__payload__)
           break
         default:
           // setProgress(0)

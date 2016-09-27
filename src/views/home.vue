@@ -38,10 +38,15 @@ export default {
 
   computed: mapGetters(['authorized', 'faq_items', 'faq_is_fetching']),
 
+  created () {
+    this.getItems()
+  },
+
   mounted () {
     this.height =
       document.documentElement.clientHeight -
       document.getElementById('header').clientHeight
+    this.addToast('pull down to reload')
   },
 
   methods: {
@@ -56,11 +61,7 @@ export default {
       }
       delete this.id
     },
-    ...mapActions(['getItems', 'addItem', 'deleteItem'])
-  },
-
-  created () {
-    this.getItems()
+    ...mapActions(['getItems', 'addItem', 'deleteItem', 'addToast'])
   },
 
   components: {

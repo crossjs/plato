@@ -10,7 +10,7 @@ import CToast from 'components/c-toast'
 export default {
   data () {
     return {
-      toast: 'toast'
+      toast: 'i am a toast'
     }
   },
 

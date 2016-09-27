@@ -2,7 +2,7 @@
   <div id="container">
     <c-progress id="progress"
       :progress="progress"></c-progress>
-    <c-toast v-for="toast in toasts" :key="toast._id">{{toast}}</c-toast>
+    <c-toast v-if="toast">{{toast}}</c-toast>
     <header id="header">
       <div id="logo">
         <router-link class="c-route-link" to="/">
@@ -37,7 +37,7 @@ import routes from 'routes'
 
 export default {
   computed: {
-    ...mapGetters(['authorized', 'lang', 'i18n', 'progress', 'toasts']),
+    ...mapGetters(['authorized', 'lang', 'i18n', 'progress', 'toast']),
     routes () {
       return walkRoutes.call(this, routes, route => {
         return !route.hidden && route.path !== '/' && route.auth !== !this.authorized
