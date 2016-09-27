@@ -2,7 +2,7 @@
 
 > :heart: a Boilerplate for SPAs use vue, vuex, vue-router
 
-Check out [**UI Components Demos**](http://crossjs.com/plato/#/demos)
+Check out [**Demos**](http://crossjs.com/plato/#/demos) and [README](src/components/README.md) for UI Components
 
 [![Travis](https://img.shields.io/travis/crossjs/plato.svg?style=flat-square)](https://travis-ci.org/crossjs/plato)
 [![Coveralls](https://img.shields.io/coveralls/crossjs/plato.svg?style=flat-square)](https://coveralls.io/github/crossjs/plato)
@@ -14,7 +14,20 @@ Check out [**UI Components Demos**](http://crossjs.com/plato/#/demos)
 
 [![mindmap](https://cdn.rawgit.com/crossjs/plato/next/src/assets/PLATO.svg)](src/assets/PLATO.svg)
 
-## Change Log
+## Usage
+
+``` bash
+# install dependencies
+npm install
+
+# serve with hot reload at localhost:3000
+npm run dev
+
+# generate demo site and push to gh-pages
+npm run docs
+```
+
+## Changelog
 
 - 20160925
   - update dependencies, use `vuex/dist/logger` instead of `vuex/logger`
@@ -70,55 +83,3 @@ Check out [**UI Components Demos**](http://crossjs.com/plato/#/demos)
   - 移除 `<router-view>` 中的 `transition-mode` [#5](https://github.com/crossjs/plato/issues/5)
 - 20160619
   - 使用 icomoon 管理图标字体，因为 iconfont 不支持连体字符
-
-## Principles
-
-- 使用 ES6 编写
-- 使用 .vue 单文件组件
-  - 逻辑尽量写在 script 里，保持 template 逻辑简单
-- 向 vue@2 靠拢
-- **不限制使用何种 UI 组件，可以使用第三方，或自己开发（请尽量考虑复用性）**
-- 尽量使用小的依赖库
-
-## Troubleshooting
-
-- Nodemon has error with node 6.x, so please use node 5.12.0
-
-## Usage
-
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:3000
-npm run dev
-
-# serve with mocking. see mocks in /apis
-npm run dev:mock
-
-# clean
-npm run clean
-
-# build for production with minification
-npm run compile
-
-# run server in production
-npm start
-
-# run unit tests
-npm run unit
-
-# run lint and unit
-npm test
-```
-
-## Backend
-
-使用 koa 2 实现开发调试服务
-
-若要寻找“完整”的后端，请访问分支 [backend](https://github.com/crossjs/plato/tree/backend)
-
-## Appendix
-
-- [vue-devtools](https://github.com/vuejs/vue-devtools)
-- [awesome-vue](https://github.com/vuejs/awesome-vue)
