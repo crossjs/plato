@@ -172,20 +172,6 @@ let charIndex = 0
 // Plugins
 // ------------------------------------
 webpackConfig.plugins = [
-  new webpack.ProgressPlugin((percentage, message) => {
-    const color = ['red', 'yellow', 'green', 'green'][Math.floor(percentage * 3)]
-    const cchar = ['-', '\\', '|', '/'][charIndex++ % 4]
-    if (percentage === 0) {
-      charIndex = 0
-    } else if (percentage === 1) {
-      process.stdout.clearLine()
-      process.stdout.write('\n')
-    } else {
-      process.stdout.clearLine()
-      process.stdout.write(chalk.cyan(cchar) + ' ' + chalk[color](message))
-      process.stdout.cursorTo(0)
-    }
-  }),
   new webpack.DefinePlugin(config.globals),
   // generate dist index.html with correct asset hash for caching.
   // you can customize output by editing /index.html
@@ -200,22 +186,6 @@ webpackConfig.plugins = [
     minify: {
       collapseWhitespace: config.compiler_html_minify,
       minifyJS: config.compiler_html_minify
-    }
-  }),
-  new FaviconsWebpackPlugin({
-    logo: paths.src('assets/logo.svg'),
-    prefix: 'icons-[hash:7]/',
-    icons: {
-      android: true,
-      appleIcon: true,
-      appleStartup: true,
-      coast: false,
-      favicons: true,
-      firefox: false,
-      opengraph: false,
-      twitter: false,
-      yandex: false,
-      windows: false
     }
   }),
   new CopyWebpackPlugin([{
@@ -250,9 +220,41 @@ if (__PROD__) {
 
 // Don't split bundles during testing, since we only want import one bundle
 if (!__TEST__) {
-  webpackConfig.plugins.push(new webpack.optimize.CommonsChunkPlugin({
-    names: ['vendor']
-  }))
+  webpackConfig.plugins.push(
+    new webpack.ProgressPlugin((percentage, message) => {
+      const color = ['red', 'yellow', 'green', 'green'][Math.floor(percentage * 3)]
+      const cchar = ['-', '\\', '|', '/'][charIndex++ % 4]
+      if (percentage === 0) {
+        charIndex = 0
+      } else if (percentage === 1) {
+        process.stdout.clearLine()
+        process.stdout.write('\n')
+      } else {
+        process.stdout.clearLine()
+        process.stdout.write(chalk.cyan(cchar) + ' ' + chalk[color](message))
+        process.stdout.cursorTo(0)
+      }
+    }),
+    new FaviconsWebpackPlugin({
+      logo: paths.src('assets/logo.svg'),
+      prefix: 'icons-[hash:7]/',
+      icons: {
+        android: true,
+        appleIcon: true,
+        appleStartup: true,
+        coast: false,
+        favicons: true,
+        firefox: false,
+        opengraph: false,
+        twitter: false,
+        yandex: false,
+        windows: false
+      }
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      names: ['vendor']
+    })
+  )
 }
 
 export default webpackConfig
