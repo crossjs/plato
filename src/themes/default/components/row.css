@@ -1,5 +1,5 @@
 .c-row {
-  padding: rem(20px);
+  padding: dpr(20px);
   font-size: dpr(32px);
   position: relative;
   overflow: hidden; /* preventing horizontal scrollbar */
@@ -51,24 +51,6 @@
     &::after {
       left: 0;
     }
-  }
-
-  & .col {
-    display: block;
-    flex: 1 1 auto;
-    flex-shrink: 0;
-  }
-
-  & .col-1 {
-    flex-basis: 25%;
-  }
-
-  & .col-2 {
-    flex-basis: 50%;
-  }
-
-  & .col-3 {
-    flex-basis: 75%;
   }
 
   & .link {
