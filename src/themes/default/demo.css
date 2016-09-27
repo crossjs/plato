@@ -6,6 +6,26 @@
   }
 }
 
+.d-icon {
+  & .d-icon-slot {
+    width: 33.33333%;
+    display: block;
+    float: left;
+    text-align: center;
+  }
+
+  & .d-icon-name {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  & .c-icon {
+    margin: 0.2em;
+  }
+}
+
 .d-row {
   & > div {
     margin: 1rem 0;

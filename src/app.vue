@@ -13,7 +13,7 @@
       </div>
       <div id="history">
         <c-link @click.native="_back">
-          <c-icon>back</c-icon>
+          <c-icon>chevron-left</c-icon>
         </c-link>
       </div>
       <c-navbar cls="navbar">

@@ -1,20 +1,18 @@
 <template>
-  <div>
-    <c-row :flex="false">
-      <c-icon cls="fs-64" v-for="(value, key) in maps">{{key}}</c-icon>
-      <p>use <a href="https://en.wikipedia.org/wiki/Typographic_ligature">ligatures</a> in iconfont, for modern browsers</p>
-    </c-row>
-    <c-row :flex="false">
-      <c-icon cls="fs-64" v-for="(value, key) in maps" v-html="value"></c-icon>
-      <p>use unicode in iconfont, for old browsers</p>
-    </c-row>
+  <div class="d-icon">
+    <c-pane>
+      <span class="d-icon-slot" v-for="(value, key, index) in maps">
+        <c-icon cls="fs-64">{{key}}</c-icon>
+        <i class="d-icon-name">{{key}}</i>
+      <span>
+    </c-pane>
   </div>
 </template>
 
 <script>
-import CRow from 'components/c-row'
+import CPane from 'components/c-pane'
 import CIcon from 'components/c-icon'
-import maps from 'styles/fonts/plato.maps'
+import maps from 'components/assets/maps'
 
 export default {
   data () {
@@ -24,7 +22,7 @@ export default {
   },
 
   components: {
-    CRow,
+    CPane,
     CIcon
   }
 }

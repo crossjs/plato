@@ -4,79 +4,79 @@
       <c-row>
         <c-col>
           <router-link class="link" to="demos/icon">
-            <c-icon>github</c-icon> icon</router-link>
+            <c-icon>flame</c-icon> icon</router-link>
         </c-col>
       </c-row>
       <c-row>
         <c-col>
           <router-link class="link" to="demos/progress">
-            <c-icon>github</c-icon> progress</router-link>
+            <c-icon>flame</c-icon> progress</router-link>
         </c-col>
       </c-row>
       <c-row>
         <c-col>
           <router-link class="link" to="demos/button">
-            <c-icon>github</c-icon> button</router-link>
+            <c-icon>flame</c-icon> button</router-link>
         </c-col>
       </c-row>
       <c-row>
         <c-col>
           <router-link class="link" to="demos/form">
-            <c-icon>github</c-icon> form</router-link>
+            <c-icon>flame</c-icon> form</router-link>
         </c-col>
       </c-row>
       <c-row>
         <c-col>
           <router-link class="link" to="demos/row">
-            <c-icon>github</c-icon> row</router-link>
+            <c-icon>flame</c-icon> row</router-link>
         </c-col>
       </c-row>
       <c-row>
         <c-col>
           <router-link class="link" to="demos/paginator">
-            <c-icon>github</c-icon> paginator</router-link>
+            <c-icon>flame</c-icon> paginator</router-link>
         </c-col>
       </c-row>
       <c-row>
         <c-col>
           <router-link class="link" to="demos/spinner">
-            <c-icon>github</c-icon> spinner</router-link>
+            <c-icon>flame</c-icon> spinner</router-link>
         </c-col>
       </c-row>
       <c-row>
         <c-col>
           <router-link class="link" to="demos/modal">
-            <c-icon>github</c-icon> modal</router-link>
+            <c-icon>flame</c-icon> modal</router-link>
         </c-col>
       </c-row>
       <c-row>
         <c-col>
           <router-link class="link" to="demos/toast">
-            <c-icon>github</c-icon> toast</router-link>
+            <c-icon>flame</c-icon> toast</router-link>
         </c-col>
       </c-row>
       <c-row>
         <c-col>
           <router-link class="link" to="demos/image">
-            <c-icon>github</c-icon> image</router-link>
+            <c-icon>flame</c-icon> image</router-link>
         </c-col>
       </c-row>
       <c-row>
         <c-col>
           <router-link class="link" to="demos/scroller">
-            <c-icon>github</c-icon> scroller</router-link>
+            <c-icon>flame</c-icon> scroller</router-link>
         </c-col>
       </c-row>
       <c-row>
         <c-col>
           <router-link class="link" to="demos/picker">
-            <c-icon>github</c-icon> picker</router-link>
+            <c-icon>flame</c-icon> picker</router-link>
         </c-col>
       </c-row>
       <c-row>
         <c-col>
           <router-link class="link" to="demos/range">
-            <c-icon>github</c-icon> range</router-link>
+            <c-icon>flame</c-icon> range</router-link>
         </c-col>
       </c-row>
     </div>
