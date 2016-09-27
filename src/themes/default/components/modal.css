@@ -31,7 +31,7 @@
 
 .c-modal-actions {
   &.c-row {
-    padding: 0;
+    padding: dpr(0px);
 
     &::after {
       content: none;
@@ -39,7 +39,7 @@
   }
 }
 
-.c-modal-link {
+.c-modal-action {
   display: block;
   position: relative;
 
@@ -66,4 +66,8 @@
       content: none;
     }
   }
+}
+
+.c-modal-link {
+  border-radius: inherit;
 }

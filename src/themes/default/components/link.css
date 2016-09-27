@@ -14,19 +14,19 @@
   }
 
   &.xlarge {
-    font-size: 1.44rem;
+    font-size: dpr(40px);
   }
 
   &.large {
-    font-size: 1.2rem;
+    font-size: dpr(36px);
   }
 
   &.small {
-    font-size: 0.8rem;
+    font-size: dpr(28px);
   }
 
   &.xsmall {
-    font-size: 0.64rem;
+    font-size: dpr(24px);
   }
 
   &.primary {
