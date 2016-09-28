@@ -79,6 +79,12 @@
             <c-icon>flame</c-icon> range</router-link>
         </c-col>
       </c-row>
+      <c-row>
+        <c-col>
+          <router-link class="link" to="demos/slider">
+            <c-icon>flame</c-icon> slider</router-link>
+        </c-col>
+      </c-row>
     </div>
     <component v-else :is="'demo-' + $route.params.component"></component>
   </div>
@@ -101,6 +107,7 @@ import DemoImage from 'demos/image'
 import DemoScroller from 'demos/scroller'
 import DemoPicker from 'demos/picker'
 import DemoRange from 'demos/range'
+import DemoSlider from 'demos/slider'
 
 export default {
   data () {
@@ -125,7 +132,8 @@ export default {
     DemoImage,
     DemoScroller,
     DemoPicker,
-    DemoRange
+    DemoRange,
+    DemoSlider
   }
 }
 </script>

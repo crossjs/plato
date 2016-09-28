@@ -6,6 +6,31 @@
   }
 }
 
+.d-slider {
+  & .c-slider {
+    height: dpr(200px);
+  }
+
+  & .d-slider-item {
+    text-align: center;
+    line-height: dpr(160px);
+    color: white;
+    font-size: dpr(60px);
+
+    &:nth-child(3n+1) {
+      background: red;
+    }
+
+    &:nth-child(3n+2) {
+      background: green;
+    }
+
+    &:nth-child(3n) {
+      background: blue;
+    }
+  }
+}
+
 .d-icon {
   & .d-icon-slot {
     width: 33.33333%;
