@@ -16,7 +16,7 @@
     "lint": "eslint --max-warnings 10 .",
     "lint:fix": "npm run lint -- --fix",
     "lint:css": "stylelint src/themes/**/*.css",
-    "test": "npm run lint && npm run lint:css && npm run unit && npm run e2e",
+    "test": "npm run lint && npm run lint:css && npm run unit",
     "clean": "better-npm-run clean",
     "compile": "better-npm-run compile",
     "build": "better-npm-run build",
