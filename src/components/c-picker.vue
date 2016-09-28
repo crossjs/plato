@@ -1,8 +1,10 @@
 <!-- Inspired by https://facebook.github.io/react-native/docs/picker.html -->
 <template>
-  <div :class="['c-picker', cls]">
-    <div class="c-picker-scroller"></div>
-    <div class="c-picker-content"
+  <div :class="['c-picker', cls]"
+    :style="{'height': itemHeight * size + 'px'}">
+    <div class="c-picker-scroller"
+      :style="{'background-size': '100% ' + (size - 1) / 2 * itemHeight + 'px'}"></div>
+    <div class="c-picker-content" ref="content"
       :style="{transform: 'translate3d(0, ' + offset + 'px, 0)'}">
       <slot></slot>
     </div>
@@ -12,45 +14,48 @@
 <script>
 import mBase from './mixins/base'
 
-/* globals lib */
-const { dpr } = typeof lib === 'object' ? lib.flexible : { dpr: 2 }
-
 export default {
   mixins: [mBase],
 
   props: {
-    itemHeight: {
-      type: Number,
-      default: 60
-    },
     index: {
       type: Number,
-      default: 0
+      default: 0,
+      validator (val) {
+        return val > 0
+      }
+    },
+    size: {
+      type: Number,
+      default: 7,
+      validator (val) {
+        return val >= 3 && val % 2 === 1
+      }
     }
   },
 
   data () {
     return {
-      offset: 0
+      offset: 0,
+      itemHeight: 0,
+      // 是否有内容
+      itemLength: 0
     }
   },
 
   computed: {
-    _itemHeight () {
-      return this.itemHeight * dpr / 2
-    },
     maxOffset () {
-      return this._itemHeight * 3
+      return this.itemHeight * (this.size - 1) / 2
     },
     minOffset () {
-      return this._itemHeight * (4 - this.$slots.default.length)
+      return this.itemHeight * ((this.size + 1) / 2 - this.itemLength)
     }
   },
 
   watch: {
-    index (val) {
+    index () {
       if (!this.dragging) {
-        this.offset = this._itemHeight * (3 - val)
+        this.updateOffset()
       }
     }
   },
@@ -59,10 +64,37 @@ export default {
     this.$el.addEventListener('touchstart', this.dragstart)
     this.$el.addEventListener('touchmove', this.drag)
     this.$el.addEventListener('touchend', this.dragend)
-    this.offset = this._itemHeight * (this.index + 3)
+    const { children } = this.$refs.content
+    this.itemLength = children.length
+    if (this.itemLength) {
+      this.itemHeight = children[0].clientHeight
+      this.updateOffset()
+    }
+  },
+
+  updated () {
+    const { children } = this.$refs.content
+    if (this.itemLength !== children.length) {
+      this.itemLength = children.length
+      if (this.itemLength) {
+        this.itemHeight = children[0].clientHeight
+        this.updateOffset()
+      } else {
+        this.itemHeight = 0
+        this.offset = 0
+      }
+    }
   },
 
   methods: {
+    updateOffset () {
+      let index = this.index
+      if (this.index > this.itemLength - 1) {
+        index = this.itemLength - 1
+        this.$emit('change', index)
+      }
+      this.offset = this.itemHeight * ((this.size - 1) / 2 - index)
+    },
     dragstart (e) {
       if (!this.dragging && e.touches && e.touches.length === 1) {
         this.dragging = true
@@ -79,9 +111,9 @@ export default {
     dragend (e) {
       if (this.dragging) {
         this.dragging = false
-        const index = Math.round(this.offset / this._itemHeight)
-        this.offset = this._itemHeight * index
-        this.$emit('change', 3 - index)
+        const offsetIndex = Math.max((this.size - 1) / 2 - this.itemLength, Math.round(this.offset / this.itemHeight))
+        this.offset = this.itemHeight * offsetIndex
+        this.$emit('change', (this.size - 1) / 2 - offsetIndex)
       }
     }
   }

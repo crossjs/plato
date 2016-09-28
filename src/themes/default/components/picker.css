@@ -1,6 +1,5 @@
 .c-picker {
   position: relative;
-  height: dpr(420px);
   overflow: hidden;
 }
 
@@ -12,7 +11,6 @@
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.6)), linear-gradient(0deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.6));
   background-repeat: no-repeat;
   background-position: top, bottom;
-  background-size: 100% 43%;
 }
 
 .c-picker-content {
