@@ -47,6 +47,14 @@ export default {
     }
   },
 
+  watch: {
+    index (val) {
+      if (!this.dragging) {
+        this.offset = this._itemHeight * (3 - val)
+      }
+    }
+  },
+
   mounted () {
     this.$el.addEventListener('touchstart', this.dragstart)
     this.$el.addEventListener('touchmove', this.drag)
@@ -73,7 +81,7 @@ export default {
         this.dragging = false
         const index = Math.round(this.offset / this._itemHeight)
         this.offset = this._itemHeight * index
-        this.$emit('pick', 3 - index)
+        this.$emit('change', 3 - index)
       }
     }
   }

@@ -1,21 +1,28 @@
 <template>
   <div class="d-picker">
-    <c-pane>
-      <c-picker
-        :index="index"
-        @pick="pick">
-        <p class="c-picker-item" v-for="item in items">{{item}}</p>
-      </c-picker>
-    </c-pane>
-    <c-pane>
-      <hr>
-      <p>Picked: {{picked}}</p>
-    </c-pane>
+    <c-row>
+      <c-col>
+        <c-picker
+          :index="index"
+          @change="change">
+          <p class="c-picker-item" v-for="item in items">{{item}}</p>
+        </c-picker>
+      </c-col>
+        <c-picker
+          :index="index"
+          @change="change">
+          <p class="c-picker-item" v-for="item in items">{{item}}</p>
+        </c-picker>
+      </c-col>
+    </c-row>
+    <hr>
+    <p>Picked: {{picked}}</p>
   </div>
 </template>
 
 <script>
-import CPane from 'components/c-pane'
+import CRow from 'components/c-row'
+import CCol from 'components/c-col'
 import CPicker from 'components/c-picker'
 
 export default {
@@ -33,13 +40,14 @@ export default {
   },
 
   methods: {
-    pick (index) {
+    change (index) {
       this.index = index
     }
   },
 
   components: {
-    CPane,
+    CRow,
+    CCol,
     CPicker
   }
 }

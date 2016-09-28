@@ -1,13 +1,19 @@
 <template>
   <div class="d-scroller">
+    <div style="margin:1rem;text-align:center" v-if="!ids">pull down to reload</div>
     <c-scroller
       :height="height"
       :loading="loading"
       :drained="drained"
       @pulldown="pulldown"
       @pullup="pullup">
-      <div style="margin:1rem;text-align:center" v-if="!ids">pull down to reload</div>
-      <p v-for="id in ids">{{height}}, {{id}}</p>
+      <div slot="down-go">go!</div>
+      <div slot="down-ready">ready?</div>
+      <transition-group tag="div" name="slide-up">
+        <p v-for="id in ids" :key="id">{{words[id - 1] || id}}</p>
+      </transition-group>
+      <div slot="up-ready">ready?</div>
+      <div slot="up-go">go!</div>
     </c-scroller>
   </div>
 </template>
@@ -21,7 +27,15 @@ export default {
       ids: '',
       loading: false,
       drained: false,
-      height: 0
+      height: 0,
+      words: [
+        'have slots:',
+        'down-go, down-ready',
+        'up-go, up-ready.',
+        '-',
+        'emit events:',
+        'pulldown, pullup.'
+      ]
     }
   },
 
