@@ -1,28 +1,29 @@
 <template>
   <div class="d-slider">
-    <p>Single slide</p>
-    <c-slider>
-      <div class="d-slider-item">1</div>
-    </c-slider>
-    <hr>
-    <p>Getting content async</p>
-    <c-slider>
-      <div v-for="i in items" class="d-slider-item">{{i}}</div>
-    </c-slider>
-    <hr>
-    <p>Auto sliding, and use same index in two slides</p>
-    <c-slider
-      :index="index"
-      :interval="3"
-      @slide="slide">
-      <div v-for="i in items" class="d-slider-item">{{i}}</div>
-    </c-slider>
     <c-pane>
+      <p>Single slide</p>
+      <c-slider>
+        <div class="d-slider-item">Single</div>
+      </c-slider>
+      <hr>
+      <p>Getting content async</p>
+      <c-slider>
+        <div v-for="i in items" class="d-slider-item">Slide {{i}}</div>
+      </c-slider>
+      <hr>
+      <p>Auto sliding, and use same index in two slides</p>
       <c-slider
         :index="index"
         :interval="3"
         @slide="slide">
-        <div v-for="i in items" class="d-slider-item">{{i}}</div>
+        <div v-for="i in items" class="d-slider-item">Slide {{i}}</div>
+      </c-slider>
+      <hr>
+      <c-slider
+        :index="index"
+        :interval="3"
+        @slide="slide">
+        <div v-for="i in items" class="d-slider-item">Slide {{i}}</div>
       </c-slider>
     </c-pane>
   </div>
@@ -35,14 +36,14 @@ import CSlider from 'components/c-slider'
 export default {
   data () {
     return {
-      index: 0,
+      index: 1,
       items: ''
     }
   },
 
   mounted () {
     setTimeout(() => {
-      this.items = 5
+      this.items = 10
     }, 500)
   },
 

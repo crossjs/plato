@@ -17,16 +17,28 @@
     color: white;
     font-size: dpr(60px);
 
-    &:nth-child(3n+1) {
-      background: red;
+    &:only-child {
+      line-height: dpr(200px);
     }
 
-    &:nth-child(3n+2) {
-      background: green;
+    &:nth-child(5n+1) {
+      background: var(--primary);
     }
 
-    &:nth-child(3n) {
-      background: blue;
+    &:nth-child(5n+2) {
+      background: color(var(--primary) hue(+20));
+    }
+
+    &:nth-child(5n+3) {
+      background: color(var(--primary) hue(+40));
+    }
+
+    &:nth-child(5n+4) {
+      background: color(var(--primary) hue(+60));
+    }
+
+    &:nth-child(5n) {
+      background: color(var(--primary) hue(+80));
     }
   }
 }
