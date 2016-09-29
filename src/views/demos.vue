@@ -4,85 +4,85 @@
       <c-row>
         <c-col>
           <router-link class="link" to="demos/icon">
-            <c-icon>flame</c-icon> icon</router-link>
+            <c-icon>flame</c-icon> Icon</router-link>
         </c-col>
       </c-row>
       <c-row>
         <c-col>
           <router-link class="link" to="demos/progress">
-            <c-icon>flame</c-icon> progress</router-link>
+            <c-icon>flame</c-icon> Progress</router-link>
         </c-col>
       </c-row>
       <c-row>
         <c-col>
           <router-link class="link" to="demos/button">
-            <c-icon>flame</c-icon> button</router-link>
+            <c-icon>flame</c-icon> Button</router-link>
         </c-col>
       </c-row>
       <c-row>
         <c-col>
           <router-link class="link" to="demos/form">
-            <c-icon>flame</c-icon> form</router-link>
+            <c-icon>flame</c-icon> Form</router-link>
         </c-col>
       </c-row>
       <c-row>
         <c-col>
           <router-link class="link" to="demos/row">
-            <c-icon>flame</c-icon> row</router-link>
+            <c-icon>flame</c-icon> Row</router-link>
         </c-col>
       </c-row>
       <c-row>
         <c-col>
           <router-link class="link" to="demos/paginator">
-            <c-icon>flame</c-icon> paginator</router-link>
+            <c-icon>flame</c-icon> Paginator</router-link>
         </c-col>
       </c-row>
       <c-row>
         <c-col>
           <router-link class="link" to="demos/spinner">
-            <c-icon>flame</c-icon> spinner</router-link>
+            <c-icon>flame</c-icon> Spinner</router-link>
         </c-col>
       </c-row>
       <c-row>
         <c-col>
           <router-link class="link" to="demos/modal">
-            <c-icon>flame</c-icon> modal</router-link>
+            <c-icon>flame</c-icon> Modal</router-link>
         </c-col>
       </c-row>
       <c-row>
         <c-col>
           <router-link class="link" to="demos/toast">
-            <c-icon>flame</c-icon> toast</router-link>
+            <c-icon>flame</c-icon> Toast</router-link>
         </c-col>
       </c-row>
       <c-row>
         <c-col>
           <router-link class="link" to="demos/image">
-            <c-icon>flame</c-icon> image</router-link>
+            <c-icon>flame</c-icon> Image</router-link>
         </c-col>
       </c-row>
       <c-row>
         <c-col>
           <router-link class="link" to="demos/scroller">
-            <c-icon>flame</c-icon> scroller</router-link>
+            <c-icon>flame</c-icon> Scroller: pulldown, pullup, and infinite scroll</router-link>
         </c-col>
       </c-row>
       <c-row>
         <c-col>
           <router-link class="link" to="demos/picker">
-            <c-icon>flame</c-icon> picker</router-link>
+            <c-icon>flame</c-icon> Picker</router-link>
         </c-col>
       </c-row>
       <c-row>
         <c-col>
           <router-link class="link" to="demos/range">
-            <c-icon>flame</c-icon> range</router-link>
+            <c-icon>flame</c-icon> Range</router-link>
         </c-col>
       </c-row>
       <c-row>
         <c-col>
           <router-link class="link" to="demos/slider">
-            <c-icon>flame</c-icon> slider</router-link>
+            <c-icon>flame</c-icon> Slider</router-link>
         </c-col>
       </c-row>
     </div>

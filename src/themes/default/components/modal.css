@@ -30,16 +30,14 @@
 }
 
 .c-modal-actions {
-  &.c-row {
-    padding: dpr(0px);
+  padding: 0 !important;
 
-    &:active {
-      background-color: transparent;
-    }
+  &:active {
+    background-color: transparent !important;
+  }
 
-    &::after {
-      content: none;
-    }
+  &::after {
+    content: none !important;
   }
 }
 
