@@ -40,6 +40,10 @@ export default {
       type: Boolean,
       default: false
     },
+    infinite: {
+      type: Boolean,
+      default: false
+    },
     autoFill: {
       type: Boolean,
       default: true
@@ -124,7 +128,7 @@ export default {
       }
     },
     drag (e) {
-      if (this.dragging) {
+      if (this.dragging && !(this.infinite && this.pulling === -3)) {
         e.preventDefault()
         e.stopPropagation()
         // _distance 大于零表示 pulldown
@@ -135,11 +139,18 @@ export default {
           : _distance > 0
             ? distance
             : this.maxOffset
-        if (this.offset > this.maxOffset) {
-          this.pulling = this.offset - this.maxOffset > this.threshold / 2 ? 2 : 1
-        } else if (this.offset < this.minOffset) {
-          if (this.overflow && !this.drained) {
-            this.pulling = this.minOffset - this.offset > this.threshold / 2 ? -2 : -1
+        if (this.pulling < 3 && this.pulling > -3) {
+          if (this.offset > this.maxOffset) {
+            this.pulling = this.offset - this.maxOffset > this.threshold / 2 ? 2 : 1
+          } else if (this.offset < this.minOffset) {
+            if (!this.drained) {
+              if (this.overflow) {
+                this.pulling = this.minOffset - this.offset > this.threshold / 2 ? -2 : -1
+              }
+              if (this.infinite && this.pulling === -2) {
+                this.pullup()
+              }
+            }
           }
         }
       }
@@ -147,40 +158,45 @@ export default {
     dragend (e) {
       if (this.dragging) {
         this.dragging = false
+        if (this.infinite) {
+          if (this.pulling < 0) {
+            return
+          }
+        }
         // 开始到结束，至少要间隔 300 毫秒
         if (new Date().getTime() - this.timestamp >= 300) {
           if (this.pulling === -2) {
-            return this.pullup()
+            this.pullup()
+            return
           }
           if (this.pulling === 2) {
-            return this.pulldown()
+            this.pulldown()
+            return
           }
         }
         this.reset()
       }
     },
     pulldown () {
-      // show loading
       this.pulling = 3
       this.offset = this.maxOffset + this.threshold / 2
       this.$emit('pulldown')
       this.$nextTick(() => {
+        // 如果外部未处理 pulldown，则重置
         if (!this.loading) {
-          // this.pulling = 0
           this.reset()
         }
       })
     },
     pullup () {
-      // show loading
       this.pulling = -3
       this.offset = this.overflow
         ? this.minOffset - this.threshold / 2
         : this.maxOffset
       this.$emit('pullup')
       this.$nextTick(() => {
+        // 如果外部未处理 pullup，则重置
         if (!this.loading) {
-          // this.pulling = 0
           this.reset()
         }
       })

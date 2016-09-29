@@ -1,23 +1,29 @@
 <template>
   <div class="d-scroller">
-    <c-scroller
-      :height="height"
-      :loading="loading"
-      :drained="drained"
-      @pulldown="pulldown"
-      @pullup="pullup">
-      <div slot="down-go">go!</div>
-      <div slot="down-ready">ready?</div>
-      <p v-if="!ids">pull down to reload</p>
-      <p v-for="id in ids" :key="id">{{words[id - 1] || id}}</p>
-      <div slot="up-ready">ready?</div>
-      <div slot="up-go">go!</div>
-    </c-scroller>
+    <c-pane id="d-scroller-pane">
+      <c-scroller
+        :height="height"
+        :loading="loading"
+        :drained="drained"
+        :infinite="infinite"
+        @pulldown="pulldown"
+        @pullup="pullup">
+        <div slot="down-go">go!</div>
+        <div slot="down-ready">ready?</div>
+        <c-button cls="primary">pull down to reload</c-button>
+        <c-button size="xsmall" v-for="id in ids" :key="id">{{words[(id - 1) % words.length]}}</c-button>
+        <c-button cls="warning" @click.native="infinite = !infinite">click to toggle infinite mode</c-button>
+        <div slot="up-ready">ready?</div>
+        <div slot="up-go">go!</div>
+      </c-scroller>
+    </c-pane>
   </div>
 </template>
 
 <script>
+import CPane from 'components/c-pane'
 import CScroller from 'components/c-scroller'
+import CButton from 'components/c-button'
 
 export default {
   data () {
@@ -25,6 +31,7 @@ export default {
       ids: '',
       loading: false,
       drained: false,
+      infinite: false,
       height: 0,
       words: [
         'have slots:',
@@ -40,7 +47,8 @@ export default {
   mounted () {
     this.height =
       document.documentElement.clientHeight -
-      document.getElementById('header').clientHeight
+      document.getElementById('header').clientHeight -
+      parseInt(getComputedStyle(document.getElementById('d-scroller-pane')).marginTop) * 2
   },
 
   methods: {
@@ -55,7 +63,7 @@ export default {
     pullup () {
       this.loading = true
       setTimeout(() => {
-        if (Math.random() < 0.5) {
+        if (Math.random() < 10.5) {
           this.ids = +this.ids + 10
         } else {
           this.drained = true
@@ -66,7 +74,9 @@ export default {
   },
 
   components: {
-    CScroller
+    CPane,
+    CScroller,
+    CButton
   }
 }
 </script>
