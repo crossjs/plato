@@ -13,8 +13,8 @@
         ref="content"><slot></slot></div>
       <div class="c-scroller-indicator c-scroller-indicator-up">
         <c-spinner v-if="loading && pulling === -3"></c-spinner>
-        <template v-if="pulling === -1"><slot name="up-ready"><i>↑</i></slot></template>
-        <template v-if="pulling === -2"><slot name="up-go"><i>↓</i></slot></template>
+        <template v-if="!infinite && pulling === -1"><slot name="up-ready"><i>↑</i></slot></template>
+        <template v-if="!infinite && pulling === -2"><slot name="up-go"><i>↓</i></slot></template>
       </div>
     </div>
   </div>
@@ -147,7 +147,7 @@ export default {
               if (this.overflow) {
                 this.pulling = this.minOffset - this.offset > this.threshold / 2 ? -2 : -1
               }
-              if (this.infinite && this.pulling === -2) {
+              if (this.infinite && this.pulling === -1) {
                 this.pullup()
               }
             }
