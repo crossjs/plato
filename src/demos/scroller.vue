@@ -8,13 +8,13 @@
         :infinite="infinite"
         @pulldown="pulldown"
         @pullup="pullup">
-        <div slot="down-go">go!</div>
-        <div slot="down-ready">ready?</div>
-        <c-button cls="primary">pull down to reload</c-button>
+        <div slot="down-go">Release to refresh</div>
+        <div slot="down-ready">Pull down to refresh</div>
+        <c-button cls="primary">Pull down to refresh</c-button>
         <c-button size="xsmall" v-for="id in ids" :key="id">{{words[(id - 1) % words.length]}}</c-button>
         <c-button cls="warning" @click.native="infinite = !infinite">click to toggle infinite mode</c-button>
-        <div slot="up-ready">ready?</div>
-        <div slot="up-go">go!</div>
+        <div slot="up-ready">Pull up to refresh</div>
+        <div slot="up-go">Release to load</div>
       </c-scroller>
     </c-pane>
   </div>
@@ -63,7 +63,7 @@ export default {
     pullup () {
       this.loading = true
       setTimeout(() => {
-        if (Math.random() < 10.5) {
+        if (Math.random() < 0.75) {
           this.ids = +this.ids + 10
         } else {
           this.drained = true
