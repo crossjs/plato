@@ -1,12 +1,17 @@
-<p align="center"><img src="https://cdn.rawgit.com/crossjs/plato/next/src/assets/logo.svg" alt="PLATO"><br>
-a Boilerplate for SPAs use vue, vuex, vue-router<br>
-<sub>Based on Vue 2.0</sub>
-<p align="center">Check out <a href="http://crossjs.com/plato/#/demos"><b>Demos</b></a> and <a href="src/components/README.md"><b>Readme</b></a> for UI Components</p>
-
-[![Travis](https://img.shields.io/travis/crossjs/plato.svg?style=flat-square)](https://travis-ci.org/crossjs/plato)
-[![Coveralls](https://img.shields.io/coveralls/crossjs/plato.svg?style=flat-square)](https://coveralls.io/github/crossjs/plato)
-[![dependencies](https://david-dm.org/crossjs/plato.svg?style=flat-square)](https://david-dm.org/crossjs/plato)
-[![devDependency Status](https://david-dm.org/crossjs/plato/dev-status.svg?style=flat-square)](https://david-dm.org/crossjs/plato?type=dev)
+<p align="center">
+  <img src="https://cdn.rawgit.com/crossjs/plato/next/src/assets/logo.svg" alt="PLATO"><br>
+  <sub>Based on Vue 2.0</sub>
+</p>
+<p align="center">
+  <a href="https://travis-ci.org/crossjs/plato"><img src="https://img.shields.io/travis/crossjs/plato.svg?style=flat-square" alt="Travis"></a>
+  <a href="https://coveralls.io/github/crossjs/plato"><img src="https://img.shields.io/coveralls/crossjs/plato.svg?style=flat-square" alt="Coveralls"></a>
+  <a href="https://david-dm.org/crossjs/plato"><img src="https://david-dm.org/crossjs/plato.svg?style=flat-square" alt="dependencies"></a>
+  <a href="https://david-dm.org/crossjs/plato?type=dev"><img src="https://david-dm.org/crossjs/plato/dev-status.svg?style=flat-square" alt="devDependency Status"></a>
+</p>
+<p align="center">
+  a Boilerplate for SPAs use vue, vuex, vue-router<br>
+  Check out <a href="http://crossjs.com/plato/#/demos"><b>Demos</b></a> and <a href="src/components/README.md"><b>Readme</b></a> for UI Components
+</p>
 
 ## Usage
 
@@ -79,3 +84,7 @@ npm run docs
   - 移除 `<router-view>` 中的 `transition-mode` [#5](https://github.com/crossjs/plato/issues/5)
 - 20160619
   - 使用 icomoon 管理图标字体，因为 iconfont 不支持连体字符
+
+## License
+
+[MIT](http://opensource.org/licenses/MIT)
