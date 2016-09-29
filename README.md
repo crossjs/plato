@@ -1,18 +1,14 @@
-# PLATO <sub>BASED ON VUE 2.X</sub> :construction:
-
-> :heart: a Boilerplate for SPAs use vue, vuex, vue-router
-
-Check out [**Demos**](http://crossjs.com/plato/#/demos) and [README](src/components/README.md) for UI Components
+<center>
+<p>[![mindmap](https://cdn.rawgit.com/crossjs/plato/next/src/assets/logo.svg)](src/assets/logo.svg)</p>
+<p><sub>Based on Vue 2.0</sub></p>
+<p>a Boilerplate for SPAs use vue, vuex, vue-router</p>
+<p>Check out [**Demos**](http://crossjs.com/plato/#/demos) and [README](src/components/README.md) for UI Components</p>
+</center>
 
 [![Travis](https://img.shields.io/travis/crossjs/plato.svg?style=flat-square)](https://travis-ci.org/crossjs/plato)
 [![Coveralls](https://img.shields.io/coveralls/crossjs/plato.svg?style=flat-square)](https://coveralls.io/github/crossjs/plato)
 [![dependencies](https://david-dm.org/crossjs/plato.svg?style=flat-square)](https://david-dm.org/crossjs/plato)
 [![devDependency Status](https://david-dm.org/crossjs/plato/dev-status.svg?style=flat-square)](https://david-dm.org/crossjs/plato?type=dev)
-
-- :white_check_mark: Plugins like vuex, i18n, validator and request are almost ready, could be used in production amusedly.
-- :negative_squared_cross_mark: UI components are NOT stable, could be changed anytime.
-
-[![mindmap](https://cdn.rawgit.com/crossjs/plato/next/src/assets/PLATO.svg)](src/assets/PLATO.svg)
 
 ## Usage
 
@@ -29,6 +25,8 @@ npm run docs
 
 ## Changelog
 
+- 20160929
+  - add some components: range, picker, scroller, slider, etc
 - 20160925
   - update dependencies, use `vuex/dist/logger` instead of `vuex/logger`
 - 20160921
