@@ -4,7 +4,7 @@
   position: relative;
   overflow: hidden; /* preventing horizontal scrollbar */
 
-  &.flex {
+  &-flex {
     display: flex;
     flex-direction: row;
 

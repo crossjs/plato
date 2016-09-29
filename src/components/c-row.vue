@@ -1,5 +1,5 @@
 <template>
-  <div :class="['c-row', {'flex': flex}, cls]"><slot></slot></div>
+  <div :class="['c-row', {'c-row-flex': flex}, cls]"><slot></slot></div>
 </template>
 
 <script>
