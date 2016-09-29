@@ -1,7 +1,7 @@
-<p align="center">[![mindmap](https://cdn.rawgit.com/crossjs/plato/next/src/assets/logo.svg)](src/assets/logo.svg)</p>
+<p align="center"><img src="https://cdn.rawgit.com/crossjs/plato/next/src/assets/logo.svg" alt="PLATO"></p>
 <p align="center">a Boilerplate for SPAs use vue, vuex, vue-router</p>
 <p align="center"><sup>Based on Vue 2.0</sup></p>
-<p align="center">Check out [**Demos**](http://crossjs.com/plato/#/demos) and [README](src/components/README.md) for UI Components</p>
+<p align="center">Check out <a href="http://crossjs.com/plato/#/demos"><b>Demos</b></a> and <a href="src/components/README.md"><b>Readme</b></a> for UI Components</p>
 
 [![Travis](https://img.shields.io/travis/crossjs/plato.svg?style=flat-square)](https://travis-ci.org/crossjs/plato)
 [![Coveralls](https://img.shields.io/coveralls/crossjs/plato.svg?style=flat-square)](https://coveralls.io/github/crossjs/plato)
