@@ -1,25 +1,20 @@
 <template>
-  <div :class="['c-scroller', cls]" :style="{'height': height + 'px'}">
+  <div :class="['c-scroller', cls]"
+    :style="{'height': height + 'px'}">
     <div class="c-scroller-container"
       :style="{transform: 'translate3d(0, ' + offset + 'px, 0)'}">
-      <div ref="indicator" class="c-scroller-indicator c-scroller-indicator-down">
-        <template v-if="pulling === 2">
-          <slot name="down-go"><i>↑</i></slot>
-        </template>
-        <template v-if="pulling === 1">
-          <slot name="down-ready"><i>↓</i></slot>
-        </template>
+      <div class="c-scroller-indicator c-scroller-indicator-down"
+        ref="indicator">
+        <template v-if="pulling === 2"><slot name="down-go"><i>↑</i></slot></template>
+        <template v-if="pulling === 1"><slot name="down-ready"><i>↓</i></slot></template>
         <c-spinner v-if="loading && pulling === 3"></c-spinner>
       </div>
-      <div class="c-scroller-content" ref="content"><slot></slot></div>
+      <div class="c-scroller-content"
+        ref="content"><slot></slot></div>
       <div class="c-scroller-indicator c-scroller-indicator-up">
         <c-spinner v-if="loading && pulling === -3"></c-spinner>
-        <template v-if="pulling === -1">
-          <slot name="up-ready"><i>↑</i></slot>
-        </template>
-        <template v-if="pulling === -2">
-          <slot name="up-go"><i>↓</i></slot>
-        </template>
+        <template v-if="pulling === -1"><slot name="up-ready"><i>↑</i></slot></template>
+        <template v-if="pulling === -2"><slot name="up-go"><i>↓</i></slot></template>
       </div>
     </div>
   </div>
@@ -45,7 +40,7 @@ export default {
       type: Boolean,
       default: false
     },
-    autoPullup: {
+    autoFill: {
       type: Boolean,
       default: true
     }
@@ -68,14 +63,14 @@ export default {
   watch: {
     loading (val) {
       if (!val) {
-        this.fillContainer()
-        this.relocate()
+        this.fill()
+        this.reset()
       }
     },
     drained (val) {
       if (val) {
-        this.updateMinOffset()
-        this.relocate()
+        this.update()
+        this.reset()
       }
     }
   },
@@ -85,30 +80,32 @@ export default {
     this.$el.addEventListener('touchmove', this.drag)
     this.$el.addEventListener('touchend', this.dragend)
     this.threshold = this.$refs.indicator.clientHeight * 2
-    this.fillContainer()
+    this.fill()
   },
 
   methods: {
-    relocate () {
+    // reset postion
+    reset () {
       this.$nextTick(() => {
-        // this.pulling = 0
         // 复位
         this.offset = this.overflow
           ? Math.max(this.minOffset, Math.min(this.offset, this.maxOffset))
           : this.maxOffset
       })
     },
-    fillContainer () {
-      if (!this.drained && this.autoPullup) {
+    // fill content automatically
+    fill () {
+      if (!this.drained && this.autoFill) {
         this.$nextTick(() => {
-          this.updateMinOffset()
+          this.update()
           if (this.minOffset > 0) {
             this.pullup()
           }
         })
       }
     },
-    updateMinOffset () {
+    // update min offset and overflow state
+    update () {
       this.minOffset = this.$el.clientHeight - this.$refs.content.clientHeight
       this.overflow = this.maxOffset > this.minOffset
     },
@@ -118,7 +115,7 @@ export default {
         // reset pull state
         this.pulling = 0
         this.timestamp = new Date().getTime()
-        this.updateMinOffset()
+        this.update()
         this.startY = e.touches[0].pageY - this.offset
       }
     },
@@ -149,15 +146,13 @@ export default {
         // 开始到结束，至少要间隔 300 毫秒
         if (new Date().getTime() - this.timestamp >= 300) {
           if (this.pulling === -2) {
-            this.pullup()
-            return
+            return this.pullup()
           }
           if (this.pulling === 2) {
-            this.pulldown()
-            return
+            return this.pulldown()
           }
         }
-        this.relocate()
+        this.reset()
       }
     },
     pulldown () {
@@ -168,7 +163,7 @@ export default {
       this.$nextTick(() => {
         if (!this.loading) {
           // this.pulling = 0
-          this.relocate()
+          this.reset()
         }
       })
     },
@@ -182,7 +177,7 @@ export default {
       this.$nextTick(() => {
         if (!this.loading) {
           // this.pulling = 0
-          this.relocate()
+          this.reset()
         }
       })
     }
