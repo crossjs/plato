@@ -32,8 +32,7 @@
     line-height: dpr(88px);
     text-align: center;
 
-    &:active,
-    &:focus {
+    &:active {
       background-color: transparent;
     }
   }

@@ -8,14 +8,12 @@
     display: flex;
     flex-direction: row;
 
-    &:active,
-    &:focus {
+    &:active {
       background-color: transparent;
     }
   }
 
-  &:active,
-  &:focus {
+  &:active {
     background-color: color(var(--disabled) alpha(0.4));
 
     & .link {

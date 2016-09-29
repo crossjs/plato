@@ -31,10 +31,9 @@
 
 .c-modal-actions {
   &.c-row {
-    padding: 0;
+    padding: dpr(0px);
 
-    &:active,
-    &:focus {
+    &:active {
       background-color: transparent;
     }
 

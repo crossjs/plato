@@ -104,8 +104,7 @@ a {
     text-decoration: none;
   }
 
-  &:active,
-  &:focus {
+  &:active {
     color: var(--secondary);
   }
 }
