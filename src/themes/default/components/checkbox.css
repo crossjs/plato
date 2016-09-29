@@ -7,7 +7,7 @@
     text-align: center;
     width: dpr(80px);
     height: dpr(48px);
-    border: 1px solid color(white lightness(80%));
+    border: dpr(2px) solid color(white lightness(80%));
     border-radius: dpr(24px);
     background: color(white lightness(80%));
     position: relative;
