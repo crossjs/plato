@@ -18,8 +18,9 @@
         @slide="slide">
         <div v-for="i in items" class="d-slider-item">Slide {{i}}</div>
       </c-slider>
-      <hr>
+      <p>use same index of above, with transition enabled</p>
       <c-slider
+        :transition="true"
         :index="index"
         :interval="3"
         @slide="slide">

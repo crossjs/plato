@@ -1,7 +1,7 @@
 <template>
   <div :class="['c-scroller', cls]"
     :style="{'height': height + 'px'}">
-    <div class="c-scroller-container"
+    <div :class="['c-scroller-container', {'transition' : transition}]"
       :style="{transform: 'translate3d(0, ' + offset + 'px, 0)'}">
       <div class="c-scroller-indicator c-scroller-indicator-down"
         ref="indicator">
@@ -43,6 +43,10 @@ export default {
     autoFill: {
       type: Boolean,
       default: true
+    },
+    transition: {
+      type: Boolean,
+      default: false
     }
   },
 

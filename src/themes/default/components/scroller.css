@@ -3,7 +3,9 @@
 }
 
 .c-scroller-container {
-  transition: transform 0.2s linear;
+  &.transition {
+    transition: transform 0.2s linear;
+  }
 }
 
 .c-scroller-content {

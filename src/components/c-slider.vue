@@ -1,6 +1,6 @@
 <template>
   <div :class="['c-slider', cls]">
-    <div :class="['c-slider-content', (dragging || ready) ? null : 'transition']"
+    <div :class="['c-slider-content', {'transition': transition && !dragging &!ready}]"
       :style="{transform: 'translateX(' + (offset - currIndex * maxOffset) + 'px)'}"
       ref="content">
       <slot></slot>
@@ -33,6 +33,10 @@ export default {
       validator (val) {
         return val >= 0
       }
+    },
+    transition: {
+      type: Boolean,
+      default: false
     }
   },
 

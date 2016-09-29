@@ -4,7 +4,7 @@
     :style="{'height': itemHeight * size + 'px'}">
     <div class="c-picker-scroller"
       :style="{'background-size': '100% ' + (size - 1) / 2 * itemHeight + 'px'}"></div>
-    <div class="c-picker-content" ref="content"
+    <div :class="['c-picker-content', {'transition' : transition}]" ref="content"
       :style="{transform: 'translate3d(0, ' + offset + 'px, 0)'}">
       <slot></slot>
     </div>
@@ -31,6 +31,10 @@ export default {
       validator (val) {
         return val >= 3 && val % 2 === 1
       }
+    },
+    transition: {
+      type: Boolean,
+      default: false
     }
   },
 

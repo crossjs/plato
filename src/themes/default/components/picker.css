@@ -14,5 +14,7 @@
 }
 
 .c-picker-content {
-  transition: transform 0.2s linear;
+  &.transition {
+    transition: transform 0.2s linear;
+  }
 }
