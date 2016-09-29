@@ -1,21 +1,13 @@
 <template>
-  <a :class="['c-link', size, cls]"><slot></slot></a>
+  <a class="c-link" :class="size"><slot></slot></a>
 </template>
 
 <script>
 import mBase from './mixins/base'
+import mSize from './mixins/size'
 
 export default {
-  mixins: [mBase],
-  props: {
-    size: {
-      type: String,
-      default: '',
-      validator (value) {
-        return !value || /^x?(large|small)$/.test(value)
-      }
-    }
-  }
+  mixins: [mBase, mSize]
 }
 </script>
 

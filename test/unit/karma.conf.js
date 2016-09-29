@@ -11,7 +11,6 @@ const karmaConfig = {
   files: [
     './node_modules/phantomjs-polyfill/bind-polyfill.js',
     './node_modules/sinon/pkg/sinon.js',
-    // './node_modules/vue/dist/vue.js',
     {
       pattern: `./${config.dir_test}/unit/index.js`,
       watched: false,

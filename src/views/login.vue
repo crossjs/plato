@@ -3,7 +3,7 @@
     <c-form @submit.native.prevent="login">
       <c-row>
         <c-col :size="1">
-          <c-label cls="col col-1">{{__(username.label)}}</c-label>
+          <c-label class="col col-1">{{__(username.label)}}</c-label>
         </c-col>
         <c-col :size="3">
           <c-textfield
@@ -15,7 +15,7 @@
       </c-row>
       <c-row>
         <c-col :size="1">
-          <c-label cls="col col-1">{{__(password.label)}}</c-label>
+          <c-label class="col col-1">{{__(password.label)}}</c-label>
         </c-col>
         <c-col :size="3">
           <c-password
@@ -26,17 +26,17 @@
         </c-col>
       </c-row>
       <template v-if="$validation.errors.length">
-        <c-pane cls="center">
-          <c-badge cls="warning" size="small">
+        <c-pane class="center">
+          <c-badge class="warning" size="small">
             {{$validation.errors.filter(function (error) { return error.field === 'username' }).map(function (error) { return error.message }).join(' ')}}
           </c-badge>
-          <c-badge cls="warning" size="small">
+          <c-badge class="warning" size="small">
             {{$validation.errors.filter(function (error) { return error.field === 'password' }).map(function (error) { return error.message }).join(' ')}}
           </c-badge>
         </c-pane>
       </template>
       <c-pane>
-        <c-button cls="primary" type="submit"
+        <c-button class="primary" type="submit"
           :disabled="$validation.errors.length > 0">{{ __('views.login.submit') }}</c-button>
       </c-pane>
     </c-form>

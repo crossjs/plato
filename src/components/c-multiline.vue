@@ -1,12 +1,11 @@
 <template>
-  <div :class="['c-multiline', cls]">
+  <label class="c-multiline">
     <textarea
-      :value="value"
       :rows="rows"
       :cols="cols"
       v-bind="attrs"
-      @input="_mutate"></textarea>
-  </div>
+      @input="_mutate">{{value}}</textarea>
+  </label>
 </template>
 
 <script>

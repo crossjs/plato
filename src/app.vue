@@ -17,7 +17,7 @@
         </c-link>
       </div>
       <c-navbar id="navbar">
-        <c-icon cls="c-reddot" slot="icon">three-bars</c-icon>
+        <c-icon class="c-reddot" slot="icon">three-bars</c-icon>
         <c-route :routes="routes"></c-route>
       </c-navbar>
     </header>

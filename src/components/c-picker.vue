@@ -1,13 +1,12 @@
 <!-- Inspired by https://facebook.github.io/react-native/docs/picker.html -->
 <template>
-  <div :class="['c-picker', cls]"
+  <div class="c-picker"
     :style="{'height': itemHeight * size + 'px'}">
     <div class="c-picker-scroller"
       :style="{'background-size': '100% ' + (size - 1) / 2 * itemHeight + 'px'}"></div>
-    <div :class="['c-picker-content', {'transition' : transition}]" ref="content"
-      :style="{transform: 'translate3d(0, ' + offset + 'px, 0)'}">
-      <slot></slot>
-    </div>
+    <div class="c-picker-content" :class="{'transition' : transition}"
+      :style="{transform: 'translate3d(0, ' + offset + 'px, 0)'}"
+      ref="content"><slot></slot></div>
   </div>
 </template>
 

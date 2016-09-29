@@ -1,5 +1,5 @@
 <template>
-  <img :class="['c-image', cls]"
+  <img class="c-image"
     :src="flexible ? _src : src"
     :width="flexible ? _width : width"
     :height="flexible ? _height : height">
@@ -13,6 +13,7 @@ const { dpr } = typeof lib === 'object' ? lib.flexible : { dpr: 2 }
 
 export default {
   mixins: [mBase],
+
   props: {
     src: {
       type: String,

@@ -1,6 +1,5 @@
 <template>
-  <form :class="['c-form', cls]"
-    autocomplete="off" novalidate><slot></slot></form>
+  <form class="c-form" autocomplete="off" novalidate><slot></slot></form>
 </template>
 
 <script>

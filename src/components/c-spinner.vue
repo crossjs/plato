@@ -1,20 +1,15 @@
 <template>
-  <i :class="['c-spinner', theme, size, cls]"></i>
+  <i class="c-spinner" :class="[theme, size]"></i>
 </template>
 
 <script>
 import mBase from './mixins/base'
+import mSize from './mixins/size'
 
 export default {
-  mixins: [mBase],
+  mixins: [mBase, mSize],
+
   props: {
-    size: {
-      type: String,
-      default: '',
-      validator (value) {
-        return !value || /^x?(large|small)$/.test(value)
-      }
-    },
     theme: {
       type: String,
       default: 'snake'

@@ -1,5 +1,5 @@
 <template>
-  <i :class="['c-icon', cls]"><slot></slot></i>
+  <i class="c-icon" v-html="html"><slot></slot></i>
 </template>
 
 <script>
@@ -9,8 +9,14 @@ import aMaps from './assets/maps'
 export default {
   mixins: [mBase],
 
-  mounted () {
-    this.$el.innerHTML = aMaps[this.$el.textContent] || ' '
+  data () {
+    return {
+      html: ' '
+    }
+  },
+
+  beforeMount () {
+    this.html = aMaps[this.$slots.default[0].text] || ' '
   }
 }
 

@@ -4,11 +4,11 @@
       @submit="create"
       @cancel="show_modal = false">{{ __('views.create.confirm') }}</c-modal>
     <c-spinner v-show="faq_is_fetching"></c-spinner>
-    <c-form cls="c-form-expand"
+    <c-form class="c-form-expand"
       @submit.native.prevent="submit">
       <c-row :flex="false">
         <c-label>{{__(title.label)}}</c-label>
-        <c-badge cls="warning" size="small">
+        <c-badge class="warning" size="small">
           {{$validation.errors.filter(function (error) { return error.field === 'title' }).map(function (error) { return error.message }).join(' ')}}
         </c-badge>
         <c-textfield
@@ -20,7 +20,7 @@
       </c-row>
       <c-row :flex="false">
         <c-label>{{__(content.label)}}</c-label>
-        <c-badge cls="warning" size="small">
+        <c-badge class="warning" size="small">
           {{$validation.errors.filter(function (error) { return error.field === 'content' }).map(function (error) { return error.message }).join(' ')}}
         </c-badge>
         <c-multiline
@@ -32,7 +32,7 @@
           @mutate="content.value = arguments[0]"></c-multiline>
       </c-row>
       <c-pane>
-        <c-button cls="primary" type="submit"
+        <c-button class="primary" type="submit"
           :disabled="$validation.errors.length > 0">{{ __('views.create.submit') }}</c-button>
       </c-pane>
     </c-form>

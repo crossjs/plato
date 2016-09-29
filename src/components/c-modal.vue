@@ -1,13 +1,13 @@
 <template>
   <transition name="fade">
-    <div :class="['c-modal', cls]"
+    <div class="c-modal"
       v-show="show">
       <transition name="slide-up">
         <div class="c-modal-content" v-show="show">
           <div class="c-modal-body"><slot></slot></div>
-          <c-row cls="c-modal-actions" v-if="_actions">
-            <c-col cls="c-modal-action" v-for="(action, key) in _actions">
-              <c-link :cls="['c-modal-link', action.cls]"
+          <c-row class="c-modal-actions" v-if="_actions">
+            <c-col class="c-modal-action" v-for="(action, key) in _actions">
+              <c-link :class="['c-modal-link', action.class]"
                 @click.native="$emit(key)">{{action.label}}</c-link>
             </c-col>
           </c-row>
@@ -37,11 +37,11 @@ export default {
         return {
           cancel: {
             label: 'Cancel',
-            cls: 'primary'
+            class: 'primary'
           },
           submit: {
             label: 'Submit',
-            cls: 'primary'
+            class: 'primary'
           }
         }
       }

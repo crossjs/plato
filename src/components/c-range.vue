@@ -1,5 +1,5 @@
 <template>
-  <div :class="['c-range', cls]">
+  <div class="c-range">
     <div class="c-range-content"
       :style="{'padding-left': realOffset + 'px'}"></div>
   </div>
@@ -10,6 +10,7 @@ import mBase from './mixins/base'
 
 export default {
   mixins: [mBase],
+
   props: {
     min: {
       type: Number,

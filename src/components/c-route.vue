@@ -1,5 +1,5 @@
 <template>
-  <ul :class="['c-route', cls]">
+  <ul class="c-route">
     <li v-for="(route, index) in routes" :key="index">
       <router-link class="c-route-link"
         :to="father + route.path"

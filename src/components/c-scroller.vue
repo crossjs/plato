@@ -1,7 +1,7 @@
 <template>
-  <div :class="['c-scroller', cls]"
+  <div class="c-scroller"
     :style="{'height': height + 'px'}">
-    <div :class="['c-scroller-container', {'transition' : transition}]"
+    <div class="c-scroller-container" :class="{'transition' : transition}"
       :style="{transform: 'translate3d(0, ' + offset + 'px, 0)'}">
       <div class="c-scroller-indicator c-scroller-indicator-down"
         ref="indicator">

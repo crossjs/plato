@@ -15,6 +15,76 @@ describe('modal.vue', () => {
     vm.$destroy()
   })
 
+  it('should render correct contents', done => {
+    vm = new Vue({
+      el,
+      template: `<c-modal
+        :show="show"
+        :actions="actions">hello?</c-modal>`,
+      data: {
+        show: true,
+        actions: {
+          cancel: {
+            label: 'Cancel',
+            'class': 'primary'
+          },
+          submit: {
+            label: 'Submit',
+            'class': 'primary'
+          }
+        }
+      },
+      components: {
+        CModal
+      }
+    })
+
+    // only .content
+    expect(vm.$children[0].$el.children.length).to.equal(1)
+    expect(vm.$el.querySelector('.c-modal-body').textContent).to.equal('hello?')
+    expect(vm.$el.querySelector('.c-modal-actions')).to.not.equal(null)
+
+    // update actions
+    vm.actions = null
+    vm.$nextTick(() => {
+      expect(vm.$el.querySelector('.c-modal-actions')).to.equal(null)
+      done()
+    })
+  })
+
+  it('should respond actions', done => {
+    vm = new Vue({
+      el,
+      template: `<c-modal
+        :show="show"
+        @cancel="callback('cancel')"
+        @submit="callback('submit')">hello?</c-modal>`,
+      data: {
+        show: true
+      },
+      methods: {
+        callback (key) {
+          if (key === 'cancel') {
+            triggerMouseEvents(vm.$el.querySelectorAll('a.c-modal-link')[1], 'click')
+          } else {
+            expect(vm.show).to.be.true
+            vm.show = false
+            vm.$nextTick(() => {
+              expect(vm.show).to.be.false
+              done()
+            })
+          }
+        }
+      },
+      components: {
+        CModal
+      }
+    })
+
+    // button
+    triggerMouseEvents(vm.$el.querySelectorAll('a.c-modal-link')[0], 'click')
+  })
+
   it('should show/hide modal', done => {
     vm = new Vue({
       el,
@@ -34,48 +104,8 @@ describe('modal.vue', () => {
     vm.show = true
     vm.$nextTick(() => {
       expect(style.display).to.equal('')
-
-      // vm.show = false
-      // vm.$nextTick(() => {
-      //   expect(style.display).to.equal('none')
-      //   done()
-      // })
       done()
     })
-  })
-
-  it('should render correct contents', done => {
-    vm = new Vue({
-      el,
-      template: `<c-modal
-        :show="show"
-        @cancel="callback">hello?</c-modal>`,
-      data: {
-        show: true
-      },
-      methods: {
-        callback (key) {
-          expect(vm.show).to.be.ok
-          vm.show = false
-          vm.$nextTick(() => {
-            expect(vm.show).to.be.not.ok
-            done()
-          })
-        }
-      },
-      components: {
-        CModal
-      }
-    })
-
-    const modal = vm.$children[0]
-
-    // only .content
-    expect(modal.$el.children.length).to.equal(1)
-    expect(modal.$el.querySelector('.c-modal-body').textContent).to.equal('hello?')
-
-    // button
-    triggerMouseEvents(modal.$el.querySelector('a:first-child'), 'click')
   })
 
   it('should NOT prevent close', done => {
@@ -89,10 +119,10 @@ describe('modal.vue', () => {
       },
       methods: {
         callback () {
-          expect(vm.show).to.be.ok
+          expect(vm.show).to.be.true
           vm.show = false
           vm.$nextTick(() => {
-            expect(vm.show).to.be.not.ok
+            expect(vm.show).to.be.false
             done()
           })
           return false

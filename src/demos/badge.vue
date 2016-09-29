@@ -8,8 +8,8 @@
       <c-badge>1024</c-badge>
     </c-pane>
     <c-pane>
-      <c-badge cls="primary">primary</c-badge>
-      <c-badge cls="warning">warning</c-badge>
+      <c-badge class="primary">primary</c-badge>
+      <c-badge class="warning">warning</c-badge>
     </c-pane>
     <c-pane>
       <c-badge size="xlarge">xlarge</c-badge>

@@ -1,6 +1,5 @@
 <template>
-  <i :class="['c-progress', cls]"
-    :style="{width: '' + progress + '%'}"></i>
+  <i class="c-progress" :style="{width: '' + progress + '%'}"></i>
 </template>
 
 <script>
@@ -8,6 +7,7 @@ import mBase from './mixins/base'
 
 export default {
   mixins: [mBase],
+
   props: {
     progress: {
       type: [String, Number],

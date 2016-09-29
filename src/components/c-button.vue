@@ -1,5 +1,5 @@
 <template>
-  <button :class="['c-button', cls, size]" :type="type"><slot></slot></button>
+  <button class="c-button" :class="size" type="button"><slot></slot></button>
 </template>
 
 <script>
@@ -9,15 +9,11 @@ export default {
   mixins: [mBase],
 
   props: {
-    type: {
-      type: String,
-      default: 'button'
-    },
     size: {
       type: String,
       default: '',
       validator (value) {
-        return !value || /^x?(large|small)$/.test(value)
+        return /^(x?(large|small))?$/.test(value)
       }
     }
   }

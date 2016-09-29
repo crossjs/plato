@@ -1,6 +1,6 @@
 <template>
-  <div :class="['c-slider', cls]">
-    <div :class="['c-slider-content', {'transition': transition && !dragging &!ready}]"
+  <div class="c-slider">
+    <div class="c-slider-content" :class="{'transition': transition && !dragging &!ready}"
       :style="{transform: 'translateX(' + (offset - currIndex * maxOffset) + 'px)'}"
       ref="content">
       <slot></slot>

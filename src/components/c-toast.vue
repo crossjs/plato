@@ -1,5 +1,5 @@
 <template>
-  <div :class="['c-toast', cls]"><slot></slot></div>
+  <div class="c-toast"><slot></slot></div>
 </template>
 
 <script>

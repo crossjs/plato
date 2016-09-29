@@ -1,5 +1,5 @@
 <template>
-  <label :class="['c-label', cls]"><slot></slot></label>
+  <label class="c-label"><slot></slot></label>
 </template>
 
 <script>

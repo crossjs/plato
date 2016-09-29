@@ -1,5 +1,5 @@
 <template>
-  <label :class="['c-textfield', cls]">
+  <label class="c-textfield">
     <input
       :type="type"
       :value="value"

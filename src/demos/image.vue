@@ -14,14 +14,14 @@
     </c-row>
     <c-row :flex="false">
       <p>resized by `data-dpr`, and replace css (background-image) with <a href="https://github.com/crossjs/postcss-flexible">postcss-flexible</a></p>
-      <c-image cls="url"
+      <c-image class="url"
         width="100" height="100"></c-image>
     </c-row>
     <c-row :flex="false">
       <p>no src</p>
-      <c-image cls="no-src"
+      <c-image class="no-src"
         width="80" height="60"></c-image>
-      <c-image cls="no-src"
+      <c-image class="no-src"
         width="60" height="80"></c-image>
     </c-row>
     <c-row :flex="false">

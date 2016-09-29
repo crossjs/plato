@@ -2,7 +2,7 @@
   <div class="d-icon">
     <c-pane>
       <span class="d-icon-slot" v-for="(value, key, index) in maps">
-        <c-icon cls="fs-64">{{key}}</c-icon>
+        <c-icon class="fs-64">{{key}}</c-icon>
         <i class="d-icon-name">{{key}}</i>
       <span>
     </c-pane>

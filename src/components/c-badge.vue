@@ -1,22 +1,13 @@
 <template>
-  <i :class="['c-badge', cls, size]"><slot></slot></i>
+  <i class="c-badge" :class="size"><slot></slot></i>
 </template>
 
 <script>
 import mBase from './mixins/base'
+import mSize from './mixins/size'
 
 export default {
-  mixins: [mBase],
-
-  props: {
-    size: {
-      type: String,
-      default: '',
-      validator (value) {
-        return !value || /^x?(large|small)$/.test(value)
-      }
-    }
-  }
+  mixins: [mBase, mSize]
 }
 </script>
 

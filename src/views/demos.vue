@@ -70,7 +70,7 @@
       <c-row>
         <c-col>
           <router-link class="link" to="demos/scroller">
-            <c-icon>flame</c-icon> Scroller: pulldown, pullup, and infinite scroll</router-link>
+            <c-icon>flame</c-icon> Scroller: pulling and infinite scroll</router-link>
         </c-col>
       </c-row>
       <c-row>

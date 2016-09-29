@@ -1,9 +1,9 @@
 <template>
-  <div :class="['c-paginator', cls]">
+  <div class="c-paginator">
     <template v-if="maxpage > 1">
       <a v-for="page in pages"
         href="javascript:;"
-        :class="{current: page.current, disabled: page.disabled}"
+        :class="{'current': page.current, 'disabled': page.disabled}"
         @click="_paginate(page)">{{page.label}}</a>
     </template>
   </div>
@@ -14,6 +14,7 @@ import mBase from './mixins/base'
 
 export default {
   mixins: [mBase],
+
   props: {
     query: {
       type: Object,

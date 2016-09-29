@@ -10,9 +10,9 @@
         @pullup="pullup">
         <div slot="down-go">Release to refresh</div>
         <div slot="down-ready">Pull down to refresh</div>
-        <c-button cls="primary">Pull down to refresh</c-button>
+        <c-button class="primary">Pull down to refresh</c-button>
         <c-button size="xsmall" v-for="id in ids" :key="id">{{words[(id - 1) % words.length]}}</c-button>
-        <c-button cls="warning" @click.native="infinite = !infinite">click to toggle infinite mode</c-button>
+        <c-button class="warning" @click.native="infinite = !infinite">click to toggle infinite mode</c-button>
         <div slot="up-ready">Pull up to refresh</div>
         <div slot="up-go">Release to load</div>
       </c-scroller>

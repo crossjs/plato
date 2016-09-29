@@ -1,6 +1,6 @@
 <template>
-  <label :class="['c-password', {'show-password': showPassword}, cls]">
-    <c-icon cls="toggle"
+  <label class="c-password" :class="{'show-password': showPassword}">
+    <c-icon class="toggle"
       @click.native="showPassword = !showPassword">view</c-icon>
     <input
       :type="showPassword ? 'text' : 'password'"

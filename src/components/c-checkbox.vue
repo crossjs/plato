@@ -1,5 +1,5 @@
 <template>
-  <label :class="['c-checkbox', cls, {checked: _checked}]">
+  <label class="c-checkbox" :class="{'checked': _checked}">
     <input type="checkbox"
       :field="field"
       :value="value"

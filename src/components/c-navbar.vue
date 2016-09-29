@@ -1,10 +1,10 @@
 <template>
-  <div :class="['c-navbar', cls]">
+  <div class="c-navbar">
     <transition name="fade">
       <c-mask v-show="opened"
         @touchend.native.prevent="opened = false"></c-mask>
     </transition>
-    <c-button :cls="['toggle', {'active': opened}]"
+    <c-button :class="['toggle', {'active': opened}]"
       @click.native="opened = !opened">
         <slot name="icon"><c-icon>three-bars</c-icon></slot>
     </c-button>
