@@ -9,7 +9,7 @@
       <c-row :flex="false">
         <c-label>{{__(title.label)}}</c-label>
         <c-badge cls="warning" size="small">
-          {{$validation.errors.filter(error => error.field === 'title').map(error => error.message).join(' ')}}
+          {{$validation.errors.filter(function (error) { return error.field === 'title' }).map(function (error) { return error.message }).join(' ')}}
         </c-badge>
         <c-textfield
           field="title"
@@ -21,7 +21,7 @@
       <c-row :flex="false">
         <c-label>{{__(content.label)}}</c-label>
         <c-badge cls="warning" size="small">
-          {{$validation.errors.filter(error => error.field === 'content').map(error => error.message).join(' ')}}
+          {{$validation.errors.filter(function (error) { return error.field === 'content' }).map(function (error) { return error.message }).join(' ')}}
         </c-badge>
         <c-multiline
           field="content"

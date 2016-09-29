@@ -28,10 +28,10 @@
       <template v-if="$validation.errors.length">
         <c-pane cls="center">
           <c-badge cls="warning" size="small">
-            {{$validation.errors.filter(error => error.field === 'username').map(error => error.message).join(' ')}}
+            {{$validation.errors.filter(function (error) { return error.field === 'username' }).map(function (error) { return error.message }).join(' ')}}
           </c-badge>
           <c-badge cls="warning" size="small">
-            {{$validation.errors.filter(error => error.field === 'password').map(error => error.message).join(' ')}}
+            {{$validation.errors.filter(function (error) { return error.field === 'password' }).map(function (error) { return error.message }).join(' ')}}
           </c-badge>
         </c-pane>
       </template>
