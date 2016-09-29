@@ -1,6 +1,5 @@
 <template>
-  <div :class="['c-mask', cls]"
-    tabindex="-1"><slot></slot></div>
+  <div :class="['c-mask', cls]" tabindex="-1"><slot></slot></div>
 </template>
 
 <script>

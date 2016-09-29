@@ -9,6 +9,12 @@
       </c-row>
       <c-row>
         <c-col>
+          <router-link class="link" to="demos/badge">
+            <c-icon>flame</c-icon> Badge</router-link>
+        </c-col>
+      </c-row>
+      <c-row>
+        <c-col>
           <router-link class="link" to="demos/progress">
             <c-icon>flame</c-icon> Progress</router-link>
         </c-col>
@@ -94,6 +100,7 @@
 import CRow from 'components/c-row'
 import CCol from 'components/c-col'
 import CIcon from 'components/c-icon'
+import DemoBadge from 'demos/badge'
 import DemoIcon from 'demos/icon'
 import DemoProgress from 'demos/progress'
 import DemoButton from 'demos/button'
@@ -120,6 +127,7 @@ export default {
     CRow,
     CCol,
     CIcon,
+    DemoBadge,
     DemoIcon,
     DemoProgress,
     DemoButton,

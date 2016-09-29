@@ -12,6 +12,7 @@ import mBase from './mixins/base'
 
 export default {
   mixins: [mBase],
+
   props: {
     validation: {
       type: Object,

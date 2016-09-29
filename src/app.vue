@@ -16,7 +16,8 @@
           <c-icon>chevron-left</c-icon>
         </c-link>
       </div>
-      <c-navbar cls="navbar">
+      <c-navbar id="navbar">
+        <c-icon cls="c-reddot" slot="icon">three-bars</c-icon>
         <c-route :routes="routes"></c-route>
       </c-navbar>
     </header>
@@ -103,3 +104,4 @@ function walkRoutes (routes, filter) {
 </script>
 
 <style src="styles/app"></style>
+<style src="styles/components/reddot"></style>

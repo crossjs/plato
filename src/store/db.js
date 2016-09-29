@@ -1,3 +1,7 @@
+/**
+ * just for test
+ */
+
 import db from 'leancloud-storage'
 
 const appId = 'GQHNdUFpLzaMhfeuXLsV7seW-gzGzoHsz'

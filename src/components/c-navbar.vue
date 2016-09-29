@@ -6,7 +6,7 @@
     </transition>
     <c-button :cls="['toggle', {'active': opened}]"
       @click.native="opened = !opened">
-        <c-icon>three-bars</c-icon>
+        <slot name="icon"><c-icon>three-bars</c-icon></slot>
     </c-button>
     <transition name="slide-left">
       <nav class="menu"

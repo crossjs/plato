@@ -6,6 +6,10 @@
   }
 }
 
+.d-badge {
+  text-align: center;
+}
+
 .d-slider {
   & .c-slider {
     height: dpr(200px);
