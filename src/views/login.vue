@@ -25,8 +25,17 @@
             @mutate="password.value = arguments[0]"></c-password>
         </c-col>
       </c-row>
+      <template v-if="$validation.errors.length">
+        <c-pane cls="center">
+          <c-badge cls="warning" size="small">
+            {{$validation.errors.filter(error => error.field === 'username').map(error => error.message).join(' ')}}
+          </c-badge>
+          <c-badge cls="warning" size="small">
+            {{$validation.errors.filter(error => error.field === 'password').map(error => error.message).join(' ')}}
+          </c-badge>
+        </c-pane>
+      </template>
       <c-pane>
-        <c-validation :validation="$validation"></c-validation>
         <c-button cls="primary" type="submit"
           :disabled="$validation.errors.length > 0">{{ __('views.login.submit') }}</c-button>
       </c-pane>
@@ -35,7 +44,7 @@
 </template>
 
 <script>
-import CValidation from 'components/c-validation'
+import CBadge from 'components/c-badge'
 import CPane from 'components/c-pane'
 import CForm from 'components/c-form'
 import CRow from 'components/c-row'
@@ -137,7 +146,7 @@ export default {
   },
 
   components: {
-    CValidation,
+    CBadge,
     CForm,
     CRow,
     CCol,

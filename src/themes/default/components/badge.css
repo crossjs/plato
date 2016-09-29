@@ -1,5 +1,6 @@
 .c-badge {
   display: inline-block;
+  vertical-align: middle;
   white-space: nowrap;
   color: white;
   font-size: dpr(32px);

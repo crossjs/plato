@@ -8,16 +8,21 @@
       @submit.native.prevent="submit">
       <c-row :flex="false">
         <c-label>{{__(title.label)}}</c-label>
+        <c-badge cls="warning" size="small">
+          {{$validation.errors.filter(error => error.field === 'title').map(error => error.message).join(' ')}}
+        </c-badge>
         <c-textfield
           field="title"
           :row="title.row"
           :validate="title.validate"
           :value="title.value"
           @mutate="title.value = arguments[0]"></c-textfield>
-          <c-validation :validation="$validation" field="title"></c-validation>
       </c-row>
       <c-row :flex="false">
         <c-label>{{__(content.label)}}</c-label>
+        <c-badge cls="warning" size="small">
+          {{$validation.errors.filter(error => error.field === 'content').map(error => error.message).join(' ')}}
+        </c-badge>
         <c-multiline
           field="content"
           rows="10"
@@ -25,7 +30,6 @@
           :validate="content.validate"
           :value="content.value"
           @mutate="content.value = arguments[0]"></c-multiline>
-          <c-validation :validation="$validation" field="content"></c-validation>
       </c-row>
       <c-pane>
         <c-button cls="primary" type="submit"
@@ -37,7 +41,7 @@
 
 <script>
 import CModal from 'components/c-modal'
-import CValidation from 'components/c-validation'
+import CBadge from 'components/c-badge'
 import CPane from 'components/c-pane'
 import CForm from 'components/c-form'
 import CRow from 'components/c-row'
@@ -115,7 +119,7 @@ export default {
 
   components: {
     CModal,
-    CValidation,
+    CBadge,
     CForm,
     CRow,
     CLabel,
