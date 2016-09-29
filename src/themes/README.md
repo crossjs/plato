@@ -1,13 +1,3 @@
-z-index
-  - header > 10
-  - mask > 100
-  - modal > 1000
-  - toasts > 10000
-  - progress > 100000
-colors:
-  - primary: #39b983
-  - secondary: #34495E
-  - success: #3ABA58
-  - error: #BA3A3A
-  - warning: #BA783A
-  - background: #FBF9FE
+# 样式
+
+- 需要在 `body` 标签添加 `ontouchstart=""` 属性，才能激活移动端的 `:active` 伪类
