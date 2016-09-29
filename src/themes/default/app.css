@@ -1,6 +1,5 @@
 @import "reset";
 @import "vue";
-@import "iconfont";
 @import "helpers";
 
 #container {
@@ -33,7 +32,8 @@
     line-height: dpr(88px);
     text-align: center;
 
-    &:active {
+    &:active,
+    &:focus {
       background-color: transparent;
     }
   }

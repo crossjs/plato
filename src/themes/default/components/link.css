@@ -4,7 +4,8 @@
   color: var(--text);
   text-align: center;
 
-  &:active {
+  &:active,
+  &:focus {
     background-color: color(white blackness(+15%));
   }
 
@@ -32,7 +33,8 @@
   &.primary {
     color: var(--primary);
 
-    &:active {
+    &:active,
+    &:focus {
       color: color(var(--primary) blackness(+15%));
     }
 
@@ -44,7 +46,8 @@
   &.warning {
     color: var(--warning);
 
-    &:active {
+    &:active,
+    &:focus {
       color: color(var(--warning) blackness(+15%));
     }
 

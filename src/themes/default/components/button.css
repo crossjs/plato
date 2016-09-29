@@ -8,7 +8,9 @@
   border: 1px solid var(--disabled);
   border-radius: dpr(8px);
 
-  &:active {
+  &:active,
+  &:focus {
+    color: color(var(--text) blackness(+15%));
     background-color: color(white blackness(+15%));
   }
 
@@ -39,7 +41,9 @@
     background-color: var(--primary);
     border: none;
 
-    &:active {
+    &:active,
+    &:focus {
+      color: color(white blackness(+15%));
       background-color: color(var(--primary) blackness(+15%));
     }
 
@@ -55,7 +59,9 @@
     background-color: var(--warning);
     border: none;
 
-    &:active {
+    &:active,
+    &:focus {
+      color: color(white blackness(+15%));
       background-color: color(var(--warning) blackness(+15%));
     }
 

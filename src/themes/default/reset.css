@@ -1,7 +1,9 @@
 html {
-  font-family: Helvetica Neue, Helvetica, STHeiTi, Arial, sans-serif;
+  font-family: 'Helvetica Neue', Helvetica, STHeiTi, Arial, sans-serif;
   line-height: 1.5;
-  min-height: 100%;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+  height: 100%;
 }
 
 body {
@@ -97,13 +99,13 @@ em {
 a {
   color: var(--primary);
   text-decoration: none;
-  -webkit-tap-highlight-color: transparent;
 
   &:hover {
     text-decoration: none;
   }
 
-  &:active {
+  &:active,
+  &:focus {
     color: var(--secondary);
   }
 }

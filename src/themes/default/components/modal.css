@@ -31,7 +31,12 @@
 
 .c-modal-actions {
   &.c-row {
-    padding: dpr(0px);
+    padding: 0;
+
+    &:active,
+    &:focus {
+      background-color: transparent;
+    }
 
     &::after {
       content: none;
@@ -40,6 +45,7 @@
 }
 
 .c-modal-action {
+  border-radius: inherit;
   display: block;
   position: relative;
 
