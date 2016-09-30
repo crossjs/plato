@@ -106,7 +106,7 @@
     "webpack": "^1.13.2",
     "webpack-dev-middleware": "^1.8.1",
     "webpack-hot-middleware": "^2.12.2",
-    "yargs": "^5.0.0"
+    "yargs": "^6.0.0"
   },
   "engines": {
     "node": ">= 5.10.0 <= 5.12.0",

@@ -65,14 +65,14 @@ export default {
     this.$el.addEventListener('touchmove', this.drag)
     this.$el.addEventListener('touchend', this.dragend)
     this.maxOffset = this.$el.clientWidth
-    this.offset = (this.value - this.min) / (this.max - this.min) * this.maxOffset
+    const value = typeof this.value === 'number' ? this.value : this.min
+    this.offset = (value - this.min) / (this.max - this.min) * this.maxOffset
   },
 
   methods: {
     dragstart (e) {
       if (!this.dragging && e.touches && e.touches.length === 1) {
         this.dragging = true
-        // this.maxOffset = this.$el.clientWidth
         this.startY = e.touches[0].pageX - this.offset
       }
     },
