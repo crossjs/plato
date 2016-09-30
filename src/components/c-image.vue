@@ -32,7 +32,7 @@ export default {
       // 1-3: customize flexible dpr
       default: -1,
       validator (val) {
-        return val >=-1 && val <=3
+        return val >= -1 && val <= 3
       }
     }
   },
