@@ -17,7 +17,7 @@
     "lint:fix": "npm run lint -- --fix",
     "lint:css": "stylelint src/themes/**/*.css",
     "test": "npm run lint && npm run lint:css && npm run unit && npm run e2e",
-    "clean": "better-npm-run clean",
+    "clean": "node .tools/bin/clean",
     "compile": "better-npm-run compile",
     "build": "better-npm-run build",
     "docs": "bash .tools/bash/docs.sh",
@@ -28,54 +28,33 @@
     "compile": {
       "command": "node .tools/bin/compile",
       "env": {
-        "NODE_ENV": "production",
-        "DEBUG": "koa*"
+        "NODE_ENV": "production"
       }
     },
     "start": {
       "command": "nodemon .tools/bin/start",
       "env": {
-        "NODE_ENV": "production",
-        "DEBUG": "koa*"
+        "NODE_ENV": "production"
       }
     },
-    "dev": {
-      "command": "nodemon .tools/bin/start",
-      "env": {
-        "DEBUG": "koa*"
-      }
-    },
-    "debug": {
-      "command": "nodemon --debug .tools/bin/start",
-      "env": {
-        "DEBUG": "koa*"
-      }
-    },
-    "clean": {
-      "command": "node .tools/bin/clean",
-      "env": {
-        "DEBUG": "koa*"
-      }
-    },
+    "dev": "nodemon .tools/bin/start",
+    "debug": "nodemon --debug .tools/bin/start",
     "build": {
       "command": "npm run test && npm run clean && npm run compile",
       "env": {
-        "NODE_ENV": "production",
-        "DEBUG": "koa*"
+        "NODE_ENV": "production"
       }
     },
     "e2e": {
       "command": "node ./test/e2e/runner.js --env firefox",
       "env": {
-        "NODE_ENV": "test",
-        "DEBUG": "koa*"
+        "NODE_ENV": "test"
       }
     },
     "e2e:dev": {
       "command": "nodemon ./test/e2e/runner.js",
       "env": {
-        "NODE_ENV": "test",
-        "DEBUG": "koa*"
+        "NODE_ENV": "test"
       }
     },
     "unit": {
@@ -87,8 +66,7 @@
     "unit:dev": {
       "command": "karma start ./test/unit/runner.js --watch",
       "env": {
-        "NODE_ENV": "test",
-        "DEBUG": "koa*"
+        "NODE_ENV": "test"
       }
     }
   },
@@ -169,7 +147,7 @@
     "url-loader": "^0.5.7",
     "vue-hot-reload-api": "^2.0.6",
     "vue-html-loader": "^1.2.3",
-    "vue-loader": "^9.5.0",
+    "vue-loader": "^9.5.1",
     "vue-style-loader": "^1.0.0",
     "webpack": "^1.13.2",
     "webpack-dev-middleware": "^1.8.1",
