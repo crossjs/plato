@@ -28,6 +28,8 @@ npm run docs
 
 ## Changelog
 
+- 20160930 :warning: *Breaking Changes*
+  - update [vue-router](https://github.com/vuejs/vue-router/releases/tag/v2.0.0-rc.6)
 - 20160929
   - add some components: range, picker, scroller, slider, etc
 - 20160925
