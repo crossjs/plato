@@ -1,8 +1,8 @@
 <template>
   <img class="c-image"
-    :src="flexible ? _src : src"
-    :width="flexible ? _width : width"
-    :height="flexible ? _height : height">
+    :src="_src"
+    :width="_width"
+    :height="_height">
 </template>
 
 <script>
@@ -20,28 +20,35 @@ export default {
       default: 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=='
     },
     width: {
-      type: [String, Number],
-      default: ''
+      type: [String, Number]
     },
     height: {
-      type: [String, Number],
-      default: ''
+      type: [String, Number]
     },
     flexible: {
-      type: Boolean,
-      default: true
+      type: Number,
+      // -1: use global flexible dpr
+      // 0: disable flexible dpr
+      // 1-3: customize flexible dpr
+      default: -1,
+      validator (val) {
+        return val >=-1 && val <=3
+      }
     }
   },
 
   computed: {
+    _dpr () {
+      return this.flexible === -1 ? dpr : this.flexible
+    },
     _src () {
-      return this.src.replace(/@[1-3]x/, '@' + dpr + 'x')
+      return this._dpr ? this.src.replace(/@[1-3]x/g, '@' + this._dpr + 'x') : this.src
     },
     _width () {
-      return this.width ? this.width * dpr / 2 : this.width
+      return this._dpr ? this.width ? this.width * this._dpr / 2 : this.width : this.width
     },
     _height () {
-      return this.height ? this.height * dpr / 2 : this.height
+      return this._dpr ? this.height ? this.height * this._dpr / 2 : this.height : this.height
     }
   }
 }

@@ -3,7 +3,7 @@
 // ---------------------------------------
 import chai from 'chai'
 import sinonChai from 'sinon-chai'
-import { triggerHTMLEvents, triggerMouseEvents } from './utils'
+import { triggerHTMLEvents, triggerMouseEvents, triggerTouchEvents } from './utils'
 
 localStorage.clear()
 
@@ -12,6 +12,7 @@ chai.use(sinonChai)
 global.chai = chai
 global.triggerHTMLEvents = triggerHTMLEvents
 global.triggerMouseEvents = triggerMouseEvents
+global.triggerTouchEvents = triggerTouchEvents
 global.assert = chai.assert
 global.expect = chai.expect
 global.should = chai.should()

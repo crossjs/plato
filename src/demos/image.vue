@@ -8,9 +8,9 @@
     </c-row>
     <c-row :flex="false">
       <p>flexible: false</p>
-      <c-image :flexible="false" src="images/qr@1x.png"></c-image>
-      <c-image :flexible="false" src="images/qr@2x.png"></c-image>
-      <c-image :flexible="false" src="images/qr@3x.png"></c-image>
+      <c-image :flexible="0" src="images/qr@1x.png"></c-image>
+      <c-image :flexible="0" src="images/qr@2x.png"></c-image>
+      <c-image :flexible="0" src="images/qr@3x.png"></c-image>
     </c-row>
     <c-row :flex="false">
       <p>resized by `data-dpr`, and replace css (background-image) with <a href="https://github.com/crossjs/postcss-flexible">postcss-flexible</a></p>

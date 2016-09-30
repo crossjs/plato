@@ -8,7 +8,15 @@ export function triggerHTMLEvents (target, event, process) {
 
 export function triggerMouseEvents (target, event, process) {
   const e = document.createEvent('MouseEvents')
-  e.initEvent(event, true, true)
+  e.initMouseEvent(event, true, true)
+  if (process) process(e)
+  target.dispatchEvent(e)
+  return e
+}
+
+export function triggerTouchEvents (target, event, process) {
+  const e = document.createEvent('UIEvent')
+  e.initUIEvent(event, true, true)
   if (process) process(e)
   target.dispatchEvent(e)
   return e

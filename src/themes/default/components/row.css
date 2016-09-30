@@ -4,15 +4,6 @@
   position: relative;
   overflow: hidden; /* preventing horizontal scrollbar */
 
-  &-flex {
-    display: flex;
-    flex-direction: row;
-
-    &:active {
-      background-color: transparent;
-    }
-  }
-
   &:active {
     background-color: color(var(--disabled) alpha(0.4));
 
@@ -20,6 +11,15 @@
       &::after {
         border-color: var(--secondary);
       }
+    }
+  }
+
+  &-flex {
+    display: flex;
+    flex-direction: row;
+
+    &:active {
+      background-color: transparent;
     }
   }
 

@@ -60,6 +60,9 @@ export default {
       if (!this.dragging) {
         this.updateOffset()
       }
+    },
+    size () {
+      this.updateOffset()
     }
   },
 
@@ -116,7 +119,10 @@ export default {
         this.dragging = false
         const offsetIndex = Math.max((this.size - 1) / 2 - this.itemLength, Math.round(this.offset / this.itemHeight))
         this.offset = this.itemHeight * offsetIndex
-        this.$emit('change', (this.size - 1) / 2 - offsetIndex)
+        const index = (this.size - 1) / 2 - offsetIndex
+        if (index !== this.index) {
+          this.$emit('change', index)
+        }
       }
     }
   }
