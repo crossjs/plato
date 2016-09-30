@@ -3,11 +3,11 @@ import logger from 'koa-logger'
 import favicon from 'koa-favicon'
 import serve from 'koa-static'
 import _debug from 'debug'
-import config from './config'
+import config from '../config'
 import error from './error'
 import devTools from './dev-tools'
 
-const debug = _debug('koa:server')
+const debug = _debug('plato:koa:server')
 const paths = config.paths
 
 // Koa application is now a class and requires the new operator.

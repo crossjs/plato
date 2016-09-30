@@ -22,13 +22,20 @@ npm install
 # serve with hot reload at localhost:3000
 npm run dev
 
+# eslint, stylelint, unit and e2e test
+npm test
+
 # generate demo site and push to gh-pages
 npm run docs
+
+# push modifications to github
+npm run push
 ```
 
 ## Changelog
 
 - 20160930 :warning: *Breaking Changes*
+  - adjust file structure
   - update [vue-router](https://github.com/vuejs/vue-router/releases/tag/v2.0.0-rc.6)
 - 20160929
   - add some components: range, picker, scroller, slider, etc

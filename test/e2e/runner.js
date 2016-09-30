@@ -3,7 +3,7 @@ require('babel-register')
 
 // 1. start the dev server using production config
 // process.env.NODE_ENV = 'testing'
-var server = require('../../server')
+var server = require('../../.tools/server')
 
 // 2. run the nightwatch test suite against it
 // to run in additional browsers:

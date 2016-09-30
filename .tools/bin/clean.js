@@ -1,8 +1,8 @@
 require('babel-register')
 
-const debug = require('debug')('koa:bin:clean')
+const debug = require('debug')('plato:bin:clean')
 
-debug('Clean files...')
+debug('Clean dist files...')
 
 require('rimraf')(require('../config').paths.dist('**'), err => {
   if (err) {

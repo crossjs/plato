@@ -2,7 +2,7 @@ set -e
 echo "Enter message: "
 read MESSAGE
 
-echo "Deploying ..."
+echo "Deploying $MESSAGE ..."
 
 # build
 npm run build

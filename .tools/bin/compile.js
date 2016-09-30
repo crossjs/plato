@@ -1,6 +1,6 @@
 require('babel-register')
 
-const debug = require('debug')('koa:bin:compile')
+const debug = require('debug')('plato:bin:compile')
 
 debug('Create webpack compiler.')
 

@@ -1,6 +1,6 @@
 import webpack from './webpack'
 import mocking from './middleware/mocking'
-import { paths, server_mock } from '../config'
+import { paths, server_mock } from '../../config'
 
 export default app => {
   webpack(app)

@@ -1,9 +1,9 @@
 import webpackDevMiddleware from 'webpack-dev-middleware'
 import applyExpressMiddleware from '../lib/apply-express-middleware'
 import _debug from 'debug'
-import config from '../../config'
+import config from '../../../config'
 
-const debug = _debug('koa:webpack-dev')
+const debug = _debug('plato:koa:webpack-dev')
 
 export default compiler => {
   debug('Enable webpack dev middleware.')

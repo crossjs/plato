@@ -22,7 +22,8 @@
     "build": "better-npm-run build",
     "docs": "bash .tools/bash/docs.sh",
     "push": "bash .tools/bash/push.sh",
-    "init": "CHROMEDRIVER_CDNURL=http://cdn.npm.taobao.org/dist/chromedriver npm install -r https://registry.npm.taobao.org"
+    "init": "CHROMEDRIVER_CDNURL=http://cdn.npm.taobao.org/dist/chromedriver npm install -r https://registry.npm.taobao.org",
+    "init:win:": "set CHROMEDRIVER_CDNURL=http://cdn.npm.taobao.org/dist/chromedriver&& npm install -r https://registry.npm.taobao.org"
   },
   "betterScripts": {
     "compile": {
@@ -52,7 +53,7 @@
       }
     },
     "e2e:dev": {
-      "command": "nodemon ./test/e2e/runner.js",
+      "command": "nodemon ./test/e2e/runner.js --env chrome",
       "env": {
         "NODE_ENV": "test"
       }

@@ -2,7 +2,7 @@ import path from 'path'
 import { argv } from 'yargs'
 import _debug from 'debug'
 
-const debug = _debug('koa:config:base')
+const debug = _debug('plato:config:base')
 
 const config = {
   env: process.env.NODE_ENV || 'development',

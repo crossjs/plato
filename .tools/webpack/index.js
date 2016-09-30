@@ -9,9 +9,10 @@ import _debug from 'debug'
 import config, { paths } from '../config'
 const { __DEV__, __PROD__, __TEST__ } = config.globals
 
-const debug = _debug('koa:webpack:config')
+const debug = _debug('plato:webpack:config')
 
 debug('Create configuration.')
+
 const webpackConfig = {
   __DEV__,
   __PROD__,
@@ -37,6 +38,7 @@ const webpackConfig = {
 // ------------------------------------
 // Entry Points
 // ------------------------------------
+
 const APP_ENTRY_PATH = ['babel-polyfill', paths.src('index.js')]
 
 webpackConfig.entry = {

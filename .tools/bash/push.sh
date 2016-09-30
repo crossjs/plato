@@ -4,11 +4,8 @@ read MESSAGE
 
 echo "Pushing $MESSAGE ..."
 
-# run eslint
-npm run lint
-
-# run unit tests
-npm run unit
+# run test
+npm test
 
 # commit
 git add -A
