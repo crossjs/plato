@@ -37,6 +37,8 @@ npm run debug
 
 ## Changelog
 
+- 20161001 :clap:
+  - upgrade vue, vuex, vue-router to version 2.0 stable
 - 20160930 :warning: *Breaking Changes*
   - adjust file structure
   - update [vue-router](https://github.com/vuejs/vue-router/releases/tag/v2.0.0-rc.6)

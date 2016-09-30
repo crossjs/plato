@@ -1,6 +1,6 @@
 {
   "name": "PLATO",
-  "version": "2.0.0-beta",
+  "version": "2.0.0-rc",
   "description": ":heart: a Boilerplate for SPAs use vue, vuex, vue-router",
   "license": "MIT",
   "main": "index.js",
@@ -31,9 +31,9 @@
     "plato-i18n": "^2.0.0-beta.3",
     "plato-request": "^0.1.0",
     "plato-validator": "^2.0.0-beta.1",
-    "vue": "^2.0.0-rc.8",
-    "vue-router": "^2.0.0-rc.7",
-    "vuex": "^2.0.0-rc.6",
+    "vue": "^2.0.0",
+    "vue-router": "^2.0.0",
+    "vuex": "^2.0.0",
     "vuex-actions": "^1.1.1",
     "vuex-localstorage": "^0.2.0"
   },
