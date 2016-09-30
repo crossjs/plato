@@ -10,7 +10,6 @@ const ENV_KEY = 'ENV_KEY'
 const SET_ENV = 'SET_ENV'
 
 const persist = createPersist(ENV_KEY, {
-  env_is_fetching: false,
   lang: navigator.language.split('-')[0],
   i18n: null,
   authorized: false

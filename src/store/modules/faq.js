@@ -17,7 +17,7 @@ const persist = createPersist(FAQ_KEY, {
   entities: {},
   meta: {}
 }, {
-  expires: ONE_SECOND
+  expires: ONE_SECOND * 30
 })
 
 const state = persist.get()
