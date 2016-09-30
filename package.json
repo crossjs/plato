@@ -5,71 +5,24 @@
   "license": "MIT",
   "main": "index.js",
   "scripts": {
-    "start": "better-npm-run start",
-    "dev": "better-npm-run dev",
-    "dev:mock": "better-npm-run dev -- --mock",
-    "debug": "better-npm-run debug",
-    "e2e": "better-npm-run e2e",
-    "e2e:dev": "better-npm-run e2e:dev",
-    "unit": "better-npm-run unit",
-    "unit:dev": "better-npm-run unit:dev",
+    "gfw": "cross-env CHROMEDRIVER_CDNURL=http://cdn.npm.taobao.org/dist/chromedriver npm install -r https://registry.npm.taobao.org",
+    "start": "cross-env NODE_ENV=production DEBUG=plato* nodemon .tools/bin/start",
+    "dev": "cross-env DEBUG=plato* nodemon .tools/bin/start",
+    "dev:mock": "npm run dev -- --mock",
+    "debug": "cross-env DEBUG=plato* nodemon --debug .tools/bin/start",
+    "e2e": "cross-env NODE_ENV=test DEBUG=plato* node ./test/e2e/runner.js --env firefox",
+    "e2e:dev": "cross-env NODE_ENV=test DEBUG=plato* nodemon ./test/e2e/runner.js",
+    "unit": "cross-env NODE_ENV=test DEBUG=plato* karma start ./test/unit/runner.js",
+    "unit:dev": "npm run unit -- --watch",
     "lint": "eslint --max-warnings 10 .",
     "lint:fix": "npm run lint -- --fix",
     "lint:css": "stylelint src/themes/**/*.css",
     "test": "npm run lint && npm run lint:css && npm run unit && npm run e2e",
     "clean": "node .tools/bin/clean",
-    "compile": "better-npm-run compile",
-    "build": "better-npm-run build",
+    "compile": "cross-env NODE_ENV=production DEBUG=plato* node .tools/bin/compile",
+    "build": "cross-env NODE_ENV=production DEBUG=plato* npm run test && npm run clean && npm run compile",
     "docs": "bash .tools/bash/docs.sh",
-    "push": "bash .tools/bash/push.sh",
-    "init": "CHROMEDRIVER_CDNURL=http://cdn.npm.taobao.org/dist/chromedriver npm install -r https://registry.npm.taobao.org",
-    "init:win:": "set CHROMEDRIVER_CDNURL=http://cdn.npm.taobao.org/dist/chromedriver&& npm install -r https://registry.npm.taobao.org"
-  },
-  "betterScripts": {
-    "compile": {
-      "command": "node .tools/bin/compile",
-      "env": {
-        "NODE_ENV": "production"
-      }
-    },
-    "start": {
-      "command": "nodemon .tools/bin/start",
-      "env": {
-        "NODE_ENV": "production"
-      }
-    },
-    "dev": "nodemon .tools/bin/start",
-    "debug": "nodemon --debug .tools/bin/start",
-    "build": {
-      "command": "npm run test && npm run clean && npm run compile",
-      "env": {
-        "NODE_ENV": "production"
-      }
-    },
-    "e2e": {
-      "command": "node ./test/e2e/runner.js --env firefox",
-      "env": {
-        "NODE_ENV": "test"
-      }
-    },
-    "e2e:dev": {
-      "command": "nodemon ./test/e2e/runner.js --env chrome",
-      "env": {
-        "NODE_ENV": "test"
-      }
-    },
-    "unit": {
-      "command": "karma start ./test/unit/runner.js",
-      "env": {
-        "NODE_ENV": "test"
-      }
-    },
-    "unit:dev": {
-      "command": "karma start ./test/unit/runner.js --watch",
-      "env": {
-        "NODE_ENV": "test"
-      }
-    }
+    "push": "bash .tools/bash/push.sh"
   },
   "dependencies": {
     "leancloud-storage": "^1.5.0",
@@ -96,12 +49,12 @@
     "babel-preset-stage-0": "^6.16.0",
     "babel-register": "^6.16.3",
     "babel-runtime": "^6.11.6",
-    "better-npm-run": "0.0.11",
     "bundle-loader": "^0.5.4",
     "chai": "^3.5.0",
     "chalk": "^1.1.3",
     "chromedriver": "^2.24.1",
     "copy-webpack-plugin": "^3.0.1",
+    "cross-env": "^3.0.0",
     "cross-spawn": "^4.0.2",
     "css-loader": "^0.25.0",
     "debug": "^2.2.0",

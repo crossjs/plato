@@ -30,6 +30,9 @@ npm run docs
 
 # push modifications to github
 npm run push
+
+# debugging with `node-inspector &`
+npm run debug
 ```
 
 ## Changelog
