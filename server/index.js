@@ -22,7 +22,7 @@ app.use(error())
 // ------------------------------------
 if (app.env === 'production') {
   // favicon
-  app.use(favicon(paths.dist('favicon.ico')))
+  app.use(favicon(paths.dist('favicon.png')))
 
   // static with cache
   app.use(serve(paths.dist(), {
