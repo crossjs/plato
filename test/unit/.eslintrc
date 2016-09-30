@@ -11,6 +11,7 @@
     "expect": false,
     "should": false,
     "triggerHTMLEvents": false,
-    "triggerMouseEvents": false
+    "triggerMouseEvents": false,
+    "triggerTouchEvents": false
   }
 }
