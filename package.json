@@ -38,7 +38,7 @@
     "vuex-localstorage": "^0.2.0"
   },
   "devDependencies": {
-    "babel-core": "^6.16.0",
+    "babel-core": "^6.17.0",
     "babel-loader": "^6.2.5",
     "babel-plugin-__coverage__": "^11.0.0",
     "babel-plugin-add-module-exports": "^0.2.1",
@@ -58,7 +58,7 @@
     "cross-spawn": "^4.0.2",
     "css-loader": "^0.25.0",
     "debug": "^2.2.0",
-    "eslint": "^3.6.1",
+    "eslint": "^3.7.0",
     "eslint-config-plato": "^0.0.1",
     "eslint-friendly-formatter": "^2.0.6",
     "eslint-loader": "^1.5.0",
