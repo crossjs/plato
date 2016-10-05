@@ -103,14 +103,12 @@ export default {
     },
     // fill content automatically
     fill () {
-      if (!this.drained && this.autoFill) {
-        this.$nextTick(() => {
-          this.update()
-          if (this.minOffset > 0) {
-            this.pullup()
-          }
-        })
-      }
+      this.$nextTick(() => {
+        this.update()
+        if (!this.drained && this.autoFill && this.minOffset > 0) {
+          this.pullup()
+        }
+      })
     },
     // update min offset and overflow state
     update () {
