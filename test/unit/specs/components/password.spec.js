@@ -1,5 +1,8 @@
 import Vue from 'vue'
 import CPassword from 'components/c-password'
+import tap from 'directives/tap'
+
+Vue.directive('tap', tap)
 
 describe('password.vue', () => {
   let el
@@ -30,7 +33,7 @@ describe('password.vue', () => {
     expect(children[1].tagName).to.equal('INPUT')
     expect(children[1].type).to.equal('password')
 
-    triggerMouseEvents(children[0], 'click')
+    triggerMouseEvents(children[0], 'tap')
     vm.$nextTick(() => {
       expect(children[1].type).to.equal('text')
       done()

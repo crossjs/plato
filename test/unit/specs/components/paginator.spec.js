@@ -1,5 +1,8 @@
 import Vue from 'vue'
 import CPaginator from 'components/c-paginator'
+import tap from 'directives/tap'
+
+Vue.directive('tap', tap)
 
 describe('paginator.vue', () => {
   let el
@@ -79,7 +82,7 @@ describe('paginator.vue', () => {
       expect(children[2].classList.contains('disabled')).to.be.not.ok
       expect(children[3].classList.contains('disabled')).to.be.not.ok
 
-      triggerMouseEvents(children[2], 'click')
+      triggerMouseEvents(children[2], 'tap')
     })
 
     it('while count > $limit 2', done => {
@@ -109,9 +112,9 @@ describe('paginator.vue', () => {
       expect(children[5].textContent).to.equal('9')
 
       // will NOT trigger paginate
-      triggerMouseEvents(children[4], 'click')
+      triggerMouseEvents(children[4], 'tap')
       // will trigger paginate
-      triggerMouseEvents(children[5], 'click')
+      triggerMouseEvents(children[5], 'tap')
     })
 
     it('while count > $limit 3', done => {
@@ -143,9 +146,9 @@ describe('paginator.vue', () => {
       expect(children[9].textContent).to.equal('...')
 
       // will NOT trigger paginate
-      triggerMouseEvents(children[3], 'click')
+      triggerMouseEvents(children[3], 'tap')
       // will trigger paginate
-      triggerMouseEvents(children[6], 'click')
+      triggerMouseEvents(children[6], 'tap')
     })
   })
 })

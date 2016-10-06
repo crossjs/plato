@@ -1,5 +1,8 @@
 import Vue from 'vue'
 import CScroller from 'components/c-scroller'
+import tap from 'directives/tap'
+
+Vue.directive('tap', tap)
 
 describe('scroller.vue', () => {
   let el

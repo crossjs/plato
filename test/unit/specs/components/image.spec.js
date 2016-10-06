@@ -1,5 +1,8 @@
 import Vue from 'vue'
 import CImage from 'components/c-image'
+import tap from 'directives/tap'
+
+Vue.directive('tap', tap)
 
 describe('image.vue', () => {
   let el

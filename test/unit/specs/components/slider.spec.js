@@ -1,5 +1,8 @@
 import Vue from 'vue'
 import CSlider from 'components/c-slider'
+import tap from 'directives/tap'
+
+Vue.directive('tap', tap)
 
 describe('slider.vue', () => {
   let el

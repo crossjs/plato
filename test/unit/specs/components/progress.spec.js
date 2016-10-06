@@ -1,5 +1,8 @@
 import Vue from 'vue'
 import CProgress from 'components/c-progress'
+import tap from 'directives/tap'
+
+Vue.directive('tap', tap)
 
 describe('progress.vue', () => {
   let el

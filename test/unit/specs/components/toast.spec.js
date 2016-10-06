@@ -1,5 +1,8 @@
 import Vue from 'vue'
 import CToast from 'components/c-toast'
+import tap from 'directives/tap'
+
+Vue.directive('tap', tap)
 
 describe('toast.vue', () => {
   let el

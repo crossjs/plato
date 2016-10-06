@@ -1,5 +1,8 @@
 import Vue from 'vue'
 import CCheckbox from 'components/c-checkbox'
+import tap from 'directives/tap'
+
+Vue.directive('tap', tap)
 
 describe('checkbox.vue', () => {
   let el

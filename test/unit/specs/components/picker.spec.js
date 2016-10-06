@@ -1,5 +1,8 @@
 import Vue from 'vue'
 import CPicker from 'components/c-picker'
+import tap from 'directives/tap'
+
+Vue.directive('tap', tap)
 
 describe('picker.vue', () => {
   let el

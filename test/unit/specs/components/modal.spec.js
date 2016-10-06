@@ -1,5 +1,8 @@
 import Vue from 'vue'
 import CModal from 'components/c-modal'
+import tap from 'directives/tap'
+
+Vue.directive('tap', tap)
 
 describe('modal.vue', () => {
   let el
@@ -65,7 +68,7 @@ describe('modal.vue', () => {
       methods: {
         callback (key) {
           if (key === 'cancel') {
-            triggerMouseEvents(vm.$el.querySelectorAll('a.c-modal-link')[1], 'click')
+            triggerMouseEvents(vm.$el.querySelectorAll('a.c-modal-link')[1], 'tap')
           } else {
             expect(vm.show).to.be.true
             vm.show = false
@@ -82,7 +85,7 @@ describe('modal.vue', () => {
     })
 
     // button
-    triggerMouseEvents(vm.$el.querySelectorAll('a.c-modal-link')[0], 'click')
+    triggerMouseEvents(vm.$el.querySelectorAll('a.c-modal-link')[0], 'tap')
   })
 
   it('should show/hide modal', done => {
@@ -136,6 +139,6 @@ describe('modal.vue', () => {
     const modal = vm.$children[0]
 
     // button
-    triggerMouseEvents(modal.$el.querySelector('a:first-child'), 'click')
+    triggerMouseEvents(modal.$el.querySelector('a:first-child'), 'tap')
   })
 })
