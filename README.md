@@ -37,6 +37,8 @@ npm run debug
 
 ## Changelog
 
+- 20161006
+  - add directive tap
 - 20161001 :clap:
   - upgrade vue, vuex, vue-router to version 2.0 stable
 - 20160930 :warning: *Breaking Changes*
