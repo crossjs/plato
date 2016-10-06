@@ -16,7 +16,7 @@
       <c-progress></c-progress>
     </c-pane>
     <c-pane>
-      <c-button @click.native="shuffle">Shuffle</c-button>
+      <c-button v-tap="shuffle">Shuffle</c-button>
     </c-pane>
   </div>
 </template>

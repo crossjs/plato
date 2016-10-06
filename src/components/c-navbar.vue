@@ -5,14 +5,13 @@
         @touchend.native.prevent="opened = false"></c-mask>
     </transition>
     <c-button :class="['toggle', {'active': opened}]"
-      ref="trigger"
-      @touchend.native.prevent="opened = !opened">
-        <slot name="icon"><c-icon>three-bars</c-icon></slot>
+      v-tap="toggleOpened">
+      <slot name="icon"><c-icon>three-bars</c-icon></slot>
     </c-button>
     <transition name="slide-left">
       <nav class="menu"
         v-show="opened"
-        @click="opened = false">
+        v-tap="cancelOpened">
         <slot></slot>
       </nav>
     </transition>
@@ -31,6 +30,15 @@ export default {
   data () {
     return {
       opened: false
+    }
+  },
+
+  methods: {
+    toggleOpened () {
+      this.opened = !this.opened
+    },
+    cancelOpened () {
+      this.opened = false
     }
   },
 

@@ -8,7 +8,7 @@
           <c-row class="c-modal-actions" v-if="_actions">
             <c-col class="c-modal-action" v-for="(action, key) in _actions">
               <c-link :class="['c-modal-link', action.class]"
-                @click.native="$emit(key)">{{action.label}}</c-link>
+                v-tap @tap.native="$emit(key)">{{action.label}}</c-link>
             </c-col>
           </c-row>
         </div>
@@ -18,10 +18,10 @@
 </template>
 
 <script>
+import mBase from './mixins/base'
 import CRow from './c-row'
 import CCol from './c-col'
 import CLink from './c-link'
-import mBase from './mixins/base'
 
 export default {
   mixins: [mBase],

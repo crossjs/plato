@@ -9,8 +9,8 @@
         <div class="title">i'm title</div>
         <div class="content">i'm body, i'm body, i'm body, i'm body, i'm body, i'm body, i'm body.</div>
       </c-modal>
-    <c-pane><c-button @click.native="click">show modal</c-button></c-pane>
-    <c-pane><c-button @click.native="click2">show modal with title</c-button></c-pane>
+    <c-pane><c-button v-tap @tap.native="click">show modal</c-button></c-pane>
+    <c-pane><c-button v-tap @tap.native="click2">show modal with title</c-button></c-pane>
   </div>
 </template>
 

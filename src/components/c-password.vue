@@ -1,7 +1,7 @@
 <template>
   <label class="c-password" :class="{'show-password': showPassword}">
     <c-icon class="toggle"
-      @click.native="showPassword = !showPassword">view</c-icon>
+      v-tap @tap.native="showPassword = !showPassword">eye</c-icon>
     <input
       :type="showPassword ? 'text' : 'password'"
       :value="value"

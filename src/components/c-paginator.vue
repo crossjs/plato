@@ -4,7 +4,7 @@
       <a v-for="page in pages"
         href="javascript:;"
         :class="{'current': page.current, 'disabled': page.disabled}"
-        @click="_paginate(page)">{{page.label}}</a>
+        v-tap @tap="_paginate(page)">{{page.label}}</a>
     </template>
   </div>
 </template>

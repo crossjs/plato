@@ -26,8 +26,6 @@
   },
   "dependencies": {
     "leancloud-storage": "^1.5.0",
-    "nd-datetime": "^3.0.5",
-    "nd-promise": "^3.1.0",
     "plato-i18n": "^2.0.0-beta.3",
     "plato-request": "^0.1.0",
     "plato-validator": "^2.0.0-rc",

@@ -32,7 +32,7 @@ const actions = {
         url: `./i18n/${payload.lang}.json`
       }).then(i18n => ({ ...payload, i18n }))
     }
-    return Promise.resolve(payload)
+    return payload
   })
 }
 
