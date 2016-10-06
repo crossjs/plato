@@ -54,8 +54,6 @@ const config = {
     publicPath: false
   },
   compiler_vendor: [
-    'nd-datetime',
-    'nd-promise',
     'plato-i18n',
     'plato-request',
     'plato-validator',
