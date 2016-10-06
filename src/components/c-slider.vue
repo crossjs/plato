@@ -1,6 +1,6 @@
 <template>
   <div class="c-slider">
-    <div class="c-slider-content" :class="{'transition': transition && !dragging &!ready}"
+    <div class="c-slider-content" :class="{'transition': transition && !dragging & !inPosition}"
       :style="{transform: 'translateX(' + (offset - currIndex * maxOffset) + 'px)'}"
       ref="content">
       <slot></slot>
@@ -27,6 +27,7 @@ export default {
         return val >= 0
       }
     },
+    // 自动播放间隔秒数
     interval: {
       type: Number,
       default: 0,
@@ -49,7 +50,8 @@ export default {
       currIndex: 0,
       intervalId: 0,
       dragging: false,
-      ready: false
+      // 就位，已经切换到目标位置，指示可以进行后续操作，比如重设位置
+      inPosition: false
     }
   },
 
@@ -72,7 +74,7 @@ export default {
 
   watch: {
     index (val) {
-      this.ready = true
+      this.inPosition = true
       this.$nextTick(() => {
         this.currIndex = val
       })
@@ -80,7 +82,7 @@ export default {
     interval () {
       this.automate()
     },
-    ready () {
+    inPosition () {
       this.arrange()
     }
   },
@@ -100,7 +102,7 @@ export default {
     },
     arrange () {
       if (this.size > 1) {
-        if (this.ready) {
+        if (this.inPosition) {
           this.children[0].style.transform = 'translateX(0%)'
           this.children[this.size - 1].style.transform = 'translateX(' + (this.size - 1) * 100 + '%)'
         } else {
@@ -131,7 +133,7 @@ export default {
     dragstart (e) {
       if (this.size > 1 && !this.dragging && e.touches && e.touches.length === 1) {
         this.dragging = true
-        this.ready = false
+        this.inPosition = false
         this.startY = e.touches[0].pageX - this.offset
       }
     },
@@ -161,14 +163,14 @@ export default {
       }
     },
     go (index) {
-      this.ready = false
+      this.inPosition = false
       setTimeout(() => {
         this.offset = 0
         if (index !== this.currIndex) {
           this.currIndex = index
           this.$emit('slide', this.currIndex)
         }
-        this.ready = true
+        this.inPosition = true
       }, 250)
     },
     prev () {

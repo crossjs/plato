@@ -134,7 +134,7 @@ describe('picker.vue', () => {
     })
   })
 
-  it('should render correct contents', done => {
+  it('touch', done => {
     vm = new Vue({
       el,
       template: `<c-picker
