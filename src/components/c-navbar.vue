@@ -5,7 +5,8 @@
         @touchend.native.prevent="opened = false"></c-mask>
     </transition>
     <c-button :class="['toggle', {'active': opened}]"
-      @click.native="opened = !opened">
+      ref="trigger"
+      @touchend.native.prevent="opened = !opened">
         <slot name="icon"><c-icon>three-bars</c-icon></slot>
     </c-button>
     <transition name="slide-left">
