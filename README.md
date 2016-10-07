@@ -10,7 +10,7 @@
 </p>
 <p align="center">
   a Boilerplate for SPAs use vue, vuex, vue-router<br>
-  Check out <a href="http://crossjs.com/plato/#/demos"><b>Demos</b></a> and <a href="src/components/README.md"><b>Readme</b></a> for UI Components
+  Check out <a href="http://plato.crossjs.com/#/demos"><b>Demos</b></a> and <a href="src/components/README.md"><b>Readme</b></a> for UI Components
 </p>
 
 ## Usage
