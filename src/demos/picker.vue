@@ -5,13 +5,13 @@
         <c-picker
           :index="index"
           @change="change">
-          <p class="c-picker-item" v-for="item in items">{{item}}</p>
+          <p v-for="item in items">{{item}}</p>
         </c-picker>
       </c-col>
         <c-picker
           :index="index"
           @change="change">
-          <p class="c-picker-item" v-for="item in items">{{item}}</p>
+          <p v-for="item in items">{{item}}</p>
         </c-picker>
       </c-col>
     </c-row>
@@ -23,7 +23,7 @@
           :index="year"
           :size="3"
           @change="year = arguments[0]">
-          <p class="c-picker-item" v-for="item in yearList">{{item}}</p>
+          <p v-for="item in yearList">{{item}}</p>
         </c-picker>
       </c-col>
       <c-col>
@@ -31,7 +31,7 @@
           :index="month"
           :size="3"
           @change="month = arguments[0]">
-          <p class="c-picker-item" v-for="item in 12">{{item}}</p>
+          <p v-for="item in 12">{{item}}</p>
         </c-picker>
       </c-col>
       <c-col>
@@ -39,7 +39,7 @@
           :index="date"
           :size="3"
           @change="date = arguments[0]">
-          <p class="c-picker-item" v-for="item in dateMax">{{item}}</p>
+          <p v-for="item in dateMax">{{item}}</p>
         </c-picker>
       </c-col>
     </c-row>

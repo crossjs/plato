@@ -108,6 +108,5 @@
   & p {
     font-size: dpr(48px);
     line-height: dpr(60px);
-    text-align: center;
   }
 }

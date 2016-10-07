@@ -37,6 +37,8 @@ npm run debug
 
 ## Changelog
 
+- 20161007
+  - add language switching
 - 20161006
   - add directive tap
 - 20161001 :clap:

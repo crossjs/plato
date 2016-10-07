@@ -17,4 +17,8 @@
   &.transition {
     transition: transform 0.2s linear;
   }
+
+  & > * {
+    text-align: center;
+  }
 }

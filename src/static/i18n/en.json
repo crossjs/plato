@@ -6,18 +6,13 @@
     "maxlength": "{0} must no more then {1} chars",
     "pattern": "{0} is NOT valid"
   },
-  "routes": {
-    "demos": "Demos",
-    "create": "Create",
-    "about": "About",
-    "login": "Login",
-    "logout": "Logout"
-  },
   "views": {
     "home": {
-      "language": "Language",
       "delete": "Delete",
       "confirm": "Delete?"
+    },
+    "globe": {
+      "language": "Language"
     },
     "create": {
       "title": "Title",

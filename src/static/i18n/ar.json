@@ -6,18 +6,13 @@
     "maxlength": "{0} يجب أن لا يزيد عن {1} حرف",
     "pattern": "{0} ليست صحيحة"
   },
-  "routes": {
-    "demos": "العروض",
-    "create": "خلق",
-    "about": "حول",
-    "login": "دخول",
-    "logout": "الخروج"
-  },
   "views": {
     "home": {
-      "language": "لغة",
       "delete": "حذف",
       "confirm": "تأكيد لحذف؟"
+    },
+    "globe": {
+      "language": "لغة"
     },
     "create": {
       "title": "عنوان",
