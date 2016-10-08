@@ -12,6 +12,7 @@ const SET_ENV = 'SET_ENV'
 const persist = createPersist(ENV_KEY, {
   lang: navigator.language.split('-')[0],
   i18n: null,
+  transition: false, // 默认关闭动画效果
   authorized: false
 }, {
   expires: ONE_WEEK
@@ -22,6 +23,7 @@ const state = persist.get()
 const getters = {
   lang: state => state.lang,
   i18n: state => state.i18n,
+  transition: state => state.transition,
   authorized: state => state.authorized
 }
 

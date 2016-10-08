@@ -33,3 +33,13 @@
 .right {
   text-align: right;
 }
+
+html[dir="rtl"] {
+  & .left {
+    text-align: right;
+  }
+
+  & .right {
+    text-align: left;
+  }
+}

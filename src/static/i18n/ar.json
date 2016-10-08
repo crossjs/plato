@@ -12,7 +12,8 @@
       "confirm": "تأكيد لحذف؟"
     },
     "globe": {
-      "language": "لغة"
+      "language": "لغة",
+      "transition": "حيوية"
     },
     "create": {
       "title": "عنوان",

@@ -1,53 +1,81 @@
 <template>
   <div class="v-globe">
-    <c-pane>
-      <h3 class="center">{{ __('views.globe.language') }}</h3>
-      <hr>
+    <c-row>
+      <c-col :size="0">
+        {{ __('views.globe.transition') }}
+      </c-col>
+      <c-col class="right">
+        <c-checkbox
+          :value="transition"
+          @change="transitionEnabled = arguments[0]"></c-checkbox>
+      </c-col>
+    </c-row>
+    <c-row>
+      <c-col :size="0">
+        {{ __('views.globe.language') }}
+      </c-col>
+      <c-col class="right link">
+        <c-link v-tap @tap.native="showPicker = !showPicker">{{ Object.keys(languages)[languageIndex] }}</c-link>
+      </c-col>
+    </c-row>
+    <c-pane v-if="showPicker">
       <c-picker
-        :index="index"
-        @change="index = arguments[0]">
+        :index="languageIndex"
+        @change="languageIndex = arguments[0]">
         <p v-for="(val, key) in languages">{{key}}</p>
       </c-picker>
-      <hr>
-      <p class="center">then goto <router-link to='create'>Create</router-link> to view the results</p>
     </c-pane>
   </div>
 </template>
 
 <script>
 import CPane from 'components/c-pane'
+import CRow from 'components/c-row'
+import CCol from 'components/c-col'
+import CLink from 'components/c-link'
+import CCheckbox from 'components/c-checkbox'
 import CPicker from 'components/c-picker'
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
   data () {
     return {
-      index: 0,
+      showPicker: false,
+      languageIndex: 0,
       languages: {
         '简体中文': 'zh',
         'English': 'en',
         'العربية': 'ar'
-      }
+      },
+      transitionEnabled: false
     }
   },
 
-  computed: mapGetters(['lang']),
+  computed: mapGetters(['lang', 'transition']),
 
   mounted () {
-    this.index = Object.keys(this.languages).findIndex(key => {
+    this.languageIndex = Object.keys(this.languages).findIndex(key => {
       if (this.languages[key] === this.lang) {
         return true
       }
     })
+    this.transitionEnabled = this.transition
   },
 
   methods: mapActions(['setEnv']),
 
   watch: {
-    index (val) {
+    languageIndex (val) {
       this.$nextTick(() => {
         this.setEnv({
           lang: this.languages[Object.keys(this.languages)[val]]
+        })
+      })
+    },
+    transitionEnabled (val) {
+      this.$nextTick(() => {
+        this.setEnv({
+          transition: val
         })
       })
     }
@@ -55,6 +83,10 @@ export default {
 
   components: {
     CPane,
+    CRow,
+    CCol,
+    CLink,
+    CCheckbox,
     CPicker
   }
 }

@@ -49,6 +49,7 @@ args.push(err => {
     return
   }
   debug('Server is now running at %s:%s.', server_host, server_port)
+  config.server_ready = true
 })
 
 export default app.listen(...args)

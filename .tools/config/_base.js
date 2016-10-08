@@ -27,6 +27,7 @@ const config = {
   server_host: '',
   server_port: process.env.PORT || 3000,
   server_mock: !!argv.mock,
+  server_ready: false, // if ready for spinner
 
   // ----------------------------------
   // Compiler Configuration

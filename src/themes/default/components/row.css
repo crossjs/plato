@@ -55,6 +55,7 @@
 
   & .link {
     position: relative;
+    padding: 0 dpr(30px) 0 0;
 
     &::after {
       content: ' ';
@@ -68,6 +69,21 @@
       border-style: solid;
       transform: rotateZ(45deg);
       transform-origin: 75% 50%;
+    }
+  }
+}
+
+html[dir="rtl"] {
+  & .c-row {
+    & .link {
+      padding: 0 0 0 dpr(30px);
+
+      &::after {
+        left: dpr(5px);
+        right: auto;
+        top: dpr(16px);
+        transform: rotateZ(225deg);
+      }
     }
   }
 }

@@ -3,12 +3,14 @@
     <c-row>
       <c-col>
         <c-picker
+          :transition="transition"
           :index="index"
           @change="change">
           <p v-for="item in items">{{item}}</p>
         </c-picker>
       </c-col>
         <c-picker
+          :transition="transition"
           :index="index"
           @change="change">
           <p v-for="item in items">{{item}}</p>
@@ -20,6 +22,7 @@
     <c-row>
       <c-col>
         <c-picker
+          :transition="transition"
           :index="year"
           :size="3"
           @change="year = arguments[0]">
@@ -28,6 +31,7 @@
       </c-col>
       <c-col>
         <c-picker
+          :transition="transition"
           :index="month"
           :size="3"
           @change="month = arguments[0]">
@@ -36,6 +40,7 @@
       </c-col>
       <c-col>
         <c-picker
+          :transition="transition"
           :index="date"
           :size="3"
           @change="date = arguments[0]">
@@ -52,6 +57,7 @@
 import CRow from 'components/c-row'
 import CCol from 'components/c-col'
 import CPicker from 'components/c-picker'
+import { mapGetters } from 'vuex'
 
 export default {
   data () {
@@ -66,11 +72,12 @@ export default {
   },
 
   computed: {
+    ...mapGetters(['transition']),
     picked () {
       return this.items[this.index]
     },
     dateMax () {
-      return new Date(this.yearList[this.year], this.month + 1, 0).getDate()
+      return this.year < this.yearList.length ? new Date(this.yearList[this.year], this.month + 1, 0).getDate() : 31
     }
   },
 

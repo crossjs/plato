@@ -7,7 +7,7 @@
       :true-value="_truthy"
       :false-value="_falsy"
       v-bind="attrs"
-      @change="_mutate">
+      @change="_change">
   </label>
 </template>
 
@@ -45,8 +45,8 @@ export default {
 
   methods: {
     // override
-    _mutate (e) {
-      this.$emit('mutate', e.target.checked ? this._truthy : this._falsy)
+    _change (e) {
+      this.$emit('change', e.target.checked ? this._truthy : this._falsy)
     }
   }
 }

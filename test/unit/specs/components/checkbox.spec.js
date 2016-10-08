@@ -21,12 +21,12 @@ describe('checkbox.vue', () => {
   it('should toggle value', done => {
     vm = new Vue({
       el,
-      template: '<c-checkbox :value="value" @mutate="mutate"></c-checkbox>',
+      template: '<c-checkbox :value="value" @change="change"></c-checkbox>',
       data: {
         value: false
       },
       methods: {
-        mutate (value) {
+        change (value) {
           this.value = value
         }
       },
@@ -47,12 +47,12 @@ describe('checkbox.vue', () => {
   it('should toggle value 2', done => {
     vm = new Vue({
       el,
-      template: '<c-checkbox :value="value" @mutate="mutate"></c-checkbox>',
+      template: '<c-checkbox :value="value" @change="change"></c-checkbox>',
       data: {
         value: true
       },
       methods: {
-        mutate (value) {
+        change (value) {
           this.value = value
         }
       },
@@ -73,7 +73,7 @@ describe('checkbox.vue', () => {
   it('should use true-value/false-value', done => {
     vm = new Vue({
       el,
-      template: '<c-checkbox :value="value" :extra="extra" @mutate="mutate"></c-checkbox>',
+      template: '<c-checkbox :value="value" :extra="extra" @change="change"></c-checkbox>',
       data: {
         extra: {
           'true-value': 'TRUE',
@@ -82,7 +82,7 @@ describe('checkbox.vue', () => {
         value: 'FALSE'
       },
       methods: {
-        mutate (value) {
+        change (value) {
           this.value = value
         }
       },

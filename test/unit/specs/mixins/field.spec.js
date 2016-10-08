@@ -23,7 +23,7 @@ describe('field', () => {
         :field="field"
         :value="value"
         v-bind="attrs"
-        @change="_mutate">`
+        @change="_change">`
     })
     const data = {
       cls: 'cls',
@@ -38,10 +38,10 @@ describe('field', () => {
         :field="field"
         :value="value"
         :attrs="attrs"
-        @mutate="_mutate"></c-comp>`,
+        @change="_change"></c-comp>`,
       data,
       methods: {
-        _mutate (val) {
+        _change (val) {
           this.value = val
         }
       }

@@ -4,7 +4,7 @@
       :rows="rows"
       :cols="cols"
       v-bind="attrs"
-      @input="_mutate">{{value}}</textarea>
+      @input="_change">{{value}}</textarea>
   </label>
 </template>
 

@@ -2,6 +2,7 @@
   <div class="d-scroller">
     <c-pane id="d-scroller-pane">
       <c-scroller
+        :transition="transition"
         :height="height"
         :loading="loading"
         :drained="drained"
@@ -24,6 +25,7 @@
 import CPane from 'components/c-pane'
 import CScroller from 'components/c-scroller'
 import CButton from 'components/c-button'
+import { mapGetters } from 'vuex'
 
 export default {
   data () {
@@ -43,6 +45,8 @@ export default {
       ]
     }
   },
+
+  computed: mapGetters(['transition']),
 
   mounted () {
     this.height =

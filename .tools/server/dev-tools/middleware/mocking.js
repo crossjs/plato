@@ -3,11 +3,9 @@ import fs from 'fs'
 import send from 'koa-send'
 import _debug from 'debug'
 
-const debug = _debug('plato:koa:mocking')
+const debug = _debug('plato:koa:server')
 
 export default ({ root, matcher, reducer }) => {
-  debug('Enable mocking middleware.')
-
   let lastMatcher = () => true
   let lastReducer = dest => dest
 

@@ -27,8 +27,8 @@ export default {
   },
 
   methods: {
-    _mutate (e) {
-      this.$emit('mutate', e.target.value)
+    _change (e) {
+      this.$emit('change', e.target.value)
     }
   },
 

@@ -10,7 +10,7 @@
             :field="username.field"
             :validate="username.validate"
             :value="username.value"
-            @mutate="username.value = arguments[0]"></c-textfield>
+            @change="username.value = arguments[0]"></c-textfield>
         </c-col>
       </c-row>
       <c-row>
@@ -22,7 +22,7 @@
             :field="password.field"
             :validate="password.validate"
             :value="password.value"
-            @mutate="password.value = arguments[0]"></c-password>
+            @change="password.value = arguments[0]"></c-password>
         </c-col>
       </c-row>
       <template v-if="$validation.errors.length">

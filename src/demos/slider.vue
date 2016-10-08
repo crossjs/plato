@@ -2,17 +2,20 @@
   <div class="d-slider">
     <c-pane>
       <p>Single slide</p>
-      <c-slider>
+      <c-slider
+        :transition="transition">
         <div class="d-slider-item">Single</div>
       </c-slider>
       <hr>
       <p>Getting content async</p>
-      <c-slider>
+      <c-slider
+        :transition="transition">
         <div v-for="i in items" class="d-slider-item">Slide {{i}}</div>
       </c-slider>
       <hr>
       <p>Auto sliding, and use same index in two slides</p>
       <c-slider
+        :transition="transition"
         :index="index"
         :interval="3"
         @slide="slide">
@@ -20,7 +23,7 @@
       </c-slider>
       <p>use same index of above, with transition enabled</p>
       <c-slider
-        :transition="true"
+        :transition="transition"
         :index="index"
         :interval="3"
         @slide="slide">
@@ -33,6 +36,7 @@
 <script>
 import CPane from 'components/c-pane'
 import CSlider from 'components/c-slider'
+import { mapGetters } from 'vuex'
 
 export default {
   data () {
@@ -41,6 +45,8 @@ export default {
       items: ''
     }
   },
+
+  computed: mapGetters(['transition']),
 
   mounted () {
     setTimeout(() => {

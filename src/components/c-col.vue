@@ -1,5 +1,5 @@
 <template>
-  <div class="c-col" :class="size ? 'c-col-' + size : null"><slot></slot></div>
+  <div class="c-col" :class="typeof size === 'number' ? 'c-col-' + size : null"><slot></slot></div>
 </template>
 
 <script>
@@ -10,8 +10,7 @@ export default {
 
   props: {
     size: {
-      type: Number,
-      default: 0
+      type: Number
     }
   }
 }

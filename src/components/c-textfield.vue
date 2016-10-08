@@ -4,7 +4,7 @@
       :type="type"
       :value="value"
       v-bind="attrs"
-      @input="_mutate">
+      @input="_change">
   </label>
 </template>
 

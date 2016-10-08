@@ -4,6 +4,10 @@
   flex-shrink: 0;
 }
 
+.c-col-0 {
+  flex: 0 0 auto;
+}
+
 .c-col-1 {
   flex-basis: 25%;
 }

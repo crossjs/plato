@@ -12,7 +12,8 @@
       "confirm": "Delete?"
     },
     "globe": {
-      "language": "Language"
+      "language": "Language",
+      "transition": "Transition"
     },
     "create": {
       "title": "Title",

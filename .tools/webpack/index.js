@@ -1,5 +1,5 @@
 import webpack from 'webpack'
-import chalk from 'chalk'
+import ora from 'ora'
 import CopyWebpackPlugin from 'copy-webpack-plugin'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
@@ -168,8 +168,6 @@ webpackConfig.eslint = {
   formatter: require('eslint-friendly-formatter')
 }
 
-let charIndex = 0
-
 // ------------------------------------
 // Plugins
 // ------------------------------------
@@ -222,19 +220,19 @@ if (__PROD__) {
 
 // Don't split bundles during testing, since we only want import one bundle
 if (!__TEST__) {
+  let spinner
   webpackConfig.plugins.push(
     new webpack.ProgressPlugin((percentage, message) => {
-      const color = ['red', 'yellow', 'green', 'green'][Math.floor(percentage * 3)]
-      const cchar = ['-', '\\', '|', '/'][charIndex++ % 4]
-      if (percentage === 0) {
-        charIndex = 0
-      } else if (percentage === 1) {
-        process.stdout.clearLine()
-        process.stdout.write('\n')
-      } else {
-        process.stdout.clearLine()
-        process.stdout.write(chalk.cyan(cchar) + ' ' + chalk[color](message))
-        process.stdout.cursorTo(0)
+      if (config.server_ready) {
+        if (!spinner) {
+          spinner = ora().start()
+        }
+      }
+      if (spinner) {
+        spinner.text = message
+        if (percentage === 1) {
+          spinner.stop()
+        }
       }
     }),
     new FaviconsWebpackPlugin({

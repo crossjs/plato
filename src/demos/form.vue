@@ -1,26 +1,25 @@
 <template>
   <div>
-  </c-col>
     <c-form>
       <c-row>
         <c-col>
           <c-checkbox
             :value="check1"
-            @mutate="check1 = arguments[0]"></c-checkbox>
+            @change="check1 = arguments[0]"></c-checkbox>
         </c-col>
       </c-row>
       <c-row>
         <c-col>
           <c-checkbox
             :value="check2"
-            @mutate="check2 = arguments[0]"></c-checkbox>
+            @change="check2 = arguments[0]"></c-checkbox>
         </c-col>
       </c-row>
       <c-row>
         <c-col>
           <c-password
             :value="value"
-            @mutate="value = arguments[0]"></c-password>
+            @change="value = arguments[0]"></c-password>
         </c-col>
       </c-row>
       <c-row>

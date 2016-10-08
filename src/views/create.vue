@@ -16,7 +16,7 @@
           :row="title.row"
           :validate="title.validate"
           :value="title.value"
-          @mutate="title.value = arguments[0]"></c-textfield>
+          @change="title.value = arguments[0]"></c-textfield>
       </c-row>
       <c-row :flex="false">
         <c-label>{{__(content.label)}}</c-label>
@@ -29,7 +29,7 @@
           :row="content.row"
           :validate="content.validate"
           :value="content.value"
-          @mutate="content.value = arguments[0]"></c-multiline>
+          @change="content.value = arguments[0]"></c-multiline>
       </c-row>
       <c-pane>
         <c-button class="primary" type="submit"
