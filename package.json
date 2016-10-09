@@ -89,6 +89,7 @@
     "postcss-flexible": "^0.2.1",
     "postcss-import": "^8.1.2",
     "postcss-loader": "^0.13.0",
+    "postcss-reporter": "^1.4.1",
     "postcss-url": "^5.1.2",
     "rimraf": "^2.5.4",
     "selenium-server": "^2.53.1",
