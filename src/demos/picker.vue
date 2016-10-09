@@ -77,7 +77,7 @@ export default {
       return this.items[this.index]
     },
     dateMax () {
-      return this.year < this.yearList.length ? new Date(this.yearList[this.year], this.month + 1, 0).getDate() : 31
+      return this.year < this.yearList.length ? new Date(this.yearList[this.year], this.month + 1, 0).getDate() : 0
     }
   },
 
