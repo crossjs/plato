@@ -5,7 +5,7 @@
   "license": "MIT",
   "main": "index.js",
   "scripts": {
-    "gfw": "cross-env CHROMEDRIVER_CDNURL=http://cdn.npm.taobao.org/dist/chromedriver npm install -r https://registry.npm.taobao.org",
+    "gfw": "cross-env CHROMEDRIVER_CDNURL=http://npm.taobao.org/mirrors/chromedriver PHANTOMJS_CDNURL=http://npm.taobao.org/mirrors/phantomjs npm install -r https://registry.npm.taobao.org",
     "start": "cross-env NODE_ENV=production DEBUG=plato* nodemon .tools/bin/start",
     "dev": "cross-env DEBUG=plato* nodemon .tools/bin/start",
     "dev:mock": "npm run dev -- --mock",

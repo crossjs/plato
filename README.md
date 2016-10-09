@@ -37,6 +37,8 @@ npm run debug
 
 ## Changelog
 
+- 20161009
+  - update npm scripts, use [mirrors](https://npm.taobao.org/mirrors/)
 - 20161007
   - add language switching
 - 20161006
