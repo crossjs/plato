@@ -20,7 +20,7 @@
     "test": "npm run lint && npm run lint:css && npm run unit && npm run e2e",
     "clean": "node .tools/bin/clean",
     "compile": "cross-env NODE_ENV=production DEBUG=plato* node .tools/bin/compile",
-    "build": "cross-env NODE_ENV=production DEBUG=plato* npm run clean && npm run compile",
+    "build": "npm run test && npm run clean && npm run compile",
     "docs": "bash .tools/bash/docs.sh",
     "push": "bash .tools/bash/push.sh"
   },
