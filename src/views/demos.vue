@@ -91,6 +91,12 @@
             <c-icon>flame</c-icon> Slider</router-link>
         </c-col>
       </c-row>
+      <c-row>
+        <c-col>
+          <router-link class="link" to="demos/upload">
+            <c-icon>flame</c-icon> Uploader</router-link>
+        </c-col>
+      </c-row>
     </div>
     <component v-else :is="'demo-' + $route.params.component"></component>
   </div>
@@ -115,6 +121,7 @@ import DemoScroller from 'demos/scroller'
 import DemoPicker from 'demos/picker'
 import DemoRange from 'demos/range'
 import DemoSlider from 'demos/slider'
+import DemoUpload from 'demos/upload'
 
 export default {
   data () {
@@ -141,7 +148,8 @@ export default {
     DemoScroller,
     DemoPicker,
     DemoRange,
-    DemoSlider
+    DemoSlider,
+    DemoUpload
   }
 }
 </script>
