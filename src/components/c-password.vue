@@ -1,6 +1,6 @@
 <template>
-  <label class="c-password" :class="{'show-password': showPassword}">
-    <c-icon class="toggle"
+  <label class="c-password">
+    <c-icon class="c-password-toggle" :class="{'active': showPassword}"
       v-tap @tap.native="showPassword = !showPassword">eye</c-icon>
     <input
       :type="showPassword ? 'text' : 'password'"
