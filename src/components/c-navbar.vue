@@ -4,17 +4,15 @@
       <c-mask v-show="opened"
         @touchend.native.prevent="opened = false"></c-mask>
     </transition>
-    <c-button :class="['toggle', {'active': opened}]"
+    <c-button class="c-navbar-toggle" :class="{'active': opened}"
       v-tap="toggleOpened">
       <slot name="icon"><c-icon>three-bars</c-icon></slot>
     </c-button>
-    <transition name="slide-left">
-      <nav class="menu"
-        v-show="opened"
-        v-tap="cancelOpened">
-        <slot></slot>
-      </nav>
-    </transition>
+    <nav class="c-navbar-menu"
+      :class="{'opened': opened}"
+      v-tap="cancelOpened">
+      <slot></slot>
+    </nav>
   </div>
 </template>
 

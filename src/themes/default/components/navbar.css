@@ -2,78 +2,90 @@
   position: absolute;
   z-index: 11;
   width: 100%;
+}
 
-  & .toggle {
-    position: absolute;
-    z-index: 102;
+.c-navbar-toggle {
+  position: absolute;
+  z-index: 102;
+  right: 0;
+  width: dpr(88px);
+  font-size: dpr(32px);
+  line-height: dpr(88px);
+  text-align: center;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+
+  &.active {
+    color: var(--primary);
+  }
+}
+
+.c-navbar-menu {
+  position: fixed;
+  z-index: 101;
+  top: 0;
+  right: -dpr(88px);
+  width: dpr(88px);
+  padding-top: dpr(88px);
+  height: 100%;
+  background-color: white;
+  box-shadow: 0 1px 3px color(white lightness(-20%));
+  transition: all 0.5s ease-in-out;
+
+  &.opened {
     right: 0;
-    width: dpr(88px);
-    font-size: dpr(32px);
-    line-height: dpr(88px);
-    text-align: center;
-    background: transparent;
-    border: none;
-    border-radius: 0;
+  }
 
-    &.active {
-      color: var(--primary);
+  & li {
+    & ul {
+      display: none;
+    }
+
+    & li {
+      display: block;
+
+      & a {
+        display: block;
+      }
+    }
+
+    &:active {
+      & ul {
+        display: block;
+        background-color: color(white lightness(-10%));
+      }
     }
   }
 
-  & .menu {
-    position: fixed;
-    z-index: 101;
-    top: 0;
-    right: 0;
-    width: dpr(88px);
-    padding-top: dpr(88px);
-    height: 100%;
-    background-color: white;
-    box-shadow: 0 1px 3px color(white lightness(-20%));
+  & a {
+    display: block;
+    line-height: dpr(88px);
+    text-decoration: none;
+    text-align: center;
 
-    & li {
-      & ul {
-        display: none;
-      }
-
-      & li {
-        display: block;
-
-        & a {
-          display: block;
-        }
-      }
-
-      &:active {
-        & ul {
-          display: block;
-          background-color: color(white lightness(-10%));
-        }
-      }
+    &:active {
+      background-color: color(white lightness(-5%));
     }
 
-    & a {
-      display: block;
-      line-height: dpr(88px);
-      text-decoration: none;
-      text-align: center;
-
-      &:active {
-        background-color: color(white lightness(-5%));
-      }
-
-      &.router-link-active {
-        color: var(--secondary);
-        background-color: color(var(--secondary) lightness(95%));
-      }
+    &.router-link-active {
+      color: var(--secondary);
+      background-color: color(var(--secondary) lightness(95%));
     }
   }
 }
 
 html[dir=rtl] {
-  & .c-navbar {
-    & .toggle {
-      right: auto;
+  & .c-navbar-toggle {
+    right: auto;
+    left: 0;
+  }
+
+  & .c-navbar-menu {
+    right: auto;
+    left: -dpr(88px);
+
+    &.opened {
       left: 0;
     }
   }
