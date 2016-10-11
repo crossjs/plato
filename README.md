@@ -37,6 +37,9 @@ npm run debug
 
 ## Changelog
 
+- 20161012
+  - add component uploader
+  - update components navbar, row, and password
 - 20161009
   - update npm scripts, use [mirrors](https://npm.taobao.org/mirrors/)
 - 20161007
