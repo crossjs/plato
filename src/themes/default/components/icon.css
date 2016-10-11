@@ -18,7 +18,5 @@
   display: inline-block;
   vertical-align: top;
   letter-spacing: 0;
-  font-feature-settings: 'liga';
-  font-variant-ligatures: discretionary-ligatures;
   -webkit-font-smoothing: antialiased;
 }
