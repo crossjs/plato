@@ -6,12 +6,6 @@
 
   &:active {
     background-color: color(var(--disabled) alpha(0.4));
-
-    & .link {
-      &::after {
-        border-color: var(--secondary);
-      }
-    }
   }
 
   &-flex {
@@ -52,38 +46,15 @@
       left: 0;
     }
   }
+}
 
-  & .link {
-    position: relative;
-    padding: 0 dpr(30px) 0 0;
-
-    &::after {
-      content: ' ';
-      position: absolute;
-      right: dpr(5px);
-      top: dpr(20px);
-      width: 0.3em;
-      height: 0.3em;
-      border-width: dpr(4px) dpr(4px) 0 0;
-      border-color: var(--disabled);
-      border-style: solid;
-      transform: rotateZ(45deg);
-      transform-origin: 75% 50%;
-    }
-  }
+.c-row-link {
+  color: var(--disabled);
+  margin-left: dpr(10px);
 }
 
 html[dir="rtl"] {
-  & .c-row {
-    & .link {
-      padding: 0 0 0 dpr(30px);
-
-      &::after {
-        left: dpr(5px);
-        right: auto;
-        top: dpr(16px);
-        transform: rotateZ(225deg);
-      }
-    }
+  & .c-row-link {
+    transform: rotateZ(180deg);
   }
 }
