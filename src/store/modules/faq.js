@@ -1,7 +1,7 @@
 import createPersist from 'vuex-localstorage'
 import { createAction, handleAction, $inject } from 'vuex-actions'
 import db from 'store/db'
-import normalize from 'utils/normalize'
+import Normalizer from 'utils/normalizer'
 
 import {
   ONE_SECOND
@@ -12,10 +12,15 @@ const GET_ITEMS = 'GET_ITEMS'
 const ADD_ITEM = 'ADD_ITEM'
 const DELETE_ITEM = 'DELETE_ITEM'
 
+const normalizer = new Normalizer({
+  value (item) {
+    return item.toJSON()
+  }
+})
+
 const persist = createPersist(FAQ_KEY, {
   faq_is_fetching: false,
-  entities: {},
-  meta: {}
+  entities: {}
 }, {
   expires: ONE_SECOND * 30
 })
@@ -34,11 +39,15 @@ const faq = new Faq()
 const actions = {
   getItems: createAction(GET_ITEMS, () =>
     new db.Query(Faq).find()),
+
   addItem: createAction(ADD_ITEM, payload =>
     faq.set(payload).save()),
+
   deleteItem: createAction(DELETE_ITEM, payload => ({
-    p1: db.Object.createWithoutData(DB_CLASS, payload).destroy(),
-    p2: $inject(() => payload)('p1')
+    // destroy, removing data from remote
+    _: db.Object.createWithoutData(DB_CLASS, payload).destroy(),
+    // then return id (payload) for removing data from store
+    id: $inject(() => payload)('_')
   }))
 }
 
@@ -49,11 +58,7 @@ const mutations = {
     },
     success (state, mutation) {
       state.faq_is_fetching = false
-      const { entities } = normalize(mutation, {
-        value (item) {
-          return item.toJSON()
-        }
-      })
+      const { entities } = normalizer.normalize(mutation)
       state.entities = { ...state.entities, ...entities }
       persist.set(state)
     },
@@ -68,9 +73,8 @@ const mutations = {
     },
     success (state, mutation) {
       state.faq_is_fetching = false
-      const { entities } = state
-      entities[mutation.id] = mutation.toJSON()
-      state.entities = { ...entities }
+      const { entities } = normalizer.normalize([mutation])
+      state.entities = { ...state.entities, ...entities }
       persist.set(state)
     },
     error (state) {
@@ -82,10 +86,10 @@ const mutations = {
     pending (state) {
       state.faq_is_fetching = true
     },
-    success (state, mutation) {
+    success (state, { id }) {
       state.faq_is_fetching = false
       const { entities } = state
-      delete entities[mutation.p2]
+      delete entities[id]
       state.entities = { ...entities }
       persist.set(state)
     },
