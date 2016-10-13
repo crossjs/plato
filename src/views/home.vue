@@ -6,6 +6,7 @@
       @submit="callback('submit')"
       @close="show_modal = false">{{ __('views.home.confirm') }}</c-modal>
     <c-scroller
+      :transition="transition"
       :height="height"
       :loading="faq_is_fetching"
       :drained="drained"
@@ -36,7 +37,7 @@ export default {
     }
   },
 
-  computed: mapGetters(['authorized', 'faq_items', 'faq_is_fetching']),
+  computed: mapGetters(['transition', 'authorized', 'faq_items', 'faq_is_fetching']),
 
   created () {
     this.getItems()
