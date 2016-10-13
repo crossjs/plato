@@ -4,7 +4,6 @@
 export default {
   name: 'tap',
   bind (el, { value, modifiers }) {
-    console.log(arguments)
     const threshold = window.innerWidth / 10
     let start
     el.addEventListener('touchstart', e => {
