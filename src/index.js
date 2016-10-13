@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import I18n from 'plugins/i18n'
-import Validator from 'pluginsvalidator'
+import Validator from 'plugins/validator'
 import tap from 'directives/tap'
 import App from 'app'
 import store from 'store'
