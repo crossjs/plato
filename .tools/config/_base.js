@@ -55,14 +55,16 @@ const config = {
     publicPath: false
   },
   compiler_vendor: [
-    'plato-i18n',
-    'plato-request',
-    'plato-validator',
+    'lodash.isplainobject',
+    'nd-promise',
+    'query-string',
+    'string-template',
     'vue',
     'vue-router',
     'vuex',
     'vuex-actions',
-    'vuex-localstorage'
+    'vuex-localstorage',
+    'whatwg-fetch'
   ]
 }
 
