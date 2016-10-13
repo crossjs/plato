@@ -2,15 +2,16 @@
   <div class="c-navbar">
     <transition name="fade">
       <c-mask v-show="opened"
-        @touchend.native.prevent="opened = false"></c-mask>
+        v-tap @tap.native="opened = false"></c-mask>
     </transition>
-    <c-button class="c-navbar-toggle" :class="{'active': opened}"
-      v-tap="toggleOpened">
+    <c-button class="c-navbar-toggle"
+      :class="{'active': opened}"
+      v-tap @tap.native="opened = !opened">
       <slot name="icon"><c-icon>three-bars</c-icon></slot>
     </c-button>
     <nav class="c-navbar-menu"
       :class="{'opened': opened}"
-      v-tap="cancelOpened">
+      v-tap.delay @tap="opened = false">
       <slot></slot>
     </nav>
   </div>
@@ -28,15 +29,6 @@ export default {
   data () {
     return {
       opened: false
-    }
-  },
-
-  methods: {
-    toggleOpened () {
-      this.opened = !this.opened
-    },
-    cancelOpened () {
-      this.opened = false
     }
   },
 

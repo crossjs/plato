@@ -3,7 +3,8 @@
  */
 export default {
   name: 'tap',
-  bind (el, { value }) {
+  bind (el, { value, modifiers }) {
+    console.log(arguments)
     const threshold = window.innerWidth / 10
     let start
     el.addEventListener('touchstart', e => {
@@ -21,13 +22,18 @@ export default {
     })
     el.addEventListener('touchend', e => {
       if (start) {
-        if (typeof value === 'function') {
-          value()
-        }
         // dispatch a tap event
         const tapEvent = document.createEvent('HTMLEvents')
         tapEvent.initEvent('tap', true, true)
-        el.dispatchEvent(tapEvent)
+        if (modifiers.delay) {
+          // useful for hiding el after tap that has a link inside
+          // see: c-navibar.vue
+          setTimeout(() => {
+            el.dispatchEvent(tapEvent)
+          }, value || 300)
+        } else {
+          el.dispatchEvent(tapEvent)
+        }
       }
       start = null
     })

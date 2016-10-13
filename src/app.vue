@@ -12,7 +12,7 @@
         </router-link>
       </div>
       <div id="history">
-        <c-link v-tap="_back">
+        <c-link v-tap @tap.native="_back">
           <c-icon>chevron-left</c-icon>
         </c-link>
       </div>
