@@ -1,6 +1,6 @@
 import createPersist from 'vuex-localstorage'
 import { createAction, handleAction } from 'vuex-actions'
-import request from 'plato-request'
+import request from 'utils/request'
 
 import {
   ONE_WEEK
