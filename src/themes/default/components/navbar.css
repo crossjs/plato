@@ -16,6 +16,10 @@
   border: none;
   border-radius: 0;
 
+  &:active {
+    background-color: transparent;
+  }
+
   &.active {
     color: var(--primary);
   }
@@ -25,16 +29,17 @@
   position: fixed;
   z-index: 101;
   top: 0;
-  right: -dpr(88px);
+  right: 0;
   width: dpr(88px);
   padding-top: dpr(88px);
   height: 100%;
   background-color: white;
   box-shadow: 0 1px 3px color(white lightness(-20%));
-  transition: all 0.5s ease-in-out;
+  transform: translateX(dpr(88px));
+  transition: transform 0.3s ease-in-out;
 
   &.opened {
-    right: 0;
+    transform: translateX(0);
   }
 
   & li {
@@ -83,10 +88,11 @@ html[dir=rtl] {
 
   & .c-navbar-menu {
     right: auto;
-    left: -dpr(88px);
+    left: 0;
+    transform: translateX(-dpr(88px));
 
     &.opened {
-      left: 0;
+      transform: translateX(0);
     }
   }
 }
