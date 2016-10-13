@@ -16,7 +16,7 @@
   width: 72%;
   text-align: center;
   background-color: white;
-  border-radius: dpr(30px);
+  border-radius: dpr(16px);
   transform: translate3d(-50%, -50%, 0);
 }
 
@@ -74,4 +74,5 @@
 .c-modal-link {
   border-radius: inherit;
   display: block;
+  line-height: 3;
 }
