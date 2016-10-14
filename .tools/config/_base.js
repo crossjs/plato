@@ -1,4 +1,4 @@
-import path from 'path'
+import { resolve } from 'path'
 import { argv } from 'yargs'
 import _debug from 'debug'
 
@@ -15,7 +15,7 @@ const config = {
   // ----------------------------------
   // Project Structure
   // ----------------------------------
-  path_base: path.resolve(__dirname, '../../'),
+  path_base: resolve(__dirname, '../../'),
   dir_src: 'src',
   dir_dist: 'dist',
   dir_server: 'server',
@@ -26,7 +26,11 @@ const config = {
   // ----------------------------------
   server_host: '',
   server_port: process.env.PORT || 3000,
-  server_mock: !!argv.mock,
+  server_mock: !!argv.mock && { // mocking config
+    root: resolve(__dirname, '../../mocks/'),
+    matcher: /^\/api\//,
+    reducer: /^\/api/
+  },
   server_ready: false, // if ready for spinner
 
   // ----------------------------------
@@ -101,8 +105,6 @@ config.compiler_vendor = config.compiler_vendor
 // Utilities
 // ------------------------------------
 config.paths = (() => {
-  const resolve = path.resolve
-
   const base = (...args) =>
     resolve.apply(resolve, [config.path_base, ...args])
 
