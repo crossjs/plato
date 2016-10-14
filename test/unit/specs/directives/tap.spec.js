@@ -25,7 +25,7 @@ describe('tap', () => {
       template: '<div v-tap @tap="onTap"></div>',
       methods: {
         onTap () {
-          assert.ok(Date.now() - start < 300, 'should NOT have delay');
+          assert.ok(Date.now() - start < 300, 'should NOT have delay')
           done()
         }
       }
@@ -54,7 +54,7 @@ describe('tap', () => {
       template: '<div v-tap @tap="onTap"></div>',
       methods: {
         onTap () {
-          assert.ok(false, 'should NOT be called');
+          assert.ok(false, 'should NOT be called')
         }
       }
     })
@@ -82,7 +82,7 @@ describe('tap', () => {
       template: '<div v-tap.delay @tap="onTap"></div>',
       methods: {
         onTap () {
-          assert.ok((Date.now() - start > 300) && (Date.now() - start < 500), 'should have 300ms delay be default');
+          assert.ok((Date.now() - start > 300) && (Date.now() - start < 500), 'should have 300ms delay be default')
           done()
         }
       }
@@ -111,7 +111,7 @@ describe('tap', () => {
       template: '<div v-tap.delay="500" @tap="onTap"></div>',
       methods: {
         onTap () {
-          assert.ok(Date.now() - start > 500, 'should have 300ms delay be default');
+          assert.ok(Date.now() - start > 500, 'should have 300ms delay be default')
           done()
         }
       }
