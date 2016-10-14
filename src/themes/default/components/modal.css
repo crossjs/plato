@@ -59,11 +59,11 @@
   }
 
   &:first-child {
-    border-bottom-left-radius: dpr(30px);
+    border-bottom-left-radius: dpr(16px);
   }
 
   &:last-child {
-    border-bottom-right-radius: dpr(30px);
+    border-bottom-right-radius: dpr(16px);
 
     &::after {
       content: none;
