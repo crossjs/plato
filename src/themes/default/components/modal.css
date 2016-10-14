@@ -21,8 +21,18 @@
 }
 
 .c-modal-body {
-  padding: rem(40px);
+  padding: dpr(48px) dpr(32px) dpr(32px);
   font-size: dpr(40px);
+
+  & .title {
+    font-size: dpr(34px);
+    font-weight: bold;
+    padding-bottom: dpr(24px);
+  }
+
+  & .content {
+    font-size: dpr(28px);
+  }
 
   &:empty {
     display: none;

@@ -14,10 +14,11 @@
 
   &.xlarge {
     font-size: dpr(40px);
+    font-weight: bold;
   }
 
   &.large {
-    font-size: dpr(36px);
+    font-size: dpr(34px);
   }
 
   &.small {

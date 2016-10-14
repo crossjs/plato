@@ -7,7 +7,7 @@
       :true-value="_truthy"
       :false-value="_falsy"
       v-bind="attrs"
-      @change="_change">
+      @change="onChange">
   </label>
 </template>
 
@@ -45,7 +45,7 @@ export default {
 
   methods: {
     // override
-    _change (e) {
+    onChange (e) {
       this.$emit('change', e.target.checked ? this._truthy : this._falsy)
     }
   }

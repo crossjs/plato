@@ -68,6 +68,13 @@ button {
   cursor: pointer;
 }
 
+input,
+textarea {
+  &::placeholder {
+    color: var(--placeholder);
+  }
+}
+
 ul,
 ol {
   list-style: none;

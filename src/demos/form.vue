@@ -24,8 +24,22 @@
       </c-row>
       <c-row>
         <c-col>
+          <c-password
+            :toggle="true"
+            :value="value"
+            @change="value = arguments[0]"></c-password>
+        </c-col>
+      </c-row>
+      <c-row>
+        <c-col>
           <c-textfield
             :attrs="{placeholder: 'text'}"></c-textfield>
+        </c-col>
+      </c-row>
+      <c-row>
+        <c-col>
+          <c-multiline
+            :attrs="{placeholder: 'textarea'}"></c-multiline>
         </c-col>
       </c-row>
       <c-row>
@@ -68,12 +82,6 @@
           <c-textfield
             type="search"
             :attrs="{placeholder: 'search'}"></c-textfield>
-        </c-col>
-      </c-row>
-      <c-row>
-        <c-col>
-          <c-multiline
-            :attrs="{placeholder: 'textarea'}"></c-multiline>
         </c-col>
       </c-row>
     </c-form>

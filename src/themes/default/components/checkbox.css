@@ -1,10 +1,12 @@
 .c-checkbox {
+  display: inline-block;
   height: dpr(48px);
 
   & input {
     appearance: none;
+    outline: none;
     display: inline-block;
-    vertical-align: middle;
+    vertical-align: top;
     text-align: center;
     width: dpr(80px);
     height: dpr(48px);

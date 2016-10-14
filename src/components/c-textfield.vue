@@ -4,7 +4,7 @@
       :type="type"
       :value="value"
       v-bind="attrs"
-      @input="_change">
+      @input="onChange">
   </label>
 </template>
 
@@ -20,7 +20,7 @@ export default {
       type: String,
       default: 'text',
       validator (val) {
-        // time month date datetime-local week
+        // time month date datetime-local week NOT supported
         return /^(text|password|search|email|tel|url|number)$/.test(val)
       }
     }

@@ -1,9 +1,5 @@
 export default {
   props: {
-    align: {
-      type: String,
-      default: ''
-    },
     value: {
       default: ''
     },
@@ -27,7 +23,7 @@ export default {
   },
 
   methods: {
-    _change (e) {
+    onChange (e) {
       this.$emit('change', e.target.value)
     }
   },

@@ -5,25 +5,6 @@ const headers = {
 }
 
 describe('request', () => {
-  // describe('misc', () => {
-  //   it('Failed to fetch', done => {
-  //     request({
-  //       url: 'http://127.0.0.127/error'
-  //     }).catch(err => {
-  //       expect(err.message).to.equal('Failed to fetch')
-  //       done()
-  //     })
-  //   })
-  //   it('Request Error', done => {
-  //     request({
-  //       url: 'http://127.0.0.1/error'
-  //     }).catch(err => {
-  //       expect(err.message).to.equal('Request Error')
-  //       done()
-  //     })
-  //   })
-  // })
-
   describe('success', () => {
     beforeEach(() => {
       sinon.stub(window, 'fetch')
