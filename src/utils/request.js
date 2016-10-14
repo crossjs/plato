@@ -85,7 +85,7 @@ function isHttpOk (res) {
 }
 
 function isFileOk (res) {
-  return res.status === 0 && res.url.indexOf('file://') === 0
+  return res.status === 0 && (res.url.indexOf('file://') === 0 || res.url === '')
 }
 
 function getBody (res) {
