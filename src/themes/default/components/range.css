@@ -1,14 +1,14 @@
 .c-range {
-  padding: dpr(28px);
   position: relative;
   margin-right: dpr(60px);
+  padding: dpr(28px);
 }
 
 .c-range-content {
-  background-color: var(--disabled);
-  height: dpr(4px);
   position: relative;
   margin-right: -dpr(60px);
+  height: dpr(4px);
+  background-color: var(--disabled);
 
   &::before {
     padding-left: inherit;

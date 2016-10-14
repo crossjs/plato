@@ -9,13 +9,15 @@ localStorage.clear()
 
 chai.use(sinonChai)
 
-global.chai = chai
 global.triggerHTMLEvents = triggerHTMLEvents
 global.triggerMouseEvents = triggerMouseEvents
 global.triggerTouchEvents = triggerTouchEvents
 global.assert = chai.assert
 global.expect = chai.expect
-global.should = chai.should()
+
+// Reset styles
+document.body.style.margin = '0px'
+document.body.style.padding = '0px'
 
 // ---------------------------------------
 // Require Tests
@@ -31,7 +33,7 @@ const testsContext = require.context('./', true, /\.spec\.js$/)
 const testsToRun = testsContext.keys().filter(inManifest)
 ;(testsToRun.length ? testsToRun : testsContext.keys()).forEach(testsContext)
 
-// require all `src/**/*.(js|vue)` except for `index.(js|vue)` (for coverage reporting)
-const componentsContext = require.context('../../src/', true, /^((?!index).)*\.(js|vue)$/)
+// require `src/**/*.(js|vue)` (for coverage reporting)
+const componentsContext = require.context('../../src/', true, /^((?!index|app|router|assets|demos|routes|static|themes|views).)*\.(js|vue)$/)
 
 componentsContext.keys().forEach(componentsContext)

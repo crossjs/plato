@@ -19,7 +19,7 @@ const karmaConfig = {
     }
   ],
   proxies: {
-    // '/apis/': 'http://localhost:3000/apis/'
+    // '/api/': 'http://localhost:3000/api/'
   },
   singleRun: config.coverage_enabled,
   frameworks: ['mocha', 'es6-shim'],

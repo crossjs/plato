@@ -39,8 +39,7 @@ describe('range.vue', () => {
     vm = new Vue({
       el,
       template: `<c-range
-          :value="value">
-        </c-range>`,
+        :value="value"></c-range>`,
       data: {
         value: 50
       },
@@ -60,9 +59,8 @@ describe('range.vue', () => {
     vm = new Vue({
       el,
       template: `<c-range
-          :value="value"
-          @change="change">
-        </c-range>`,
+        :value="value"
+        @change="change"></c-range>`,
       data: {
         value: 50
       },
@@ -97,10 +95,9 @@ describe('range.vue', () => {
     vm = new Vue({
       el,
       template: `<c-range
-          :value="value"
-          :step="step"
-          @change="change">
-        </c-range>`,
+        :value="value"
+        :step="step"
+        @change="change"></c-range>`,
       data: {
         value: 50,
         step: 10
