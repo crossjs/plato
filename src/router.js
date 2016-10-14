@@ -17,6 +17,9 @@ router.beforeEach((to, from, next) => {
 })
 
 router.afterEach(() => {
+  if (document.activeElement && document.activeElement.nodeName !== 'BODY') {
+    document.activeElement.blur()
+  }
   store.dispatch('setProgress', 100)
 })
 
