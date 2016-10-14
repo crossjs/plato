@@ -1,3 +1,5 @@
+// sync from: https://github.com/crossjs/plato-i18n
+
 import format from 'string-template'
 
 export default function plugin (Vue, globalOptions = {}) {

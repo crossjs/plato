@@ -1,3 +1,5 @@
+// sync from: https://github.com/crossjs/plato-request
+
 import 'whatwg-fetch'
 import Promise from 'nd-promise'
 import qs from 'query-string'
@@ -52,7 +54,7 @@ export default function request (...args) {
     promisify(parseOptions(merge({}, defaultOptions, args[0])))
     .then(({ url, ...options }) => fetch(url, options))
     .then(res => {
-      if (res && res.status >= 200 && res.status < 400) {
+      if (res && (isHttpOk(res) || isFileOk(res))) {
         getBody(res).then(resolve, reject)
       } else {
         getBody(res).then(reject)
@@ -76,6 +78,14 @@ function merge (src, ...args) {
     })
   })
   return src
+}
+
+function isHttpOk (res) {
+  return res.status >= 200 && res.status < 400
+}
+
+function isFileOk (res) {
+  return res.status === 0 && res.url.indexOf('file://') === 0
 }
 
 function getBody (res) {
