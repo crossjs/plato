@@ -1,21 +1,17 @@
 <template>
   <div class="v-globe">
     <c-row>
-      <c-col :size="0">
-        {{ __('views.globe.transition') }}
-      </c-col>
+      {{ __('views.globe.transition') }}
       <c-col class="right">
         <c-checkbox
           :value="transition"
           @change="transitionEnabled = arguments[0]"></c-checkbox>
       </c-col>
     </c-row>
-    <c-row>
-      <c-col :size="0">
-        {{ __('views.globe.language') }}
-      </c-col>
-      <c-col class="right link">
-        <c-link v-tap @tap.native="showPicker = !showPicker">{{ Object.keys(languages)[languageIndex] }}</c-link>
+    <c-row :link="true" v-tap @tap.native="showPicker = !showPicker">
+      {{ __('views.globe.language') }}
+      <c-col class="right">
+        {{ Object.keys(languages)[languageIndex] }}
       </c-col>
     </c-row>
     <c-pane v-if="showPicker">

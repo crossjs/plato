@@ -4,6 +4,7 @@
   & input {
     appearance: none;
     display: inline-block;
+    vertical-align: middle;
     text-align: center;
     width: dpr(80px);
     height: dpr(48px);
