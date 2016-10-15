@@ -19,7 +19,10 @@ export default {
         return {}
       }
     },
-    validate: null
+    validate: {
+      type: Object,
+      default: null
+    }
   },
 
   methods: {
@@ -28,12 +31,12 @@ export default {
     }
   },
 
-  // dynamically set watcher in created hook?
-  watch: {
-    value () {
-      if (this.validate) {
+  created () {
+    if (this.validate && typeof this.$validate === 'function') {
+      this.$watch('value', () => {
+        // from plugins/validator
         this.$validate()
-      }
+      })
     }
   }
 }
