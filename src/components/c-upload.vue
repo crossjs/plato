@@ -1,6 +1,7 @@
 <template>
   <div class="c-upload"
-    @click="onClick"
+    v-tap
+    @tap="onTap"
     @keydown="onKeyDown"
     @drop="onFileDrop"
     @dragover="onFileDrop">
@@ -115,7 +116,7 @@ export default {
       const files = e.target.files
       this.uploadFiles(files)
     },
-    onClick (e) {
+    onTap (e) {
       const fileInputEl = this.$refs.file
       if (!fileInputEl) {
         return
@@ -147,26 +148,10 @@ export default {
           this.choosed = true
           this.$emit('change', { percent: 0 }, file)
         }
-        // if (this.multiple) {
-        //   this.onStart(Array.prototype.slice.call(files))
-        // } else {
-        //   this.onStart(Array.prototype.slice.call(files)[0])
-        // }
       }
     },
     uploadFile (file) {
       this.post(file)
-      // if (!this.beforeUpload) {
-      //   return this.post(file)
-      // }
-      // const before = this.beforeUpload(file)
-      // if (before && before.then) {
-      //   before.then(() => {
-      //     this.post(file)
-      //   })
-      // } else if (before !== false) {
-      //   this.post(file)
-      // }
     },
     post (file) {
       let data = this.data
