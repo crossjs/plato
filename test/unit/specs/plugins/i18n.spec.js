@@ -18,11 +18,11 @@ describe('basic', () => {
   })
 
   const fragment = `<div>
-    <div>{{__(\'a\')}}</div>
-    <div>{{__(\'b.c\')}}</div>
-    <div>{{__(\'b.not.exist\')}}</div>
-    <div>{{__(\'totally.not.exist\')}}</div>
-    <div>{{__(\'\')}}</div>
+    <div>{{__('a')}}</div>
+    <div>{{__('b.c')}}</div>
+    <div>{{__('b.not.exist')}}</div>
+    <div>{{__('totally.not.exist')}}</div>
+    <div>{{__('')}}</div>
     <div>{{__('b.d', { a: 'foo' })}}</div>
     <div>{{__('b.e', ['bar'])}}</div>
   </div>`

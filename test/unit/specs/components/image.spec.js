@@ -1,8 +1,5 @@
 import Vue from 'vue'
 import CImage from 'components/c-image'
-import tap from 'directives/tap'
-
-Vue.directive('tap', tap)
 
 describe('image.vue', () => {
   let el
@@ -11,13 +8,11 @@ describe('image.vue', () => {
   beforeEach(() => {
     el = document.createElement('div')
     document.body.appendChild(el)
-    // sinon.stub(console, 'error')
   })
 
   afterEach(() => {
     // document.body.removeChild(el)
     vm.$destroy()
-    // console.error.restore()
   })
 
   it('should render correct contents', () => {

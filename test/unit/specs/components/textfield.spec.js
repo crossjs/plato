@@ -1,10 +1,7 @@
 import Vue from 'vue'
-import CPassword from 'components/c-password'
-import tap from 'directives/tap'
+import CTextfield from 'components/c-textfield'
 
-Vue.directive('tap', tap)
-
-describe('password.vue', () => {
+describe('textfield.vue', () => {
   let el
   let vm
 
@@ -18,12 +15,24 @@ describe('password.vue', () => {
     vm.$destroy()
   })
 
-  it('should render correct contents', done => {
+  it('should render correct contents', () => {
     vm = new Vue({
       el,
-      template: '<c-password></c-password>',
+      template: '<c-textfield></c-textfield>',
       components: {
-        CPassword
+        CTextfield
+      }
+    })
+
+    expect(vm.$children[0].$el.children[0].nodeName).to.equal('INPUT')
+  })
+
+  it('type', () => {
+    vm = new Vue({
+      el,
+      template: '<c-textfield type="password"></c-textfield>',
+      components: {
+        CTextfield
       }
     })
 
@@ -31,12 +40,5 @@ describe('password.vue', () => {
     const { children } = vm.$children[0].$el
     expect(children[0].nodeName).to.equal('INPUT')
     expect(children[0].type).to.equal('password')
-    expect(children[1].nodeName).to.equal('I')
-
-    triggerMouseEvents(children[1], 'tap')
-    vm.$nextTick(() => {
-      expect(children[0].type).to.equal('text')
-      done()
-    })
   })
 })

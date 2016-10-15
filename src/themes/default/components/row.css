@@ -15,6 +15,12 @@
     &:active {
       background-color: transparent;
     }
+
+    & ~ .c-row-flex {
+      &::before {
+        content: none;
+      }
+    }
   }
 
   &::before {

@@ -1,6 +1,7 @@
 <template>
   <div id="container">
     <c-progress id="progress"
+      v-show="progress"
       :progress="progress"></c-progress>
     <transition name="fade">
       <c-toast v-if="toast">{{toast}}</c-toast>

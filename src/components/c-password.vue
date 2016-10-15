@@ -1,6 +1,5 @@
 <template>
-  <label class="c-password"
-    :class="{'c-password-with-toggle': toggle}">
+  <label class="c-password">
     <input
       :type="showPassword ? 'text' : 'password'"
       :value="value"
@@ -8,7 +7,6 @@
       @input="onChange">
     <c-icon class="c-password-toggle"
       :class="{'active': showPassword}"
-      v-if="toggle"
       v-tap @tap.native="showPassword = !showPassword">eye</c-icon>
   </label>
 </template>
@@ -20,13 +18,6 @@ import mField from './mixins/field'
 
 export default {
   mixins: [mBase, mField],
-
-  props: {
-    toggle: {
-      type: Boolean,
-      default: false
-    }
-  },
 
   data () {
     return {

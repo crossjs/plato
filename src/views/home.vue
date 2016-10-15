@@ -47,7 +47,7 @@ export default {
     this.height =
       document.documentElement.clientHeight -
       document.getElementById('header').clientHeight
-    this.addToast('pull down to reload')
+    this.addToast('Pull down to reload')
   },
 
   methods: {

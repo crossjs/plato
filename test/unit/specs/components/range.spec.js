@@ -1,8 +1,5 @@
 import Vue from 'vue'
 import CRange from 'components/c-range'
-import tap from 'directives/tap'
-
-Vue.directive('tap', tap)
 
 describe('range.vue', () => {
   let el

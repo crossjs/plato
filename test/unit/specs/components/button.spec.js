@@ -1,8 +1,5 @@
 import Vue from 'vue'
 import CButton from 'components/c-button'
-import tap from 'directives/tap'
-
-Vue.directive('tap', tap)
 
 describe('button.vue', () => {
   let el

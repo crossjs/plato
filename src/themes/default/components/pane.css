@@ -1,11 +1,8 @@
 .c-pane {
   margin: dpr(20px);
 
-  &.vertical {
-    margin: dpr(20px) 0;
-  }
-
-  &.horizontal {
-    margin: 0 dpr(20px);
+  &-flex {
+    display: flex;
+    flex-direction: row;
   }
 }

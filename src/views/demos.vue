@@ -69,6 +69,12 @@
       </c-row>
       <c-row :link="true">
         <c-col>
+          <router-link to="demos/avatar">
+            <c-icon class="c-reddot">flame</c-icon> Avatar</router-link>
+        </c-col>
+      </c-row>
+      <c-row :link="true">
+        <c-col>
           <router-link to="demos/scroller">
             <c-icon>flame</c-icon> Scroller: pulling and infinite scroll</router-link>
         </c-col>
@@ -117,6 +123,7 @@ import DemoSpinner from 'demos/spinner'
 import DemoModal from 'demos/modal'
 import DemoToast from 'demos/toast'
 import DemoImage from 'demos/image'
+import DemoAvatar from 'demos/avatar'
 import DemoScroller from 'demos/scroller'
 import DemoPicker from 'demos/picker'
 import DemoRange from 'demos/range'
@@ -145,6 +152,7 @@ export default {
     DemoModal,
     DemoToast,
     DemoImage,
+    DemoAvatar,
     DemoScroller,
     DemoPicker,
     DemoRange,
