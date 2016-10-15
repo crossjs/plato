@@ -122,12 +122,13 @@ export default {
         return
       }
 
+      // TODO: trigger tap or touch but not click ?
       fileInputEl.click()
       fileInputEl.value = ''
     },
     onKeyDown (e) {
       if (e.key === 'Enter') {
-        this.onClick()
+        this.onTap()
       }
     },
     onFileDrop (e) {
