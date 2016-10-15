@@ -1,28 +1,37 @@
 <template>
-  <div>
-    <c-pane>
-      <c-progress :progress="p1"></c-progress>
+  <div class="d-progress">
+    <c-pane :flex="true">
+      <c-col>
+        <c-progress :progress="p1"></c-progress>
+      </c-col>
+      <i class="fs-32">p1: {{p1}}%</i>
+    </c-pane>
+    <c-pane :flex="true">
+      <c-col>
+        <c-progress :progress="p2"></c-progress>
+      </c-col>
+      <i class="fs-32">p2: {{p2}}%</i>
+    </c-pane>
+    <c-pane :flex="true">
+      <c-col>
+        <c-progress :progress="p1"></c-progress>
+      </c-col>
+      <i class="fs-32">p1: {{p1}}%</i>
+      <c-col>
+        <c-progress :progress="p2"></c-progress>
+      </c-col>
+      <i class="fs-32">p2: {{p2}}%</i>
     </c-pane>
     <c-pane>
-      <c-progress :progress="p2"></c-progress>
-    </c-pane>
-    <c-pane>
-      <c-progress :progress="p3"></c-progress>
-    </c-pane>
-    <c-pane>
-      <c-progress :progress="p4"></c-progress>
-    </c-pane>
-    <c-pane>
-      <c-progress></c-progress>
-    </c-pane>
-    <c-pane>
-      <c-button v-tap @tap.native="shuffle">Shuffle</c-button>
+      <c-button class="primary"
+        v-tap @tap.native="shuffle">Shuffle</c-button>
     </c-pane>
   </div>
 </template>
 
 <script>
 import CPane from 'components/c-pane'
+import CCol from 'components/c-col'
 import CProgress from 'components/c-progress'
 import CButton from 'components/c-button'
 
@@ -30,11 +39,10 @@ export default {
   data () {
     return {
       p1: 100,
-      p2: 80,
-      p3: 50,
-      p4: 10
+      p2: 50
     }
   },
+
   methods: {
     shuffle () {
       function r () {
@@ -42,12 +50,12 @@ export default {
       }
       this.p1 = r()
       this.p2 = r()
-      this.p3 = r()
-      this.p4 = r()
     }
   },
+
   components: {
     CPane,
+    CCol,
     CProgress,
     CButton
   }

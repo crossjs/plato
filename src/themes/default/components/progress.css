@@ -1,7 +1,18 @@
 .c-progress {
-  display: inline-block;
   width: 100%;
   height: dpr(4px);
-  background-color: var(--primary);
-  transition: width 0.5s ease;
+  box-sizing: border-box;
+  background-color: var(--disabled);
+  position: relative;
+  transition: padding-left 0.5s ease;
+
+  &::before {
+    content: ' ';
+    position: absolute;
+    left: 0;
+    padding-left: inherit;
+    width: 0;
+    height: 100%;
+    background-color: var(--primary);
+  }
 }

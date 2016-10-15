@@ -1,5 +1,5 @@
 <template>
-  <i class="c-progress" :style="{width: '' + progress + '%'}"></i>
+  <div class="c-progress" :style="{'padding-left': '' + progress + '%'}"></div>
 </template>
 
 <script>
