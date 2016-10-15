@@ -9,6 +9,7 @@
           <p v-for="item in items">{{item}}</p>
         </c-picker>
       </c-col>
+      <c-col>
         <c-picker
           :transition="transition"
           :index="index"
@@ -17,7 +18,7 @@
         </c-picker>
       </c-col>
     </c-row>
-    <p>Selected: {{picked}}</p>
+    <p class="center">Selected: {{picked}}</p>
     <hr>
     <c-row>
       <c-col>
@@ -29,6 +30,7 @@
           <p v-for="item in yearList">{{item}}</p>
         </c-picker>
       </c-col>
+      <c-col class="center">-</c-col>
       <c-col>
         <c-picker
           :transition="transition"
@@ -38,6 +40,7 @@
           <p v-for="item in 12">{{item}}</p>
         </c-picker>
       </c-col>
+      <c-col class="center">-</c-col>
       <c-col>
         <c-picker
           :transition="transition"
@@ -49,7 +52,7 @@
       </c-col>
     </c-row>
     <hr>
-    <p>Selected: {{yearList[year]}} - {{month + 1}} - {{date + 1}}</p>
+    <p class="center">Selected: {{yearList[year]}} - {{month + 1}} - {{date + 1}}</p>
   </div>
 </template>
 

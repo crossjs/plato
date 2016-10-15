@@ -2,10 +2,13 @@
 <template>
   <div class="c-picker"
     :style="{'height': itemHeight * size + 'px'}">
-    <div class="c-picker-scroller"
-      :style="{'background-size': '100% ' + (size - 1) / 2 * itemHeight + 'px'}"></div>
+    <div class="c-picker-cover"
+      :style="{'background-size': '100% ' + (size - 1) / 2 * itemHeight + 'px'}">
+      <div class="c-picker-highlight"
+        :style="{'height': itemHeight + 'px', 'transform': 'translateY(' + ((size - 1) / 2 * itemHeight) + 'px)'}"></div>
+    </div>
     <div class="c-picker-content" :class="{'transition' : transition}"
-      :style="{transform: 'translate3d(0, ' + offset + 'px, 0)'}"
+      :style="{transform: 'translateY(' + offset + 'px)'}"
       ref="content"><slot></slot></div>
   </div>
 </template>
