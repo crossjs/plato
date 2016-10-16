@@ -40,7 +40,11 @@ const webpackConfig = {
 // ------------------------------------
 
 const APP_ENTRY_PATH = [
-  'nuo', // Promise
+  // override native Promise
+  'nuo',
+  // to reduce built file size,
+  // we load the specific polyfills with core-js
+  // instead of the all-in-one babel-polyfill.
   'core-js/fn/array/find',
   'core-js/fn/array/find-index',
   'core-js/fn/object/assign',

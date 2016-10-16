@@ -27,7 +27,7 @@
   "dependencies": {
     "leancloud-storage": "^1.5.0",
     "lodash.isplainobject": "^4.0.6",
-    "nuo": "^0.0.2",
+    "nuo": "^0.1.0",
     "query-string": "^4.2.2",
     "string-template": "^1.0.0",
     "vue": "^2.0.3",

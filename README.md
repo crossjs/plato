@@ -37,6 +37,9 @@ npm run debug
 
 ## Changelog
 
+- 20161016
+  - use [core-js](.tools/webpack/index.js#L42) instead of babel-polyfill. more compatibility testing is **required**
+  - use [nuo](https://github.com/crossjs/nuo) instead of nd-promise
 - 20161012
   - add component uploader
   - update components navbar, row, and password
