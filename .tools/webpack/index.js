@@ -39,7 +39,12 @@ const webpackConfig = {
 // Entry Points
 // ------------------------------------
 
-const APP_ENTRY_PATH = ['babel-polyfill', paths.src('index.js')]
+const APP_ENTRY_PATH = [
+  'nuo', // Promise
+  'core-js/fn/array/find',
+  'core-js/fn/array/find-index',
+  'core-js/fn/object/assign',
+  paths.src('index.js')]
 
 webpackConfig.entry = {
   app: __PROD__
