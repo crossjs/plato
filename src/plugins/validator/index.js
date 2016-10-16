@@ -1,6 +1,6 @@
 // sync from: https://github.com/crossjs/plato-validator
 
-import Promise from 'nd-promise'
+import Promise from 'nuo'
 import * as rules from './rules'
 
 export default function plugin (Vue) {

@@ -1,7 +1,7 @@
 // sync from: https://github.com/crossjs/plato-request
 
 import 'whatwg-fetch'
-import Promise from 'nd-promise'
+import Promise from 'nuo'
 import qs from 'query-string'
 import isPlainObj from 'lodash.isplainobject'
 
