@@ -4,7 +4,7 @@
 
 ### 1.1 Editor
 
-- [Atom](https://atom.io/), could be download from [mirror]([Mirror](https://npm.taobao.org/mirrors/atom/)
+- [Atom](https://atom.io/), could be download from [Mirror](https://npm.taobao.org/mirrors/atom/)
 - [linter](https://atom.io/packages/linter)
 - [linter-eslint](https://atom.io/packages/linter-eslint)
 - [linter-stylelint](https://atom.io/packages/linter-stylelint)
