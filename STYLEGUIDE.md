@@ -301,4 +301,4 @@ export default {
 
 ## 使用 normalizr 优化数据
 
-  - 对于大型项目，应考虑使用 [normalizr](https://github.com/paularmstrong/normalizr) 优化数据
+  - 对于大型项目，应考虑使用 [normalizr](https://github.com/paularmstrong/normalizr) 优化数据，或简单地使用 `utils/normalizer`
