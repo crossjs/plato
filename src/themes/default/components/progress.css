@@ -1,18 +1,13 @@
 .c-progress {
   width: 100%;
   height: dpr(4px);
-  box-sizing: border-box;
   background-color: var(--disabled);
-  position: relative;
-  transition: padding-left 0.5s ease;
+  overflow: hidden;
+}
 
-  &::before {
-    content: ' ';
-    position: absolute;
-    left: 0;
-    padding-left: inherit;
-    width: 0;
-    height: 100%;
-    background-color: var(--primary);
-  }
+.c-progress-content {
+  width: 100%;
+  height: 100%;
+  background-color: var(--primary);
+  transition: transform 0.5s ease;
 }
