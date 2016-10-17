@@ -1,11 +1,7 @@
 <template>
-  <label class="c-textfield">
-    <input
-      :type="type"
-      :value="value"
-      v-bind="attrs"
-      @input="onChange">
-  </label>
+  <input class="c-textfield"
+    :value="value"
+    @input="onChange">
 </template>
 
 <script>
@@ -13,18 +9,7 @@ import mBase from './mixins/base'
 import mField from './mixins/field'
 
 export default {
-  mixins: [mBase, mField],
-
-  props: {
-    type: {
-      type: String,
-      default: 'text',
-      validator (val) {
-        // time month date datetime-local week NOT supported
-        return /^(text|password|search|email|tel|url|number)$/.test(val)
-      }
-    }
-  }
+  mixins: [mBase, mField]
 }
 </script>
 

@@ -7,12 +7,6 @@ export default {
       type: String,
       default: ''
     },
-    attrs: {
-      type: Object,
-      default () {
-        return {}
-      }
-    },
     extra: {
       type: Object,
       default () {

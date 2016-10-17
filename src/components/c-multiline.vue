@@ -1,11 +1,6 @@
 <template>
-  <label class="c-multiline">
-    <textarea
-      :rows="rows"
-      :cols="cols"
-      v-bind="attrs"
-      @input="onChange">{{value}}</textarea>
-  </label>
+  <textarea class="c-multiline"
+    @input="onChange">{{value}}</textarea>
 </template>
 
 <script>
@@ -13,12 +8,7 @@ import mBase from './mixins/base'
 import mField from './mixins/field'
 
 export default {
-  mixins: [mBase, mField],
-
-  props: {
-    rows: [String, Number],
-    cols: [String, Number]
-  }
+  mixins: [mBase, mField]
 }
 </script>
 

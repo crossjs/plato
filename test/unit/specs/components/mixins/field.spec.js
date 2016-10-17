@@ -18,21 +18,14 @@ describe('field', () => {
   it('should render correct contents', done => {
     const data = {
       value: 'value',
-      field: 'field',
-      extra: {},
-      validate: {},
-      attrs: {
-        placeholder: 'placeholder'
-      }
+      validate: {}
     }
     vm = new Vue({
       el,
       template: `<field-input
-        :field="field"
         :value="value"
-        :extra="extra"
         :validate="validate"
-        :attrs="attrs"
+        placeholder="placeholder"
         @change="onChange"></field-input>`, // emitted change
       data,
       methods: {
@@ -46,7 +39,6 @@ describe('field', () => {
           template: `<input
             type="text"
             :value="value"
-            v-bind="attrs"
             @change="onChange">` // native change
         }
       }
@@ -58,7 +50,7 @@ describe('field', () => {
     const input = child.$el
 
     expect(input.value).to.equal(data.value)
-    expect(input.placeholder).to.equal(data.attrs.placeholder)
+    expect(input.placeholder).to.equal('placeholder')
 
     vm.$el.value = 'value2'
     triggerHTMLEvents(vm.$el, 'change')
@@ -73,21 +65,13 @@ describe('field', () => {
   it('should watch value and call $validate', done => {
     const data = {
       value: 'value',
-      field: 'field',
-      extra: {},
-      validate: {},
-      attrs: {
-        placeholder: 'placeholder'
-      }
+      validate: {}
     }
     vm = new Vue({
       el,
       template: `<field-input
-        :field="field"
         :value="value"
-        :extra="extra"
         :validate="validate"
-        :attrs="attrs"
         @change="onChange"></field-input>`, // emitted change
       data,
       methods: {
@@ -101,7 +85,6 @@ describe('field', () => {
           template: `<input
             type="text"
             :value="value"
-            v-bind="attrs"
             @change="onChange">` // native change
         }
       }

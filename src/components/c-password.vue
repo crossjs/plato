@@ -1,10 +1,10 @@
 <template>
   <label class="c-password">
-    <input
+    <c-textfield
       :type="showPassword ? 'text' : 'password'"
       :value="value"
       v-bind="attrs"
-      @input="onChange">
+      @change="onChange"></c-textfield>
     <c-icon class="c-password-toggle"
       :class="{'active': showPassword}"
       v-tap @tap.native="showPassword = !showPassword">eye</c-icon>
@@ -12,6 +12,7 @@
 </template>
 
 <script>
+import CTextfield from './c-textfield'
 import CIcon from './c-icon'
 import mBase from './mixins/base'
 import mField from './mixins/field'
@@ -19,13 +20,30 @@ import mField from './mixins/field'
 export default {
   mixins: [mBase, mField],
 
+  props: {
+    attrs: {
+      type: Object,
+      default () {
+        return {}
+      }
+    }
+  },
+
   data () {
     return {
       showPassword: false
     }
   },
 
+  methods: {
+    onChange (value) {
+      // override
+      this.$emit('change', value)
+    }
+  },
+
   components: {
+    CTextfield,
     CIcon
   }
 }

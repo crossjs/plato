@@ -24,7 +24,7 @@ describe('textfield.vue', () => {
       }
     })
 
-    expect(vm.$children[0].$el.children[0].nodeName).to.equal('INPUT')
+    expect(vm.$children[0].$el.nodeName).to.equal('INPUT')
   })
 
   it('type', () => {
@@ -37,8 +37,7 @@ describe('textfield.vue', () => {
     })
 
     expect(vm.$children.length).to.equal(1)
-    const { children } = vm.$children[0].$el
-    expect(children[0].nodeName).to.equal('INPUT')
-    expect(children[0].type).to.equal('password')
+    expect(vm.$children[0].$el.nodeName).to.equal('INPUT')
+    expect(vm.$children[0].$el.type).to.equal('password')
   })
 })

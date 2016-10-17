@@ -17,8 +17,7 @@
       </c-row>
       <c-row>
         <c-col>
-          <c-textfield
-            type="password"
+          <c-textfield type="password"
             :value="value"
             @change="value = arguments[0]"></c-textfield>
         </c-col>
@@ -32,56 +31,42 @@
       </c-row>
       <c-row>
         <c-col>
-          <c-textfield
-            :attrs="{placeholder: 'text'}"></c-textfield>
+          <c-textfield placeholder="text"></c-textfield>
         </c-col>
       </c-row>
       <c-row>
         <c-col>
-          <c-multiline
-            :attrs="{placeholder: 'textarea'}"></c-multiline>
+          <c-multiline placeholder="textarea"></c-multiline>
         </c-col>
       </c-row>
       <c-row>
         <c-col>
-          <c-textfield
-            type="email"
-            :attrs="{placeholder: 'email'}"></c-textfield>
+          <c-textfield type="email" placeholder="email"></c-textfield>
         </c-col>
       </c-row>
       <c-row>
         <c-col>
-          <c-textfield
-            type="tel"
-            :attrs="{placeholder: 'tel'}"></c-textfield>
+          <c-textfield type="tel" placeholder="tel"></c-textfield>
         </c-col>
       </c-row>
       <c-row>
         <c-col>
-          <c-textfield
-            type="url"
-            :attrs="{placeholder: 'url'}"></c-textfield>
+          <c-textfield type="url" placeholder="url"></c-textfield>
         </c-col>
       </c-row>
       <c-row>
         <c-col>
-          <c-textfield
-            type="password"
-            :attrs="{placeholder: 'password'}"></c-textfield>
+          <c-textfield type="password" placeholder="password"></c-textfield>
         </c-col>
       </c-row>
       <c-row>
         <c-col>
-          <c-textfield
-            type="number"
-            :attrs="{placeholder: 'number'}"></c-textfield>
+          <c-textfield type="number" placeholder="number"></c-textfield>
         </c-col>
       </c-row>
       <c-row>
         <c-col>
-          <c-textfield
-            type="search"
-            :attrs="{placeholder: 'search'}"></c-textfield>
+          <c-textfield type="search" placeholder="search"></c-textfield>
         </c-col>
       </c-row>
     </c-form>

@@ -1,14 +1,9 @@
 <template>
-  <label class="c-checkbox" :class="{'checked': _checked}">
-    <input type="checkbox"
-      :field="field"
-      :value="value"
-      :checked="_checked"
-      :true-value="_truthy"
-      :false-value="_falsy"
-      v-bind="attrs"
-      @change="onChange">
-  </label>
+  <input class="c-checkbox"
+    type="checkbox"
+    :value="value"
+    :checked="_checked"
+    @change="onChange">
 </template>
 
 <script>
