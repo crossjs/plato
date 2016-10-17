@@ -22,9 +22,11 @@
         <c-route :routes="routes"></c-route>
       </c-navbar>
     </header>
-    <transition name="fade" mode="out-in" appear>
-      <router-view keep-alive></router-view>
-    </transition>
+    <section id="content">
+      <transition name="fade" mode="out-in" appear>
+        <router-view keep-alive></router-view>
+      </transition>
+    </section>
   </div>
 </template>
 

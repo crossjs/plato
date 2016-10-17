@@ -4,6 +4,8 @@
 
 #container {
   padding: dpr(88px) 0 0;
+  box-sizing: border-box;
+  height: 100%;
 }
 
 #progress {
@@ -14,7 +16,7 @@
 }
 
 #header {
-  position: fixed;
+  position: absolute;
   z-index: 11;
   top: 0;
   left: 0;
@@ -64,4 +66,10 @@
   & .c-reddot {
     line-height: 1.5;
   }
+}
+
+#content {
+  height: 100%;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
 }

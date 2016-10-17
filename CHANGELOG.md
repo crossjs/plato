@@ -1,5 +1,7 @@
 # Changelog
 
+- 20161018
+  - fix issues with position fixed in iOS UIWebview: use position absolute and overflow
 - 20161016
   - use [core-js](.tools/webpack/index.js#L42) instead of babel-polyfill. more compatibility testing is **required**
   - use [nuo](https://github.com/crossjs/nuo) instead of nd-promise

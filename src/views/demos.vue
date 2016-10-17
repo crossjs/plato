@@ -27,6 +27,12 @@
       </c-row>
       <c-row :link="true">
         <c-col>
+          <router-link to="demos/link">
+            <c-icon class="c-reddot">flame</c-icon> Link</router-link>
+        </c-col>
+      </c-row>
+      <c-row :link="true">
+        <c-col>
           <router-link to="demos/form">
             <c-icon>flame</c-icon> Form</router-link>
         </c-col>
@@ -116,6 +122,7 @@ import DemoBadge from 'demos/badge'
 import DemoIcon from 'demos/icon'
 import DemoProgress from 'demos/progress'
 import DemoButton from 'demos/button'
+import DemoLink from 'demos/link'
 import DemoForm from 'demos/form'
 import DemoRow from 'demos/row'
 import DemoPaginator from 'demos/paginator'
@@ -133,7 +140,7 @@ import DemoUpload from 'demos/upload'
 export default {
   data () {
     return {
-      component: DemoButton
+      component: DemoIcon
     }
   },
 
@@ -145,6 +152,7 @@ export default {
     DemoIcon,
     DemoProgress,
     DemoButton,
+    DemoLink,
     DemoForm,
     DemoRow,
     DemoPaginator,

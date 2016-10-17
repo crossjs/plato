@@ -1,5 +1,5 @@
 .c-toast {
-  position: fixed;
+  position: absolute;
   z-index: 10001;
   left: 50%;
   top: 50%;
