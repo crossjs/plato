@@ -18,14 +18,11 @@
 </template>
 
 <script>
-import mBase from './mixins/base'
 import CMask from './c-mask'
 import CIcon from './c-icon'
 import CButton from './c-button'
 
 export default {
-  mixins: [mBase],
-
   data () {
     return {
       opened: false

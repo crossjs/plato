@@ -6,11 +6,7 @@
 </template>
 
 <script>
-import mBase from './mixins/base'
-
 export default {
-  mixins: [mBase],
-
   props: {
     progress: {
       type: Number,

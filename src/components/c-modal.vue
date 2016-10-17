@@ -18,14 +18,11 @@
 </template>
 
 <script>
-import mBase from './mixins/base'
 import CRow from './c-row'
 import CCol from './c-col'
 import CLink from './c-link'
 
 export default {
-  mixins: [mBase],
-
   props: {
     show: {
       type: Boolean,

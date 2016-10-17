@@ -3,12 +3,9 @@
 </template>
 
 <script>
-import mBase from './mixins/base'
 import aMaps from './assets/maps'
 
 export default {
-  mixins: [mBase],
-
   data () {
     return {
       html: ' '

@@ -6,14 +6,10 @@
 </template>
 
 <script>
-import mBase from './mixins/base'
-
 /* globals lib */
 const { dpr } = typeof lib === 'object' ? lib.flexible : { dpr: 2 }
 
 export default {
-  mixins: [mBase],
-
   props: {
     src: {
       type: String,

@@ -4,11 +4,10 @@
 </template>
 
 <script>
-import mBase from './mixins/base'
 import mField from './mixins/field'
 
 export default {
-  mixins: [mBase, mField]
+  mixins: [mField]
 }
 </script>
 

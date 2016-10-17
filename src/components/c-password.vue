@@ -14,11 +14,10 @@
 <script>
 import CTextfield from './c-textfield'
 import CIcon from './c-icon'
-import mBase from './mixins/base'
 import mField from './mixins/field'
 
 export default {
-  mixins: [mBase, mField],
+  mixins: [mField],
 
   props: {
     attrs: {

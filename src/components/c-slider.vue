@@ -14,11 +14,7 @@
 </template>
 
 <script>
-import mBase from './mixins/base'
-
 export default {
-  mixins: [mBase],
-
   props: {
     index: {
       type: Number,

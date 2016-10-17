@@ -3,11 +3,10 @@
 </template>
 
 <script>
-import mBase from './mixins/base'
 import mSize from './mixins/size'
 
 export default {
-  mixins: [mBase, mSize]
+  mixins: [mSize]
 }
 </script>
 

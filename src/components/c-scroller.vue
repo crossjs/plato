@@ -22,11 +22,8 @@
 
 <script>
 import CSpinner from './c-spinner'
-import mBase from './mixins/base'
 
 export default {
-  mixins: [mBase],
-
   props: {
     height: {
       type: Number,

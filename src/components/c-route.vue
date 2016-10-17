@@ -16,12 +16,9 @@
 
 <script>
 import CIcon from './c-icon'
-import mBase from './mixins/base'
 
 export default {
   name: 'c-route',
-
-  mixins: [mBase],
 
   props: {
     father: {
