@@ -27,7 +27,7 @@ describe('range.vue', () => {
     })
 
     vm.$nextTick(() => {
-      expect(vm.$el.querySelector('.c-range-content').style.paddingLeft).to.equal('0px')
+      expect(vm.$el.querySelector('.c-range-content').style.paddingLeft).to.equal('0%')
       done()
     })
   })
@@ -47,7 +47,7 @@ describe('range.vue', () => {
 
     vm.$nextTick(() => {
       expect(vm.$el.querySelector('.c-range-content').clientWidth).to.equal(window.innerWidth)
-      expect(vm.$el.querySelector('.c-range-content').style.paddingLeft).to.equal(window.innerWidth / 2 + 'px')
+      expect(vm.$el.querySelector('.c-range-content').style.paddingLeft).to.equal('50%')
       done()
     })
   })
