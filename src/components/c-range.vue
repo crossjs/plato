@@ -1,7 +1,7 @@
 <template>
   <div class="c-range">
     <div class="c-range-content"
-      :style="{'padding-left': realOffset + 'px'}"></div>
+      :style="{'padding-left': percentage * 100 + '%'}"></div>
   </div>
 </template>
 
@@ -34,14 +34,14 @@ export default {
       offset: 0,
       minOffset: 0,
       maxOffset: 0,
-      realOffset: 0
+      percentage: 0
     }
   },
 
   computed: {
-    realOffset () {
+    percentage () {
       const stepOffset = this.maxOffset / Math.ceil((this.max - this.min) / this.step)
-      return Math.round(this.offset / stepOffset) * stepOffset
+      return Math.round(this.offset / stepOffset) * stepOffset / this.maxOffset
     }
   },
 
@@ -51,8 +51,8 @@ export default {
         this.offset = (this.value - this.min) / (this.max - this.min) * this.maxOffset
       }
     },
-    realOffset (val) {
-      this.$emit('change', parseInt(this.min + (this.max - this.min) * (val / this.maxOffset), 10))
+    percentage (val) {
+      this.$emit('change', parseInt(this.min + (this.max - this.min) * val, 10))
     }
   },
 

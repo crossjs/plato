@@ -1,14 +1,12 @@
 .c-range {
   position: relative;
-  margin-right: dpr(60px);
-  padding: dpr(28px);
+  padding: dpr(30px);
 }
 
 .c-range-content {
   position: relative;
-  margin-right: -dpr(60px);
   height: dpr(4px);
-  background-color: var(--disabled);
+  background-color: var(--placeholder);
 
   &::before {
     padding-left: inherit;
@@ -22,8 +20,8 @@
   &::after {
     content: ' ';
     position: absolute;
-    margin-top: -dpr(28px);
-    margin-left: -dpr(28px);
+    margin-top: -dpr(30px);
+    margin-left: -dpr(30px);
     width: dpr(60px);
     height: dpr(60px);
     border-radius: 50%;
