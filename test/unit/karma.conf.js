@@ -1,5 +1,5 @@
-import config from '../../.tools/config'
-import webpackConfig from '../../.tools/webpack'
+import config from '../../config'
+import webpackConfig from '../../webpack.config.babel.js'
 
 const debug = require('debug')('app:karma')
 debug('Create configuration.')
@@ -36,10 +36,9 @@ const karmaConfig = {
     resolve: { ...webpackConfig.resolve, alias },
     plugins: webpackConfig.plugins,
     module: {
-      loaders: webpackConfig.module.loaders
+      rules: webpackConfig.module.rules
     },
-    babel: webpackConfig.babel,
-    vue: webpackConfig.vue
+    node: webpackConfig.node
   },
   webpackMiddleware: {
     noInfo: true

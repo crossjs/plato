@@ -1,5 +1,4 @@
 import { resolve } from 'path'
-import { argv } from 'yargs'
 import _debug from 'debug'
 
 const debug = _debug('plato:config:base')
@@ -7,7 +6,7 @@ const debug = _debug('plato:config:base')
 const config = {
   env: process.env.NODE_ENV || 'development',
 
-  pkg: require('../../package.json'),
+  pkg: require('../package.json'),
 
   // theme name
   theme: 'default',
@@ -15,23 +14,11 @@ const config = {
   // ----------------------------------
   // Project Structure
   // ----------------------------------
-  path_base: resolve(__dirname, '../../'),
+  path_base: resolve(__dirname, '../'),
   dir_src: 'src',
   dir_dist: 'dist',
   dir_server: 'server',
   dir_test: 'test',
-
-  // ----------------------------------
-  // Server Configuration
-  // ----------------------------------
-  server_host: '',
-  server_port: process.env.PORT || 3000,
-  server_mock: !!argv.mock && { // mocking config
-    root: resolve(__dirname, '../../mocks/'),
-    matcher: /^\/api\//,
-    reducer: /^\/api/
-  },
-  server_ready: false, // if ready for spinner
 
   // ----------------------------------
   // Compiler Configuration
@@ -77,10 +64,6 @@ const config = {
 // Environment
 // ------------------------------------
 config.globals = {
-  'process.env': {
-    'NODE_ENV': JSON.stringify(config.env)
-  },
-  'NODE_ENV': config.env,
   '__DEV__': config.env === 'development',
   '__PROD__': config.env === 'production',
   '__TEST__': config.env === 'test'

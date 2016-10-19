@@ -6,9 +6,7 @@
         "stage-0"
       ],
       "plugins": [
-        "add-module-exports",
-        "transform-async-to-generator",
-        "transform-runtime"
+        "add-module-exports"
       ],
       "comments": false
     },
@@ -19,8 +17,6 @@
       ],
       "plugins": [
         "add-module-exports",
-        "transform-async-to-generator",
-        "transform-runtime",
         ["__coverage__", { "ignore": "test/" }]
       ],
       "comments": false
@@ -31,9 +27,7 @@
         "stage-0"
       ],
       "plugins": [
-        "add-module-exports",
-        "transform-async-to-generator",
-        "transform-runtime"
+        "add-module-exports"
       ],
       "comments": false
     }

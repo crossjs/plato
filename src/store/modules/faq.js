@@ -1,11 +1,21 @@
 import createPersist from 'vuex-localstorage'
 import { createAction, handleAction, $inject } from 'vuex-actions'
-import db from 'store/db'
+import CloudStorage from 'leancloud-storage'
 import Normalizer from 'utils/normalizer'
 
 import {
   ONE_SECOND
 } from '../constants'
+
+/**
+ * just for test
+ */
+
+const appId = 'GQHNdUFpLzaMhfeuXLsV7seW-gzGzoHsz'
+const appKey = 'y3tGzcqWr2P5674KmXdb8cVH'
+const region = 'cn'
+
+CloudStorage.init({ appId, appKey, region })
 
 const FAQ_KEY = 'FAQ_KEY'
 const GET_ITEMS = 'GET_ITEMS'
@@ -33,19 +43,19 @@ const getters = {
 }
 
 const DB_CLASS = 'Faq'
-const Faq = db.Object.extend(DB_CLASS)
+const Faq = CloudStorage.Object.extend(DB_CLASS)
 const faq = new Faq()
 
 const actions = {
   getItems: createAction(GET_ITEMS, () =>
-    new db.Query(Faq).find()),
+    new CloudStorage.Query(Faq).find()),
 
   addItem: createAction(ADD_ITEM, payload =>
     faq.set(payload).save()),
 
   deleteItem: createAction(DELETE_ITEM, payload => ({
     // destroy, removing data from remote
-    _: db.Object.createWithoutData(DB_CLASS, payload).destroy(),
+    _: CloudStorage.Object.createWithoutData(DB_CLASS, payload).destroy(),
     // then return id (payload) for removing data from store
     id: $inject(() => payload)('_')
   }))

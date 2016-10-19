@@ -2,8 +2,12 @@
 require('babel-register')
 
 // 1. start the dev server using production config
-// process.env.NODE_ENV = 'testing'
-var server = require('../../.tools/server')
+var WebpackDevServer = require('webpack-dev-server')
+var server = new WebpackDevServer(require('webpack')(require('../../webpack.config.babel.js')))
+
+server.listen(3000, '127.0.0.1', function () {
+  console.log('Starting server on http://127.0.0.1:3000')
+})
 
 // 2. run the nightwatch test suite against it
 // to run in additional browsers:
