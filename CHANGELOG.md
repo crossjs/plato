@@ -1,5 +1,8 @@
 # Changelog
 
+- 20161020 :warning: :clap: *Massive Changes*
+  - use **webpack 2**
+  - use `webpack-dev-server` instead awesome `koajs`
 - 20161018
   - fix issues with position fixed in iOS UIWebview: use position absolute and overflow
 - 20161016

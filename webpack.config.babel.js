@@ -1,59 +1,73 @@
 import webpack from 'webpack'
-import ora from 'ora'
 import CopyWebpackPlugin from 'copy-webpack-plugin'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import FaviconsWebpackPlugin from 'favicons-webpack-plugin'
-import fs from 'fs'
 import _debug from 'debug'
-import config, { paths } from '../config'
-const { __DEV__, __PROD__, __TEST__ } = config.globals
+import config, { paths } from './config'
 
-const debug = _debug('plato:webpack:config')
+const { __DEV__, __PROD__, __TEST__ } = config.globals
+const debug = _debug('plato:webpack')
 
 debug('Create configuration.')
 
+// https://webpack.js.org/how-to/upgrade-from-webpack-1/
+
 const webpackConfig = {
-  __DEV__,
-  __PROD__,
-  __TEST__,
   name: 'client',
   target: 'web',
   devtool: config.compiler_devtool,
+  devServer: {
+    noInfo: true
+    // proxy is usefull for debugging
+    // ,proxy: {
+    //   '/api': 'http://127.0.0.1:4040'
+    // }
+  },
   resolve: {
-    root: paths.src(),
-    extensions: ['', '.css', '.js', '.json', '.vue'],
+    modules: [paths.src(), 'node_modules'],
+    descriptionFiles: ['package.json'],
+    mainFields: ['main', 'browser'],
+    mainFiles: ['index'],
+    extensions: ['.css', '.js', '.json', '.vue'],
+    enforceExtension: false,
+    enforceModuleExtension: false,
     alias: {
       styles: paths.src(`themes/${config.theme}`)
-    },
-    modulesDirectories: ['node_modules']
+    }
+  },
+  resolveLoader: {
+    modules: ['node_modules'],
+    descriptionFiles: ['package.json'],
+    mainFields: ['main'],
+    mainFiles: ['index'],
+    extensions: ['.js'],
+    enforceExtension: false,
+    enforceModuleExtension: false,
+    moduleExtensions: ['-loader']
   },
   module: {},
   node: {
-    fs: 'empty'
-  },
-  quiet: true
+    fs: 'empty',
+    net: 'empty'
+  }
 }
 
 // ------------------------------------
 // Entry Points
 // ------------------------------------
 
-const APP_ENTRY_PATH = [
-  // override native Promise
-  'nuo',
-  // to reduce built file size,
-  // we load the specific polyfills with core-js
-  // instead of the all-in-one babel-polyfill.
-  'core-js/fn/array/find',
-  'core-js/fn/array/find-index',
-  'core-js/fn/object/assign',
-  paths.src('index.js')]
-
 webpackConfig.entry = {
-  app: __PROD__
-    ? APP_ENTRY_PATH
-    : APP_ENTRY_PATH.concat('webpack-hot-middleware/client'),
+  app: [
+    // override native Promise
+    'nuo',
+    // to reduce built file size,
+    // we load the specific polyfills with core-js
+    // instead of the all-in-one babel-polyfill.
+    'core-js/fn/array/find',
+    'core-js/fn/array/find-index',
+    'core-js/fn/object/assign',
+    paths.src('index.js')],
   vendor: config.compiler_vendor
 }
 
@@ -69,21 +83,6 @@ webpackConfig.output = {
 }
 
 // ------------------------------------
-// Pre-Loaders
-// ------------------------------------
-
-webpackConfig.module.preLoaders = [
-  {
-    test: /\.(js|vue)$/,
-    loader: 'eslint',
-    exclude: /node_modules/,
-    query: {
-      emitWarning: __DEV__
-    }
-  }
-]
-
-// ------------------------------------
 // Loaders
 // ------------------------------------
 
@@ -91,24 +90,37 @@ const cssLoaders = (loaders => {
   if (!__PROD__) {
     return loaders.join('!')
   }
-  const [first, ...rest] = loaders
-  return ExtractTextPlugin.extract(first, rest.join('!'))
+  return ExtractTextPlugin.extract({
+    loader: loaders[1],
+    fallbackLoader: loaders[0]
+  })
 })(['vue-style-loader', 'css-loader?sourceMap'])
 
-webpackConfig.module.loaders = [
+webpackConfig.module.rules = [
+  {
+    test: /\.(js|vue)$/,
+    exclude: /node_modules/,
+    loader: 'eslint',
+    options: {
+      emitWarning: __DEV__,
+      formatter: require('eslint-friendly-formatter')
+    },
+    enforce: 'pre'
+  },
   {
     test: /\.vue$/,
-    loader: 'vue'
+    loader: 'vue',
+    options: {
+      loaders: {
+        css: cssLoaders,
+        js: 'babel'
+      }
+    }
   },
   {
     test: /\.js$/,
-    loader: 'babel',
-    exclude: /node_modules/
-  },
-  {
-    test: /\.js$/,
-    loader: 'babel',
-    include: /plato\-components/
+    exclude: /node_modules/,
+    loader: 'babel'
   },
   {
     test: /\.json$/,
@@ -121,29 +133,50 @@ webpackConfig.module.loaders = [
   {
     test: /@[1-3]x\S*\.(png|jpg|gif)(\?.*)?$/,
     loader: 'file',
-    query: {
+    options: {
       name: '[name].[ext]?[hash:7]'
     }
   },
   {
     test: /\.(png|jpg|gif|svg|woff2?|eot|ttf)(\?.*)?$/,
-    loader: 'url',
     // do NOT base64encode @1x/@2x/@3x images
     exclude: /@[1-3]x/,
-    query: {
+    loader: 'url',
+    options: {
       limit: 10000,
       name: '[name].[ext]?[hash:7]'
     }
   }
 ]
 
-webpackConfig.babel = JSON.parse(fs.readFileSync('.babelrc')).env[config.env] || {}
+// ------------------------------------
+// Plugins
+// ------------------------------------
+webpackConfig.plugins = [
+  new webpack.DefinePlugin(config.globals),
+  // generate dist index.html with correct asset hash for caching.
+  // you can customize output by editing /index.html
+  // see https://github.com/ampedandwired/html-webpack-plugin
+  new HtmlWebpackPlugin({
+    filename: 'index.html',
+    template: paths.src('index.ejs'),
+    title: `${config.pkg.name} - ${config.pkg.description}`,
+    // favicon: paths.src('static/favicon.png'),
+    hash: false,
+    inject: true,
+    minify: {
+      collapseWhitespace: config.compiler_html_minify,
+      minifyJS: config.compiler_html_minify
+    }
+  }),
+  new CopyWebpackPlugin([{
+    from: paths.src('static')
+  }], {
+    // ignore: ['*.ico', '*.md']
+  })
+]
 
-webpackConfig.vue = {
-  loaders: {
-    css: cssLoaders,
-    js: 'babel'
-  },
+const vueLoaderOptions = {
   postcss: pack => {
     return [
       require('postcss-import')({
@@ -173,48 +206,24 @@ webpackConfig.vue = {
   autoprefixer: false
 }
 
-webpackConfig.eslint = {
-  formatter: require('eslint-friendly-formatter')
-}
-
-// ------------------------------------
-// Plugins
-// ------------------------------------
-webpackConfig.plugins = [
-  new webpack.DefinePlugin(config.globals),
-  // generate dist index.html with correct asset hash for caching.
-  // you can customize output by editing /index.html
-  // see https://github.com/ampedandwired/html-webpack-plugin
-  new HtmlWebpackPlugin({
-    filename: 'index.html',
-    template: paths.src('index.ejs'),
-    title: `${config.pkg.name} - ${config.pkg.description}`,
-    // favicon: paths.src('static/favicon.png'),
-    hash: false,
-    inject: true,
-    minify: {
-      collapseWhitespace: config.compiler_html_minify,
-      minifyJS: config.compiler_html_minify
-    }
-  }),
-  new CopyWebpackPlugin([{
-    from: paths.src('static')
-  }], {
-    // ignore: ['*.ico', '*.md']
-  })
-]
-
 if (__PROD__) {
-  debug('Enable plugins for production (OccurenceOrder, Dedupe & UglifyJS).')
+  debug('Enable plugins for production (Dedupe & UglifyJS).')
   webpackConfig.plugins.push(
-    new webpack.optimize.OccurrenceOrderPlugin(true),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         unused: true,
         dead_code: true,
         warnings: false
-      }
+      },
+      sourceMap: true
+    }),
+    new webpack.LoaderOptionsPlugin({
+      minimize: true,
+      options: {
+        context: __dirname
+      },
+      vue: vueLoaderOptions
     }),
     // extract css into its own file
     new ExtractTextPlugin('[name].[contenthash].css')
@@ -223,27 +232,20 @@ if (__PROD__) {
   debug('Enable plugins for live development (HMR, NoErrors).')
   webpackConfig.plugins.push(
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
+    new webpack.NoErrorsPlugin(),
+    new webpack.LoaderOptionsPlugin({
+      debug: true,
+      options: {
+        context: __dirname
+      },
+      vue: vueLoaderOptions
+    })
   )
 }
 
 // Don't split bundles during testing, since we only want import one bundle
 if (!__TEST__) {
-  let spinner
   webpackConfig.plugins.push(
-    new webpack.ProgressPlugin((percentage, message) => {
-      if (config.server_ready) {
-        if (!spinner) {
-          spinner = ora().start()
-        }
-      }
-      if (spinner) {
-        spinner.text = message
-        if (percentage === 1) {
-          spinner.stop()
-        }
-      }
-    }),
     new FaviconsWebpackPlugin({
       logo: paths.src('assets/logo.svg'),
       prefix: 'icons-[hash:7]/',

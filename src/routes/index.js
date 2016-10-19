@@ -2,43 +2,43 @@ export default [
   {
     path: '/',
     exact: true,
-    component: resolve => require(['views/home'], resolve)
+    component: () => System.import('views/home')
   },
   {
     path: '/demos',
     icon: 'eye',
-    component: resolve => require(['views/demos'], resolve)
+    component: () => System.import('views/demos')
   },
   {
     path: '/demos/:component',
     hidden: true,
-    component: resolve => require(['views/demos'], resolve)
+    component: () => System.import('views/demos')
   },
   {
     path: '/create',
     icon: 'plus',
-    component: resolve => require(['views/create'], resolve)
+    component: () => System.import('views/create')
   },
   {
     path: '/about',
     icon: 'question',
-    component: resolve => require(['views/about'], resolve)
+    component: () => System.import('views/about')
   },
   {
     path: '/login',
     icon: 'lock',
     auth: false,
-    component: resolve => require(['views/login'], resolve)
+    component: () => System.import('views/login')
   },
   {
     path: '/logout',
     icon: 'lock',
     auth: true,
-    component: resolve => require(['views/logout'], resolve)
+    component: () => System.import('views/logout')
   },
   {
     path: '/globe',
     icon: 'globe',
-    component: resolve => require(['views/globe'], resolve)
+    component: () => System.import('views/globe')
   }
 ]

@@ -1,10 +1,10 @@
 require('babel-register')
 
-const debug = require('debug')('plato:bin:compile')
+const debug = require('debug')('plato:compile')
 
 debug('Create webpack compiler.')
 
-require('webpack')(require('../webpack')).run((err, stats) => {
+require('webpack')(require('../webpack.config.babel.js')).run((err, stats) => {
   const jsonStats = stats.toJson()
 
   debug('Webpack compile completed.')
