@@ -5,7 +5,7 @@
       @cancel="show_modal = false">{{ __('views.create.confirm') }}</c-modal>
     <c-spinner v-show="faq_is_fetching"></c-spinner>
     <c-form class="c-form-expand"
-      @submit.native.prevent="submit">
+      @submit.native.prevent="show_modal = true">
       <c-row :flex="false">
         <c-label>{{__(title.label)}}</c-label>
         <c-badge class="warning" size="small">
@@ -91,9 +91,6 @@ export default {
 
   methods: {
     ...mapActions(['addItem']),
-    submit () {
-      this.show_modal = true
-    },
     create () {
       this.show_modal = false
       this.$validate().then(() => {

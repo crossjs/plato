@@ -14,7 +14,7 @@
       <c-row :flex="false" v-for="item in faq_items" :key="item.id">
         <h3>{{ item.title }}</h3>
         <article>{{ item.content }}</article>
-        <c-button v-if="authorized" size="xsmall" v-tap @tap.native="_delete(item.objectId)">{{ __('views.home.delete') }}</c-button>
+        <c-button v-if="authorized" size="xsmall" v-tap @tap.native="_delete(item.id)">{{ __('views.home.delete') }}</c-button>
       </c-row>
     </c-scroller>
   </div>
@@ -33,7 +33,8 @@ export default {
     return {
       show_modal: false,
       drained: true,
-      height: 0
+      height: 0,
+      id: 0
     }
   },
 
@@ -52,6 +53,7 @@ export default {
 
   methods: {
     _delete (id) {
+      alert(id)
       this.id = id
       this.show_modal = true
     },

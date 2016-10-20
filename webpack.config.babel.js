@@ -14,16 +14,7 @@ debug('Create configuration.')
 // https://webpack.js.org/how-to/upgrade-from-webpack-1/
 
 const webpackConfig = {
-  name: 'client',
   target: 'web',
-  devtool: config.compiler_devtool,
-  devServer: {
-    noInfo: true
-    // proxy is usefull for debugging
-    // ,proxy: {
-    //   '/api': 'http://127.0.0.1:4040'
-    // }
-  },
   resolve: {
     modules: [paths.src(), 'node_modules'],
     descriptionFiles: ['package.json'],
@@ -46,135 +37,134 @@ const webpackConfig = {
     enforceModuleExtension: false,
     moduleExtensions: ['-loader']
   },
-  module: {},
   node: {
     fs: 'empty',
     net: 'empty'
-  }
-}
-
-// ------------------------------------
-// Entry Points
-// ------------------------------------
-
-webpackConfig.entry = {
-  app: [
-    // override native Promise
-    'nuo',
-    // to reduce built file size,
-    // we load the specific polyfills with core-js
-    // instead of the all-in-one babel-polyfill.
-    'core-js/fn/array/find',
-    'core-js/fn/array/find-index',
-    'core-js/fn/object/assign',
-    paths.src('index.js')],
-  vendor: config.compiler_vendor
-}
-
-// ------------------------------------
-// Bundle Output
-// ------------------------------------
-
-webpackConfig.output = {
-  path: paths.dist(),
-  publicPath: config.compiler_public_path,
-  filename: `[name].[${config.compiler_hash_type}].js`,
-  chunkFilename: `[id].[${config.compiler_hash_type}].js`
-}
-
-// ------------------------------------
-// Loaders
-// ------------------------------------
-
-const cssLoaders = (loaders => {
-  if (!__PROD__) {
-    return loaders.join('!')
-  }
-  return ExtractTextPlugin.extract({
-    loader: loaders[1],
-    fallbackLoader: loaders[0]
-  })
-})(['vue-style-loader', 'css-loader?sourceMap'])
-
-webpackConfig.module.rules = [
-  {
-    test: /\.(js|vue)$/,
-    exclude: /node_modules/,
-    loader: 'eslint',
-    options: {
-      emitWarning: __DEV__,
-      formatter: require('eslint-friendly-formatter')
+  },
+  devtool: config.compiler_devtool,
+  devServer: {
+    host: config.server_host,
+    port: config.server_port,
+    // contentBase: ,
+    // publicPath: ,
+    // outputPath: ,
+    // proxy is useful for debugging
+    // proxy: {
+    //   '/api': 'http://127.0.0.1:4040'
+    // },
+    inline: true,
+    hot: true,
+    compress: true,
+    progress: true,
+    stats: {
+      colors: true
     },
-    enforce: 'pre'
+    noInfo: false
   },
-  {
-    test: /\.vue$/,
-    loader: 'vue',
-    options: {
-      loaders: {
-        css: cssLoaders,
-        js: 'babel'
+  entry: {
+    app: [
+      // override native Promise
+      'nuo',
+      // to reduce built file size,
+      // we load the specific polyfills with core-js
+      // instead of the all-in-one babel-polyfill.
+      'core-js/fn/array/find',
+      'core-js/fn/array/find-index',
+      'core-js/fn/object/assign',
+      paths.src('index.js')],
+    vendor: config.compiler_vendor
+  },
+  output: {
+    path: paths.dist(),
+    publicPath: config.compiler_public_path,
+    filename: `[name].[${config.compiler_hash_type}].js`,
+    chunkFilename: `[id].[${config.compiler_hash_type}].js`
+  },
+  module: {
+    rules: [
+      {
+        test: /\.(js|vue)$/,
+        exclude: /node_modules/,
+        loader: 'eslint',
+        options: {
+          emitWarning: __DEV__,
+          formatter: require('eslint-friendly-formatter')
+        },
+        enforce: 'pre'
+      },
+      {
+        test: /\.vue$/,
+        loader: 'vue',
+        options: {
+          loaders: {
+            css: __PROD__ ? ExtractTextPlugin.extract({
+              loader: 'css?sourceMap',
+              fallbackLoader: 'vue-style'
+            }) : 'vue-style!css?sourceMap',
+            js: 'babel'
+          }
+        }
+      },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'babel'
+      },
+      {
+        test: /\.json$/,
+        loader: 'json'
+      },
+      {
+        test: /\.html$/,
+        loader: 'vue-html'
+      },
+      {
+        test: /@[1-3]x\S*\.(png|jpg|gif)(\?.*)?$/,
+        loader: 'file',
+        options: {
+          name: '[name].[ext]?[hash:7]'
+        }
+      },
+      {
+        test: /\.(png|jpg|gif|svg|woff2?|eot|ttf)(\?.*)?$/,
+        // do NOT base64encode @1x/@2x/@3x images
+        exclude: /@[1-3]x/,
+        loader: 'url',
+        options: {
+          limit: 10000,
+          name: '[name].[ext]?[hash:7]'
+        }
       }
-    }
+    ]
   },
-  {
-    test: /\.js$/,
-    exclude: /node_modules/,
-    loader: 'babel'
-  },
-  {
-    test: /\.json$/,
-    loader: 'json'
-  },
-  {
-    test: /\.html$/,
-    loader: 'vue-html'
-  },
-  {
-    test: /@[1-3]x\S*\.(png|jpg|gif)(\?.*)?$/,
-    loader: 'file',
-    options: {
-      name: '[name].[ext]?[hash:7]'
-    }
-  },
-  {
-    test: /\.(png|jpg|gif|svg|woff2?|eot|ttf)(\?.*)?$/,
-    // do NOT base64encode @1x/@2x/@3x images
-    exclude: /@[1-3]x/,
-    loader: 'url',
-    options: {
-      limit: 10000,
-      name: '[name].[ext]?[hash:7]'
-    }
-  }
-]
+  plugins: [
+    new webpack.DefinePlugin(config.globals),
+    // generate dist index.html with correct asset hash for caching.
+    // you can customize output by editing /index.html
+    // see https://github.com/ampedandwired/html-webpack-plugin
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      template: paths.src('index.ejs'),
+      title: `${config.pkg.name} - ${config.pkg.description}`,
+      // favicon: paths.src('static/favicon.png'),
+      hash: false,
+      inject: true,
+      minify: {
+        collapseWhitespace: config.compiler_html_minify,
+        minifyJS: config.compiler_html_minify
+      }
+    }),
+    new CopyWebpackPlugin([{
+      from: paths.src('static')
+    }], {
+      // ignore: ['*.ico', '*.md']
+    })
+  ]
+}
 
 // ------------------------------------
 // Plugins
 // ------------------------------------
-webpackConfig.plugins = [
-  new webpack.DefinePlugin(config.globals),
-  // generate dist index.html with correct asset hash for caching.
-  // you can customize output by editing /index.html
-  // see https://github.com/ampedandwired/html-webpack-plugin
-  new HtmlWebpackPlugin({
-    filename: 'index.html',
-    template: paths.src('index.ejs'),
-    title: `${config.pkg.name} - ${config.pkg.description}`,
-    // favicon: paths.src('static/favicon.png'),
-    hash: false,
-    inject: true,
-    minify: {
-      collapseWhitespace: config.compiler_html_minify,
-      minifyJS: config.compiler_html_minify
-    }
-  }),
-  new CopyWebpackPlugin([{
-    from: paths.src('static')
-  }], {
-    // ignore: ['*.ico', '*.md']
-  })
-]
 
 const vueLoaderOptions = {
   postcss: pack => {

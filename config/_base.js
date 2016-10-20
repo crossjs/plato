@@ -17,8 +17,13 @@ const config = {
   path_base: resolve(__dirname, '../'),
   dir_src: 'src',
   dir_dist: 'dist',
-  dir_server: 'server',
   dir_test: 'test',
+
+  // ----------------------------------
+  // Server Configuration
+  // ----------------------------------
+  server_host: '',
+  server_port: process.env.PORT || 3000,
 
   // ----------------------------------
   // Compiler Configuration
@@ -29,32 +34,12 @@ const config = {
   compiler_hash_type: 'hash',
   compiler_quiet: false,
   compiler_public_path: '',
-  compiler_stats: {
-    colors: true,
-    hash: false,
-    version: false,
-    timings: false,
-    assets: false,
-    chunks: false,
-    modules: false,
-    reasons: true,
-    children: false,
-    source: false,
-    errors: true,
-    errorDetails: true,
-    warnings: true,
-    publicPath: false
-  },
   compiler_vendor: [
-    'lodash.isplainobject',
-    'query-string',
-    'string-template',
     'vue',
     'vue-router',
     'vuex',
     'vuex-actions',
-    'vuex-localstorage',
-    'whatwg-fetch'
+    'vuex-localstorage'
   ]
 }
 
@@ -62,9 +47,9 @@ const config = {
 // Environment
 // ------------------------------------
 config.globals = {
-  '__DEV__': config.env === 'development',
-  '__PROD__': config.env === 'production',
-  '__TEST__': config.env === 'test'
+  __DEV__: config.env === 'development',
+  __PROD__: config.env === 'production',
+  __TEST__: config.env === 'test'
 }
 
 // ------------------------------------
@@ -94,7 +79,6 @@ config.paths = (() => {
     base,
     src: base.bind(null, config.dir_src),
     dist: base.bind(null, config.dir_dist),
-    server: base.bind(null, config.dir_server),
     test: base.bind(null, config.dir_test)
   }
 })()

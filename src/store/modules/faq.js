@@ -1,7 +1,8 @@
+import Promise from 'nuo'
 import createPersist from 'vuex-localstorage'
 import { createAction, handleAction, $inject } from 'vuex-actions'
-import CloudStorage from 'leancloud-storage'
 import Normalizer from 'utils/normalizer'
+import request from 'utils/request'
 
 import {
   ONE_SECOND
@@ -11,20 +12,46 @@ import {
  * just for test
  */
 
-const appId = 'GQHNdUFpLzaMhfeuXLsV7seW-gzGzoHsz'
-const appKey = 'y3tGzcqWr2P5674KmXdb8cVH'
-const region = 'cn'
-
-CloudStorage.init({ appId, appKey, region })
-
 const FAQ_KEY = 'FAQ_KEY'
 const GET_ITEMS = 'GET_ITEMS'
 const ADD_ITEM = 'ADD_ITEM'
 const DELETE_ITEM = 'DELETE_ITEM'
 
+function fakeId () {
+  return new Date().getTime().toString(32).concat(Math.random().toString(32))
+}
+
+const faq = {
+  cache: [],
+  find () {
+    if (this.cache.length) {
+      return this.cache
+    }
+    return request('./db/faq.json').then(data => {
+      this.cache = data
+      return data
+    })
+  },
+  save (data) {
+    data.id = fakeId()
+    this.cache.push(data)
+    return new Promise((resolve, reject) => {
+      setTimeout(resolve, 1000, data)
+    })
+  },
+  remove (_id) {
+    this.cache.forEach(({ id }, index) => {
+      if (id === _id) {
+        this.cache.splice(index, 1)
+      }
+    })
+    return Promise.resolve({})
+  }
+}
+
 const normalizer = new Normalizer({
-  value (item) {
-    return item.toJSON()
+  key ({ id }) {
+    return id || fakeId()
   }
 })
 
@@ -42,20 +69,12 @@ const getters = {
   faq_is_fetching: state => state.faq_is_fetching
 }
 
-const DB_CLASS = 'Faq'
-const Faq = CloudStorage.Object.extend(DB_CLASS)
-const faq = new Faq()
-
 const actions = {
-  getItems: createAction(GET_ITEMS, () =>
-    new CloudStorage.Query(Faq).find()),
-
-  addItem: createAction(ADD_ITEM, payload =>
-    faq.set(payload).save()),
-
+  getItems: createAction(GET_ITEMS, () => faq.find()),
+  addItem: createAction(ADD_ITEM, payload => faq.save(payload)),
   deleteItem: createAction(DELETE_ITEM, payload => ({
     // destroy, removing data from remote
-    _: CloudStorage.Object.createWithoutData(DB_CLASS, payload).destroy(),
+    _: faq.remove(payload),
     // then return id (payload) for removing data from store
     id: $inject(() => payload)('_')
   }))
