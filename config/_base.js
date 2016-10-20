@@ -46,9 +46,7 @@ const config = {
     publicPath: false
   },
   compiler_vendor: [
-    'core-js',
     'lodash.isplainobject',
-    'nuo',
     'query-string',
     'string-template',
     'vue',

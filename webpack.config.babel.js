@@ -210,6 +210,13 @@ if (__PROD__) {
   debug('Enable plugins for production (Dedupe & UglifyJS).')
   webpackConfig.plugins.push(
     new webpack.optimize.DedupePlugin(),
+    new webpack.LoaderOptionsPlugin({
+      minimize: true,
+      options: {
+        context: __dirname
+      },
+      vue: vueLoaderOptions
+    }),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         unused: true,
@@ -217,13 +224,6 @@ if (__PROD__) {
         warnings: false
       },
       sourceMap: true
-    }),
-    new webpack.LoaderOptionsPlugin({
-      minimize: true,
-      options: {
-        context: __dirname
-      },
-      vue: vueLoaderOptions
     }),
     // extract css into its own file
     new ExtractTextPlugin('[name].[contenthash].css')

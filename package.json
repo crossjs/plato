@@ -22,7 +22,6 @@
     "push": "bash ./cli/push.sh"
   },
   "dependencies": {
-    "core-js": "^2.4.1",
     "leancloud-storage": "^1.5.0",
     "lodash.isplainobject": "^4.0.6",
     "nuo": "^0.1.0",
@@ -46,6 +45,7 @@
     "chai": "^3.5.0",
     "chromedriver": "^2.24.1",
     "copy-webpack-plugin": "^3.0.1",
+    "core-js": "^2.4.1",
     "cross-env": "^3.1.2",
     "cross-spawn": "^4.0.2",
     "css-loader": "^0.25.0",

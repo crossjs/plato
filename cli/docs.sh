@@ -5,7 +5,7 @@ read MESSAGE
 echo "Deploying $MESSAGE ..."
 
 # build
-npm run build
+# npm run build
 
 # commit
 cd dist
