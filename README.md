@@ -40,11 +40,11 @@ npm run push
 
 ## Appendix
 
-- [Troubleshooting](TROUBLESHOOTING.md)
-- [Changelog](CHANGELOG.md)
-- [Style Guide](STYLEGUIDE.md)
-- [Developing Guide](DEVELOPING.md)
-- [Contributing Guide](CONTRIBUTING.md)
+- [Troubleshooting](doc/TROUBLESHOOTING.md)
+- [Changelog](doc/CHANGELOG.md)
+- [Style Guide](doc/STYLEGUIDE.md)
+- [Developing Guide](doc/DEVELOPING.md)
+- [Contributing Guide](doc/CONTRIBUTING.md)
 
 ## License
 
