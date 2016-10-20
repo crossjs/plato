@@ -45,21 +45,13 @@ const webpackConfig = {
   devServer: {
     host: config.server_host,
     port: config.server_port,
-    // contentBase: ,
-    // publicPath: ,
-    // outputPath: ,
     // proxy is useful for debugging
     // proxy: {
     //   '/api': 'http://127.0.0.1:4040'
     // },
-    inline: true,
-    hot: true,
     compress: true,
-    progress: true,
-    stats: {
-      colors: true
-    },
-    noInfo: false
+    hot: true,
+    noInfo: true
   },
   entry: {
     app: [
@@ -146,7 +138,6 @@ const webpackConfig = {
       filename: 'index.html',
       template: paths.src('index.ejs'),
       title: `${config.pkg.name} - ${config.pkg.description}`,
-      // favicon: paths.src('static/favicon.png'),
       hash: false,
       inject: true,
       minify: {
