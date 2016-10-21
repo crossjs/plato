@@ -1,26 +1,31 @@
 <template>
   <div class="c-scroller"
     :style="{'height': height + 'px'}">
-    <div class="c-scroller-container" :class="{'transition' : transition}"
-      :style="{transform: 'translate3d(0, ' + offset + 'px, 0)'}">
-      <div class="c-scroller-indicator c-scroller-indicator-down"
-        ref="indicator">
-        <template v-if="pulling === 2"><slot name="down-go"><i>↑</i></slot></template>
-        <template v-if="pulling === 1"><slot name="down-ready"><i>↓</i></slot></template>
-        <c-spinner v-if="loading && pulling === 3"></c-spinner>
-      </div>
+    <div class="c-scroller-container"
+      :style="{height: maxHeight + 'px'}">
       <div class="c-scroller-content"
-        ref="content"><slot></slot></div>
-      <div class="c-scroller-indicator c-scroller-indicator-up">
-        <c-spinner v-if="loading && pulling === -3"></c-spinner>
-        <template v-if="!infinite && pulling === -1"><slot name="up-ready"><i>↑</i></slot></template>
-        <template v-if="!infinite && pulling === -2"><slot name="up-go"><i>↓</i></slot></template>
+        :class="{'transition' : transition}"
+        :style="{transform: 'translateY(' + offset + 'px)'}"
+        ref="content">
+        <div class="c-scroller-indicator c-scroller-indicator-down"
+          ref="indicator">
+          <slot v-if="pullState === 2" name="down-go"><c-icon class="down-go">arrow-small-up</c-icon></slot>
+          <slot v-if="pullState === 1" name="down-ready"><c-icon class="down-ready">arrow-small-down</c-icon></slot>
+          <slot v-if="loading && pullState === 3" name="down-spinner"><c-spinner></c-spinner></slot>
+        </div>
+        <slot></slot>
+        <div class="c-scroller-indicator c-scroller-indicator-up">
+          <slot v-if="loading && pullState === -3" name="up-spinner"><c-spinner></c-spinner></slot>
+          <slot v-if="!infinite && pullState === -1" name="up-ready"><c-icon class="up-ready">arrow-small-down</c-icon></slot>
+          <slot v-if="!infinite && pullState === -2" name="up-go"><c-icon class="up-go">arrow-small-up</c-icon></slot>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import CIcon from './c-icon'
 import CSpinner from './c-spinner'
 
 export default {
@@ -28,6 +33,10 @@ export default {
     height: {
       type: Number,
       default: 0
+    },
+    bounce: {
+      type: Number,
+      default: 1.25
     },
     loading: {
       type: Boolean,
@@ -54,14 +63,13 @@ export default {
   data () {
     return {
       offset: 0,
-      minOffset: 0,
-      maxOffset: 0,
       // 临界阈值
       threshold: 0,
       // 推拉状态
-      pulling: 0,
-      // 是否溢出
-      overflow: false
+      pullState: 0,
+      // 溢出距离
+      maxScroll: 0,
+      maxHeight: 0
     }
   },
 
@@ -84,7 +92,7 @@ export default {
     this.$el.addEventListener('touchstart', this.dragstart)
     this.$el.addEventListener('touchmove', this.drag)
     this.$el.addEventListener('touchend', this.dragend)
-    this.threshold = this.$refs.indicator.clientHeight * 2
+    this.threshold = this.$refs.indicator.clientHeight * this.bounce
     this.fill()
   },
 
@@ -93,88 +101,90 @@ export default {
     reset () {
       this.$nextTick(() => {
         // 复位
-        this.offset = this.overflow
-          ? Math.max(this.minOffset, Math.min(this.offset, this.maxOffset))
-          : this.maxOffset
+        this.offset = 0
       })
     },
     // fill content automatically
     fill () {
       this.$nextTick(() => {
         this.update()
-        if (!this.drained && this.autoFill && this.minOffset > 0) {
+        if (!this.drained && this.autoFill && !this.maxScroll) {
           this.pullup()
         }
       })
     },
-    // update min offset and overflow state
+    // update min offset and maxScroll state
     update () {
-      this.minOffset = this.$el.clientHeight - this.$refs.content.clientHeight
-      this.overflow = this.maxOffset > this.minOffset
+      this.maxHeight = this.$refs.content.clientHeight
+      this.maxScroll = Math.max(0, this.maxHeight - this.height)
     },
     dragstart (e) {
       if (!this.dragging && e.touches && e.touches.length === 1) {
         this.dragging = true
         // reset pull state
-        this.pulling = 0
-        this.timestamp = new Date().getTime()
-        this.update()
+        this.pullState = 0
         this.startY = e.touches[0].pageY - this.offset
       }
     },
     drag (e) {
-      if (this.dragging && !(this.infinite && this.pulling === -3)) {
-        e.preventDefault()
-        e.stopPropagation()
-        // _distance 大于零表示 pulldown
-        const _distance = e.touches[0].pageY - this.startY
-        const distance = Math.min(this.maxOffset + this.threshold, _distance)
-        this.offset = this.overflow
-          ? Math.max(this.minOffset - (this.drained ? 0 : this.threshold), distance)
-          : _distance > 0
-            ? distance
-            : this.maxOffset
-        if (this.pulling < 3 && this.pulling > -3) {
-          if (this.offset > this.maxOffset) {
-            this.pulling = this.offset - this.maxOffset > this.threshold / 2 ? 2 : 1
-          } else if (this.offset < this.minOffset) {
-            if (!this.drained) {
-              if (this.overflow) {
-                this.pulling = this.minOffset - this.offset > this.threshold / 2 ? -2 : -1
-              }
-              if (this.infinite && this.pulling === -1) {
-                this.pullup()
-              }
+      if (!this.dragging) {
+        return
+      }
+      if (this.infinite && this.pullState === -3) {
+        return
+      }
+      const _distance = e.touches[0].pageY - this.startY
+      const isDown = _distance > 0 && this.$el.scrollTop === 0
+      const isUp = _distance < 0 && this.$el.scrollTop >= this.maxScroll
+      if (!isDown && !isUp) {
+        return
+      }
+      e.preventDefault()
+      e.stopPropagation()
+      const distance = Math.min(this.threshold, _distance)
+      this.offset = this.maxScroll
+        ? Math.max(this.drained ? 0 : -this.threshold, distance)
+        : isDown ? distance : 0
+      if (this.pullState < 3 && this.pullState > -3) {
+        if (this.offset > 0) {
+          // pulldown
+          this.pullState = this.offset > this.threshold / this.bounce ? 2 : 1
+        } else if (this.offset < 0) {
+          // pullup
+          if (!this.drained) {
+            if (this.maxScroll) {
+              this.pullState = -this.offset > this.threshold / this.bounce ? -2 : -1
+            }
+            if (this.infinite && this.pullState === -1) {
+              this.pullup()
             }
           }
         }
       }
     },
     dragend (e) {
-      if (this.dragging) {
-        this.dragging = false
-        if (this.infinite) {
-          if (this.pulling < 0) {
-            return
-          }
-        }
-        // 开始到结束，至少要间隔 300 毫秒
-        if (new Date().getTime() - this.timestamp >= 300) {
-          if (this.pulling === -2) {
-            this.pullup()
-            return
-          }
-          if (this.pulling === 2) {
-            this.pulldown()
-            return
-          }
-        }
-        this.reset()
+      if (!this.dragging) {
+        return
       }
+      this.dragging = false
+      if (this.infinite) {
+        if (this.pullState < 0) {
+          return
+        }
+      }
+      if (this.pullState === -2) {
+        this.pullup()
+        return
+      }
+      if (this.pullState === 2) {
+        this.pulldown()
+        return
+      }
+      this.reset()
     },
     pulldown () {
-      this.pulling = 3
-      this.offset = this.maxOffset + this.threshold / 2
+      this.pullState = 3
+      this.offset = this.threshold / this.bounce
       this.$emit('pulldown')
       this.$nextTick(() => {
         // 如果外部未处理 pulldown，则重置
@@ -184,10 +194,8 @@ export default {
       })
     },
     pullup () {
-      this.pulling = -3
-      this.offset = this.overflow
-        ? this.minOffset - this.threshold / 2
-        : this.maxOffset
+      this.pullState = -3
+      this.offset = this.maxScroll ? -this.threshold / this.bounce : 0
       this.$emit('pullup')
       this.$nextTick(() => {
         // 如果外部未处理 pullup，则重置
@@ -199,6 +207,7 @@ export default {
   },
 
   components: {
+    CIcon,
     CSpinner
   }
 }

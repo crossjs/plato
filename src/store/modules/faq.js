@@ -24,12 +24,11 @@ function fakeId () {
 const faq = {
   cache: [],
   find () {
-    if (this.cache.length) {
-      return this.cache
-    }
     return request('./db/faq.json').then(data => {
       this.cache = data
-      return data
+      return new Promise((resolve, reject) => {
+        setTimeout(resolve, 1000, data)
+      })
     })
   },
   save (data) {

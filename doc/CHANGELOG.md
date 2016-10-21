@@ -1,5 +1,7 @@
 # Changelog
 
+- 20161022 :clap: *Major Changes*
+  - rewrite **scroller** component, with a better performance
 - 20161020 :warning: :clap: *Massive Changes*
   - use **webpack 2**
   - use `webpack-dev-server` instead awesome `koajs`

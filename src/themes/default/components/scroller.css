@@ -1,27 +1,36 @@
 .c-scroller {
-  overflow: hidden;
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
 }
 
 .c-scroller-container {
+  overflow: hidden;
+  position: relative;
+}
+
+.c-scroller-content {
   &.transition {
     transition: transform 0.2s linear;
   }
 }
 
-.c-scroller-content {
-  overflow: hidden;
-}
-
 .c-scroller-indicator {
-  text-align: center;
+  position: absolute;
+  width: 100%;
+  height: dpr(80px);
   padding: dpr(16px);
-  height: dpr(48px);
+  box-sizing: border-box;
+  text-align: center;
 
   &-down {
-    margin-top: -dpr(80px);
+    top: -dpr(80px);
   }
 
   &-up {
-    margin-bottom: -dpr(80px);
+    bottom: -dpr(80px);
+  }
+
+  & .c-icon {
+    font-size: dpr(48px);
   }
 }
