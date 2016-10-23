@@ -1,6 +1,9 @@
 <template>
   <div class="c-scroller"
-    :style="{'height': height + 'px'}">
+    :style="{'height': height + 'px'}"
+    @touchstart="dragstart"
+    @touchmove="drag"
+    @touchend="dragend">
     <div class="c-scroller-container"
       :style="{height: maxHeight + 'px'}">
       <div class="c-scroller-content"
@@ -89,9 +92,6 @@ export default {
   },
 
   mounted () {
-    this.$el.addEventListener('touchstart', this.dragstart)
-    this.$el.addEventListener('touchmove', this.drag)
-    this.$el.addEventListener('touchend', this.dragend)
     this.threshold = this.$refs.indicator.clientHeight * this.bounce
     this.fill()
   },

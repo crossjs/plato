@@ -1,5 +1,8 @@
 <template>
-  <div class="c-slider">
+  <div class="c-slider"
+    @touchstart="dragstart"
+    @touchmove="drag"
+    @touchend="dragend">
     <div class="c-slider-content" :class="{'transition': transition && !dragging & !inPosition}"
       :style="{transform: 'translateX(' + (offset - currIndex * maxOffset) + 'px)'}"
       ref="content">
@@ -52,9 +55,6 @@ export default {
   },
 
   mounted () {
-    this.$el.addEventListener('touchstart', this.dragstart)
-    this.$el.addEventListener('touchmove', this.drag)
-    this.$el.addEventListener('touchend', this.dragend)
     this.currIndex = this.index
     this.reset()
     this.arrange()

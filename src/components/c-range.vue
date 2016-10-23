@@ -1,7 +1,10 @@
 <template>
-  <div class="c-range">
+  <div class="c-range"
+    @touchstart="dragstart"
+    @touchmove="drag"
+    @touchend="dragend">
     <div class="c-range-content"
-      :style="{'padding-left': percentage * 100 + '%'}"></div>
+      :style="{'width': '' + (offset / maxOffset * 100) + '%'}"></div>
   </div>
 </template>
 
@@ -16,6 +19,9 @@ export default {
       type: Number,
       default: 100
     },
+    value: {
+      type: Number
+    },
     step: {
       type: Number,
       default: 1
@@ -23,46 +29,32 @@ export default {
     disabled: {
       type: Boolean,
       default: false
-    },
-    value: {
-      type: Number
     }
   },
 
   data () {
     return {
       offset: 0,
-      minOffset: 0,
+      range: 0,
       maxOffset: 0,
-      percentage: 0
-    }
-  },
-
-  computed: {
-    percentage () {
-      const stepOffset = this.maxOffset / Math.ceil((this.max - this.min) / this.step)
-      return Math.round(this.offset / stepOffset) * stepOffset / this.maxOffset
+      stepOffset: 0
     }
   },
 
   watch: {
     value (val) {
       if (!this.dragging) {
-        this.offset = (this.value - this.min) / (this.max - this.min) * this.maxOffset
+        this.offset = (this.value - this.min) / this.range * this.maxOffset
       }
-    },
-    percentage (val) {
-      this.$emit('change', parseInt(this.min + (this.max - this.min) * val, 10))
     }
   },
 
   mounted () {
-    this.$el.addEventListener('touchstart', this.dragstart)
-    this.$el.addEventListener('touchmove', this.drag)
-    this.$el.addEventListener('touchend', this.dragend)
     this.maxOffset = this.$el.clientWidth
+    this.range = this.max - this.min
+    this.stepOffset = this.maxOffset / Math.ceil(this.range / this.step)
     const value = typeof this.value === 'number' ? this.value : this.min
-    this.offset = (value - this.min) / (this.max - this.min) * this.maxOffset
+    this.offset = (value - this.min) / this.range * this.maxOffset
   },
 
   methods: {
@@ -76,7 +68,9 @@ export default {
       if (this.dragging) {
         e.preventDefault()
         e.stopPropagation()
-        this.offset = Math.min(this.maxOffset, Math.max(this.minOffset, e.touches[0].pageX - this.startY))
+        const offset = Math.min(this.maxOffset, Math.max(0, e.touches[0].pageX - this.startY))
+        this.offset = Math.round(offset / this.stepOffset) * this.stepOffset
+        this.$emit('change', parseInt(this.min + this.range * (this.offset / this.maxOffset), 10))
       }
     },
     dragend (e) {

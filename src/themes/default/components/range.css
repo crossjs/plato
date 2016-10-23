@@ -1,27 +1,26 @@
 .c-range {
   position: relative;
   padding: dpr(30px);
+
+  &::before {
+    content: ' ';
+    display: block;
+    height: dpr(4px);
+    background-color: var(--placeholder);
+  }
 }
 
 .c-range-content {
   position: relative;
+  transform: translateY(-dpr(4px));
   height: dpr(4px);
-  background-color: var(--placeholder);
-
-  &::before {
-    padding-left: inherit;
-    min-height: dpr(4px);
-    content: ' ';
-    position: absolute;
-    left: 0;
-    background-color: var(--primary);
-  }
+  background-color: var(--primary);
 
   &::after {
     content: ' ';
     position: absolute;
-    margin-top: -dpr(30px);
-    margin-left: -dpr(30px);
+    top: -dpr(30px);
+    right: -dpr(30px);
     width: dpr(60px);
     height: dpr(60px);
     border-radius: 50%;

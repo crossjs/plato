@@ -8,13 +8,11 @@ describe('range.vue', () => {
   beforeEach(() => {
     el = document.createElement('div')
     document.body.appendChild(el)
-    // sinon.stub(console, 'error')
   })
 
   afterEach(() => {
     // document.body.removeChild(el)
     vm.$destroy()
-    // console.error.restore()
   })
 
   it('should render correct contents', done => {
@@ -27,7 +25,7 @@ describe('range.vue', () => {
     })
 
     vm.$nextTick(() => {
-      expect(vm.$el.querySelector('.c-range-content').style.paddingLeft).to.equal('0%')
+      expect(vm.$el.querySelector('.c-range-content').style.width).to.equal('0%')
       done()
     })
   })
@@ -46,8 +44,8 @@ describe('range.vue', () => {
     })
 
     vm.$nextTick(() => {
-      expect(vm.$el.querySelector('.c-range-content').clientWidth).to.equal(window.innerWidth)
-      expect(vm.$el.querySelector('.c-range-content').style.paddingLeft).to.equal('50%')
+      expect(vm.$el.querySelector('.c-range-content').clientWidth).to.equal(window.innerWidth / 2)
+      expect(vm.$el.querySelector('.c-range-content').style.width).to.equal('50%')
       done()
     })
   })
@@ -102,7 +100,6 @@ describe('range.vue', () => {
       methods: {
         change (value) {
           expect(value).to.equal(60)
-          this.value = value
           done()
         }
       },
@@ -110,20 +107,6 @@ describe('range.vue', () => {
         CRange
       }
     })
-
-    triggerTouchEvents(vm.$el, 'touchstart', e => {
-      e.touches = [{
-        pageX: 0,
-        pageY: 0
-      }]
-    })
-    triggerTouchEvents(vm.$el, 'touchmove', e => {
-      e.touches = [{
-        pageX: window.innerWidth / 100,
-        pageY: 0
-      }]
-    })
-    triggerTouchEvents(vm.$el, 'touchend')
 
     triggerTouchEvents(vm.$el, 'touchstart', e => {
       e.touches = [{

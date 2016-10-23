@@ -1,7 +1,10 @@
 <!-- Inspired by https://facebook.github.io/react-native/docs/picker.html -->
 <template>
   <div class="c-picker"
-    :style="{'height': itemHeight * size + 'px'}">
+    :style="{'height': itemHeight * size + 'px'}"
+    @touchstart="dragstart"
+    @touchmove="drag"
+    @touchend="dragend">
     <div class="c-picker-cover"
       :style="{'background-size': '100% ' + (size - 1) / 2 * itemHeight + 'px'}">
       <div class="c-picker-highlight"
@@ -66,9 +69,6 @@ export default {
   },
 
   mounted () {
-    this.$el.addEventListener('touchstart', this.dragstart)
-    this.$el.addEventListener('touchmove', this.drag)
-    this.$el.addEventListener('touchend', this.dragend)
     const { children } = this.$refs.content
     this.itemLength = children.length
     if (this.itemLength) {
