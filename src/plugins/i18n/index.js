@@ -7,10 +7,6 @@ export default function plugin (Vue, globalOptions = {}) {
     return
   }
 
-  if (Vue.config.debug) {
-    console.log('[I18n] Vue I18n Plugin Installed.')
-  }
-
   Vue.mixin({
     beforeCreate () {
       const { i18n } = this.$options

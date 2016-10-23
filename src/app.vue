@@ -24,7 +24,9 @@
     </header>
     <section id="content">
       <transition name="fade" mode="out-in" appear>
-        <router-view keep-alive></router-view>
+        <keep-alive>
+          <router-view></router-view>
+        </keep-alive>
       </transition>
     </section>
   </div>
@@ -39,14 +41,14 @@ import CIcon from 'components/c-icon'
 import CNavbar from 'components/c-navbar'
 import CRoute from 'components/c-route'
 import { mapGetters, mapActions } from 'vuex'
-import routes from 'routes'
+import routes from 'router/routes'
 
 export default {
   computed: {
     ...mapGetters(['authorized', 'lang', 'i18n', 'progress', 'toast']),
     routes () {
       return walkRoutes.call(this, routes, route => {
-        return !route.hidden && route.path !== '/' && route.auth !== !this.authorized
+        return !route.meta || route.meta.auth !== !this.authorized
       })
     }
   },
@@ -90,17 +92,14 @@ function walkRoutes (routes, filter) {
     return []
   }
   return routes
-  .filter(route => !route.hidden)
+  .filter(route => route.path !== '/' && (!route.meta || !route.meta.hidden))
   .filter(route => filter(route))
   .map(route => {
     return {
       path: route.path,
       name: route.name,
       exact: route.exact,
-      icon: route.icon,
-      title: route.title
-      // comment out for children
-      // ,children: walkRoutes.call(this, route.children, filter)
+      meta: route.meta
     }
   })
 }

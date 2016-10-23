@@ -4,7 +4,7 @@
       <router-link class="c-route-link"
         :to="father + route.path"
         :exact="route.exact">
-        <c-icon v-if="route.icon">{{route.icon}}</c-icon>
+        <c-icon v-if="route.meta && route.meta.icon">{{route.meta.icon}}</c-icon>
         {{__(route.title)}}
       </router-link>
       <c-route v-if="route.children"

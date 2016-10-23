@@ -8,10 +8,6 @@ export default function plugin (Vue) {
     return
   }
 
-  if (Vue.config.debug) {
-    console.log('[Validator] Vue Validator Plugin Installed.')
-  }
-
   Vue.mixin({
     beforeCreate () {
       const options = this.$options
@@ -71,9 +67,7 @@ export default function plugin (Vue) {
                 })
               })
           } else {
-            if (Vue.config.debug) {
-              console.warn(`'${key}' is NOT a valid validator`)
-            }
+            console.warn(`'${key}' is NOT a valid validator`)
             resolve()
           }
         })
