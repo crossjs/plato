@@ -9,7 +9,7 @@
   <a href="https://david-dm.org/crossjs/plato?type=dev"><img src="https://david-dm.org/crossjs/plato/dev-status.svg?style=flat-square" alt="devDependency Status"></a>
 </p>
 <p align="center">
-  a Boilerplate for SPAs use vue, vuex, vue-router<br>
+  a Boilerplate for mobile SPAs use vue, vuex, vue-router<br>
   Check out <a href="http://plato.crossjs.com/#/demos"><b>Demos</b></a> and <a href="src/components/README.md"><b>Readme</b></a> for UI Components
 </p>
 

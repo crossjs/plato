@@ -16,6 +16,12 @@ export default {
     // override
     value: {
       default: false
+    },
+    extra: {
+      type: Object,
+      default () {
+        return {}
+      }
     }
   },
 

@@ -3,8 +3,7 @@
     <c-modal
       :show="show_modal"
       @cancel="callback('cancel')"
-      @submit="callback('submit')"
-      @close="show_modal = false">{{ __('views.home.confirm') }}</c-modal>
+      @submit="callback('submit')">{{ __('views.home.confirm') }}</c-modal>
     <c-scroller
       :transition="transition"
       :height="height"

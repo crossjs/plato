@@ -7,12 +7,6 @@ export default {
       type: String,
       default: ''
     },
-    extra: {
-      type: Object,
-      default () {
-        return {}
-      }
-    },
     validate: {
       type: Object,
       default: null

@@ -28,6 +28,20 @@
  *       '2': 'b'
  *     }
  *   }
+ *
+ *   // normalize:
+ *   normalizer.normalize({
+ *     uuid: 1,
+ *     value: 'a'
+ *   })
+ *
+ *   // output:
+ *   {
+ *     result: [1],
+ *     entities: {
+ *       '1': 'a'
+ *     }
+ *   }
  */
 
 export default class Normalizer {

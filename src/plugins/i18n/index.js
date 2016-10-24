@@ -1,6 +1,6 @@
 // sync from: https://github.com/crossjs/plato-i18n
 
-import format from 'string-template'
+import template from 'string-template'
 
 export default function plugin (Vue, globalOptions = {}) {
   if (plugin.installed) {
@@ -51,7 +51,7 @@ export default function plugin (Vue, globalOptions = {}) {
       return keys
     }
     // `.` 作为分隔符
-    return format(keys.split('.').reduce((res, key) => {
+    return template(keys.split('.').reduce((res, key) => {
       if (res && typeof res === 'object' && res.hasOwnProperty(key)) {
         return res[key]
       }

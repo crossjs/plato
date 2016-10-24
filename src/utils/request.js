@@ -3,6 +3,7 @@
 import 'whatwg-fetch'
 import Promise from 'nuo'
 import qs from 'query-string'
+import template from 'string-template'
 import isPlainObj from 'lodash.isplainobject'
 
 const defaultOptions = {
@@ -10,7 +11,9 @@ const defaultOptions = {
     'Accept': 'application/json',
     'Content-Type': 'application/json'
   },
-  method: 'GET'
+  method: 'GET',
+  // 强制返回的结果按 JSON 处理，用于 File 协议的请求
+  forceJSON: false
 }
 
 /**
@@ -55,9 +58,9 @@ export default function request (...args) {
     .then(({ url, ...options }) => fetch(url, options))
     .then(res => {
       if (res && (isHttpOk(res) || isFileOk(res))) {
-        getBody(res).then(resolve, reject)
+        getBody(res, args[0].forceJSON).then(resolve, reject)
       } else {
-        getBody(res).then(reject)
+        getBody(res, args[0].forceJSON).then(reject)
       }
     })
     .catch(reject)
@@ -88,9 +91,9 @@ function isFileOk (res) {
   return res.status === 0 && (res.url.indexOf('file://') === 0 || res.url === '')
 }
 
-function getBody (res) {
+function getBody (res, forceJSON) {
   const type = res.headers.get('Content-Type')
-  return (type && type.indexOf('json') !== -1) ? res.json() : res.text()
+  return (forceJSON || (type && type.indexOf('json') !== -1)) ? res.json() : res.text()
 }
 
 function parseOptions ({ url = '', query, params, body, mutate, ...options }) {
@@ -120,7 +123,7 @@ function parseOptions ({ url = '', query, params, body, mutate, ...options }) {
 
   // 替换地址中的宏变量：{xyz}
   if (params) {
-    url = replaceUrlWithParams(url, params)
+    url = template(url, params)
   }
 
   options.url = url
@@ -128,27 +131,6 @@ function parseOptions ({ url = '', query, params, body, mutate, ...options }) {
   // mutate must be a function and could return a promise
   // useful for add authorization
   return mutate ? mutate(options) : options
-}
-
-function replaceUrlWithParams (url, params) {
-  // from: https://github.com/Matt-Esch/string-template
-  return url.replace(/\{(\w+)\}/g, function (match, key, index) {
-    let result
-
-    // {{x}} -> {x}
-    if (url.charAt(index - 1) === '{' &&
-      url.charAt(index + match.length) === '}') {
-      return key
-    } else {
-      // {x} -> *
-      result = params.hasOwnProperty(key) ? params[key] : null
-      if (result === null || result === undefined) {
-        return ''
-      }
-
-      return result
-    }
-  })
 }
 
 function promisify (val) {
