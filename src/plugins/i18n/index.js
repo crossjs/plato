@@ -52,7 +52,7 @@ export default function plugin (Vue, globalOptions = {}) {
     }
     // `.` 作为分隔符
     return format(keys.split('.').reduce((res, key) => {
-      if (res && res.hasOwnProperty && res.hasOwnProperty(key)) {
+      if (res && typeof res === 'object' && res.hasOwnProperty(key)) {
         return res[key]
       }
       return keys

@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "lodash.isplainobject": "^4.0.6",
-    "nuo": "^0.1.0",
+    "nuo": "^0.1.1",
     "query-string": "^4.2.3",
     "string-template": "^1.0.0",
     "vue": "^2.0.3",
