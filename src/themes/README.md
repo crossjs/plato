@@ -1,13 +1,7 @@
-z-index
-  - header > 10
-  - mask > 100
-  - modal > 1000
-  - toasts > 10000
-  - progress > 100000
-colors:
-  - primary: #39b983
-  - secondary: #34495E
-  - success: #3ABA58
-  - error: #BA3A3A
-  - warning: #BA783A
-  - background: #FBF9FE
+# 样式
+
+## 自定义样式
+
+1. 复制 `default` 目录为 `<新的主题名字>`
+2. 修改 `config/_base.js` 中的 `theme` 字段的值为 `<新的主题名字>`
+3. 在 `<新的主题名字>` 目录下开始你的征程

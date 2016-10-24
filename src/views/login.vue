@@ -1,119 +1,123 @@
 <template>
   <div class="v-login">
-    <c-pane>
-      <c-validation
-        :validation="$validation"></c-validation>
-      <c-form
-        :submit="login"
-        :cells="cells"
-        :items="items"
-        @mutate="mutate">
-        <c-pane dir="vertical" slot="footer">
-          <c-button :class="action.class"
-            :type="action.type"
-            :disabled="action.disabled">{{action.label}}</c-button>
+    <c-form @submit.native.prevent="login">
+      <c-row>
+        <c-col :size="1">
+          <c-label class="col col-1">{{__(username.label)}}</c-label>
+        </c-col>
+        <c-col :size="3">
+          <c-textfield
+            :field="username.field"
+            :validate="username.validate"
+            :value="username.value"
+            @change="username.value = arguments[0]"></c-textfield>
+        </c-col>
+      </c-row>
+      <c-row>
+        <c-col :size="1">
+          <c-label class="col col-1">{{__(password.label)}}</c-label>
+        </c-col>
+        <c-col :size="3">
+          <c-password
+            :field="password.field"
+            :validate="password.validate"
+            :value="password.value"
+            @change="password.value = arguments[0]"></c-password>
+        </c-col>
+      </c-row>
+      <template v-if="$validation.errors.length">
+        <c-pane class="center">
+          <c-badge class="warning" size="small">
+            {{$validation.errors.filter(function (error) { return error.field === 'username' }).map(function (error) { return error.message }).join(' ')}}
+          </c-badge>
+          <c-badge class="warning" size="small">
+            {{$validation.errors.filter(function (error) { return error.field === 'password' }).map(function (error) { return error.message }).join(' ')}}
+          </c-badge>
         </c-pane>
-      </c-form>
-    </c-pane>
+      </template>
+      <c-pane>
+        <c-button class="primary" type="submit"
+          :disabled="$validation.errors.length > 0">{{ __('views.login.submit') }}</c-button>
+      </c-pane>
+    </c-form>
   </div>
 </template>
 
 <script>
-import CValidation from 'plato-components/c-validation'
-import CPane from 'plato-components/c-pane'
-import CForm from 'plato-components/c-form'
-import CButton from 'plato-components/c-button'
+import CBadge from 'components/c-badge'
+import CPane from 'components/c-pane'
+import CForm from 'components/c-form'
+import CRow from 'components/c-row'
+import CCol from 'components/c-col'
+import CLabel from 'components/c-label'
+import CTextfield from 'components/c-textfield'
+import CPassword from 'components/c-password'
+import CButton from 'components/c-button'
 import { mapGetters, mapActions } from 'vuex'
+
 export default {
   data () {
     return {
-      items: {
-        username: this.$route.query.username,
-        password: ''
+      username: {
+        field: 'username',
+        label: 'views.login.username',
+        value: '',
+        validate: {
+          required: {
+            rule: true,
+            message: this.__('message.required', this.__('views.login.username'))
+          },
+          minlength: {
+            rule: 4,
+            message: this.__('message.minlength', this.__('views.login.username'), 4)
+          },
+          maxlength: {
+            rule: 20,
+            message: this.__('message.maxlength', this.__('views.login.username'), 20)
+          },
+          pattern: {
+            rule: '/^[a-z]{4,20}$/',
+            message: this.__('message.pattern', this.__('views.login.username'))
+          }
+        }
+      },
+      password: {
+        field: 'password',
+        label: 'views.login.password',
+        value: '',
+        validate: {
+          required: {
+            message: this.__('message.required', this.__('views.login.password'))
+          },
+          minlength: {
+            rule: 8,
+            message: this.__('message.minlength', this.__('views.login.password'), 8)
+          },
+          maxlength: {
+            rule: 20,
+            message: this.__('message.maxlength', this.__('views.login.password'), 20)
+          },
+          pattern: {
+            rule: '/^[`~!@#$%^&*_+=,.;\'?:"()<>{}\\-\\/\\[\\]\\\\ 0-9a-zA-Z]{8,20}$/',
+            message: this.__('message.pattern', this.__('views.login.password'))
+          }
+        }
       }
     }
   },
 
-  computed: {
-    ...mapGetters(['authorized']),
-    cells () {
-      return {
-        username: {
-          label: '账号',
-          icon: 'user',
-          type: 'textfield',
-          attrs: {
-            placeholder: '只能包含小写英文字母'
-          },
-          validate: {
-            required: {
-              rule: true,
-              message: '请输入账号'
-            },
-            minlength: {
-              rule: 4,
-              message: '账号不能少于 4 个字符'
-            },
-            maxlength: {
-              rule: 20,
-              message: '账号不能多于 20 个字符'
-            },
-            pattern: {
-              rule: '/^[a-z]{4,20}$/',
-              message: '账号不符合规则'
-            }
-          }
-        },
-        password: {
-          label: '密码',
-          icon: 'lock',
-          type: 'password',
-          attrs: {
-            placeholder: '字母、数字或标点符号'
-          },
-          validate: {
-            required: {
-              rule: true,
-              message: '请输入密码'
-            },
-            minlength: {
-              rule: 8,
-              message: '密码不能少于 8 个字符'
-            },
-            maxlength: {
-              rule: 20,
-              message: '密码不能多于 20 个字符'
-            },
-            pattern: {
-              rule: '/^[`~!@#$%^&*_+=,.;\'?:"()<>{}\\-\\/\\[\\]\\\\ 0-9a-zA-Z]{8,20}$/',
-              message: '密码不符合规则'
-            }
-          }
-        }
-      }
-    },
-    action () {
-      return {
-        type: 'submit',
-        class: 'primary',
-        label: this.progress ? '提交登录中...' : '提交登录',
-        disabled: !!this.progress || (this.$validation && this.$validation.invalid)
-      }
-    }
-  },
+  computed: mapGetters(['authorized']),
 
   // methods
   methods: {
     ...mapActions(['setEnv']),
-    mutate ($payload) {
-      this.payload = $payload
-    },
     login () {
-      if (!this.payload) {
+      if (!this.username.value || !this.password.value) {
         return
       }
       // validate then submit
       this.$validate().then(() => {
+        // mocking login
         this.setEnv({
           authorized: true
         })
@@ -127,30 +131,30 @@ export default {
     auto: true
   },
 
-  route: {
-    activate (transition) {
-      transition.next()
-      this.authorized && this.$route.router.go('/')
-    }
+  created () {
+    this.authorized && this.$router.replace('/')
   },
 
   watch: {
     authorized (val) {
       if (val) {
         this.$nextTick(() => {
-          this.$route.router.go('/logout')
+          this.$router.replace('/logout')
         })
       }
     }
   },
 
   components: {
-    CValidation,
-    CPane,
+    CBadge,
     CForm,
+    CRow,
+    CCol,
+    CLabel,
+    CTextfield,
+    CPassword,
+    CPane,
     CButton
   }
 }
 </script>
-
-<style src="styles/views/login"></style>

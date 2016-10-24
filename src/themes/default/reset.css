@@ -1,27 +1,64 @@
 html {
-  font: 1em/1.5 Tahoma, Arial, Helvetica, "Microsoft YaHei", "宋体", sans-serif;
+  font-family: 'Helvetica Neue', Helvetica, STHeiTi, Arial, sans-serif;
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+  height: 100%;
 }
 
 body {
-  font-size: 1rem;
-  color: color(black lightness(20%));
-  background-color: var(--background);
-}
-
-body, h1, h2, h3, h4, h5, h6, p, dl, dd, form, ul, ol, pre, blockquote, textarea, input, figure, button {
   margin: 0;
+  color: var(--text);
+  background-color: white;
+  height: 100%;
 }
 
-ul, ol, th, td, button, textarea, input {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+dl,
+dd,
+form,
+ul,
+ol,
+pre,
+blockquote,
+textarea,
+input,
+figure,
+button {
+  margin: 0;
+  font-size: dpr(32px);
+}
+
+ul,
+ol,
+th,
+td,
+button,
+textarea,
+input {
   padding: 0;
 }
 
-input, textarea, keygen, select, button {
-  font: 1rem/1.5 Tahoma, Arial, Helvetica, "Microsoft YaHei", "宋体", sans-serif;
-  color: color(black lightness(20%));
+input,
+textarea,
+keygen,
+select,
+button {
+  font-family: Helvetica Neue, Helvetica, STHeiTi, Arial, sans-serif;
+  font-size: dpr(32px);
+  line-height: 1.5;
+  color: var(--text);
 }
 
-button, input, textarea {
+button,
+input,
+textarea {
   outline: none;
   -webkit-tap-highlight-color: transparent;
 }
@@ -32,27 +69,44 @@ button {
   cursor: pointer;
 }
 
-ul, ol {
+input,
+textarea {
+  &::placeholder {
+    color: var(--placeholder);
+  }
+}
+
+ul,
+ol {
   list-style: none;
 }
 
-code, kbd, pre, samp {
-  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+code,
+kbd,
+pre,
+samp {
+  font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
-pre code {
-  padding: 0;
-  font-size: inherit;
-  color: inherit;
-  white-space: pre-wrap;
-  background-color: transparent;
-  border-radius: 0;
+pre {
+  & code {
+    padding: 0;
+    font-size: inherit;
+    color: inherit;
+    white-space: pre-wrap;
+    background-color: transparent;
+    border-radius: 0;
+  }
+}
+
+i,
+em {
+  font-style: normal;
 }
 
 a {
   color: var(--primary);
   text-decoration: none;
-  -webkit-tap-highlight-color: transparent;
 
   &:hover {
     text-decoration: none;
@@ -63,6 +117,10 @@ a {
   }
 }
 
-article, footer, header, nav, section {
+article,
+footer,
+header,
+nav,
+section {
   display: block;
 }

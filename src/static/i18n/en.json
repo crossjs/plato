@@ -1,22 +1,31 @@
 {
   "message": {
-    "plato": "{0}, The beginning is the most important part of the work."
+    "plato": "{0}, The beginning is the most important part of the work.",
+    "required": "Please input {0}",
+    "minlength": "{0} must no less then {1} chars",
+    "maxlength": "{0} must no more then {1} chars",
+    "pattern": "{0} is NOT valid"
   },
-  "routes": {
-    "docs": "Documentation",
-    "about": "About",
-    "login": "Login",
-    "logout": "Logout"
-  },
-  "view": {
+  "views": {
     "home": {
+      "delete": "Delete",
+      "confirm": "Delete?"
+    },
+    "globe": {
       "language": "Language",
-      "example": "Examples",
-      "form": "Form",
-      "charts": "Charts",
-      "misc": "Miscellaneous",
-      "about": "About",
-      "latest_commits": "Latest Commits"
+      "transition": "Transition"
+    },
+    "create": {
+      "title": "Title",
+      "content": "Content",
+      "submit": "Submit",
+      "confirm": "Submit?"
+    },
+    "login": {
+      "username": "Username",
+      "password": "Password",
+      "submit": "Submit",
+      "confirm": "Submit?"
     }
   }
 }

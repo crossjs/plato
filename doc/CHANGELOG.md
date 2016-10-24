@@ -1,0 +1,82 @@
+# Changelog
+
+- 20161022 :clap: *Major Changes*
+  - rewrite **scroller** component, with a better performance
+- 20161020 :warning: :clap: *Massive Changes*
+  - use **webpack 2**
+  - use `webpack-dev-server` instead awesome `koajs`
+- 20161018
+  - fix issues with position fixed in iOS UIWebview: use position absolute and overflow
+- 20161016
+  - use [core-js](.tools/webpack/index.js#L42) instead of babel-polyfill. more compatibility testing is **required**
+  - use [nuo](https://github.com/crossjs/nuo) instead of nd-promise
+- 20161012
+  - add component uploader
+  - update components navbar, row, and password
+- 20161009
+  - update npm scripts, use [mirrors](https://npm.taobao.org/mirrors/)
+- 20161007
+  - add language switching
+- 20161006
+  - add directive tap
+- 20161001 :clap:
+  - upgrade vue, vuex, vue-router to version 2.0 stable
+- 20160930 :warning: *Breaking Changes*
+  - adjust file structure
+  - update [vue-router](https://github.com/vuejs/vue-router/releases/tag/v2.0.0-rc.6)
+- 20160929
+  - add some components: range, picker, scroller, slider, etc
+- 20160925
+  - update dependencies, use `vuex/dist/logger` instead of `vuex/logger`
+- 20160921
+  - use [postcss-flexible](https://github.com/crossjs/postcss-flexible)
+- 20160907 :warning: *Breaking Changes*
+  - fix #22 use vuex-actions instead of vuex-promise
+- 20160807
+  - use new meta format in actions
+- 20160805
+  - add transition
+- 20160730 :warning: *Breaking Changes*
+  - use vue@2.0.0-beta
+- 20160721
+  - rename vx to store
+  - move types to modules
+- 20160715
+  - use vuex-localstorage@0.2.0, with expires options
+- 20160709 :warning: *Breaking Changes*
+  - use [vuex@2.0.0-rc.1](https://github.com/vuejs/vuex/releases/tag/v2.0.0-rc.1)
+  - update vuex-promise@2.0.0.rc.1
+  - rewite vx/**
+- 20160704 :warning: *Breaking Changes*
+  - use [vuex@1.0.0-rc](https://github.com/vuejs/vuex/releases/tag/v1.0.0-rc)
+  - update vuex-promise@1.0.1
+  - rewite vx/modules
+- 20160701
+  - make plato simple: remove built-in components, use plato-components
+- 20160630
+  - update npm scripts
+- 20160629
+  - 升级 vue@1.0.26，解决 [#5](https://github.com/crossjs/plato/issues/5)
+- 20160625
+  - 增加阿拉伯语演示
+- 20160624
+  - 演示网站增加文档页面
+  - c-textfield 支持自定义 type
+  - m-field 移除 `_attrs`，validate 不再合入 `attrs`
+  - m-field 增加 align 属性
+- 20160623
+  - 移除 vx/utils
+  - 移除 request 的 hooks
+  - 优化 request 的错误处理
+  - progress、toasts 移到 vx/middlewares 中处理
+  - 升级 vuex-promise
+- 20160622
+  - :construction: 简化 i18n 使用
+  - 为保证数据都在 vuex 管理，默认不启用 plugins/ajax
+  - 移除 c-value
+  - 优化 c-modal
+  - 增加 action sheet 演示（基于 c-modal）
+- 20160620
+  - 移除 `<router-view>` 中的 `transition-mode` [#5](https://github.com/crossjs/plato/issues/5)
+- 20160619
+  - 使用 icomoon 管理图标字体，因为 iconfont 不支持连体字符

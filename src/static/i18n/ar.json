@@ -1,22 +1,31 @@
 {
   "message": {
-    "plato": "{0}, بداية هي لهم جزءا هاما OST العمل."
+    "plato": "{0}, بداية هي لهم جزءا هاما OST العمل.",
+    "required": "الرجاء إدخال {0}",
+    "minlength": "{0} يجب أن لا يقل عن {1} حرف",
+    "maxlength": "{0} يجب أن لا يزيد عن {1} حرف",
+    "pattern": "{0} ليست صحيحة"
   },
-  "routes": {
-    "docs": "توثيق",
-    "about": "حول",
-    "login": "دخول",
-    "logout": "الخروج"
-  },
-  "view": {
+  "views": {
     "home": {
+      "delete": "حذف",
+      "confirm": "تأكيد لحذف؟"
+    },
+    "globe": {
       "language": "لغة",
-      "example": "أمثلة",
-      "form": "شكل",
-      "charts": "الرسوم البيانية",
-      "misc": "متنوع",
-      "about": "حول",
-      "latest_commits": "أحدث ارتكاب هو"
+      "transition": "حيوية"
+    },
+    "create": {
+      "title": "عنوان",
+      "content": "محتوى",
+      "submit": "عرض",
+      "confirm": "إرسال؟"
+    },
+    "login": {
+      "username": "حساب",
+      "password": "كلمة المرور",
+      "submit": "عرض",
+      "confirm": "تأكد من تقديم؟"
     }
   }
 }

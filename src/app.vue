@@ -1,68 +1,62 @@
 <template>
-  <div class="container">
-    <c-progress class="progress"
+  <div id="container">
+    <c-progress id="progress"
+      v-show="progress"
       :progress="progress"></c-progress>
-    <c-toast class="toast"
-      :toasts="toasts"></c-toast>
-    <header class="header">
-      <div class="logo">
-        <c-route-link :route="{
-            link: { path: '/', exact: true },
-            title: 'PLATO'
-          }"></c-route-link>
+    <transition name="fade">
+      <c-toast v-if="toast">{{toast}}</c-toast>
+    </transition>
+    <header id="header">
+      <div id="logo">
+        <router-link class="c-route-link" to="/">
+          PLATO <sub>based on vue 2.x</sub>
+        </router-link>
       </div>
-      <div class="history">
-        <c-button class="none" @click="historyBack">
-          <c-icon value="back"></c-icon>
-        </c-button>
+      <div id="history">
+        <c-link v-tap @tap.native="_back">
+          <c-icon>chevron-left</c-icon>
+        </c-link>
       </div>
-      <c-navbar class="navbar">
+      <c-navbar id="navbar">
+        <c-icon class="c-reddot" slot="icon">three-bars</c-icon>
         <c-route :routes="routes"></c-route>
       </c-navbar>
     </header>
-    <router-view class="router-view"
-      transition="slide-up"
-      transition-mode="out-in"
-      keep-alive></router-view>
+    <section id="content">
+      <transition name="fade" mode="out-in" appear>
+        <keep-alive>
+          <router-view></router-view>
+        </keep-alive>
+      </transition>
+    </section>
   </div>
 </template>
 
 <script>
-import CProgress from 'plato-components/c-progress'
-import CToast from 'plato-components/c-toast'
-import CButton from 'plato-components/c-button'
-import CIcon from 'plato-components/c-icon'
-import CRouteLink from 'plato-components/c-route-link'
-import CNavbar from 'plato-components/c-navbar'
-import CRoute from 'plato-components/c-route'
+import CProgress from 'components/c-progress'
+import CToast from 'components/c-toast'
+import CButton from 'components/c-button'
+import CLink from 'components/c-link'
+import CIcon from 'components/c-icon'
+import CNavbar from 'components/c-navbar'
+import CRoute from 'components/c-route'
 import { mapGetters, mapActions } from 'vuex'
-import { routes } from 'routes'
-import store from 'store'
+import routes from 'router/routes'
 
 export default {
-  name: 'App',
-  store,
-  // i18n: {
-  //   // 翻译资源库
-  //   // 覆盖上级（或全局）
-  //   data () {
-  //     return {}
-  //   }
-  // },
-
   computed: {
-    ...mapGetters(['lang', 'i18n', 'progress', 'toasts']),
+    ...mapGetters(['authorized', 'lang', 'i18n', 'progress', 'toast']),
     routes () {
-      return walkRoutes.call(this, routes, (key, route) => {
-        return key !== '/' && route.auth !== !this.authorized
+      return walkRoutes.call(this, routes, route => {
+        return !route.meta || route.meta.auth !== !this.authorized
       })
     }
   },
 
   methods: {
     ...mapActions(['setEnv']),
-    historyBack () {
-      history.back()
+    _back () {
+      this.$router.back()
     }
   },
 
@@ -86,8 +80,8 @@ export default {
     CProgress,
     CToast,
     CButton,
+    CLink,
     CIcon,
-    CRouteLink,
     CNavbar,
     CRoute
   }
@@ -97,22 +91,19 @@ function walkRoutes (routes, filter) {
   if (!routes) {
     return []
   }
-  return Object.keys(routes)
-  .filter(key => !routes[key].hidden)
-  .filter(key => filter(key, routes[key]))
-  .map(key => {
-    const route = routes[key]
+  return routes
+  .filter(route => route.path !== '/' && (!route.meta || !route.meta.hidden))
+  .filter(route => filter(route))
+  .map(route => {
     return {
-      path: route.path || key,
+      path: route.path,
       name: route.name,
       exact: route.exact,
-      icon: route.icon,
-      title: this.__(route.title)
-      // comment out for subRoutes
-      // ,subRoutes: walkRoutes.call(this, route.subRoutes, filter)
+      meta: route.meta
     }
   })
 }
 </script>
 
 <style src="styles/app"></style>
+<style src="styles/components/reddot"></style>

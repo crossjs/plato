@@ -1,8 +1,10 @@
-import config from '../../.tools/config'
-import webpackConfig from '../../.tools/webpack'
+import config from '../../config'
+import webpackConfig from '../../webpack.config.babel.js'
 
 const debug = require('debug')('app:karma')
 debug('Create configuration.')
+
+const alias = { ...webpackConfig.resolve.alias, vue: 'vue/dist/vue' }
 
 const karmaConfig = {
   basePath: '../../', // project root in relation to bin/karma.js
@@ -17,7 +19,7 @@ const karmaConfig = {
     }
   ],
   proxies: {
-    // '/apis/': 'http://localhost:3000/apis/'
+    // '/api/': 'http://localhost:3000/api/'
   },
   singleRun: config.coverage_enabled,
   frameworks: ['mocha', 'es6-shim'],
@@ -31,13 +33,12 @@ const karmaConfig = {
   browsers: ['PhantomJS'],
   webpack: {
     devtool: webpackConfig.devtool,
-    resolve: webpackConfig.resolve,
+    resolve: { ...webpackConfig.resolve, alias },
     plugins: webpackConfig.plugins,
     module: {
-      loaders: webpackConfig.module.loaders
+      rules: webpackConfig.module.rules
     },
-    babel: webpackConfig.babel,
-    vue: webpackConfig.vue
+    node: webpackConfig.node
   },
   webpackMiddleware: {
     noInfo: true

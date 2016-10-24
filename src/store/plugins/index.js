@@ -1,35 +1,22 @@
-import createLogger from 'vuex/logger'
-import createPromise from 'vuex-promise'
-
-import {
-  PROMISE_PENDING,
-  PROMISE_SUCCESS,
-  PROMISE_FAILURE
-} from '../constants'
+import createLogger from 'vuex/dist/logger'
 
 const plugins = [
-  createPromise({
-    debug: __DEV__,
-    status: {
-      PENDING: PROMISE_PENDING,
-      SUCCESS: PROMISE_SUCCESS,
-      FAILURE: PROMISE_FAILURE
-    },
-    silent: false
-  }),
   store => {
     // 实现进度条、错误提示
-    store.subscribe(({ meta, payload }) => {
-      switch (meta) {
-        case PROMISE_PENDING:
+    store.subscribe(({ payload }) => {
+      if (!payload || !payload.__status__) {
+        return
+      }
+      switch (payload.__status__) {
+        case 'pending':
           store.dispatch('setProgress', 60)
           break
-        case PROMISE_SUCCESS:
+        case 'success':
           store.dispatch('setProgress', 100)
           break
-        case PROMISE_FAILURE:
+        case 'error':
           store.dispatch('setProgress', 100)
-          store.dispatch('addToast', payload)
+          store.dispatch('addToast', payload.__payload__)
           break
         default:
           // setProgress(0)

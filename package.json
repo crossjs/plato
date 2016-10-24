@@ -1,184 +1,100 @@
 {
   "name": "PLATO",
-  "version": "1.0.0",
-  "description": ":heart: a Boilerplate for SPAs use vue, vuex, vue-router",
+  "version": "2.0.0",
+  "description": "a Boilerplate for mobile SPAs use vue, vuex, vue-router",
   "license": "MIT",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "start": "better-npm-run start",
-    "dev": "better-npm-run dev",
-    "dev:mock": "better-npm-run dev -- --mock",
-    "debug": "better-npm-run debug",
-    "e2e": "better-npm-run e2e",
-    "e2e:dev": "better-npm-run e2e:dev",
-    "unit": "better-npm-run unit",
-    "unit:dev": "better-npm-run unit:dev",
+    "gfw": "npm i cross-env && cross-env CHROMEDRIVER_CDNURL=http://npm.taobao.org/mirrors/chromedriver PHANTOMJS_CDNURL=http://npm.taobao.org/mirrors/phantomjs npm install -r https://registry.npm.taobao.org",
+    "dev": "cross-env NODE_ENV=development DEBUG=plato* webpack-dev-server --progress",
+    "e2e": "cross-env NODE_ENV=test DEBUG=plato* node ./test/e2e/runner.js --env firefox",
+    "e2e:dev": "cross-env NODE_ENV=test DEBUG=plato* nodemon ./test/e2e/runner.js",
+    "unit": "cross-env NODE_ENV=test DEBUG=plato* karma start ./test/unit/runner.js",
+    "unit:dev": "npm run unit -- --watch",
     "lint": "eslint --max-warnings 10 .",
     "lint:fix": "npm run lint -- --fix",
-    "test": "npm run lint && npm run unit && npm run e2e",
-    "clean": "better-npm-run clean",
-    "compile": "better-npm-run compile",
-    "deploy": "better-npm-run deploy",
-    "docs": "bash .tools/bash/docs.sh",
-    "push": "bash .tools/bash/push.sh"
-  },
-  "betterScripts": {
-    "compile": {
-      "command": "node .tools/bin/compile",
-      "env": {
-        "NODE_ENV": "production",
-        "DEBUG": "koa*"
-      }
-    },
-    "start": {
-      "command": "nodemon .tools/bin/start",
-      "env": {
-        "NODE_ENV": "production",
-        "DEBUG": "koa*"
-      }
-    },
-    "dev": {
-      "command": "nodemon .tools/bin/start",
-      "env": {
-        "DEBUG": "koa*"
-      }
-    },
-    "debug": {
-      "command": "nodemon --debug .tools/bin/start",
-      "env": {
-        "DEBUG": "koa*"
-      }
-    },
-    "clean": {
-      "command": "node .tools/bin/clean",
-      "env": {
-        "DEBUG": "koa*"
-      }
-    },
-    "deploy": {
-      "command": "npm run lint && npm run unit && npm run clean && npm run compile",
-      "env": {
-        "NODE_ENV": "production",
-        "DEBUG": "koa*"
-      }
-    },
-    "e2e": {
-      "command": "node ./test/e2e/runner.js --env firefox",
-      "env": {
-        "NODE_ENV": "test",
-        "DEBUG": "koa*"
-      }
-    },
-    "e2e:dev": {
-      "command": "nodemon ./test/e2e/runner.js",
-      "env": {
-        "NODE_ENV": "test",
-        "DEBUG": "koa*"
-      }
-    },
-    "unit": {
-      "command": "karma start ./test/unit/runner.js",
-      "env": {
-        "NODE_ENV": "test"
-      }
-    },
-    "unit:dev": {
-      "command": "karma start ./test/unit/runner.js --watch",
-      "env": {
-        "NODE_ENV": "test",
-        "DEBUG": "koa*"
-      }
-    }
+    "lint:css": "stylelint src/themes/**/*.css",
+    "test": "npm run lint && npm run lint:css && npm run unit && npm run e2e",
+    "clean": "node ./cli/clean",
+    "compile": "cross-env NODE_ENV=production DEBUG=plato* node ./cli/compile",
+    "build": "npm run test && npm run clean && npm run compile",
+    "docs": "bash ./cli/docs.sh",
+    "push": "bash ./cli/push.sh"
   },
   "dependencies": {
-    "chartist": "^0.9.8",
-    "nd-datetime": "^3.0.5",
-    "nd-promise": "^3.1.0",
-    "plato-components": "^0.0.0",
-    "plato-i18n": "^0.0.1",
-    "plato-request": "^0.1.0",
-    "plato-styles": "^0.0.0",
-    "plato-validator": "^0.0.3",
-    "vue": "^1.0.26",
-    "vue-router": "^0.7.13",
-    "vuex": "^2.0.0-rc.3",
+    "lodash.isplainobject": "^4.0.6",
+    "nuo": "^0.1.1",
+    "query-string": "^4.2.3",
+    "string-template": "^1.0.0",
+    "vue": "^2.0.3",
+    "vue-router": "^2.0.1",
+    "vuex": "^2.0.0",
+    "vuex-actions": "^1.1.1",
     "vuex-localstorage": "^0.2.0",
-    "vuex-promise": "^2.0.0-rc.1"
+    "whatwg-fetch": "^1.0.0"
   },
   "devDependencies": {
-    "babel-core": "^6.11.4",
-    "babel-loader": "^6.2.4",
+    "babel-loader": "^6.2.5",
     "babel-plugin-__coverage__": "^11.0.0",
     "babel-plugin-add-module-exports": "^0.2.1",
-    "babel-plugin-transform-async-to-generator": "^6.8.0",
-    "babel-plugin-transform-runtime": "^6.9.0",
-    "babel-polyfill": "^6.9.1",
-    "babel-preset-es2015": "^6.9.0",
-    "babel-preset-stage-0": "^6.5.0",
-    "babel-register": "^6.9.0",
-    "babel-runtime": "^6.9.2",
-    "better-npm-run": "0.0.9",
+    "babel-preset-es2015": "^6.16.0",
+    "babel-preset-stage-0": "^6.16.0",
+    "babel-register": "^6.16.3",
     "bundle-loader": "^0.5.4",
     "chai": "^3.5.0",
-    "chromedriver": "^2.21.2",
-    "copy-webpack-plugin": "^3.0.1",
-    "cross-spawn": "^4.0.0",
-    "css-loader": "^0.23.1",
-    "debug": "^2.2.0",
-    "eslint": "^3.1.1",
-    "eslint-config-plato": "^0.0.0",
+    "chromedriver": "^2.24.1",
+    "copy-webpack-plugin": "^4.0.0",
+    "core-js": "^2.4.1",
+    "cross-env": "^3.1.3",
+    "cross-spawn": "^4.0.2",
+    "css-loader": "^0.25.0",
+    "eslint": "^3.8.1",
+    "eslint-config-plato": "^0.0.1",
     "eslint-friendly-formatter": "^2.0.6",
-    "eslint-loader": "^1.4.0",
-    "extract-text-webpack-plugin": "^1.0.1",
+    "eslint-loader": "^1.6.0",
+    "extract-text-webpack-plugin": "^2.0.0-beta.4",
+    "favicons-webpack-plugin": "^0.0.7",
     "file-loader": "^0.9.0",
-    "github-markdown-css": "^2.3.0",
-    "html-webpack-plugin": "^2.22.0",
+    "html-webpack-plugin": "^2.24.0",
     "json-loader": "^0.5.4",
-    "karma": "^1.1.1",
-    "karma-coverage": "^1.0.0",
+    "karma": "^1.3.0",
+    "karma-coverage": "^1.1.1",
     "karma-es6-shim": "^1.0.0",
-    "karma-mocha": "^1.1.1",
-    "karma-mocha-reporter": "^2.0.4",
-    "karma-phantomjs-launcher": "^1.0.1",
+    "karma-mocha": "^1.2.0",
+    "karma-mocha-reporter": "^2.2.0",
+    "karma-phantomjs-launcher": "^1.0.2",
     "karma-sourcemap-loader": "^0.3.7",
-    "karma-webpack": "^1.7.0",
-    "koa": "^2.0.0",
-    "koa-error": "^2.1.0",
-    "koa-favicon": "^2.0.0",
-    "koa-logger": "^2.0.0",
-    "koa-static": "^3.0.0",
-    "koa-send": "^3.2.0",
-    "marked": "^0.3.5",
-    "mocha": "^2.5.3",
-    "nightwatch": "^0.9.5",
-    "nodemon": "^1.9.2",
-    "phantomjs-polyfill": "0.0.2",
-    "phantomjs-prebuilt": "^2.1.7",
+    "karma-webpack": "^1.8.0",
+    "mocha": "^3.1.2",
+    "nightwatch": "^0.9.8",
+    "nodemon": "^1.11.0",
+    "phantomjs-polyfill": "^0.0.2",
+    "phantomjs-prebuilt": "^2.1.13",
     "postcss-browser-reporter": "^0.5.0",
-    "postcss-cssnext": "^2.7.0",
-    "postcss-custom-properties": "^5.0.1",
-    "postcss-font-variant": "^2.0.1",
-    "postcss-import": "^8.1.2",
-    "postcss-loader": "^0.9.1",
+    "postcss-cssnext": "^2.8.0",
+    "postcss-flexible": "^0.2.1",
+    "postcss-import": "~8.0.2",
+    "postcss-loader": "^1.0.0",
     "postcss-reporter": "^1.4.1",
     "postcss-url": "^5.1.2",
-    "rimraf": "^2.5.3",
+    "rimraf": "^2.5.4",
     "selenium-server": "^2.53.1",
-    "sinon": "^1.17.4",
+    "sinon": "^1.17.6",
     "sinon-chai": "^2.8.0",
     "style-loader": "^0.13.1",
+    "stylelint": "^7.5.0",
+    "stylelint-config-standard": "^14.0.0",
     "url-loader": "^0.5.7",
-    "vue-hot-reload-api": "^1.3.3",
+    "vue-hot-reload-api": "^2.0.6",
     "vue-html-loader": "^1.2.3",
-    "vue-loader": "^8.5.3",
+    "vue-loader": "^9.7.0",
     "vue-style-loader": "^1.0.0",
-    "webpack": "^1.13.1",
-    "webpack-dev-middleware": "^1.6.1",
-    "webpack-hot-middleware": "^2.12.1",
-    "yargs": "^4.8.1"
+    "webpack": "^2.1.0-beta.25",
+    "webpack-dev-server": "^2.1.0-beta.9",
+    "yargs": "^6.3.0"
   },
   "engines": {
-    "node": ">= 5.10.0 <= 5.12.0",
-    "npm": ">= 3.6.0 <= 3.8.6"
+    "node": ">= 5.10.0",
+    "npm": ">= 3.6.0"
   }
 }

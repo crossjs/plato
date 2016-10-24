@@ -2,21 +2,23 @@
   <div class="v-logout">
     <c-image
       src="images/logo.png"></c-image>
-    <modal
-      :show.sync="true"
-      :backdrop="false"
-      :callback="callback">确定退出？</modal>
+    <c-modal
+      :show="show"
+      @cancel="callback('cancel')"
+      @submit="callback('submit')">确定退出？</c-modal>
   </div>
 </template>
 
 <script>
-import CImage from 'plato-components/c-image'
-import Modal from 'plato-components/c-modal'
+import CImage from 'components/c-image'
+import CModal from 'components/c-modal'
 import { mapGetters, mapActions } from 'vuex'
 export default {
   data () {
     return {
+      show: true,
       callback (key) {
+        this.show = false
         if (key === 'submit') {
           this.$parent.setEnv({
             authorized: false
@@ -24,8 +26,6 @@ export default {
         } else {
           history.back()
         }
-        // return `false` to prevent hidding modal
-        return false
       }
     }
   },
@@ -34,12 +34,10 @@ export default {
 
   methods: mapActions(['setEnv']),
 
-  route: {
-    activate () {
-      if (!this.authorized) {
-        history.back()
-        return
-      }
+  created () {
+    if (!this.authorized) {
+      history.back()
+      return
     }
   },
 
@@ -47,7 +45,7 @@ export default {
     authorized (val) {
       if (!val) {
         this.$nextTick(() => {
-          this.$route.router.go('/')
+          this.$router.replace('/')
         })
       }
     }
@@ -55,7 +53,7 @@ export default {
 
   components: {
     CImage,
-    Modal
+    CModal
   }
 }
 </script>

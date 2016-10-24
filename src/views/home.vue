@@ -1,147 +1,77 @@
 <template>
-  <div class="demos">
-    <c-pane>
-      <c-form
-        :cells="cells"
-        :items="{lang: lang}"
-        @mutate="setEnv"></c-form>
-    </c-pane>
-    <c-pane class="quatation">
-      {{ __('message.plato', [hello]) }}
-    </c-pane>
-    <c-pane>
-      <c-title>{{ __('view.home.latest_commits') }}</c-title>
-      <c-loading v-show="!commits"></c-loading>
-      <c-cell v-for="record in commits" transition="fade">
-        <a :href="record.html_url" target="_blank" class="commit">{{record.commit.message}}</a><br>
-        <small class="date">@ {{record.commit.author.date | datetime 'yyyy-MM-dd hh:mm'}}</small>
-      </c-cell>
-    </c-pane>
-    <c-pane>
-      <c-group
-        v-for="demo in demos"
-        :title="__(demo.title)"
-        :cells="demo.cells"
-        :items="demo.items"></c-group>
-    </c-pane>
+  <div class="v-home">
+    <c-modal
+      :show="show_modal"
+      @cancel="callback('cancel')"
+      @submit="callback('submit')">{{ __('views.home.confirm') }}</c-modal>
+    <c-scroller
+      :transition="transition"
+      :height="height"
+      :loading="faq_is_fetching"
+      :drained="drained"
+      @pulldown="getItems">
+      <c-row :flex="false" v-for="item in faq_items" :key="item.id">
+        <h3>{{ item.title }}</h3>
+        <article>{{ item.content }}</article>
+        <c-button v-if="authorized" size="xsmall" v-tap @tap.native="_delete(item.id)">{{ __('views.home.delete') }}</c-button>
+      </c-row>
+    </c-scroller>
   </div>
 </template>
 
 <script>
-import datetime from 'nd-datetime'
-import CForm from 'plato-components/c-form'
-import CPane from 'plato-components/c-pane'
-import CGroup from 'plato-components/c-group'
-import CTitle from 'plato-components/c-title'
-import CLoading from 'plato-components/c-loading'
-import CCell from 'plato-components/c-cell'
+import CModal from 'components/c-modal'
+import CScroller from 'components/c-scroller'
+import CSpinner from 'components/c-spinner'
+import CRow from 'components/c-row'
+import CButton from 'components/c-button'
 import { mapGetters, mapActions } from 'vuex'
+
 export default {
   data () {
     return {
-      hello: 'Bello'
+      show_modal: false,
+      drained: true,
+      height: 0,
+      id: 0
     }
   },
 
-  computed: {
-    ...mapGetters(['lang', 'commits', 'stars', 'forks']),
-    cells () {
-      return {
-        lang: {
-          label: this.__('view.home.language'),
-          type: 'dropdown',
-          extra: {
-            options: [{
-              value: 'en',
-              label: 'English'
-            }, {
-              value: 'zh',
-              label: '中文'
-            }, {
-              value: 'ar',
-              label: 'لعربية'
-            }, {
-              value: 'none',
-              label: '不存在的语言'
-            }]
-          }
-        }
-      }
+  computed: mapGetters(['transition', 'authorized', 'faq_items', 'faq_is_fetching']),
+
+  created () {
+    this.getItems()
+  },
+
+  mounted () {
+    this.height =
+      document.documentElement.clientHeight -
+      document.getElementById('header').clientHeight
+    this.addToast('Pull down to reload')
+  },
+
+  methods: {
+    _delete (id) {
+      alert(id)
+      this.id = id
+      this.show_modal = true
     },
-    demos () {
-      const { router } = this.$route
-      return [{
-        title: 'view.home.example',
-        cells: [{
-          label: 'form',
-          value: this.__('view.home.form'),
-          click () {
-            router.go('demo/form')
-          },
-          extra: {
-            isLink: true
-          }
-        }, {
-          icon: 'chart',
-          label: 'chart',
-          value: this.__('view.home.charts'),
-          click () {
-            router.go('demo/chart')
-          },
-          extra: {
-            isLink: true
-          }
-        }, {
-          value: `<i>${this.__('view.home.misc')}</i>`,
-          click () {
-            router.go('demo/misc')
-          },
-          extra: {
-            isLink: true,
-            isHTML: true
-          }
-        }]
-      }, {
-        title: 'view.home.about',
-        cells: [{
-          icon: 'github',
-          label: 'Home',
-          value: 'github.com/crossjs/plato',
-          click () {
-            window.open('https://github.com/crossjs/plato')
-          }
-        }, {
-          icon: 'demo',
-          label: 'Stat',
-          value: `Stars(${this.stars}) Forks(${this.forks})`
-        }]
-      }]
-    }
-  },
-
-  methods: mapActions(['setEnv', 'getCommits', 'getRepository']),
-
-  ready () {
-    // only fetch while no cached
-    if (!this.commits) {
-      this.getCommits()
-    }
-    if (!this.stars && !this.forks) {
-      this.getRepository()
-    }
-  },
-
-  filters: {
-    datetime
+    callback (key) {
+      this.show_modal = false
+      if (key === 'submit') {
+        this.deleteItem(this.id)
+      }
+      delete this.id
+    },
+    ...mapActions(['getItems', 'addItem', 'deleteItem', 'addToast'])
   },
 
   components: {
-    CForm,
-    CPane,
-    CGroup,
-    CTitle,
-    CLoading,
-    CCell
+    CModal,
+    CScroller,
+    CSpinner,
+    CRow,
+    CButton
   }
 }
 </script>
