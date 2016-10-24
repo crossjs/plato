@@ -5,7 +5,7 @@ import Normalizer from 'utils/normalizer'
 import request from 'utils/request'
 
 import {
-  ONE_SECOND
+  ONE_MINUTE
 } from '../constants'
 
 /**
@@ -58,7 +58,7 @@ const persist = createPersist(FAQ_KEY, {
   faq_is_fetching: false,
   entities: {}
 }, {
-  expires: ONE_SECOND * 30
+  expires: ONE_MINUTE
 })
 
 const state = persist.get()
