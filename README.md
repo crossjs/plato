@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://cdn.rawgit.com/crossjs/plato/next/src/assets/logo.svg" alt="PLATO"><br>
+  <img src="https://cdn.rawgit.com/crossjs/plato/master/src/assets/logo.svg" alt="PLATO"><br>
   <sub>Based on Vue 2.0</sub>
 </p>
 <p align="center">
