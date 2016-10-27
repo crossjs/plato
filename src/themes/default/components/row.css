@@ -1,11 +1,34 @@
 .c-row {
-  padding: dpr(20px);
   font-size: dpr(32px);
   position: relative;
   overflow: hidden; /* preventing horizontal scrollbar */
 
   &:active {
     background-color: color(var(--disabled) alpha(0.4));
+  }
+
+  &-wrapper {
+    box-sizing: border-box;
+    padding: dpr(20px);
+    width: 100%;
+    height: 100%;
+    transition: transform 0.2s;
+  }
+
+  &-left {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    height: 100%;
+  }
+
+  &-right {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    height: 100%;
   }
 
   &-flex {

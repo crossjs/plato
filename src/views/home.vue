@@ -10,10 +10,20 @@
       :loading="faq_is_fetching"
       :drained="drained"
       @pulldown="getItems">
-      <c-row :flex="false" v-for="item in faq_items" :key="item.id">
+      <c-row
+        v-for="item in faq_items"
+        :key="item.id"
+        :flex="false">
+        <c-button
+          slot="left"
+          class="primary squared">{{ __('views.home.nothing') }}</c-button>
         <h3>{{ item.title }}</h3>
         <article>{{ item.content }}</article>
-        <c-button v-if="authorized" size="xsmall" v-tap @tap.native="_delete(item.id)">{{ __('views.home.delete') }}</c-button>
+        <c-button
+          slot="right"
+          v-if="authorized"
+          class="warning squared"
+          v-tap @tap.native="_delete(item.id)">{{ __('views.home.delete') }}</c-button>
       </c-row>
     </c-scroller>
   </div>
@@ -48,6 +58,7 @@ export default {
       document.documentElement.clientHeight -
       document.getElementById('header').clientHeight
     this.addToast('Pull down to reload')
+    this.addToast('Swipe left/right to show buttons')
   },
 
   methods: {
