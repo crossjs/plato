@@ -24,7 +24,7 @@ function fakeId () {
 const faq = {
   cache: [],
   find () {
-    return request('./db/faq.json').then(data => {
+    return request(__DEV__ ? '/api/faq' : './db/faq.json').then(data => {
       this.cache = data
       return new Promise((resolve, reject) => {
         setTimeout(resolve, 1000, data)
@@ -32,6 +32,12 @@ const faq = {
     })
   },
   save (data) {
+    if (__DEV__) {
+      return request('/api/faq', {
+        method: 'POST',
+        body: data
+      })
+    }
     data.id = fakeId()
     this.cache.push(data)
     return new Promise((resolve, reject) => {
@@ -39,6 +45,11 @@ const faq = {
     })
   },
   remove (_id) {
+    if (__DEV__) {
+      return request(`/api/faq/${_id}`, {
+        method: 'DELETE'
+      })
+    }
     this.cache.forEach(({ id }, index) => {
       if (id === _id) {
         this.cache.splice(index, 1)

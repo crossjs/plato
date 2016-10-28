@@ -46,9 +46,13 @@ const webpackConfig = {
     host: config.server_host,
     port: config.server_port,
     // proxy is useful for debugging
-    // proxy: {
-    //   '/api': 'http://127.0.0.1:4040'
-    // },
+    proxy: [{
+      context: '/api',
+      target: 'http://localhost:3001',
+      pathRewrite: {
+        '^/api': '' // Host path & target path conversion
+      }
+    }],
     compress: true,
     hot: true,
     noInfo: true
