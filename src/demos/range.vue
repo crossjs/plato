@@ -1,50 +1,50 @@
 <template>
   <div>
-    <c-row :flex="false">
+    <c-row class="padding" :flex="false">
       <c-range
         :value="value"
         @change="change"></c-range>
-      <p>value: {{value}}, min: 0, max: 100</p>
+      <p class="center">value: {{value}}, min: 0, max: 100</p>
     </c-row>
-    <c-row :flex="false">
+    <c-row class="padding" :flex="false">
       <c-range
         :value="value"
         :step="10"
         @change="change"></c-range>
-      <p>step: 10, value: {{value}}, min: 0, max: 100</p>
+      <p class="center">step: 10, value: {{value}}, min: 0, max: 100</p>
     </c-row>
-    <c-row :flex="false">
+    <c-row class="padding" :flex="false">
       <c-range
         :value="value"
         :step="20"
         @change="change"></c-range>
-      <p>step: 20, value: {{value}}, min: 0, max: 100</p>
+      <p class="center">step: 20, value: {{value}}, min: 0, max: 100</p>
     </c-row>
-    <c-row :flex="false">
+    <c-row class="padding" :flex="false">
       <c-range
         :min="20"
         :max="80"
         :value="value2"
         @change="change2"></c-range>
-      <p>value2: {{value2}}, min: 20, max: 80</p>
+      <p class="center">value2: {{value2}}, min: 20, max: 80</p>
     </c-row>
-    <c-row :flex="false">
+    <c-row class="padding" :flex="false">
       <c-range
         :min="20"
         :max="80"
         :value="value2"
         :step="2"
         @change="change2"></c-range>
-      <p>step: 2, value2: {{value2}}, min: 20, max: 80</p>
+      <p class="center">step: 2, value2: {{value2}}, min: 20, max: 80</p>
     </c-row>
-    <c-row :flex="false">
+    <c-row class="padding" :flex="false">
       <c-range
         :min="20"
         :max="80"
         :value="value2"
         :step="3"
         @change="change2"></c-range>
-      <p>step: 3, value2: {{value2}}, min: 20, max: 80</p>
+      <p class="center">step: 3, value2: {{value2}}, min: 20, max: 80</p>
     </c-row>
   </div>
 </template>

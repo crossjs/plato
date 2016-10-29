@@ -1,60 +1,44 @@
 <template>
   <div>
-    <c-row>
-      <c-col>
-        <c-paginator
-          :query="{ $offset: 0, $limit: 2 }"
-          :count="10"></c-paginator>
-      </c-col>
+    <c-row class="padding">
+      <c-paginator
+        :query="{ $offset: 0, $limit: 2 }"
+        :count="10"></c-paginator>
     </c-row>
-    <c-row>
-      <c-col>
-        <c-paginator
-          :query="{ $offset: 4, $limit: 2 }"
-          :count="10"></c-paginator>
-      </c-col>
+    <c-row class="padding">
+      <c-paginator
+        :query="{ $offset: 4, $limit: 2 }"
+        :count="10"></c-paginator>
     </c-row>
-    <c-row>
-      <c-col>
-        <c-paginator
-          :query="{ $offset: 8, $limit: 2 }"
-          :count="10"></c-paginator>
-      </c-col>
+    <c-row class="padding">
+      <c-paginator
+        :query="{ $offset: 8, $limit: 2 }"
+        :count="10"></c-paginator>
     </c-row>
-    <c-row>
-      <c-col>
-        <c-paginator
-          :query="{ $offset: 10, $limit: 2 }"
-          :count="10"></c-paginator>
-      </c-col>
+    <c-row class="padding">
+      <c-paginator
+        :query="{ $offset: 10, $limit: 2 }"
+        :count="10"></c-paginator>
     </c-row>
-    <c-row>
-      <c-col>
-        <c-paginator
-          :query="{ $offset: 6, $limit: 2 }"
-          :count="20"></c-paginator>
-      </c-col>
+    <c-row class="padding">
+      <c-paginator
+        :query="{ $offset: 6, $limit: 2 }"
+        :count="20"></c-paginator>
     </c-row>
-    <c-row>
-      <c-col>
-        <c-paginator
-          :query="{ $offset: 16, $limit: 2 }"
-          :count="20"></c-paginator>
-      </c-col>
+    <c-row class="padding">
+      <c-paginator
+        :query="{ $offset: 16, $limit: 2 }"
+        :count="20"></c-paginator>
     </c-row>
-    <c-row>
-      <c-col>
-        <c-paginator
-          :query="{ $offset: 16, $limit: 2 }"
-          :count="40"></c-paginator>
-      </c-col>
+    <c-row class="padding">
+      <c-paginator
+        :query="{ $offset: 16, $limit: 2 }"
+        :count="40"></c-paginator>
     </c-row>
-    <c-row>
-      <c-col>
-        <c-paginator
-          :query="{ $offset: 26, $limit: 2 }"
-          :count="40"></c-paginator>
-      </c-col>
+    <c-row class="padding">
+      <c-paginator
+        :query="{ $offset: 26, $limit: 2 }"
+        :count="40"></c-paginator>
     </c-row>
   </div>
 </template>

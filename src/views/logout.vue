@@ -18,7 +18,6 @@ export default {
     return {
       show: true,
       callback (key) {
-        this.show = false
         if (key === 'submit') {
           this.$parent.setEnv({
             authorized: false

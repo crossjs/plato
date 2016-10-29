@@ -1,0 +1,7 @@
+.v-about {
+  & .badges {
+    & img {
+      height: dpr(40px);
+    }
+  }
+}

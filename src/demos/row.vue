@@ -32,10 +32,10 @@
       </c-row>
     </div>
     <div>
-      <c-row>four rows in group</c-row>
-      <c-row>four rows in group</c-row>
-      <c-row>four rows in group</c-row>
-      <c-row>four rows in group</c-row>
+      <c-row class="padding">four rows in group with padding</c-row>
+      <c-row class="padding">four rows in group with padding</c-row>
+      <c-row class="padding">four rows in group with padding</c-row>
+      <c-row class="padding">four rows in group with padding</c-row>
     </div>
   </div>
 </template>
