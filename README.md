@@ -19,6 +19,9 @@
 # install dependencies
 npm install
 
+# start a mocking server at localhost:3001
+npm run mock
+
 # serve with hot reload at localhost:3000
 npm run dev
 
@@ -30,6 +33,9 @@ npm run compile
 
 # test, clean, and compile
 npm run build
+
+# serve dist, like production
+npm start
 
 # generate demo site and push to gh-pages
 npm run docs

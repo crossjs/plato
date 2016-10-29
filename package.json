@@ -6,6 +6,7 @@
   "main": "src/index.js",
   "scripts": {
     "gfw": "npm i cross-env && cross-env CHROMEDRIVER_CDNURL=http://npm.taobao.org/mirrors/chromedriver PHANTOMJS_CDNURL=http://npm.taobao.org/mirrors/phantomjs npm install -r https://registry.npm.taobao.org",
+    "start": "serve ./dist",
     "mock": "cross-env NODE_ENV=development DEBUG=plato* json-server --watch --port 3001 ./mock/db.json",
     "dev": "cross-env NODE_ENV=development DEBUG=plato* webpack-dev-server --progress",
     "e2e": "cross-env NODE_ENV=test DEBUG=plato* node ./test/e2e/runner.js",
@@ -81,6 +82,7 @@
     "postcss-url": "^5.1.2",
     "rimraf": "^2.5.4",
     "selenium-server": "^2.53.1",
+    "serve": "^1.4.0",
     "sinon": "^1.17.6",
     "sinon-chai": "^2.8.0",
     "style-loader": "^0.13.1",
