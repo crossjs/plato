@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import aMaps from './assets/maps'
+import entities from './assets/icon-entities'
 
 export default {
   data () {
@@ -13,7 +13,7 @@ export default {
   },
 
   beforeMount () {
-    this.html = aMaps[this.$slots.default[0].text] || ' '
+    this.html = entities[this.$slots.default[0].text] || ' '
   }
 }
 

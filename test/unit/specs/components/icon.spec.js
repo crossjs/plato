@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import CIcon from 'components/c-icon'
-import aMaps from 'components/assets/maps'
+import entities from 'components/assets/icon-entities'
 
 describe('icon.vue', () => {
   let el
@@ -39,6 +39,6 @@ describe('icon.vue', () => {
     })
 
     expect(vm.$children.length).to.equal(1)
-    expect(vm.$children[0].$el.textContent).to.equal(String.fromCharCode(parseInt(aMaps.eye.replace(/[^0-9a-f]/ig, ''), 16)))
+    expect(vm.$children[0].$el.textContent).to.equal(String.fromCharCode(parseInt(entities.eye.replace(/[^0-9a-f]/ig, ''), 16)))
   })
 })

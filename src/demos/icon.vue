@@ -1,7 +1,7 @@
 <template>
   <div class="d-icon">
     <c-pane>
-      <span class="d-icon-slot" v-for="(value, key, index) in maps">
+      <span class="d-icon-slot" v-for="(value, key, index) in entities">
         <c-icon class="fs-64">{{key}}</c-icon>
         <i class="d-icon-name">{{key}}</i>
       <span>
@@ -12,12 +12,12 @@
 <script>
 import CPane from 'components/c-pane'
 import CIcon from 'components/c-icon'
-import maps from 'components/assets/maps'
+import entities from 'components/assets/icon-entities'
 
 export default {
   data () {
     return {
-      maps
+      entities
     }
   },
 
