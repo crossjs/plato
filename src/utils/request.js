@@ -67,7 +67,7 @@ export default function request (...args) {
   })
 }
 
-function merge (src, ...args) {
+export function merge (src, ...args) {
   args.forEach(arg => {
     Object.keys(arg).forEach(key => {
       if (isPlainObj(arg[key])) {

@@ -9,7 +9,7 @@
       :height="height"
       :loading="faq_is_fetching"
       :drained="drained"
-      @pulldown="getItems">
+      @pulldown="faqList">
       <c-row
         v-for="item in faq_items"
         :key="item.id"
@@ -55,7 +55,7 @@ export default {
   computed: mapGetters(['transition', 'authorized', 'faq_items', 'faq_is_fetching']),
 
   created () {
-    this.getItems()
+    this.faqList()
   },
 
   mounted () {
@@ -68,18 +68,17 @@ export default {
 
   methods: {
     _delete (id) {
-      alert(id)
       this.id = id
       this.show_modal = true
     },
     callback (key) {
       this.show_modal = false
       if (key === 'submit') {
-        this.deleteItem(this.id)
+        this.faqDelete(this.id)
       }
       delete this.id
     },
-    ...mapActions(['getItems', 'addItem', 'deleteItem', 'addToast'])
+    ...mapActions(['faqList', 'faqDelete', 'addToast'])
   },
 
   components: {
