@@ -7,30 +7,6 @@
     background-color: color(var(--disabled) alpha(0.4));
   }
 
-  &-wrapper {
-    box-sizing: border-box;
-    padding: dpr(20px);
-    width: 100%;
-    height: 100%;
-    transition: transform 0.2s;
-  }
-
-  &-left {
-    position: absolute;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    height: 100%;
-  }
-
-  &-right {
-    position: absolute;
-    z-index: 1;
-    top: 0;
-    right: 0;
-    height: 100%;
-  }
-
   &-flex {
     display: flex;
     flex-direction: row;
@@ -80,6 +56,8 @@
 .c-row-link {
   color: var(--disabled);
   margin-left: dpr(10px);
+  margin-right: dpr(20px);
+  align-self: center;
 }
 
 html[dir="rtl"] {

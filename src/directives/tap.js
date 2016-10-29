@@ -24,6 +24,8 @@ export default {
         // dispatch a tap event
         const tapEvent = document.createEvent('HTMLEvents')
         tapEvent.initEvent('tap', true, true)
+        // add referrence to oirgina event
+        tapEvent.originalEvent = e
         if (modifiers.delay) {
           // useful for hiding el after tap that has a link inside
           // see: c-navibar.vue
@@ -33,8 +35,8 @@ export default {
         } else {
           el.dispatchEvent(tapEvent)
         }
+        start = null
       }
-      start = null
     })
   }
 }

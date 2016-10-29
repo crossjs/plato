@@ -14,16 +14,20 @@
         v-for="item in faq_items"
         :key="item.id"
         :flex="false">
-        <c-button
-          slot="left"
-          class="primary squared">{{ __('views.home.nothing') }}</c-button>
-        <h3>{{ item.title }}</h3>
-        <article>{{ item.content }}</article>
-        <c-button
-          slot="right"
-          v-if="authorized"
-          class="warning squared"
-          v-tap @tap.native="_delete(item.id)">{{ __('views.home.delete') }}</c-button>
+        <c-swipe>
+          <c-button
+            slot="left"
+            class="primary squared">{{ __('views.home.nothing') }}</c-button>
+          <article class="padding">
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.content }}</p>
+          </article>
+          <c-button
+            slot="right"
+            v-if="authorized"
+            class="warning squared"
+            v-tap @tap.native="_delete(item.id)">{{ __('views.home.delete') }}</c-button>
+        </c-swipe>
       </c-row>
     </c-scroller>
   </div>
@@ -34,6 +38,7 @@ import CModal from 'components/c-modal'
 import CScroller from 'components/c-scroller'
 import CSpinner from 'components/c-spinner'
 import CRow from 'components/c-row'
+import CSwipe from 'components/c-swipe'
 import CButton from 'components/c-button'
 import { mapGetters, mapActions } from 'vuex'
 
@@ -82,6 +87,7 @@ export default {
     CScroller,
     CSpinner,
     CRow,
+    CSwipe,
     CButton
   }
 }
