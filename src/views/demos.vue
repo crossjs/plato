@@ -1,117 +1,117 @@
 <template>
   <div class="v-demos">
-    <keep-alive>
-      <div class="v-demos" v-if="!$route.params.component">
-        <c-row :link="true">
-          <c-col>
-            <router-link to="demos/icon">
-              <c-icon>flame</c-icon> Icon</router-link>
-          </c-col>
-        </c-row>
-        <c-row :link="true">
-          <c-col>
-            <router-link to="demos/badge">
-              <c-icon>flame</c-icon> Badge</router-link>
-          </c-col>
-        </c-row>
-        <c-row :link="true">
-          <c-col>
-            <router-link to="demos/progress">
-              <c-icon>flame</c-icon> Progress</router-link>
-          </c-col>
-        </c-row>
-        <c-row :link="true">
-          <c-col>
-            <router-link to="demos/button">
-              <c-icon>flame</c-icon> Button</router-link>
-          </c-col>
-        </c-row>
-        <c-row :link="true">
-          <c-col>
-            <router-link to="demos/link">
-              <c-icon class="c-reddot">flame</c-icon> Link</router-link>
-          </c-col>
-        </c-row>
-        <c-row :link="true">
-          <c-col>
-            <router-link to="demos/form">
-              <c-icon>flame</c-icon> Form</router-link>
-          </c-col>
-        </c-row>
-        <c-row :link="true">
-          <c-col>
-            <router-link to="demos/row">
-              <c-icon>flame</c-icon> Row</router-link>
-          </c-col>
-        </c-row>
-        <c-row :link="true">
-          <c-col>
-            <router-link to="demos/paginator">
-              <c-icon>flame</c-icon> Paginator</router-link>
-          </c-col>
-        </c-row>
-        <c-row :link="true">
-          <c-col>
-            <router-link to="demos/spinner">
-              <c-icon>flame</c-icon> Spinner</router-link>
-          </c-col>
-        </c-row>
-        <c-row :link="true">
-          <c-col>
-            <router-link to="demos/modal">
-              <c-icon>flame</c-icon> Modal</router-link>
-          </c-col>
-        </c-row>
-        <c-row :link="true">
-          <c-col>
-            <router-link to="demos/toast">
-              <c-icon>flame</c-icon> Toast</router-link>
-          </c-col>
-        </c-row>
-        <c-row :link="true">
-          <c-col>
-            <router-link to="demos/image">
-              <c-icon>flame</c-icon> Image</router-link>
-          </c-col>
-        </c-row>
-        <c-row :link="true">
-          <c-col>
-            <router-link to="demos/avatar">
-              <c-icon class="c-reddot">flame</c-icon> Avatar</router-link>
-          </c-col>
-        </c-row>
-        <c-row :link="true">
-          <c-col>
-            <router-link to="demos/scroller">
-              <c-icon>flame</c-icon> Scroller: pulling and infinite scroll</router-link>
-          </c-col>
-        </c-row>
-        <c-row :link="true">
-          <c-col>
-            <router-link to="demos/picker">
-              <c-icon>flame</c-icon> Picker</router-link>
-          </c-col>
-        </c-row>
-        <c-row :link="true">
-          <c-col>
-            <router-link to="demos/range">
-              <c-icon>flame</c-icon> Range</router-link>
-          </c-col>
-        </c-row>
-        <c-row :link="true">
-          <c-col>
-            <router-link to="demos/slider">
-              <c-icon>flame</c-icon> Slider</router-link>
-          </c-col>
-        </c-row>
-        <c-row :link="true">
-          <c-col>
-            <router-link to="demos/upload">
-              <c-icon>flame</c-icon> Uploader</router-link>
-          </c-col>
-        </c-row>
-      </div>
-      <component v-else :is="'demo-' + $route.params.component"></component>
+    <div class="v-demos" v-if="!$route.params.component">
+      <c-row :link="true">
+        <c-col>
+          <router-link to="demos/icon">
+            <c-icon>flame</c-icon> Icon</router-link>
+        </c-col>
+      </c-row>
+      <c-row :link="true">
+        <c-col>
+          <router-link to="demos/badge">
+            <c-icon>flame</c-icon> Badge</router-link>
+        </c-col>
+      </c-row>
+      <c-row :link="true">
+        <c-col>
+          <router-link to="demos/progress">
+            <c-icon>flame</c-icon> Progress</router-link>
+        </c-col>
+      </c-row>
+      <c-row :link="true">
+        <c-col>
+          <router-link to="demos/button">
+            <c-icon>flame</c-icon> Button</router-link>
+        </c-col>
+      </c-row>
+      <c-row :link="true">
+        <c-col>
+          <router-link to="demos/link">
+            <c-icon class="c-reddot">flame</c-icon> Link</router-link>
+        </c-col>
+      </c-row>
+      <c-row :link="true">
+        <c-col>
+          <router-link to="demos/form">
+            <c-icon>flame</c-icon> Form</router-link>
+        </c-col>
+      </c-row>
+      <c-row :link="true">
+        <c-col>
+          <router-link to="demos/row">
+            <c-icon>flame</c-icon> Row</router-link>
+        </c-col>
+      </c-row>
+      <c-row :link="true">
+        <c-col>
+          <router-link to="demos/paginator">
+            <c-icon>flame</c-icon> Paginator</router-link>
+        </c-col>
+      </c-row>
+      <c-row :link="true">
+        <c-col>
+          <router-link to="demos/spinner">
+            <c-icon>flame</c-icon> Spinner</router-link>
+        </c-col>
+      </c-row>
+      <c-row :link="true">
+        <c-col>
+          <router-link to="demos/modal">
+            <c-icon>flame</c-icon> Modal</router-link>
+        </c-col>
+      </c-row>
+      <c-row :link="true">
+        <c-col>
+          <router-link to="demos/toast">
+            <c-icon>flame</c-icon> Toast</router-link>
+        </c-col>
+      </c-row>
+      <c-row :link="true">
+        <c-col>
+          <router-link to="demos/image">
+            <c-icon>flame</c-icon> Image</router-link>
+        </c-col>
+      </c-row>
+      <c-row :link="true">
+        <c-col>
+          <router-link to="demos/avatar">
+            <c-icon class="c-reddot">flame</c-icon> Avatar</router-link>
+        </c-col>
+      </c-row>
+      <c-row :link="true">
+        <c-col>
+          <router-link to="demos/scroller">
+            <c-icon>flame</c-icon> Scroller: pulling and infinite scroll</router-link>
+        </c-col>
+      </c-row>
+      <c-row :link="true">
+        <c-col>
+          <router-link to="demos/picker">
+            <c-icon>flame</c-icon> Picker</router-link>
+        </c-col>
+      </c-row>
+      <c-row :link="true">
+        <c-col>
+          <router-link to="demos/range">
+            <c-icon>flame</c-icon> Range</router-link>
+        </c-col>
+      </c-row>
+      <c-row :link="true">
+        <c-col>
+          <router-link to="demos/slider">
+            <c-icon>flame</c-icon> Slider</router-link>
+        </c-col>
+      </c-row>
+      <c-row :link="true">
+        <c-col>
+          <router-link to="demos/upload">
+            <c-icon>flame</c-icon> Uploader</router-link>
+        </c-col>
+      </c-row>
+    </div>
+    <keep-alive v-else>
+      <component :is="'demo-' + $route.params.component"></component>
     </keep-alive>
   </div>
 </template>
