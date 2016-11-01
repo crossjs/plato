@@ -7,6 +7,21 @@
         <div class="d-slider-item">Single</div>
       </c-slider>
       <hr>
+      <p>Two slides</p>
+      <c-slider
+        :transition="transition">
+        <div class="d-slider-item">Slide First</div>
+        <div class="d-slider-item">Slide Last</div>
+      </c-slider>
+      <hr>
+      <p>Three slides</p>
+      <c-slider
+        :transition="transition">
+        <div class="d-slider-item">Slide First</div>
+        <div class="d-slider-item">Slide Second</div>
+        <div class="d-slider-item">Slide Last</div>
+      </c-slider>
+      <hr>
       <p>Getting content async</p>
       <c-slider
         :transition="transition">
@@ -21,7 +36,7 @@
         @slide="slide">
         <div v-for="i in items" class="d-slider-item">Slide {{i}}</div>
       </c-slider>
-      <p>use same index of above, with transition enabled</p>
+      <p>Use the same index above, with transition enabled</p>
       <c-slider
         :transition="transition"
         :index="index"

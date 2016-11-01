@@ -1,22 +1,28 @@
 <template>
   <div class="c-slider"
     @touchstart="dragstart"
-    @touchmove="drag"
+    @touchmove="dragging"
     @touchend="dragend">
-    <div class="c-slider-content" :class="{'transition': transition && !dragging & !inPosition}"
-      :style="{transform: 'translateX(' + (offset - currIndex * maxOffset) + 'px)'}"
+    <div class="c-slider-content"
+      :class="{transition: transition && !isDragging & !slideReady}"
+      :style="{transform: 'translateX(' + offset + 'px)'}"
       ref="content">
       <slot></slot>
     </div>
-    <div class="c-slider-indicators" v-if="size > 1">
+    <div class="c-slider-indicators" v-if="slideCount > 1">
       <i class="c-slider-indicator"
-        :class="{active: i - 1 === currIndex}"
-        v-for="i in size"></i>
+        v-for="i in slideCount"
+        :class="{active: i - 1 === currIndex}"></i>
     </div>
   </div>
 </template>
 
 <script>
+const classes = {
+  prev: 'c-slider-prev',
+  active: 'c-slider-active',
+  next: 'c-slider-next'
+}
 export default {
   props: {
     index: {
@@ -42,71 +48,69 @@ export default {
 
   data () {
     return {
-      size: 0,
-      offset: 0,
-      minOffset: 0,
-      maxOffset: 0,
+      slideCount: 0,
       currIndex: 0,
-      intervalId: 0,
-      dragging: false,
+      offset: 0,
+      // 如果不需要响应式，就不要放在 data 里？
+      // minOffset: 0,
+      // maxOffset: 0,
+      isDragging: false,
       // 就位，已经切换到目标位置，指示可以进行后续操作，比如重设位置
-      inPosition: false
+      slideReady: false
+    }
+  },
+
+  computed: {
+    prevIndex () {
+      return this.slideCount ? (this.slideCount + this.currIndex - 1) % this.slideCount : 0
+    },
+    nextIndex () {
+      return this.slideCount ? (this.currIndex + 1) % this.slideCount : 0
     }
   },
 
   mounted () {
     this.currIndex = this.index
     this.reset()
-    this.arrange()
     this.automate()
   },
 
   updated () {
-    if (this.size !== this.$refs.content.children.length) {
-      this.reset()
-      this.arrange()
-    }
+    this.reset()
   },
 
   watch: {
     index (val) {
-      this.inPosition = true
-      this.$nextTick(() => {
-        this.currIndex = val
-      })
+      this.currIndex = val
+    },
+    prevIndex (val, old) {
+      this.slideCount && this.children[old].classList.remove(classes.prev)
+      this.slideCount && this.children[val].classList.add(classes.prev)
+    },
+    currIndex (val, old) {
+      // this.slideReady = true
+      this.slideCount && this.children[old].classList.remove(classes.active)
+      this.slideCount && this.children[val].classList.add(classes.active)
+    },
+    nextIndex (val, old) {
+      this.slideCount && this.children[old].classList.remove(classes.next)
+      this.slideCount && this.children[val].classList.add(classes.next)
     },
     interval () {
       this.automate()
-    },
-    inPosition () {
-      this.arrange()
     }
   },
 
   methods: {
     reset () {
-      this.offset = 0
-      this.maxOffset = this.$el.clientWidth
-      this.minOffset = -this.maxOffset
-      this.children = this.$refs.content.children
-      this.size = this.children.length
-      if (this.size > 1) {
-        [].forEach.call(this.children, (child, index) => {
-          child.style.transform = 'translateX(' + index * 100 + '%)'
-        })
-      }
-    },
-    arrange () {
-      if (this.size > 1) {
-        if (this.inPosition) {
-          this.children[0].style.transform = 'translateX(0%)'
-          this.children[this.size - 1].style.transform = 'translateX(' + (this.size - 1) * 100 + '%)'
-        } else {
-          if (this.currIndex === 0) {
-            this.children[this.size - 1].style.transform = 'translateX(-100%)'
-          } else if (this.currIndex === this.size - 1) {
-            this.children[0].style.transform = 'translateX(' + this.size * 100 + '%)'
-          }
+      if (this.maxOffset === 0 || this.slideCount !== this.$refs.content.children.length) {
+        this.offset = 0
+        this.maxOffset = this.$el.clientWidth
+        this.minOffset = -this.maxOffset
+        this.children = this.$refs.content.children
+        this.slideCount = this.children.length
+        if (this.slideCount) {
+          this.children[this.currIndex].classList.add(classes.active)
         }
       }
     },
@@ -114,9 +118,9 @@ export default {
       if (this.interval) {
         if (!this.intervalId) {
           this.intervalId = setInterval(() => {
-            if (!this.dragging && this.size > 1) {
+            if (!this.isDragging && this.slideCount > 1) {
               this.offset = this.minOffset
-              this.next()
+              this.go(this.nextIndex)
             }
           }, this.interval * 1000)
         }
@@ -127,31 +131,39 @@ export default {
       }
     },
     dragstart (e) {
-      if (this.size > 1 && !this.dragging && e.touches && e.touches.length === 1) {
-        this.dragging = true
-        this.inPosition = false
+      if (this.slideCount > 1 && !this.isDragging && e.touches && e.touches.length === 1) {
+        this.isDragging = true
+        this.slideReady = false
         this.startY = e.touches[0].pageX - this.offset
       }
     },
-    drag (e) {
-      if (this.dragging) {
+    dragging (e) {
+      if (this.isDragging) {
         e.preventDefault()
         e.stopPropagation()
-        this.offset = Math.min(this.maxOffset, Math.max(this.minOffset, e.touches[0].pageX - this.startY))
+        const offset = Math.min(this.maxOffset, Math.max(this.minOffset, e.touches[0].pageX - this.startY))
+        if (this.offset === 0 || offset * this.offset < -1) {
+          if (offset < 0) {
+            this.children[this.nextIndex].classList.remove(classes.prev)
+          } else if (offset > 0) {
+            this.children[this.prevIndex].classList.remove(classes.next)
+          }
+        }
+        this.offset = offset
       }
     },
     dragend (e) {
-      if (this.dragging) {
-        this.dragging = false
+      if (this.isDragging) {
+        this.isDragging = false
         if (this.offset > 0) {
           if (this.offset > this.maxOffset / 2) {
             this.offset = this.maxOffset
-            return this.prev()
+            return this.go(this.prevIndex)
           }
         } else {
           if (this.offset < this.minOffset / 2) {
             this.offset = this.minOffset
-            return this.next()
+            return this.go(this.nextIndex)
           }
         }
         this.offset = 0
@@ -159,21 +171,15 @@ export default {
       }
     },
     go (index) {
-      this.inPosition = false
+      this.slideReady = false
       setTimeout(() => {
         this.offset = 0
         if (index !== this.currIndex) {
           this.currIndex = index
           this.$emit('slide', this.currIndex)
         }
-        this.inPosition = true
-      }, 250)
-    },
-    prev () {
-      this.go((this.size + this.currIndex - 1) % this.size)
-    },
-    next () {
-      this.go((this.currIndex + 1) % this.size)
+        this.slideReady = true
+      }, 0)
     }
   }
 }

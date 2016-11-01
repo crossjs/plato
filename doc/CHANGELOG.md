@@ -1,5 +1,7 @@
 # Changelog
 
+- 20161102 :bug:
+  - bugfix: rewrite **slider** component
 - 20161022 :clap: *Major Changes*
   - rewrite **scroller** component, with a better performance
 - 20161020 :warning: :clap: *Massive Changes*
