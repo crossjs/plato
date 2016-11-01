@@ -130,14 +130,14 @@ export default {
       if (this.size > 1 && !this.dragging && e.touches && e.touches.length === 1) {
         this.dragging = true
         this.inPosition = false
-        this.startX = e.touches[0].pageX - this.offset
+        this.startY = e.touches[0].pageX - this.offset
       }
     },
     drag (e) {
       if (this.dragging) {
         e.preventDefault()
         e.stopPropagation()
-        this.offset = Math.min(this.maxOffset, Math.max(this.minOffset, e.touches[0].pageX - this.startX))
+        this.offset = Math.min(this.maxOffset, Math.max(this.minOffset, e.touches[0].pageX - this.startY))
       }
     },
     dragend (e) {
