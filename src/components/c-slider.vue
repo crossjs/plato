@@ -62,10 +62,10 @@ export default {
 
   computed: {
     prevIndex () {
-      return this.slideCount ? (this.slideCount + this.currIndex - 1) % this.slideCount : 0
+      return this.slideCount ? (this.slideCount + this.currIndex - 1) % this.slideCount : -1
     },
     nextIndex () {
-      return this.slideCount ? (this.currIndex + 1) % this.slideCount : 0
+      return this.slideCount ? (this.currIndex + 1) % this.slideCount : -1
     }
   },
 
@@ -84,8 +84,8 @@ export default {
       this.currIndex = val
     },
     prevIndex (val, old) {
-      this.slideCount && this.children[old].classList.remove(classes.prev)
-      this.slideCount && this.children[val].classList.add(classes.prev)
+      this.slideCount && old !== -1 && this.children[old].classList.remove(classes.prev)
+      this.slideCount && val !== -1 && this.children[val].classList.add(classes.prev)
     },
     currIndex (val, old) {
       // this.slideReady = true
@@ -93,8 +93,8 @@ export default {
       this.slideCount && this.children[val].classList.add(classes.active)
     },
     nextIndex (val, old) {
-      this.slideCount && this.children[old].classList.remove(classes.next)
-      this.slideCount && this.children[val].classList.add(classes.next)
+      this.slideCount && old !== -1 && this.children[old].classList.remove(classes.next)
+      this.slideCount && val !== -1 && this.children[val].classList.add(classes.next)
     },
     interval () {
       this.automate()
@@ -172,14 +172,14 @@ export default {
     },
     go (index) {
       this.slideReady = false
-      setTimeout(() => {
+      this.$nextTick(() => {
         this.offset = 0
         if (index !== this.currIndex) {
           this.currIndex = index
           this.$emit('slide', this.currIndex)
         }
         this.slideReady = true
-      }, 0)
+      })
     }
   }
 }
