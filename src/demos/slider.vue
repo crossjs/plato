@@ -4,7 +4,7 @@
       <p>Single slide</p>
       <c-slider
         :transition="transition">
-        <div class="d-slider-item">Single</div>
+        <div class="d-slider-item">Single Slide</div>
       </c-slider>
       <hr>
       <p>Two slides</p>
@@ -16,6 +16,7 @@
       <hr>
       <p>Three slides</p>
       <c-slider
+        :index="1"
         :transition="transition">
         <div class="d-slider-item">Slide First</div>
         <div class="d-slider-item">Slide Second</div>
@@ -40,7 +41,6 @@
       <c-slider
         :transition="transition"
         :index="index"
-        :interval="3"
         @slide="slide">
         <div v-for="i in items" class="d-slider-item">Slide {{i}}</div>
       </c-slider>
