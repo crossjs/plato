@@ -1,6 +1,6 @@
 <template>
   <div class="c-swipe"
-    :style="{transform: 'translateX(' + offset + 'px)'}"
+    :style="{transform: 'translate3d(' + offset + 'px, 0, 0)'}"
     @touchstart="dragstart"
     @touchmove="drag"
     @touchend="dragend"

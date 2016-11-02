@@ -8,7 +8,7 @@
       :style="{height: maxHeight + 'px'}">
       <div class="c-scroller-content"
         :class="{'transition' : transition}"
-        :style="{transform: 'translateY(' + offset + 'px)'}"
+        :style="{transform: 'translate3d(0, ' + offset + 'px, 0)'}"
         ref="content">
         <div class="c-scroller-indicator c-scroller-indicator-down"
           ref="indicator">
