@@ -119,8 +119,12 @@ export default {
         if (!this.intervalId) {
           this.intervalId = setInterval(() => {
             if (!this.isDragging && this.slideCount > 1) {
+              this.slideReady = false
               this.offset = this.minOffset
-              this.go(this.nextIndex)
+              // default transtion duration is 200ms
+              setTimeout(() => {
+                this.go(this.nextIndex)
+              }, this.transition ? 200 : 0)
             }
           }, this.interval * 1000)
         }
