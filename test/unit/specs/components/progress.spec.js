@@ -33,7 +33,7 @@ describe('progress.vue', () => {
     expect(vm.progress).to.equal(50)
 
     vm.$nextTick(() => {
-      expect(vm.$children[0].$el.children[0].style.webkitTransform).to.equal('translateX(-50%)')
+      expect(vm.$children[0].$el.children[0].style.webkitTransform).to.equal('translate3d(-50%, 0px, 0px)')
       done()
     })
   })

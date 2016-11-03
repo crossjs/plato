@@ -1,6 +1,6 @@
 <template>
   <div class="c-swipe"
-    :style="{transform: 'translateX(' + offset + 'px)'}"
+    :style="{transform: 'translate3d(' + offset + 'px, 0, 0)'}"
     @touchstart="dragstart"
     @touchmove="drag"
     @touchend="dragend"
@@ -26,8 +26,8 @@ export default {
       offset: 0,
       minOffset: 0,
       maxOffset: 0,
-      // 正在拖动
-      dragging: false,
+      // 正在拖动，不需要响应式
+      // dragging: false,
       // 符合拖动条件
       catching: false
     }

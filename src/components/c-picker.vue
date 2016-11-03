@@ -8,10 +8,10 @@
     <div class="c-picker-cover"
       :style="{'background-size': '100% ' + (size - 1) / 2 * itemHeight + 'px'}">
       <div class="c-picker-highlight"
-        :style="{'height': itemHeight + 'px', 'transform': 'translateY(' + ((size - 1) / 2 * itemHeight) + 'px)'}"></div>
+        :style="{'height': itemHeight + 'px', 'transform': 'translate3d(0, ' + ((size - 1) / 2 * itemHeight) + 'px, 0)'}"></div>
     </div>
     <div class="c-picker-content" :class="{'transition' : transition}"
-      :style="{transform: 'translateY(' + offset + 'px)'}"
+      :style="{transform: 'translate3d(0, ' + offset + 'px, 0)'}"
       ref="content"><slot></slot></div>
   </div>
 </template>

@@ -32,7 +32,7 @@ describe('slider.vue', () => {
     })
 
     vm.$nextTick(() => {
-      expect(vm.$el.querySelector('.c-slider-content').style.webkitTransform).to.equal('translateX(0px)')
+      expect(vm.$el.querySelector('.c-slider-content').style.webkitTransform).to.equal('translate3d(0px, 0, 0)')
       done()
     })
   })
