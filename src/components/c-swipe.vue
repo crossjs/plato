@@ -26,8 +26,8 @@ export default {
       offset: 0,
       minOffset: 0,
       maxOffset: 0,
-      // 正在拖动
-      dragging: false,
+      // 正在拖动，不需要响应式
+      // dragging: false,
       // 符合拖动条件
       catching: false
     }

@@ -66,8 +66,6 @@ export default {
   data () {
     return {
       offset: 0,
-      // 临界阈值
-      threshold: 0,
       // 推拉状态
       pullState: 0,
       // 溢出距离
@@ -92,6 +90,7 @@ export default {
   },
 
   mounted () {
+    // 临界阈值
     this.threshold = this.$refs.indicator.clientHeight * this.bounce
     this.fill()
   },
