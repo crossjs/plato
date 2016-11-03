@@ -1,9 +1,21 @@
+import Promise from 'nuo'
 import createPersist from 'vuex-localstorage'
 import { createAction, handleAction, $inject } from 'vuex-actions'
 import Normalizer from 'utils/normalizer'
 import request, { merge } from 'utils/request'
 
-export default ({ namespace, expires = 0, source, getters, ...options }) => {
+/**
+ * Template for standard REST
+ *
+ * @param  {String} namespace    命名空间，用于生成 actions 与持久化
+ * @param  {Number} [expires=0]  持久化数据过期时间，0 为不过期
+ * @param  {Number} [memcache=0] 幂等请求缓存过期时间，0 为不缓存
+ * @param  {String} source       REST 的 source
+ * @param  {Object} getters      Vuex 的 getters
+ * @param  {Object} options      Request 的默认配置
+ * @return {Object}              Vuex 的 module
+ */
+export default ({ namespace, expires = 0, memcache = 0, source, getters, ...options }) => {
   const LIST = `${namespace}List`
   const POST = `${namespace}Post`
   const DELETE = `${namespace}Delete`
@@ -11,9 +23,47 @@ export default ({ namespace, expires = 0, source, getters, ...options }) => {
   const PUT = `${namespace}Put`
   const GET = `${namespace}Get`
 
+  let cache
+
+  if (memcache) {
+    cache = createPersist(namespace, {}, {
+      provider: (function (storage) {
+        return {
+          getItem (key) {
+            return storage[key]
+          },
+          setItem (key, val) {
+            storage[key] = val
+          }
+        }
+      })({}), // store to memory
+      serialize: val => val,
+      deserialize: val => val,
+      expires: memcache
+    })
+  }
+
   const REST = {
     list (query) {
-      return request(source, merge({}, options, { query }))
+      const key = 'list'
+      if (cache) {
+        // 为了性能考虑，只缓存最近的一次查询
+        const value = cache.get(key)
+        if (value && value.query === query && value.result) {
+          return Promise.resolve(value.result)
+        }
+      }
+      return request(source, merge({}, options, {
+        query
+      })).then(result => {
+        if (cache) {
+          cache.set(key, {
+            query,
+            result
+          })
+        }
+        return result
+      }).catch(err => { throw err })
     },
     post (body) {
       return request(source, merge({}, options, {
@@ -42,9 +92,23 @@ export default ({ namespace, expires = 0, source, getters, ...options }) => {
       }))
     },
     get (id) {
+      const key = `get-${id}`
+      if (cache) {
+        const value = cache.get(key)
+        if (value && value.result) {
+          return Promise.resolve(value.result)
+        }
+      }
       return request(`${source}/{id}`, merge({}, options, {
         params: { id }
-      }))
+      })).then(result => {
+        if (cache) {
+          cache.set(key, {
+            result
+          })
+        }
+        return result
+      }).catch(err => { throw err })
     }
   }
 
