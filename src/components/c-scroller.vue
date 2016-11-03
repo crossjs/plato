@@ -8,7 +8,7 @@
       :style="{height: maxHeight + 'px'}">
       <div class="c-scroller-content"
         :class="{'transition' : transition}"
-        :style="{transform: 'translateY(' + offset + 'px)'}"
+        :style="{transform: 'translate3d(0, ' + offset + 'px, 0)'}"
         ref="content">
         <div class="c-scroller-indicator c-scroller-indicator-down"
           ref="indicator">
@@ -66,8 +66,6 @@ export default {
   data () {
     return {
       offset: 0,
-      // 临界阈值
-      threshold: 0,
       // 推拉状态
       pullState: 0,
       // 溢出距离
@@ -92,6 +90,7 @@ export default {
   },
 
   mounted () {
+    // 临界阈值
     this.threshold = this.$refs.indicator.clientHeight * this.bounce
     this.fill()
   },

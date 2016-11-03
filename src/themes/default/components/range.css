@@ -12,7 +12,7 @@
 
 .c-range-content {
   position: relative;
-  transform: translateY(-dpr(4px));
+  transform: translate3d(0, -dpr(4px), 0);
   height: dpr(4px);
   background-color: var(--primary);
 

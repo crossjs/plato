@@ -5,7 +5,7 @@
     @touchend="dragend">
     <div class="c-slider-content"
       :class="{transition: transition && !isDragging & !slideReady}"
-      :style="{transform: 'translateX(' + offset + 'px)'}"
+      :style="{transform: 'translate3d(' + offset + 'px, 0, 0)'}"
       ref="content">
       <slot></slot>
     </div>
