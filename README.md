@@ -3,10 +3,10 @@
   <sub>Based on Vue 2.0</sub>
 </p>
 <p align="center">
-  <a href="https://travis-ci.org/crossjs/plato"><img src="https://img.shields.io/travis/crossjs/plato.svg?style=flat-square" alt="Travis"></a>
-  <a href="https://coveralls.io/github/crossjs/plato"><img src="https://img.shields.io/coveralls/crossjs/plato.svg?style=flat-square" alt="Coveralls"></a>
-  <a href="https://david-dm.org/crossjs/plato"><img src="https://david-dm.org/crossjs/plato.svg?style=flat-square" alt="dependencies"></a>
-  <a href="https://david-dm.org/crossjs/plato?type=dev"><img src="https://david-dm.org/crossjs/plato/dev-status.svg?style=flat-square" alt="devDependency Status"></a>
+  <a href="https://travis-ci.org/crossjs/plato"><img src="https://img.shields.io/travis/crossjs/plato/dev.svg?style=flat-square" alt="Travis"></a>
+  <a href="https://coveralls.io/github/crossjs/plato"><img src="https://img.shields.io/coveralls/crossjs/plato/dev.svg?style=flat-square" alt="Coveralls"></a>
+  <a href="https://david-dm.org/crossjs/plato"><img src="https://img.shields.io/david/crossjs/plato.svg?style=flat-square" alt="dependencies"></a>
+  <a href="https://david-dm.org/crossjs/plato?type=dev"><img src="https://img.shields.io/david/dev/crossjs/plato.svg?style=flat-square" alt="devDependency Status"></a>
 </p>
 <p align="center">
   a Boilerplate for mobile SPAs use vue, vuex, vue-router<br>
