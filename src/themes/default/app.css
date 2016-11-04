@@ -43,7 +43,8 @@
 #logo {
   position: absolute;
   z-index: 1;
-  width: 100%;
+  left: dpr(88px);
+  right: dpr(88px);
 
   & a {
     display: block;

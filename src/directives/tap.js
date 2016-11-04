@@ -21,6 +21,7 @@ export default {
     })
     el.addEventListener('touchend', e => {
       if (start) {
+        start = null
         // dispatch a tap event
         const tapEvent = document.createEvent('HTMLEvents')
         tapEvent.initEvent('tap', true, true)
@@ -35,7 +36,6 @@ export default {
         } else {
           el.dispatchEvent(tapEvent)
         }
-        start = null
       }
     })
   }
