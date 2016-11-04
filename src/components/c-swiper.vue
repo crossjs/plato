@@ -1,17 +1,17 @@
 <template>
-  <div class="c-swipe"
+  <div class="c-swiper"
     :style="{transform: 'translate3d(' + offset + 'px, 0, 0)'}"
     @touchstart="dragstart"
     @touchmove="drag"
     @touchend="dragend"
     v-tap @tap="onTap">
-    <div class="c-swipe-left" ref="left">
+    <div class="c-swiper-left" ref="left">
       <slot name="left"></slot>
     </div>
-    <div class="c-swipe-body">
+    <div class="c-swiper-body">
       <slot></slot>
     </div>
-    <div class="c-swipe-right" ref="right">
+    <div class="c-swiper-right" ref="right">
       <slot name="right"></slot>
     </div>
   </div>
@@ -100,4 +100,4 @@ export default {
 }
 </script>
 
-<style src="styles/components/swipe"></style>
+<style src="styles/components/swiper"></style>

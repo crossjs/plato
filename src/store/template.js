@@ -7,6 +7,8 @@ import request, { merge } from 'utils/request'
 /**
  * Template for standard REST
  *
+ *   如果环境支持 GET 请求的缓存，比如浏览器，则没有必要启用 memcache
+ *
  * @param  {String} namespace    命名空间，用于生成 actions 与持久化
  * @param  {Number} [expires=0]  持久化数据过期时间，0 为不过期
  * @param  {Number} [memcache=0] 幂等请求缓存过期时间，0 为不缓存
@@ -15,7 +17,14 @@ import request, { merge } from 'utils/request'
  * @param  {Object} options      Request 的默认配置
  * @return {Object}              Vuex 的 module
  */
-export default ({ namespace, expires = 0, memcache = 0, source, getters, ...options }) => {
+export default ({
+    namespace,
+    expires = 0,
+    memcache = 0,
+    source,
+    initialState,
+    getters,
+    ...options }) => {
   const LIST = `${namespace}List`
   const POST = `${namespace}Post`
   const DELETE = `${namespace}Delete`
@@ -114,16 +123,14 @@ export default ({ namespace, expires = 0, memcache = 0, source, getters, ...opti
 
   const normalizer = new Normalizer()
 
-  const persist = createPersist(namespace, {
+  const persist = createPersist(namespace, Object.assign({
     fetching: false,
     entities: {}
-  }, {
+  }, initialState), {
     expires
   })
 
   const state = persist.get()
-
-  /*eslint babel/new-cap: 0*/
 
   const actions = {
     [LIST]: createAction(LIST, query => REST.list(query)),

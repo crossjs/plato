@@ -14,7 +14,7 @@
         v-for="item in faq_items"
         :key="item.id"
         :flex="false">
-        <c-swipe>
+        <c-swiper>
           <c-button
             slot="left"
             class="primary squared">{{ __('views.home.nothing') }}</c-button>
@@ -27,7 +27,7 @@
             v-if="authorized"
             class="warning squared"
             v-tap @tap.native="_delete(item.id)">{{ __('views.home.delete') }}</c-button>
-        </c-swipe>
+        </c-swiper>
       </c-row>
     </c-scroller>
   </div>
@@ -38,7 +38,7 @@ import CModal from 'components/c-modal'
 import CScroller from 'components/c-scroller'
 import CSpinner from 'components/c-spinner'
 import CRow from 'components/c-row'
-import CSwipe from 'components/c-swipe'
+import CSwiper from 'components/c-swiper'
 import CButton from 'components/c-button'
 import { mapGetters, mapActions } from 'vuex'
 
@@ -63,7 +63,7 @@ export default {
       document.documentElement.clientHeight -
       document.getElementById('header').clientHeight
     this.addToast('Pull down to reload')
-    this.addToast('Swipe left/right to show buttons')
+    this.addToast('Swiper left/right to show buttons')
   },
 
   methods: {
@@ -86,7 +86,7 @@ export default {
     CScroller,
     CSpinner,
     CRow,
-    CSwipe,
+    CSwiper,
     CButton
   }
 }
