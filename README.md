@@ -28,7 +28,7 @@ npm run dev
 # eslint, stylelint, unit and e2e test
 npm test
 
-# compile files for production
+# compile files for production with minification
 npm run compile
 
 # test, clean, and compile
