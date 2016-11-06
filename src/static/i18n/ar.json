@@ -8,6 +8,7 @@
   },
   "views": {
     "home": {
+      "nothing": "لا شى",
       "delete": "حذف",
       "confirm": "تأكيد لحذف؟"
     },

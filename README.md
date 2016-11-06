@@ -3,10 +3,10 @@
   <sub>Based on Vue 2.0</sub>
 </p>
 <p align="center">
-  <a href="https://travis-ci.org/crossjs/plato"><img src="https://img.shields.io/travis/crossjs/plato.svg?style=flat-square" alt="Travis"></a>
-  <a href="https://coveralls.io/github/crossjs/plato"><img src="https://img.shields.io/coveralls/crossjs/plato.svg?style=flat-square" alt="Coveralls"></a>
-  <a href="https://david-dm.org/crossjs/plato"><img src="https://david-dm.org/crossjs/plato.svg?style=flat-square" alt="dependencies"></a>
-  <a href="https://david-dm.org/crossjs/plato?type=dev"><img src="https://david-dm.org/crossjs/plato/dev-status.svg?style=flat-square" alt="devDependency Status"></a>
+  <a href="https://travis-ci.org/crossjs/plato"><img src="https://img.shields.io/travis/crossjs/plato/dev.svg?style=flat-square" alt="Travis"></a>
+  <a href="https://coveralls.io/github/crossjs/plato"><img src="https://img.shields.io/coveralls/crossjs/plato/dev.svg?style=flat-square" alt="Coveralls"></a>
+  <a href="https://david-dm.org/crossjs/plato"><img src="https://img.shields.io/david/crossjs/plato.svg?style=flat-square" alt="dependencies"></a>
+  <a href="https://david-dm.org/crossjs/plato?type=dev"><img src="https://img.shields.io/david/dev/crossjs/plato.svg?style=flat-square" alt="devDependency Status"></a>
 </p>
 <p align="center">
   a Boilerplate for mobile SPAs use vue, vuex, vue-router<br>
@@ -19,17 +19,23 @@
 # install dependencies
 npm install
 
+# start a mocking server at localhost:3001
+npm run mock
+
 # serve with hot reload at localhost:3000
 npm run dev
 
 # eslint, stylelint, unit and e2e test
 npm test
 
-# compile files for production
+# compile files for production with minification
 npm run compile
 
 # test, clean, and compile
 npm run build
+
+# serve dist, like production
+npm start
 
 # generate demo site and push to gh-pages
 npm run docs

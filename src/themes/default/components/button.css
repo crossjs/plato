@@ -1,6 +1,7 @@
 .c-button {
   white-space: nowrap;
   width: 100%;
+  padding: 0 1em;
   line-height: 3;
   color: var(--text);
   font-size: dpr(32px);
@@ -68,6 +69,10 @@
       background-color: white;
       border: 1px solid var(--disabled);
     }
+  }
+
+  &.squared {
+    border-radius: 0;
   }
 
   /* for c-icon */

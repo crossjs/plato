@@ -17,25 +17,10 @@ const webpackConfig = {
   target: 'web',
   resolve: {
     modules: [paths.src(), 'node_modules'],
-    descriptionFiles: ['package.json'],
-    mainFields: ['main', 'browser'],
-    mainFiles: ['index'],
     extensions: ['.css', '.js', '.json', '.vue'],
-    enforceExtension: false,
-    enforceModuleExtension: false,
     alias: {
       styles: paths.src(`themes/${config.theme}`)
     }
-  },
-  resolveLoader: {
-    modules: ['node_modules'],
-    descriptionFiles: ['package.json'],
-    mainFields: ['main'],
-    mainFiles: ['index'],
-    extensions: ['.js'],
-    enforceExtension: false,
-    enforceModuleExtension: false,
-    moduleExtensions: ['-loader']
   },
   node: {
     fs: 'empty',
@@ -46,23 +31,21 @@ const webpackConfig = {
     host: config.server_host,
     port: config.server_port,
     // proxy is useful for debugging
-    // proxy: {
-    //   '/api': 'http://127.0.0.1:4040'
-    // },
+    proxy: [{
+      context: '/api',
+      target: 'http://localhost:3001',
+      pathRewrite: {
+        '^/api': '' // Host path & target path conversion
+      }
+    }],
     compress: true,
     hot: true,
     noInfo: true
   },
   entry: {
     app: [
-      // override native Promise
-      'nuo',
-      // to reduce built file size,
-      // we load the specific polyfills with core-js
-      // instead of the all-in-one babel-polyfill.
-      'core-js/fn/array/find',
-      'core-js/fn/array/find-index',
-      'core-js/fn/object/assign',
+      // load the specific polyfills
+      paths.src('polyfills/index.js'),
       paths.src('index.js')],
     vendor: config.compiler_vendor
   },
@@ -244,7 +227,8 @@ if (!__TEST__) {
       }
     }),
     new webpack.optimize.CommonsChunkPlugin({
-      names: ['vendor']
+      name: 'vendor',
+      filename: 'common.js'
     })
   )
 }

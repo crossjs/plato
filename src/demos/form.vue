@@ -1,73 +1,51 @@
 <template>
   <div>
     <c-form>
-      <c-row>
-        <c-col>
-          <c-checkbox
-            :value="check1"
-            @change="check1 = arguments[0]"></c-checkbox>
-        </c-col>
+      <c-row class="padding" :flex="false">
+        <c-checkbox
+          :value="check1"
+          @change="check1 = arguments[0]"></c-checkbox>
+        <c-checkbox
+          :value="check1"
+          @change="check1 = arguments[0]"></c-checkbox>
       </c-row>
-      <c-row>
-        <c-col>
-          <c-checkbox
-            :value="check2"
-            @change="check2 = arguments[0]"></c-checkbox>
-        </c-col>
+      <c-row class="padding right" :flex="false">
+        <c-checkbox
+          :value="check2"
+          @change="check2 = arguments[0]"></c-checkbox>
       </c-row>
-      <c-row>
-        <c-col>
-          <c-textfield type="password"
-            :value="value"
-            @change="value = arguments[0]"></c-textfield>
-        </c-col>
+      <c-row class="padding" :flex="false">
+        <c-textfield type="password" placeholder="password"
+          @change="value = arguments[0]"></c-textfield>
       </c-row>
-      <c-row>
-        <c-col>
-          <c-password
-            :value="value"
-            @change="value = arguments[0]"></c-password>
-        </c-col>
+      <c-row class="padding" :flex="false">
+        <c-password
+          :attrs="{placeholder: 'password'}"
+          @change="value = arguments[0]"></c-password>
       </c-row>
-      <c-row>
-        <c-col>
-          <c-textfield placeholder="text"></c-textfield>
-        </c-col>
+      <c-row class="padding" :flex="false">
+        <c-textfield placeholder="text"></c-textfield>
       </c-row>
-      <c-row>
-        <c-col>
-          <c-multiline placeholder="textarea"></c-multiline>
-        </c-col>
+      <c-row class="padding" :flex="false">
+        <c-multiline placeholder="textarea"></c-multiline>
       </c-row>
-      <c-row>
-        <c-col>
-          <c-textfield type="email" placeholder="email"></c-textfield>
-        </c-col>
+      <c-row class="padding" :flex="false">
+        <c-textfield type="email" placeholder="email"></c-textfield>
       </c-row>
-      <c-row>
-        <c-col>
-          <c-textfield type="tel" placeholder="tel"></c-textfield>
-        </c-col>
+      <c-row class="padding" :flex="false">
+        <c-textfield type="tel" placeholder="tel"></c-textfield>
       </c-row>
-      <c-row>
-        <c-col>
-          <c-textfield type="url" placeholder="url"></c-textfield>
-        </c-col>
+      <c-row class="padding" :flex="false">
+        <c-textfield type="url" placeholder="url"></c-textfield>
       </c-row>
-      <c-row>
-        <c-col>
-          <c-textfield type="password" placeholder="password"></c-textfield>
-        </c-col>
+      <c-row class="padding" :flex="false">
+        <c-textfield type="password" placeholder="password"></c-textfield>
       </c-row>
-      <c-row>
-        <c-col>
-          <c-textfield type="number" placeholder="number"></c-textfield>
-        </c-col>
+      <c-row class="padding" :flex="false">
+        <c-textfield type="number" placeholder="number"></c-textfield>
       </c-row>
-      <c-row>
-        <c-col>
-          <c-textfield type="search" placeholder="search"></c-textfield>
-        </c-col>
+      <c-row class="padding" :flex="false">
+        <c-textfield type="search" placeholder="search"></c-textfield>
       </c-row>
     </c-form>
   </div>

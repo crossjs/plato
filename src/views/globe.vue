@@ -1,16 +1,20 @@
 <template>
   <div class="v-globe">
     <c-row>
-      {{ __('views.globe.transition') }}
-      <c-col class="right">
+      <c-col class="padding">
+        {{ __('views.globe.transition') }}
+      </c-col>
+      <c-col class="padding right">
         <c-checkbox
           :value="transition"
           @change="transitionEnabled = arguments[0]"></c-checkbox>
       </c-col>
     </c-row>
     <c-row :link="true" v-tap @tap.native="showPicker = !showPicker">
-      {{ __('views.globe.language') }}
-      <c-col class="right">
+      <c-col class="padding">
+        {{ __('views.globe.language') }}
+      </c-col>
+      <c-col class="padding right">
         {{ Object.keys(languages)[languageIndex] }}
       </c-col>
     </c-row>

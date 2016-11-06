@@ -8,6 +8,7 @@
   },
   "views": {
     "home": {
+      "nothing": "Nothing",
       "delete": "Delete",
       "confirm": "Delete?"
     },

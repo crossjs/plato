@@ -1,3 +1,9 @@
+/* paddings */
+
+.padding {
+  padding: dpr(20px);
+}
+
 /* font-sizes */
 
 .fs-64 {

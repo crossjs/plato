@@ -1,6 +1,6 @@
 <template>
   <div class="d-picker">
-    <c-row>
+    <c-pane :flex="true">
       <c-col>
         <c-picker
           :transition="transition"
@@ -17,10 +17,10 @@
           <p v-for="item in items">{{item}}</p>
         </c-picker>
       </c-col>
-    </c-row>
+    </c-pane>
     <p class="center">Selected: {{picked}}</p>
     <hr>
-    <c-row>
+    <c-pane :flex="true">
       <c-col>
         <c-picker
           :transition="transition"
@@ -50,14 +50,14 @@
           <p v-for="item in dateMax">{{item}}</p>
         </c-picker>
       </c-col>
-    </c-row>
+    </c-pane>
     <hr>
     <p class="center">Selected: {{yearList[year]}} - {{month + 1}} - {{date + 1}}</p>
   </div>
 </template>
 
 <script>
-import CRow from 'components/c-row'
+import CPane from 'components/c-pane'
 import CCol from 'components/c-col'
 import CPicker from 'components/c-picker'
 import { mapGetters } from 'vuex'
@@ -97,7 +97,7 @@ export default {
   },
 
   components: {
-    CRow,
+    CPane,
     CCol,
     CPicker
   }

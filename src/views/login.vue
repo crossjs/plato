@@ -1,30 +1,34 @@
 <template>
   <div class="v-login">
     <c-form @submit.native.prevent="login">
-      <c-row>
-        <c-col :size="1">
-          <c-label class="col col-1">{{__(username.label)}}</c-label>
-        </c-col>
-        <c-col :size="3">
-          <c-textfield
-            :field="username.field"
-            :validate="username.validate"
-            :value="username.value"
-            @change="username.value = arguments[0]"></c-textfield>
-        </c-col>
-      </c-row>
-      <c-row>
-        <c-col :size="1">
-          <c-label class="col col-1">{{__(password.label)}}</c-label>
-        </c-col>
-        <c-col :size="3">
-          <c-password
-            :field="password.field"
-            :validate="password.validate"
-            :value="password.value"
-            @change="password.value = arguments[0]"></c-password>
-        </c-col>
-      </c-row>
+      <div>
+        <c-row>
+          <c-col class="padding" :size="1">
+            <c-label for="username">{{__(username.label)}}</c-label>
+          </c-col>
+          <c-col class="padding" :size="3">
+            <c-textfield
+              id="username"
+              :field="username.field"
+              :validate="username.validate"
+              :value="username.value"
+              @change="username.value = arguments[0]"></c-textfield>
+          </c-col>
+        </c-row>
+        <c-row>
+          <c-col class="padding" :size="1">
+            <c-label for="password">{{__(password.label)}}</c-label>
+          </c-col>
+          <c-col class="padding" :size="3">
+            <c-password
+              :attrs="{id: 'password'}"
+              :field="password.field"
+              :validate="password.validate"
+              :value="password.value"
+              @change="password.value = arguments[0]"></c-password>
+          </c-col>
+        </c-row>
+      </div>
       <template v-if="$validation.errors.length">
         <c-pane class="center">
           <c-badge class="warning" size="small">

@@ -6,31 +6,33 @@
     <c-spinner v-show="faq_is_fetching"></c-spinner>
     <c-form class="c-form-expand"
       @submit.native.prevent="show_modal = true">
-      <c-row :flex="false">
-        <c-label>{{__(title.label)}}</c-label>
-        <c-badge class="warning" size="small">
-          {{$validation.errors.filter(function (error) { return error.field === 'title' }).map(function (error) { return error.message }).join(' ')}}
-        </c-badge>
-        <c-textfield
-          field="title"
-          :row="title.row"
-          :validate="title.validate"
-          :value="title.value"
-          @change="title.value = arguments[0]"></c-textfield>
-      </c-row>
-      <c-row :flex="false">
-        <c-label>{{__(content.label)}}</c-label>
-        <c-badge class="warning" size="small">
-          {{$validation.errors.filter(function (error) { return error.field === 'content' }).map(function (error) { return error.message }).join(' ')}}
-        </c-badge>
-        <c-multiline
-          field="content"
-          rows="10"
-          :row="content.row"
-          :validate="content.validate"
-          :value="content.value"
-          @change="content.value = arguments[0]"></c-multiline>
-      </c-row>
+      <div>
+        <c-row class="padding" :flex="false">
+          <c-label>{{__(title.label)}}</c-label>
+          <c-badge class="warning" size="small">
+            {{$validation.errors.filter(function (error) { return error.field === 'title' }).map(function (error) { return error.message }).join(' ')}}
+          </c-badge>
+          <c-textfield
+            field="title"
+            :row="title.row"
+            :validate="title.validate"
+            :value="title.value"
+            @change="title.value = arguments[0]"></c-textfield>
+        </c-row>
+        <c-row class="padding" :flex="false">
+          <c-label>{{__(content.label)}}</c-label>
+          <c-badge class="warning" size="small">
+            {{$validation.errors.filter(function (error) { return error.field === 'content' }).map(function (error) { return error.message }).join(' ')}}
+          </c-badge>
+          <c-multiline
+            field="content"
+            rows="10"
+            :row="content.row"
+            :validate="content.validate"
+            :value="content.value"
+            @change="content.value = arguments[0]"></c-multiline>
+        </c-row>
+      </div>
       <c-pane>
         <c-button class="primary" type="submit"
           :disabled="$validation.errors.length > 0">{{ __('views.create.submit') }}</c-button>
