@@ -1,0 +1,14 @@
+.c-uploader {
+  width: dpr(100px);
+  height: dpr(100px);
+  border: 1px dashed var(--primary);
+  border-radius: dpr(6px);
+  position: relative;
+
+  &-icon {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    color: color(var(--primary) alpha(50%));
+  }
+}

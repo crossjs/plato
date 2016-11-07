@@ -139,9 +139,9 @@ export default ({
     [PUT]: createAction(PUT, (id, body) => REST.put(id, body)),
     [GET]: createAction(GET, id => REST.get(id)),
     [DELETE]: createAction(DELETE, id => ({
-      // destroy, removing data from remote
+      // destroy, removing data from 'components/core/remote
       _: REST.delete(id),
-      // then return id (payload) for removing data from store
+      // then return id (payload) for removing data from 'components/core/store
       id: $inject(() => id)('_')
     }))
   }

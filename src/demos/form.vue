@@ -52,13 +52,13 @@
 </template>
 
 <script>
-import CForm from 'components/c-form'
-import CRow from 'components/c-row'
-import CCol from 'components/c-col'
-import CCheckbox from 'components/c-checkbox'
-import CPassword from 'components/c-password'
-import CTextfield from 'components/c-textfield'
-import CMultiline from 'components/c-multiline'
+import CForm from 'components/core/form'
+import CRow from 'components/core/row'
+import CCol from 'components/core/col'
+import CCheckbox from 'components/core/checkbox'
+import CPassword from 'components/core/password'
+import CTextfield from 'components/core/textfield'
+import CMultiline from 'components/core/multiline'
 
 export default {
   data () {

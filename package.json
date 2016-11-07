@@ -1,11 +1,11 @@
 {
   "name": "PLATO",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "a Boilerplate for mobile SPAs use vue, vuex, vue-router",
   "license": "MIT",
   "main": "src/index.js",
   "scripts": {
-    "gfw": "npm i cross-env && cross-env CHROMEDRIVER_CDNURL=http://npm.taobao.org/mirrors/chromedriver PHANTOMJS_CDNURL=http://npm.taobao.org/mirrors/phantomjs npm install -r https://registry.npm.taobao.org",
+    "gfw": "npm i cross-env && cross-env PHANTOMJS_CDNURL=http://npm.taobao.org/mirrors/phantomjs npm install -r https://registry.npm.taobao.org",
     "start": "serve ./dist",
     "mock": "cross-env NODE_ENV=development DEBUG=plato* json-server --watch --port 3001 ./mock/db.json",
     "dev": "cross-env NODE_ENV=development DEBUG=plato* webpack-dev-server --progress",
@@ -44,7 +44,7 @@
     "babel-register": "^6.18.0",
     "bundle-loader": "^0.5.4",
     "chai": "^3.5.0",
-    "chromedriver": "~2.24.1",
+    "chromedriver": "^2.25.1",
     "copy-webpack-plugin": "^4.0.0",
     "core-js": "^2.4.1",
     "cross-env": "^3.1.3",

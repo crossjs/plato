@@ -29,12 +29,12 @@
 </template>
 
 <script>
-import CPane from 'components/c-pane'
-import CRow from 'components/c-row'
-import CCol from 'components/c-col'
-import CLink from 'components/c-link'
-import CCheckbox from 'components/c-checkbox'
-import CPicker from 'components/c-picker'
+import CPane from 'components/core/pane'
+import CRow from 'components/core/row'
+import CCol from 'components/core/col'
+import CLink from 'components/core/link'
+import CCheckbox from 'components/core/checkbox'
+import CPicker from 'components/core/picker'
 import { mapGetters, mapActions } from 'vuex'
 
 export default {

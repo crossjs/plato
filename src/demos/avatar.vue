@@ -30,8 +30,8 @@
 </template>
 
 <script>
-import CPane from 'components/c-pane'
-import CAvatar from 'components/c-avatar'
+import CPane from 'components/core/pane'
+import CAvatar from 'components/core/avatar'
 
 export default {
   components: {

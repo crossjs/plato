@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import CToast from 'components/c-toast'
+import CToast from 'components/core/toast'
 
 export default {
   data () {

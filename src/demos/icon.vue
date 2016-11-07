@@ -10,9 +10,9 @@
 </template>
 
 <script>
-import CPane from 'components/c-pane'
-import CIcon from 'components/c-icon'
-import entities from 'components/assets/icon-entities'
+import CPane from 'components/core/pane'
+import CIcon from 'components/core/icon'
+import entities from 'components/core/assets/icon-entities'
 
 export default {
   data () {

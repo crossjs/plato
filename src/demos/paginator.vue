@@ -44,9 +44,9 @@
 </template>
 
 <script>
-import CRow from 'components/c-row'
-import CCol from 'components/c-col'
-import CPaginator from 'components/c-paginator'
+import CRow from 'components/core/row'
+import CCol from 'components/core/col'
+import CPaginator from 'components/paginator'
 
 export default {
   components: {

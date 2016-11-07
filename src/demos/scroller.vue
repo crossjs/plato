@@ -22,9 +22,9 @@
 </template>
 
 <script>
-import CPane from 'components/c-pane'
-import CScroller from 'components/c-scroller'
-import CButton from 'components/c-button'
+import CPane from 'components/core/pane'
+import CScroller from 'components/core/scroller'
+import CButton from 'components/core/button'
 import { mapGetters } from 'vuex'
 
 export default {

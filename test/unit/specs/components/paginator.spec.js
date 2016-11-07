@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import CPaginator from 'components/c-paginator'
+import CPaginator from 'components/paginator'
 import tap from 'directives/tap'
 
 Vue.directive('tap', tap)

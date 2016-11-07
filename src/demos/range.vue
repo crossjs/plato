@@ -50,8 +50,8 @@
 </template>
 
 <script>
-import CRow from 'components/c-row'
-import CRange from 'components/c-range'
+import CRow from 'components/core/row'
+import CRange from 'components/core/range'
 
 export default {
   data () {

@@ -21,8 +21,8 @@
 </template>
 
 <script>
-import CPane from 'components/c-pane'
-import CBadge from 'components/c-badge'
+import CPane from 'components/core/pane'
+import CBadge from 'components/core/badge'
 
 export default {
   components: {

@@ -37,8 +37,8 @@
 </template>
 
 <script>
-import CRow from 'components/c-row'
-import CImage from 'components/c-image'
+import CRow from 'components/core/row'
+import CImage from 'components/core/image'
 
 export default {
   components: {

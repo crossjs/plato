@@ -30,10 +30,10 @@
 </template>
 
 <script>
-import CPane from 'components/c-pane'
-import CCol from 'components/c-col'
-import CProgress from 'components/c-progress'
-import CButton from 'components/c-button'
+import CPane from 'components/core/pane'
+import CCol from 'components/core/col'
+import CProgress from 'components/core/progress'
+import CButton from 'components/core/button'
 
 export default {
   data () {
