@@ -5,7 +5,7 @@
     @touchend="dragend">
     <div class="c-slider-content"
       :class="{transition: transition && !isDragging & !slideReady}"
-      :style="{transform: 'translate3d(' + offset + 'px, 0, 0)'}"
+      :style="{transform: 'translate3d(' + offset + 'px, 0, 0 )'}"
       ref="content">
       <slot></slot>
     </div>
@@ -18,11 +18,14 @@
 </template>
 
 <script>
+import { isHorizontal } from './utils/direction'
+
 const classes = {
   prev: 'c-slider-prev',
   active: 'c-slider-active',
   next: 'c-slider-next'
 }
+
 export default {
   props: {
     index: {
@@ -121,7 +124,6 @@ export default {
             if (!this.isDragging && this.slideCount > 1) {
               this.slideReady = false
               this.offset = this.minOffset
-              // default transtion duration is 200ms
               setTimeout(() => {
                 this.go(this.nextIndex)
               }, this.transition ? 200 : 0)
@@ -137,28 +139,40 @@ export default {
     dragstart (e) {
       if (this.slideCount > 1 && !this.isDragging && e.touches && e.touches.length === 1) {
         this.isDragging = true
+        this.isHorizontal = false
         this.slideReady = false
-        this.startY = e.touches[0].pageX - this.offset
+        this.start = e.touches[0]
+        this.startX = e.touches[0].pageX - this.offset
       }
     },
     dragging (e) {
       if (this.isDragging) {
-        e.preventDefault()
-        e.stopPropagation()
-        const offset = Math.min(this.maxOffset, Math.max(this.minOffset, e.touches[0].pageX - this.startY))
-        if (this.offset === 0 || offset * this.offset < -1) {
-          if (offset < 0) {
-            this.children[this.nextIndex].classList.remove(classes.prev)
-          } else if (offset > 0) {
-            this.children[this.prevIndex].classList.remove(classes.next)
+        // only slide while swipe horizontal
+        if (this.isHorizontal || isHorizontal(e.touches[0], this.start)) {
+          this.isHorizontal = true
+          e.preventDefault()
+          e.stopPropagation()
+          const offset = Math.min(this.maxOffset, Math.max(this.minOffset, e.touches[0].pageX - this.startX))
+          if (this.offset === 0 || offset * this.offset < -1) {
+            if (offset < 0) {
+              this.children[this.nextIndex].classList.remove(classes.prev)
+            } else if (offset > 0) {
+              this.children[this.prevIndex].classList.remove(classes.next)
+            }
           }
+          this.offset = offset
+        } else {
+          this.isDragging = false
+          this.isHorizontal = false
+          this.slideReady = true
+          this.offset = 0
         }
-        this.offset = offset
       }
     },
     dragend (e) {
       if (this.isDragging) {
         this.isDragging = false
+        this.isHorizontal = false
         if (this.offset > 0) {
           if (this.offset > this.maxOffset / 2) {
             this.offset = this.maxOffset
