@@ -1,4 +1,9 @@
 .v-demos {
+  & h3 {
+    padding: dpr(20px);
+    background-color: color(white lightness(-2%));
+  }
+
   & .c-col {
     & a {
       display: block;
@@ -112,11 +117,17 @@
   }
 }
 
-.d-upload {
+.d-swiper {
+  & .c-button {
+    height: 100%;
+  }
+}
+
+.d-uploader {
   padding: dpr(5px);
 }
 
-.d-upload-container {
+.d-uploader-container {
   width: 100%;
   height: 100%;
   position: absolute;
@@ -125,7 +136,7 @@
   z-index: 2;
 }
 
-.d-upload-preview {
+.d-uploader-preview {
   width: 100%;
   height: 100%;
 
@@ -142,7 +153,7 @@
   }
 }
 
-.d-upload-progress {
+.d-uploader-progress {
   width: 100%;
   height: 0;
   z-index: 3;
@@ -156,7 +167,7 @@
   transition: height 0.3s linear;
 }
 
-.d-upload-text {
+.d-uploader-text {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -168,7 +179,7 @@
   align-items: center;
 }
 
-.d-upload-icon {
+.d-uploader-icon {
   width: 100%;
   height: 100%;
   text-align: center;

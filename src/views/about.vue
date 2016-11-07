@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import CPane from 'components/c-pane'
+import CPane from 'components/core/pane'
 
 export default {
   components: {

@@ -33,13 +33,13 @@
 </template>
 
 <script>
-import CProgress from 'components/c-progress'
-import CToast from 'components/c-toast'
-import CButton from 'components/c-button'
-import CLink from 'components/c-link'
-import CIcon from 'components/c-icon'
-import CNavbar from 'components/c-navbar'
-import CRoute from 'components/c-route'
+import CProgress from 'components/core/progress'
+import CToast from 'components/core/toast'
+import CButton from 'components/core/button'
+import CLink from 'components/core/link'
+import CIcon from 'components/core/icon'
+import CNavbar from 'components/navbar'
+import CRoute from 'components/route'
 import { mapGetters, mapActions } from 'vuex'
 import routes from 'router/routes'
 
@@ -106,4 +106,4 @@ function walkRoutes (routes, filter) {
 </script>
 
 <style src="styles/app"></style>
-<style src="styles/components/reddot"></style>
+<style src="styles/components/core/reddot"></style>

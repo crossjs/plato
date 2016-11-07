@@ -49,8 +49,8 @@
 </template>
 
 <script>
-import CPane from 'components/c-pane'
-import CSlider from 'components/c-slider'
+import CPane from 'components/core/pane'
+import CSlider from 'components/core/slider'
 import { mapGetters } from 'vuex'
 
 export default {

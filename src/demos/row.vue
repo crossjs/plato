@@ -41,8 +41,8 @@
 </template>
 
 <script>
-import CRow from 'components/c-row'
-import CCol from 'components/c-col'
+import CRow from 'components/core/row'
+import CCol from 'components/core/col'
 
 export default {
   components: {

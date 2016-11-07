@@ -18,9 +18,9 @@
 </template>
 
 <script>
-import CPane from 'components/c-pane'
-import CButton from 'components/c-button'
-import CSpinner from 'components/c-spinner'
+import CPane from 'components/core/pane'
+import CButton from 'components/core/button'
+import CSpinner from 'components/core/spinner'
 
 export default {
   components: {

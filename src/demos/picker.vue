@@ -57,9 +57,9 @@
 </template>
 
 <script>
-import CPane from 'components/c-pane'
-import CCol from 'components/c-col'
-import CPicker from 'components/c-picker'
+import CPane from 'components/core/pane'
+import CCol from 'components/core/col'
+import CPicker from 'components/core/picker'
 import { mapGetters } from 'vuex'
 
 export default {

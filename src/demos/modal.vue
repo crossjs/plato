@@ -15,9 +15,9 @@
 </template>
 
 <script>
-import CPane from 'components/c-pane'
-import CButton from 'components/c-button'
-import CModal from 'components/c-modal'
+import CPane from 'components/core/pane'
+import CButton from 'components/core/button'
+import CModal from 'components/core/modal'
 
 export default {
   data () {

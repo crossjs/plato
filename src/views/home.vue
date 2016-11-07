@@ -34,12 +34,12 @@
 </template>
 
 <script>
-import CModal from 'components/c-modal'
-import CScroller from 'components/c-scroller'
-import CSpinner from 'components/c-spinner'
-import CRow from 'components/c-row'
-import CSwiper from 'components/c-swiper'
-import CButton from 'components/c-button'
+import CModal from 'components/core/modal'
+import CScroller from 'components/core/scroller'
+import CSpinner from 'components/core/spinner'
+import CRow from 'components/core/row'
+import CSwiper from 'components/core/swiper'
+import CButton from 'components/core/button'
 import { mapGetters, mapActions } from 'vuex'
 
 export default {

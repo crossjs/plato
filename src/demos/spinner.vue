@@ -11,8 +11,8 @@
 </template>
 
 <script>
-import CPane from 'components/c-pane'
-import CSpinner from 'components/c-spinner'
+import CPane from 'components/core/pane'
+import CSpinner from 'components/core/spinner'
 
 export default {
   components: {

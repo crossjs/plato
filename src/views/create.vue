@@ -42,16 +42,16 @@
 </template>
 
 <script>
-import CModal from 'components/c-modal'
-import CBadge from 'components/c-badge'
-import CPane from 'components/c-pane'
-import CForm from 'components/c-form'
-import CRow from 'components/c-row'
-import CLabel from 'components/c-label'
-import CTextfield from 'components/c-textfield'
-import CMultiline from 'components/c-multiline'
-import CSpinner from 'components/c-spinner'
-import CButton from 'components/c-button'
+import CModal from 'components/core/modal'
+import CBadge from 'components/core/badge'
+import CPane from 'components/core/pane'
+import CForm from 'components/core/form'
+import CRow from 'components/core/row'
+import CLabel from 'components/core/label'
+import CTextfield from 'components/core/textfield'
+import CMultiline from 'components/core/multiline'
+import CSpinner from 'components/core/spinner'
+import CButton from 'components/core/button'
 import { mapGetters, mapActions } from 'vuex'
 
 export default {

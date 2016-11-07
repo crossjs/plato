@@ -10,8 +10,8 @@
 </template>
 
 <script>
-import CImage from 'components/c-image'
-import CModal from 'components/c-modal'
+import CImage from 'components/core/image'
+import CModal from 'components/core/modal'
 import { mapGetters, mapActions } from 'vuex'
 export default {
   data () {
