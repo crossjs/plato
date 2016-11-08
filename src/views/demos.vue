@@ -159,6 +159,16 @@ export default {
     }
   },
 
+  beforeRouteEnter (to, from, next) {
+    document.querySelector('#content').scrollTop = 0
+    next()
+  },
+
+  beforeRouteLeave (to, from, next) {
+    document.querySelector('#content').scrollTop = 0
+    next()
+  },
+
   components: {
     CRow,
     CCol,
