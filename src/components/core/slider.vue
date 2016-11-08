@@ -43,9 +43,15 @@ export default {
         return val >= 0
       }
     },
+    // 如果启用，延迟 200ms
     transition: {
       type: Boolean,
       default: false
+    },
+    // 灵敏度，数值越大，短距离快速滑动时越容易触发切换
+    sensitivity: {
+      type: Number,
+      default: 0.2
     }
   },
 
@@ -54,9 +60,6 @@ export default {
       slideCount: 0,
       currIndex: 0,
       offset: 0,
-      // 如果不需要响应式，就不要放在 data 里？
-      // minOffset: 0,
-      // maxOffset: 0,
       dragging: false,
       // 就位，已经切换到目标位置，指示可以进行后续操作，比如重设位置
       slideReady: false
@@ -124,9 +127,7 @@ export default {
             if (!this.dragging && this.slideCount > 1) {
               this.slideReady = false
               this.offset = this.minOffset
-              setTimeout(() => {
-                this.go(this.nextIndex)
-              }, this.transition ? 200 : 0)
+              this.delay(this.nextIndex)
             }
           }, this.interval * 1000)
         }
@@ -141,6 +142,7 @@ export default {
         this.dragging = true
         this.isHorizontal = false
         this.slideReady = false
+        this.timeStamp = e.timeStamp
         this.start = e.touches[0]
         this.startX = e.touches[0].pageX - this.offset
       }
@@ -173,20 +175,26 @@ export default {
       if (this.dragging) {
         this.dragging = false
         this.isHorizontal = false
+        const distance = this.offset / (e.timeStamp - this.timeStamp) * 1000 * this.sensitivity
         if (this.offset > 0) {
-          if (this.offset > this.maxOffset / 2) {
+          if (Math.max(distance, this.offset) > this.maxOffset / 2) {
             this.offset = this.maxOffset
-            return this.go(this.prevIndex)
+            return this.delay(this.prevIndex)
           }
-        } else {
-          if (this.offset < this.minOffset / 2) {
+        } else if (this.offset < 0) {
+          if (Math.min(distance, this.offset) < this.minOffset / 2) {
             this.offset = this.minOffset
-            return this.go(this.nextIndex)
+            return this.delay(this.nextIndex)
           }
         }
         this.offset = 0
-        this.go(this.currIndex)
+        this.delay(this.currIndex)
       }
+    },
+    delay (index) {
+      this.transition ? setTimeout(() => {
+        this.go(index)
+      }, 200) : this.go(index)
     },
     go (index) {
       this.slideReady = false
