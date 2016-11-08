@@ -4,7 +4,7 @@
     @touchmove="drag"
     @touchend="dragend">
     <div class="c-range-content"
-      :style="{'width': '' + (offset / maxOffset * 100) + '%'}"></div>
+      :style="{width: '' + (offset / maxOffset * 100) + '%'}"></div>
   </div>
 </template>
 
