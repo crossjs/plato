@@ -1,24 +1,22 @@
 <template>
-  <div class="d-scroller">
-    <c-pane id="d-scroller-pane">
-      <c-scroller
-        :transition="transition"
-        :height="height"
-        :loading="loading"
-        :drained="drained"
-        :infinite="infinite"
-        @pulldown="pulldown"
-        @pullup="pullup">
-        <div slot="down-go">Release to refresh</div>
-        <div slot="down-ready">Pull down to refresh</div>
-        <c-button class="primary">Pull down to refresh</c-button>
-        <c-button size="xsmall" v-for="id in ids" :key="id">{{words[(id - 1) % words.length]}}</c-button>
-        <c-button class="warning" v-tap @tap.native="infinite = !infinite">click to toggle infinite mode</c-button>
-        <div slot="up-ready">Pull up to refresh</div>
-        <div slot="up-go">Release to load</div>
-      </c-scroller>
-    </c-pane>
-  </div>
+  <c-pane class="d-scroller" id="d-scroller-pane">
+    <c-scroller
+      :transition="transition"
+      :height="height"
+      :loading="loading"
+      :drained="drained"
+      :infinite="infinite"
+      @pulldown="pulldown"
+      @pullup="pullup">
+      <div slot="down-go">Release to refresh</div>
+      <div slot="down-ready">Pull down to refresh</div>
+      <c-button class="primary">Pull down to refresh</c-button>
+      <c-button size="xsmall" v-for="id in ids" :key="id">{{words[(id - 1) % words.length]}}</c-button>
+      <c-button class="warning" v-tap @tap.native="infinite = !infinite">click to toggle infinite mode</c-button>
+      <div slot="up-ready">Pull up to refresh</div>
+      <div slot="up-go">Release to load</div>
+    </c-scroller>
+  </c-pane>
 </template>
 
 <script>
@@ -52,7 +50,7 @@ export default {
     this.height =
       document.documentElement.clientHeight -
       document.getElementById('header').clientHeight -
-      parseInt(getComputedStyle(document.getElementById('d-scroller-pane')).marginTop) * 2
+      parseInt(getComputedStyle(this.$el).marginTop, 10) * 2
   },
 
   methods: {

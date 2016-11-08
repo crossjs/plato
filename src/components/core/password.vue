@@ -6,7 +6,7 @@
       v-bind="attrs"
       @change="onChange"></c-textfield>
     <c-icon class="c-password-toggle"
-      :class="{'active': showPassword}"
+      :class="{active: showPassword}"
       v-tap @tap.native="showPassword = !showPassword">eye</c-icon>
   </label>
 </template>

@@ -1,7 +1,7 @@
 <template>
   <div class="c-progress">
     <div class="c-progress-content"
-      :style="{'transform': 'translate3d(-' + (100 - progress) + '%, 0, 0)'}"></div>
+      :style="{transform: 'translate3d(-' + (100 - progress) + '%, 0, 0)'}"></div>
   </div>
 </template>
 

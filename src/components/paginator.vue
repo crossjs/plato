@@ -3,7 +3,7 @@
     <template v-if="maxpage > 1">
       <a v-for="page in pages"
         href="javascript:;"
-        :class="{'current': page.current, 'disabled': page.disabled}"
+        :class="{current: page.current, disabled: page.disabled}"
         v-tap @tap="_paginate(page)">{{page.label}}</a>
     </template>
   </div>

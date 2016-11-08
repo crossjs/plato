@@ -1,13 +1,13 @@
 <template>
   <div class="c-scroller"
-    :style="{'height': height + 'px'}"
+    :style="{height: height + 'px'}"
     @touchstart="dragstart"
     @touchmove="drag"
     @touchend="dragend">
     <div class="c-scroller-container"
-      :style="{height: maxHeight + 'px'}">
+      :style="{height: Math.max(maxHeight, height) + 1 + 'px'}">
       <div class="c-scroller-content"
-        :class="{'transition' : transition}"
+        :class="{transition : transition}"
         :style="{transform: 'translate3d(0, ' + offset + 'px, 0)'}"
         ref="content">
         <div class="c-scroller-indicator c-scroller-indicator-down"
@@ -45,14 +45,17 @@ export default {
       type: Boolean,
       default: false
     },
+    // all loaded
     drained: {
       type: Boolean,
       default: false
     },
+    // auto load while reach bottom
     infinite: {
       type: Boolean,
       default: false
     },
+    // auto load while container is not full
     autoFill: {
       type: Boolean,
       default: true
@@ -129,6 +132,7 @@ export default {
       if (!this.dragging) {
         return
       }
+      // 无限模式 + 上拉状态
       if (this.infinite && this.pullState === -3) {
         return
       }

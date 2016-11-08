@@ -1,16 +1,16 @@
 <!-- Inspired by https://facebook.github.io/react-native/docs/picker.html -->
 <template>
   <div class="c-picker"
-    :style="{'height': itemHeight * size + 'px'}"
+    :style="{height: itemHeight * size + 'px'}"
     @touchstart="dragstart"
     @touchmove="drag"
     @touchend="dragend">
     <div class="c-picker-cover"
       :style="{'background-size': '100% ' + (size - 1) / 2 * itemHeight + 'px'}">
       <div class="c-picker-highlight"
-        :style="{'height': itemHeight + 'px', 'transform': 'translate3d(0, ' + ((size - 1) / 2 * itemHeight) + 'px, 0)'}"></div>
+        :style="{height: itemHeight + 'px', transform: 'translate3d(0, ' + ((size - 1) / 2 * itemHeight) + 'px, 0)'}"></div>
     </div>
-    <div class="c-picker-content" :class="{'transition' : transition}"
+    <div class="c-picker-content" :class="{transition: transition}"
       :style="{transform: 'translate3d(0, ' + offset + 'px, 0)'}"
       ref="content"><slot></slot></div>
   </div>
