@@ -142,7 +142,6 @@ export default {
         this.dragging = true
         this.isHorizontal = false
         this.slideReady = false
-        this.timeStamp = e.timeStamp
         this.start = e.touches[0]
         this.startX = e.touches[0].pageX - this.offset
       }
@@ -151,6 +150,8 @@ export default {
       if (this.dragging) {
         // only slide while swipe horizontal
         if (this.isHorizontal || isHorizontal(e.touches[0], this.start)) {
+          // get timeStamp when touchmove triggered, not touchstart
+          this.timeStamp = e.timeStamp
           this.isHorizontal = true
           e.preventDefault()
           e.stopPropagation()
