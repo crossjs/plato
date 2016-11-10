@@ -142,7 +142,11 @@ export default {
         this.dragging = true
         this.isHorizontal = false
         this.slideReady = false
-        this.start = e.touches[0]
+        // fix e.touches bug in iOS 8.1.3
+        this.start = {
+          pageX: e.touches[0].pageX,
+          pageY: e.touches[0].pageY
+        }
         this.startX = e.touches[0].pageX - this.offset
       }
     },
