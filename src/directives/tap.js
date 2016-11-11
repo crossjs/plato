@@ -9,7 +9,11 @@ export default {
     el.addEventListener('touchstart', e => {
       start = null
       if (e.touches && e.touches.length === 1) {
-        start = e.touches[0]
+        // fix e.touches bug in iOS 8.1.3
+        start = {
+          pageX: e.touches[0].pageX,
+          pageY: e.touches[0].pageY
+        }
       }
     })
     el.addEventListener('touchmove', e => {
