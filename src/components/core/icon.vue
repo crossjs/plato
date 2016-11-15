@@ -14,6 +14,10 @@ export default {
 
   beforeMount () {
     this.html = entities[this.$slots.default[0].text] || ' '
+  },
+
+  beforeUpdate () {
+    this.html = entities[this.$slots.default[0].text] || ' '
   }
 }
 
