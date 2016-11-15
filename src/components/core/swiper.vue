@@ -2,10 +2,12 @@
   <div class="c-swiper"
     :class="{transition: transition}"
     :style="{transform: 'translate3d(' + offset + 'px, 0, 0)'}"
-    @touchstart="dragstart"
-    @touchmove="drag"
-    @touchend="dragend"
-    v-tap @tap="onTap">
+    v-drag.direction="{horizontal: 'yes'}"
+    @dragstart="dragstart"
+    @drag="drag"
+    @dragend="dragend"
+    v-tap
+    @tap="onTap">
     <div class="c-swiper-left" ref="left">
       <slot name="left"></slot>
     </div>
@@ -19,7 +21,7 @@
 </template>
 
 <script>
-import { isHorizontal } from './utils/direction'
+import drag from './directives/drag'
 
 export default {
   props: {
@@ -33,11 +35,7 @@ export default {
     return {
       offset: 0,
       minOffset: 0,
-      maxOffset: 0,
-      // 正在拖动，不需要响应式
-      // dragging: false,
-      // 符合拖动条件
-      matching: false
+      maxOffset: 0
     }
   },
 
@@ -64,50 +62,33 @@ export default {
         this.offset = 0
       }
     },
-    dragstart (e) {
-      if (!this.dragging && e.touches && e.touches.length === 1) {
-        this.dragging = true
-        this.matching = false
-        this.reset()
-        // fix e.touches bug in iOS 8.1.3
-        this.start = {
-          pageX: e.touches[0].pageX,
-          pageY: e.touches[0].pageY
-        }
-        this.startX = e.touches[0].pageX - this.offset
-      }
+    dragstart ({ originalEvent: e }) {
+      this.reset()
+      this.startX = e.touches[0].pageX - this.offset
     },
-    drag (e) {
-      if (this.dragging) {
-        if (this.matching || isHorizontal(e.touches[0], this.start) > 0) {
-          this.matching = true
-          e.preventDefault()
-          e.stopPropagation()
-          this.offset = Math.min(this.maxOffset, Math.max(this.minOffset, e.touches[0].pageX - this.startX))
-        } else {
-          this.dragging = false
-          this.matching = false
-        }
-      }
+    drag ({ originalEvent: e }) {
+      e.preventDefault()
+      e.stopPropagation()
+      this.offset = Math.min(this.maxOffset, Math.max(this.minOffset, e.touches[0].pageX - this.startX))
     },
-    dragend (e) {
-      if (this.dragging) {
-        this.dragging = false
-        this.matching = false
-        if (this.offset > 0) {
-          if (this.offset > this.maxOffset / 2) {
-            this.offset = this.maxOffset
-            return
-          }
-        } else {
-          if (this.offset < this.minOffset / 2) {
-            this.offset = this.minOffset
-            return
-          }
+    dragend ({ originalEvent: e }) {
+      if (this.offset > 0) {
+        if (this.offset > this.maxOffset / 2) {
+          this.offset = this.maxOffset
+          return
         }
-        this.offset = 0
+      } else {
+        if (this.offset < this.minOffset / 2) {
+          this.offset = this.minOffset
+          return
+        }
       }
+      this.offset = 0
     }
+  },
+
+  directives: {
+    drag
   }
 }
 </script>

@@ -2,9 +2,10 @@
 <template>
   <div class="c-picker"
     :style="{height: itemHeight * size + 'px'}"
-    @touchstart="dragstart"
-    @touchmove="drag"
-    @touchend="dragend">
+    v-drag.direction="{vertical: 'yes'}"
+    @dragstart="dragstart"
+    @drag="drag"
+    @dragend="dragend">
     <div class="c-picker-cover"
       :style="{'background-size': '100% ' + (size - 1) / 2 * itemHeight + 'px'}">
       <div class="c-picker-highlight"
@@ -17,6 +18,8 @@
 </template>
 
 <script>
+import drag from './directives/drag'
+
 export default {
   props: {
     index: {
@@ -59,12 +62,10 @@ export default {
 
   watch: {
     index () {
-      if (!this.dragging) {
-        this.updateOffset()
-      }
+      this.calcOffset()
     },
     size () {
-      this.updateOffset()
+      this.calcOffset()
     }
   },
 
@@ -73,7 +74,7 @@ export default {
     this.itemLength = children.length
     if (this.itemLength) {
       this.itemHeight = children[0].clientHeight
-      this.updateOffset()
+      this.calcOffset()
     }
   },
 
@@ -83,7 +84,7 @@ export default {
       this.itemLength = children.length
       if (this.itemLength) {
         this.itemHeight = children[0].clientHeight
-        this.updateOffset()
+        this.calcOffset()
       } else {
         this.itemHeight = 0
         this.offset = 0
@@ -92,7 +93,7 @@ export default {
   },
 
   methods: {
-    updateOffset () {
+    calcOffset () {
       let index = this.index
       if (this.index > this.itemLength - 1) {
         index = this.itemLength - 1
@@ -100,30 +101,27 @@ export default {
       }
       this.offset = this.itemHeight * ((this.size - 1) / 2 - index)
     },
-    dragstart (e) {
-      if (!this.dragging && e.touches && e.touches.length === 1) {
-        this.dragging = true
-        this.startY = e.touches[0].pageY - this.offset
-      }
+    dragstart ({ originalEvent: e }) {
+      this.startY = e.touches[0].pageY - this.offset
     },
-    drag (e) {
-      if (this.dragging) {
-        e.preventDefault()
-        e.stopPropagation()
-        this.offset = Math.min(this.maxOffset, Math.max(this.minOffset, e.touches[0].pageY - this.startY))
-      }
+    drag ({ originalEvent: e }) {
+      // prevent scroll
+      e.preventDefault()
+      e.stopPropagation()
+      this.offset = Math.min(this.maxOffset, Math.max(this.minOffset, e.touches[0].pageY - this.startY))
     },
-    dragend (e) {
-      if (this.dragging) {
-        this.dragging = false
-        const offsetIndex = Math.max((this.size - 1) / 2 - this.itemLength, Math.round(this.offset / this.itemHeight))
-        this.offset = this.itemHeight * offsetIndex
-        const index = (this.size - 1) / 2 - offsetIndex
-        if (index !== this.index) {
-          this.$emit('change', index)
-        }
+    dragend ({ originalEvent: e }) {
+      const offsetIndex = Math.max((this.size - 1) / 2 - this.itemLength, Math.round(this.offset / this.itemHeight))
+      this.offset = this.itemHeight * offsetIndex
+      const index = (this.size - 1) / 2 - offsetIndex
+      if (index !== this.index) {
+        this.$emit('change', index)
       }
     }
+  },
+
+  directives: {
+    drag
   }
 }
 </script>

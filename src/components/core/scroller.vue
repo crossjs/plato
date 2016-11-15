@@ -1,9 +1,10 @@
 <template>
   <div class="c-scroller"
     :style="{height: height + 'px'}"
-    @touchstart="dragstart"
-    @touchmove="drag"
-    @touchend="dragend">
+    v-drag.direction="{vertical: 'yes'}"
+    @dragstart="dragstart"
+    @drag="drag"
+    @dragend="dragend">
     <div class="c-scroller-container"
       :style="{height: Math.max(maxHeight, height) + 1 + 'px'}">
       <div class="c-scroller-content"
@@ -30,6 +31,7 @@
 <script>
 import CIcon from './icon'
 import CSpinner from './spinner'
+import drag from './directives/drag'
 
 export default {
   props: {
@@ -120,18 +122,12 @@ export default {
       this.maxHeight = this.$refs.content.clientHeight
       this.maxScroll = Math.max(0, this.maxHeight - this.height)
     },
-    dragstart (e) {
-      if (!this.dragging && e.touches && e.touches.length === 1) {
-        this.dragging = true
-        // reset pull state
-        this.pullState = 0
-        this.startY = e.touches[0].pageY - this.offset
-      }
+    dragstart ({ originalEvent: e }) {
+      // reset pull state
+      this.pullState = 0
+      this.startY = e.touches[0].pageY - this.offset
     },
-    drag (e) {
-      if (!this.dragging) {
-        return
-      }
+    drag ({ originalEvent: e }) {
       // 无限模式 + 上拉状态
       if (this.infinite && this.pullState === -3) {
         return
@@ -165,11 +161,7 @@ export default {
         }
       }
     },
-    dragend (e) {
-      if (!this.dragging) {
-        return
-      }
-      this.dragging = false
+    dragend ({ originalEvent: e }) {
       if (this.infinite) {
         if (this.pullState < 0) {
           return
@@ -212,6 +204,10 @@ export default {
   components: {
     CIcon,
     CSpinner
+  },
+
+  directives: {
+    drag
   }
 }
 </script>
