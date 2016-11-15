@@ -1,5 +1,5 @@
 /**
- * Simple directive for mocking tap event
+ * Simple directive for dragging events
  */
 export default {
   name: 'drag',
@@ -12,16 +12,12 @@ export default {
           pageX: e.touches[0].pageX,
           pageY: e.touches[0].pageY
         }
-        el.dispatchEvent(createEvent('dragstart', {
-          originalEvent: e,
-          ...startPoint
-        }))
+        el.dispatchEvent(createEvent('dragstart', { originalEvent: e }))
       }
     })
     el.addEventListener('touchmove', e => {
       if (startPoint) {
         if (modifiers.direction) {
-          // TODO: SPECIFY left/right/top/bottom
           if ((value.horizontal && isHorizontal(e.touches[0], startPoint)) ||
               (value.vertical && isVertical(e.touches[0], startPoint))) {
             el.dispatchEvent(createEvent('drag', { originalEvent: e }))
