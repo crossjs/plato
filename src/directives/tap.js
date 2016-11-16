@@ -30,7 +30,7 @@ export default {
         const tapEvent = createEvent('tap', { originalEvent })
         if (modifiers.delay) {
           // useful for hiding el after tap that has a link inside
-          // see: c-navibar.vue
+          // see: components/navibar.vue
           setTimeout(() => {
             el.dispatchEvent(tapEvent)
           }, value || 300)

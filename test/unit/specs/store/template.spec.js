@@ -1,4 +1,4 @@
-import template from 'store/template'
+import template from 'store/templates/rest'
 import { ONE_MINUTE } from 'store/constants'
 
 describe('env', () => {
