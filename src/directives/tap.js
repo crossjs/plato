@@ -5,31 +5,32 @@ export default {
   name: 'tap',
   bind (el, { value, modifiers }) {
     const threshold = window.innerWidth / 10
-    let start
+    let startPoint
     el.addEventListener('touchstart', e => {
-      start = null
+      startPoint = null
       if (e.touches && e.touches.length === 1) {
-        start = e.touches[0]
-      }
-    })
-    el.addEventListener('touchmove', e => {
-      if (start) {
-        if (Math.sqrt(Math.pow(e.touches[0].pageX - start.pageX, 2) + Math.pow(e.touches[0].pageY - start.pageY, 2)) > threshold) {
-          start = null
+        // fix e.touches bug in iOS 8.1.3
+        startPoint = {
+          pageX: e.touches[0].pageX,
+          pageY: e.touches[0].pageY
         }
       }
     })
-    el.addEventListener('touchend', e => {
-      if (start) {
-        start = null
+    el.addEventListener('touchmove', e => {
+      if (startPoint) {
+        if (Math.sqrt(Math.pow(e.touches[0].pageX - startPoint.pageX, 2) + Math.pow(e.touches[0].pageY - startPoint.pageY, 2)) > threshold) {
+          startPoint = null
+        }
+      }
+    })
+    el.addEventListener('touchend', originalEvent => {
+      if (startPoint) {
+        startPoint = null
         // dispatch a tap event
-        const tapEvent = document.createEvent('HTMLEvents')
-        tapEvent.initEvent('tap', true, true)
-        // add referrence to original event
-        tapEvent.originalEvent = e
+        const tapEvent = createEvent('tap', { originalEvent })
         if (modifiers.delay) {
           // useful for hiding el after tap that has a link inside
-          // see: c-navibar.vue
+          // see: components/navibar.vue
           setTimeout(() => {
             el.dispatchEvent(tapEvent)
           }, value || 300)
@@ -39,4 +40,10 @@ export default {
       }
     })
   }
+}
+
+function createEvent (name, mixins = {}) {
+  const tapEvent = document.createEvent('HTMLEvents')
+  tapEvent.initEvent(name, true, true)
+  return Object.assign(tapEvent, mixins)
 }

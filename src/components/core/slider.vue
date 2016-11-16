@@ -1,8 +1,9 @@
 <template>
   <div class="c-slider"
-    @touchstart="dragstart"
-    @touchmove="drag"
-    @touchend="dragend">
+    v-drag.direction="{horizontal: 'yes'}"
+    @dragstart="dragstart"
+    @drag="drag"
+    @dragend="dragend">
     <div class="c-slider-content"
       :class="{transition: transition && !dragging & !slideReady}"
       :style="{transform: 'translate3d(' + offset + 'px, 0, 0 )'}"
@@ -18,7 +19,7 @@
 </template>
 
 <script>
-import { isHorizontal } from './utils/direction'
+import drag from './directives/drag'
 
 const classes = {
   prev: 'c-slider-prev',
@@ -94,7 +95,6 @@ export default {
       this.slideCount && val !== -1 && this.children[val].classList.add(classes.prev)
     },
     currIndex (val, old) {
-      // this.slideReady = true
       this.slideCount && this.children[old].classList.remove(classes.active)
       this.slideCount && this.children[val].classList.add(classes.active)
     },
@@ -137,59 +137,55 @@ export default {
         }
       }
     },
-    dragstart (e) {
-      if (this.slideCount > 1 && !this.dragging && e.touches && e.touches.length === 1) {
-        this.dragging = true
-        this.isHorizontal = false
-        this.slideReady = false
-        this.timeStamp = e.timeStamp
-        this.start = e.touches[0]
-        this.startX = e.touches[0].pageX - this.offset
+    dragstart ({ originalEvent: e }) {
+      if (this.slideCount <= 1) {
+        return
       }
+      // this.dragging = true
+      this.isHorizontal = false
+      this.slideReady = false
+      // fix e.touches bug in iOS 8.1.3
+      this.start = {
+        pageX: e.touches[0].pageX,
+        pageY: e.touches[0].pageY
+      }
+      this.startX = e.touches[0].pageX - this.offset
     },
-    drag (e) {
-      if (this.dragging) {
-        // only slide while swipe horizontal
-        if (this.isHorizontal || isHorizontal(e.touches[0], this.start)) {
-          this.isHorizontal = true
-          e.preventDefault()
-          e.stopPropagation()
-          const offset = Math.min(this.maxOffset, Math.max(this.minOffset, e.touches[0].pageX - this.startX))
-          if (this.offset === 0 || offset * this.offset < -1) {
-            if (offset < 0) {
-              this.children[this.nextIndex].classList.remove(classes.prev)
-            } else if (offset > 0) {
-              this.children[this.prevIndex].classList.remove(classes.next)
-            }
-          }
-          this.offset = offset
-        } else {
-          this.dragging = false
-          this.isHorizontal = false
-          this.slideReady = true
-          this.offset = 0
+    drag ({ originalEvent: e }) {
+      // only slide while swipe horizontal
+      this.dragging = true
+      // get timeStamp when touchmove triggered, not touchstart
+      this.timeStamp = e.timeStamp
+      this.isHorizontal = true
+      e.preventDefault()
+      e.stopPropagation()
+      const offset = Math.min(this.maxOffset, Math.max(this.minOffset, e.touches[0].pageX - this.startX))
+      if (this.offset === 0 || offset * this.offset < -1) {
+        if (offset < 0) {
+          this.children[this.nextIndex].classList.remove(classes.prev)
+        } else if (offset > 0) {
+          this.children[this.prevIndex].classList.remove(classes.next)
         }
       }
+      this.offset = offset
     },
-    dragend (e) {
-      if (this.dragging) {
-        this.dragging = false
-        this.isHorizontal = false
-        const distance = this.offset / (e.timeStamp - this.timeStamp) * 1000 * this.sensitivity
-        if (this.offset > 0) {
-          if (Math.max(distance, this.offset) > this.maxOffset / 2) {
-            this.offset = this.maxOffset
-            return this.delay(this.prevIndex)
-          }
-        } else if (this.offset < 0) {
-          if (Math.min(distance, this.offset) < this.minOffset / 2) {
-            this.offset = this.minOffset
-            return this.delay(this.nextIndex)
-          }
+    dragend ({ originalEvent: e }) {
+      this.dragging = false
+      this.isHorizontal = false
+      const distance = this.offset / (e.timeStamp - this.timeStamp) * 1000 * this.sensitivity
+      if (this.offset > 0) {
+        if (Math.max(distance, this.offset) > this.maxOffset / 2) {
+          this.offset = this.maxOffset
+          return this.delay(this.prevIndex)
         }
-        this.offset = 0
-        this.delay(this.currIndex)
+      } else if (this.offset < 0) {
+        if (Math.min(distance, this.offset) < this.minOffset / 2) {
+          this.offset = this.minOffset
+          return this.delay(this.nextIndex)
+        }
       }
+      this.offset = 0
+      this.delay(this.currIndex)
     },
     delay (index) {
       this.transition ? setTimeout(() => {
@@ -207,6 +203,10 @@ export default {
         this.slideReady = true
       })
     }
+  },
+
+  directives: {
+    drag
   }
 }
 </script>

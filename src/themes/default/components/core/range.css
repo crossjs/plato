@@ -8,6 +8,14 @@
     height: dpr(4px);
     background-color: var(--placeholder);
   }
+
+  &.disabled {
+    & .c-range-content {
+      &::after {
+        background-color: var(--placeholder);
+      }
+    }
+  }
 }
 
 .c-range-content {

@@ -1,14 +1,17 @@
 <template>
   <div class="c-range"
-    @touchstart="dragstart"
-    @touchmove="drag"
-    @touchend="dragend">
+    :class="{disabled: disabled}"
+    v-drag.direction="{horizontal: 'yes'}"
+    @dragstart="dragstart"
+    @drag="drag">
     <div class="c-range-content"
-      :style="{width: '' + (offset / maxOffset * 100) + '%'}"></div>
+      :style="{width: '' + (percent * 100) + '%'}"></div>
   </div>
 </template>
 
 <script>
+import drag from './directives/drag'
+
 export default {
   props: {
     min: {
@@ -35,49 +38,52 @@ export default {
   data () {
     return {
       offset: 0,
-      range: 0,
-      maxOffset: 0,
-      stepOffset: 0
+      maxOffset: 0
+    }
+  },
+
+  computed: {
+    range () {
+      return this.max - this.min
+    },
+    stepOffset () {
+      return this.maxOffset / Math.ceil(this.range / this.step)
+    },
+    percent () {
+      return this.offset / this.maxOffset
     }
   },
 
   watch: {
-    value (val) {
-      if (!this.dragging) {
-        this.offset = (this.value - this.min) / this.range * this.maxOffset
-      }
+    value () {
+      this.calcOffset()
     }
   },
 
   mounted () {
     this.maxOffset = this.$el.clientWidth
-    this.range = this.max - this.min
-    this.stepOffset = this.maxOffset / Math.ceil(this.range / this.step)
-    const value = typeof this.value === 'number' ? this.value : this.min
-    this.offset = (value - this.min) / this.range * this.maxOffset
+    this.calcOffset()
   },
 
   methods: {
-    dragstart (e) {
-      if (!this.dragging && e.touches && e.touches.length === 1) {
-        this.dragging = true
-        this.startY = e.touches[0].pageX - this.offset
+    calcOffset () {
+      this.offset = typeof this.value === 'number' ? (this.value - this.min) / this.range * this.maxOffset : 0
+    },
+    dragstart ({ originalEvent: e }) {
+      if (!this.disabled) {
+        this.startX = e.touches[0].pageX - this.offset
       }
     },
-    drag (e) {
-      if (this.dragging) {
-        e.preventDefault()
-        e.stopPropagation()
-        const offset = Math.min(this.maxOffset, Math.max(0, e.touches[0].pageX - this.startY))
-        this.offset = Math.round(offset / this.stepOffset) * this.stepOffset
-        this.$emit('change', parseInt(this.min + this.range * (this.offset / this.maxOffset), 10))
-      }
-    },
-    dragend (e) {
-      if (this.dragging) {
-        this.dragging = false
+    drag ({ originalEvent: e }) {
+      if (!this.disabled) {
+        this.offset = Math.round(Math.min(this.maxOffset, Math.max(0, e.touches[0].pageX - this.startX)) / this.stepOffset) * this.stepOffset
+        this.$emit('change', parseInt(this.min + this.range * this.percent, 10))
       }
     }
+  },
+
+  directives: {
+    drag
   }
 }
 </script>

@@ -1,4 +1,4 @@
-import template from '../template'
+import template from '../templates/rest'
 import { ONE_MINUTE } from '../constants'
 
 export default template({

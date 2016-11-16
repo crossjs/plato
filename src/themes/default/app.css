@@ -43,8 +43,8 @@
 #logo {
   position: absolute;
   z-index: 1;
-  left: dpr(88px);
-  right: dpr(88px);
+  left: dpr(132px);
+  right: dpr(132px);
 
   & a {
     display: block;
@@ -59,7 +59,7 @@
   }
 
   & sub {
-    font-size: dpr(24px);
+    font-size: dpr(12px);
   }
 }
 

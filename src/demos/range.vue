@@ -9,6 +9,13 @@
     <c-row class="padding" :flex="false">
       <c-range
         :value="value"
+        :disabled="true"
+        @change="change"></c-range>
+      <p class="center">(disabled) value: {{value}}, min: 0, max: 100</p>
+    </c-row>
+    <c-row class="padding" :flex="false">
+      <c-range
+        :value="value"
         :step="10"
         @change="change"></c-range>
       <p class="center">step: 10, value: {{value}}, min: 0, max: 100</p>
