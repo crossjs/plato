@@ -34,7 +34,7 @@ describe('checkbox.vue', () => {
 
     expect(vm.value).to.equal(false)
 
-    triggerMouseEvents(vm.$children[0].$el, 'click')
+    triggerHTMLEvents(vm.$children[0].$el, 'tap')
     vm.$nextTick(() => {
       expect(vm.value).to.equal(true)
       done()
@@ -60,7 +60,7 @@ describe('checkbox.vue', () => {
 
     expect(vm.value).to.equal(true)
 
-    triggerMouseEvents(vm.$children[0].$el, 'click')
+    triggerHTMLEvents(vm.$children[0].$el, 'tap')
     vm.$nextTick(() => {
       expect(vm.value).to.equal(false)
       done()
@@ -90,7 +90,7 @@ describe('checkbox.vue', () => {
 
     expect(vm.value).to.equal('FALSE')
 
-    triggerMouseEvents(vm.$children[0].$el, 'click')
+    triggerHTMLEvents(vm.$children[0].$el, 'tap')
     vm.$nextTick(() => {
       expect(vm.value).to.equal('TRUE')
       done()
