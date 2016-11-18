@@ -26,7 +26,7 @@
           :transition="transition"
           :index="year"
           :size="3"
-          @change="year = arguments[0]">
+          @change="changeYear">
           <p v-for="item in yearList">{{item}}</p>
         </c-picker>
       </c-col>
@@ -36,7 +36,7 @@
           :transition="transition"
           :index="month"
           :size="3"
-          @change="month = arguments[0]">
+          @change="changeMonth">
           <p v-for="item in 12">{{item}}</p>
         </c-picker>
       </c-col>
@@ -46,7 +46,7 @@
           :transition="transition"
           :index="date"
           :size="3"
-          @change="date = arguments[0]">
+          @change="changeDate">
           <p v-for="item in dateMax">{{item}}</p>
         </c-picker>
       </c-col>
@@ -93,6 +93,15 @@ export default {
   methods: {
     change (index) {
       this.index = index
+    },
+    changeYear (year) {
+      this.year = year
+    },
+    changeMonth (month) {
+      this.month = month
+    },
+    changeDate (date) {
+      this.date = date
     }
   },
 
