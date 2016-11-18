@@ -1,5 +1,5 @@
 <template>
-  <label class="c-password">
+  <span class="c-password">
     <c-textfield
       :type="showPassword ? 'text' : 'password'"
       :value="value"
@@ -7,8 +7,8 @@
       @change="onChange"></c-textfield>
     <c-icon class="c-password-toggle"
       :class="{active: showPassword}"
-      v-tap @tap.native="showPassword = !showPassword">eye</c-icon>
-  </label>
+      v-tap @tap.native="toggle">eye</c-icon>
+  </span>
 </template>
 
 <script>
@@ -35,6 +35,9 @@ export default {
   },
 
   methods: {
+    toggle () {
+      this.showPassword = !this.showPassword
+    },
     onChange (value) {
       // override
       this.$emit('change', value)

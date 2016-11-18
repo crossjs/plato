@@ -17,7 +17,7 @@
             :row="title.row"
             :validate="title.validate"
             :value="title.value"
-            @change="title.value = arguments[0]"></c-textfield>
+            @change="title.value = $event"></c-textfield>
         </c-row>
         <c-row class="padding" :flex="false">
           <c-label>{{__(content.label)}}</c-label>
@@ -30,7 +30,7 @@
             :row="content.row"
             :validate="content.validate"
             :value="content.value"
-            @change="content.value = arguments[0]"></c-multiline>
+            @change="content.value = $event"></c-multiline>
         </c-row>
       </div>
       <c-pane>
@@ -92,11 +92,11 @@ export default {
   computed: mapGetters(['faq_is_fetching']),
 
   methods: {
-    ...mapActions(['addItem']),
+    ...mapActions(['faqPost']),
     create () {
       this.show_modal = false
       this.$validate().then(() => {
-        this.addItem({
+        this.faqPost({
           title: this.title.value,
           content: this.content.value
         })

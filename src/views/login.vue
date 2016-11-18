@@ -12,7 +12,7 @@
               :field="username.field"
               :validate="username.validate"
               :value="username.value"
-              @change="username.value = arguments[0]"></c-textfield>
+              @change="username.value = $event"></c-textfield>
           </c-col>
         </c-row>
         <c-row>
@@ -25,7 +25,7 @@
               :field="password.field"
               :validate="password.validate"
               :value="password.value"
-              @change="password.value = arguments[0]"></c-password>
+              @change="password.value = $event"></c-password>
           </c-col>
         </c-row>
       </div>

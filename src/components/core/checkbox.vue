@@ -3,7 +3,8 @@
     type="checkbox"
     :value="value"
     :checked="_checked"
-    @change="onChange">
+    v-tap.prevent
+    @tap="onChange">
 </template>
 
 <script>
@@ -46,6 +47,7 @@ export default {
   methods: {
     // override
     onChange (e) {
+      e.target.checked = !e.target.checked
       this.$emit('change', e.target.checked ? this._truthy : this._falsy)
     }
   }

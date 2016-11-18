@@ -7,7 +7,7 @@
       <c-col class="padding right">
         <c-checkbox
           :value="transition"
-          @change="transitionEnabled = arguments[0]"></c-checkbox>
+          @change="transitionEnabled = $event"></c-checkbox>
       </c-col>
     </c-row>
     <c-row :link="true" v-tap @tap.native="showPicker = !showPicker">
@@ -21,7 +21,7 @@
     <c-pane v-if="showPicker">
       <c-picker
         :index="languageIndex"
-        @change="languageIndex = arguments[0]">
+        @change="languageIndex = $event">
         <p v-for="(val, key) in languages">{{key}}</p>
       </c-picker>
     </c-pane>

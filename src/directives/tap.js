@@ -26,8 +26,14 @@ export default {
     el.addEventListener('touchend', originalEvent => {
       if (startPoint) {
         startPoint = null
+        if (modifiers.prevent) {
+          originalEvent.preventDefault()
+        }
+        if (modifiers.stop) {
+          originalEvent.stopPropagation()
+        }
         // dispatch a tap event
-        const tapEvent = createEvent('tap', { originalEvent })
+        const tapEvent = createEvent('tap', !modifiers.capture, { originalEvent })
         if (modifiers.delay) {
           // useful for hiding el after tap that has a link inside
           // see: components/navibar.vue
@@ -42,8 +48,8 @@ export default {
   }
 }
 
-function createEvent (name, mixins = {}) {
+function createEvent (name, bubbles, mixins = {}) {
   const tapEvent = document.createEvent('HTMLEvents')
-  tapEvent.initEvent(name, true, true)
+  tapEvent.initEvent(name, bubbles, true)
   return Object.assign(tapEvent, mixins)
 }
