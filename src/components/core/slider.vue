@@ -7,6 +7,7 @@
     <div class="c-slider-content"
       :class="{transition: transition && !dragging & !slideReady}"
       :style="{transform: 'translate3d(' + offset + 'px, 0, 0 )'}"
+      @transitionend="transitionEnd"
       ref="content">
       <slot></slot>
     </div>
@@ -91,16 +92,22 @@ export default {
       this.currIndex = val
     },
     prevIndex (val, old) {
-      this.slideCount && old !== -1 && this.children[old].classList.remove(classes.prev)
-      this.slideCount && val !== -1 && this.children[val].classList.add(classes.prev)
+      if (this.slideCount) {
+        old !== -1 && this.children[old].classList.remove(classes.prev)
+        val !== -1 && this.children[val].classList.add(classes.prev)
+      }
     },
     currIndex (val, old) {
-      this.slideCount && this.children[old].classList.remove(classes.active)
-      this.slideCount && this.children[val].classList.add(classes.active)
+      if (this.slideCount) {
+        old !== -1 && this.children[old].classList.remove(classes.active)
+        val !== -1 && this.children[val].classList.add(classes.active)
+      }
     },
     nextIndex (val, old) {
-      this.slideCount && old !== -1 && this.children[old].classList.remove(classes.next)
-      this.slideCount && val !== -1 && this.children[val].classList.add(classes.next)
+      if (this.slideCount) {
+        old !== -1 && this.children[old].classList.remove(classes.next)
+        val !== -1 && this.children[val].classList.add(classes.next)
+      }
     },
     interval () {
       this.automate()
@@ -137,6 +144,16 @@ export default {
         }
       }
     },
+    ensurePrev () {
+      const { classList } = this.children[this.prevIndex]
+      classList.add(classes.prev)
+      classList.remove(classes.next)
+    },
+    ensureNext () {
+      const { classList } = this.children[this.nextIndex]
+      classList.add(classes.next)
+      classList.remove(classes.prev)
+    },
     dragstart ({ originalEvent: e }) {
       if (this.slideCount <= 1) {
         return
@@ -160,11 +177,12 @@ export default {
       e.preventDefault()
       e.stopPropagation()
       const offset = Math.min(this.maxOffset, Math.max(this.minOffset, e.touches[0].pageX - this.startX))
+      // reset prev/next if direction is changed
       if (this.offset === 0 || offset * this.offset < -1) {
         if (offset < 0) {
-          this.children[this.nextIndex].classList.remove(classes.prev)
+          this.ensureNext()
         } else if (offset > 0) {
-          this.children[this.prevIndex].classList.remove(classes.next)
+          this.ensurePrev()
         }
       }
       this.offset = offset
@@ -172,28 +190,36 @@ export default {
     dragend ({ originalEvent: e }) {
       this.dragging = false
       this.isHorizontal = false
+      // calculate distance for quick swiping
       const distance = this.offset / (e.timeStamp - this.timeStamp) * 1000 * this.sensitivity
       if (this.offset > 0) {
         if (Math.max(distance, this.offset) > this.maxOffset / 2) {
           this.offset = this.maxOffset
-          return this.delay(this.prevIndex)
+          this.delay(this.prevIndex)
+          return
         }
       } else if (this.offset < 0) {
         if (Math.min(distance, this.offset) < this.minOffset / 2) {
           this.offset = this.minOffset
-          return this.delay(this.nextIndex)
+          this.delay(this.nextIndex)
+          return
         }
       }
       this.offset = 0
       this.delay(this.currIndex)
     },
     delay (index) {
-      this.transition ? setTimeout(() => {
+      if (this.transition) {
+        // for transitionEnd
+        this.toIndex = index
+      } else {
         this.go(index)
-      }, 200) : this.go(index)
+      }
+    },
+    transitionEnd () {
+      this.go(this.toIndex)
     },
     go (index) {
-      this.slideReady = false
       this.$nextTick(() => {
         this.offset = 0
         if (index !== this.currIndex) {
