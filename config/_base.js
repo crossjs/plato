@@ -8,7 +8,9 @@ const config = {
 
   pkg: require('../package.json'),
 
-  // theme name
+  // ----------------------------------
+  // Theme Configuration
+  // ----------------------------------
   theme: 'default',
 
   // ----------------------------------

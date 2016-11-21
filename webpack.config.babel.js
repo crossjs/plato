@@ -11,8 +11,6 @@ const debug = _debug('plato:webpack')
 
 debug('Create configuration.')
 
-// https://webpack.js.org/how-to/upgrade-from-webpack-1/
-
 const webpackConfig = {
   target: 'web',
   resolve: {
@@ -102,8 +100,7 @@ const webpackConfig = {
       },
       {
         test: /\.(png|jpg|gif|svg|woff2?|eot|ttf)(\?.*)?$/,
-        // do NOT base64encode @1x/@2x/@3x images
-        exclude: /@[1-3]x/,
+        exclude: /@[1-3]x/, // skip encoding @1x/@2x/@3x images with base64
         loader: 'url-loader',
         options: {
           limit: 10000,
@@ -114,9 +111,6 @@ const webpackConfig = {
   },
   plugins: [
     new webpack.DefinePlugin(config.globals),
-    // generate dist index.html with correct asset hash for caching.
-    // you can customize output by editing /index.html
-    // see https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: paths.src('index.ejs'),
