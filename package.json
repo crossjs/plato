@@ -1,6 +1,6 @@
 {
   "name": "PLATO",
-  "version": "2.0.7",
+  "version": "2.0.8",
   "description": "a Boilerplate for mobile SPAs use vue, vuex, vue-router",
   "license": "MIT",
   "main": "src/index.js",
