@@ -46,29 +46,11 @@ npm run push
 
 ## Scaffolding
 
-### use vue-cli
-
-**Recommended**
-
 Use [Vue-cli](https://github.com/vuejs/vue-cli) to get a clean and clear copy without demonstrations
 
 ```bash
 npm install -g vue-cli
 vue init crossjs/plato#template <project-name>
-```
-
-### use yeoman generator
-
-Use [generator-x](https://github.com/crossjs/generator-x) to get a clean and clear copy without demonstrations
-
-```bash
-# install yo and generator-x as a global module
-npm install -g yo
-npm install -g generator-x
-
-# generate code under project
-cd <your-awesome-project>
-yo x
 ```
 
 ## Appendix
