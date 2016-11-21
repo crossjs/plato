@@ -1,5 +1,6 @@
 .c-avatar {
   display: inline-block;
+  vertical-align: middle;
   width: dpr(100px);
   height: dpr(100px);
   font-size: dpr(50px);
