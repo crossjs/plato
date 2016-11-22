@@ -44,19 +44,77 @@ npm run docs
 npm run push
 ```
 
+## Features
+
+- Core
+  - [Vue](https://github.com/vuejs/vue)
+  - [Vue-Router](https://github.com/vuejs/vue-router)
+  - [Vuex](https://github.com/vuejs/vuex)
+  - [Vuex-Actions](https://github.com/weinot/vuex-actions) (for async actions)
+  - [Vuex-LocalStorage](https://github.com/crossjs/vuex-localstorage) (for cache and persistence)
+  - [I18N](src/plugins/i18n)
+  - [Validator](src/plugins/validator)
+- Build
+  - [Webpack](http://webpack.github.io/)
+- Linters
+  - [ESLint](http://eslint.org/)
+  - [stylelint](http://stylelint.io/)
+- Tests
+  - [Karma](https://karma-runner.github.io/)
+  - [Mocha](https://mochajs.org/)
+  - [Nightwatch](http://nightwatchjs.org/)
+  - [Selenium-Server](https://github.com/eugeneware/selenium-server)
+- Transformers
+  - [PostCSS](http://postcss.org/) (for css next)
+  - [Babel](https://babeljs.io/) (for es6)
+
+## Components
+
+- Core
+  - [x] Avatar
+  - [x] Badge
+  - [x] Form
+    - [x] Button
+    - [x] Checkbox (Switcher)
+    - [x] Textfield (text, email, password, url, number, search, etc)
+    - [x] Multiline
+    - [x] Password (with showing password toggle)
+  - [x] Icon
+  - [x] Image
+  - [x] Modal
+  - [x] Picker
+  - [x] Progress
+  - [x] Range
+  - [x] Scroller (with pulling up and down)
+  - [x] Slider
+  - [x] Spinner
+  - [x] Swiper
+  - [x] Toast
+- Others
+  - [x] Paginator
+  - [x] Uploader
+
 ## Scaffolding
 
 Use [Vue-cli](https://github.com/vuejs/vue-cli) to get a clean and clear copy without demonstrations
 
 ```bash
-npm install -g vue-cli
-vue init crossjs/plato#template <project-name>
+$ npm install -g vue-cli
+$ vue init crossjs/plato#template <project-name>
 ```
+
+## Browser Support
+
+- Android 4+
+- iOS 7+
+
+## Changelog
+
+Detailed changes for each release are documented in the [release notes](https://github.com/crossjs/plato/releases).
 
 ## Appendix
 
 - [Troubleshooting](doc/TROUBLESHOOTING.md)
-- [Changelog](doc/CHANGELOG.md)
 - [Style Guide](doc/STYLEGUIDE.md)
 - [Developing Guide](doc/DEVELOPING.md)
 - [Contributing Guide](doc/CONTRIBUTING.md)
