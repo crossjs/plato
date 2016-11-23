@@ -8,13 +8,19 @@
       :infinite="infinite"
       @pulldown="pulldown"
       @pullup="pullup">
-      <div slot="down-go">Release to refresh</div>
-      <div slot="down-ready">Pull down to refresh</div>
+      <template slot="pulldown" scope="props">
+        <div v-if="props.downGo">Release to refresh</div>
+        <div v-else-if="props.downReady">Pull down to refresh</div>
+        <div v-else-if="props.downAwaiting">Refreshing...</div>
+      </template>
       <c-button class="primary">Pull down to refresh</c-button>
       <c-button size="xsmall" v-for="id in ids" :key="id">{{words[(id - 1) % words.length]}}</c-button>
       <c-button class="warning" v-tap @tap.native="infinite = !infinite">click to toggle infinite mode</c-button>
-      <div slot="up-ready">Pull up to refresh</div>
-      <div slot="up-go">Release to load</div>
+      <template slot="pullup" scope="props">
+        <div v-if="props.upGo">Release to load</div>
+        <div v-else-if="props.upReady">Pull up to load</div>
+        <div v-else-if="props.upAwaiting">Loading...</div>
+      </template>
     </c-scroller>
   </c-pane>
 </template>

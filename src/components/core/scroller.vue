@@ -13,15 +13,25 @@
         ref="content">
         <div class="c-scroller-indicator c-scroller-indicator-down"
           ref="indicator">
-          <slot v-if="pullState === 2" name="down-go"><c-icon class="down-go">arrow-small-up</c-icon></slot>
-          <slot v-if="pullState === 1" name="down-ready"><c-icon class="down-ready">arrow-small-down</c-icon></slot>
-          <slot v-if="loading && pullState === 3" name="down-spinner"><c-spinner></c-spinner></slot>
+          <slot name="pulldown"
+            :downGo="downGo"
+            :downReady="downReady"
+            :downAwaiting="downAwaiting">
+            <c-icon v-if="downReady" class="down-ready">arrow-small-down</c-icon>
+            <c-icon v-else-if="downGo" class="down-go">arrow-small-up</c-icon>
+            <c-spinner v-else-if="downAwaiting"></c-spinner>
+          </slot>
         </div>
         <slot></slot>
         <div class="c-scroller-indicator c-scroller-indicator-up">
-          <slot v-if="loading && pullState === -3" name="up-spinner"><c-spinner></c-spinner></slot>
-          <slot v-if="!infinite && pullState === -1" name="up-ready"><c-icon class="up-ready">arrow-small-down</c-icon></slot>
-          <slot v-if="!infinite && pullState === -2" name="up-go"><c-icon class="up-go">arrow-small-up</c-icon></slot>
+          <slot name="pullup"
+            :upGo="upGo"
+            :upReady="upReady"
+            :upAwaiting="upAwaiting">
+            <c-icon v-if="upReady" class="up-ready">arrow-small-down</c-icon>
+            <c-icon v-else-if="upGo" class="up-go">arrow-small-up</c-icon>
+            <c-spinner v-else-if="upAwaiting"></c-spinner>
+          </slot>
         </div>
       </div>
     </div>
@@ -32,6 +42,14 @@
 import CIcon from './icon'
 import CSpinner from './spinner'
 import drag from './directives/drag'
+
+const STATE_IDLE = 0
+const STATE_DOWN_GO = 2
+const STATE_DOWN_READY = 1
+const STATE_DOWN_AWAITING = 3
+const STATE_UP_GO = -2
+const STATE_UP_READY = -1
+const STATE_UP_AWAITING = -3
 
 export default {
   props: {
@@ -72,10 +90,31 @@ export default {
     return {
       offset: 0,
       // 推拉状态
-      pullState: 0,
+      pullState: STATE_IDLE,
       // 溢出距离
       maxScroll: 0,
       maxHeight: 0
+    }
+  },
+
+  computed: {
+    downGo () {
+      return this.pullState === STATE_DOWN_GO
+    },
+    downReady () {
+      return this.pullState === STATE_DOWN_READY
+    },
+    downAwaiting () {
+      return this.loading && this.pullState === STATE_DOWN_AWAITING
+    },
+    upGo () {
+      return !this.infinite && this.pullState === STATE_UP_GO
+    },
+    upReady () {
+      return !this.infinite && this.pullState === STATE_UP_READY
+    },
+    upAwaiting () {
+      return this.loading && this.pullState === STATE_UP_AWAITING
     }
   },
 
@@ -124,12 +163,12 @@ export default {
     },
     dragstart ({ originalEvent: e }) {
       // reset pull state
-      this.pullState = 0
+      this.pullState = STATE_IDLE
       this.startY = e.touches[0].pageY - this.offset
     },
     drag ({ originalEvent: e }) {
       // 无限模式 + 上拉状态
-      if (this.infinite && this.pullState === -3) {
+      if (this.infinite && this.pullState === STATE_UP_AWAITING) {
         return
       }
       const _distance = e.touches[0].pageY - this.startY
@@ -144,17 +183,18 @@ export default {
       this.offset = this.maxScroll
         ? Math.max(this.drained ? 0 : -this.threshold, distance)
         : isDown ? distance : 0
-      if (this.pullState < 3 && this.pullState > -3) {
+      if (this.pullState < STATE_DOWN_AWAITING &&
+          this.pullState > STATE_UP_AWAITING) {
         if (this.offset > 0) {
           // pulldown
-          this.pullState = this.offset > this.threshold / this.bounce ? 2 : 1
+          this.pullState = this.offset > this.threshold / this.bounce ? STATE_DOWN_GO : STATE_DOWN_READY
         } else if (this.offset < 0) {
           // pullup
           if (!this.drained) {
             if (this.maxScroll) {
-              this.pullState = -this.offset > this.threshold / this.bounce ? -2 : -1
+              this.pullState = -this.offset > this.threshold / this.bounce ? STATE_UP_GO : STATE_UP_READY
             }
-            if (this.infinite && this.pullState === -1) {
+            if (this.infinite && this.pullState === STATE_UP_READY) {
               this.pullup()
             }
           }
@@ -163,22 +203,22 @@ export default {
     },
     dragend ({ originalEvent: e }) {
       if (this.infinite) {
-        if (this.pullState < 0) {
+        if (this.pullState < STATE_IDLE) {
           return
         }
       }
-      if (this.pullState === -2) {
+      if (this.pullState === STATE_UP_GO) {
         this.pullup()
         return
       }
-      if (this.pullState === 2) {
+      if (this.pullState === STATE_DOWN_GO) {
         this.pulldown()
         return
       }
       this.reset()
     },
     pulldown () {
-      this.pullState = 3
+      this.pullState = STATE_DOWN_AWAITING
       this.offset = this.threshold / this.bounce
       this.$emit('pulldown')
       this.$nextTick(() => {
@@ -189,7 +229,7 @@ export default {
       })
     },
     pullup () {
-      this.pullState = -3
+      this.pullState = STATE_UP_AWAITING
       this.offset = this.maxScroll ? -this.threshold / this.bounce : 0
       this.$emit('pullup')
       this.$nextTick(() => {
