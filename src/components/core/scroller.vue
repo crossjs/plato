@@ -91,8 +91,6 @@ export default {
       offset: 0,
       // 推拉状态
       pullState: STATE_IDLE,
-      // 溢出距离
-      maxScroll: 0,
       maxHeight: 0
     }
   },
@@ -134,6 +132,8 @@ export default {
   },
 
   mounted () {
+    // 溢出距离
+    this.maxScroll = 0
     // 临界阈值
     this.threshold = this.$refs.indicator.clientHeight * this.bounce
     this.fill()
