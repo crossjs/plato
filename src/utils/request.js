@@ -34,7 +34,7 @@ const defaultOptions = {
  */
 export default function request (...args) {
   if (args.length === 0) {
-    console.warn('URL or Options is Required!')
+    __PROD__ || console.warn('URL or Options is Required!')
     return
   }
 
@@ -42,7 +42,7 @@ export default function request (...args) {
     if (args[1] === undefined) {
       args[1] = {}
     } else if (!isPlainObj(args[1])) {
-      console.warn('Options MUST be Object!')
+      __PROD__ || console.warn('Options MUST be Object!')
       return
     }
     args[1].url = args[0]
@@ -50,7 +50,7 @@ export default function request (...args) {
   }
 
   if (!isPlainObj(args[0])) {
-    console.warn('Options MUST be Object!')
+    __PROD__ || console.warn('Options MUST be Object!')
     return
   }
   return new Promise((resolve, reject) => {

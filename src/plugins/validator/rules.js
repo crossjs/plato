@@ -47,7 +47,7 @@ export function required (val) {
  *
  * This function validate whether the value matches the regex pattern
  *
- * @param val
+ * @param {String} val
  * @param {String} pat
  * @return {Boolean}
  */

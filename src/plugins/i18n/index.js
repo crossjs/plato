@@ -1,11 +1,18 @@
-// sync from: https://github.com/crossjs/plato-i18n
-
 import template from 'string-template'
 
-export default function plugin (Vue, globalOptions = {}) {
+export default function plugin (Vue, options = {}) {
   if (plugin.installed) {
+    __PROD__ || console.warn('already installed.')
     return
   }
+
+  const vm = new Vue({ data: options })
+
+  /**
+   * Register $i18n as a global data to Vue
+   */
+  Vue.$i18n = vm
+  Vue.__ = Vue.$translate = translate.bind(vm)
 
   Vue.mixin({
     beforeCreate () {
@@ -14,13 +21,13 @@ export default function plugin (Vue, globalOptions = {}) {
       // 当前组件有 i18n
       if (i18n) {
         // 在入口处定义 $i18n
-        Vue.util.defineReactive(this, '$i18n', { ...globalOptions, ...i18n })
+        Vue.util.defineReactive(this, '$i18n', { ...options, ...i18n })
       } else if (this.$parent) {
         // 否则指向父对象的 i18n
         this.$i18n = this.$parent.$i18n
       } else {
         // 使用默认
-        Vue.util.defineReactive(this, '$i18n', { ...globalOptions })
+        Vue.util.defineReactive(this, '$i18n', { ...options })
       }
     }
   })
@@ -46,18 +53,20 @@ export default function plugin (Vue, globalOptions = {}) {
    * @param  {Array|Object}   [args]  模板变量
    * @return {String}                 翻译结果
    */
-  Vue.prototype.__ = Vue.prototype.$translate = function (keys, ...args) {
-    if (!keys || !this.$i18n || typeof this.$i18n.data !== 'function') {
-      return keys
-    }
-    // `.` 作为分隔符
-    return template(keys.split('.').reduce((res, key) => {
-      if (res && typeof res === 'object' && res.hasOwnProperty(key)) {
-        return res[key]
-      }
-      return keys
-    }, this.$i18n.data()), ...args)
-  }
+  Vue.prototype.__ = Vue.prototype.$translate = translate
 
   plugin.installed = true
+}
+
+function translate (keys, ...args) {
+  if (!keys || !this.$i18n || typeof this.$i18n.data !== 'function') {
+    return keys
+  }
+  // `.` 作为分隔符
+  return template(keys.split('.').reduce((res, key) => {
+    if (res && typeof res === 'object' && res.hasOwnProperty(key)) {
+      return res[key]
+    }
+    return keys
+  }, this.$i18n.data()), ...args)
 }

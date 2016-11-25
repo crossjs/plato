@@ -5,6 +5,7 @@ import * as rules from './rules'
 
 export default function plugin (Vue) {
   if (plugin.installed) {
+    __PROD__ || console.warn('already installed.')
     return
   }
 
@@ -67,7 +68,7 @@ export default function plugin (Vue) {
                 })
               })
           } else {
-            console.warn(`'${key}' is NOT a valid validator`)
+            __PROD__ || console.warn(`'${key}' is NOT a valid validator`)
             resolve()
           }
         })
