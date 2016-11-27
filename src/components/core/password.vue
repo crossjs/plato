@@ -51,4 +51,4 @@ export default {
 }
 </script>
 
-<style src="styles/components/core/password"></style>
+<style src="./styles/password"></style>

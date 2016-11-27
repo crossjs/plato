@@ -1,0 +1,5 @@
+.index {
+  & .c-button {
+    height: 100%;
+  }
+}

@@ -10,4 +10,4 @@ export default {
 }
 </script>
 
-<style src="styles/components/core/badge"></style>
+<style src="./styles/badge"></style>

@@ -1,58 +1,13 @@
-export default [
-  {
-    path: '/',
-    exact: true,
-    component: () => System.import('views/home')
-  },
-  {
-    path: '/demos',
-    meta: {
-      icon: 'eye'
-    },
-    component: () => System.import('views/demos')
-  },
-  {
-    path: '/demos/:component',
-    meta: {
-      hidden: true
-    },
-    component: () => System.import('views/demos')
-  },
-  {
-    path: '/create',
-    meta: {
-      icon: 'plus'
-    },
-    component: () => System.import('views/create')
-  },
-  {
-    path: '/about',
-    meta: {
-      icon: 'question'
-    },
-    component: () => System.import('views/about')
-  },
-  {
-    path: '/login',
-    meta: {
-      icon: 'lock',
-      auth: false
-    },
-    component: () => System.import('views/login')
-  },
-  {
-    path: '/logout',
-    meta: {
-      icon: 'lock',
-      auth: true
-    },
-    component: () => System.import('views/logout')
-  },
-  {
-    path: '/globe',
-    meta: {
-      icon: 'globe'
-    },
-    component: () => System.import('views/globe')
-  }
-]
+// load routes in modules
+const modulesContext = require.context('../modules/', true, /routes\.js$/)
+const regexp = /(^\.(\/core)?)|(\/routes\.js$)/g
+
+// todo: use `PLATO.use(...)` for registering modules?
+
+export default modulesContext.keys().reduce((arr, key) => {
+  const prefix = key.replace(regexp, '')
+  return arr.concat(modulesContext(key).map(route => {
+    route.path = prefix + route.path
+    return route
+  }))
+}, [])

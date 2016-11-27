@@ -1,5 +1,5 @@
 import Promise from 'nuo'
-import createPersist from 'vuex-localstorage'
+import createPersist, { rnd } from 'vuex-localstorage'
 import { createAction, handleAction, $inject } from 'vuex-actions'
 import Normalizer from 'utils/normalizer'
 import request, { merge } from 'utils/request'
@@ -18,7 +18,7 @@ import request, { merge } from 'utils/request'
  * @return {Object}              Vuex 的 module
  */
 export default ({
-    namespace,
+    namespace = rnd(),
     expires = 0,
     memcache = 0,
     source,

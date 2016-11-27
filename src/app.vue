@@ -40,12 +40,18 @@ import CLink from 'components/core/link'
 import CIcon from 'components/core/icon'
 import CNavbar from 'components/navbar'
 import CRoute from 'components/route'
-import { mapGetters, mapActions } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 import routes from 'router/routes'
 
 export default {
   computed: {
-    ...mapGetters(['authorized', 'lang', 'i18n', 'progress', 'toast']),
+    ...mapState({
+      authorized: state => state.authorized,
+      lang: state => state.lang,
+      i18n: state => state.i18n,
+      progress: state => state.progress,
+      toast: state => state.toast
+    }),
     routes () {
       return walkRoutes.call(this, routes, route => {
         return !route.meta || route.meta.auth !== !this.authorized
@@ -106,4 +112,4 @@ function walkRoutes (routes, filter) {
 </script>
 
 <style src="styles/app"></style>
-<style src="styles/components/core/reddot"></style>
+<style src="styles/reddot"></style>

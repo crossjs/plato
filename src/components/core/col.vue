@@ -12,4 +12,4 @@ export default {
 }
 </script>
 
-<style src="styles/components/core/col"></style>
+<style src="./styles/col"></style>

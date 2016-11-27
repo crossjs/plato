@@ -38,7 +38,7 @@ export default {
     },
     transition: {
       type: Boolean,
-      default: false
+      default: true
     }
   },
 
@@ -126,4 +126,4 @@ export default {
 }
 </script>
 
-<style src="styles/components/core/picker"></style>
+<style src="./styles/picker"></style>

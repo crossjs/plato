@@ -27,4 +27,4 @@ export default {
 }
 </script>
 
-<style src="styles/components/core/row"></style>
+<style src="./styles/row"></style>

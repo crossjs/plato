@@ -37,4 +37,4 @@ export default {
 }
 </script>
 
-<style src="styles/components/navbar"></style>
+<style src="./styles/navbar"></style>

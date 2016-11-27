@@ -11,4 +11,4 @@ export default {
 }
 </script>
 
-<style src="styles/components/core/multiline"></style>
+<style src="./styles/multiline"></style>

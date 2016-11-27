@@ -23,4 +23,4 @@ export default {
 
 </script>
 
-<style src="styles/components/core/icon"></style>
+<style src="./styles/icon"></style>

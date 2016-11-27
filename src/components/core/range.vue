@@ -88,4 +88,4 @@ export default {
 }
 </script>
 
-<style src="styles/components/core/range"></style>
+<style src="./styles/range"></style>

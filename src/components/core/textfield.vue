@@ -12,4 +12,4 @@ export default {
 }
 </script>
 
-<style src="styles/components/core/textfield"></style>
+<style src="./styles/textfield"></style>

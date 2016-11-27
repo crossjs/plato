@@ -2,4 +2,4 @@
   <label class="c-label"><slot></slot></label>
 </template>
 
-<style src="styles/components/core/label"></style>
+<style src="./styles/label"></style>

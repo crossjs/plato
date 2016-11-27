@@ -48,7 +48,7 @@ export default {
     // 如果启用，延迟 200ms
     transition: {
       type: Boolean,
-      default: false
+      default: true
     },
     // 灵敏度，数值越大，短距离快速滑动时越容易触发切换
     sensitivity: {
@@ -237,4 +237,4 @@ export default {
 }
 </script>
 
-<style src="styles/components/core/slider"></style>
+<style src="./styles/slider"></style>

@@ -1,11 +1,6 @@
 {
   "faq": [
     {
-      "id": "1avg9fpei0.alia0duccb",
-      "title": "leancloud is REMOVED!",
-      "content": "use fake data instead"
-    },
-    {
       "id": "1avg9fpei0.hrpkt5v3grg",
       "title": "from 🇨🇳",
       "content": "for the world"
@@ -60,8 +55,8 @@
       "title": "jjj",
       "content": "jjjj"
     },
-     {
-       "id": "1avg9fpei0.q99hus0bk",
+    {
+      "id": "1avg9fpei0.q99hus0bk",
       "title": "使用了自定义的 tap 事件",
       "content": "解决 300 毫秒延迟，还在进行更多的测试……"
     },
