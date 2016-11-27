@@ -157,6 +157,7 @@ const vueLoaderOptions = {
       require('postcss-flexible')({
         remUnit: 75
       }),
+      require('postcss-rtl')(),
       require('postcss-browser-reporter')(),
       require('postcss-reporter')()
     ]

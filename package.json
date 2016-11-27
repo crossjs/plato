@@ -32,7 +32,7 @@
     "vue-router": "^2.0.3",
     "vuex": "^2.0.0",
     "vuex-actions": "^1.1.1",
-    "vuex-localstorage": "^0.3.0",
+    "vuex-localstorage": "^0.4.0",
     "whatwg-fetch": "^2.0.1"
   },
   "devDependencies": {
@@ -75,10 +75,11 @@
     "phantomjs-prebuilt": "^2.1.13",
     "postcss-browser-reporter": "^0.5.0",
     "postcss-cssnext": "^2.8.0",
-    "postcss-flexible": "^0.2.1",
+    "postcss-flexible": "^0.2.2",
     "postcss-import": "8.1.0",
     "postcss-loader": "^1.1.1",
     "postcss-reporter": "^2.0.0",
+    "postcss-rtl": "^0.3.2",
     "postcss-url": "^5.1.2",
     "rimraf": "^2.5.4",
     "selenium-server": "^2.53.1",
