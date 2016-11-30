@@ -1,1 +1,0 @@
-module **core** is PROTECTED

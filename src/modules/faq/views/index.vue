@@ -40,7 +40,7 @@ import CSpinner from 'components/core/spinner'
 import CRow from 'components/core/row'
 import CSwiper from 'components/core/swiper'
 import CButton from 'components/core/button'
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapGetters, mapActions } from 'vuex'
 
 export default {
   data () {
@@ -52,12 +52,13 @@ export default {
     }
   },
 
-  computed: mapState({
-    transition: state => state.transition,
-    authorized: state => state.authorized,
-    items: ({ faq }) => faq.entities,
-    fetching: ({ faq }) => faq.fetching
-  }),
+  computed: {
+    ...mapGetters(['authorized', 'transition']),
+    ...mapState({
+      items: ({ faq }) => faq.entities,
+      fetching: ({ faq }) => faq.fetching
+    })
+  },
 
   created () {
     this.faqList()
@@ -72,6 +73,7 @@ export default {
   },
 
   methods: {
+    ...mapActions(['faqList', 'faqDelete', 'addToast']),
     _delete (id) {
       this.id = id
       this.show_modal = true
@@ -82,8 +84,7 @@ export default {
         this.faqDelete(this.id)
       }
       delete this.id
-    },
-    ...mapActions(['faqList', 'faqDelete', 'addToast'])
+    }
   },
 
   components: {

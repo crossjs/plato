@@ -1,8 +1,8 @@
 import Promise from 'nuo'
 import createPersist, { rnd } from 'vuex-localstorage'
 import { createAction, handleAction, $inject } from 'vuex-actions'
-import Normalizer from 'utils/normalizer'
-import request, { merge } from 'utils/request'
+import Normalizer from 'application/utils/normalizer'
+import request, { merge } from 'application/utils/request'
 
 /**
  * Template for standard REST

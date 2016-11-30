@@ -26,7 +26,7 @@ export default {
       type: Number,
       default: 0,
       validator (val) {
-        return val >= 0
+        return val >= -1
       }
     },
     size: {

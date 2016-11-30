@@ -39,7 +39,8 @@ const config = {
     'vue-router',
     'vuex',
     'vuex-actions',
-    'vuex-localstorage'
+    'vuex-localstorage',
+    'vuex-router-sync'
   ]
 }
 

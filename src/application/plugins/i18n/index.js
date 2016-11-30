@@ -68,5 +68,5 @@ function translate (keys, ...args) {
       return res[key]
     }
     return keys
-  }, this.$i18n.data()), ...args)
+  }, this.$i18n.data.call(this)), ...args)
 }

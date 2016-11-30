@@ -1,7 +1,7 @@
 import createPersist, { rnd } from 'vuex-localstorage'
 import { createAction, handleAction } from 'vuex-actions'
-import { ONE_WEEK } from 'store/constants'
-import request from 'utils/request'
+import { ONE_WEEK } from 'application/constants'
+import request from 'application/utils/request'
 
 const SET_ENV = rnd()
 const SET_PROGRESS = rnd()
@@ -25,7 +25,9 @@ const getters = {
   lang: state => state.lang,
   i18n: state => state.i18n,
   transition: state => state.transition,
-  authorized: state => state.authorized
+  authorized: state => state.authorized,
+  progress: state => state.progress,
+  toast: state => state.toast
 }
 
 let timeoutId
@@ -39,6 +41,21 @@ const actions = {
     }
     return payload
   }),
+
+  // setProgress: createAction(SET_PROGRESS, payload => {
+  //   if (payload === 100) {
+  //     return {
+  //       payload,
+  //       _: new Promise((resolve, reject) => {
+  //         setTimeout(() => {
+  //           resolve(0)
+  //         }, 500)
+  //       })
+  //     }
+  //   } else {
+  //     return payload
+  //   }
+  // }),
 
   setProgress ({ commit }, progress) {
     commit(SET_PROGRESS, progress)

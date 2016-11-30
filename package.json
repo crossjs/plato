@@ -33,6 +33,7 @@
     "vuex": "^2.0.0",
     "vuex-actions": "^1.1.1",
     "vuex-localstorage": "^0.4.0",
+    "vuex-router-sync": "^3.0.0",
     "whatwg-fetch": "^2.0.1"
   },
   "devDependencies": {
