@@ -2,7 +2,7 @@
   <div class="c-swiper"
     :class="{transition: transition}"
     :style="{transform: 'translate3d(' + offset + 'px, 0, 0)'}"
-    v-drag.direction="{horizontal: 'yes'}"
+    v-drag.horizontal
     @dragstart="dragstart"
     @drag="drag"
     @dragend="dragend"

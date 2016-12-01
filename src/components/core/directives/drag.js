@@ -16,17 +16,15 @@ export default {
       }
     })
     el.addEventListener('touchmove', e => {
-      if (startPoint) {
-        if (modifiers.direction) {
-          if ((value.horizontal && isHorizontal(e.touches[0], startPoint)) ||
-              (value.vertical && isVertical(e.touches[0], startPoint))) {
-            el.dispatchEvent(createEvent('drag', { originalEvent: e }))
-          } else {
-            startPoint = null
-          }
-        } else {
-          el.dispatchEvent(createEvent('drag', { originalEvent: e }))
-        }
+      if (!startPoint) {
+        return
+      }
+      // don't dispatch drag event when modifiers don't match drag direction
+      if ((modifiers.horizontal && !modifiers.vertical && isVertical(e.touches[0], startPoint)) ||
+          (modifiers.vertical && !modifiers.horizontal && isHorizontal(e.touches[0], startPoint))) {
+        return
+      } else {
+        el.dispatchEvent(createEvent('drag', { originalEvent: e }))
       }
     })
     el.addEventListener('touchend', e => {

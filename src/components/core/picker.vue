@@ -2,7 +2,7 @@
 <template>
   <div class="c-picker"
     :style="{height: itemHeight * size + 'px'}"
-    v-drag.direction="{vertical: 'yes'}"
+    v-drag
     @dragstart="dragstart"
     @drag="drag"
     @dragend="dragend">
