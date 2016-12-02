@@ -20,3 +20,8 @@
   letter-spacing: 0;
   -webkit-font-smoothing: antialiased;
 }
+html[dir="rtl"] {
+  & .c-direction {
+    transform: rotateZ(180deg);
+  }
+}
