@@ -31,9 +31,8 @@ export default {
       if ((modifiers.horizontal && !modifiers.vertical && direction === 'vertical') ||
           (modifiers.vertical && !modifiers.horizontal && direction === 'horizontal')) {
         return
-      } else {
-        el.dispatchEvent(createEvent('drag', { originalEvent: e }))
       }
+      el.dispatchEvent(createEvent('drag', { originalEvent: e }))
     })
     el.addEventListener('touchend', e => {
       if (direction) {
