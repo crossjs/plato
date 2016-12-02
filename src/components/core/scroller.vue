@@ -1,7 +1,7 @@
 <template>
   <div class="c-scroller"
     :style="{height: height + 'px'}"
-    v-drag.direction="{vertical: 'yes'}"
+    v-drag.vertical
     @dragstart="dragstart"
     @drag="drag"
     @dragend="dragend">
