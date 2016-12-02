@@ -50,4 +50,4 @@ export default {
 }
 </script>
 
-<style src="styles/components/core/image"></style>
+<style src="./styles/image"></style>

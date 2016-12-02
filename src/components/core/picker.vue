@@ -26,7 +26,7 @@ export default {
       type: Number,
       default: 0,
       validator (val) {
-        return val >= 0
+        return val >= -1
       }
     },
     size: {
@@ -38,7 +38,7 @@ export default {
     },
     transition: {
       type: Boolean,
-      default: false
+      default: true
     }
   },
 
@@ -130,4 +130,4 @@ export default {
 }
 </script>
 
-<style src="styles/components/core/picker"></style>
+<style src="./styles/picker"></style>

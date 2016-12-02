@@ -197,4 +197,4 @@ export default {
 }
 </script>
 
-<style src="styles/components/uploader"></style>
+<style src="./styles/uploader"></style>

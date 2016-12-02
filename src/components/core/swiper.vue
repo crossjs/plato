@@ -27,7 +27,7 @@ export default {
   props: {
     transition: {
       type: Boolean,
-      default: false
+      default: true
     }
   },
 
@@ -93,4 +93,4 @@ export default {
 }
 </script>
 
-<style src="styles/components/core/swiper"></style>
+<style src="./styles/swiper"></style>

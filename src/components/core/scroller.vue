@@ -82,7 +82,7 @@ export default {
     },
     transition: {
       type: Boolean,
-      default: false
+      default: true
     }
   },
 
@@ -252,4 +252,4 @@ export default {
 }
 </script>
 
-<style src="styles/components/core/scroller"></style>
+<style src="./styles/scroller"></style>

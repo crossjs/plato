@@ -1,0 +1,186 @@
+.v-demo {
+  & h3 {
+    padding: dpr(20px);
+    background-color: color(white lightness(-2%));
+  }
+
+  & .c-col {
+    & a {
+      display: block;
+      padding: dpr(20px);
+    }
+  }
+}
+
+.d-badge {
+  text-align: center;
+}
+
+.d-slider {
+  & .c-slider {
+    height: dpr(200px);
+  }
+
+  & .d-slider-item {
+    text-align: center;
+    line-height: dpr(160px);
+    color: white;
+    font-size: dpr(60px);
+
+    &:only-child {
+      line-height: dpr(200px);
+    }
+
+    &:nth-child(5n+1) {
+      background: var(--primary);
+    }
+
+    &:nth-child(5n+2) {
+      background: color(var(--primary) hue(+20));
+    }
+
+    &:nth-child(5n+3) {
+      background: color(var(--primary) hue(+40));
+    }
+
+    &:nth-child(5n+4) {
+      background: color(var(--primary) hue(+60));
+    }
+
+    &:nth-child(5n) {
+      background: color(var(--primary) hue(+80));
+    }
+  }
+}
+
+.d-icon {
+  & .d-icon-slot {
+    width: 33.33333%;
+    display: block;
+    float: left;
+    text-align: center;
+  }
+
+  & .d-icon-name {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  & .c-icon {
+    margin: 0.2em;
+  }
+}
+
+.d-row {
+  & > div {
+    margin: 1rem 0;
+  }
+
+  & .c-col {
+    box-sizing: border-box;
+    border: 1px solid var(--primary);
+  }
+}
+
+.d-modal {
+  & .title {
+    font-size: dpr(48px);
+  }
+
+  & .content {
+    font-size: dpr(32px);
+  }
+}
+
+.d-image {
+  & .no-src {
+    background-color: var(--primary);
+  }
+
+  & .url {
+    background-image: url(images/wx@2x.png);
+  }
+}
+
+.d-scroller {
+  & .c-button {
+    margin: 0.5em 0;
+  }
+}
+
+.d-picker {
+  & p {
+    font-size: dpr(48px);
+    line-height: dpr(60px);
+  }
+}
+
+.d-swiper {
+  & .c-button {
+    height: 100%;
+  }
+}
+
+.d-uploader {
+  padding: dpr(5px);
+}
+
+.d-uploader-container {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+
+.d-uploader-preview {
+  width: 100%;
+  height: 100%;
+
+  & > img {
+    width: 100%;
+    height: 100%;
+  }
+
+  & > p {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    text-transform: capitalize;
+  }
+}
+
+.d-uploader-progress {
+  width: 100%;
+  height: 0;
+  z-index: 3;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(56, 173, 255, 0.2);
+  transition: height 0.3s linear;
+}
+
+.d-uploader-text {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.d-uploader-icon {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}

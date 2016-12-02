@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import CModal from 'components/core/modal'
-import tap from 'directives/tap'
+import tap from 'application/directives/tap'
 
 Vue.directive('tap', tap)
 

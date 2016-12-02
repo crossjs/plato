@@ -10,4 +10,4 @@ export default {
 }
 </script>
 
-<style src="styles/components/core/link"></style>
+<style src="./styles/link"></style>

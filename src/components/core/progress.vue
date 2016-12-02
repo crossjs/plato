@@ -19,4 +19,4 @@ export default {
 }
 </script>
 
-<style src="styles/components/core/progress"></style>
+<style src="./styles/progress"></style>
