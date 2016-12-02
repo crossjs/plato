@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import tap from 'directives/tap'
+import tap from 'application/directives/tap'
 
 Vue.directive('tap', tap)
 

@@ -16,9 +16,7 @@ const webpackConfig = {
   resolve: {
     modules: [paths.src(), 'node_modules'],
     extensions: ['.css', '.js', '.json', '.vue'],
-    alias: {
-      styles: paths.src(`themes/${config.theme}`)
-    }
+    alias: {}
   },
   node: {
     fs: 'empty',
@@ -125,7 +123,7 @@ const webpackConfig = {
     new CopyWebpackPlugin([{
       from: paths.src('static')
     }], {
-      // ignore: ['*.ico', '*.md']
+      ignore: ['README.md']
     })
   ]
 }
@@ -138,7 +136,7 @@ const vueLoaderOptions = {
   postcss: pack => {
     return [
       require('postcss-import')({
-        path: paths.src(`themes/${config.theme}`),
+        path: paths.src('application/styles'),
         // use webpack context
         addDependencyTo: pack
       }),
@@ -150,14 +148,30 @@ const vueLoaderOptions = {
         browsers: 'Android >= 4, iOS >= 7',
         features: {
           customProperties: {
-            variables: require(paths.src(`themes/${config.theme}/variables`))
+            variables: require(paths.src('application/styles/variables'))
           }
         }
       }),
       require('postcss-flexible')({
         remUnit: 75
       }),
-      require('postcss-rtl')(),
+      // PostCSS plugin for RTL-optimizations
+      require('postcss-rtl')({
+        // Custom function for adding prefix to selector. Optional.
+        addPrefixToSelector (selector, prefix) {
+          if (/^html/.test(selector)) {
+            return selector.replace(/^html/, `html${prefix}`)
+          }
+          if (/:root/.test(selector)) {
+            return selector.replace(/:root/, `${prefix}:root`)
+          }
+          // compliant with postcss-flexible
+          if (/^\[data-dpr(="[1-3]")?]/.test(selector)) {
+            return `${prefix}${selector}`
+          }
+          return `${prefix} ${selector}`
+        }
+      }),
       require('postcss-browser-reporter')(),
       require('postcss-reporter')()
     ]

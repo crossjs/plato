@@ -60,10 +60,8 @@
   align-self: center;
 }
 
-/*
-html[dir="rtl"] {
+[dir="rtl"] {
   & .c-row-link {
     transform: rotateZ(180deg);
   }
 }
-*/

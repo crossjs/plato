@@ -105,5 +105,5 @@ function walkRoutes (routes, filter) {
 }
 </script>
 
-<style src="styles/app"></style>
-<style src="styles/reddot"></style>
+<style src="application/styles/app"></style>
+<style src="application/styles/reddot"></style>

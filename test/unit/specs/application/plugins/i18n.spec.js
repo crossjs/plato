@@ -1,5 +1,5 @@
 import Vue from 'vue/dist/vue'
-import I18n from 'plugins/i18n'
+import I18n from 'application/plugins/i18n'
 
 Vue.use(I18n)
 

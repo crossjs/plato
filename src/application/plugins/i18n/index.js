@@ -9,7 +9,7 @@ export default function plugin (Vue, options = {}) {
   const vm = new Vue({ data: options })
 
   /**
-   * Register $i18n as a global data to Vue
+   * Attach $i18n to Vue
    */
   Vue.$i18n = vm
   Vue.__ = Vue.$translate = translate.bind(vm)
@@ -68,5 +68,5 @@ function translate (keys, ...args) {
       return res[key]
     }
     return keys
-  }, this.$i18n.data.call(this)), ...args)
+  }, this.$i18n.data()), ...args)
 }

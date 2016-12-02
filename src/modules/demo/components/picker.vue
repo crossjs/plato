@@ -27,7 +27,7 @@
           :index="year"
           :size="3"
           @change="changeYear">
-          <p v-for="item in yearList">{{item}}</p>
+          <p v-for="item in yearList" :key="item">{{item}}</p>
         </c-picker>
       </c-col>
       <c-col class="center">-</c-col>
@@ -37,7 +37,7 @@
           :index="month"
           :size="3"
           @change="changeMonth">
-          <p v-for="item in 12">{{item}}</p>
+          <p v-for="item in 12" :key="item">{{item}}</p>
         </c-picker>
       </c-col>
       <c-col class="center">-</c-col>
@@ -47,7 +47,7 @@
           :index="date"
           :size="3"
           @change="changeDate">
-          <p v-for="item in dateMax">{{item}}</p>
+          <p v-for="item in dateMax" :key="item + '/' + dateMax">{{item}}</p>
         </c-picker>
       </c-col>
     </c-pane>

@@ -1,5 +1,5 @@
 import Vue from 'vue/dist/vue'
-import Validator from 'plugins/validator'
+import Validator from 'application/plugins/validator'
 
 Vue.use(Validator)
 

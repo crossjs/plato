@@ -9,11 +9,6 @@ const config = {
   pkg: require('../package.json'),
 
   // ----------------------------------
-  // Theme Configuration
-  // ----------------------------------
-  theme: 'default',
-
-  // ----------------------------------
   // Project Structure
   // ----------------------------------
   path_base: resolve(__dirname, '../'),

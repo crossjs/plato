@@ -1,4 +1,4 @@
-import Normalizer from 'utils/normalizer'
+import Normalizer from 'application/utils/normalizer'
 
 describe('Normalizer', () => {
   it('should normalize items', () => {
