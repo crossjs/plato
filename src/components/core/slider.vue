@@ -1,6 +1,6 @@
 <template>
   <div class="c-slider"
-    v-drag.direction="{horizontal: 'yes'}"
+    v-drag.horizontal
     @dragstart="dragstart"
     @drag="drag"
     @dragend="dragend">
