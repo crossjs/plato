@@ -1,7 +1,7 @@
 <template>
   <div class="c-range"
     :class="{disabled: disabled}"
-    v-drag
+    v-drag.horizontal
     @dragstart="dragstart"
     @drag="drag">
     <div class="c-range-content"

@@ -5,6 +5,7 @@ export default {
   name: 'drag',
   bind (el, { value, modifiers }) {
     let startPoint = null
+    let direction
     el.addEventListener('touchstart', e => {
       startPoint = null
       if (e.touches && e.touches.length === 1) {
@@ -19,15 +20,25 @@ export default {
       if (!startPoint) {
         return
       }
+
+      // set drag direction's value after touchstart
+      // and never change it until touchend
+      if (!direction) {
+        direction = isHorizontal(e.touches[0], startPoint) ? 'horizontal' : 'vertical'
+      }
+
       // don't dispatch drag event when modifiers don't match drag direction
-      if ((modifiers.horizontal && !modifiers.vertical && isVertical(e.touches[0], startPoint)) ||
-          (modifiers.vertical && !modifiers.horizontal && isHorizontal(e.touches[0], startPoint))) {
+      if ((modifiers.horizontal && !modifiers.vertical && direction === 'vertical') ||
+          (modifiers.vertical && !modifiers.horizontal && direction === 'horizontal')) {
         return
       } else {
         el.dispatchEvent(createEvent('drag', { originalEvent: e }))
       }
     })
     el.addEventListener('touchend', e => {
+      if (direction) {
+        direction = undefined
+      }
       if (startPoint) {
         startPoint = null
         el.dispatchEvent(createEvent('dragend', { originalEvent: e }))
