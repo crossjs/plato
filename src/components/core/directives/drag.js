@@ -36,7 +36,7 @@ export default {
     })
     el.addEventListener('touchend', e => {
       if (direction) {
-        direction = undefined
+        direction = null
       }
       if (startPoint) {
         startPoint = null
