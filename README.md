@@ -66,6 +66,9 @@ npm run push
   - [Selenium-Server](https://github.com/eugeneware/selenium-server)
 - Transformers
   - [PostCSS](http://postcss.org/) (for css next)
+    - [postcss-rtl](https://github.com/vkalinichev/postcss-rtl)
+    - [postcss-flexible](https://github.com/crossjs/postcss-flexible) (for [lib.flexible](https://github.com/amfe/lib-flexible))
+    - ...
   - [Babel](https://babeljs.io/) (for es6)
 
 ## Components

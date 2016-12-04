@@ -11,10 +11,10 @@ import createRouter from 'application/router/create'
 
 import Root from 'application/components/root'
 
-import faq from 'modules/faq'
-import base from 'modules/base'
-import demo from 'modules/demo'
-import about from 'modules/about'
+import * as faq from 'modules/faq'
+import * as base from 'modules/base'
+import * as demo from 'modules/demo'
+import * as about from 'modules/about'
 
 /**
  * Plugins part 1

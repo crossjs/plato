@@ -1,12 +1,13 @@
-import createPersist, { rnd } from 'vuex-localstorage'
+import createPersist from 'vuex-localstorage'
 import { createAction, handleAction } from 'vuex-actions'
 import { ONE_WEEK } from 'application/constants'
 import request from 'application/utils/request'
+import rnd from 'application/utils/rnd'
 
-const SET_ENV = rnd()
-const SET_PROGRESS = rnd()
-const ADD_TOAST = rnd()
-const DELETE_TOAST = rnd()
+const SET_ENV = rnd('SET_ENV')
+const SET_PROGRESS = rnd('SET_PROGRESS')
+const ADD_TOAST = rnd('ADD_TOAST')
+const DELETE_TOAST = rnd('DELETE_TOAST')
 
 const persist = createPersist('core', {
   lang: navigator.language.split('-')[0],

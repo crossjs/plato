@@ -1,7 +1,2 @@
-import store from './store'
-import routes from './routes'
-
-export default {
-  store,
-  routes
-}
+export store from './store'
+export routes from './routes'
