@@ -11,10 +11,10 @@ import createRouter from 'application/router/create'
 
 import Root from 'application/components/root'
 
-import * as faq from 'modules/faq'
-import * as base from 'modules/base'
-import * as demo from 'modules/demo'
-import * as about from 'modules/about'
+import faq from 'modules/faq'
+import base from 'modules/base'
+import demo from 'modules/demo'
+import about from 'modules/about'
 
 /**
  * Plugins part 1
@@ -30,26 +30,20 @@ Vue.use(Router)
 export const modules = {}
 export const routes = []
 
-function register (key, { store: s, routes: r }, pathPrefix) {
-  if (s) {
-    modules[key] = s
-  }
-  if (r) {
-    if (pathPrefix === undefined) {
-      pathPrefix = '/' + key
-    }
-    r.forEach(({ path, ...rest }) => {
-      path = pathPrefix + path
-      path = path.replace(/\/+$/, '')
-      routes.push({ path, ...rest })
-    })
-  }
-}
-
-register('base', base, '')
-register('faq', faq, '')
-register('demo', demo)
-register('about', about)
+register(base(Vue), {
+  name: 'base',
+  pathPrefix: ''
+})
+register(faq(Vue), {
+  name: 'faq',
+  pathPrefix: ''
+})
+register(demo(Vue), {
+  name: 'demo'
+})
+register(about(Vue), {
+  name: 'about'
+})
 
 export const store = createStore(modules)
 export const router = createRouter(routes)
@@ -100,3 +94,22 @@ Vue.directive('tap', tap)
  */
 
 new Vue(Vue.util.extend({ router, store }, Root)).$mount('#app')
+
+/**
+ * Register Modules
+ */
+function register ({ store: s, routes: r }, { name, pathPrefix }) {
+  if (s) {
+    modules[name] = s
+  }
+  if (r) {
+    if (pathPrefix === undefined) {
+      pathPrefix = '/' + name
+    }
+    r.forEach(({ path, ...rest }) => {
+      path = pathPrefix + path
+      path = path.replace(/\/+$/, '')
+      routes.push({ path, ...rest })
+    })
+  }
+}
