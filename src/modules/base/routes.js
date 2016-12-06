@@ -1,25 +1,27 @@
-export default [
-  {
-    path: '/login',
-    meta: {
-      icon: 'lock',
-      auth: false
+export const createRoutes = ({ prefix = '/' } = {}) => {
+  return [
+    {
+      path: `${prefix}login`,
+      meta: {
+        icon: 'lock',
+        auth: false
+      },
+      component: () => System.import('./views/login')
     },
-    component: () => System.import('./views/login')
-  },
-  {
-    path: '/logout',
-    meta: {
-      icon: 'lock',
-      auth: true
+    {
+      path: `${prefix}/logout`,
+      meta: {
+        icon: 'lock',
+        auth: true
+      },
+      component: () => System.import('./views/logout')
     },
-    component: () => System.import('./views/logout')
-  },
-  {
-    path: '/globe',
-    meta: {
-      icon: 'globe'
-    },
-    component: () => System.import('./views/globe')
-  }
-]
+    {
+      path: `${prefix}/globe`,
+      meta: {
+        icon: 'globe'
+      },
+      component: () => System.import('./views/globe')
+    }
+  ]
+}

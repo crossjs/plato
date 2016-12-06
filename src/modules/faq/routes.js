@@ -1,15 +1,17 @@
-export default [
-  {
-    path: '/',
-    exact: true,
-    component: () => System.import('./views/index')
-  },
-  {
-    path: '/create',
-    meta: {
-      auth: true,
-      icon: 'plus'
+export const createRoutes = ({ prefix = '/' } = {}) => {
+  return [
+    {
+      path: `${prefix}`,
+      exact: true,
+      component: () => System.import('./views/index')
     },
-    component: () => System.import('./views/create')
-  }
-]
+    {
+      path: `${prefix}create`,
+      meta: {
+        auth: true,
+        icon: 'plus'
+      },
+      component: () => System.import('./views/create')
+    }
+  ]
+}

@@ -1,16 +1,18 @@
-export default [
-  {
-    path: '/',
-    meta: {
-      icon: 'eye'
+export const createRoutes = ({ prefix = '/' } = {}) => {
+  return [
+    {
+      path: `${prefix}`,
+      meta: {
+        icon: 'eye'
+      },
+      component: () => System.import('./views/index')
     },
-    component: () => System.import('./views/index')
-  },
-  {
-    path: '/:component',
-    meta: {
-      hidden: true
-    },
-    component: () => System.import('./views/index')
-  }
-]
+    {
+      path: `${prefix}:component`,
+      meta: {
+        hidden: true
+      },
+      component: () => System.import('./views/index')
+    }
+  ]
+}
