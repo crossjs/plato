@@ -2,7 +2,7 @@ export const createRoutes = ({ prefix = '' } = {}) => {
   prefix = `/${prefix}/`.replace(/\/\/+/g, '/')
   return [
     {
-      path: `${prefix}`,
+      path: `${prefix}`.replace(/\/$/, ''),
       exact: true,
       component: () => System.import('./views/index')
     },

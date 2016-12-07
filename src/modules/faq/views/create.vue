@@ -3,7 +3,7 @@
     <c-modal :show="show_modal"
       @submit="create"
       @cancel="show_modal = false">{{ __('views.create.confirm') }}</c-modal>
-    <c-spinner v-show="faq_is_fetching"></c-spinner>
+    <c-spinner v-show="fetching"></c-spinner>
     <c-form class="c-form-expand"
       @submit.native.prevent="show_modal = true">
       <div>
@@ -52,7 +52,7 @@ import CTextfield from 'components/core/textfield'
 import CMultiline from 'components/core/multiline'
 import CSpinner from 'components/core/spinner'
 import CButton from 'components/core/button'
-import { mapGetters, mapActions } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 
 export default {
   data () {
@@ -89,7 +89,9 @@ export default {
     }
   },
 
-  computed: mapGetters(['faq_is_fetching']),
+  computed: mapState({
+    fetching: ({ faq }) => faq.fetching
+  }),
 
   methods: {
     ...mapActions(['faqPost']),
@@ -105,7 +107,7 @@ export default {
   },
 
   watch: {
-    faq_is_fetching (val) {
+    fetching (val) {
       if (!val) {
         this.$router.push('/')
       }

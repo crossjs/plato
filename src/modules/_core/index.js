@@ -16,17 +16,22 @@ export default (options = {}) => {
   const { name = '_core', prefix = '_core' } = options
 
   return (context, next) => {
-    const { modules, routes } = context
-    context.routes = routes.concat(createRoutes({ prefix }))
+    const { modules } = context
+    let { routes } = context
+
+    routes = routes.concat(createRoutes({ prefix }))
+
     modules[name] = merge(store, {
       // add routes to store
       state: {
-        routes: context.routes
+        routes
       },
       getters: {
         routes: (state, { authorized }) => state.routes.filter(({ path, meta }) => path !== '/' && (!meta || (!meta.hidden && (meta.auth === undefined || meta.auth === authorized))))
       }
     })
+
+    context.routes = routes
 
     // inject store and router
     context.store = createStore(modules)
