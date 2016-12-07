@@ -5,6 +5,7 @@ import Promise from 'nuo'
 import qs from 'query-string'
 import template from 'string-template'
 import isPlainObj from 'lodash.isplainobject'
+import merge from './merge'
 
 const defaultOptions = {
   headers: {
@@ -32,7 +33,7 @@ const defaultOptions = {
  * @param  {String|Object} options   Options
  * @return {Promise}                 Promise
  */
-export default function request (...args) {
+export default (...args) => {
   if (args.length === 0) {
     __PROD__ || console.warn('URL or Options is Required!')
     return
@@ -65,22 +66,6 @@ export default function request (...args) {
     })
     .catch(reject)
   })
-}
-
-export function merge (src, ...args) {
-  args.forEach(arg => {
-    Object.keys(arg).forEach(key => {
-      if (isPlainObj(arg[key])) {
-        if (!src.hasOwnProperty(key)) {
-          src[key] = {}
-        }
-        Object.assign(src[key], arg[key])
-      } else {
-        src[key] = arg[key]
-      }
-    })
-  })
-  return src
 }
 
 function isHttpOk (res) {

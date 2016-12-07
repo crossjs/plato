@@ -40,20 +40,10 @@ import CLink from 'components/core/link'
 import CIcon from 'components/core/icon'
 import CNavbar from 'components/navbar'
 import CRoute from 'components/route'
-import { mapState, mapGetters, mapActions } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
-  computed: {
-    ...mapState({
-      _routes: ({ core }) => core.routes
-    }),
-    ...mapGetters(['authorized', 'lang', 'i18n', 'progress', 'toast']),
-    routes () {
-      return walkRoutes.call(this, this._routes, route => {
-        return !route.meta || route.meta.auth !== !this.authorized
-      })
-    }
-  },
+  computed: mapGetters(['routes', 'lang', 'i18n', 'progress', 'toast']),
 
   methods: {
     ...mapActions(['setEnv']),
@@ -87,23 +77,6 @@ export default {
     CNavbar,
     CRoute
   }
-}
-
-function walkRoutes (routes, filter) {
-  if (!routes) {
-    return []
-  }
-  return routes
-  .filter(route => route.path !== '/' && (!route.meta || !route.meta.hidden))
-  .filter(route => filter(route))
-  .map(route => {
-    return {
-      path: route.path,
-      name: route.name,
-      exact: route.exact,
-      meta: route.meta
-    }
-  })
 }
 </script>
 

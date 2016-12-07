@@ -2,12 +2,16 @@ import store from './store'
 import { createRoutes } from './routes'
 
 export default (options = {}) => {
-  const { name = 'faq', prefix = '/faq' } = options
+  const { name = 'faq', prefix = 'faq' } = options
 
-  __PROD__ || console.log(`use module "${name}", with prefix "${prefix}"`)
-
-  return (modules, routes, next) => {
+  return (context, next) => {
+    const { modules, routes } = context
     modules[name] = store
-    next(modules, routes.concat(createRoutes({ prefix })))
+    context.routes = routes.concat(createRoutes({ prefix }))
+    // call next with callback
+    // callback will be executed after bootstrap
+    next(context, context => {
+      __PROD__ || console.log(`use module "${name}", with prefix "${prefix}"`)
+    })
   }
 }

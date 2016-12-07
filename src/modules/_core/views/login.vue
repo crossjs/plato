@@ -65,7 +65,7 @@ export default {
       username: {
         field: 'username',
         label: 'views.login.username',
-        value: '',
+        value: 'username',
         validate: {
           required: {
             rule: true,
@@ -88,7 +88,7 @@ export default {
       password: {
         field: 'password',
         label: 'views.login.password',
-        value: '',
+        value: 'password',
         validate: {
           required: {
             message: this.__('message.required', this.__('views.login.password'))

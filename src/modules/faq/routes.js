@@ -1,4 +1,5 @@
-export const createRoutes = ({ prefix = '/' } = {}) => {
+export const createRoutes = ({ prefix = '' } = {}) => {
+  prefix = `/${prefix}/`.replace(/\/\/+/g, '/')
   return [
     {
       path: `${prefix}`,
