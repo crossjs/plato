@@ -20,3 +20,7 @@
   letter-spacing: 0;
   -webkit-font-smoothing: antialiased;
 }
+
+.rotate90 {
+  transform: rotate3d(0, 0, 1, 90deg);
+}

@@ -173,7 +173,17 @@ const vueLoaderOptions = {
         }
       }),
       require('postcss-browser-reporter')(),
-      require('postcss-reporter')()
+      require('postcss-reporter')(),
+      require('postcss-rtl')({
+        // Custom function for adding prefix to selector. Optional.
+        addPrefixToSelector (selector, prefix) {
+          // console.log(/^\[data-dpr=["']\d["']]/.test('[')) 以[data-dpr="1"]开头，就连写，目的是为了让[dir]与[data-dpr]构成兄弟关系；否则，就分开写，为了让其他非[data-dpr]的元素与[dir]构成父子关系
+          if (/^\[data-dpr=["']\d["']]/.test(selector)) { //  匹配 [data-dpr="1"] 时，不能加空格
+            return `${prefix}${selector}`
+          }
+          return `${prefix} ${selector}`
+        }
+      })
     ]
   },
   autoprefixer: false
