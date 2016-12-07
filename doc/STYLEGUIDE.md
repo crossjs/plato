@@ -3,7 +3,7 @@
 ## 目录
 
 1. [优先使用 ES6/7 语法](#user-content-优先使用-es-67-语法)
-1. [不使用 `$broadcast` 与 `$dispatch`](#user-content-不使用-broadcast-与-dispatch)
+1. <del>[不使用 `$broadcast` 与 `$dispatch`](#user-content-不使用-broadcast-与-dispatch)</del>
 1. [尽量使用单向绑定](#user-content-尽量使用单向绑定)
 1. [数据初始化](#user-content-数据初始化)
 1. [Watch 的范围应尽量小](#user-content-watch-的范围应尽量小)
@@ -307,4 +307,4 @@ export default {
 
 ## 使用 normalizr 优化数据
 
-  - 对于大型项目，应考虑使用 [normalizr](https://github.com/paularmstrong/normalizr) 优化数据，或简单地使用 `utils/normalizer`
+  - 对于大型项目，应考虑使用 [normalizr](https://github.com/paularmstrong/normalizr) 优化数据，或简单地使用 `src/application/utils/normalizer`

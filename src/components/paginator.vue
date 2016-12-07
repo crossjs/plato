@@ -120,4 +120,4 @@ export default {
 }
 </script>
 
-<style src="styles/components/paginator"></style>
+<style src="./styles/paginator"></style>

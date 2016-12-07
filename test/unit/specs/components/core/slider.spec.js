@@ -41,6 +41,7 @@ describe('slider.vue', () => {
     vm = new Vue({
       el,
       template: `<c-slider
+          :transition="false"
           @slide="slide">
           <div v-for="id in ids" :key="id">{{id}}</div>
         </c-slider>`,

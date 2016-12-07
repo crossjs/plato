@@ -2,7 +2,7 @@
 <template>
   <div class="c-picker"
     :style="{height: itemHeight * size + 'px'}"
-    v-drag.direction="{vertical: 'yes'}"
+    v-drag.vertical
     @dragstart="dragstart"
     @drag="drag"
     @dragend="dragend">
@@ -11,7 +11,7 @@
       <div class="c-picker-highlight"
         :style="{height: itemHeight + 'px', transform: 'translate3d(0, ' + ((size - 1) / 2 * itemHeight) + 'px, 0)'}"></div>
     </div>
-    <div class="c-picker-content" :class="{transition: transition}"
+    <div class="c-picker-content" :class="{ transition: transition && !dragging }"
       :style="{transform: 'translate3d(0, ' + offset + 'px, 0)'}"
       ref="content"><slot></slot></div>
   </div>
@@ -26,7 +26,7 @@ export default {
       type: Number,
       default: 0,
       validator (val) {
-        return val >= 0
+        return val >= -1
       }
     },
     size: {
@@ -38,7 +38,7 @@ export default {
     },
     transition: {
       type: Boolean,
-      default: false
+      default: true
     }
   },
 
@@ -47,7 +47,9 @@ export default {
       offset: 0,
       itemHeight: 0,
       // 是否有内容
-      itemLength: 0
+      itemLength: 0,
+      // when picker is dragging, remove transition effect for preventing lag
+      dragging: false
     }
   },
 
@@ -103,6 +105,7 @@ export default {
     },
     dragstart ({ originalEvent: e }) {
       this.startY = e.touches[0].pageY - this.offset
+      this.dragging = true
     },
     drag ({ originalEvent: e }) {
       // prevent scroll
@@ -111,6 +114,7 @@ export default {
       this.offset = Math.min(this.maxOffset, Math.max(this.minOffset, e.touches[0].pageY - this.startY))
     },
     dragend ({ originalEvent: e }) {
+      this.dragging = false
       const offsetIndex = Math.max((this.size - 1) / 2 - this.itemLength, Math.round(this.offset / this.itemHeight))
       this.offset = this.itemHeight * offsetIndex
       const index = (this.size - 1) / 2 - offsetIndex
@@ -126,4 +130,4 @@ export default {
 }
 </script>
 
-<style src="styles/components/core/picker"></style>
+<style src="./styles/picker"></style>

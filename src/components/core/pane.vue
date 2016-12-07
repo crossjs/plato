@@ -14,4 +14,4 @@ export default {
 }
 </script>
 
-<style src="styles/components/core/pane"></style>
+<style src="./styles/pane"></style>

@@ -9,11 +9,6 @@ const config = {
   pkg: require('../package.json'),
 
   // ----------------------------------
-  // Theme Configuration
-  // ----------------------------------
-  theme: 'default',
-
-  // ----------------------------------
   // Project Structure
   // ----------------------------------
   path_base: resolve(__dirname, '../'),
@@ -39,7 +34,8 @@ const config = {
     'vue-router',
     'vuex',
     'vuex-actions',
-    'vuex-localstorage'
+    'vuex-localstorage',
+    'vuex-router-sync'
   ]
 }
 

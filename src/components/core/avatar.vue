@@ -16,4 +16,4 @@ export default {
 }
 </script>
 
-<style src="styles/components/core/avatar"></style>
+<style src="./styles/avatar"></style>

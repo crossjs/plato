@@ -17,4 +17,4 @@ export default {
 }
 </script>
 
-<style src="styles/components/core/spinner"></style>
+<style src="./styles/spinner"></style>

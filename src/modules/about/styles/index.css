@@ -1,0 +1,7 @@
+.index {
+  & .badges {
+    & img {
+      height: dpr(40px);
+    }
+  }
+}

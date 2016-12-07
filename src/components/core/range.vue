@@ -1,7 +1,7 @@
 <template>
   <div class="c-range"
     :class="{disabled: disabled}"
-    v-drag.direction="{horizontal: 'yes'}"
+    v-drag.horizontal
     @dragstart="dragstart"
     @drag="drag">
     <div class="c-range-content"
@@ -88,4 +88,4 @@ export default {
 }
 </script>
 
-<style src="styles/components/core/range"></style>
+<style src="./styles/range"></style>

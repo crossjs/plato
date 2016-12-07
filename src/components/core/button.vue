@@ -16,4 +16,4 @@ export default {
 }
 </script>
 
-<style src="styles/components/core/button"></style>
+<style src="./styles/button"></style>

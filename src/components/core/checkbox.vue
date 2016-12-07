@@ -54,4 +54,4 @@ export default {
 }
 </script>
 
-<style src="styles/components/core/checkbox"></style>
+<style src="./styles/checkbox"></style>

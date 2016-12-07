@@ -62,4 +62,4 @@ export default {
 }
 </script>
 
-<style src="styles/components/core/modal"></style>
+<style src="./styles/modal"></style>
