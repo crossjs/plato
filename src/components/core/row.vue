@@ -2,7 +2,7 @@
   <div class="c-row"
     :class="{'c-row-flex': flex}">
     <slot></slot>
-    <c-icon class="c-row-link" v-if="link">chevron-right</c-icon>
+    <c-icon class="c-row-link" v-if="link">chevron-up</c-icon>
   </div>
 </template>
 

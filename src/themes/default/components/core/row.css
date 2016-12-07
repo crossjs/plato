@@ -58,10 +58,5 @@
   margin-left: dpr(10px);
   margin-right: dpr(20px);
   align-self: center;
-}
-
-html[dir="rtl"] {
-  & .c-row-link {
-    transform: rotateZ(180deg);
-  }
+  transform: rotate3d(0, 0, 1, 90deg);
 }
