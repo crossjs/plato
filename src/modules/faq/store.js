@@ -1,5 +1,5 @@
-import template from 'application/store/templates/rest'
-import { ONE_MINUTE } from 'application/constants'
+import template from 'templates/rest'
+import { ONE_MINUTE } from 'utils/constants'
 
 export default template({
   namespace: 'faq',

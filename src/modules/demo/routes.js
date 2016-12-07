@@ -9,7 +9,7 @@ export const createRoutes = ({ prefix = '' } = {}) => {
       component: () => System.import('./views/index')
     },
     {
-      path: `${prefix}/:component`,
+      path: `${prefix}:component`,
       meta: {
         hidden: true
       },

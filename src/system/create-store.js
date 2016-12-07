@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex, { Store } from 'vuex'
-import plugins from './plugins'
+import plugins from './store-plugins'
 
 Vue.use(Vuex)
 

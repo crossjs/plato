@@ -14,7 +14,7 @@
       </div>
       <div id="history">
         <c-link v-tap @tap.native="_back">
-          <c-icon>chevron-left</c-icon>
+          <c-icon class="rotate90">chevron-down</c-icon>
         </c-link>
       </div>
       <c-navbar id="navbar">

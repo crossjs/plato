@@ -1,4 +1,4 @@
-import _core from 'modules/_core'
+import core from 'system/modules/core'
 
 let middlewares = []
 const callbacks = []
@@ -7,9 +7,13 @@ export function use (...args) {
   middlewares = middlewares.concat(args)
 }
 
-export function run (context) {
+export function run (context, finale) {
+  if (finale) {
+    callbacks.push(finale)
+  }
+
   // protected module
-  use(_core({
+  use(core({
     prefix: '/'
   }))
 

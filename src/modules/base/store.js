@@ -1,8 +1,8 @@
 import createPersist from 'vuex-localstorage'
 import { createAction, handleAction } from 'vuex-actions'
-import { ONE_WEEK } from 'application/constants'
-import request from 'application/utils/request'
-import rnd from 'application/utils/rnd'
+import { ONE_WEEK } from 'utils/constants'
+import request from 'utils/request'
+import rnd from 'utils/rnd'
 
 const SET_ENV = rnd('SET_ENV')
 const SET_PROGRESS = rnd('SET_PROGRESS')

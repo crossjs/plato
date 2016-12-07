@@ -41,12 +41,10 @@
   text-align: right;
 }
 
-html[dir="rtl"] {
-  & .left {
-    text-align: right;
-  }
+.rotate90 {
+  transform: rotate3d(0, 0, 1, 90deg);
+}
 
-  & .right {
-    text-align: left;
-  }
+.rotate90n {
+  transform: rotate3d(0, 0, 1, -90deg);
 }
