@@ -182,7 +182,6 @@ const vueLoaderOptions = {
 if (__PROD__) {
   debug('Enable plugins for production (Dedupe & UglifyJS).')
   webpackConfig.plugins.push(
-    new webpack.optimize.DedupePlugin(),
     new webpack.LoaderOptionsPlugin({
       minimize: true,
       options: {
