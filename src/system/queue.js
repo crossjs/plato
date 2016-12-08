@@ -1,4 +1,4 @@
-import core from 'system/modules/core'
+// import core from 'system/modules/core'
 
 let middlewares = []
 const callbacks = []
