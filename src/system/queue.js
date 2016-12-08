@@ -1,3 +1,5 @@
+import i18n from 'system/modules/i18n'
+import auth from 'system/modules/auth'
 import core from 'system/modules/core'
 
 let middlewares = []
@@ -12,10 +14,18 @@ export function run (context, finale) {
     callbacks.push(finale)
   }
 
-  // protected module
-  use(core({
-    prefix: '/'
-  }))
+  // protected modules
+  use(
+    i18n({
+      prefix: '/'
+    }),
+    auth({
+      prefix: '/'
+    }),
+    core({
+      prefix: '/'
+    }),
+  )
 
   let i = 0
 

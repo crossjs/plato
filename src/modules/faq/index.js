@@ -11,7 +11,7 @@ export default (options = {}) => {
     // call next with callback
     // callback will be executed after bootstrap
     next(context, context => {
-      __PROD__ || console.log(`use module "${name}", with prefix "${prefix}"`)
+      __PROD__ || console.log(`use module "${name}", with prefix "${prefix}" for routes`)
     })
   }
 }

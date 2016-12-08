@@ -1,0 +1,12 @@
+{
+  "globe": {
+    "language": "语言",
+    "transition": "动画效果"
+  },
+  "login": {
+    "username": "账号",
+    "password": "密码",
+    "submit": "提交",
+    "confirm": "确认提交？"
+  }
+}

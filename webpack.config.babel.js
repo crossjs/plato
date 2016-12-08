@@ -136,9 +136,7 @@ const vueLoaderOptions = {
   postcss: pack => {
     return [
       require('postcss-import')({
-        path: paths.src('application/styles'),
-        // use webpack context
-        addDependencyTo: pack
+        path: paths.src('application/styles')
       }),
       require('postcss-url')({
         basePath: paths.src('static')

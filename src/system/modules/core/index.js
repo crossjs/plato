@@ -30,7 +30,7 @@ export default (options = {}) => {
     // 执行 next：将 context 传递给下一个模块
     // 第二个参数：系统初始化后执行的回调函数，同样传递 context 参数，只是这时候的 context 上已经有 store 与 router 了
     next(context, ({ store, router }) => {
-      __PROD__ || console.log(`use module "${name}", with prefix "${prefix}"`)
+      __PROD__ || console.log(`use module "${name}", with prefix "${prefix}" for routes`)
 
       // keep vue-router and vuex store in sync.
       sync(store, router)

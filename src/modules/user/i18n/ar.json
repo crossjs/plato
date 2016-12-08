@@ -1,0 +1,12 @@
+{
+  "globe": {
+    "language": "لغة",
+    "transition": "حيوية"
+  },
+  "login": {
+    "username": "حساب",
+    "password": "كلمة المرور",
+    "submit": "عرض",
+    "confirm": "تأكد من تقديم؟"
+  }
+}
