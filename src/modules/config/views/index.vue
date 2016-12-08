@@ -62,19 +62,19 @@ export default {
     this.transitionEnabled = this.transition
   },
 
-  methods: mapActions(['setEnv']),
+  methods: mapActions(['setConfig']),
 
   watch: {
     languageIndex (val) {
       this.$nextTick(() => {
-        this.setEnv({
+        this.setConfig({
           lang: this.languages[Object.keys(this.languages)[val]]
         })
       })
     },
     transitionEnabled (val) {
       this.$nextTick(() => {
-        this.setEnv({
+        this.setConfig({
           transition: val
         })
       })

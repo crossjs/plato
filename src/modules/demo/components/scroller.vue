@@ -1,5 +1,5 @@
 <template>
-  <c-pane class="d-scroller" id="d-scroller-pane">
+  <c-pane class="main">
     <c-scroller
       :transition="transition"
       :height="height"
@@ -89,4 +89,8 @@ export default {
 }
 </script>
 
-<style src="../styles/index"></style>
+<style scoped>
+.c-button {
+  margin: 0.5em 0;
+}
+</style>

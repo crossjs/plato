@@ -48,4 +48,12 @@ export default {
 }
 </script>
 
-<style src="../styles/index"></style>
+<style scoped>
+.no-src {
+  background-color: var(--primary);
+}
+
+.url {
+  background-image: url(../styles/images/wx@2x.png);
+}
+</style>

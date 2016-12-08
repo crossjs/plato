@@ -3,27 +3,23 @@ import { createAction, handleAction } from 'vuex-actions'
 import { ONE_WEEK } from 'utils/constants'
 import rnd from 'utils/rnd'
 
-const SET_AUTHORIZED = rnd('SET_AUTHORIZED')
+const SET_CONFIG = rnd('SET_CONFIG')
 
-const persist = createPersist('auth', {
-  authorized: false
-}, {
+const persist = createPersist('config', {}, {
   expires: ONE_WEEK
 })
 
 const state = persist.get()
 
-const getters = {
-  authorized: state => state.authorized
-}
+const getters = {}
 
 const actions = {
-  setAuthorized: createAction(SET_AUTHORIZED)
+  setConfig: createAction(SET_CONFIG)
 }
 
 const mutations = {
-  [SET_AUTHORIZED]: handleAction((state, mutation) => {
-    state.authorized = mutation
+  [SET_CONFIG]: handleAction((state, mutation) => {
+    Object.assign(state, mutation)
     persist.set(state)
   })
 }

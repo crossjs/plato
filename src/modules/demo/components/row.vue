@@ -1,5 +1,5 @@
 <template>
-  <div class="d-row">
+  <div class="main">
     <div>
       <c-row>
         <p>no cols</p>
@@ -52,4 +52,15 @@ export default {
 }
 </script>
 
-<style src="../styles/index"></style>
+<style scoped>
+.main {
+  & > div {
+    margin: 1rem 0;
+  }
+
+  & .c-col {
+    box-sizing: border-box;
+    border: 1px solid var(--primary);
+  }
+}
+</style>

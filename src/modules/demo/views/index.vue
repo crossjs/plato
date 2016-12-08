@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="v-demo" v-if="!$route.params.component">
+    <div class="main" v-if="!$route.params.component">
       <h3>Core</h3>
       <div class="v-demo-section">
         <c-row :link="true">

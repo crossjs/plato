@@ -1,5 +1,5 @@
 <template>
-  <div class="d-swiper">
+  <div class="main">
     <c-row :flex="false">
       <c-swiper
         :transition="transition">
@@ -50,4 +50,8 @@ export default {
 }
 </script>
 
-<style src="../styles/index"></style>
+<style scoped>
+.c-button {
+  height: 100%;
+}
+</style>

@@ -1,8 +1,10 @@
+import store from './store'
 import { createRoutes } from './routes'
 
 export default ({ registerModule, registerRoutes }, options = {}, next) => {
-  const { name = 'about', prefix = 'about' } = options
+  const { name = 'config', prefix = 'config' } = options
 
+  registerModule({ [name]: store })
   registerRoutes(createRoutes({ prefix }))
 
   next(() => {

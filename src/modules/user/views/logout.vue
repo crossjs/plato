@@ -1,5 +1,5 @@
 <template>
-  <div class="v-logout">
+  <div class="main">
     <c-image
       src="images/logo.png"></c-image>
     <c-modal
@@ -20,7 +20,7 @@ export default {
       show: true,
       callback (key) {
         if (key === 'submit') {
-          this.$parent.setEnv({
+          this.$parent.setConfig({
             authorized: false
           })
         } else {
@@ -32,7 +32,7 @@ export default {
 
   computed: mapGetters(['authorized']),
 
-  methods: mapActions(['setEnv']),
+  methods: mapActions(['setConfig']),
 
   created () {
     if (!this.authorized) {
@@ -58,4 +58,4 @@ export default {
 }
 </script>
 
-<style src="../styles/logout"></style>
+<style src="../styles/logout" scoped></style>

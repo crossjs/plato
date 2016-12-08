@@ -43,19 +43,19 @@ import CRoute from 'components/route'
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
-  computed: mapGetters(['routes', 'lang', 'i18n', 'progress', 'toast']),
+  computed: mapGetters(['routes', 'lang', 'translations', 'progress', 'toast']),
 
   methods: {
-    ...mapActions(['setEnv']),
+    ...mapActions(['setConfig']),
     _back () {
       this.$router.back()
     }
   },
 
   created () {
-    // for get i18n in first
-    if (!this.i18n) {
-      this.setEnv({
+    // for get translations in first
+    if (!this.translations) {
+      this.setConfig({
         lang: this.lang
       })
     }

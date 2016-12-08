@@ -1,5 +1,5 @@
 <template>
-  <div class="d-modal">
+  <div class="main">
     <c-modal :show="show"
       @cancel="cancel"
       @submit="submit">i'm modal, i'm modal, i'm modal, i'm modal, i'm modal, i'm modal, i'm modal.</c-modal>
@@ -60,4 +60,12 @@ export default {
 }
 </script>
 
-<style src="../styles/index"></style>
+<style scoped>
+.title {
+  font-size: dpr(48px);
+}
+
+.content {
+  font-size: dpr(32px);
+}
+</style>

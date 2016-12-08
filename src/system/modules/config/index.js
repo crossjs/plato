@@ -1,9 +1,9 @@
-import { createRoutes } from './routes'
+import store from './store'
 
 export default ({ registerModule, registerRoutes }, options = {}, next) => {
-  const { name = 'about', prefix = 'about' } = options
+  const { name = 'config', prefix = 'config' } = options
 
-  registerRoutes(createRoutes({ prefix }))
+  registerModule({ [name]: store })
 
   next(() => {
     __PROD__ || console.log(`use module "${name}", with prefix "${prefix}" for routes`)

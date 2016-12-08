@@ -1,15 +1,21 @@
-import store from './store'
+export default ({ registerModule, registerRoutes, translations }, options = {}, next) => {
+  const { name = 'i18n', prefix = 'i18n' } = options
 
-export default (options = {}) => {
-  const { name = 'auth', prefix = 'auth' } = options
+  registerModule({
+    config: {
+      // add routes to store
+      state: {
+        lang: navigator.language.split('-')[0],
+        translations
+      },
+      getters: {
+        lang: state => state.lang,
+        translations: state => state.translations
+      }
+    }
+  })
 
-  return (context, next) => {
-    const { modules } = context
-
-    modules[name] = store
-
-    next(context, context => {
-      __PROD__ || console.log(`use module "${name}", with prefix "${prefix}" for routes`)
-    })
-  }
+  next(() => {
+    __PROD__ || console.log(`use module "${name}", with prefix "${prefix}" for routes`)
+  })
 }

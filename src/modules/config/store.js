@@ -1,14 +1,12 @@
 import createPersist from 'vuex-localstorage'
-import { createAction, handleAction } from 'vuex-actions'
 import { ONE_WEEK } from 'utils/constants'
 import rnd from 'utils/rnd'
 
-const SET_TRANSITION = rnd('SET_TRANSITION')
 const SET_PROGRESS = rnd('SET_PROGRESS')
 const ADD_TOAST = rnd('ADD_TOAST')
 const DELETE_TOAST = rnd('DELETE_TOAST')
 
-const persist = createPersist('core', {
+const persist = createPersist('config', {
   transition: true, // 默认开启动画效果
   progress: 0,
   toast: null
@@ -27,8 +25,6 @@ const getters = {
 let timeoutId
 
 const actions = {
-  setTransition: createAction(SET_TRANSITION),
-
   setProgress ({ commit }, progress) {
     commit(SET_PROGRESS, progress)
     if (progress === 100) {
@@ -57,12 +53,6 @@ const actions = {
 }
 
 const mutations = {
-  [SET_TRANSITION]: handleAction((state, transition) => {
-    state.transition = transition
-    // always set progress and toast as initial state
-    persist.set({ transition })
-  }),
-
   [SET_PROGRESS] (state, payload) {
     state.progress = payload
   },

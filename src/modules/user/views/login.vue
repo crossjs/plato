@@ -1,5 +1,5 @@
 <template>
-  <div class="v-login">
+  <div class="main">
     <c-form @submit.native.prevent="login">
       <div>
         <c-row>
@@ -114,7 +114,7 @@ export default {
 
   // methods
   methods: {
-    ...mapActions(['setEnv']),
+    ...mapActions(['setConfig']),
     login () {
       if (!this.username.value || !this.password.value) {
         return
@@ -122,7 +122,7 @@ export default {
       // validate then submit
       this.$validate().then(() => {
         // mocking login
-        this.setEnv({
+        this.setConfig({
           authorized: true
         })
       }).catch($validation => {

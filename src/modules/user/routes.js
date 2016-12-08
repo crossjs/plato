@@ -16,13 +16,6 @@ export const createRoutes = ({ prefix = '' } = {}) => {
         auth: true
       },
       component: () => System.import('./views/logout')
-    },
-    {
-      path: `${prefix}globe`,
-      meta: {
-        icon: 'globe'
-      },
-      component: () => System.import('./views/globe')
     }
   ]
 }

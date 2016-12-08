@@ -1,43 +1,69 @@
+import config from 'system/modules/config'
 import i18n from 'system/modules/i18n'
-import auth from 'system/modules/auth'
+import route from 'system/modules/route'
 import core from 'system/modules/core'
 
-let middlewares = []
+import merge from 'utils/merge'
+
+const middlewares = []
 const callbacks = []
 
-export function use (...args) {
-  middlewares = middlewares.concat(args)
+export function use (creator, options) {
+  middlewares.push({ creator, options })
 }
 
-export function run (context, finale) {
+export function run (finale) {
+  const modules = {}
+  const routes = []
+  const translations = {}
+
+  const context = {
+    modules,
+    routes,
+    translations,
+    registerModule (obj) {
+      Object.keys(obj).forEach(key => {
+        if (modules.hasOwnProperty(key)) {
+          merge(modules[key], obj[key])
+        } else {
+          modules[key] = obj[key]
+        }
+      })
+    },
+    registerRoutes (arr) {
+      routes.push.apply(routes, arr)
+    },
+    registerTranslations (obj) {
+      Object.keys(obj).forEach(key => {
+        if (translations.hasOwnProperty(key)) {
+          merge(translations[key], obj[key])
+        } else {
+          translations[key] = obj[key]
+        }
+      })
+    }
+  }
+
   if (finale) {
     callbacks.push(finale)
   }
 
-  // protected modules
-  use(
-    i18n({
-      prefix: '/'
-    }),
-    auth({
-      prefix: '/'
-    }),
-    core({
-      prefix: '/'
-    }),
-  )
+  // protected middlewares
+  middlewares.unshift({ creator: config })
+  middlewares.unshift({ creator: i18n })
+  middlewares.unshift({ creator: route })
+  middlewares.push({ creator: core })
 
-  let i = 0
-
-  ;(function exec () {
-    const middleware = middlewares[i++]
+  ;(function next () {
+    const middleware = middlewares.shift()
 
     if (middleware) {
-      middleware(context, (context, callback) => {
+      const { creator, options } = middleware
+      creator(context, options, callback => {
         if (callback) {
           callbacks.unshift(callback)
         }
-        exec()
+        next()
       })
     } else {
       callbacks.forEach(callback => callback(context))

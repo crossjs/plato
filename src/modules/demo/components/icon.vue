@@ -1,12 +1,10 @@
 <template>
-  <div class="d-icon">
-    <c-pane>
-      <span class="d-icon-slot" v-for="(value, key, index) in entities">
-        <c-icon class="fs-64">{{key}}</c-icon>
-        <i class="d-icon-name">{{key}}</i>
-      <span>
-    </c-pane>
-  </div>
+  <c-pane class="main">
+    <span class="icon-slot" v-for="(value, key, index) in entities">
+      <c-icon class="fs-64">{{key}}</c-icon>
+      <i class="icon-name">{{key}}</i>
+    <span>
+  </c-pane>
 </template>
 
 <script>
@@ -28,4 +26,22 @@ export default {
 }
 </script>
 
-<style src="../styles/index"></style>
+<style scoped>
+.icon-slot {
+  width: 33.33333%;
+  display: block;
+  float: left;
+  text-align: center;
+}
+
+.icon-name {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.c-icon {
+  margin: 0.2em;
+}
+</style>

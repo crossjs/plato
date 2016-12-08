@@ -1,5 +1,5 @@
 <template>
-  <div class="d-badge">
+  <div class="center">
     <c-pane>
       <c-badge>1</c-badge>
       <c-badge>0</c-badge>
@@ -31,5 +31,3 @@ export default {
   }
 }
 </script>
-
-<style src="../styles/index"></style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="d-toast">
+  <div class="main">
     <c-toast v-if="toast">{{toast}}</c-toast>
   </div>
 </template>
@@ -25,5 +25,3 @@ export default {
   }
 }
 </script>
-
-<style src="../styles/index"></style>

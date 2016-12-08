@@ -1,5 +1,5 @@
 <template>
-  <div class="d-picker">
+  <div class="main">
     <c-pane :flex="true">
       <c-col>
         <c-picker
@@ -113,4 +113,9 @@ export default {
 }
 </script>
 
-<style src="../styles/index"></style>
+<style scoped>
+p {
+  font-size: dpr(48px);
+  line-height: dpr(60px);
+}
+</style>
