@@ -1,4 +1,4 @@
-export const createRoutes = ({ prefix = '' } = {}) => {
+export const createRoutes = ({ name, prefix = '' } = {}) => {
   prefix = `/${prefix}/`.replace(/\/\/+/g, '/')
   return [
     {
@@ -6,7 +6,7 @@ export const createRoutes = ({ prefix = '' } = {}) => {
       meta: {
         icon: 'globe'
       },
-      component: () => System.import('./views/index')
+      component: () => System.import('./views/index').then(module => Object.assign(module, { __name: name }))
     }
   ]
 }

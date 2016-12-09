@@ -3,7 +3,6 @@ import { sync } from 'vuex-router-sync'
 
 import createStore from 'system/create-store'
 import createRouter from 'system/create-router'
-import I18n from 'system/plugins/i18n'
 import Validator from 'system/plugins/validator'
 import tap from 'system/directives/tap'
 
@@ -51,18 +50,6 @@ export default (context, options = {}, next) => {
         document.activeElement.blur()
       }
       store.dispatch('setProgress', 100)
-    })
-
-    /**
-     * Plugins
-     */
-
-    // 国际化，如果未使用，请移除
-    Vue.use(I18n, {
-      // 翻译资源库
-      data () {
-        return store.getters.i18n
-      }
     })
 
     // (表单)验证，如果未使用，请移除

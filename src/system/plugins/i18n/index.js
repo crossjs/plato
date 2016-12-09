@@ -62,11 +62,12 @@ function translate (keys, ...args) {
   if (!keys || !this.$i18n || typeof this.$i18n.data !== 'function') {
     return keys
   }
+  debugger
   // `.` 作为分隔符
   return template(keys.split('.').reduce((res, key) => {
     if (res && typeof res === 'object' && res.hasOwnProperty(key)) {
       return res[key]
     }
     return keys
-  }, this.$i18n.data()), ...args)
+  }, this.$i18n.data(this.$options.xyz)), ...args)
 }

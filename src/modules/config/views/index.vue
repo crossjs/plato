@@ -2,7 +2,7 @@
   <div class="v-globe">
     <c-row>
       <c-col class="padding">
-        {{ __('views.globe.transition') }}
+        {{ __('transition') }}
       </c-col>
       <c-col class="padding right">
         <c-checkbox
@@ -12,7 +12,7 @@
     </c-row>
     <c-row :link="true" v-tap @tap.native="showPicker = !showPicker">
       <c-col class="padding">
-        {{ __('views.globe.language') }}
+        {{ __('language') }}
       </c-col>
       <c-col class="padding right">
         {{ Object.keys(languages)[languageIndex] }}

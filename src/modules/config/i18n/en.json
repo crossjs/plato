@@ -1,12 +1,4 @@
 {
-  "globe": {
-    "language": "Language",
-    "transition": "Transition"
-  },
-  "login": {
-    "username": "Username",
-    "password": "Password",
-    "submit": "Submit",
-    "confirm": "Submit?"
-  }
+  "language": "Language",
+  "transition": "Transition"
 }

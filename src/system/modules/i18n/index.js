@@ -1,3 +1,6 @@
+import Vue from 'vue'
+import I18n from 'system/plugins/i18n'
+
 export default ({ registerModule, registerRoutes, translations }, options = {}, next) => {
   const { name = 'i18n', prefix = 'i18n' } = options
 
@@ -17,5 +20,17 @@ export default ({ registerModule, registerRoutes, translations }, options = {}, 
 
   next(() => {
     __PROD__ || console.log(`use module "${name}", with prefix "${prefix}" for routes`)
+
+    /**
+     * Plugins
+     */
+
+    // 国际化
+    Vue.use(I18n, {
+      // 翻译资源库
+      data (key) {
+        return key ? translations[key] : translations
+      }
+    })
   })
 }
