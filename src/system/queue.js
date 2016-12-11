@@ -38,7 +38,13 @@ export function run (finale) {
     function injectDataToVm (component) {
       function injector (module) {
         // add name as vm.$options.__name
-        module._Ctor[0].options.__name = name
+        if (module) {
+          if (__DEV__) {
+            module._Ctor[0].options.__name = name
+          } else {
+            module.__name = name
+          }
+        }
         return module
       }
       if (isFunction(component)) {
@@ -63,9 +69,7 @@ export function run (finale) {
       }
       if (components) {
         Object.keys(components).forEach(key => {
-          if (isFunction(components[key])) {
-            components[key] = injectDataToVm(components[key])
-          }
+          components[key] = injectDataToVm(components[key])
         })
       }
       _routes.push(r)
