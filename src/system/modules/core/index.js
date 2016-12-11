@@ -1,37 +1,26 @@
 import Vue from 'vue'
 import { sync } from 'vuex-router-sync'
-
-import createStore from 'system/create-store'
-import createRouter from 'system/create-router'
+import createStore from './create-store'
+import createRouter from './create-router'
 import Validator from 'system/plugins/validator'
 import tap from 'system/directives/tap'
 
-// module `config` is requied
+export default (context, options = {}, register) => {
+  const { modules, routes } = context
 
-export default (context, options = {}, next) => {
-  const { registerModule, modules, routes } = context
-  const { name = 'core', prefix = 'core' } = options
-
-  registerModule({
-    config: {
-      // add routes to store
+  register({
+    store: {
       state: {
-        authorized: false,
         routes
       },
       getters: {
-        authorized: state => state.authorized,
         routes: (state, { authorized }) => state.routes.filter(({ path, meta }) => path !== '/' && (!meta || (!meta.hidden && (meta.auth === undefined || meta.auth === authorized))))
       }
     }
-  })
-
-  // inject store and router
-  context.store = createStore(modules)
-  context.router = createRouter(routes)
-
-  next(({ store, router }) => {
-    __PROD__ || console.log(`use module "${name}", with prefix "${prefix}" for routes`)
+  }, () => {
+    // inject store and router
+    const store = context.store = createStore(modules)
+    const router = context.router = createRouter(routes)
 
     // keep vue-router and vuex store in sync.
     sync(store, router)

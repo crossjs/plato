@@ -1,12 +1,18 @@
 {
-  "globe": {
-    "language": "语言",
-    "transition": "动画效果"
+  "message": {
+    "required": "请输入 {0}",
+    "minlength": "{0} 不能少于 {1} 个字符",
+    "maxlength": "{0} 不能多于 {1} 个字符",
+    "pattern": "{0} 不是合法的"
   },
   "login": {
     "username": "账号",
     "password": "密码",
     "submit": "提交",
     "confirm": "确认提交？"
+  },
+  "logout": {
+    "submit": "退出",
+    "confirm": "确认退出？"
   }
 }

@@ -1,12 +1,18 @@
 {
-  "globe": {
-    "language": "لغة",
-    "transition": "حيوية"
+  "message": {
+    "required": "الرجاء إدخال {0}",
+    "minlength": "{0} يجب أن لا يقل عن {1} حرف",
+    "maxlength": "{0} يجب أن لا يزيد عن {1} حرف",
+    "pattern": "{0} ليست صحيحة"
   },
   "login": {
     "username": "حساب",
     "password": "كلمة المرور",
     "submit": "عرض",
     "confirm": "تأكد من تقديم؟"
+  },
+  "logout": {
+    "submit": "استقال",
+    "confirm": "تأكيد الخروج؟"
   }
 }

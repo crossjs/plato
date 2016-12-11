@@ -1,8 +1,7 @@
-export const createRoutes = ({ prefix = '' } = {}) => {
-  prefix = `/${prefix}/`.replace(/\/\/+/g, '/')
+export default () => {
   return [
     {
-      path: `${prefix}login`,
+      path: '/login',
       meta: {
         icon: 'lock',
         auth: false
@@ -10,7 +9,7 @@ export const createRoutes = ({ prefix = '' } = {}) => {
       component: () => System.import('./views/login')
     },
     {
-      path: `${prefix}logout`,
+      path: '/logout',
       meta: {
         icon: 'lock',
         auth: true

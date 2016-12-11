@@ -1,11 +1,11 @@
-import { createRoutes } from './routes'
+import createRoutes from './create-routes'
+import translations from './i18n/zh.json'
 
-export default ({ registerModule, registerRoutes }, options = {}, next) => {
-  const { name = 'user', prefix = 'user' } = options
-
-  registerRoutes(createRoutes({ prefix }))
-
-  next(() => {
-    __PROD__ || console.log(`use module "${name}", with prefix "${prefix}" for routes`)
+export default (context, options = {}, register) => {
+  // do something, then call register function
+  register({
+    routes: createRoutes(options),
+    translations
+  }, () => {
   })
 }

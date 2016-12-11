@@ -5,7 +5,7 @@
     <c-modal
       :show="show"
       @cancel="callback('cancel')"
-      @submit="callback('submit')">确定退出？</c-modal>
+      @submit="callback('submit')">{{ __('logout.submit') }}</c-modal>
   </div>
 </template>
 
