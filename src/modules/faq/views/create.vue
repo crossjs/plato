@@ -2,7 +2,7 @@
   <div class="create">
     <c-modal :show="show_modal"
       @submit="create"
-      @cancel="show_modal = false">{{ __('views.create.confirm') }}</c-modal>
+      @cancel="show_modal = false">{{ __('create.confirm') }}</c-modal>
     <c-spinner v-show="fetching"></c-spinner>
     <c-form class="c-form-expand"
       @submit.native.prevent="show_modal = true">
@@ -35,7 +35,7 @@
       </div>
       <c-pane>
         <c-button class="primary" type="submit"
-          :disabled="$validation.errors.length > 0">{{ __('views.create.submit') }}</c-button>
+          :disabled="$validation.errors.length > 0">{{ __('create.submit') }}</c-button>
       </c-pane>
     </c-form>
   </div>
@@ -60,11 +60,11 @@ export default {
       show_modal: false,
       title: {
         row: 'title',
-        label: 'views.create.title',
+        label: 'create.title',
         value: '',
         validate: {
           required: {
-            message: this.__('message.required', this.__('views.create.title'))
+            message: this.__('message.required', this.__('create.title'))
           },
           maxlength: {
             rule: 50,
@@ -74,11 +74,11 @@ export default {
       },
       content: {
         row: 'content',
-        label: 'views.create.content',
+        label: 'create.content',
         value: '',
         validate: {
           required: {
-            message: this.__('message.required', this.__('views.create.content'))
+            message: this.__('message.required', this.__('create.content'))
           },
           maxlength: {
             rule: 500,

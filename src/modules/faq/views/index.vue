@@ -3,7 +3,7 @@
     <c-modal
       :show="show_modal"
       @cancel="callback('cancel')"
-      @submit="callback('submit')">{{ __('views.home.confirm') }}</c-modal>
+      @submit="callback('submit')">{{ __('index.confirm') }}</c-modal>
     <c-scroller
       :transition="transition"
       :height="height"
@@ -17,7 +17,7 @@
         <c-swiper>
           <c-button
             slot="left"
-            class="primary squared">{{ __('views.home.nothing') }}</c-button>
+            class="primary squared">{{ __('index.nothing') }}</c-button>
           <article class="padding">
             <h3>{{ item.title }}</h3>
             <p>{{ item.content }}</p>
@@ -26,7 +26,7 @@
             slot="right"
             v-if="authorized"
             class="warning squared"
-            v-tap @tap.native="_delete(item.id)">{{ __('views.home.delete') }}</c-button>
+            v-tap @tap.native="_delete(item.id)">{{ __('index.delete') }}</c-button>
         </c-swiper>
       </c-row>
     </c-scroller>

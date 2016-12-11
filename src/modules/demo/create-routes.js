@@ -1,15 +1,14 @@
-export const createRoutes = ({ prefix = '' } = {}) => {
-  prefix = `/${prefix}/`.replace(/\/\/+/g, '/')
+export default () => {
   return [
     {
-      path: `${prefix}`.replace(/\/$/, ''),
+      path: '/',
       meta: {
         icon: 'eye'
       },
       component: () => System.import('./views/index')
     },
     {
-      path: `${prefix}:component`,
+      path: '/:component',
       meta: {
         hidden: true
       },

@@ -1,9 +1,9 @@
-export default ({ registerModule, registerRoutes, translations }, options = {}, next) => {
-  const { name = 'i18n', prefix = 'i18n' } = options
+import Vue from 'vue'
+import I18n from 'system/plugins/i18n'
 
-  registerModule({
-    config: {
-      // add routes to store
+export default ({ translations }, options = {}, register) => {
+  register({
+    store: {
       state: {
         lang: navigator.language.split('-')[0],
         translations
@@ -13,9 +13,17 @@ export default ({ registerModule, registerRoutes, translations }, options = {}, 
         translations: state => state.translations
       }
     }
-  })
+  }, () => {
+    /**
+     * Plugins
+     */
 
-  next(() => {
-    __PROD__ || console.log(`use module "${name}", with prefix "${prefix}" for routes`)
+    // 国际化
+    Vue.use(I18n, {
+      // 翻译资源库
+      data (key) {
+        return key ? translations[key] : translations
+      }
+    })
   })
 }
