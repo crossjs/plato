@@ -10,8 +10,6 @@
 </template>
 
 <script>
-import drag from './directives/drag'
-
 export default {
   props: {
     min: {
@@ -80,10 +78,6 @@ export default {
         this.$emit('change', parseInt(this.min + this.range * this.percent, 10))
       }
     }
-  },
-
-  directives: {
-    drag
   }
 }
 </script>

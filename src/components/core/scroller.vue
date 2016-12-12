@@ -41,7 +41,6 @@
 <script>
 import CIcon from './icon'
 import CSpinner from './spinner'
-import drag from './directives/drag'
 
 const STATE_IDLE = 0
 const STATE_DOWN_GO = 2
@@ -244,10 +243,6 @@ export default {
   components: {
     CIcon,
     CSpinner
-  },
-
-  directives: {
-    drag
   }
 }
 </script>

@@ -21,8 +21,6 @@
 </template>
 
 <script>
-import drag from './directives/drag'
-
 export default {
   props: {
     transition: {
@@ -85,10 +83,6 @@ export default {
       }
       this.offset = 0
     }
-  },
-
-  directives: {
-    drag
   }
 }
 </script>

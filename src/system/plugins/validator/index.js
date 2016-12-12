@@ -1,5 +1,3 @@
-// sync from: https://github.com/crossjs/plato-validator
-
 import Promise from 'nuo'
 import * as rules from './rules'
 

@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import I18n from 'system/plugins/i18n'
+import template from 'string-template'
 
 export default ({ translations }, options = {}, register) => {
   register({
@@ -14,16 +14,21 @@ export default ({ translations }, options = {}, register) => {
       }
     }
   }, () => {
-    /**
-     * Plugins
-     */
-
-    // 国际化
-    Vue.use(I18n, {
-      // 翻译资源库
-      data (key) {
-        return key ? translations[key] : translations
+    Vue.prototype.__ = Vue.prototype.$translate = function (keys, ...args) {
+      if (!keys) {
+        return keys
       }
-    })
+      // `.` 作为分隔符
+      return template(keys.split('.').reduce((res, key) => {
+        if (res && typeof res === 'object' && res.hasOwnProperty(key)) {
+          return res[key]
+        }
+        return keys
+      }, getTranslations(this.$options.__name)), ...args)
+    }
+
+    function getTranslations (name) {
+      return name ? translations[name] : translations
+    }
   })
 }

@@ -18,8 +18,6 @@
 </template>
 
 <script>
-import drag from './directives/drag'
-
 export default {
   props: {
     index: {
@@ -122,10 +120,6 @@ export default {
         this.$emit('change', index)
       }
     }
-  },
-
-  directives: {
-    drag
   }
 }
 </script>

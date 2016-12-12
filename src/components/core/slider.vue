@@ -20,8 +20,6 @@
 </template>
 
 <script>
-import drag from './directives/drag'
-
 const classes = {
   prev: 'c-slider-prev',
   active: 'c-slider-active',
@@ -229,10 +227,6 @@ export default {
         this.slideReady = true
       })
     }
-  },
-
-  directives: {
-    drag
   }
 }
 </script>

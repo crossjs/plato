@@ -24,6 +24,7 @@
     "push": "bash ./cli/push.sh"
   },
   "dependencies": {
+    "lodash.flattendeep": "^4.4.0",
     "lodash.isplainobject": "^4.0.6",
     "nuo": "^1.0.0",
     "query-string": "^4.2.3",
@@ -84,7 +85,7 @@
     "postcss-url": "^5.1.2",
     "rimraf": "^2.5.4",
     "selenium-server": "^2.53.1",
-    "serve": "^1.4.0",
+    "serve": "^2.0.0",
     "sinon": "^1.17.6",
     "sinon-chai": "^2.8.0",
     "style-loader": "^0.13.1",

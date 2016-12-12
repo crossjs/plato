@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { use, run } from 'system/queue'
+import { use, run } from 'system'
 import config from 'modules/config'
 import faq from 'modules/faq'
 import demo from 'modules/demo'
