@@ -1,8 +1,7 @@
 import createStore from './create-store'
 import createRoutes from './create-routes'
 
-export default ({ i18n }, options = {}, register) => {
-  i18n(options)
+export default (context, options = {}, register) => {
   register({
     store: createStore(options),
     routes: createRoutes(options)

@@ -2,8 +2,7 @@ import Vue from 'vue'
 import Promise from 'nuo'
 import * as rules from './rules'
 
-export default ({ i18n }, options = {}, register) => {
-  i18n(options)
+export default (context, options = {}, register) => {
   // 只注册回调，不注册数据
   register(() => {
     Vue.mixin({

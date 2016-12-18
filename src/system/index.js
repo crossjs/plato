@@ -1,3 +1,4 @@
+import Vue from 'vue'
 import merge from 'utils/merge'
 import { error } from 'utils/console'
 
@@ -18,12 +19,14 @@ export function run (finale) {
   const _modules = {}
   const _routes = []
 
-  const context = {
-    // for Vuex.Store
-    modules: _modules,
-    // for Vue-Router
-    routes: _routes
-  }
+  const context = new Vue({
+    data: {
+      // for Vuex.Store
+      modules: _modules,
+      // for Vue-Router
+      routes: _routes
+    }
+  })
 
   function registerModule (key, obj) {
     if (_modules[key]) {

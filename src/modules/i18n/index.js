@@ -1,42 +1,52 @@
 import Vue from 'vue'
 import { mapGetters, mapActions } from 'vuex'
-import Promise from 'nuo'
-import merge from 'utils/merge'
 import request from 'utils/request'
 import template from 'string-template'
 import createStore from './create-store'
 
 export default (context, options = {}, register) => {
-  // 将国际化信息注入到 context
-  const lang = global.lang || navigator.language.split('-')[0]
-  // { en: ..., zh: ..., ...}
-  const translations = global.translations || {}
-
-  const scopes = []
-  context.i18n = function ({ scope }) {
-    scopes.push(scope)
-  }
+  const {
+    lang = navigator.language.split('-')[0],
+    fallbackLang = 'zh',
+    urlPattern = './i18n/{lang}.json',
+    translations = {}
+  } = options
 
   register({
     store: createStore({
       lang,
-      translations: translations[lang] || {}
+      translations
     }, options)
   }, ({ store }) => {
-    // watching
+    // vm for watching i18n
     const vm = new Vue({
       store,
       computed: mapGetters(['lang', 'translations']),
-      methods: mapActions(['setI18n']),
-      created () {
-        getTranslations(this.lang)
+      methods: {
+        fetchTranslations (lang) {
+          // add `dir="..."` to `<html>`
+          document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr'
+          // request json data
+          request(template(urlPattern, { lang }))
+          .then(translations => {
+            this.setI18n({ translations })
+          })
+          .catch(() => {
+            this.fetchTranslations(fallbackLang)
+          })
+        },
+        ...mapActions(['setI18n'])
       },
       watch: {
         lang (val) {
-          getTranslations(val)
+          this.fetchTranslations(val)
         }
+      },
+      created () {
+        this.fetchTranslations(this.lang)
       }
     })
+
     /**
      * I18n
      */
@@ -62,23 +72,6 @@ export default (context, options = {}, register) => {
         }
         return keys
       }, scope ? vm.translations[scope] : vm.translations), ...args)
-    }
-
-    function getTranslations (lang) {
-      if (!translations[lang]) {
-        translations[lang] = {}
-      }
-      Promise.all(
-        scopes.map(scope => request(`./i18n/${scope}/${lang}.json`).then(r => merge(translations[lang], {
-          [scope]: r
-        })))
-      ).then(() => {
-        vm.setI18n({
-          translations: translations[lang]
-        })
-        // add `dir="..."` to `<html>`
-        document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr'
-      })
     }
   })
 }

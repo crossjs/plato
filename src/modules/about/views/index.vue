@@ -13,7 +13,7 @@
       <a href="https://david-dm.org/crossjs/plato?type=dev"><img src="https://david-dm.org/crossjs/plato/dev-status.svg?style=flat-square" alt="devDependency Status"></a>
     </p>
     <p class="center">
-      Check out <a href="https://github.com/crossjs/plato"><b>Source Code</b></a> on Github
+      Check out <a href="https://github.com/crossjs/plato"><b>{{ __('source') }}</b></a> on Github
     </p>
   </c-pane>
 </template>

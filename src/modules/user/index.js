@@ -1,7 +1,6 @@
 import createRoutes from './create-routes'
 
-export default ({ i18n }, options = {}, register) => {
-  i18n(options)
+export default (context, options = {}, register) => {
   register({
     routes: createRoutes(options)
   }, () => {

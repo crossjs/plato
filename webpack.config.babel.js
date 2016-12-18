@@ -56,14 +56,6 @@ const webpackConfig = {
   },
   module: {
     rules: [
-      // {
-      //   test: /zh.json$/,
-      //   exclude: /node_modules/,
-      //   loader: 'i18n-loader',
-      //   options: {
-      //     a: 1
-      //   }
-      // },
       {
         test: /\.(js|vue)$/,
         exclude: /node_modules/,
