@@ -51,8 +51,19 @@ const webpackConfig = {
     filename: `[name].[${config.compiler_hash_type}].js`,
     chunkFilename: `[id].[${config.compiler_hash_type}].js`
   },
+  performance: {
+    hints: __PROD__ ? 'warning' : false
+  },
   module: {
     rules: [
+      // {
+      //   test: /zh.json$/,
+      //   exclude: /node_modules/,
+      //   loader: 'i18n-loader',
+      //   options: {
+      //     a: 1
+      //   }
+      // },
       {
         test: /\.(js|vue)$/,
         exclude: /node_modules/,
@@ -234,7 +245,7 @@ if (!__TEST__) {
     }),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
-      filename: 'common.js'
+      filename: '[name].[hash].js'
     })
   )
 }

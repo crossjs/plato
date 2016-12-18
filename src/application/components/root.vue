@@ -40,31 +40,14 @@ import CLink from 'components/core/link'
 import CIcon from 'components/core/icon'
 import CNavbar from 'components/navbar'
 import CRoute from 'components/route'
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters } from 'vuex'
 
 export default {
-  computed: mapGetters(['routes', 'lang', 'translations', 'progress', 'toast']),
+  computed: mapGetters(['routes', 'progress', 'toast']),
 
   methods: {
-    ...mapActions(['setConfig']),
     _back () {
       this.$router.back()
-    }
-  },
-
-  created () {
-    // for get translations in first
-    if (!this.translations) {
-      this.setConfig({
-        lang: this.lang
-      })
-    }
-    document.documentElement.dir = this.lang === 'ar' ? 'rtl' : 'ltr'
-  },
-
-  watch: {
-    lang (val) {
-      document.documentElement.dir = val === 'ar' ? 'rtl' : 'ltr'
     }
   },
 

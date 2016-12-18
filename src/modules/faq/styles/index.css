@@ -1,5 +1,3 @@
-.index {
-  & .c-button {
-    height: 100%;
-  }
+.c-button {
+  height: 100%;
 }

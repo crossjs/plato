@@ -1,0 +1,6 @@
+{
+  "required": "Please input {0}",
+  "minlength": "{0} must no less then {1} chars",
+  "maxlength": "{0} must no more then {1} chars",
+  "pattern": "{0} is NOT valid"
+}

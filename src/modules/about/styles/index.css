@@ -1,7 +1,5 @@
-.main {
-  & a {
-    & img {
-      height: dpr(40px);
-    }
+a {
+  & img {
+    height: dpr(40px);
   }
 }

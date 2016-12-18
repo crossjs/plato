@@ -1,5 +1,5 @@
 <template>
-  <c-pane class="main">
+  <c-pane>
     <br>
     <br>
     <p class="center">

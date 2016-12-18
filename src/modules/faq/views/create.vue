@@ -64,11 +64,11 @@ export default {
         value: '',
         validate: {
           required: {
-            message: this.__('message.required', this.__('create.title'))
+            message: this.__('/validator.required', this.__('create.title'))
           },
           maxlength: {
             rule: 50,
-            message: 'Limit to 50 chars'
+            message: this.__('/validator.maxlength', 50)
           }
         }
       },
@@ -78,11 +78,11 @@ export default {
         value: '',
         validate: {
           required: {
-            message: this.__('message.required', this.__('create.content'))
+            message: this.__('/validator.required', this.__('create.content'))
           },
           maxlength: {
             rule: 500,
-            message: 'Limit to 500 chars'
+            message: this.__('/validator.maxlength', 500)
           }
         }
       }
@@ -97,12 +97,10 @@ export default {
     ...mapActions(['faqPost']),
     create () {
       this.show_modal = false
-      this.$validate().then(() => {
-        this.faqPost({
-          title: this.title.value,
-          content: this.content.value
-        })
-      })
+      this.$validate().then(() => this.faqPost({
+        title: this.title.value,
+        content: this.content.value
+      }))
     }
   },
 

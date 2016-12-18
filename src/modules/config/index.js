@@ -1,14 +1,12 @@
 import createStore from './create-store'
 import createRoutes from './create-routes'
-import translations from './i18n/zh.json'
 
-export default (context, options = {}, register) => {
+export default ({ i18n }, options = {}, register) => {
+  i18n(options)
   register({
     store: createStore(options),
-    routes: createRoutes(options),
-    translations
-  },
-  ({ store }) => {
+    routes: createRoutes(options)
+  }, ({ store }) => {
     // store plugin
     // 实现进度条、错误提示
     store.subscribe(({ payload }) => {

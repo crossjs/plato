@@ -1,21 +1,15 @@
-import createPersist from 'vuex-localstorage'
-import { ONE_WEEK } from 'utils/constants'
 import rnd from 'utils/rnd'
 
-export default ({ name }) => {
+export default () => {
   const SET_PROGRESS = rnd('SET_PROGRESS')
   const ADD_TOAST = rnd('ADD_TOAST')
   const DELETE_TOAST = rnd('DELETE_TOAST')
 
-  const persist = createPersist(name, {
+  const state = {
     transition: true, // 默认开启动画效果
     progress: 0,
     toast: null
-  }, {
-    expires: ONE_WEEK
-  })
-
-  const state = persist.get()
+  }
 
   const getters = {
     transition: state => state.transition,

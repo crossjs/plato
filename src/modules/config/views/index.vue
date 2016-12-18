@@ -1,5 +1,5 @@
 <template>
-  <div class="v-globe">
+  <div>
     <c-row>
       <c-col class="padding">
         {{ __('transition') }}
@@ -54,27 +54,24 @@ export default {
   computed: mapGetters(['lang', 'transition']),
 
   mounted () {
-    this.languageIndex = Object.keys(this.languages).findIndex(key => {
-      if (this.languages[key] === this.lang) {
-        return true
-      }
-    })
+    this.languageIndex = Object.keys(this.languages)
+      .findIndex(key => this.languages[key] === this.lang)
     this.transitionEnabled = this.transition
   },
 
-  methods: mapActions(['setConfig']),
+  methods: mapActions(['setI18n', 'setCore']),
 
   watch: {
     languageIndex (val) {
       this.$nextTick(() => {
-        this.setConfig({
+        this.setI18n({
           lang: this.languages[Object.keys(this.languages)[val]]
         })
       })
     },
     transitionEnabled (val) {
       this.$nextTick(() => {
-        this.setConfig({
+        this.setCore({
           transition: val
         })
       })

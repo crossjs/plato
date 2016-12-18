@@ -29,16 +29,14 @@
           </c-col>
         </c-row>
       </div>
-      <template v-if="$validation.errors.length">
-        <c-pane class="center">
-          <c-badge class="warning" size="small">
-            {{$validation.errors.filter(function (error) { return error.field === 'username' }).map(function (error) { return error.message }).join(' ')}}
-          </c-badge>
-          <c-badge class="warning" size="small">
-            {{$validation.errors.filter(function (error) { return error.field === 'password' }).map(function (error) { return error.message }).join(' ')}}
-          </c-badge>
-        </c-pane>
-      </template>
+      <c-pane class="center" v-if="$validation.errors.length">
+        <c-badge class="warning" size="small">
+          {{$validation.errors.filter(function (error) { return error.field === 'username' }).map(function (error) { return error.message }).join(' ')}}
+        </c-badge>
+        <c-badge class="warning" size="small">
+          {{$validation.errors.filter(function (error) { return error.field === 'password' }).map(function (error) { return error.message }).join(' ')}}
+        </c-badge>
+      </c-pane>
       <c-pane>
         <c-button class="primary" type="submit"
           :disabled="$validation.errors.length > 0">{{ __('login.submit') }}</c-button>
@@ -69,19 +67,19 @@ export default {
         validate: {
           required: {
             rule: true,
-            message: this.__('message.required', this.__('login.username'))
+            message: this.__('/validator.required', this.__('login.username'))
           },
           minlength: {
             rule: 4,
-            message: this.__('message.minlength', this.__('login.username'), 4)
+            message: this.__('/validator.minlength', this.__('login.username'), 4)
           },
           maxlength: {
             rule: 20,
-            message: this.__('message.maxlength', this.__('login.username'), 20)
+            message: this.__('/validator.maxlength', this.__('login.username'), 20)
           },
           pattern: {
             rule: '/^[a-z]{4,20}$/',
-            message: this.__('message.pattern', this.__('login.username'))
+            message: this.__('/validator.pattern', this.__('login.username'))
           }
         }
       },
@@ -91,19 +89,19 @@ export default {
         value: 'password',
         validate: {
           required: {
-            message: this.__('message.required', this.__('login.password'))
+            message: this.__('/validator.required', this.__('login.password'))
           },
           minlength: {
             rule: 8,
-            message: this.__('message.minlength', this.__('login.password'), 8)
+            message: this.__('/validator.minlength', this.__('login.password'), 8)
           },
           maxlength: {
             rule: 20,
-            message: this.__('message.maxlength', this.__('login.password'), 20)
+            message: this.__('/validator.maxlength', this.__('login.password'), 20)
           },
           pattern: {
             rule: '/^[`~!@#$%^&*_+=,.;\'?:"()<>{}\\-\\/\\[\\]\\\\ 0-9a-zA-Z]{8,20}$/',
-            message: this.__('message.pattern', this.__('login.password'))
+            message: this.__('/validator.pattern', this.__('login.password'))
           }
         }
       }
@@ -114,7 +112,7 @@ export default {
 
   // methods
   methods: {
-    ...mapActions(['setConfig']),
+    ...mapActions(['setCoreState']),
     login () {
       if (!this.username.value || !this.password.value) {
         return
@@ -122,7 +120,7 @@ export default {
       // validate then submit
       this.$validate().then(() => {
         // mocking login
-        this.setConfig({
+        this.setCoreState({
           authorized: true
         })
       }).catch($validation => {

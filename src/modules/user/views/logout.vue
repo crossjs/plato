@@ -20,7 +20,7 @@ export default {
       show: true,
       callback (key) {
         if (key === 'submit') {
-          this.$parent.setConfig({
+          this.$parent.setCoreState({
             authorized: false
           })
         } else {
@@ -32,7 +32,7 @@ export default {
 
   computed: mapGetters(['authorized']),
 
-  methods: mapActions(['setConfig']),
+  methods: mapActions(['setCoreState']),
 
   created () {
     if (!this.authorized) {

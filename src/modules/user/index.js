@@ -1,11 +1,9 @@
 import createRoutes from './create-routes'
-import translations from './i18n/zh.json'
 
-export default (context, options = {}, register) => {
-  // do something, then call register function
+export default ({ i18n }, options = {}, register) => {
+  i18n(options)
   register({
-    routes: createRoutes(options),
-    translations
+    routes: createRoutes(options)
   }, () => {
   })
 }
