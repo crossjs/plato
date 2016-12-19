@@ -18,9 +18,9 @@
 </template>
 
 <script>
-import CMask from './core/mask'
-import CIcon from './core/icon'
-import CButton from './core/button'
+import CMask from 'components/core/mask'
+import CIcon from 'components/core/icon'
+import CButton from 'components/core/button'
 
 export default {
   data () {

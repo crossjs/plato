@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import { use, run } from 'system'
+
 import { log } from 'utils/console'
+
 import i18n from 'modules/i18n'
 import validator from 'modules/validator'
 import config from 'modules/config'
@@ -9,9 +11,11 @@ import demo from 'modules/demo'
 import about from 'modules/about'
 import user from 'modules/user'
 import core from 'modules/core'
+
 import tap from './directives/tap'
 import drag from './directives/drag'
-import Root from './components/root'
+
+import Root from './views/root'
 
 /**
  * Use Modules

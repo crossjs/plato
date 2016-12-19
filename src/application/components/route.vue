@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import CIcon from './core/icon'
+import CIcon from 'components/core/icon'
 
 export default {
   name: 'c-route',
