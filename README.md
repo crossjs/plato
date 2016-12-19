@@ -13,7 +13,7 @@
   Check out <a href="http://plato.crossjs.com/#/demos"><b>Demonstrations</b></a> and <a href="src/components/README.md"><b>README</b></a> for UI Components
 </p>
 <p align="center">
-  <img src="https://cdn.rawgit.com/crossjs/plato/dev/doc/src.svg" alt="src">
+  <img src="doc/src.png" alt="Structure of src">
 </p>
 
 ## Usage
