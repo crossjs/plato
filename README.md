@@ -12,8 +12,9 @@
   a Boilerplate for mobile SPAs use vue, vuex, vue-router<br>
   Check out <a href="http://plato.crossjs.com/#/demos"><b>Demonstrations</b></a> and <a href="src/components/README.md"><b>README</b></a> for UI Components
 </p>
-
-[![src](https://cdn.rawgit.com/crossjs/plato/dev/doc/src.svg)](doc/src.svg)
+<p align="center">
+  <img src="https://cdn.rawgit.com/crossjs/plato/dev/doc/src.svg" alt="src">
+</p>
 
 ## Usage
 
