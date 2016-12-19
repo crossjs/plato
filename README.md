@@ -13,9 +13,7 @@
   Check out <a href="http://plato.crossjs.com/#/demos"><b>Demonstrations</b></a> and <a href="src/components/README.md"><b>README</b></a> for UI Components
 </p>
 
-## Todos
-
-- [ ] Optimize i18n data and structure
+[![src](doc/src.svg)](doc/src.svg)
 
 ## Usage
 
