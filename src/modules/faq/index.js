@@ -2,11 +2,10 @@ import createStore from './create-store'
 import createRoutes from './create-routes'
 
 export default (context, options = {}, register) => {
+  options = { scope: 'faq', prefix: '/', ...options }
   register({
     store: createStore(options),
-    routes: createRoutes(options)
-  }, () => {
-    // nothing to do
-    // should be removed
+    routes: createRoutes(options),
+    ...options
   })
 }

@@ -5,14 +5,11 @@ import { error } from 'utils/console'
 const middlewares = []
 const callbacks = []
 
-export function use (creator, { scope, prefix }) {
+export function use (creator, options = {}) {
   if (typeof creator !== 'function') {
     return error('`creator` must be a function')
   }
-  if (!scope) {
-    return error('`scope` must be a non-empty string')
-  }
-  middlewares.push({ creator, scope, prefix })
+  middlewares.push({ creator, options })
 }
 
 export function run (finale) {
@@ -96,21 +93,26 @@ export function run (finale) {
   }
 
   function next () {
-    const middleware = middlewares.shift()
+    const { creator, options } = middlewares.shift() || {}
 
-    if (middleware) {
-      const { creator, scope, prefix } = middleware
+    if (creator) {
       // creator: fn(context, options, register)
-      creator(context, middleware, (payload, callback) => {
+      creator(context, options, (payload, callback) => {
         if (typeof payload === 'function') {
           callback = payload
           payload = null
         }
+        // 将回调函数添加到队列
         callback && callbacks.push(callback)
+        // 如果有提供配置数据，则进行 store 与 router 相关处理
         if (payload) {
-          const { store, routes } = payload
-          store && registerModule(scope, store)
-          routes && registerRoutes(scope, prefix, routes)
+          const { scope, prefix, store, routes } = payload
+          if (scope) {
+            store && registerModule(scope, store)
+            routes && registerRoutes(scope, prefix, routes)
+          } else {
+            error('`scope` is required!')
+          }
         }
         next()
       })

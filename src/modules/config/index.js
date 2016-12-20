@@ -2,9 +2,11 @@ import createStore from './create-store'
 import createRoutes from './create-routes'
 
 export default (context, options = {}, register) => {
+  options = { scope: 'config', prefix: '/', ...options }
   register({
     store: createStore(options),
-    routes: createRoutes(options)
+    routes: createRoutes(options),
+    ...options
   }, ({ store }) => {
     // store plugin
     // 实现进度条、错误提示

@@ -24,22 +24,22 @@ import Root from './views/root'
 /**
  * 被依赖的模块，移除可能会影响部分功能
  */
-use(i18n, { scope: 'i18n' })
-use(validator, { scope: 'validator' })
+use(i18n)
+use(validator)
 
 /**
  * 普通模块
  */
-use(config, { scope: 'config', prefix: 'config' })
-use(user, { scope: 'user', prefix: '/' })
-use(faq, { scope: 'faq', prefix: '/' })
-use(demo, { scope: 'demo', prefix: 'demo' })
-use(about, { scope: 'about', prefix: 'about' })
+use(config, { prefix: 'config' })
+use(user)
+use(faq)
+use(demo, { prefix: 'demo' })
+use(about, { prefix: 'about' })
 
 /**
  * 核心模块，不能移除
  */
-use(core, { scope: 'core' })
+use(core)
 
 /**
  * Run Modules

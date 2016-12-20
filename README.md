@@ -10,7 +10,7 @@
 </p>
 <p align="center">
   a Boilerplate for mobile SPAs use vue, vuex, vue-router<br>
-  Check out <a href="http://plato.crossjs.com/#/demos"><b>Demonstrations</b></a> and <a href="src/components/README.md"><b>README</b></a> for UI Components
+  Check out <a href="http://plato.crossjs.com/#/demo"><b>Demonstrations</b></a> and <a href="src/components/README.md"><b>README</b></a> for UI Components
 </p>
 <p align="center">
   <img src="doc/src.png" alt="Structure of src">

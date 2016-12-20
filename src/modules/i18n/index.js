@@ -5,6 +5,7 @@ import template from 'string-template'
 import createStore from './create-store'
 
 export default (context, options = {}, register) => {
+  options = { scope: 'i18n', prefix: '/', ...options }
   const {
     lang = navigator.language.split('-')[0],
     fallbackLang = 'zh',
@@ -13,10 +14,8 @@ export default (context, options = {}, register) => {
   } = options
 
   register({
-    store: createStore({
-      lang,
-      translations
-    }, options)
+    store: createStore({ lang, translations }, options),
+    ...options
   }, ({ store }) => {
     // vm for watching i18n
     const vm = new Vue({

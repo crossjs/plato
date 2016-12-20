@@ -6,8 +6,10 @@ import createVuexStore from './create-vuex-store'
 import createRouter from './create-router'
 
 export default (context, options = {}, register) => {
+  options = { scope: 'core', prefix: '/', ...options }
   register({
-    store: createStore(context, options)
+    store: createStore(context, options),
+    ...options
   }, () => {
     const { modules, routes } = context
 
