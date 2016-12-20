@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import merge from 'utils/merge'
-import { error } from 'utils/console'
+import { groupEnd, group, log, error } from 'utils/console'
 
 const middlewares = []
 const callbacks = []
@@ -82,6 +82,7 @@ export function run (finale) {
   }
 
   function done () {
+    log('%c[PLATO] %cExecuting module callbacks', 'font-weight: bold', 'color: green; font-weight: bold')
     let callback
     while ((callback = callbacks.pop())) {
       callback(context)
@@ -108,6 +109,7 @@ export function run (finale) {
         if (payload) {
           const { scope, prefix, store, routes } = payload
           if (scope) {
+            log(`Module %c${scope}%c registered.`, 'color: green', 'color: inherit')
             store && registerModule(scope, store)
             routes && registerRoutes(scope, prefix, routes)
           } else {
@@ -117,10 +119,14 @@ export function run (finale) {
         next()
       })
     } else {
+      groupEnd()
+      // 注册完毕，准备执行回调函数队列
       done()
     }
   }
 
+  group('%c[PLATO] %cRegistering modules...', 'font-weight: bold', 'color: green; font-weight: bold')
+  // 开始执行模块注册队列
   next()
 }
 
