@@ -38,8 +38,8 @@ import CToast from 'components/core/toast'
 import CButton from 'components/core/button'
 import CLink from 'components/core/link'
 import CIcon from 'components/core/icon'
-import CNavbar from './navbar'
-import CRoute from './route'
+import CNavbar from '../components/navbar'
+import CRoute from '../components/route'
 import { mapGetters } from 'vuex'
 
 export default {
