@@ -1,9 +1,10 @@
 import Vue from 'vue'
+import normalizeMap from 'utils/normalize-map'
 import merge from 'utils/merge'
+import { isFunction } from 'utils/is'
 import { groupEnd, group, log, error } from 'utils/console'
 
 const middlewares = []
-const callbacks = []
 
 export function use (creator, options = {}) {
   if (typeof creator !== 'function') {
@@ -13,6 +14,8 @@ export function use (creator, options = {}) {
 }
 
 export function run (finale) {
+  const callbacks = []
+
   const _modules = {}
   const _routes = []
 
@@ -25,31 +28,57 @@ export function run (finale) {
     }
   })
 
-  function registerModule (key, obj) {
-    if (_modules[key]) {
-      merge(_modules[key], obj)
+  function registerModule (scope, obj) {
+    const {
+      state,
+      getters,
+      actions,
+      mutations
+    } = obj
+    // state 与 mutations 直接拷贝
+    const newObj = {
+      state,
+      mutations
+    }
+    // getters 与 actions 需要添加 scope 前缀
+    if (getters) {
+      newObj.getters = {}
+      Object.keys(getters).forEach(key => {
+        newObj.getters[`${scope}/${key}`] = getters[key]
+      })
+    }
+    if (actions) {
+      newObj.actions = {}
+      Object.keys(actions).forEach(key => {
+        newObj.actions[`${scope}/${key}`] = actions[key]
+      })
+    }
+    // 合入
+    if (_modules[scope]) {
+      merge(_modules[scope], newObj)
     } else {
-      _modules[key] = obj
+      _modules[scope] = newObj
     }
   }
 
   function registerRoutes (scope, prefix, routes) {
-    function injector (module) {
-      // add scope as vm.$options.__scope
+    function injectOptions (module) {
+      // add scope as vm.$options.scope
+      // add context as vm.$options.context
       if (module) {
-        if (__DEV__) {
-          module._Ctor[0].options.__scope = scope
-        } else {
-          module.__scope = scope
-        }
+        const options = __DEV__ ? module._Ctor[0].options : module
+        Object.assign(options, {
+          scope,
+          context
+        })
       }
       return module
     }
-    function injectscopeToVm (component) {
+    function addOptionsToVm (component) {
       if (isFunction(component)) {
-        return () => component().then(injector).catch(injector)
+        return () => component().then(injectOptions).catch(injectOptions)
       } else {
-        return injector(component)
+        return injectOptions(component)
       }
     }
     function addPrefixToPath (path) {
@@ -60,16 +89,16 @@ export function run (finale) {
         const { path, meta = {}, component, components, children } = r
         r.path = addPrefixToPath(path)
         // store original path to meta
-        meta.__scope = scope
-        meta.__path = path
+        meta.scope = scope
+        meta.path = path
         r.meta = meta
         // inject component and components
         if (component) {
-          r.component = injectscopeToVm(component)
+          r.component = addOptionsToVm(component)
         }
         if (components) {
           Object.keys(components).forEach(key => {
-            components[key] = injectscopeToVm(components[key])
+            components[key] = addOptionsToVm(components[key])
           })
         }
         if (children) {
@@ -130,6 +159,71 @@ export function run (finale) {
   next()
 }
 
-function isFunction (val) {
-  return typeof val === 'function'
-}
+Vue.mixin({
+  beforeCreate () {
+    const {
+      scope,
+      methods = {},
+      computed = {},
+      mapState, mapGetters, mapActions
+    } = this.$options
+
+    // 将 mapState 转成 computed
+    if (mapState) {
+      normalizeMap(mapState).forEach(({ key, val }) => {
+        let _scope = scope
+        if (Array.isArray(val)) {
+          _scope = key || _scope
+        } else {
+          val = [val]
+        }
+        val.forEach(val => {
+          computed[val] = function mappedState () {
+            return this.$store.state[_scope][val]
+          }
+        })
+      })
+    }
+
+    // 将 mapGetters 转成 computed
+    if (mapGetters) {
+      normalizeMap(mapGetters).forEach(({ key, val }) => {
+        let _scope = scope
+        if (Array.isArray(val)) {
+          _scope = key || _scope
+        } else {
+          val = [val]
+        }
+        val.forEach(val => {
+          computed[val] = function mappedGetter () {
+            const _key = `${_scope}/${val}`
+            if (!(_key in this.$store.getters)) {
+              console.error(('[PLATO] unknown getter: ' + val))
+            }
+            return this.$store.getters[_key]
+          }
+        })
+      })
+    }
+
+    // 将 mapActions 转成 methods
+    if (mapActions) {
+      normalizeMap(mapActions).forEach(({ key, val }) => {
+        let _scope = scope
+        if (Array.isArray(val)) {
+          _scope = key || _scope
+        } else {
+          val = [val]
+        }
+        val.forEach(val => {
+          methods[val] = function mappedAction (...args) {
+            return this.$store.dispatch(`${_scope}/${val}`, ...args)
+          }
+        })
+      })
+    }
+
+    this.$options.computed = computed
+    this.$options.methods = methods
+  }
+})

@@ -25,14 +25,14 @@ export default (context, options = {}, register) => {
      * 根据原始路径取真实路径
      */
     Vue.prototype.$redirect = function (path, replace) {
-      const realPath = matchRoute(this.$options.__scope, path)
+      const realPath = matchRoute(this.$options.scope, path)
       replace ? router.replace(realPath) : router.push(realPath)
     }
 
     const flattenRoutes = flattendeep(routes)
 
     function matchRoute (scope, path) {
-      return flattenRoutes.find(r => r.meta && r.meta.__scope === scope && r.meta.__path === path) || '/'
+      return flattenRoutes.find(r => r.meta && r.meta.scope === scope && r.meta.path === path) || '/'
     }
   })
 }

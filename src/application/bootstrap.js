@@ -62,9 +62,11 @@ run(({ router, store }) => {
    */
 
   // router hooks
+  // 此处需要优化 action type 获取方法
+  // 此处需要优化 getters key 获取方法
   router.beforeEach((to, from, next) => {
-    store.dispatch('setProgress', 80)
-    if (to.matched.some(m => m.meta.auth) && !store.getters.authorized) {
+    store.dispatch('config/setProgress', 80)
+    if (to.matched.some(m => m.meta.auth) && !store.getters['core/authorized']) {
       next('/')
     } else {
       next()
@@ -74,7 +76,7 @@ run(({ router, store }) => {
     if (document.activeElement && document.activeElement.nodeName !== 'BODY') {
       document.activeElement.blur()
     }
-    store.dispatch('setProgress', 100)
+    store.dispatch('config/setProgress', 100)
   })
 
   // mounting

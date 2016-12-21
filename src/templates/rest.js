@@ -3,6 +3,7 @@ import { createAction, handleAction, $inject } from 'vuex-actions'
 import Normalizer from 'utils/normalizer'
 import request from 'utils/request'
 import merge from 'utils/merge'
+import rnd from 'utils/rnd'
 
 /**
  * Template for standard REST
@@ -23,12 +24,12 @@ export default ({
     initialState,
     getters,
     ...options }) => {
-  const LIST = `${namespace}List`
-  const POST = `${namespace}Post`
-  const DELETE = `${namespace}Delete`
-  const PATCH = `${namespace}Patch`
-  const PUT = `${namespace}Put`
-  const GET = `${namespace}Get`
+  const LIST = rnd('LIST')
+  const POST = rnd('POST')
+  const DELETE = rnd('DELETE')
+  const PATCH = rnd('PATCH')
+  const PUT = rnd('PUT')
+  const GET = rnd('GET')
 
   const REST = {
     list (query) {
@@ -81,12 +82,12 @@ export default ({
   const state = persist.get()
 
   const actions = {
-    [LIST]: createAction(LIST, query => REST.list(query)),
-    [POST]: createAction(POST, body => REST.post(body)),
-    [PATCH]: createAction(PATCH, (id, body) => REST.patch(id, body)),
-    [PUT]: createAction(PUT, (id, body) => REST.put(id, body)),
-    [GET]: createAction(GET, id => REST.get(id)),
-    [DELETE]: createAction(DELETE, id => ({
+    list: createAction(LIST, query => REST.list(query)),
+    post: createAction(POST, body => REST.post(body)),
+    patch: createAction(PATCH, (id, body) => REST.patch(id, body)),
+    put: createAction(PUT, (id, body) => REST.put(id, body)),
+    get: createAction(GET, id => REST.get(id)),
+    delete: createAction(DELETE, id => ({
       // destroy, removing data from 'components/core/remote
       _: REST.delete(id),
       // then return id (payload) for removing data from 'components/core/store

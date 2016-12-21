@@ -52,7 +52,6 @@ import CTextfield from 'components/core/textfield'
 import CMultiline from 'components/core/multiline'
 import CSpinner from 'components/core/spinner'
 import CButton from 'components/core/button'
-import { mapState, mapActions } from 'vuex'
 
 export default {
   data () {
@@ -89,12 +88,14 @@ export default {
     }
   },
 
-  computed: mapState({
-    fetching: ({ faq }) => faq.fetching
-  }),
+  mapState: {
+    faq: ['fetching']
+  },
+  mapActions: {
+    faq: ['post']
+  },
 
   methods: {
-    ...mapActions(['faqPost']),
     create () {
       this.show_modal = false
       this.$validate().then(() => this.faqPost({

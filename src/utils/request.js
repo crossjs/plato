@@ -4,7 +4,7 @@ import 'whatwg-fetch'
 import Promise from 'nuo'
 import qs from 'query-string'
 import template from 'string-template'
-import isPlainObj from 'lodash.isplainobject'
+import { isPlainObj } from './is'
 import merge from './merge'
 
 const defaultOptions = {

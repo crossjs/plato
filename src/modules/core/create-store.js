@@ -21,7 +21,7 @@ export default ({ modules, routes, translations }, { scope }) => {
 
   const getters = {
     authorized: state => state.authorized,
-    routes: (state, { authorized }) => state.routes.filter(({ path, meta }) => path !== '/' && (!meta || (!meta.hidden && (meta.auth === undefined || meta.auth === authorized)))),
+    routes: ({ routes, authorized }) => state.routes.filter(({ path, meta }) => path !== '/' && (!meta || (!meta.hidden && (meta.auth === undefined || meta.auth === authorized)))),
     ...(store.getters || null)
   }
 

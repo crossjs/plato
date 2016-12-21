@@ -14,16 +14,17 @@ export default (context, options = {}, register) => {
       if (!payload || !payload.__status__) {
         return
       }
+      // 此处需要优化 action type 获取方法
       switch (payload.__status__) {
         case 'pending':
-          store.dispatch('setProgress', 60)
+          store.dispatch(`${options.scope}/setProgress`, 60)
           break
         case 'success':
-          store.dispatch('setProgress', 100)
+          store.dispatch(`${options.scope}/setProgress`, 100)
           break
         case 'error':
-          store.dispatch('setProgress', 100)
-          store.dispatch('addToast', payload.__payload__)
+          store.dispatch(`${options.scope}/setProgress`, 100)
+          store.dispatch(`${options.scope}/addToast`, payload.__payload__)
           break
         default:
           // setProgress(0)

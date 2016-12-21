@@ -35,7 +35,6 @@ import CCol from 'components/core/col'
 import CLink from 'components/core/link'
 import CCheckbox from 'components/core/checkbox'
 import CPicker from 'components/core/picker'
-import { mapGetters, mapActions } from 'vuex'
 
 export default {
   data () {
@@ -51,15 +50,20 @@ export default {
     }
   },
 
-  computed: mapGetters(['lang', 'transition']),
+  mapGetters: {
+    i18n: ['lang'],
+    config: ['transition']
+  },
+  mapActions: {
+    i18n: ['setI18n'],
+    core: ['setCore']
+  },
 
   mounted () {
     this.languageIndex = Object.keys(this.languages)
       .findIndex(key => this.languages[key] === this.lang)
     this.transitionEnabled = this.transition
   },
-
-  methods: mapActions(['setI18n', 'setCore']),
 
   watch: {
     languageIndex (val) {

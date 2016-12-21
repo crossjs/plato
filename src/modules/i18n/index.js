@@ -1,5 +1,4 @@
 import Vue from 'vue'
-import { mapGetters, mapActions } from 'vuex'
 import request from 'utils/request'
 import template from 'string-template'
 import createStore from './create-store'
@@ -7,6 +6,7 @@ import createStore from './create-store'
 export default (context, options = {}, register) => {
   options = { scope: 'i18n', prefix: '/', ...options }
   const {
+    scope,
     lang = navigator.language.split('-')[0],
     fallbackLang = 'zh',
     urlPattern = './i18n/{lang}.json',
@@ -20,7 +20,9 @@ export default (context, options = {}, register) => {
     // vm for watching i18n
     const vm = new Vue({
       store,
-      computed: mapGetters(['lang', 'translations']),
+      scope,
+      mapGetters: ['lang', 'translations'],
+      mapActions: ['setI18n'],
       methods: {
         fetchTranslations (lang) {
           // add `dir="..."` to `<html>`
@@ -33,8 +35,7 @@ export default (context, options = {}, register) => {
           .catch(() => {
             this.fetchTranslations(fallbackLang)
           })
-        },
-        ...mapActions(['setI18n'])
+        }
       },
       watch: {
         lang (val) {
@@ -61,7 +62,7 @@ export default (context, options = {}, register) => {
         scope = arr[0].slice(1)
         keyArray = arr.slice(1)
       } else {
-        scope = this.$options.__scope
+        scope = this.$options.scope
         keyArray = keys.split('.')
       }
       // `.` 作为分隔符

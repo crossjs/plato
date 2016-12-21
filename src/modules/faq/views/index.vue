@@ -9,9 +9,9 @@
       :height="height"
       :loading="fetching"
       :drained="drained"
-      @pulldown="faqList">
+      @pulldown="list">
       <c-row
-        v-for="item in items"
+        v-for="item in entities"
         :key="item.id"
         :flex="false">
         <c-swiper>
@@ -40,7 +40,6 @@ import CSpinner from 'components/core/spinner'
 import CRow from 'components/core/row'
 import CSwiper from 'components/core/swiper'
 import CButton from 'components/core/button'
-import { mapState, mapGetters, mapActions } from 'vuex'
 
 export default {
   data () {
@@ -52,16 +51,33 @@ export default {
     }
   },
 
-  computed: {
-    ...mapGetters(['authorized', 'transition']),
-    ...mapState({
-      items: ({ faq }) => faq.entities,
-      fetching: ({ faq }) => faq.fetching
-    })
+  mapState: ['entities', 'fetching'],
+  mapGetters: {
+    core: ['authorized'],
+    config: ['transition']
+  },
+  mapActions: {
+    // key 为空代表 map 当前 scope
+    '': ['list', 'delete'],
+    config: ['addToast']
+  },
+
+  methods: {
+    _delete (id) {
+      this.id = id
+      this.show_modal = true
+    },
+    callback (key) {
+      this.show_modal = false
+      if (key === 'submit') {
+        this.delete(this.id)
+      }
+      delete this.id
+    }
   },
 
   created () {
-    this.faqList()
+    this.list()
   },
 
   mounted () {
@@ -70,21 +86,6 @@ export default {
       document.getElementById('header').clientHeight
     this.addToast('Pull down to reload')
     this.addToast('Swiper left/right to show buttons')
-  },
-
-  methods: {
-    ...mapActions(['faqList', 'faqDelete', 'addToast']),
-    _delete (id) {
-      this.id = id
-      this.show_modal = true
-    },
-    callback (key) {
-      this.show_modal = false
-      if (key === 'submit') {
-        this.faqDelete(this.id)
-      }
-      delete this.id
-    }
   },
 
   components: {

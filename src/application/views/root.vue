@@ -40,10 +40,12 @@ import CLink from 'components/core/link'
 import CIcon from 'components/core/icon'
 import CNavbar from '../components/navbar'
 import CRoute from '../components/route'
-import { mapGetters } from 'vuex'
 
 export default {
-  computed: mapGetters(['routes', 'progress', 'toast']),
+  mapGetters: {
+    core: ['routes'],
+    config: ['progress', 'toast']
+  },
 
   methods: {
     _back () {

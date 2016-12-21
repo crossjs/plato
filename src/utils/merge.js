@@ -1,4 +1,4 @@
-import isPlainObj from 'lodash.isplainobject'
+import { isPlainObj } from './is'
 
 /**
  * 合并对象

@@ -55,7 +55,6 @@ import CLabel from 'components/core/label'
 import CTextfield from 'components/core/textfield'
 import CPassword from 'components/core/password'
 import CButton from 'components/core/button'
-import { mapGetters, mapActions } from 'vuex'
 
 export default {
   data () {
@@ -108,11 +107,15 @@ export default {
     }
   },
 
-  computed: mapGetters(['authorized']),
+  mapGetters: {
+    core: ['authorized']
+  },
+  mapActions: {
+    core: ['setCore']
+  },
 
   // methods
   methods: {
-    ...mapActions(['setCoreState']),
     login () {
       if (!this.username.value || !this.password.value) {
         return
@@ -120,7 +123,7 @@ export default {
       // validate then submit
       this.$validate().then(() => {
         // mocking login
-        this.setCoreState({
+        this.setCore({
           authorized: true
         })
       }).catch($validation => {

@@ -12,7 +12,6 @@
 <script>
 import CImage from 'components/core/image'
 import CModal from 'components/core/modal'
-import { mapGetters, mapActions } from 'vuex'
 
 export default {
   data () {
@@ -20,7 +19,7 @@ export default {
       show: true,
       callback (key) {
         if (key === 'submit') {
-          this.$parent.setCoreState({
+          this.$parent.setCore({
             authorized: false
           })
         } else {
@@ -30,9 +29,12 @@ export default {
     }
   },
 
-  computed: mapGetters(['authorized']),
-
-  methods: mapActions(['setCoreState']),
+  mapGetters: {
+    core: ['authorized']
+  },
+  mapActions: {
+    core: ['setCore']
+  },
 
   created () {
     if (!this.authorized) {

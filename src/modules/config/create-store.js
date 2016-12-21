@@ -1,9 +1,8 @@
-import rnd from 'utils/rnd'
 
 export default () => {
-  const SET_PROGRESS = rnd('SET_PROGRESS')
-  const ADD_TOAST = rnd('ADD_TOAST')
-  const DELETE_TOAST = rnd('DELETE_TOAST')
+  const SET_PROGRESS = 'SET_PROGRESS'
+  const ADD_TOAST = 'ADD_TOAST'
+  const DELETE_TOAST = 'DELETE_TOAST'
 
   const state = {
     transition: true, // 默认开启动画效果
