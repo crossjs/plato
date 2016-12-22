@@ -25,7 +25,7 @@ export default (context, options = {}, register) => {
      * 根据原始路径取真实路径
      */
     Vue.prototype.$redirect = function (path, replace) {
-      const realPath = matchRoute(this.$options.scope, path)
+      const realPath = matchRoute(this.$scope, path)
       replace ? router.replace(realPath) : router.push(realPath)
     }
 

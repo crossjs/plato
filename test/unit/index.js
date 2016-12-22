@@ -5,6 +5,13 @@ import chai from 'chai'
 import sinonChai from 'sinon-chai'
 import { triggerHTMLEvents, triggerMouseEvents, triggerTouchEvents } from './utils'
 
+import Vue from 'vue'
+import tap from 'application/directives/tap'
+import drag from 'application/directives/drag'
+
+Vue.directive('tap', tap)
+Vue.directive('drag', drag)
+
 localStorage.clear()
 
 chai.use(sinonChai)
@@ -34,6 +41,6 @@ const testsToRun = testsContext.keys().filter(inManifest)
 ;(testsToRun.length ? testsToRun : testsContext.keys()).forEach(testsContext)
 
 // require `src/**/*.(js|vue)` (for coverage reporting)
-const componentsContext = require.context('../../src/', true, /^((?!index|application|assets|modules|static).)*\.(js|vue)$/)
+const componentsContext = require.context('../../src/', true, /^((?!index|application|assets|modules|static|system|templates|utils).)*\.(js|vue)$/)
 
 componentsContext.keys().forEach(componentsContext)

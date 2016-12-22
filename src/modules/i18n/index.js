@@ -62,7 +62,7 @@ export default (context, options = {}, register) => {
         scope = arr[0].slice(1)
         keyArray = arr.slice(1)
       } else {
-        scope = this.$options.scope
+        scope = this.$scope
         keyArray = keys.split('.')
       }
       // `.` 作为分隔符

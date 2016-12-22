@@ -1,7 +1,7 @@
-import template from 'application/store/templates/rest'
-import { ONE_MINUTE } from 'application/constants'
+import template from 'templates/rest'
+import { ONE_MINUTE } from 'utils/constants'
 
-describe('env', () => {
+describe('rest', () => {
   const mod = template({
     namespace: 'test',
     source: 'will-be-404',
@@ -31,14 +31,14 @@ describe('env', () => {
   })
 
   it('should export actions', () => {
-    expect(mod.actions).to.have.all.keys('testList', 'testPost', 'testPut', 'testPatch', 'testDelete', 'testGet')
+    expect(mod.actions).to.have.all.keys('list', 'post', 'put', 'patch', 'delete', 'get')
   })
 
   describe('should call actions correctly', () => {
     it('list', done => {
-      mod.actions.testList({
+      mod.actions.list({
         commit (type, { __status__, __payload__ }) {
-          expect(type).to.equal('testList')
+          expect(type).to.equal('LIST')
           if (__status__ === 'pending') {
             expect(typeof __payload__.then).to.equal('function')
           } else if (__status__ === 'error') {
@@ -50,9 +50,9 @@ describe('env', () => {
     })
 
     it('post', done => {
-      mod.actions.testPost({
+      mod.actions.post({
         commit (type, { __status__, __payload__ }) {
-          expect(type).to.equal('testPost')
+          expect(type).to.equal('POST')
           if (__status__ === 'pending') {
             expect(typeof __payload__.then).to.equal('function')
           } else if (__status__ === 'error') {
@@ -64,9 +64,9 @@ describe('env', () => {
     })
 
     it('patch', done => {
-      mod.actions.testPatch({
+      mod.actions.patch({
         commit (type, { __status__, __payload__ }) {
-          expect(type).to.equal('testPatch')
+          expect(type).to.equal('PATCH')
           if (__status__ === 'pending') {
             expect(typeof __payload__.then).to.equal('function')
           } else if (__status__ === 'error') {
@@ -78,9 +78,9 @@ describe('env', () => {
     })
 
     it('put', done => {
-      mod.actions.testPut({
+      mod.actions.put({
         commit (type, { __status__, __payload__ }) {
-          expect(type).to.equal('testPut')
+          expect(type).to.equal('PUT')
           if (__status__ === 'pending') {
             expect(typeof __payload__.then).to.equal('function')
           } else if (__status__ === 'error') {
@@ -92,9 +92,9 @@ describe('env', () => {
     })
 
     it('delete', done => {
-      mod.actions.testDelete({
+      mod.actions.delete({
         commit (type, { __status__, __payload__ }) {
-          expect(type).to.equal('testDelete')
+          expect(type).to.equal('DELETE')
           if (__status__ === 'pending') {
             expect(typeof __payload__._.then).to.equal('function')
           } else if (__status__ === 'error') {
@@ -106,9 +106,9 @@ describe('env', () => {
     })
 
     it('get', done => {
-      mod.actions.testGet({
+      mod.actions.get({
         commit (type, { __status__, __payload__ }) {
-          expect(type).to.equal('testGet')
+          expect(type).to.equal('GET')
           if (__status__ === 'pending') {
             expect(typeof __payload__.then).to.equal('function')
           } else if (__status__ === 'error') {
@@ -121,13 +121,14 @@ describe('env', () => {
   })
 
   it('should export mutations', () => {
-    expect(mod.mutations).to.have.all.keys('testList', 'testPost', 'testPut', 'testPatch', 'testDelete', 'testGet')
+    expect(mod.mutations).to.have.all.keys('LIST', 'POST', 'PUT', 'PATCH', 'DELETE', 'GET')
   })
 
   describe('should call mutations correctly', () => {
+    /* eslint babel/new-cap: 0 */
     it('list', () => {
       const state = {}
-      mod.mutations.testList(state, {
+      mod.mutations.LIST(state, {
         __status__: 'success',
         __payload__: [{ id: 'test' }]
       })
@@ -136,7 +137,7 @@ describe('env', () => {
 
     it('post', () => {
       const state = {}
-      mod.mutations.testPost(state, {
+      mod.mutations.POST(state, {
         __status__: 'success',
         __payload__: { id: 'test' }
       })
@@ -145,7 +146,7 @@ describe('env', () => {
 
     it('patch', () => {
       const state = {}
-      mod.mutations.testPatch(state, {
+      mod.mutations.PATCH(state, {
         __status__: 'success',
         __payload__: { id: 'test' }
       })
@@ -154,7 +155,7 @@ describe('env', () => {
 
     it('put', () => {
       const state = {}
-      mod.mutations.testPut(state, {
+      mod.mutations.PUT(state, {
         __status__: 'success',
         __payload__: { id: 'test' }
       })
@@ -169,7 +170,7 @@ describe('env', () => {
           }
         }
       }
-      mod.mutations.testDelete(state, {
+      mod.mutations.DELETE(state, {
         __status__: 'success',
         __payload__: { id: 'test' }
       })
@@ -178,7 +179,7 @@ describe('env', () => {
 
     it('get', () => {
       const state = {}
-      mod.mutations.testGet(state, {
+      mod.mutations.GET(state, {
         __status__: 'success',
         __payload__: { id: 'test' }
       })

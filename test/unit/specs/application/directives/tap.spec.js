@@ -1,7 +1,4 @@
 import Vue from 'vue'
-import tap from 'application/directives/tap'
-
-Vue.directive('tap', tap)
 
 describe('tap', () => {
   let el

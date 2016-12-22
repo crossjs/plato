@@ -1,8 +1,5 @@
 import Vue from 'vue'
 import CModal from 'components/core/modal'
-import tap from 'application/directives/tap'
-
-Vue.directive('tap', tap)
 
 describe('modal.vue', () => {
   let el

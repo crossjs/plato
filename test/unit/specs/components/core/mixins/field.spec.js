@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import field from 'components/core/mixins/field'
 
+Vue.prototype.$validate = function () {}
+
 describe('field', () => {
   let el
   let vm
@@ -91,8 +93,6 @@ describe('field', () => {
     })
 
     const child = vm.$children[0]
-    // fake validator
-    child.$validate = function () {}
     const spy = sinon.spy(child, '$validate')
 
     vm.$el.value = 'value2'

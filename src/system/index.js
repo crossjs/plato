@@ -14,7 +14,7 @@ const middlewares = []
  * @example
  * use(core, { // 提供自定义的模块配置，将覆盖模块默认配置
  *   scope: 'core', // 指定 store 数据存储的命名空间，可通过 vm.$store.state.core 访问
- *   prefix: 'core' // 指定路由 path 前缀，默认 `/`
+ *   prefix: 'core'  // 指定路由 path 前缀，默认 `/`
  * })
  */
 export function use (creator, options = {}) {
@@ -87,11 +87,8 @@ export function run (finale) {
     function injectOptions (module) {
       if (module) {
         const options = __DEV__ ? module._Ctor[0].options : module
-        // 将 scope 与 context 添加到 vm.$options
-        Object.assign(options, {
-          scope,
-          context
-        })
+        // 将 scope 添加到 vm.$options
+        options.scope = scope
       }
       return module
     }
@@ -167,7 +164,9 @@ export function run (finale) {
             store && registerModule(scope, store)
             routes && registerRoutes(scope, prefix, routes)
           } else {
-            error('`scope` is required!')
+            if (store || routes) {
+              error('`scope` is required!')
+            }
           }
         }
         next()
@@ -193,12 +192,21 @@ export function run (finale) {
  */
 Vue.mixin({
   beforeCreate () {
+    const options = this.$options
     const {
       scope,
+      parent,
       methods = {},
       computed = {},
       mapState, mapGetters, mapActions
-    } = this.$options
+    } = options
+
+    // scope injection
+    if (scope) {
+      this.$scope = scope
+    } else if (parent && parent.$scope) {
+      this.$scope = parent.$scope
+    }
 
     if (mapState) {
       /**
@@ -285,7 +293,7 @@ Vue.mixin({
       })
     }
 
-    this.$options.computed = computed
-    this.$options.methods = methods
+    options.computed = computed
+    options.methods = methods
   }
 })
