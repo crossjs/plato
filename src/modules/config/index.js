@@ -3,9 +3,10 @@ import createRoutes from './create-routes'
 
 export default (context, options = {}, register) => {
   options = { scope: 'config', prefix: '/', ...options }
+
   register({
-    store: createStore(options),
-    routes: createRoutes(options),
+    store: createStore(context, options),
+    routes: createRoutes(context, options),
     ...options
   }, ({ store, router }) => {
     // store plugin
@@ -34,11 +35,11 @@ export default (context, options = {}, register) => {
     // router hooks
     // 此处需要优化 action type 获取方法
     router.beforeEach((to, from, next) => {
-      store.dispatch('config/setProgress', 80)
+      store.dispatch(`${options.scope}/setProgress`, 80)
       next()
     })
     router.afterEach(() => {
-      store.dispatch('config/setProgress', 100)
+      store.dispatch(`${options.scope}/setProgress`, 100)
     })
   })
 }

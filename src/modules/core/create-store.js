@@ -3,13 +3,15 @@ import { createAction, handleAction } from 'vuex-actions'
 import { ONE_WEEK } from 'utils/constants'
 import rnd from 'utils/rnd'
 
-export default ({ modules, routes, translations }, { scope }) => {
+export default ({ version, modules, routes }, { scope }) => {
   const SET_CORE = rnd('SET_CORE')
 
-  // merging the store has the same key of `scope`
+  // 将相同 scope 的模块合并
+  // 一般情况下要避免此种情况发生，因为会使模块混乱，难于维护
   const store = modules[scope] || {}
 
-  const persist = createPersist(scope, {
+  // 此处引入版本号，为了避免版本更新导致的缓存数据冲突
+  const persist = createPersist(`${version}/${scope}`, {
     authorized: false,
     routes,
     ...(store.state || null)

@@ -3,10 +3,10 @@ import { createAction, handleAction } from 'vuex-actions'
 import { ONE_WEEK } from 'utils/constants'
 import rnd from 'utils/rnd'
 
-export default (initialState, { scope }) => {
+export default (context, { scope, lang, translations }) => {
   const SET_I18N = rnd('SET_I18N')
 
-  const persist = createPersist(scope, initialState, {
+  const persist = createPersist(scope, { lang, translations }, {
     expires: ONE_WEEK
   })
 

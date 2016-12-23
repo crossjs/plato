@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { use, run } from 'system'
+import { configure, use, run } from 'system'
 
 import { log } from 'utils/console'
 
@@ -16,6 +16,15 @@ import tap from './directives/tap'
 import drag from './directives/drag'
 
 import Root from './views/root'
+
+/**
+ * 全局配置
+ */
+configure({
+  // 软件版本号
+  // 原则上做较大变更时需要更新
+  version: '1.0'
+})
 
 /**
  * Use Modules

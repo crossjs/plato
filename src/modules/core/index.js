@@ -1,16 +1,20 @@
-import Vue from 'vue'
-import flattendeep from 'lodash.flattendeep'
 import { sync } from 'vuex-router-sync'
 import createStore from './create-store'
 import createVuexStore from './create-vuex-store'
 import createRouter from './create-router'
 
 export default (context, options = {}, register) => {
+  // 合并配置项
   options = { scope: 'core', prefix: '/', ...options }
+
+  // 注册 store
+  // 同时传入配置项
   register({
+    // 为统一标准，将 context 与 options 做为数据传入
     store: createStore(context, options),
     ...options
-  }, () => {
+  }, context => {
+    // 模块注册完成后的回调
     const { modules, routes } = context
 
     // inject store and router
@@ -28,20 +32,5 @@ export default (context, options = {}, register) => {
         next()
       }
     })
-
-    /**
-     * redirect to correct path
-     * 根据原始路径取真实路径
-     */
-    Vue.prototype.$redirect = function (path, replace) {
-      const realPath = matchRoute(this.$scope, path)
-      replace ? router.replace(realPath) : router.push(realPath)
-    }
-
-    const flattenRoutes = flattendeep(routes)
-
-    function matchRoute (scope, path) {
-      return flattenRoutes.find(r => r.meta && r.meta.scope === scope && r.meta.path === path) || '/'
-    }
   })
 }

@@ -4,17 +4,22 @@ import template from 'string-template'
 import createStore from './create-store'
 
 export default (context, options = {}, register) => {
-  options = { scope: 'i18n', prefix: '/', ...options }
+  options = {
+    scope: 'i18n',
+    prefix: '/',
+    lang: navigator.language.split('-')[0],
+    translations: {},
+    ...options
+  }
+
   const {
     scope,
-    lang = navigator.language.split('-')[0],
     fallbackLang = 'zh',
-    urlPattern = './i18n/{lang}.json',
-    translations = {}
+    urlPattern = './i18n/{lang}.json'
   } = options
 
   register({
-    store: createStore({ lang, translations }, options),
+    store: createStore(context, options),
     ...options
   }, ({ store }) => {
     // vm for watching i18n

@@ -1,48 +1,46 @@
 <template>
-  <div class="main">
-    <c-form @submit.native.prevent="login">
-      <div>
-        <c-row>
-          <c-col class="padding" :size="1">
-            <c-label for="username">{{__(username.label)}}</c-label>
-          </c-col>
-          <c-col class="padding" :size="3">
-            <c-textfield
-              id="username"
-              :field="username.field"
-              :validate="username.validate"
-              :value="username.value"
-              @change="username.value = $event"></c-textfield>
-          </c-col>
-        </c-row>
-        <c-row>
-          <c-col class="padding" :size="1">
-            <c-label for="password">{{__(password.label)}}</c-label>
-          </c-col>
-          <c-col class="padding" :size="3">
-            <c-password
-              :attrs="{id: 'password'}"
-              :field="password.field"
-              :validate="password.validate"
-              :value="password.value"
-              @change="password.value = $event"></c-password>
-          </c-col>
-        </c-row>
-      </div>
-      <c-pane class="center" v-if="$validation.errors.length">
-        <c-badge class="warning" size="small">
-          {{$validation.errors.filter(function (error) { return error.field === 'username' }).map(function (error) { return error.message }).join(' ')}}
-        </c-badge>
-        <c-badge class="warning" size="small">
-          {{$validation.errors.filter(function (error) { return error.field === 'password' }).map(function (error) { return error.message }).join(' ')}}
-        </c-badge>
-      </c-pane>
-      <c-pane>
-        <c-button class="primary" type="submit"
-          :disabled="$validation.errors.length > 0">{{ __('login.submit') }}</c-button>
-      </c-pane>
-    </c-form>
-  </div>
+  <c-form @submit.native.prevent="login">
+    <div>
+      <c-row>
+        <c-col class="padding" :size="1">
+          <c-label for="username">{{__(username.label)}}</c-label>
+        </c-col>
+        <c-col class="padding" :size="3">
+          <c-textfield
+            id="username"
+            :field="username.field"
+            :validate="username.validate"
+            :value="username.value"
+            @change="username.value = $event"></c-textfield>
+        </c-col>
+      </c-row>
+      <c-row>
+        <c-col class="padding" :size="1">
+          <c-label for="password">{{__(password.label)}}</c-label>
+        </c-col>
+        <c-col class="padding" :size="3">
+          <c-password
+            :attrs="{id: 'password'}"
+            :field="password.field"
+            :validate="password.validate"
+            :value="password.value"
+            @change="password.value = $event"></c-password>
+        </c-col>
+      </c-row>
+    </div>
+    <c-pane class="center" v-if="$validation.errors.length">
+      <c-badge class="warning" size="small">
+        {{$validation.errors.filter(function (error) { return error.field === 'username' }).map(function (error) { return error.message }).join(' ')}}
+      </c-badge>
+      <c-badge class="warning" size="small">
+        {{$validation.errors.filter(function (error) { return error.field === 'password' }).map(function (error) { return error.message }).join(' ')}}
+      </c-badge>
+    </c-pane>
+    <c-pane>
+      <c-button class="primary" type="submit"
+        :disabled="$validation.errors.length > 0">{{ __('login.submit') }}</c-button>
+    </c-pane>
+  </c-form>
 </template>
 
 <script>

@@ -19,7 +19,7 @@ export default {
       show: true,
       callback (key) {
         if (key === 'submit') {
-          this.$parent.setCore({
+          this.setCore({
             authorized: false
           })
         } else {
@@ -47,7 +47,10 @@ export default {
     authorized (val) {
       if (!val) {
         this.$nextTick(() => {
+          // 跳转到首页
           this.$router.replace('/')
+          // 如下将会跳转到 `/${this.$scope}`
+          // this.$redirect('/')
         })
       }
     }

@@ -1,9 +1,39 @@
 import Vue from 'vue'
-import normalizeMap from 'utils/normalize-map'
 import merge from 'utils/merge'
 import { isFunction } from 'utils/is'
 import { groupEnd, group, log, error } from 'utils/console'
+import { addPrefixToPath, injectOptionsToComponent } from './helpers'
 
+/**
+ * Vue mixins
+ */
+import './mixins'
+
+/**
+ * 上下文，用于储存全局数据
+ * 这里使用 Vue 实例的一个好处是可以直接使用 Vue 的一些特性，比如事件订阅
+ * @type {vue}
+ */
+export const context = new Vue({
+  data: {
+    // for Vuex.Store
+    modules: {},
+    // for Vue-Router
+    routes: [],
+    version: '1.0'
+  }
+})
+
+export function configure (options) {
+  for (var i in options) {
+    context[i] = options[i]
+  }
+}
+
+/**
+ * middlewares
+ * @type {Array}
+ */
 const middlewares = []
 
 /**
@@ -33,15 +63,6 @@ export function use (creator, options = {}) {
  */
 export function run (finale) {
   const callbacks = []
-
-  const context = new Vue({
-    data: {
-      // for Vuex.Store
-      modules: {},
-      // for Vue-Router
-      routes: []
-    }
-  })
 
   const { modules, routes } = context
 
@@ -84,49 +105,52 @@ export function run (finale) {
   }
 
   function registerRoutes (scope, prefix, _routes) {
-    function injectOptions (module) {
-      if (module) {
-        const options = __DEV__ ? module._Ctor[0].options : module
-        // 将 scope 添加到 vm.$options
-        options.scope = scope
-      }
-      return module
-    }
-    function addScopeToOptions (component) {
+    // 将 scope 添加到 vm.$options
+    // 将 prefix 添加到 vm.$options
+    function injectOptions (component, injection) {
       if (isFunction(component)) {
-        return () => component().then(injectOptions).catch(injectOptions)
+        return () => component().then(component => injectOptionsToComponent(component, injection))
       } else {
-        return injectOptions(component)
+        return injectOptionsToComponent(component, injection)
       }
     }
 
-    // 添加 `prefix` 到如有的 `path` 参数
-    function addPrefixToPath (path) {
-      return `/${prefix}/${path}`.replace(/\/+$/, '').replace(/\/\/+/g, '/') || '/'
-    }
-    function handleRoutes (prefix, arr) {
-      return arr.map(r => {
-        const { path, meta = {}, component, components, children } = r
-        r.path = addPrefixToPath(path)
-        // store original path to meta
-        meta.scope = scope
-        meta.path = path
-        r.meta = meta
+    // 添加 `prefix` 到路由的 `path` 参数
+    function handleRoutes (prefix, r) {
+      return r.map(r => {
+        const { path = '', redirect, alias, component, components, children } = r
+
+        r.path = addPrefixToPath(prefix, path)
+        // 转换重定向
+        if (redirect !== undefined) {
+          r.redirect = addPrefixToPath(prefix, redirect)
+        }
+        // 转换别名
+        if (alias !== undefined) {
+          r.alias = addPrefixToPath(prefix, alias)
+        }
+
         // inject component and components
+        const injection = { scope, prefix }
         if (component) {
-          r.component = addScopeToOptions(component)
+          r.component = injectOptions(component, injection)
         }
         if (components) {
           Object.keys(components).forEach(key => {
-            components[key] = addScopeToOptions(components[key])
+            components[key] = injectOptions(components[key], injection)
           })
         }
+
+        // 递归处理子路由
         if (children) {
           r.children = handleRoutes(r.path, r.children)
         }
+
         return r
       })
     }
+
+    // 处理路由配置
     routes.push.apply(routes, handleRoutes(prefix || scope, _routes))
   }
 
@@ -145,20 +169,22 @@ export function run (finale) {
   }
 
   function next () {
-    const { creator, options } = middlewares.shift() || {}
+    const middleware = middlewares.shift()
 
-    if (creator) {
+    if (middleware && middleware.creator) {
       // creator: fn(context, options, register)
-      creator(context, options, (payload, callback) => {
-        if (typeof payload === 'function') {
-          callback = payload
-          payload = null
+      middleware.creator(context, middleware.options, (options, callback) => {
+        if (typeof options === 'function') {
+          callback = options
+          options = null
         }
-        // 将回调函数添加到队列
-        callback && callbacks.push(callback)
-        // 如果有提供配置数据，则进行 store 与 router 相关处理
-        if (payload) {
-          const { scope, prefix, store, routes } = payload
+        if (callback) {
+          // 将回调函数添加到队列
+          callbacks.push(callback)
+        }
+        if (options) {
+          // 进行 store 与 router 相关处理
+          const { scope, prefix, store, routes } = options
           if (scope) {
             log(`Module %c${scope}%c registered.`, 'color: green', 'color: inherit')
             store && registerModule(scope, store)
@@ -184,116 +210,3 @@ export function run (finale) {
   // 执行模队列
   next()
 }
-
-/**
- * 注册生命周期 `beforeCreate` 函数
- * 进行 mapState/mapGetters/mapActions 数据处理
- * !!! 此处的 map*** 不同于 vuex 的 map***，作用类似，用法不同
- */
-Vue.mixin({
-  beforeCreate () {
-    const options = this.$options
-    const {
-      scope,
-      parent,
-      methods = {},
-      computed = {},
-      mapState, mapGetters, mapActions
-    } = options
-
-    // scope injection
-    if (scope) {
-      this.$scope = scope
-    } else if (parent && parent.$scope) {
-      this.$scope = parent.$scope
-    }
-
-    if (mapState) {
-      /**
-       * 将 mapState 转成 computed
-       * @example
-       * // 映射当前 scope 的 state 里的值
-       * mapState: ['value1', 'value2']
-       * // 映射指定 scope 的 state 里的值
-       * mapState: {
-       *   '': ['value1', 'value2'], // key 为空代表当前 scope
-       *   scope1: ['value3', 'value4']
-       * }
-       */
-      normalizeMap(mapState).forEach(({ key, val }) => {
-        let _scope = scope
-        if (Array.isArray(val)) {
-          _scope = key || _scope
-        } else {
-          val = [val]
-        }
-        val.forEach(val => {
-          computed[val] = function mappedState () {
-            return this.$store.state[_scope][val]
-          }
-        })
-      })
-    }
-
-    if (mapGetters) {
-      /**
-       * 将 mapGetters 转成 computed
-       * @example
-       * // 映射当前 scope 的 getters 里的值
-       * mapGetters: ['value1', 'value2']
-       * // 映射指定 scope 的 getters 里的值
-       * mapGetters: {
-       *   '': ['value1', 'value2'], // key 为空代表当前 scope
-       *   scope1: ['value3', 'value4']
-       * }
-       */
-      normalizeMap(mapGetters).forEach(({ key, val }) => {
-        let _scope = scope
-        if (Array.isArray(val)) {
-          _scope = key || _scope
-        } else {
-          val = [val]
-        }
-        val.forEach(val => {
-          computed[val] = function mappedGetter () {
-            const _key = `${_scope}/${val}`
-            if (!(_key in this.$store.getters)) {
-              console.error(('[PLATO] unknown getter: ' + val))
-            }
-            return this.$store.getters[_key]
-          }
-        })
-      })
-    }
-
-    if (mapActions) {
-      /**
-       * 将 mapActions 转成 methods
-       * @example
-       * // 映射当前 scope 的 actions 里的值
-       * mapActions: ['value1', 'value2']
-       * // 映射指定 scope 的 actions 里的值
-       * mapActions: {
-       *   '': ['value1', 'value2'], // key 为空代表当前 scope
-       *   scope1: ['value3', 'value4']
-       * }
-       */
-      normalizeMap(mapActions).forEach(({ key, val }) => {
-        let _scope = scope
-        if (Array.isArray(val)) {
-          _scope = key || _scope
-        } else {
-          val = [val]
-        }
-        val.forEach(val => {
-          methods[val] = function mappedAction (...args) {
-            return this.$store.dispatch(`${_scope}/${val}`, ...args)
-          }
-        })
-      })
-    }
-
-    options.computed = computed
-    options.methods = methods
-  }
-})
