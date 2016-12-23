@@ -7,7 +7,7 @@ export default (context, options = {}, register) => {
     store: createStore(options),
     routes: createRoutes(options),
     ...options
-  }, ({ store }) => {
+  }, ({ store, router }) => {
     // store plugin
     // 实现进度条、错误提示
     store.subscribe(({ payload }) => {
@@ -29,6 +29,16 @@ export default (context, options = {}, register) => {
         default:
           // setProgress(0)
       }
+    })
+
+    // router hooks
+    // 此处需要优化 action type 获取方法
+    router.beforeEach((to, from, next) => {
+      store.dispatch('config/setProgress', 80)
+      next()
+    })
+    router.afterEach(() => {
+      store.dispatch('config/setProgress', 100)
     })
   })
 }

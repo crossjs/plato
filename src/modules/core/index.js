@@ -20,6 +20,15 @@ export default (context, options = {}, register) => {
     // keep vue-router and vuex store in sync.
     sync(store, router)
 
+    // 此处需要优化 getters key 获取方法
+    router.beforeEach((to, from, next) => {
+      if (to.matched.some(m => m.meta.auth) && !store.getters['core/authorized']) {
+        next('/')
+      } else {
+        next()
+      }
+    })
+
     /**
      * redirect to correct path
      * 根据原始路径取真实路径

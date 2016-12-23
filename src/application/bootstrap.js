@@ -57,27 +57,16 @@ run(({ router, store }) => {
   // drag event
   Vue.directive('drag', drag)
 
-  /**
-   * Let's go!
-   */
-
-  // router hooks
-  // 此处需要优化 action type 获取方法
-  // 此处需要优化 getters key 获取方法
-  router.beforeEach((to, from, next) => {
-    store.dispatch('config/setProgress', 80)
-    if (to.matched.some(m => m.meta.auth) && !store.getters['core/authorized']) {
-      next('/')
-    } else {
-      next()
-    }
-  })
   router.afterEach(() => {
+    // 解决 iOS 焦点 BUG
     if (document.activeElement && document.activeElement.nodeName !== 'BODY') {
       document.activeElement.blur()
     }
-    store.dispatch('config/setProgress', 100)
   })
+
+  /**
+   * Let's go!
+   */
 
   // mounting
   new Vue({ router, store, ...Root }).$mount('#app')
