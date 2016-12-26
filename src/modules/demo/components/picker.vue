@@ -115,7 +115,12 @@ export default {
 
 <style scoped>
 p {
-  font-size: dpr(48px);
-  line-height: dpr(60px);
+  font-size: dpr(44px);
+  line-height: dpr(70px);
+  transition: all 0.3s ease;
+}
+
+p.active {
+  font-size: dpr(52px);
 }
 </style>
