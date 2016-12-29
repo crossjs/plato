@@ -29,12 +29,8 @@ export default {
     }
   },
 
-  mapGetters: {
-    core: ['authorized']
-  },
-  mapActions: {
-    core: ['setCore']
-  },
+  mapGetters: ['core/authorized'],
+  mapActions: ['core/setCore'],
 
   created () {
     if (!this.authorized) {

@@ -42,10 +42,11 @@ import CNavbar from '../components/navbar'
 import CRoute from '../components/route'
 
 export default {
-  mapGetters: {
-    core: ['routes'],
-    config: ['progress', 'toast']
-  },
+  mapGetters: [
+    'core/routes',
+    'config/progress',
+    'config/toast'
+  ],
 
   methods: {
     _back () {

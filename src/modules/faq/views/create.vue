@@ -88,12 +88,8 @@ export default {
     }
   },
 
-  mapState: {
-    faq: ['fetching']
-  },
-  mapActions: {
-    faq: ['post']
-  },
+  mapState: ['fetching'],
+  mapActions: ['post'],
 
   methods: {
     create () {

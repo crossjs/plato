@@ -105,12 +105,8 @@ export default {
     }
   },
 
-  mapGetters: {
-    core: ['authorized']
-  },
-  mapActions: {
-    core: ['setCore']
-  },
+  mapGetters: ['core/authorized'],
+  mapActions: ['core/setCore'],
 
   // methods
   methods: {

@@ -3,6 +3,31 @@ import normalizeMap from 'utils/normalize-map'
 import { isPlainObj } from 'utils/is'
 import { addPrefixToPath } from './helpers'
 
+// 解析 getter and actions，支持别名和模块名
+function analysisMap (_val, _scope) {
+  let _alias = _val
+
+  // 解析 scope/value1 格式
+  var formatAnalysis = _val.split('/')
+  if (formatAnalysis.length === 2) {
+    _scope = formatAnalysis[0]
+    _alias = _val = formatAnalysis[1]
+  }
+
+  // 解析 as 别名
+  var aliasAnalysis = _val.split(/\s+as\s+/)
+  if (aliasAnalysis.length === 2) {
+    _val = aliasAnalysis[0]
+    _alias = aliasAnalysis[1]
+  }
+
+  return {
+    _scope,
+    _val,
+    _alias
+  }
+}
+
 /**
  * 注册生命周期 `beforeCreate` 函数
  * 进行 mapState/mapGetters/mapActions 数据处理
@@ -60,27 +85,22 @@ Vue.mixin({
        * // 映射当前 scope 的 getters 里的值
        * mapGetters: ['value1', 'value2']
        * // 映射指定 scope 的 getters 里的值
-       * mapGetters: {
-       *   '': ['value1', 'value2'], // key 为空代表当前 scope
-       *   scope1: ['value3', 'value4']
-       * }
-       */
-      normalizeMap(mapGetters).forEach(({ key, val }) => {
-        let _scope = scope
-        if (Array.isArray(val)) {
-          _scope = key || _scope
-        } else {
-          val = [val]
-        }
-        val.forEach(val => {
-          computed[val] = function mappedGetter () {
-            const _key = `${_scope}/${val}`
-            if (!(_key in this.$store.getters)) {
-              console.error(('[PLATO] unknown getter: ' + val))
-            }
-            return this.$store.getters[_key]
+       * mapGetters: ['scope1/value1', 'scope2/value2']
+       * // 设置别名, 区别不同 scope 的 getters
+       * mapGetters: ['scope1/value1', 'scope2/value1 as value2']
+      */
+
+      Array.isArray(mapGetters) || console.error(('[PLATO] getter format error: ' + JSON.stringify(mapGetters)))
+      mapGetters.forEach(val => {
+        const { _alias, _scope, _val } = analysisMap(val, scope)
+
+        computed[_alias] = function mappedGetter () {
+          const _key = `${_scope}/${_val}`
+          if (!(_key in this.$store.getters)) {
+            console.error(('[PLATO] unknown getter: ' + val))
           }
-        })
+          return this.$store.getters[_key]
+        }
       })
     }
 
@@ -89,25 +109,21 @@ Vue.mixin({
        * 将 mapActions 转成 methods
        * @example
        * // 映射当前 scope 的 actions 里的值
-       * mapActions: ['value1', 'value2']
+       * mapActions: ['action1', 'action2']
+       *
        * // 映射指定 scope 的 actions 里的值
-       * mapActions: {
-       *   '': ['value1', 'value2'], // key 为空代表当前 scope
-       *   scope1: ['value3', 'value4']
-       * }
+       * mapActions: ['scope1/action1', 'scope2/action2']
+       *
+       * // 设置别名, 区别不同 scope 的 actions
+       * mapGetters: ['scope1/action1', 'scope2/action1 as action2']
+       *
        */
-      normalizeMap(mapActions).forEach(({ key, val }) => {
-        let _scope = scope
-        if (Array.isArray(val)) {
-          _scope = key || _scope
-        } else {
-          val = [val]
+      Array.isArray(mapActions) || console.error(('[PLATO] actions format error: ' + JSON.stringify(mapActions)))
+      mapActions.forEach(val => {
+        const { _alias, _scope, _val } = analysisMap(val, scope)
+        methods[_alias] = function mappedAction (...args) {
+          return this.$store.dispatch(`${_scope}/${_val}`, ...args)
         }
-        val.forEach(val => {
-          methods[val] = function mappedAction (...args) {
-            return this.$store.dispatch(`${_scope}/${val}`, ...args)
-          }
-        })
       })
     }
 

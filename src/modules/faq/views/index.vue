@@ -52,15 +52,11 @@ export default {
   },
 
   mapState: ['entities', 'fetching'],
-  mapGetters: {
-    core: ['authorized'],
-    config: ['transition']
-  },
-  mapActions: {
-    // key 为空代表 map 当前 scope
-    '': ['list', 'delete'],
-    config: ['addToast']
-  },
+  mapGetters: [
+    'core/authorized',
+    'config/transition'
+  ],
+  mapActions: ['list', 'delete', 'config/addToast'],
 
   methods: {
     _delete (id) {

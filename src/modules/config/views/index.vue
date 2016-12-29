@@ -50,14 +50,8 @@ export default {
     }
   },
 
-  mapGetters: {
-    i18n: ['lang'],
-    config: ['transition']
-  },
-  mapActions: {
-    i18n: ['setI18n'],
-    core: ['setCore']
-  },
+  mapGetters: ['i18n/lang', 'transition'],
+  mapActions: ['i18n/setI18n', 'setTransition'],
 
   mounted () {
     this.languageIndex = Object.keys(this.languages)
@@ -75,9 +69,7 @@ export default {
     },
     transitionEnabled (val) {
       this.$nextTick(() => {
-        this.setCore({
-          transition: val
-        })
+        this.setTransition(val)
       })
     }
   },
