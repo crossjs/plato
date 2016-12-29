@@ -1,9 +1,9 @@
 import Vue from 'vue'
-import normalizeMap from 'utils/normalize-map'
 import { isPlainObj } from 'utils/is'
 import { addPrefixToPath } from './helpers'
+import { error } from 'utils/console'
 
-// 解析 getter and actions，支持别名和模块名
+// 解析 getter, actions，state ，支持别名和模块名
 function analysisMap (_val, _scope) {
   let _alias = _val
 
@@ -52,30 +52,26 @@ Vue.mixin({
     }
 
     if (mapState) {
-      /**
-       * 将 mapState 转成 computed
-       * @example
-       * // 映射当前 scope 的 state 里的值
-       * mapState: ['value1', 'value2']
-       * // 映射指定 scope 的 state 里的值
-       * mapState: {
-       *   '': ['value1', 'value2'], // key 为空代表当前 scope
-       *   scope1: ['value3', 'value4']
-       * }
+       /**
+        * 将 mapState 转成 computed
+        * @example
+        * // 映射当前 scope 的 state 里的值
+        * mapState: ['value1', 'value2']
+        * // 映射指定 scope 的 state 里的值
+        * mapState: ['scope1/value1', 'scope2/value2']
+        * // 设置别名, 区别不同 scope 的 state
+        * mapState: ['scope1/value1', 'scope2/value1 as value2']
        */
-      normalizeMap(mapState).forEach(({ key, val }) => {
-        let _scope = scope
-        if (Array.isArray(val)) {
-          _scope = key || _scope
-        } else {
-          val = [val]
-        }
-        val.forEach(val => {
-          computed[val] = function mappedState () {
-            return this.$store.state[_scope][val]
+      if (Array.isArray(mapState)) {
+        mapState.forEach(val => {
+          const { _alias, _scope, _val } = analysisMap(val, scope)
+          computed[_alias] = function mappedState () {
+            return this.$store.state[_scope][_val]
           }
         })
-      })
+      } else {
+        error(('[PLATO] mapState format error: ' + JSON.stringify(mapState)))
+      }
     }
 
     if (mapGetters) {
@@ -90,18 +86,21 @@ Vue.mixin({
        * mapGetters: ['scope1/value1', 'scope2/value1 as value2']
       */
 
-      Array.isArray(mapGetters) || console.error(('[PLATO] getter format error: ' + JSON.stringify(mapGetters)))
-      mapGetters.forEach(val => {
-        const { _alias, _scope, _val } = analysisMap(val, scope)
+      if (Array.isArray(mapGetters)) {
+        mapGetters.forEach(val => {
+          const { _alias, _scope, _val } = analysisMap(val, scope)
 
-        computed[_alias] = function mappedGetter () {
-          const _key = `${_scope}/${_val}`
-          if (!(_key in this.$store.getters)) {
-            console.error(('[PLATO] unknown getter: ' + val))
+          computed[_alias] = function mappedGetter () {
+            const _key = `${_scope}/${_val}`
+            if (!(_key in this.$store.getters)) {
+              error(('[PLATO] unknown getter: ' + val))
+            }
+            return this.$store.getters[_key]
           }
-          return this.$store.getters[_key]
-        }
-      })
+        })
+      } else {
+        error(('[PLATO] getter format error: ' + JSON.stringify(mapGetters)))
+      }
     }
 
     if (mapActions) {
@@ -118,13 +117,16 @@ Vue.mixin({
        * mapGetters: ['scope1/action1', 'scope2/action1 as action2']
        *
        */
-      Array.isArray(mapActions) || console.error(('[PLATO] actions format error: ' + JSON.stringify(mapActions)))
-      mapActions.forEach(val => {
-        const { _alias, _scope, _val } = analysisMap(val, scope)
-        methods[_alias] = function mappedAction (...args) {
-          return this.$store.dispatch(`${_scope}/${_val}`, ...args)
-        }
-      })
+      if (Array.isArray(mapActions)) {
+        mapActions.forEach(val => {
+          const { _alias, _scope, _val } = analysisMap(val, scope)
+          methods[_alias] = function mappedAction (...args) {
+            return this.$store.dispatch(`${_scope}/${_val}`, ...args)
+          }
+        })
+      } else {
+        error(('[PLATO] actions format error: ' + JSON.stringify(mapActions)))
+      }
     }
 
     options.computed = computed
