@@ -1,8 +1,6 @@
 import Vue from 'vue'
 import { configure, use, run } from 'system'
 
-import { log } from 'utils/console'
-
 import i18n from 'modules/i18n'
 import validator from 'modules/validator'
 import config from 'modules/config'
@@ -55,7 +53,7 @@ use(core)
  */
 
 run(({ router, store }) => {
-  log('%c[PLATO] %cLet\'s go!', 'font-weight: bold', 'color: green; font-weight: bold')
+  __PROD__ || console.log('%c[PLATO] %cLet\'s go!', 'font-weight: bold', 'color: green; font-weight: bold')
 
   /**
    * Directives

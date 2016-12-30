@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import merge from 'utils/merge'
 import { isFunction } from 'utils/is'
-import { groupEnd, group, log, error } from 'utils/console'
 import { addPrefixToPath, injectOptionsToComponent } from './helpers'
 
 /**
@@ -155,7 +154,7 @@ export function run (finale) {
   }
 
   function done () {
-    log('%c[PLATO] %cExecuting module callbacks', 'font-weight: bold', 'color: green; font-weight: bold')
+    __PROD__ || console.log('%c[PLATO] %cExecuting module callbacks', 'font-weight: bold', 'color: green; font-weight: bold')
 
     let callback
     // 执行回调函数队列
@@ -186,26 +185,26 @@ export function run (finale) {
           // 进行 store 与 router 相关处理
           const { scope, prefix, store, routes } = options
           if (scope) {
-            log(`Module %c${scope}%c registered.`, 'color: green', 'color: inherit')
+            __PROD__ || console.log(`Module %c${scope}%c registered.`, 'color: green', 'color: inherit')
             store && registerModule(scope, store)
             routes && registerRoutes(scope, prefix, routes)
           } else {
             if (store || routes) {
-              error('`scope` is required!')
+              __PROD__ || console.error('`scope` is required!')
             }
           }
         }
         next()
       })
     } else {
-      groupEnd()
+      __PROD__ || console.groupEnd()
 
       // 注册完毕
       done()
     }
   }
 
-  group('%c[PLATO] %cRegistering modules...', 'font-weight: bold', 'color: green; font-weight: bold')
+  __PROD__ || console.group('%c[PLATO] %cRegistering modules...', 'font-weight: bold', 'color: green; font-weight: bold')
 
   // 执行模队列
   next()

@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import { isPlainObj } from 'utils/is'
 import { addPrefixToPath } from './helpers'
-import { error } from 'utils/console'
 
 // 解析 getter, actions，state ，支持别名和模块名
 function analysisMap (_val, _scope) {
@@ -70,7 +69,7 @@ Vue.mixin({
           }
         })
       } else {
-        error(('[PLATO] mapState format error: ' + JSON.stringify(mapState)))
+        __PROD__ || console.error(('[PLATO] mapState format error: ' + JSON.stringify(mapState)))
       }
     }
 
@@ -93,13 +92,13 @@ Vue.mixin({
           computed[_alias] = function mappedGetter () {
             const _key = `${_scope}/${_val}`
             if (!(_key in this.$store.getters)) {
-              error(('[PLATO] unknown getter: ' + val))
+              __PROD__ || console.error(('[PLATO] unknown getter: ' + val))
             }
             return this.$store.getters[_key]
           }
         })
       } else {
-        error(('[PLATO] getter format error: ' + JSON.stringify(mapGetters)))
+        __PROD__ || console.error(('[PLATO] getter format error: ' + JSON.stringify(mapGetters)))
       }
     }
 
@@ -125,7 +124,7 @@ Vue.mixin({
           }
         })
       } else {
-        error(('[PLATO] actions format error: ' + JSON.stringify(mapActions)))
+        __PROD__ || console.error(('[PLATO] actions format error: ' + JSON.stringify(mapActions)))
       }
     }
 
