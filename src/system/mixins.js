@@ -7,14 +7,14 @@ function analysisMap (_val, _scope) {
   let _alias = _val
 
   // 解析 scope/value1 格式
-  var formatAnalysis = _val.split('/')
+  const formatAnalysis = _val.split('/')
   if (formatAnalysis.length === 2) {
     _scope = formatAnalysis[0]
     _alias = _val = formatAnalysis[1]
   }
 
   // 解析 as 别名
-  var aliasAnalysis = _val.split(/\s+as\s+/)
+  const aliasAnalysis = _val.split(/\s+as\s+/)
   if (aliasAnalysis.length === 2) {
     _val = aliasAnalysis[0]
     _alias = aliasAnalysis[1]

@@ -24,7 +24,7 @@ export const context = new Vue({
 })
 
 export function configure (options) {
-  for (var i in options) {
+  for (const i in options) {
     context[i] = options[i]
   }
 }
