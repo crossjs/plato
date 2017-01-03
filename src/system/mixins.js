@@ -2,7 +2,7 @@ import Vue from 'vue'
 import { isPlainObj } from 'utils/is'
 import { addPrefixToPath } from './helpers'
 
-// 解析 getter, actions，state ，支持别名和模块名
+// 解析 getter，actions，state，支持别名和模块名
 function analysisMap (_val, _scope) {
   let _alias = _val
 
