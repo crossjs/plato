@@ -5,6 +5,6 @@ export default (context, options = {}, register) => {
 
   register({
     routes: createRoutes(context, options),
-    ...options
+    options
   })
 }

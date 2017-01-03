@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import { configure, use, run } from 'system'
 
+import persist from 'modules/persist'
 import i18n from 'modules/i18n'
 import validator from 'modules/validator'
 import config from 'modules/config'
@@ -19,7 +20,9 @@ import Root from './views/root'
  * 全局配置
  */
 configure({
-  // 软件版本号
+  // 项目名称
+  name: 'PLATO',
+  // 项目版本号
   // 原则上做较大变更时需要更新
   version: '1.0'
 })
@@ -31,6 +34,7 @@ configure({
 /**
  * 被依赖的模块，移除可能会影响部分功能
  */
+use(persist)
 use(i18n)
 use(validator)
 

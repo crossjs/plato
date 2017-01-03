@@ -7,9 +7,10 @@ export default (context, options = {}, register) => {
   register({
     store: createStore(options),
     routes: createRoutes(options),
-    ...options
+    options
   }, ({ store, router }) => {
     // store plugin
+    // 另一种用法，参见 src/modules/persist/index.js
     // 实现进度条、错误提示
     store.subscribe(({ payload }) => {
       if (!payload || !payload.__status__) {

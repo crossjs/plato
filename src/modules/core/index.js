@@ -12,13 +12,13 @@ export default (context, options = {}, register) => {
   register({
     // 为统一标准，将 context 与 options 做为数据传入
     store: createStore(context, options),
-    ...options
+    options
   }, context => {
     // 模块注册完成后的回调
-    const { modules, routes } = context
+    const { modules, plugins, routes } = context
 
     // inject store and router
-    const store = context.store = createVuexStore(modules)
+    const store = context.store = createVuexStore(modules, plugins)
     const router = context.router = createRouter(routes)
 
     // keep vue-router and vuex store in sync.

@@ -17,8 +17,10 @@ export const context = new Vue({
   data: {
     // for Vuex.Store
     modules: {},
+    plugins: [],
     // for Vue-Router
     routes: [],
+    name: 'PLATO',
     version: '1.0'
   }
 })
@@ -63,7 +65,7 @@ export function use (creator, options = {}) {
 export function run (finale) {
   const callbacks = []
 
-  const { modules, routes } = context
+  const { modules, plugins, routes } = context
 
   function registerModule (scope, obj) {
     // 直接使用 vuex 2.1.1 的 namespaced 特性
@@ -75,6 +77,10 @@ export function run (finale) {
     } else {
       modules[scope] = obj
     }
+  }
+
+  function registerPlugins (scope, arr) {
+    plugins.push.apply(plugins, arr)
   }
 
   function registerRoutes (scope, prefix, _routes) {
@@ -146,26 +152,33 @@ export function run (finale) {
 
     if (middleware && middleware.creator) {
       // creator: fn(context, options, register)
-      middleware.creator(context, middleware.options, (options, callback) => {
-        if (typeof options === 'function') {
-          callback = options
-          options = null
+      middleware.creator(context, middleware.options, (data, callback) => {
+        if (typeof data === 'function') {
+          callback = data
+          data = null
         }
         if (callback) {
           // 将回调函数添加到队列
           callbacks.push(callback)
         }
-        if (options) {
+        if (data) {
           // 进行 store 与 router 相关处理
-          const { scope, prefix, store, routes } = options
-          if (scope) {
-            __PROD__ || console.log(`Module %c${scope}%c registered.`, 'color: green', 'color: inherit')
-            store && registerModule(scope, store)
-            routes && registerRoutes(scope, prefix, routes)
-          } else {
-            if (store || routes) {
-              __PROD__ || console.error('`scope` is required!')
+          const { options, store, plugins, routes } = data
+          if (options) {
+            const { scope, prefix } = options
+            if (scope) {
+              __PROD__ || console.log(`Module %c${scope}%c registered.`, 'color: green', 'color: inherit')
+              store && registerModule(scope, store)
+              routes && registerRoutes(scope, prefix, routes)
+            } else {
+              if (store || routes) {
+                __PROD__ || console.error('`options.scope` is required!')
+              }
             }
+            // plugins
+            plugins && registerPlugins(scope, plugins)
+          } else {
+            __PROD__ || console.error('`options` is required!')
           }
         }
         next()

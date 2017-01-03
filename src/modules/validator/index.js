@@ -4,6 +4,7 @@ import * as rules from './rules'
 
 export default (context, options = {}, register) => {
   // options = { scope: 'validator', prefix: '/', ...options }
+
   // 只注册回调，不注册数据
   register(() => {
     Vue.mixin({

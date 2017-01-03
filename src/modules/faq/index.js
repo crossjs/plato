@@ -7,6 +7,6 @@ export default (context, options = {}, register) => {
   register({
     store: createStore(context, options),
     routes: createRoutes(context, options),
-    ...options
+    options
   })
 }

@@ -1,4 +1,3 @@
-import createPersist from 'vuex-localstorage'
 import { createAction, handleAction, $inject } from 'vuex-actions'
 import Normalizer from 'utils/normalizer'
 import request from 'utils/request'
@@ -11,7 +10,6 @@ import rnd from 'utils/rnd'
  *   如果环境支持 GET 请求的缓存，比如浏览器，则没有必要启用 memcache
  *
  * @param  {String} namespace    命名空间，用于生成 actions 与持久化
- * @param  {Number} [expires=0]  持久化数据过期时间，0 为不过期
  * @param  {String} source       REST 的 source
  * @param  {Object} getters      Vuex 的 getters
  * @param  {Object} options      Request 的默认配置
@@ -19,7 +17,6 @@ import rnd from 'utils/rnd'
  */
 export default ({
     namespace = '',
-    expires = 0,
     source,
     initialState,
     getters,
@@ -72,14 +69,10 @@ export default ({
 
   const normalizer = new Normalizer()
 
-  const persist = createPersist(namespace, Object.assign({
+  const state = Object.assign({
     fetching: false,
     entities: {}
-  }, initialState), {
-    expires
-  })
-
-  const state = persist.get()
+  }, initialState)
 
   const actions = {
     list: createAction(LIST, query => REST.list(query)),
@@ -103,7 +96,6 @@ export default ({
       state.fetching = false
       const { entities } = normalizer.normalize([mutation])
       state.entities = { ...state.entities, ...entities }
-      persist.set(state)
     },
     error (state) {
       state.fetching = false
@@ -119,7 +111,6 @@ export default ({
         state.fetching = false
         const { entities } = normalizer.normalize(mutation)
         state.entities = { ...state.entities, ...entities }
-        persist.set(state)
       },
       error (state) {
         state.fetching = false
@@ -138,7 +129,6 @@ export default ({
         const { entities } = state
         delete entities[id]
         state.entities = { ...entities }
-        persist.set(state)
       },
       error (state) {
         state.fetching = false

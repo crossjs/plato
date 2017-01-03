@@ -20,7 +20,7 @@ export default (context, options = {}, register) => {
 
   register({
     store: createStore(context, options),
-    ...options
+    options
   }, ({ store }) => {
     // vm for watching i18n
     const vm = new Vue({

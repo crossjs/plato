@@ -1,6 +1,4 @@
 import rnd from 'utils/rnd'
-import { ONE_WEEK } from 'utils/constants'
-import createPersist from 'vuex-localstorage'
 
 export default ({ scope }) => {
   const SET_PROGRESS = rnd('SET_PROGRESS')
@@ -8,17 +6,11 @@ export default ({ scope }) => {
   const DELETE_TOAST = rnd('DELETE_TOAST')
   const SET_TRANSITION = rnd('SET_TRANSITION')
 
-  const initialState = {
+  const state = {
     transition: true, // 默认开启动画效果
     progress: 0,
     toast: null
   }
-
-  const persist = createPersist(scope, initialState, {
-    expires: ONE_WEEK
-  })
-
-  const state = persist.get()
 
   const getters = {
     transition: state => state.transition,
@@ -70,7 +62,6 @@ export default ({ scope }) => {
     },
     [SET_TRANSITION]: (state, payload) => {
       state.transition = payload
-      persist.set(state)
     },
     [DELETE_TOAST] (state) {
       state.toast = null
