@@ -89,22 +89,22 @@ export function run (finale) {
     }
 
     // 添加 `prefix` 到路由的 `path` 参数
-    function handleRoutes (prefix, r) {
+    function handleRoutes (prefixes, r) {
       return r.map(r => {
         const { path = '', redirect, alias, component, components, children } = r
 
-        r.path = addPrefixToPath(prefix, path)
+        r.path = addPrefixToPath(prefixes, path)
         // 转换重定向
         if (redirect !== undefined) {
-          r.redirect = addPrefixToPath(prefix, redirect)
+          r.redirect = addPrefixToPath(prefixes, redirect)
         }
         // 转换别名
         if (alias !== undefined) {
-          r.alias = addPrefixToPath(prefix, alias)
+          r.alias = addPrefixToPath(prefixes, alias)
         }
 
         // inject component and components
-        const injection = { scope, prefix }
+        const injection = { scope, prefixes }
         if (component) {
           r.component = injectOptions(component, injection)
         }
@@ -116,7 +116,7 @@ export function run (finale) {
 
         // 递归处理子路由
         if (children) {
-          r.children = handleRoutes(r.path, r.children)
+          r.children = handleRoutes(prefixes.concat(path), r.children, prefix)
         }
 
         return r
@@ -124,7 +124,7 @@ export function run (finale) {
     }
 
     // 处理路由配置
-    routes.push.apply(routes, handleRoutes(prefix || scope, _routes))
+    routes.push.apply(routes, handleRoutes([prefix || scope], _routes))
   }
 
   function done () {

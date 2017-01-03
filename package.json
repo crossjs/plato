@@ -1,6 +1,6 @@
 {
   "name": "PLATO",
-  "version": "3.0.0-alpha.10",
+  "version": "3.0.0-alpha.11",
   "description": "a Boilerplate for mobile SPAs use vue, vuex, vue-router",
   "license": "MIT",
   "main": "src/index.js",
@@ -33,7 +33,7 @@
     "vue-router": "^2.1.1",
     "vuex": "^2.1.1",
     "vuex-actions": "^1.1.1",
-    "vuex-localstorage": "^0.4.0",
+    "vuex-localstorage": "^0.5.0",
     "vuex-router-sync": "^4.1.0",
     "whatwg-fetch": "^2.0.1"
   },

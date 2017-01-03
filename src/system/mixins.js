@@ -37,6 +37,7 @@ Vue.mixin({
     const options = this.$options
     const {
       scope,
+      prefixes,
       parent,
       methods = {},
       computed = {},
@@ -50,16 +51,23 @@ Vue.mixin({
       this.$scope = parent.$scope
     }
 
+    // prefixes injection
+    if (prefixes) {
+      this.$prefixes = prefixes
+    } else if (parent && parent.$prefixes) {
+      this.$prefixes = parent.$prefixes
+    }
+
     if (mapState) {
-       /**
-        * 将 mapState 转成 computed
-        * @example
-        * // 映射当前 scope 的 state 里的值
-        * mapState: ['value1', 'value2']
-        * // 映射指定 scope 的 state 里的值
-        * mapState: ['scope1/value1', 'scope2/value2']
-        * // 设置别名, 区别不同 scope 的 state
-        * mapState: ['scope1/value1', 'scope2/value1 as value2']
+      /**
+       * 将 mapState 转成 computed
+       * @example
+       * // 映射当前 scope 的 state 里的值
+       * mapState: ['value1', 'value2']
+       * // 映射指定 scope 的 state 里的值
+       * mapState: ['scope1/value1', 'scope2/value2']
+       * // 设置别名, 区别不同 scope 的 state
+       * mapState: ['scope1/value1', 'scope2/value1 as value2']
        */
       if (Array.isArray(mapState)) {
         mapState.forEach(val => {
@@ -83,8 +91,7 @@ Vue.mixin({
        * mapGetters: ['scope1/value1', 'scope2/value2']
        * // 设置别名, 区别不同 scope 的 getters
        * mapGetters: ['scope1/value1', 'scope2/value1 as value2']
-      */
-
+       */
       if (Array.isArray(mapGetters)) {
         mapGetters.forEach(val => {
           const { _alias, _scope, _val } = analysisMap(val, scope)
@@ -136,23 +143,23 @@ Vue.mixin({
 /**
  * 根据原始路径取真实路径
  * 因为模块内可能直接调用修改前的路由，
- * 所以需要提供一个自定义方法以确保可以跳转到添加了 prefix 的路由。
+ * 所以需要提供一个自定义方法以确保可以跳转到添加了 prefixes 的路由。
  * @todo 支持命名路由
  * @method $redirect
- * @param  {location}   path    路由地址
- * @param  {boolean}  replace   使用 replace，否则使用 push
+ * @param  {location}   path      路由地址
+ * @param  {boolean}    replace   使用 replace，否则使用 push
  */
 Vue.prototype.$redirect = function (path, replace) {
   let realPath
   if (isPlainObj(path)) {
     realPath = { ...path }
-    // 如果提供了 prefix，一般是要跳转到其它模块定义的路由
-    const { path, prefix = this.$prefix } = realPath
+    // 如果提供了 prefixes，一般是要跳转到其它模块定义的路由
+    const { path, prefix } = realPath
     if (path !== undefined) {
-      realPath.path = addPrefixToPath(prefix, path)
+      realPath.path = addPrefixToPath(prefix ? [prefix] : this.$prefixes, path)
     }
   } else {
-    realPath = addPrefixToPath(this.$prefix, path)
+    realPath = addPrefixToPath(this.$prefixes, path)
   }
   replace ? this.$router.replace(realPath) : this.$router.push(realPath)
 }

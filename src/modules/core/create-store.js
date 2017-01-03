@@ -16,6 +16,16 @@ export default ({ version, modules, routes }, { scope }) => {
     routes,
     ...(store.state || null)
   }, {
+    // 自定义合并策略，如果存在值则忽略
+    merge (initialState, presistedState) {
+      const _state = Object.assign({}, initialState)
+      for (const i in presistedState) {
+        if (!(i in initialState)) {
+          _state[i] = presistedState[i]
+        }
+      }
+      return _state
+    },
     expires: ONE_WEEK
   })
 
