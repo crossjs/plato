@@ -66,40 +66,14 @@ export function run (finale) {
   const { modules, routes } = context
 
   function registerModule (scope, obj) {
-    const {
-      state,
-      getters,
-      actions,
-      mutations
-    } = obj
-
-    // state 与 mutations 直接拷贝
-    const newObj = {
-      state,
-      mutations
-    }
-
-    if (getters) {
-      newObj.getters = {}
-      // 为 getters 添加 scope 前缀
-      Object.keys(getters).forEach(key => {
-        newObj.getters[`${scope}/${key}`] = getters[key]
-      })
-    }
-
-    if (actions) {
-      newObj.actions = {}
-      // 为 actions 添加 scope 前缀
-      Object.keys(actions).forEach(key => {
-        newObj.actions[`${scope}/${key}`] = actions[key]
-      })
-    }
+    // 直接使用 vuex 2.1.1 的 namespaced 特性
+    obj.namespaced = true
 
     // 合入
     if (modules[scope]) {
-      merge(modules[scope], newObj)
+      merge(modules[scope], obj)
     } else {
-      modules[scope] = newObj
+      modules[scope] = obj
     }
   }
 
