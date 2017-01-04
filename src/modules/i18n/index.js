@@ -3,7 +3,7 @@ import request from 'utils/request'
 import template from 'string-template'
 import createStore from './create-store'
 
-export default (context, options = {}, register) => {
+export default (context, options = {}) => {
   options = {
     scope: 'i18n',
     prefix: '/',
@@ -18,7 +18,7 @@ export default (context, options = {}, register) => {
     urlPattern = './i18n/{lang}.json'
   } = options
 
-  register({
+  return [{
     store: createStore(context, options),
     options
   }, ({ store }) => {
@@ -78,5 +78,5 @@ export default (context, options = {}, register) => {
         return keys
       }, scope ? vm.translations[scope] : vm.translations), ...args)
     }
-  })
+  }]
 }

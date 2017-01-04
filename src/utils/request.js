@@ -1,7 +1,4 @@
-// sync from: https://github.com/crossjs/plato-request
-
 import 'whatwg-fetch'
-import Promise from 'nuo'
 import qs from 'query-string'
 import template from 'string-template'
 import { isPlainObj } from './is'

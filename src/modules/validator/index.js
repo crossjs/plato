@@ -1,12 +1,11 @@
 import Vue from 'vue'
-import Promise from 'nuo'
 import * as rules from './rules'
 
-export default (context, options = {}, register) => {
+export default (context, options = {}) => {
   // options = { scope: 'validator', prefix: '/', ...options }
 
   // 只注册回调，不注册数据
-  register(() => {
+  return () => {
     Vue.mixin({
       beforeCreate () {
         const options = this.$options
@@ -120,5 +119,5 @@ export default (context, options = {}, register) => {
         }
       })
     }
-  })
+  }
 }

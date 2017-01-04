@@ -151,44 +151,61 @@ export function run (finale) {
     const middleware = middlewares.shift()
 
     if (middleware && middleware.creator) {
-      // creator: fn(context, options, register)
-      middleware.creator(context, middleware.options, (data, callback) => {
-        if (typeof data === 'function') {
-          callback = data
-          data = null
-        }
-        if (callback) {
-          // 将回调函数添加到队列
-          callbacks.push(callback)
-        }
-        if (data) {
-          // 进行 store 与 router 相关处理
-          const { options, store, plugins, routes } = data
-          if (options) {
-            const { scope, prefix } = options
-            if (scope) {
-              __PROD__ || console.log(`Module %c${scope}%c registered.`, 'color: green', 'color: inherit')
-              store && registerModule(scope, store)
-              routes && registerRoutes(scope, prefix, routes)
-            } else {
-              if (store || routes) {
-                __PROD__ || console.error('`options.scope` is required!')
-              }
-            }
-            // plugins
-            plugins && registerPlugins(scope, plugins)
-          } else {
-            __PROD__ || console.error('`options` is required!')
-          }
-        }
-        next()
-      })
+      if (middleware.creator.length === 3) {
+        // creator: fn(context, options, register)
+        // 使用回调
+        middleware.creator(context, middleware.options, register)
+      } else {
+        // creator: fn(context, options)
+        // 支持异步
+        promisify(middleware.creator(context, middleware.options))
+        .then(ret => register.apply(null, Array.isArray(ret) ? ret : [ret]))
+      }
     } else {
       __PROD__ || console.groupEnd()
 
       // 注册完毕
       done()
     }
+  }
+
+  function register (data, callback) {
+    if (typeof data === 'function') {
+      callback = data
+      data = null
+    }
+    if (callback) {
+      // 将回调函数添加到队列
+      callbacks.push(callback)
+    }
+    if (data) {
+      // 进行 store 与 router 相关处理
+      const { options, store, plugins, routes } = data
+      if (options) {
+        const { scope, prefix } = options
+        if (scope) {
+          __PROD__ || console.log(`Module %c${scope}%c registered.`, 'color: green', 'color: inherit')
+          store && registerModule(scope, store)
+          routes && registerRoutes(scope, prefix, routes)
+        } else {
+          if (store || routes) {
+            __PROD__ || console.error('`options.scope` is required!')
+          }
+        }
+        // plugins
+        plugins && registerPlugins(scope, plugins)
+      } else {
+        __PROD__ || console.error('`options` is required!')
+      }
+    }
+    next()
+  }
+
+  function promisify (val) {
+    if (val && val.then && typeof val.then === 'function') {
+      return val
+    }
+    return Promise.resolve(val)
   }
 
   __PROD__ || console.group('%c[PLATO] %cRegistering modules...', 'font-weight: bold', 'color: green; font-weight: bold')

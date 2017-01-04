@@ -153,7 +153,8 @@ Vue.prototype.$redirect = function (path, replace) {
   let realPath
   if (isPlainObj(path)) {
     realPath = { ...path }
-    // 如果提供了 prefixes，一般是要跳转到其它模块定义的路由
+    // 如果提供了 prefix，说明是跳转到其它模块定义的路由
+    // 跨模块跳转，现在只支持一级
     const { path, prefix } = realPath
     if (path !== undefined) {
       realPath.path = addPrefixToPath(prefix ? [prefix] : this.$prefixes, path)

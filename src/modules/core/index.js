@@ -9,7 +9,7 @@ export default (context, options = {}, register) => {
 
   // 注册 store
   // 同时传入配置项
-  register({
+  return [{
     // 为统一标准，将 context 与 options 做为数据传入
     store: createStore(context, options),
     options
@@ -32,5 +32,5 @@ export default (context, options = {}, register) => {
         next()
       }
     })
-  })
+  }]
 }

@@ -1,10 +1,11 @@
 import createStore from './create-store'
 import createRoutes from './create-routes'
 
-export default (context, options = {}, register) => {
+export default (context, options = {}) => {
   options = { scope: 'config', prefix: '/', ...options }
 
-  register({
+  // data, and callback
+  return [{
     store: createStore(options),
     routes: createRoutes(options),
     options
@@ -42,5 +43,5 @@ export default (context, options = {}, register) => {
     router.afterEach(() => {
       store.dispatch(`${options.scope}/setProgress`, 100)
     })
-  })
+  }]
 }
