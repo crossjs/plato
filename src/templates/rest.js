@@ -1,6 +1,6 @@
 import { createAction, handleAction, $inject } from 'vuex-actions'
 import Normalizer from 'utils/normalizer'
-import request from 'utils/request'
+import { get, post, patch, put, del } from 'utils/request'
 import merge from 'utils/merge'
 import rnd from 'utils/rnd'
 
@@ -30,38 +30,34 @@ export default ({
 
   const REST = {
     list (query) {
-      return request(source, merge({}, options, {
+      return get(source, merge({}, options, {
         query
       }))
     },
     post (body) {
-      return request(source, merge({}, options, {
-        method: 'POST',
+      return post(source, merge({}, options, {
         body
       }))
     },
     delete (id) {
-      return request(`${source}/{id}`, merge({}, options, {
-        method: 'DELETE',
+      return del(`${source}/{id}`, merge({}, options, {
         params: { id }
       }))
     },
     patch (id, body) {
-      return request(`${source}/{id}`, merge({}, options, {
-        method: 'PATCH',
+      return patch(`${source}/{id}`, merge({}, options, {
         params: { id },
         body
       }))
     },
     put (id, body) {
-      return request(`${source}/{id}`, merge({}, options, {
-        method: 'PUT',
+      return put(`${source}/{id}`, merge({}, options, {
         params: { id },
         body
       }))
     },
     get (id) {
-      return request(`${source}/{id}`, merge({}, options, {
+      return get(`${source}/{id}`, merge({}, options, {
         params: { id }
       }))
     }

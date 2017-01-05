@@ -1,6 +1,6 @@
 require('babel-register')
 
-const debug = require('debug')('plato:clean')
+const debug = require('debug')('PLATO:clean')
 
 debug('Clean dist files...')
 

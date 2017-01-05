@@ -2,6 +2,7 @@ import Vue from 'vue'
 import { configure, use, run } from 'system'
 
 import persist from 'modules/persist'
+import request from 'modules/request'
 import i18n from 'modules/i18n'
 import validator from 'modules/validator'
 import config from 'modules/config'
@@ -35,6 +36,7 @@ configure({
  * 被依赖的模块，移除可能会影响部分功能
  */
 use(persist)
+use(request)
 use(i18n)
 use(validator)
 

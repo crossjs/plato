@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import merge from 'utils/merge'
+import promisify from 'utils/promisify'
 import { isFunction } from 'utils/is'
 import { addPrefixToPath, injectOptionsToComponent } from './helpers'
 
@@ -199,13 +200,6 @@ export function run (finale) {
       }
     }
     next()
-  }
-
-  function promisify (val) {
-    if (val && val.then && typeof val.then === 'function') {
-      return val
-    }
-    return Promise.resolve(val)
   }
 
   __PROD__ || console.group('%c[PLATO] %cRegistering modules...', 'font-weight: bold', 'color: green; font-weight: bold')

@@ -100,6 +100,8 @@ export default (context, options = {}) => {
       return errors
     }
 
+    // 特殊的 promisify
+    // val 为 falsy 则 reject
     function promisify (val) {
       if (val && val.then && typeof val.then === 'function') {
         return val

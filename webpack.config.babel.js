@@ -7,7 +7,7 @@ import _debug from 'debug'
 import config, { paths } from './config'
 
 const { __DEV__, __PROD__, __TEST__ } = config.globals
-const debug = _debug('plato:webpack')
+const debug = _debug('PLATO:webpack')
 
 debug('Create configuration.')
 

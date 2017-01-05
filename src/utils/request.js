@@ -1,8 +1,8 @@
-import 'whatwg-fetch'
 import qs from 'query-string'
 import template from 'string-template'
 import { isPlainObj } from './is'
 import merge from './merge'
+import promisify from './promisify'
 
 const defaultOptions = {
   headers: {
@@ -12,6 +12,21 @@ const defaultOptions = {
   method: 'GET',
   // 强制返回的结果按 JSON 处理，用于 File 协议的请求
   forceJSON: false
+}
+
+const mutators = []
+
+export function configure ({ mutate, mutator, ...options }) {
+  if (mutate) {
+    __PROD__ || console.warn('`mutate` is deprecated. use `mutator` instead.')
+    mutator = mutate
+  }
+
+  if (mutator) {
+    mutators.push(mutator)
+  }
+
+  merge(defaultOptions, options)
 }
 
 /**
@@ -30,7 +45,7 @@ const defaultOptions = {
  * @param  {String|Object} options   Options
  * @return {Promise}                 Promise
  */
-export default (...args) => {
+export default function request (...args) {
   if (args.length === 0) {
     __PROD__ || console.warn('URL or Options is Required!')
     return
@@ -51,14 +66,16 @@ export default (...args) => {
     __PROD__ || console.warn('Options MUST be Object!')
     return
   }
+
   return new Promise((resolve, reject) => {
     promisify(parseOptions(merge({}, defaultOptions, args[0])))
     .then(({ url, ...options }) => fetch(url, options))
     .then(res => {
+      const { forceJSON } = args[0]
       if (res && (isHttpOk(res) || isFileOk(res))) {
-        getBody(res, args[0].forceJSON).then(resolve, reject)
+        getBody(res, forceJSON).then(resolve, reject)
       } else {
-        getBody(res, args[0].forceJSON).then(reject)
+        getBody(res, forceJSON).then(reject)
       }
     })
     .catch(reject)
@@ -69,6 +86,7 @@ function isHttpOk (res) {
   return res.status >= 200 && res.status < 400
 }
 
+// 支持 file 协议的访问
 function isFileOk (res) {
   return res.status === 0 && (res.url.indexOf('file://') === 0 || res.url === '')
 }
@@ -78,7 +96,7 @@ function getBody (res, forceJSON) {
   return (forceJSON || (type && type.indexOf('json') !== -1)) ? res.json() : res.text()
 }
 
-function parseOptions ({ url = '', query, params, body, mutate, ...options }) {
+function parseOptions ({ url = '', query, params, body, mutate, mutator, ...options }) {
   if (body) {
     if (typeof body === 'object') {
       if (/^(POST|PUT|PATCH)$/i.test(options.method)) {
@@ -110,14 +128,53 @@ function parseOptions ({ url = '', query, params, body, mutate, ...options }) {
 
   options.url = url
 
+  if (mutate) {
+    __PROD__ || console.warn('`mutate` is deprecated. use `mutator` instead.')
+    mutator = mutate
+  }
+
   // mutate must be a function and could return a promise
-  // useful for add authorization
-  return mutate ? mutate(options) : options
+  // useful for adding authorization
+  return iterateMutators(options, mutator ? mutators.concat(mutator) : mutators.slice(0))
 }
 
-function promisify (val) {
-  if (val && val.then && typeof val.then === 'function') {
-    return val
+function iterateMutators (options, mutators) {
+  function iterator (options) {
+    const mutator = mutators.shift()
+    if (!mutator) {
+      return options
+    }
+    return promisify(mutator(options)).then(iterator)
   }
-  return Promise.resolve(val)
+  return iterator(options)
+}
+
+export function get (url, options = {}) {
+  options.url = url
+  options.method = 'GET'
+  return request(options)
+}
+
+export function post (url, options = {}) {
+  options.url = url
+  options.method = 'POST'
+  return request(options)
+}
+
+export function put (url, options = {}) {
+  options.url = url
+  options.method = 'PUT'
+  return request(options)
+}
+
+export function patch (url, options = {}) {
+  options.url = url
+  options.method = 'PATCH'
+  return request(options)
+}
+
+export function del (url, options = {}) {
+  options.url = url
+  options.method = 'DELETE'
+  return request(options)
 }

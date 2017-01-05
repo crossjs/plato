@@ -2,7 +2,7 @@ import fs from 'fs'
 import _debug from 'debug'
 import config from './_base'
 
-const debug = _debug('plato:config')
+const debug = _debug('PLATO:config')
 debug('Create configuration.')
 debug(`Apply environment overrides for NODE_ENV "${config.env}".`)
 

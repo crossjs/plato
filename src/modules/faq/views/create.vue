@@ -94,7 +94,7 @@ export default {
   methods: {
     create () {
       this.show_modal = false
-      this.$validate().then(() => this.faqPost({
+      this.$validate().then(() => this.post({
         title: this.title.value,
         content: this.content.value
       }))

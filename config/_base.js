@@ -1,7 +1,7 @@
 import { resolve } from 'path'
 import _debug from 'debug'
 
-const debug = _debug('plato:config:base')
+const debug = _debug('PLATO:config:base')
 
 const config = {
   env: process.env.NODE_ENV || 'development',
