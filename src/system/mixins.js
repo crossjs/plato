@@ -71,7 +71,7 @@ Vue.mixin({
        */
       if (Array.isArray(mapState)) {
         mapState.forEach(val => {
-          const { _alias, _scope, _val } = analysisMap(val, scope)
+          const { _alias, _scope, _val } = analysisMap(val, this.$scope)
           computed[_alias] = function mappedState () {
             return this.$store.state[_scope][_val]
           }
@@ -94,7 +94,7 @@ Vue.mixin({
        */
       if (Array.isArray(mapGetters)) {
         mapGetters.forEach(val => {
-          const { _alias, _scope, _val } = analysisMap(val, scope)
+          const { _alias, _scope, _val } = analysisMap(val, this.$scope)
 
           computed[_alias] = function mappedGetter () {
             const _key = `${_scope}/${_val}`
@@ -125,7 +125,7 @@ Vue.mixin({
        */
       if (Array.isArray(mapActions)) {
         mapActions.forEach(val => {
-          const { _alias, _scope, _val } = analysisMap(val, scope)
+          const { _alias, _scope, _val } = analysisMap(val, this.$scope)
           methods[_alias] = function mappedAction (...args) {
             return this.$store.dispatch(`${_scope}/${_val}`, ...args)
           }
