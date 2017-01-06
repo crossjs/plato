@@ -99,6 +99,7 @@ export default {
         index = this.itemLength - 1
         this.$emit('change', index)
       }
+      this.setActive(index)
       this.offset = this.itemHeight * ((this.size - 1) / 2 - index)
     },
     dragstart ({ originalEvent: e }) {
@@ -117,7 +118,17 @@ export default {
       this.offset = this.itemHeight * offsetIndex
       const index = (this.size - 1) / 2 - offsetIndex
       if (index !== this.index) {
+        this.setActive(index)
         this.$emit('change', index)
+      }
+    },
+    setActive (index) {
+      const { children } = this.$refs.content
+      if (children) {
+        for (let i = 0; i < children.length; i++) {
+          children[i].className = children[i].className.replace(' active', '')
+        }
+        children[index].className = children[index].className + ' active'
       }
     }
   }
