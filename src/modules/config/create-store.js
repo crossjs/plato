@@ -1,10 +1,10 @@
-import rnd from 'utils/rnd'
+import uniqueId from 'lodash/uniqueId'
 
 export default ({ scope }) => {
-  const SET_PROGRESS = rnd('SET_PROGRESS')
-  const ADD_TOAST = rnd('ADD_TOAST')
-  const DELETE_TOAST = rnd('DELETE_TOAST')
-  const SET_TRANSITION = rnd('SET_TRANSITION')
+  const SET_PROGRESS = uniqueId('SET_PROGRESS')
+  const ADD_TOAST = uniqueId('ADD_TOAST')
+  const DELETE_TOAST = uniqueId('DELETE_TOAST')
+  const SET_TRANSITION = uniqueId('SET_TRANSITION')
 
   const state = {
     transition: true, // 默认开启动画效果

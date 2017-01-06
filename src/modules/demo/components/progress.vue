@@ -30,6 +30,7 @@
 </template>
 
 <script>
+import tap from 'directives/tap'
 import CPane from 'components/core/pane'
 import CCol from 'components/core/col'
 import CProgress from 'components/core/progress'
@@ -58,6 +59,10 @@ export default {
     CCol,
     CProgress,
     CButton
+  },
+
+  directives: {
+    tap
   }
 }
 </script>

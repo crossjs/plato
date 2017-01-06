@@ -33,6 +33,7 @@
 </template>
 
 <script>
+import tap from 'directives/tap'
 import CProgress from 'components/core/progress'
 import CToast from 'components/core/toast'
 import CButton from 'components/core/button'
@@ -62,6 +63,10 @@ export default {
     CIcon,
     CNavbar,
     CRoute
+  },
+
+  directives: {
+    tap
   }
 }
 </script>

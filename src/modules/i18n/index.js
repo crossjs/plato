@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import request from 'utils/request'
+import request from 'util/request'
 import template from 'string-template'
 import createStore from './create-store'
 

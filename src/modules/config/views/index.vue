@@ -29,6 +29,7 @@
 </template>
 
 <script>
+import tap from 'directives/tap'
 import CPane from 'components/core/pane'
 import CRow from 'components/core/row'
 import CCol from 'components/core/col'
@@ -81,6 +82,10 @@ export default {
     CLink,
     CCheckbox,
     CPicker
+  },
+
+  directives: {
+    tap
   }
 }
 </script>

@@ -1,13 +1,11 @@
 import { createAction, handleAction, $inject } from 'vuex-actions'
-import Normalizer from 'utils/normalizer'
-import { get, post, patch, put, del } from 'utils/request'
-import merge from 'utils/merge'
-import rnd from 'utils/rnd'
+import Normalizer from 'util/normalizer'
+import { get, post, patch, put, del } from 'util/request'
+import merge from 'util/cheap-merge'
+import uniqueId from 'lodash/uniqueId'
 
 /**
  * Template for standard REST
- *
- *   如果环境支持 GET 请求的缓存，比如浏览器，则没有必要启用 memcache
  *
  * @param  {String} namespace    命名空间，用于生成 actions 与持久化
  * @param  {String} source       REST 的 source
@@ -21,12 +19,12 @@ export default ({
     initialState,
     getters,
     ...options }) => {
-  const LIST = rnd('LIST')
-  const POST = rnd('POST')
-  const DELETE = rnd('DELETE')
-  const PATCH = rnd('PATCH')
-  const PUT = rnd('PUT')
-  const GET = rnd('GET')
+  const LIST = uniqueId('LIST')
+  const POST = uniqueId('POST')
+  const DELETE = uniqueId('DELETE')
+  const PATCH = uniqueId('PATCH')
+  const PUT = uniqueId('PUT')
+  const GET = uniqueId('GET')
 
   const REST = {
     list (query) {

@@ -12,9 +12,6 @@ import about from 'modules/about'
 import user from 'modules/user'
 import core from 'modules/core'
 
-import tap from './directives/tap'
-import drag from './directives/drag'
-
 import Root from './views/root'
 
 /**
@@ -60,15 +57,6 @@ use(core)
 
 run(({ router, store }) => {
   __PROD__ || console.log('%c[PLATO] %cLet\'s go!', 'font-weight: bold', 'color: green; font-weight: bold')
-
-  /**
-   * Directives
-   */
-
-  // tap event
-  Vue.directive('tap', tap)
-  // drag event
-  Vue.directive('drag', drag)
 
   router.afterEach(() => {
     // 解决 iOS 焦点 BUG

@@ -1,4 +1,4 @@
-import { configure } from 'utils/request'
+import { configure } from 'util/request'
 
 /**
  * 修改 request 方法的全局配置
@@ -11,7 +11,7 @@ export default ({ name, version }, options = {}) => {
   configure({
     // configure 除了 mutator 还支持其它参数
     // 其中 mutator 特殊处理，多次添加则会多次执行，
-    // 其它参数直接 merge 到默认参数
+    // 其它参数直接 cheap-merge 到默认参数
     mutator (options) {
       // 在请求头部加入自定义字段
       // 可以用于添加 Authorization 等

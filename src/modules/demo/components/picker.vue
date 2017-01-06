@@ -60,7 +60,6 @@
 import CPane from 'components/core/pane'
 import CCol from 'components/core/col'
 import CPicker from 'components/core/picker'
-import { mapGetters } from 'vuex'
 
 export default {
   data () {
@@ -74,8 +73,9 @@ export default {
     }
   },
 
+  mapGetters: ['config/transition'],
+
   computed: {
-    ...mapGetters(['transition']),
     picked () {
       return this.items[this.index]
     },

@@ -37,10 +37,9 @@
 import CRow from 'components/core/row'
 import CButton from 'components/core/button'
 import CSwiper from 'components/core/swiper'
-import { mapGetters } from 'vuex'
 
 export default {
-  computed: mapGetters(['transition']),
+  mapGetters: ['config/transition'],
 
   components: {
     CRow,

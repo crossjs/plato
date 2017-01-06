@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import * as rules from './rules'
+import promisify from 'util/promisify'
 
 export default (context, options = {}) => {
   // options = { scope: 'validator', prefix: '/', ...options }
@@ -55,7 +56,8 @@ export default (context, options = {}) => {
           return new Promise((resolve, reject) => {
             const { validator = rules[key], rule, message } = validate[key]
             if (validator) {
-              promisify(validator(this.value, rule))
+              // reject if falsy
+              promisify(validator(this.value, rule), true)
                 .then(resolve)
                 .catch(() => {
                   reject({
@@ -98,15 +100,6 @@ export default (context, options = {}) => {
       }
 
       return errors
-    }
-
-    // 特殊的 promisify
-    // val 为 falsy 则 reject
-    function promisify (val) {
-      if (val && val.then && typeof val.then === 'function') {
-        return val
-      }
-      return val ? Promise.resolve(val) : Promise.reject(val)
     }
 
     function nextTick (vm, auto) {

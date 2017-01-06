@@ -1,6 +1,6 @@
 import Vue from 'vue'
-import { isPlainObj } from 'utils/is'
-import { addPrefixToPath } from './helpers'
+import isPlainObject from 'lodash/isPlainObject'
+import { addPrefixToPath } from './util'
 
 // 解析 getter，actions，state，支持别名和模块名
 function analysisMap (_val, _scope) {
@@ -115,13 +115,10 @@ Vue.mixin({
        * @example
        * // 映射当前 scope 的 actions 里的值
        * mapActions: ['action1', 'action2']
-       *
        * // 映射指定 scope 的 actions 里的值
        * mapActions: ['scope1/action1', 'scope2/action2']
-       *
        * // 设置别名, 区别不同 scope 的 actions
        * mapGetters: ['scope1/action1', 'scope2/action1 as action2']
-       *
        */
       if (Array.isArray(mapActions)) {
         mapActions.forEach(val => {
@@ -151,7 +148,7 @@ Vue.mixin({
  */
 Vue.prototype.$redirect = function (path, replace) {
   let realPath
-  if (isPlainObj(path)) {
+  if (isPlainObject(path)) {
     realPath = { ...path }
     // 如果提供了 prefix，说明是跳转到其它模块定义的路由
     // 跨模块跳转，现在只支持一级

@@ -15,6 +15,7 @@
 </template>
 
 <script>
+import tap from 'directives/tap'
 import CPane from 'components/core/pane'
 import CButton from 'components/core/button'
 import CModal from 'components/core/modal'
@@ -56,6 +57,10 @@ export default {
     CPane,
     CButton,
     CModal
+  },
+
+  directives: {
+    tap
   }
 }
 </script>

@@ -24,11 +24,12 @@
     "push": "bash ./cli/push.sh"
   },
   "dependencies": {
-    "lodash.flattendeep": "^4.4.0",
-    "lodash.isplainobject": "^4.0.6",
+    "components": "crossjs/components",
+    "directives": "crossjs/directives",
+    "lodash": "^4.17.4",
     "nuo": "^1.0.0",
-    "query-string": "^4.2.3",
     "string-template": "^1.0.0",
+    "util": "crossjs/util",
     "vue": "^2.1.8",
     "vue-router": "^2.1.1",
     "vuex": "^2.1.1",

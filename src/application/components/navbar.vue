@@ -18,6 +18,7 @@
 </template>
 
 <script>
+import tap from 'directives/tap'
 import CMask from 'components/core/mask'
 import CIcon from 'components/core/icon'
 import CButton from 'components/core/button'
@@ -33,6 +34,10 @@ export default {
     CMask,
     CIcon,
     CButton
+  },
+
+  directives: {
+    tap
   }
 }
 </script>

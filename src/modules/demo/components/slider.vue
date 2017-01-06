@@ -49,7 +49,6 @@
 <script>
 import CPane from 'components/core/pane'
 import CSlider from 'components/core/slider'
-import { mapGetters } from 'vuex'
 
 export default {
   data () {
@@ -59,7 +58,7 @@ export default {
     }
   },
 
-  computed: mapGetters(['transition']),
+  mapGetters: ['config/transition'],
 
   mounted () {
     setTimeout(() => {

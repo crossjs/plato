@@ -34,6 +34,7 @@
 </template>
 
 <script>
+import tap from 'directives/tap'
 import CModal from 'components/core/modal'
 import CScroller from 'components/core/scroller'
 import CSpinner from 'components/core/spinner'
@@ -91,6 +92,10 @@ export default {
     CRow,
     CSwiper,
     CButton
+  },
+
+  directives: {
+    tap
   }
 }
 </script>

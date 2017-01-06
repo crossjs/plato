@@ -15,8 +15,7 @@ const webpackConfig = {
   target: 'web',
   resolve: {
     modules: [paths.src(), 'node_modules'],
-    extensions: ['.css', '.js', '.json', '.vue'],
-    alias: {}
+    extensions: ['.css', '.js', '.json', '.vue']
   },
   node: {
     fs: 'empty',
@@ -82,6 +81,12 @@ const webpackConfig = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
+        loader: 'babel-loader'
+      },
+      {
+        test: /\.js$/,
+        // util、components、directives 模块需要 babel 处理
+        include: process.platform === 'win32' ? /node_modules\\(util|components|directives)\\/ : /node_modules\/(util|components|directives)\//,
         loader: 'babel-loader'
       },
       {

@@ -1,8 +1,8 @@
 import Vue from 'vue'
-import merge from 'utils/merge'
-import promisify from 'utils/promisify'
-import { isFunction } from 'utils/is'
-import { addPrefixToPath, injectOptionsToComponent } from './helpers'
+import merge from 'util/cheap-merge'
+import promisify from 'util/promisify'
+import isFunction from 'lodash/isFunction'
+import { addPrefixToPath, injectOptionsToComponent } from './util'
 
 /**
  * Vue mixins

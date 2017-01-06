@@ -26,10 +26,10 @@
 </template>
 
 <script>
+import tap from 'directives/tap'
 import CPane from 'components/core/pane'
 import CScroller from 'components/core/scroller'
 import CButton from 'components/core/button'
-import { mapGetters } from 'vuex'
 
 export default {
   data () {
@@ -50,7 +50,7 @@ export default {
     }
   },
 
-  computed: mapGetters(['transition']),
+  mapGetters: ['config/transition'],
 
   mounted () {
     this.height =
@@ -85,6 +85,10 @@ export default {
     CPane,
     CScroller,
     CButton
+  },
+
+  directives: {
+    tap
   }
 }
 </script>

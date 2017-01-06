@@ -1,8 +1,8 @@
 import { createAction, handleAction } from 'vuex-actions'
-import rnd from 'utils/rnd'
+import uniqueId from 'lodash/uniqueId'
 
 export default (context, { scope, lang, translations }) => {
-  const SET_I18N = rnd('SET_I18N')
+  const SET_I18N = uniqueId('SET_I18N')
 
   const state = { lang, translations }
 

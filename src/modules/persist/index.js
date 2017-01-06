@@ -1,6 +1,5 @@
 import createPersistedState from 'vuex-persistedstate'
 import createStorage from 'vuex-localstorage'
-import { ONE_WEEK } from 'utils/constants'
 
 /**
  * 数据持久化
@@ -13,7 +12,7 @@ export default ({ name, version }, options = {}) => {
     // initial state
   }, {
     // 数据保存一星期
-    expires: ONE_WEEK
+    expires: 7 * 24 * 60 * 60 * 1e3
   })
 
   // 只注册数据，不注册回调
