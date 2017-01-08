@@ -55,7 +55,8 @@ npm run push
   - [Vuex](https://github.com/vuejs/vuex)
   - [Vuex-Actions](https://github.com/weinot/vuex-actions) (for async actions)
   - [Vuex-LocalStorage](https://github.com/crossjs/vuex-localstorage) (for cache and persistence)
-  - [I18N](src/plugins/i18n)
+  - [Vuex-PersistedState](https://github.com/robinvdvleuten/vuex-persistedstate) (for cache and persistence)
+  - [I18n](src/plugins/i18n)
   - [Validator](src/plugins/validator)
 - Build
   - [Webpack](http://webpack.github.io/)

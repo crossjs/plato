@@ -26,7 +26,7 @@ export default (context, options = {}, register) => {
 
     // 此处需要优化 getters key 获取方法
     router.beforeEach((to, from, next) => {
-      if (to.matched.some(m => m.meta.auth) && !store.getters['core/authorized']) {
+      if (to.matched.some(m => m.meta.auth) && !store.getters[`${options.scope}/authorized`]) {
         next('/')
       } else {
         next()
