@@ -185,6 +185,9 @@ export function run (finale) {
       if (options) {
         const { scope, prefix } = options
         if (scope) {
+          if (scope === 'app') {
+            throw new Error(`Scope %c${scope}%c is protected.`, 'color: red', 'color: inherit')
+          }
           __PROD__ || console.log(`Module %c${scope}%c registered.`, 'color: green', 'color: inherit')
           store && registerModule(scope, store)
           routes && registerRoutes(scope, prefix, routes)

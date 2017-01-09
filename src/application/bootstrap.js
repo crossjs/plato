@@ -70,5 +70,6 @@ run(({ router, store }) => {
    */
 
   // mounting
+  // TODO 可以考虑移到 system 统一处理
   new Vue({ router, store, ...Root }).$mount('#app')
 })

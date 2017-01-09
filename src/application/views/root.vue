@@ -43,6 +43,11 @@ import CNavbar from '../components/navbar'
 import CRoute from '../components/route'
 
 export default {
+  // 默认配置
+  // TODO 可以考虑移到 system 统一处理
+  scope: 'app',
+  prefix: '/',
+
   mapGetters: [
     'core/routes',
     'config/progress',
