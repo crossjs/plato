@@ -16,20 +16,48 @@ import './mixins'
  */
 export const context = new Vue({
   data: {
+    // 全局配置项
+    name: 'PLATO',
+    version: '1.0',
+    element: '#app',
+    component: null,
+    scope: 'app',
+    prefix: '/',
+
     // for Vuex.Store
     modules: {},
     plugins: [],
+
     // for Vue-Router
     routes: [],
-    name: 'PLATO',
-    version: '1.0'
+
+    // Vuex.Store
+    store: null,
+
+    // Vue-Router
+    router: null
   }
 })
 
+/**
+ * 全局配置
+ * @param  {object} options 配置项
+ * {
+ *   name: 'PLATO',
+ *   version: '1.0',
+ *   element: '#app',
+ *   component: null,
+ *   scope: 'app',
+ *   prefix: '/',
+ * }
+ */
 export function configure (options) {
-  for (const i in options) {
-    context[i] = options[i]
-  }
+  Object.assign(context, options)
+}
+
+function mountComponentToElement () {
+  const { router, store, scope, prefix, element, component } = context
+  new Vue({ router, store, scope, prefix, ...component }).$mount(element)
 }
 
 /**
@@ -51,7 +79,7 @@ const middlewares = []
  */
 export function use (creator, options = {}) {
   if (typeof creator !== 'function') {
-    throw new Error('`creator` must be a function')
+    throw new Error('[PLATO] `creator` must be a function')
   }
   middlewares.push({ creator, options })
 }
@@ -135,13 +163,17 @@ export function run (finale) {
   }
 
   function done () {
-    __PROD__ || console.log('%c[PLATO] %cExecuting module callbacks', 'font-weight: bold', 'color: green; font-weight: bold')
+    __PROD__ || console.log('%c[PLATO] %cExecuting module callbacks',
+      'font-weight: bold', 'color: green; font-weight: bold')
 
     let callback
     // 执行回调函数队列
     while ((callback = callbacks.pop())) {
       callback(context)
     }
+
+    // 挂载
+    mountComponentToElement()
 
     if (finale) {
       finale(context)
@@ -163,8 +195,6 @@ export function run (finale) {
         .then(ret => register.apply(null, Array.isArray(ret) ? ret : [ret]))
       }
     } else {
-      __PROD__ || console.groupEnd()
-
       // 注册完毕
       done()
     }
@@ -185,27 +215,27 @@ export function run (finale) {
       if (options) {
         const { scope, prefix } = options
         if (scope) {
-          if (scope === 'app') {
-            throw new Error(`Scope %c${scope}%c is protected.`, 'color: red', 'color: inherit')
+          if (scope === context.scope) {
+            throw new Error(`[PLATO] Scope %c${scope}%c is protected.`, 'color: red', 'color: inherit')
           }
-          __PROD__ || console.log(`Module %c${scope}%c registered.`, 'color: green', 'color: inherit')
+          __PROD__ || console.log(`%c[PLATO]%c Module %c${scope}%c registered.`, 'font-weight: bold', 'color: inherit', 'color: green; font-weight: bold', 'color: inherit')
           store && registerModule(scope, store)
           routes && registerRoutes(scope, prefix, routes)
         } else {
           if (store || routes) {
-            __PROD__ || console.error('`options.scope` is required!')
+            __PROD__ || console.error('[PLATO] `options.scope` is required!')
           }
         }
         // plugins
         plugins && registerPlugins(scope, plugins)
       } else {
-        __PROD__ || console.error('`options` is required!')
+        __PROD__ || console.error('[PLATO] `options` is required!')
       }
     }
     next()
   }
 
-  __PROD__ || console.group('%c[PLATO] %cRegistering modules...', 'font-weight: bold', 'color: green; font-weight: bold')
+  __PROD__ || console.log('%c[PLATO]%c Registering modules...', 'font-weight: bold', 'color: green; font-weight: bold')
 
   // 执行模队列
   next()

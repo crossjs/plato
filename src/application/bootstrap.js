@@ -1,4 +1,3 @@
-import Vue from 'vue'
 import { configure, use, run } from 'system'
 
 import persist from 'modules/persist'
@@ -21,8 +20,10 @@ configure({
   // 项目名称
   name: 'PLATO',
   // 项目版本号
-  // 原则上做较大变更时需要更新
-  version: '1.0'
+  version: '1.0',
+  // 系统自动将 component 挂载到 element
+  element: '#app',
+  component: Root
 })
 
 /**
@@ -55,21 +56,18 @@ use(core)
  * Run Modules
  */
 
-run(({ router, store }) => {
-  __PROD__ || console.log('%c[PLATO] %cLet\'s go!', 'font-weight: bold', 'color: green; font-weight: bold')
-
-  router.afterEach(() => {
-    // 解决 iOS 焦点 BUG
-    if (document.activeElement && document.activeElement.nodeName !== 'BODY') {
-      document.activeElement.blur()
-    }
-  })
+run(({ router }) => {
+  __PROD__ || console.log('%c[PLATO] %cLet\'s go!',
+    'font-weight: bold', 'color: green; font-weight: bold')
 
   /**
    * Let's go!
    */
-
-  // mounting
-  // TODO 可以考虑移到 system 统一处理
-  new Vue({ router, store, ...Root }).$mount('#app')
+  router.afterEach(() => {
+    // 解决 iOS 焦点 BUG
+    const activeElement = document.activeElement
+    if (activeElement && activeElement.nodeName !== 'BODY') {
+      activeElement.blur()
+    }
+  })
 })

@@ -8,6 +8,8 @@ import createStorage from 'vuex-localstorage'
 export default ({ name, version }, options = {}) => {
   options = { scope: 'persist', ...options }
 
+  // 使用 name 与 version 做 key
+  // 避免可能的新旧版本间的数据冲突
   const storage = createStorage(`${name}@${version}`, {
     // initial state
   }, {

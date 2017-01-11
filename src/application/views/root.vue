@@ -14,6 +14,7 @@
       </div>
       <div id="history">
         <c-link v-tap @tap.native="_back">
+          <!-- 为了支持 rtl，这里使用向下的箭头通过旋转 90 度实现 -->
           <c-icon class="rotate90">chevron-down</c-icon>
         </c-link>
       </div>
@@ -43,11 +44,6 @@ import CNavbar from '../components/navbar'
 import CRoute from '../components/route'
 
 export default {
-  // 默认配置
-  // TODO 可以考虑移到 system 统一处理
-  scope: 'app',
-  prefix: '/',
-
   mapGetters: [
     'core/routes',
     'config/progress',
