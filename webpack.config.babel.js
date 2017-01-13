@@ -14,7 +14,13 @@ const webpackConfig = {
   target: 'web',
   resolve: {
     modules: [paths.src(), 'node_modules'],
-    extensions: ['.css', '.js', '.json', '.vue']
+    extensions: ['.css', '.js', '.json', '.vue'],
+    alias: {
+      components: 'plato-components',
+      directives: 'plato-directives',
+      system: 'plato-system',
+      util: 'plato-util'
+    }
   },
   node: {
     fs: 'empty',
@@ -79,13 +85,8 @@ const webpackConfig = {
       },
       {
         test: /\.js$/,
-        exclude: /node_modules/,
-        loader: 'babel-loader'
-      },
-      {
-        test: /\.js$/,
-        // util、components、directives 模块需要 babel 处理
-        include: process.platform === 'win32' ? /node_modules\\(util|components|directives|system)\\/ : /node_modules\/(util|components|directives|system)\//,
+        // util、components、directives、system 模块需要 babel 处理
+        exclude: /node_modules[/\\](?!plato-)/,
         loader: 'babel-loader'
       },
       {

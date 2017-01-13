@@ -46,7 +46,7 @@
 <script>
 import CRow from 'components/core/row'
 import CCol from 'components/core/col'
-import CPaginator from 'components/paginator'
+import CPaginator from 'components/misc/paginator'
 
 export default {
   components: {

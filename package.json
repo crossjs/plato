@@ -1,6 +1,6 @@
 {
   "name": "PLATO",
-  "version": "3.0.0-beta",
+  "version": "3.0.0-beta.1",
   "description": "a Boilerplate for mobile SPAs use vue, vuex, vue-router",
   "license": "MIT",
   "main": "src/index.js",
@@ -24,13 +24,13 @@
     "push": "bash ./cli/push.sh"
   },
   "dependencies": {
-    "components": "crossjs/components",
-    "directives": "crossjs/directives",
     "lodash": "^4.17.4",
     "nuo": "^1.0.0",
+    "plato-components": "^3.0.0-beta.3",
+    "plato-directives": "^3.0.0-beta.4",
+    "plato-system": "^3.0.0-beta.2",
+    "plato-util": "^3.0.0-beta.4",
     "string-template": "^1.0.0",
-    "system": "crossjs/system",
-    "util": "crossjs/util",
     "vue": "^2.1.8",
     "vue-router": "^2.1.1",
     "vuex": "^2.1.1",
@@ -42,8 +42,8 @@
   },
   "devDependencies": {
     "babel-loader": "^6.2.10",
-    "babel-plugin-__coverage__": "^11.0.0",
     "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-plugin-istanbul": "^3.1.2",
     "babel-preset-es2015": "^6.18.0",
     "babel-preset-stage-0": "^6.16.0",
     "babel-register": "^6.18.0",

@@ -20,7 +20,7 @@
 <script>
 import CPane from 'components/core/pane'
 import CIcon from 'components/core/icon'
-import CUploader from 'components/uploader'
+import CUploader from 'components/misc/uploader'
 
 export default {
   data () {

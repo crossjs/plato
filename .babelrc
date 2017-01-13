@@ -17,7 +17,7 @@
       ],
       "plugins": [
         "add-module-exports",
-        ["__coverage__", { "ignore": "test/" }]
+        "istanbul"
       ],
       "comments": false
     },

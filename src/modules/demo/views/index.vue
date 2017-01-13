@@ -106,7 +106,7 @@
           </c-col>
         </c-row>
       </div>
-      <h3>Others</h3>
+      <h3>Misc</h3>
       <div class="v-demo-section">
         <c-row :link="true">
           <c-col>
