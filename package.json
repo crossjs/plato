@@ -24,13 +24,13 @@
     "push": "bash ./cli/push.sh"
   },
   "dependencies": {
-    "components": "git+ssh://git@git.sdp.nd/plato/components.git#0.0.1",
-    "directives": "git+ssh://git@git.sdp.nd/plato/directives.git#0.0.1",
+    "components": "crossjs/components",
+    "directives": "crossjs/directives",
     "lodash": "^4.17.4",
     "nuo": "^1.0.0",
     "string-template": "^1.0.0",
-    "system": "git+ssh://git@git.sdp.nd/plato/system.git#0.0.1",
-    "util": "git+ssh://git@git.sdp.nd/plato/util.git#0.0.1",
+    "system": "crossjs/system",
+    "util": "crossjs/util",
     "vue": "^2.1.8",
     "vue-router": "^2.1.1",
     "vuex": "^2.1.1",
