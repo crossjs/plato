@@ -85,7 +85,7 @@ const webpackConfig = {
       {
         test: /\.js$/,
         // util、components、directives 模块需要 babel 处理
-        include: process.platform === 'win32' ? /node_modules\\(util|components|directives)\\/ : /node_modules\/(util|components|directives)\//,
+        include: process.platform === 'win32' ? /node_modules\\(util|components|directives|system)\\/ : /node_modules\/(util|components|directives|system)\//,
         loader: 'babel-loader'
       },
       {
