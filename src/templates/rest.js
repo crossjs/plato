@@ -2,29 +2,26 @@ import { createAction, handleAction, $inject } from 'vuex-actions'
 import Normalizer from 'util/normalizer'
 import { get, post, patch, put, del } from 'util/request'
 import merge from 'util/cheap-merge'
-import uniqueId from 'lodash/uniqueId'
 
 /**
  * Template for standard REST
  *
- * @param  {String} namespace    命名空间，用于生成 actions 与持久化
  * @param  {String} source       REST 的 source
  * @param  {Object} getters      Vuex 的 getters
  * @param  {Object} options      Request 的默认配置
  * @return {Object}              Vuex 的 module
  */
 export default ({
-    namespace = '',
     source,
     initialState,
     getters,
     ...options }) => {
-  const LIST = uniqueId('LIST')
-  const POST = uniqueId('POST')
-  const DELETE = uniqueId('DELETE')
-  const PATCH = uniqueId('PATCH')
-  const PUT = uniqueId('PUT')
-  const GET = uniqueId('GET')
+  const LIST = 'LIST'
+  const POST = 'POST'
+  const DELETE = 'DELETE'
+  const PATCH = 'PATCH'
+  const PUT = 'PUT'
+  const GET = 'GET'
 
   const REST = {
     list (query) {

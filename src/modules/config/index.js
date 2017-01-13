@@ -10,9 +10,8 @@ export default (context, options = {}) => {
     routes: createRoutes(options),
     options
   }, ({ store, router }) => {
-    // vuex plugin
     // 实现进度条、错误提示
-    // 另一种插件的实现方式，参见 src/modules/persist/index.js
+    // Vuex 插件的另一种实现方式，参见 src/modules/persist/index.js
     store.subscribe(({ payload }) => {
       if (!payload || !payload.__status__) {
         return

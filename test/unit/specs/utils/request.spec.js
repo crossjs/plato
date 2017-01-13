@@ -1,4 +1,4 @@
-import request from 'utils/request'
+import request from 'util/request'
 
 const headers = {
   'Content-Type': 'application/json'
@@ -9,7 +9,6 @@ describe('request', () => {
     beforeEach(() => {
       sinon.stub(window, 'fetch')
       window.fetch
-        // .withArgs(...)
         .returns(Promise.resolve(new window.Response('{"hello":"world"}', {
           status: 200,
           headers
@@ -41,7 +40,6 @@ describe('request', () => {
 
     it('404', done => {
       window.fetch
-        // .withArgs(...)
         .returns(Promise.resolve(new window.Response('Not Found', {
           status: 404,
           statusText: 'Not Found'
@@ -56,7 +54,6 @@ describe('request', () => {
 
     it('404 with json', done => {
       window.fetch
-        // .withArgs(...)
         .returns(Promise.resolve(new window.Response('{"hello":"world"}', {
           status: 404,
           headers
@@ -71,7 +68,6 @@ describe('request', () => {
 
     it('403 with json', done => {
       window.fetch
-        // .withArgs(...)
         .returns(Promise.resolve(new window.Response('{"hello":"world"}', {
           status: 403,
           headers
@@ -89,7 +85,6 @@ describe('request', () => {
     beforeEach(() => {
       sinon.stub(window, 'fetch')
       window.fetch
-        // .withArgs(...)
         .returns(Promise.resolve(new window.Response('{"hello":"world"}', {
           status: 200,
           headers
@@ -115,7 +110,7 @@ describe('request', () => {
 
     it('should promisify options', done => {
       request('a', {
-        mutate (options) {
+        mutator (options) {
           return options
         }
       }).finally(done)
@@ -123,7 +118,7 @@ describe('request', () => {
 
     it('should promisify options 2', done => {
       request('a', {
-        mutate () {
+        mutator () {
           return true
         }
       }).finally(done)
@@ -131,7 +126,7 @@ describe('request', () => {
 
     it('should promisify options 3', done => {
       request('a', {
-        mutate () {
+        mutator () {
           return false
         }
       }).finally(done)
@@ -140,7 +135,7 @@ describe('request', () => {
     it('should translate arguments', done => {
       let url
       request('a', {
-        mutate (options) {
+        mutator (options) {
           url = options.url
           return Promise.resolve({})
         }
@@ -150,12 +145,12 @@ describe('request', () => {
       })
     })
 
-    it('should NOT has question mark', done => {
+    it('should NOT have question mark', done => {
       let url
       request({
         url: 'a',
         query: {},
-        mutate (options) {
+        mutator (options) {
           url = options.url
           return Promise.resolve({})
         }
@@ -172,7 +167,7 @@ describe('request', () => {
         query: {
           x: 1
         },
-        mutate (options) {
+        mutator (options) {
           url = options.url
           return Promise.resolve({})
         }
@@ -189,7 +184,7 @@ describe('request', () => {
         query: {
           x: 1
         },
-        mutate (options) {
+        mutator (options) {
           url = options.url
           return Promise.resolve({})
         }
@@ -206,7 +201,7 @@ describe('request', () => {
         params: {
           x: 1
         },
-        mutate (options) {
+        mutator (options) {
           url = options.url
           return Promise.resolve({})
         }
@@ -223,7 +218,7 @@ describe('request', () => {
         body: {
           x: 1
         },
-        mutate (options) {
+        mutator (options) {
           url = options.url
           body = options.body
           return Promise.resolve({})
@@ -243,7 +238,7 @@ describe('request', () => {
         body: {
           x: 1
         },
-        mutate (options) {
+        mutator (options) {
           url = options.url
           body = options.body
           return Promise.resolve({})
@@ -262,7 +257,7 @@ describe('request', () => {
         body: {
           x: 1
         },
-        mutate (options) {
+        mutator (options) {
           body = options.body
           return Promise.resolve({})
         }

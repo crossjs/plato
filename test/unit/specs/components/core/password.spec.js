@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import CPassword from 'components/core/password'
-import tap from 'application/directives/tap'
+import tap from 'directives/tap'
 
 Vue.directive('tap', tap)
 

@@ -8,6 +8,10 @@ import createStorage from 'vuex-localstorage'
 export default ({ name, version }, options = {}) => {
   options = { scope: 'persist', ...options }
 
+  // persistedstate 使用 localStorage，
+  // 但是没有设置数据有效期，
+  // 所以这里引入 vuex-localstorage
+
   // 使用 name 与 version 做 key
   // 避免可能的新旧版本间的数据冲突
   const storage = createStorage(`${name}@${version}`, {
@@ -27,5 +31,5 @@ export default ({ name, version }, options = {}) => {
     options
   }
 
-  // 另一种实现方式，参见 src/module/config/index.js
+  // Vuex 插件的另一种实现方式，参见 src/module/config/index.js
 }

@@ -3,11 +3,10 @@ import CopyWebpackPlugin from 'copy-webpack-plugin'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import FaviconsWebpackPlugin from 'favicons-webpack-plugin'
-import _debug from 'debug'
 import config, { paths } from './config'
 
 const { __DEV__, __PROD__, __TEST__ } = config.globals
-const debug = _debug('PLATO:webpack')
+const debug = require('debug')('PLATO:webpack')
 
 debug('Create configuration.')
 
@@ -39,7 +38,7 @@ const webpackConfig = {
   },
   entry: {
     app: [
-      // load the specific polyfills
+      // 加载 polyfills
       paths.src('polyfills/index.js'),
       paths.src('index.js')],
     vendor: config.compiler_vendor
@@ -210,7 +209,7 @@ if (__PROD__) {
   debug('Enable plugins for live development (HMR, NoErrors).')
   webpackConfig.plugins.push(
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
     new webpack.LoaderOptionsPlugin({
       debug: true,
       options: {

@@ -12,7 +12,6 @@ describe('tap', () => {
   })
 
   afterEach(() => {
-    // document.body.removeChild(el)
     vm.$destroy()
   })
 

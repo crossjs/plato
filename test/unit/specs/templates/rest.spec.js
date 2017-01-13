@@ -1,12 +1,8 @@
 import template from 'templates/rest'
-import { ONE_MINUTE } from 'utils/constants'
 
 describe('rest', () => {
   const mod = template({
-    namespace: 'test',
     source: 'will-be-404',
-    expires: ONE_MINUTE,
-    memcache: ONE_MINUTE / 6, // cache for ten seconds
     initialState: {
       test: 'test'
     },

@@ -38,7 +38,11 @@ export default (context, options = {}) => {
             this.setI18n({ translations })
           })
           .catch(() => {
-            this.fetchTranslations(fallbackLang)
+            if (this.fallbackEnabled) {
+              // 确保只执行一次，避免无限循环
+              this.fallbackEnabled = false
+              this.fetchTranslations(fallbackLang)
+            }
           })
         }
       },
@@ -48,6 +52,7 @@ export default (context, options = {}) => {
         }
       },
       created () {
+        this.fallbackEnabled = true
         this.fetchTranslations(this.lang)
       }
     })
@@ -61,7 +66,8 @@ export default (context, options = {}) => {
       }
       let scope
       let keyArray
-      // searching at global or local
+      // 以 `/` 开头，说明是从全局里查找匹配
+      // 否则，从当前 scope 里查找匹配
       if (keys.charAt(0) === '/') {
         const arr = keys.split('.')
         scope = arr[0].slice(1)
@@ -70,7 +76,7 @@ export default (context, options = {}) => {
         scope = this.$scope
         keyArray = keys.split('.')
       }
-      // `.` 作为分隔符
+      // keys 以 `.` 作为分隔符
       return template(keyArray.reduce((res, key) => {
         if (res && typeof res === 'object' && res.hasOwnProperty(key)) {
           return res[key]

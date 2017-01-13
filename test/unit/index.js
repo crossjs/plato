@@ -1,16 +1,6 @@
-// ---------------------------------------
-// Test Environment Setup
-// ---------------------------------------
 import chai from 'chai'
 import sinonChai from 'sinon-chai'
 import { triggerHTMLEvents, triggerMouseEvents, triggerTouchEvents } from './utils'
-
-import Vue from 'vue'
-import tap from 'application/directives/tap'
-import drag from 'application/directives/drag'
-
-Vue.directive('tap', tap)
-Vue.directive('drag', drag)
 
 localStorage.clear()
 
@@ -26,21 +16,12 @@ global.expect = chai.expect
 document.body.style.margin = '0px'
 document.body.style.padding = '0px'
 
-// ---------------------------------------
-// Require Tests
-// ---------------------------------------
-// for use with karma-webpack-with-fast-source-maps
-const __karmaWebpackManifest__ = [] // eslint-disable-line
-const inManifest = path => ~__karmaWebpackManifest__.indexOf(path)
-
-// require all `**/*.spec.js`
+// require all test files (files that ends with .spec.js)
 const testsContext = require.context('./', true, /\.spec\.js$/)
+testsContext.keys().forEach(testsContext)
 
-// only run tests that have changed after the first pass.
-const testsToRun = testsContext.keys().filter(inManifest)
-;(testsToRun.length ? testsToRun : testsContext.keys()).forEach(testsContext)
-
-// require `src/**/*.(js|vue)` (for coverage reporting)
-const componentsContext = require.context('../../src/', true, /^((?!index|application|assets|modules|static|system|templates|utils).)*\.(js|vue)$/)
-
+// require all src files except index.js for coverage.
+// you can also change this to match only the subset of files that
+// you want coverage for.
+const componentsContext = require.context('../../src/', true, /^templates\/.*\.(js|vue)$/)
 componentsContext.keys().forEach(componentsContext)
