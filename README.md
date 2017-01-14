@@ -50,14 +50,21 @@ npm run push
 ## Features
 
 - Core
-  - [Vue](https://github.com/vuejs/vue)
-  - [Vue-Router](https://github.com/vuejs/vue-router)
-  - [Vuex](https://github.com/vuejs/vuex)
-  - [Vuex-Actions](https://github.com/weinot/vuex-actions) (for async actions)
-  - [Vuex-PersistedState](https://github.com/robinvdvleuten/vuex-persistedstate) (for data persistence)
-  - [Vuex-LocalStorage](https://github.com/crossjs/vuex-localstorage) (for cache and persistence)
-  - [I18n](src/modules/i18n)
-  - [Validator](src/modules/validator)
+  - [system](https://github.com/crossjs/system)
+  - [util](https://github.com/crossjs/util)
+  - [components](https://github.com/crossjs/components)
+  - [directives](https://github.com/crossjs/directives)
+  - Vue
+    - [Vue](https://github.com/vuejs/vue)
+    - [Vue-Router](https://github.com/vuejs/vue-router)
+    - [Vuex](https://github.com/vuejs/vuex)
+    - [Vuex-Actions](https://github.com/weinot/vuex-actions) (for async actions)
+    - [Vuex-PersistedState](https://github.com/robinvdvleuten/vuex-persistedstate) (for data persistence)
+    - [Vuex-LocalStorage](https://github.com/crossjs/vuex-localstorage) (for cache and persistence)
+  - Modules
+    - [I18n](src/modules/i18n)
+    - [Persist](src/modules/persist)
+    - [Validator](src/modules/validator)
 - Build
   - [Webpack](http://webpack.github.io/)
 - Linters
@@ -97,7 +104,7 @@ npm run push
   - [x] Spinner
   - [x] Swiper
   - [x] Toast
-- Others
+- Misc
   - [x] Paginator
   - [x] Uploader
 
