@@ -1,16 +1,16 @@
 <p align="center">
   <img src="https://cdn.rawgit.com/crossjs/plato/master/src/assets/logo.svg" alt="PLATO"><br>
-  <sub>Based on Vue 2.0</sub>
+  <sub>Based on Vue 2.x</sub>
 </p>
 <p align="center">
-  <a href="https://travis-ci.org/crossjs/plato"><img src="https://img.shields.io/travis/crossjs/plato/dev.svg?style=flat-square" alt="Travis"></a>
-  <a href="https://coveralls.io/github/crossjs/plato"><img src="https://img.shields.io/coveralls/crossjs/plato/dev.svg?style=flat-square" alt="Coveralls"></a>
-  <a href="https://david-dm.org/crossjs/plato"><img src="https://img.shields.io/david/crossjs/plato.svg?style=flat-square" alt="dependencies"></a>
-  <a href="https://david-dm.org/crossjs/plato?type=dev"><img src="https://img.shields.io/david/dev/crossjs/plato.svg?style=flat-square" alt="devDependency Status"></a>
+  <a href="https://travis-ci.org/crossjs/plato"><img src="https://img.shields.io/travis/crossjs/plato.svg?style=flat-square" alt="Travis"></a>
+  <a href="https://coveralls.io/github/crossjs/plato"><img src="https://img.shields.io/coveralls/crossjs/plato.svg?style=flat-square" alt="Coveralls"></a>
+  <a href="https://david-dm.org/crossjs/plato"><img src="https://img.shields.io/david/crossjs/plato.svg?style=flat-square" alt="dependencies Status"></a>
+  <a href="https://david-dm.org/crossjs/plato?type=dev"><img src="https://img.shields.io/david/dev/crossjs/plato.svg?style=flat-square" alt="devDependencies Status"></a>
 </p>
 <p align="center">
-  a Boilerplate for mobile SPAs use vue, vuex, vue-router<br>
-  Check out <a href="http://plato.crossjs.com/#/demo"><b>Demonstrations</b></a> and <a href="src/components/README.md"><b>README</b></a> for UI Components
+  a Boilerplate for [mobile] SPAs using vue, vuex, vue-router<br>
+  Check out <a href="http://plato.crossjs.com/#/demo"><b>Demonstrations</b></a> and UI <a href="https://github.com/crossjs/components"><b>Components</b></a>
 </p>
 <p align="center">
   <img src="doc/src.png" alt="Structure of src">
@@ -54,10 +54,10 @@ npm run push
   - [Vue-Router](https://github.com/vuejs/vue-router)
   - [Vuex](https://github.com/vuejs/vuex)
   - [Vuex-Actions](https://github.com/weinot/vuex-actions) (for async actions)
+  - [Vuex-PersistedState](https://github.com/robinvdvleuten/vuex-persistedstate) (for data persistence)
   - [Vuex-LocalStorage](https://github.com/crossjs/vuex-localstorage) (for cache and persistence)
-  - [Vuex-PersistedState](https://github.com/robinvdvleuten/vuex-persistedstate) (for cache and persistence)
-  - [I18n](src/plugins/i18n)
-  - [Validator](src/plugins/validator)
+  - [I18n](src/modules/i18n)
+  - [Validator](src/modules/validator)
 - Build
   - [Webpack](http://webpack.github.io/)
 - Linters
@@ -111,6 +111,16 @@ $ vue init crossjs/plato#template <project-name>
 ```
 
 ## Browser Support
+
+### Framework
+
+- IE 9+
+- Chrome
+- Safari
+- Firefox
+- ...
+
+### UI Components
 
 - Android 4+
 - iOS 7+
