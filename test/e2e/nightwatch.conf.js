@@ -1,4 +1,7 @@
 // http://nightwatchjs.org/guide#settings-file
+
+const seleniumVersion = require('selenium-server/package.json').version
+
 module.exports = {
   'src_folders': ['test/e2e/specs'],
   'output_folder': 'test/e2e/reports',
@@ -6,7 +9,7 @@ module.exports = {
 
   'selenium': {
     'start_process': true,
-    'server_path': 'node_modules/selenium-server/lib/runner/selenium-server-standalone-2.53.1.jar',
+    'server_path': `node_modules/selenium-server/lib/runner/selenium-server-standalone-${seleniumVersion}.jar`,
     'host': '127.0.0.1',
     'port': 4444,
     'cli_args': {
