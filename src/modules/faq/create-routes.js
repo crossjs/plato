@@ -3,7 +3,7 @@ export default () => {
     {
       path: '/',
       exact: true,
-      component: () => System.import('./views/index')
+      component: () => import('./views/index')
     },
     {
       path: '/create',
@@ -11,7 +11,7 @@ export default () => {
         auth: true,
         icon: 'plus'
       },
-      component: () => System.import('./views/create')
+      component: () => import('./views/create')
     }
   ]
 }

@@ -5,7 +5,7 @@ export default () => {
       meta: {
         icon: 'question'
       },
-      component: () => System.import('./views/index')
+      component: () => import('./views/index')
     }
   ]
 }

@@ -6,7 +6,7 @@ export default () => {
         icon: 'lock',
         auth: false
       },
-      component: () => System.import('./views/login')
+      component: () => import('./views/login')
     },
     {
       path: '/logout',
@@ -14,7 +14,7 @@ export default () => {
         icon: 'lock',
         auth: true
       },
-      component: () => System.import('./views/logout')
+      component: () => import('./views/logout')
     }
   ]
 }

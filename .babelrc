@@ -6,7 +6,8 @@
         "stage-0"
       ],
       "plugins": [
-        "add-module-exports"
+        "add-module-exports",
+        "dynamic-import-webpack"
       ],
       "comments": false
     },
@@ -17,6 +18,7 @@
       ],
       "plugins": [
         "add-module-exports",
+        "dynamic-import-webpack",
         "istanbul"
       ],
       "comments": false
@@ -27,7 +29,8 @@
         "stage-0"
       ],
       "plugins": [
-        "add-module-exports"
+        "add-module-exports",
+        "dynamic-import-webpack"
       ],
       "comments": false
     }
