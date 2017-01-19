@@ -90,10 +90,6 @@ const webpackConfig = {
         loader: 'babel-loader'
       },
       {
-        test: /\.json$/,
-        loader: 'json-loader'
-      },
-      {
         test: /\.html$/,
         loader: 'vue-html-loader'
       },
