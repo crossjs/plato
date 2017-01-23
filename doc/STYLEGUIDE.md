@@ -17,6 +17,7 @@
 1. [使用简写语法](#user-content-使用简写语法)
 1. [遵循组合优于继承的原则](#user-content-遵循组合优于继承的原则)
 1. [使用 normalizr 优化数据](#user-content-使用-normalizr-优化数据)
+1. [避免滥用响应式](#避免滥用响应式)
 
 ## 优先使用 ES 6/7 语法
 
@@ -308,3 +309,7 @@ export default {
 ## 使用 normalizr 优化数据
 
   - 对于大型项目，应考虑使用 [normalizr](https://github.com/paularmstrong/normalizr) 优化数据，或简单地使用 `src/application/utils/normalizer`
+
+## 避免滥用响应式
+
+  - 如果数据是不需要响应式的，就不要在 data 里定义
