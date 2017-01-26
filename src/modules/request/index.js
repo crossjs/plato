@@ -20,13 +20,5 @@ export default ({ name, version }, options = {}) => {
     }
   })
 
-  // 只注册回调，不注册数据
-  // return ({ name, version }) => {
-  //   configure({
-  //     mutator (options) {
-  //       options.headers['Who-Am-I'] = `${name}@${version}`
-  //       return options
-  //     }
-  //   })
-  // }
+  // 不返回任何值
 }
