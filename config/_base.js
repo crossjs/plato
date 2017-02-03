@@ -1,12 +1,17 @@
 import { resolve } from 'path'
 import _debug from 'debug'
 
+const NODE_ENV = process.env.NODE_ENV || 'development'
+
 const debug = _debug('PLATO:config:base')
+const pkg = require('../package.json')
 
 const config = {
-  env: process.env.NODE_ENV || 'development',
+  env: NODE_ENV,
 
-  pkg: require('../package.json'),
+  name: pkg.name,
+  version: pkg.version,
+  description: pkg.description,
 
   // ----------------------------------
   // Project Structure
@@ -37,19 +42,17 @@ const config = {
     'vuex-localstorage',
     'vuex-persistedstate',
     'vuex-router-sync'
-  ]
-}
+  ],
 
-// ------------------------------------
-// Environment
-// ------------------------------------
-config.globals = {
-  'process.env': {
-    NODE_ENV: JSON.stringify(config.env)
-  },
-  __DEV__: config.env === 'development',
-  __PROD__: config.env === 'production',
-  __TEST__: config.env === 'test'
+  // ------------------------------------
+  // Environment
+  // ------------------------------------
+  globals: {
+    'process.env.NODE_ENV': JSON.stringify(NODE_ENV),
+    __DEV__: NODE_ENV === 'development',
+    __PROD__: NODE_ENV === 'production',
+    __TEST__: NODE_ENV === 'test'
+  }
 }
 
 // ------------------------------------
@@ -57,7 +60,7 @@ config.globals = {
 // ------------------------------------
 config.compiler_vendor = config.compiler_vendor
   .filter(dep => {
-    if (config.pkg.dependencies.hasOwnProperty(dep)) {
+    if (pkg.dependencies.hasOwnProperty(dep)) {
       return true
     }
 

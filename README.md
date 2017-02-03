@@ -13,7 +13,7 @@
   Check out <a href="http://plato.crossjs.com/#/demo"><b>Demonstrations</b></a> and UI <a href="https://github.com/crossjs/components"><b>Components</b></a>
 </p>
 <p align="center">
-  <img src="doc/src.png" alt="Structure of src">
+  <img src="doc/DESIGN.png" alt="Framework Design">
 </p>
 
 ## Usage

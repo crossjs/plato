@@ -116,7 +116,7 @@ const webpackConfig = {
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: paths.src('index.ejs'),
-      title: `${config.pkg.name} - ${config.pkg.description}`,
+      title: `${config.name} - ${config.description}`,
       hash: false,
       inject: true,
       minify: {
