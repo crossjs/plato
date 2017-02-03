@@ -1,11 +1,9 @@
 import { createAction, handleAction } from 'vuex-actions'
 
-export default ({ version, modules, routes }, { scope }) => {
+export default ({ routes }, { scope }) => {
   const SET_CORE = 'SET_CORE'
 
-  // 将相同 scope 的模块合并
-  // 一般情况下要避免此种情况发生，因为会使模块混乱，难于维护
-  const store = modules[scope] || {}
+  const store = {}
 
   const state = {
     authorized: false,

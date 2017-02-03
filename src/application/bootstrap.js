@@ -1,5 +1,6 @@
 import { configure, use, run } from 'system'
 
+import logger from 'modules/logger'
 import persist from 'modules/persist'
 import request from 'modules/request'
 import i18n from 'modules/i18n'
@@ -31,8 +32,13 @@ configure({
  */
 
 /**
- * 被依赖的模块，移除可能会影响部分功能
+ * 调试相关
  */
+__DEV__ && use(logger)
+
+/**
+* 被依赖的模块，移除可能会影响部分功能
+*/
 use(persist)
 use(request)
 use(i18n)
@@ -48,7 +54,7 @@ use(demo, { prefix: 'demo' })
 use(about, { prefix: 'about' })
 
 /**
- * 核心模块，不能移除
+ * 核心模块，路由与鉴权
  */
 use(core)
 

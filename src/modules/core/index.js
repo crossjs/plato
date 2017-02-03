@@ -1,7 +1,4 @@
-import { sync } from 'vuex-router-sync'
 import createStore from './create-store'
-import createVuexStore from './create-vuex-store'
-import createRouter from './create-router'
 
 export default (context, options = {}, register) => {
   // 合并配置项
@@ -15,14 +12,7 @@ export default (context, options = {}, register) => {
     options
   }, context => {
     // 模块注册完成后的回调
-    const { modules, plugins, routes } = context
-
-    // inject store and router
-    const store = context.store = createVuexStore(modules, plugins)
-    const router = context.router = createRouter(routes)
-
-    // keep vue-router and vuex store in sync.
-    sync(store, router)
+    const { store, router } = context
 
     // 此处需要优化 getters key 获取方法
     router.beforeEach((to, from, next) => {
