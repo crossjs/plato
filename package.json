@@ -1,6 +1,6 @@
 {
   "name": "PLATO",
-  "version": "3.0.0-beta.5",
+  "version": "3.0.0-beta.6",
   "description": "a Boilerplate for [mobile] SPAs use vue, vuex, vue-router",
   "license": "MIT",
   "main": "src/index.js",
@@ -26,8 +26,8 @@
   "dependencies": {
     "lodash": "^4.17.4",
     "nuo": "^1.0.0",
-    "plato-components": "^3.0.0-beta.5",
-    "plato-directives": "^3.0.0-beta.5",
+    "plato-components": "^3.0.0-beta.7",
+    "plato-directives": "^3.0.0-beta.6",
     "plato-system": "^3.0.0-beta.5",
     "plato-util": "^3.0.0-beta.4",
     "string-template": "^1.0.0",

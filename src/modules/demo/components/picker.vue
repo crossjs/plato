@@ -105,6 +105,12 @@ export default {
     }
   },
 
+  watch: {
+    dateMax (val) {
+      this.date = Math.min(val - 1, this.date)
+    }
+  },
+
   components: {
     CPane,
     CCol,
