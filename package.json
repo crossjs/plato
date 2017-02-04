@@ -28,7 +28,7 @@
     "nuo": "^1.0.0",
     "plato-components": "^3.0.0-beta.5",
     "plato-directives": "^3.0.0-beta.5",
-    "plato-system": "^3.0.0-beta.4",
+    "plato-system": "^3.0.0-beta.5",
     "plato-util": "^3.0.0-beta.4",
     "string-template": "^1.0.0",
     "vue": "^2.1.10",

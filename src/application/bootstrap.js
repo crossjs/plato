@@ -37,9 +37,9 @@ configure({
 __DEV__ && use(logger)
 
 /**
-* 被依赖的模块，移除可能会影响部分功能
+* 被依赖的模块
+* 移除可能会影响部分功能
 */
-use(persist)
 use(request)
 use(i18n)
 use(validator)
@@ -54,9 +54,11 @@ use(demo, { prefix: 'demo' })
 use(about, { prefix: 'about' })
 
 /**
- * 核心模块，路由与鉴权
+ * 核心模块
+ * 路由与鉴权，以及持久化
  */
 use(core)
+use(persist)
 
 /**
  * Run Modules
