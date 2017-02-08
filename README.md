@@ -1,16 +1,16 @@
 <p align="center">
-  <img src="https://cdn.rawgit.com/crossjs/plato/master/src/assets/logo.svg" alt="PLATO"><br>
+  <img src="https://cdn.rawgit.com/platojs/plato/master/src/assets/logo.svg" alt="PLATO"><br>
   <sub>Based on Vue 2.x</sub>
 </p>
 <p align="center">
-  <a href="https://travis-ci.org/crossjs/plato"><img src="https://img.shields.io/travis/crossjs/plato.svg?style=flat-square" alt="Travis"></a>
-  <a href="https://coveralls.io/github/crossjs/plato"><img src="https://img.shields.io/coveralls/crossjs/plato.svg?style=flat-square" alt="Coveralls"></a>
-  <a href="https://david-dm.org/crossjs/plato"><img src="https://img.shields.io/david/crossjs/plato.svg?style=flat-square" alt="dependencies Status"></a>
-  <a href="https://david-dm.org/crossjs/plato?type=dev"><img src="https://img.shields.io/david/dev/crossjs/plato.svg?style=flat-square" alt="devDependencies Status"></a>
+  <a href="https://travis-ci.org/platojs/plato"><img src="https://img.shields.io/travis/platojs/plato.svg?style=flat-square" alt="Travis"></a>
+  <a href="https://coveralls.io/github/platojs/plato"><img src="https://img.shields.io/coveralls/platojs/plato.svg?style=flat-square" alt="Coveralls"></a>
+  <a href="https://david-dm.org/platojs/plato"><img src="https://img.shields.io/david/platojs/plato.svg?style=flat-square" alt="dependencies Status"></a>
+  <a href="https://david-dm.org/platojs/plato?type=dev"><img src="https://img.shields.io/david/dev/platojs/plato.svg?style=flat-square" alt="devDependencies Status"></a>
 </p>
 <p align="center">
   a Boilerplate for [mobile] SPAs using vue, vuex, vue-router<br>
-  Check out <a href="http://plato.crossjs.com/#/demo"><b>Demonstrations</b></a> and UI <a href="https://github.com/crossjs/components"><b>Components</b></a>
+  Check out <a href="http://plato.crossjs.com/#/demo"><b>Demonstrations</b></a> and UI <a href="https://github.com/platojs/components"><b>Components</b></a>
 </p>
 <p align="center">
   <img src="doc/DESIGN.png" alt="Framework Design">
@@ -50,10 +50,10 @@ npm run push
 ## Features
 
 - Core
-  - [system](https://github.com/crossjs/system)
-  - [util](https://github.com/crossjs/util)
-  - [components](https://github.com/crossjs/components)
-  - [directives](https://github.com/crossjs/directives)
+  - [system](https://github.com/platojs/system)
+  - [util](https://github.com/platojs/util)
+  - [components](https://github.com/platojs/components)
+  - [directives](https://github.com/platojs/directives)
   - Vue
     - [Vue](https://github.com/vuejs/vue)
     - [Vue-Router](https://github.com/vuejs/vue-router)
@@ -134,7 +134,7 @@ $ vue init crossjs/plato#template <project-name>
 
 ## Changelog
 
-Detailed changes for each release are documented in the [release notes](https://github.com/crossjs/plato/releases).
+Detailed changes for each release are documented in the [release notes](https://github.com/platojs/plato/releases).
 
 ## Appendix
 
