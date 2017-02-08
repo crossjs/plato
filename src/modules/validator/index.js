@@ -2,9 +2,7 @@ import Vue from 'vue'
 import * as rules from './rules'
 import promisify from 'util/promisify'
 
-export default (context, options = {}) => {
-  // options = { scope: 'validator', prefix: '/', ...options }
-
+export default () => {
   // 只注册回调，不注册数据
   return () => {
     Vue.mixin({

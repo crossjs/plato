@@ -2,7 +2,7 @@ import createStore from './create-store'
 
 export default (context, options = {}, register) => {
   // 合并配置项
-  options = { scope: 'core', prefix: '/', ...options }
+  options = { scope: 'core', ...options }
 
   // 注册 store
   // 同时传入配置项

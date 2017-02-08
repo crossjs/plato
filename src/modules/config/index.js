@@ -2,7 +2,7 @@ import createStore from './create-store'
 import createRoutes from './create-routes'
 
 export default (context, options = {}) => {
-  options = { scope: 'config', prefix: '/', ...options }
+  options = { scope: 'config', prefix: 'config', ...options }
 
   // data, and callback
   return [{

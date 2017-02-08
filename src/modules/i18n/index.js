@@ -6,7 +6,6 @@ import createStore from './create-store'
 export default (context, options = {}) => {
   options = {
     scope: 'i18n',
-    prefix: '/',
     lang: (navigator.language || navigator.browserLanguage).toLowerCase().split('-')[0],
     translations: {},
     ...options

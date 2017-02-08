@@ -47,11 +47,11 @@ use(validator)
 /**
  * 普通模块
  */
-use(config, { prefix: 'config' })
-use(user)
-use(faq)
-use(demo, { prefix: 'demo' })
-use(about, { prefix: 'about' })
+use(config)
+use(user, { prefix: '/' })
+use(faq, { prefix: '/' })
+use(demo)
+use(about)
 
 /**
  * 核心模块

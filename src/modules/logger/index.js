@@ -1,6 +1,6 @@
 import createLogger from 'vuex/dist/logger'
 
-export default ({ store }, options = {}) => {
+export default ({ store }) => {
   createLogger()(store)
 
   return {
