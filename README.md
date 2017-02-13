@@ -16,6 +16,10 @@
   <img src="doc/DESIGN.png" alt="Framework Design">
 </p>
 
+## Scaffolding
+
+[Vue CLI Template](https://github.com/platojs/template)
+
 ## Usage
 
 ```bash
@@ -107,15 +111,6 @@ npm run push
 - Misc
   - [x] Paginator
   - [x] Uploader
-
-## Scaffolding
-
-Use [Vue-cli](https://github.com/vuejs/vue-cli) to get a clean and clear copy without demonstrations
-
-```bash
-$ npm install -g vue-cli
-$ vue init crossjs/plato#template <project-name>
-```
 
 ## Browser Support
 
