@@ -11,8 +11,8 @@
 </template>
 
 <script>
-import CPane from 'components/core/pane'
-import CSpinner from 'components/core/spinner'
+import CPane from 'platojs/components/core/pane'
+import CSpinner from 'platojs/components/core/spinner'
 
 export default {
   components: {

@@ -26,10 +26,10 @@
 </template>
 
 <script>
-import tap from 'directives/tap'
-import CPane from 'components/core/pane'
-import CScroller from 'components/core/scroller'
-import CButton from 'components/core/button'
+import tap from 'platojs/directives/tap'
+import CPane from 'platojs/components/core/pane'
+import CScroller from 'platojs/components/core/scroller'
+import CButton from 'platojs/components/core/button'
 
 export default {
   data () {

@@ -18,9 +18,9 @@
 </template>
 
 <script>
-import CPane from 'components/core/pane'
-import CIcon from 'components/core/icon'
-import CUploader from 'components/misc/uploader'
+import CPane from 'platojs/components/core/pane'
+import CIcon from 'platojs/components/core/icon'
+import CUploader from 'platojs/components/misc/uploader'
 
 export default {
   data () {

@@ -34,12 +34,12 @@
 </template>
 
 <script>
-import tap from 'directives/tap'
-import CProgress from 'components/core/progress'
-import CToast from 'components/core/toast'
-import CButton from 'components/core/button'
-import CLink from 'components/core/link'
-import CIcon from 'components/core/icon'
+import tap from 'platojs/directives/tap'
+import CProgress from 'platojs/components/core/progress'
+import CToast from 'platojs/components/core/toast'
+import CButton from 'platojs/components/core/button'
+import CLink from 'platojs/components/core/link'
+import CIcon from 'platojs/components/core/icon'
 import CNavbar from '../components/navbar'
 import CRoute from '../components/route'
 

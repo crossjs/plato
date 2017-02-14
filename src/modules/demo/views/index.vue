@@ -129,9 +129,9 @@
 </template>
 
 <script>
-import CRow from 'components/core/row'
-import CCol from 'components/core/col'
-import CIcon from 'components/core/icon'
+import CRow from 'platojs/components/core/row'
+import CCol from 'platojs/components/core/col'
+import CIcon from 'platojs/components/core/icon'
 import DemoBadge from '../components/badge'
 import DemoIcon from '../components/icon'
 import DemoProgress from '../components/progress'

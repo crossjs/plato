@@ -30,11 +30,11 @@
 </template>
 
 <script>
-import tap from 'directives/tap'
-import CPane from 'components/core/pane'
-import CCol from 'components/core/col'
-import CProgress from 'components/core/progress'
-import CButton from 'components/core/button'
+import tap from 'platojs/directives/tap'
+import CPane from 'platojs/components/core/pane'
+import CCol from 'platojs/components/core/col'
+import CProgress from 'platojs/components/core/progress'
+import CButton from 'platojs/components/core/button'
 
 export default {
   data () {

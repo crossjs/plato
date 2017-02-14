@@ -1,4 +1,4 @@
-import { configure, use, run } from 'system'
+import { configure, use, run } from 'platojs/system'
 
 import logger from 'modules/logger'
 import persist from 'modules/persist'

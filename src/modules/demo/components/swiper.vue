@@ -34,9 +34,9 @@
 </template>
 
 <script>
-import CRow from 'components/core/row'
-import CButton from 'components/core/button'
-import CSwiper from 'components/core/swiper'
+import CRow from 'platojs/components/core/row'
+import CButton from 'platojs/components/core/button'
+import CSwiper from 'platojs/components/core/swiper'
 
 export default {
   mapGetters: ['config/transition'],

@@ -29,13 +29,13 @@
 </template>
 
 <script>
-import tap from 'directives/tap'
-import CPane from 'components/core/pane'
-import CRow from 'components/core/row'
-import CCol from 'components/core/col'
-import CLink from 'components/core/link'
-import CCheckbox from 'components/core/checkbox'
-import CPicker from 'components/core/picker'
+import tap from 'platojs/directives/tap'
+import CPane from 'platojs/components/core/pane'
+import CRow from 'platojs/components/core/row'
+import CCol from 'platojs/components/core/col'
+import CLink from 'platojs/components/core/link'
+import CCheckbox from 'platojs/components/core/checkbox'
+import CPicker from 'platojs/components/core/picker'
 
 export default {
   data () {

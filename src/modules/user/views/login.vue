@@ -44,15 +44,15 @@
 </template>
 
 <script>
-import CBadge from 'components/core/badge'
-import CPane from 'components/core/pane'
-import CForm from 'components/core/form'
-import CRow from 'components/core/row'
-import CCol from 'components/core/col'
-import CLabel from 'components/core/label'
-import CTextfield from 'components/core/textfield'
-import CPassword from 'components/core/password'
-import CButton from 'components/core/button'
+import CBadge from 'platojs/components/core/badge'
+import CPane from 'platojs/components/core/pane'
+import CForm from 'platojs/components/core/form'
+import CRow from 'platojs/components/core/row'
+import CCol from 'platojs/components/core/col'
+import CLabel from 'platojs/components/core/label'
+import CTextfield from 'platojs/components/core/textfield'
+import CPassword from 'platojs/components/core/password'
+import CButton from 'platojs/components/core/button'
 
 export default {
   data () {

@@ -1,4 +1,4 @@
-import Validator from 'plugins/validator'
+import Validator from 'platojs/plugins/validator'
 
 export default ({ Vue }) => {
   Vue.use(Validator)

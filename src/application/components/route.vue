@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import CIcon from 'components/core/icon'
+import CIcon from 'platojs/components/core/icon'
 
 export default {
   name: 'c-route',

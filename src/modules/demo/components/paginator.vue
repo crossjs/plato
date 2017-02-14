@@ -44,9 +44,9 @@
 </template>
 
 <script>
-import CRow from 'components/core/row'
-import CCol from 'components/core/col'
-import CPaginator from 'components/misc/paginator'
+import CRow from 'platojs/components/core/row'
+import CCol from 'platojs/components/core/col'
+import CPaginator from 'platojs/components/misc/paginator'
 
 export default {
   components: {

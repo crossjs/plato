@@ -37,8 +37,8 @@
 </template>
 
 <script>
-import CRow from 'components/core/row'
-import CImage from 'components/core/image'
+import CRow from 'platojs/components/core/row'
+import CImage from 'platojs/components/core/image'
 
 export default {
   components: {

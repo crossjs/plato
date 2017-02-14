@@ -15,13 +15,7 @@ const webpackConfig = {
   resolve: {
     modules: [paths.src(), 'node_modules'],
     extensions: ['.css', '.js', '.json', '.vue'],
-    alias: {
-      components: 'plato-components',
-      directives: 'plato-directives',
-      plugins: 'plato-plugins',
-      system: 'plato-system',
-      util: 'plato-util'
-    }
+    alias: {}
   },
   node: {
     fs: 'empty',
@@ -86,8 +80,8 @@ const webpackConfig = {
       },
       {
         test: /\.js$/,
-        // util、components、directives、system 模块需要 babel 处理
-        exclude: /node_modules[/\\](?!plato-)/,
+        // platojs 模块需要 babel 处理
+        exclude: /node_modules[/\\](?!platojs)/,
         loader: 'babel-loader'
       },
       {

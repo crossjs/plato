@@ -52,13 +52,13 @@
 </template>
 
 <script>
-import CForm from 'components/core/form'
-import CRow from 'components/core/row'
-import CCol from 'components/core/col'
-import CCheckbox from 'components/core/checkbox'
-import CPassword from 'components/core/password'
-import CTextfield from 'components/core/textfield'
-import CMultiline from 'components/core/multiline'
+import CForm from 'platojs/components/core/form'
+import CRow from 'platojs/components/core/row'
+import CCol from 'platojs/components/core/col'
+import CCheckbox from 'platojs/components/core/checkbox'
+import CPassword from 'platojs/components/core/password'
+import CTextfield from 'platojs/components/core/textfield'
+import CMultiline from 'platojs/components/core/multiline'
 
 export default {
   data () {

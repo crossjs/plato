@@ -57,8 +57,8 @@
 </template>
 
 <script>
-import CRow from 'components/core/row'
-import CRange from 'components/core/range'
+import CRow from 'platojs/components/core/row'
+import CRange from 'platojs/components/core/range'
 
 export default {
   data () {

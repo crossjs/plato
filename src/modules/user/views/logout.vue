@@ -10,8 +10,8 @@
 </template>
 
 <script>
-import CImage from 'components/core/image'
-import CModal from 'components/core/modal'
+import CImage from 'platojs/components/core/image'
+import CModal from 'platojs/components/core/modal'
 
 export default {
   data () {

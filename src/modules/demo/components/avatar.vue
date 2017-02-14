@@ -30,8 +30,8 @@
 </template>
 
 <script>
-import CPane from 'components/core/pane'
-import CAvatar from 'components/core/avatar'
+import CPane from 'platojs/components/core/pane'
+import CAvatar from 'platojs/components/core/avatar'
 
 export default {
   components: {

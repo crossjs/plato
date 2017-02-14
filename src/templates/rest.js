@@ -1,7 +1,7 @@
 import { createAction, handleAction, $inject } from 'vuex-actions'
-import Normalizer from 'util/normalizer'
-import { get, post, patch, put, del } from 'util/request'
-import merge from 'util/cheap-merge'
+import Normalizer from 'platojs/util/normalizer'
+import { get, post, patch, put, del } from 'platojs/util/request'
+import merge from 'platojs/util/cheap-merge'
 
 /**
  * Template for standard REST
@@ -72,9 +72,9 @@ export default ({
     put: createAction(PUT, (id, body) => REST.put(id, body)),
     get: createAction(GET, id => REST.get(id)),
     delete: createAction(DELETE, id => ({
-      // destroy, removing data from 'components/core/remote
+      // destroy, removing data from 'platojs/components/core/remote
       _: REST.delete(id),
-      // then return id (payload) for removing data from 'components/core/store
+      // then return id (payload) for removing data from 'platojs/components/core/store
       id: $inject(() => id)('_')
     }))
   }

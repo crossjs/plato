@@ -18,10 +18,10 @@
 </template>
 
 <script>
-import tap from 'directives/tap'
-import CMask from 'components/core/mask'
-import CIcon from 'components/core/icon'
-import CButton from 'components/core/button'
+import tap from 'platojs/directives/tap'
+import CMask from 'platojs/components/core/mask'
+import CIcon from 'platojs/components/core/icon'
+import CButton from 'platojs/components/core/button'
 
 export default {
   data () {

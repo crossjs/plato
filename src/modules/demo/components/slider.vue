@@ -47,8 +47,8 @@
 </template>
 
 <script>
-import CPane from 'components/core/pane'
-import CSlider from 'components/core/slider'
+import CPane from 'platojs/components/core/pane'
+import CSlider from 'platojs/components/core/slider'
 
 export default {
   data () {

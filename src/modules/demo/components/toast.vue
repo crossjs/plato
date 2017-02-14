@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import CToast from 'components/core/toast'
+import CToast from 'platojs/components/core/toast'
 
 export default {
   data () {

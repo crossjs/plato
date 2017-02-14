@@ -41,8 +41,8 @@
 </template>
 
 <script>
-import CRow from 'components/core/row'
-import CCol from 'components/core/col'
+import CRow from 'platojs/components/core/row'
+import CCol from 'platojs/components/core/col'
 
 export default {
   components: {

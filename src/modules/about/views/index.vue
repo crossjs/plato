@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import CPane from 'components/core/pane'
+import CPane from 'platojs/components/core/pane'
 
 export default {
   components: {

@@ -57,9 +57,9 @@
 </template>
 
 <script>
-import CPane from 'components/core/pane'
-import CCol from 'components/core/col'
-import CPicker from 'components/core/picker'
+import CPane from 'platojs/components/core/pane'
+import CCol from 'platojs/components/core/col'
+import CPicker from 'platojs/components/core/picker'
 
 export default {
   data () {

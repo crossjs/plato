@@ -21,8 +21,8 @@
 </template>
 
 <script>
-import CPane from 'components/core/pane'
-import CBadge from 'components/core/badge'
+import CPane from 'platojs/components/core/pane'
+import CBadge from 'platojs/components/core/badge'
 
 export default {
   components: {

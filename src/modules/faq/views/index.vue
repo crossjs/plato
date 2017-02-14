@@ -34,13 +34,13 @@
 </template>
 
 <script>
-import tap from 'directives/tap'
-import CModal from 'components/core/modal'
-import CScroller from 'components/core/scroller'
-import CSpinner from 'components/core/spinner'
-import CRow from 'components/core/row'
-import CSwiper from 'components/core/swiper'
-import CButton from 'components/core/button'
+import tap from 'platojs/directives/tap'
+import CModal from 'platojs/components/core/modal'
+import CScroller from 'platojs/components/core/scroller'
+import CSpinner from 'platojs/components/core/spinner'
+import CRow from 'platojs/components/core/row'
+import CSwiper from 'platojs/components/core/swiper'
+import CButton from 'platojs/components/core/button'
 
 export default {
   data () {

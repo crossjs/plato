@@ -1,4 +1,4 @@
-import { configure } from 'util/request'
+import { configure } from 'platojs/util/request'
 
 /**
  * 修改 request 方法的全局配置
