@@ -1,9 +1,8 @@
-import Vue from 'vue'
 import request from 'util/request'
 import template from 'string-template'
 import createStore from './create-store'
 
-export default (context, options = {}) => {
+export default ({ Vue }, options = {}) => {
   options = {
     scope: 'i18n',
     lang: (navigator.language || navigator.browserLanguage).toLowerCase().split('-')[0],
@@ -18,7 +17,7 @@ export default (context, options = {}) => {
   } = options
 
   return [{
-    store: createStore(context, options),
+    store: createStore(options),
     options
   }, ({ store }) => {
     // vm for watching i18n

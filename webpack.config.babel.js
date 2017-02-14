@@ -18,6 +18,7 @@ const webpackConfig = {
     alias: {
       components: 'plato-components',
       directives: 'plato-directives',
+      plugins: 'plato-plugins',
       system: 'plato-system',
       util: 'plato-util'
     }

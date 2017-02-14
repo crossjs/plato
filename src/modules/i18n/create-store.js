@@ -1,6 +1,6 @@
 import { createAction, handleAction } from 'vuex-actions'
 
-export default (context, { scope, lang, translations }) => {
+export default ({ lang, translations }) => {
   const SET_I18N = 'SET_I18N'
 
   const state = { lang, translations }

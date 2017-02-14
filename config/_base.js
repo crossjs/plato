@@ -1,9 +1,7 @@
 import { resolve } from 'path'
-import _debug from 'debug'
 
 const NODE_ENV = process.env.NODE_ENV || 'development'
 
-const debug = _debug('PLATO:config:base')
 const pkg = require('../package.json')
 
 const config = {
@@ -54,22 +52,6 @@ const config = {
     __TEST__: NODE_ENV === 'test'
   }
 }
-
-// ------------------------------------
-// Validate Vendor Dependencies
-// ------------------------------------
-config.compiler_vendor = config.compiler_vendor
-  .filter(dep => {
-    if (pkg.dependencies.hasOwnProperty(dep)) {
-      return true
-    }
-
-    debug(
-      'Package "' + dep + '" was not found as an npm dependency in package.json; ' +
-      'it won\'t be included in the webpack vendor bundle.\n' +
-      'Consider removing it from compiler_vendor in "./config/_base.js"'
-    )
-  })
 
 // ------------------------------------
 // Utilities

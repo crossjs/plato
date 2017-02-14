@@ -16,6 +16,10 @@
   <img src="doc/DESIGN.png" alt="Framework Design">
 </p>
 
+## Principle
+
+Less is More
+
 ## Scaffolding
 
 [Vue CLI Template](https://github.com/platojs/template)
