@@ -29,8 +29,7 @@
     "platojs": "*",
     "string-template": "^1.0.0",
     "vuex-actions": "^1.1.1",
-    "vuex-localstorage": "^0.5.0",
-    "vuex-persistedstate": "^1.1.0",
+    "vuex-localstorage": "^1.0.0",
     "whatwg-fetch": "^2.0.2"
   },
   "devDependencies": {
