@@ -57,22 +57,18 @@ npm run push
 
 ## Features
 
-- Core
+- [Core](https://github.com/platojs/platojs)
   - [system](https://github.com/platojs/system)
   - [util](https://github.com/platojs/util)
   - [components](https://github.com/platojs/components)
   - [directives](https://github.com/platojs/directives)
-  - Vue
-    - [Vue](https://github.com/vuejs/vue)
-    - [Vue-Router](https://github.com/vuejs/vue-router)
-    - [Vuex](https://github.com/vuejs/vuex)
-    - [Vuex-Actions](https://github.com/weinot/vuex-actions) (for async actions)
-    - [Vuex-PersistedState](https://github.com/robinvdvleuten/vuex-persistedstate) (for data persistence)
-    - [Vuex-LocalStorage](https://github.com/crossjs/vuex-localstorage) (for cache and persistence)
-  - Modules
-    - [I18n](src/modules/i18n)
-    - [Persist](src/modules/persist)
-    - [Validator](src/modules/validator)
+  - [plugins](https://github.com/platojs/plugins)
+- Vue
+  - [Vue](https://github.com/vuejs/vue)
+  - [Vue-Router](https://github.com/vuejs/vue-router)
+  - [Vuex](https://github.com/vuejs/vuex)
+  - [Vuex-Actions](https://github.com/weinot/vuex-actions) (for async actions)
+  - [Vuex-LocalStorage](https://github.com/crossjs/vuex-localstorage) (for cache and persistence)
 - Build
   - [Webpack](http://webpack.github.io/)
 - Linters
@@ -89,6 +85,12 @@ npm run push
     - [postcss-flexible](https://github.com/crossjs/postcss-flexible) (for [lib.flexible](https://github.com/amfe/lib-flexible))
     - ...
   - [Babel](https://babeljs.io/) (for es6)
+
+# Modules
+
+- [I18n](src/modules/i18n)
+- [Persist](src/modules/persist)
+- [Validator](src/modules/validator)
 
 ## Components
 
