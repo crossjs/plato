@@ -88,7 +88,7 @@ npm run push
     - ...
   - [Babel](https://babeljs.io/) (for es6)
 
-# Modules
+## Modules
 
 - [I18n](src/modules/i18n)
 - [Persist](src/modules/persist)
