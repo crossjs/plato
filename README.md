@@ -20,6 +20,8 @@
 
 Less is More
 
+[若无必要，勿增实体](https://zh.wikipedia.org/wiki/奥卡姆剃刀)
+
 ## Scaffolding
 
 [Vue CLI Template](https://github.com/platojs/template)
