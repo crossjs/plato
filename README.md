@@ -18,7 +18,7 @@
 
 ## Principles
 
-Less is More
+[Less is More](https://zh.wikipedia.org/wiki/極簡主義)
 
 [若无必要，勿增实体](https://zh.wikipedia.org/wiki/奥卡姆剃刀)
 
@@ -56,13 +56,12 @@ Less is More
     - [postcss-flexible](https://github.com/crossjs/postcss-flexible) (for [lib.flexible](https://github.com/amfe/lib-flexible))
     - ...
   - [Babel](https://babeljs.io/) (for es6)
-
-## Modules
-
-- [Logger](src/modules/logger)
-- [I18n](src/modules/i18n)
-- [Persist](src/modules/persist)
-- [Validator](src/modules/validator)
+- Worth Reading Modules
+  - [Logger](src/modules/logger)
+  - [Persist](src/modules/persist)
+  - [I18n](src/modules/i18n)
+  - [Validator](src/modules/validator)
+  - [Request](src/modules/request)
 
 ## Usage
 
