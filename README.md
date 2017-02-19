@@ -16,7 +16,7 @@
   <img src="doc/DESIGN.png" alt="Framework Design">
 </p>
 
-## Principle
+## Principles
 
 Less is More
 
@@ -25,37 +25,6 @@ Less is More
 ## Scaffolding
 
 [Vue CLI Template](https://github.com/platojs/template)
-
-## Usage
-
-```bash
-# install dependencies
-npm install
-
-# start a mocking server at localhost:3001
-npm run mock
-
-# serve with hot reload at localhost:3000
-npm run dev
-
-# eslint, stylelint, unit and e2e test
-npm test
-
-# compile files for production with minification
-npm run compile
-
-# test, clean, and compile
-npm run build
-
-# serve dist, like production
-npm start
-
-# generate demo site and push to gh-pages
-npm run docs
-
-# push modifications to github
-npm run push
-```
 
 ## Features
 
@@ -90,54 +59,51 @@ npm run push
 
 ## Modules
 
+- [Logger](src/modules/logger)
 - [I18n](src/modules/i18n)
 - [Persist](src/modules/persist)
 - [Validator](src/modules/validator)
 
-## Components
+## Usage
 
-- Core
-  - [x] Avatar
-  - [x] Badge
-  - [x] Form
-    - [x] Button
-    - [x] Checkbox (Switcher)
-    - [x] Textfield (text, email, password, url, number, search, etc)
-    - [x] Multiline
-    - [x] Password (with showing password toggle)
-  - [x] Icon
-  - [x] Image
-  - [x] Modal
-  - [x] Picker
-  - [x] Progress
-  - [x] Range
-  - [x] Scroller (with pulling up and down)
-  - [x] Slider
-  - [x] Spinner
-  - [x] Swiper
-  - [x] Toast
-- Misc
-  - [x] Paginator
-  - [x] Uploader
+```bash
+# install dependencies
+npm install
+
+# start a mocking server at localhost:3001
+npm run mock
+
+# serve with hot reload at localhost:3000
+npm run dev
+
+# eslint, stylelint, unit and e2e test
+npm test
+
+# compile files for production with minification
+npm run compile
+
+# test, clean, and compile
+npm run build
+
+# serve dist, like production
+npm start
+
+# generate demo site and push to gh-pages
+npm run docs
+
+# push modifications to github
+npm run push
+```
 
 ## Browser Support
-
-### Framework
 
 - IE 9+
 - Chrome
 - Safari
 - Firefox
 - ...
-
-### UI Components
-
 - Android 4+
 - iOS 7+
-
-## Changelog
-
-Detailed changes for each release are documented in the [release notes](https://github.com/platojs/plato/releases).
 
 ## Appendix
 
