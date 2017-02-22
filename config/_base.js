@@ -2,14 +2,8 @@ import { resolve } from 'path'
 
 const NODE_ENV = process.env.NODE_ENV || 'development'
 
-const pkg = require('../package.json')
-
 const config = {
   env: NODE_ENV,
-
-  name: pkg.name,
-  version: pkg.version,
-  description: pkg.description,
 
   // ----------------------------------
   // Project Structure
