@@ -107,13 +107,6 @@ npm run push
 - Android 4+
 - iOS 7+
 
-## Appendix
-
-- [Troubleshooting](doc/TROUBLESHOOTING.md)
-- [Style Guide](doc/STYLEGUIDE.md)
-- [Developing Guide](doc/DEVELOPING.md)
-- [Contributing Guide](doc/CONTRIBUTING.md)
-
 ## License
 
 [MIT](http://opensource.org/licenses/MIT)
