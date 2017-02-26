@@ -10,7 +10,7 @@
 </p>
 <p align="center">
   a Boilerplate for [mobile] SPAs using vue, vuex, vue-router<br>
-  Check out <a href="http://plato.crossjs.com/#/demo"><b>Demonstrations</b></a> and UI <a href="https://github.com/platojs/components"><b>Components</b></a>
+  Check out <a href="http://platojs.crossjs.com/">Documentation</a>, <a href="http://plato.crossjs.com/#/demo"><b>Demonstrations</b></a> and UI <a href="https://github.com/platojs/components"><b>Components</b></a>
 </p>
 <p align="center">
   <img src="doc/DESIGN.png" alt="Framework Design">
