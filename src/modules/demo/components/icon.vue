@@ -3,7 +3,7 @@
     <span class="icon-slot" v-for="(value, key, index) in entities">
       <c-icon class="fs-64">{{key}}</c-icon>
       <i class="icon-name">{{key}}</i>
-    <span>
+    </span>
   </c-pane>
 </template>
 
