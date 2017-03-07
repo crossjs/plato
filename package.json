@@ -26,13 +26,13 @@
   "dependencies": {
     "core-js": "^2.4.1",
     "nuo": "^1.0.0",
-    "platojs": "*",
+    "platojs": "latest",
     "string-template": "^1.0.0",
     "vuex-actions": "^1.1.1",
     "vuex-localstorage": "^1.0.0",
     "whatwg-fetch": "^2.0.2"
   },
   "devDependencies": {
-    "plato-dev-dependencies": "^1.0.0"
+    "plato-dev-dependencies": "latest"
   }
 }
