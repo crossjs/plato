@@ -12,12 +12,15 @@
   a Boilerplate for [mobile] SPAs using vue, vuex, vue-router<br>
   Check out <a href="http://platojs.crossjs.com/"><b>Documentation</b></a>, <a href="http://plato.crossjs.com/#/demo"><b>Demonstrations</b></a> and UI <a href="https://github.com/platojs/components"><b>Components</b></a>
 </p>
+<p align="center">
+  <img src="doc/DESIGN.png" alt="Framework Design">
+</p>
 
 ## Principles
 
-[Less is More](https://en.wikipedia.org/wiki/Minimalism)
+[Less is More](https://zh.wikipedia.org/wiki/極簡主義)
 
-[Entities must not be multiplied beyond necessity](https://en.wikipedia.org/wiki/Occam%27s_razor)
+[若无必要，勿增实体](https://zh.wikipedia.org/wiki/奥卡姆剃刀)
 
 ## Scaffolding
 
