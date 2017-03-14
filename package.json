@@ -30,7 +30,7 @@
     "string-template": "^1.0.0",
     "vuex-actions": "^1.1.1",
     "vuex-localstorage": "^1.0.0",
-    "whatwg-fetch": "^2.0.2"
+    "whatwg-fetch": "^2.0.3"
   },
   "devDependencies": {
     "plato-dev-dependencies": "latest"
