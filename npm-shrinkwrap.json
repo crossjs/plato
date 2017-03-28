@@ -1018,9 +1018,9 @@
       "dev": true
     },
     "browserify-sign": {
-      "version": "4.0.0",
+      "version": "4.0.4",
       "from": "browserify-sign@>=4.0.0 <5.0.0",
-      "resolved": "http://172.24.133.106:7001/browserify-sign/download/browserify-sign-4.0.0.tgz",
+      "resolved": "http://172.24.133.106:7001/browserify-sign/download/browserify-sign-4.0.4.tgz",
       "dev": true
     },
     "browserify-zlib": {
@@ -1134,9 +1134,9 @@
       "dev": true
     },
     "caniuse-db": {
-      "version": "1.0.30000641",
+      "version": "1.0.30000644",
       "from": "caniuse-db@>=1.0.30000634 <2.0.0",
-      "resolved": "http://172.24.133.106:7001/caniuse-db/download/caniuse-db-1.0.30000641.tgz",
+      "resolved": "http://172.24.133.106:7001/caniuse-db/download/caniuse-db-1.0.30000644.tgz",
       "dev": true
     },
     "capture-stack-trace": {
@@ -1318,7 +1318,7 @@
     "cliui": {
       "version": "3.2.0",
       "from": "cliui@>=3.0.3 <4.0.0",
-      "resolved": "https://registry.npm.taobao.org/cliui/download/cliui-3.2.0.tgz",
+      "resolved": "http://172.24.133.106:7001/cliui/download/cliui-3.2.0.tgz",
       "dev": true
     },
     "clone": {
@@ -1634,9 +1634,9 @@
       "dev": true
     },
     "convert-source-map": {
-      "version": "1.4.0",
+      "version": "1.5.0",
       "from": "convert-source-map@>=1.1.0 <2.0.0",
-      "resolved": "http://172.24.133.106:7001/convert-source-map/download/convert-source-map-1.4.0.tgz",
+      "resolved": "http://172.24.133.106:7001/convert-source-map/download/convert-source-map-1.5.0.tgz",
       "dev": true
     },
     "cookie": {
@@ -8625,9 +8625,9 @@
       "resolved": "http://172.24.133.106:7001/vue-router/download/vue-router-2.3.0.tgz"
     },
     "vue-style-loader": {
-      "version": "2.0.4",
+      "version": "2.0.5",
       "from": "vue-style-loader@>=2.0.3 <3.0.0",
-      "resolved": "http://172.24.133.106:7001/vue-style-loader/download/vue-style-loader-2.0.4.tgz",
+      "resolved": "http://172.24.133.106:7001/vue-style-loader/download/vue-style-loader-2.0.5.tgz",
       "dev": true,
       "dependencies": {
         "loader-utils": {
