@@ -38,7 +38,7 @@ describe('rest', () => {
           if (__status__ === 'pending') {
             expect(typeof __payload__.then).to.equal('function')
           } else if (__status__ === 'error') {
-            expect(__payload__).to.equal('NOT FOUND')
+            expect(__payload__.body).to.equal('NOT FOUND')
             done()
           }
         }
@@ -52,7 +52,7 @@ describe('rest', () => {
           if (__status__ === 'pending') {
             expect(typeof __payload__.then).to.equal('function')
           } else if (__status__ === 'error') {
-            expect(__payload__).to.equal('NOT FOUND')
+            expect(__payload__.body).to.equal('NOT FOUND')
             done()
           }
         }
@@ -66,7 +66,7 @@ describe('rest', () => {
           if (__status__ === 'pending') {
             expect(typeof __payload__.then).to.equal('function')
           } else if (__status__ === 'error') {
-            expect(__payload__).to.equal('NOT FOUND')
+            expect(__payload__.body).to.equal('NOT FOUND')
             done()
           }
         }
@@ -80,7 +80,7 @@ describe('rest', () => {
           if (__status__ === 'pending') {
             expect(typeof __payload__.then).to.equal('function')
           } else if (__status__ === 'error') {
-            expect(__payload__).to.equal('NOT FOUND')
+            expect(__payload__.body).to.equal('NOT FOUND')
             done()
           }
         }
@@ -94,7 +94,7 @@ describe('rest', () => {
           if (__status__ === 'pending') {
             expect(typeof __payload__._.then).to.equal('function')
           } else if (__status__ === 'error') {
-            expect(__payload__).to.equal('NOT FOUND')
+            expect(__payload__.body).to.equal('NOT FOUND')
             done()
           }
         }
@@ -108,7 +108,7 @@ describe('rest', () => {
           if (__status__ === 'pending') {
             expect(typeof __payload__.then).to.equal('function')
           } else if (__status__ === 'error') {
-            expect(__payload__).to.equal('NOT FOUND')
+            expect(__payload__.body).to.equal('NOT FOUND')
             done()
           }
         }
