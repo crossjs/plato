@@ -1,3 +1,3 @@
 export default config => ({
-  compiler_devtool: 'eval'
+  compiler_devtool: 'cheap-module-source-map'
 })
