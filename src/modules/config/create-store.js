@@ -1,4 +1,4 @@
-export default ({ scope }) => {
+export default () => {
   const SET_PROGRESS = 'SET_PROGRESS'
   const ADD_TOAST = 'ADD_TOAST'
   const DELETE_TOAST = 'DELETE_TOAST'
@@ -54,11 +54,10 @@ export default ({ scope }) => {
     [SET_PROGRESS] (state, payload) {
       state.progress = payload
     },
-
     [ADD_TOAST] (state, payload) {
       state.toast = payload
     },
-    [SET_TRANSITION]: (state, payload) => {
+    [SET_TRANSITION] (state, payload) {
       state.transition = payload
     },
     [DELETE_TOAST] (state) {
