@@ -13,6 +13,8 @@
   Check out <a href="http://platojs.crossjs.com/"><b>Documentation</b></a>, <a href="http://plato.crossjs.com/#/demo"><b>Demonstrations</b></a> and UI <a href="https://github.com/platojs/components"><b>Components</b></a>
 </p>
 
+[中文说明](README-ZH.md)
+
 ## Principles
 
 [Less is More](https://en.wikipedia.org/wiki/Minimalism)
@@ -63,8 +65,11 @@
 ## Usage
 
 ```bash
-# install dependencies
-npm install
+# install dependencies with mirrors
+npm run init
+
+# lock dependencies version
+npm run lock
 
 # start a mocking server at localhost:3001
 npm run mock

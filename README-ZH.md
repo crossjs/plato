@@ -1,6 +1,6 @@
 <p align="center">
   <img src="https://cdn.rawgit.com/platojs/plato/master/src/assets/logo.svg" alt="PLATO"><br>
-  <sub>Based on Vue 2.x</sub>
+  <sub>基于 Vue 2.x</sub>
 </p>
 <p align="center">
   <a href="https://travis-ci.org/platojs/plato"><img src="https://img.shields.io/travis/platojs/plato.svg?style=flat-square" alt="Travis"></a>
@@ -10,23 +10,25 @@
 </p>
 <p align="center">
   a Boilerplate for [mobile] SPAs using vue, vuex, vue-router<br>
-  Check out <a href="http://platojs.crossjs.com/"><b>Documentation</b></a>, <a href="http://plato.crossjs.com/#/demo"><b>Demonstrations</b></a> and UI <a href="https://github.com/platojs/components"><b>Components</b></a>
+  Check out <a href="http://platojs.crossjs.com/"><b>文档</b></a>, <a href="http://plato.crossjs.com/#/demo"><b>示例</b></a> and UI <a href="https://github.com/platojs/components"><b>组件</b></a>
 </p>
 <p align="center">
   <img src="doc/DESIGN.png" alt="Framework Design">
 </p>
 
-## Principles
+## 设计原则
 
 [Less is More](https://zh.wikipedia.org/wiki/極簡主義)
 
 [若无必要，勿增实体](https://zh.wikipedia.org/wiki/奥卡姆剃刀)
 
-## Scaffolding
+## 脚手架
+
+**注意：此仓库是实践示例，请不要直接克隆后用于项目开发，应使用命令行生成**
 
 [Vue CLI Template](https://github.com/platojs/template)
 
-## Features
+## 特性
 
 - [Core](https://github.com/platojs/platojs)
   - [system](https://github.com/platojs/system)
@@ -63,16 +65,19 @@
   - [Validator](src/modules/validator)
   - [Request](src/modules/request)
 
-## Usage
+## 使用方法
 
 ```bash
-# install dependencies
-npm install
+# 安装依赖项。通过指定镜像提高安装速度
+npm run init
 
-# start a mocking server at localhost:3001
+# 锁定依赖项版本。使用 npm shrinkwrap
+npm run lock
+
+# 启动接口模拟。访问地址：localhost:3001
 npm run mock
 
-# serve with hot reload at localhost:3000
+# 启动开发服务。访问地址：localhost:3000
 npm run dev
 
 # eslint, stylelint, unit and e2e test
@@ -97,7 +102,7 @@ npm run docs
 npm run push
 ```
 
-## Browser Support
+## 兼容性
 
 - IE 9+
 - Chrome
@@ -107,6 +112,6 @@ npm run push
 - Android 4+
 - iOS 7+
 
-## License
+## 版权
 
 [MIT](http://opensource.org/licenses/MIT)
