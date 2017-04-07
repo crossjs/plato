@@ -36,7 +36,7 @@
     "whatwg-fetch": "^2.0.3"
   },
   "devDependencies": {
-    "plato-dev-dependencies": "^3.0.0-beta.7"
+    "plato-dev-dependencies": "latest"
   },
   "engines": {
     "node": ">=7.7.4",
