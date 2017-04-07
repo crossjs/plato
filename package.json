@@ -1,12 +1,13 @@
 {
   "name": "PLATO",
-  "version": "3.0.0-beta.12",
+  "version": "3.0.0-beta.13",
   "description": "a Boilerplate for [mobile] SPAs use vue, vuex, vue-router",
   "license": "MIT",
   "main": "src/index.js",
   "scripts": {
     "init": "npm install",
     "lock": "npm shrinkwrap",
+    "unlock": "rm -rf npm-shrinkwrap.json",
     "start": "npm run build && serve ./dist",
     "mock": "cross-env NODE_ENV=development DEBUG=PLATO:* json-server --watch --port 3001 ./mock/db.json",
     "dev": "cross-env NODE_ENV=development DEBUG=PLATO:* webpack-dev-server --progress",
@@ -35,7 +36,7 @@
     "whatwg-fetch": "^2.0.3"
   },
   "devDependencies": {
-    "plato-dev-dependencies": "latest"
+    "plato-dev-dependencies": "^3.0.0-beta.7"
   },
   "engines": {
     "node": ">=7.7.4",

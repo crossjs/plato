@@ -1,23 +1,63 @@
-import { intercept } from 'platojs/util/request'
+import { configure, intercept } from 'platojs/util/request'
+
+// 判断是否小于等于 IE9，请自行实现
+const isLEIE9 = false
 
 /**
  * 修改 request 方法的全局配置
  */
 
-export default ({ name, version }, options = {}) => {
-  options = { scope: 'request', ...options }
+export default ({ Vue, store, name, version }, options = {}) => {
+  // options = { scope: 'request', ...options }
 
-  // 直接修改，不需要注册，不需要在回调时再修改
-  intercept({
-    // 修改请求体，可以用于添加 Dispatcher、Proxy 等
-    // 比如，对于 IE8/9，可以将 PUT/PATCH 请求修改为 POST 请求
-    request: [({ req }) => {
+  // 修改全局
+  configure({
+    headers: {
       // 在请求头部加入自定义字段
-      // 可以用于添加 Authorization 等
+      'Who-Am-I': `${name}@${version}`
+    }
+  })
+
+  intercept({
+    // 修改本次请求
+    request: [({ req }) => {
+      const { method } = req
+      if (method === 'PUT') {
+        // IE9 以下特殊处理
+        // 此处仅为举例
+        if (isLEIE9) {
+          req.method = 'POST'
+          req.headers['Real-Method'] = 'PUT'
+        }
+      }
       req.headers['Who-Am-I'] = `${name}@${version}`
       return { req }
     }]
   })
 
-  // 不返回任何值
+  return () => {
+    // 修改 Accept-Language
+    // TODO 此处的实现略显繁琐，需要优化
+    new Vue({
+      store,
+      mapGetters: ['i18n/lang'],
+      watch: {
+        lang (val) {
+          this.configure(val)
+        }
+      },
+      created () {
+        this.configure(this.lang)
+      },
+      methods: {
+        configure (val) {
+          configure({
+            headers: {
+              'Accept-Language': val
+            }
+          })
+        }
+      }
+    })
+  }
 }

@@ -21,6 +21,7 @@ export default ({ Vue }, options = {}) => {
     options
   }, ({ store }) => {
     // vm for watching i18n
+    // TODO 此处的实现略显繁琐，需要优化
     const vm = new Vue({
       store,
       scope,
