@@ -1,3 +1,4 @@
+import { watch } from 'platojs/system'
 import request from 'platojs/util/request'
 import template from 'string-template'
 import createStore from './create-store'
@@ -16,72 +17,85 @@ export default ({ Vue }, options = {}) => {
     urlPattern = './i18n/{lang}.json'
   } = options
 
+  // 必须使用 Vue，以实现响应式
+  const vm = new Vue({
+    data: {
+      translations: {}
+    }
+  })
+
+  function parseKeys (keys, scope) {
+    switch (keys.indexOf('/')) {
+      case 0: // 以 `/` 开头，说明是从全局里查找匹配
+        console.warn('[I18N] 斜杠开头的规则已废弃，请直接使用`scope/k.e.y.s`')
+        const arr1 = keys.split('.')
+        return {
+          scope: arr1[0].slice(1),
+          keyArray: arr1.slice(1)
+        }
+      case -1:
+        return {
+          scope,
+          keyArray: keys.split('.')
+        }
+      default:
+        const arr2 = keys.split('/')
+        return {
+          scope: arr2[0],
+          keyArray: arr2[1].split('.')
+        }
+    }
+  }
+
+  /**
+   * I18n
+   */
+  Vue.prototype.__ = Vue.prototype.$translate = function (keys, ...args) {
+    if (!keys) {
+      return keys
+    }
+
+    const { scope, keyArray } = parseKeys(keys, this.$scope)
+
+    // keys 以 `.` 作为分隔符
+    return template(keyArray.reduce((res, key) => {
+      if (res && typeof res === 'object' && res.hasOwnProperty(key)) {
+        return res[key]
+      }
+      return keys
+    }, scope ? vm.translations[scope] : vm.translations), ...args)
+  }
+
   return [{
     store: createStore(options),
     options
   }, ({ store }) => {
-    // vm for watching i18n
-    // TODO 此处的实现略显繁琐，需要优化
-    const vm = new Vue({
-      store,
-      scope,
-      mapGetters: ['lang', 'translations'],
-      mapActions: ['setI18n'],
-      methods: {
-        fetchTranslations (lang) {
-          // add `dir="..."` to `<html>`
-          document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr'
-          // request json data
-          request(template(urlPattern, { lang }))
-          .then(translations => {
-            this.setI18n({ translations })
-          })
-          .catch(() => {
-            if (this.fallbackEnabled) {
-              // 确保只执行一次，避免无限循环
-              this.fallbackEnabled = false
-              this.fetchTranslations(fallbackLang)
-            }
-          })
-        }
-      },
-      watch: {
-        lang (val) {
-          this.fetchTranslations(val)
-        }
-      },
-      created () {
-        this.fallbackEnabled = true
-        this.fetchTranslations(this.lang)
-      }
-    })
+    let fallbackEnabled = false
 
-    /**
-     * I18n
-     */
-    Vue.prototype.__ = Vue.prototype.$translate = function (keys, ...args) {
-      if (!keys) {
-        return keys
-      }
-      let scope
-      let keyArray
-      // 以 `/` 开头，说明是从全局里查找匹配
-      // 否则，从当前 scope 里查找匹配
-      if (keys.charAt(0) === '/') {
-        const arr = keys.split('.')
-        scope = arr[0].slice(1)
-        keyArray = arr.slice(1)
-      } else {
-        scope = this.$scope
-        keyArray = keys.split('.')
-      }
-      // keys 以 `.` 作为分隔符
-      return template(keyArray.reduce((res, key) => {
-        if (res && typeof res === 'object' && res.hasOwnProperty(key)) {
-          return res[key]
+    function fetchTranslations (lang) {
+      // add `dir="..."` to `<html>`
+      document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr'
+      // request json data
+      request(template(urlPattern, { lang }))
+      .then(value => {
+        vm.translations = value
+      })
+      .catch(() => {
+        if (fallbackEnabled) {
+          // 确保只执行一次，避免无限循环
+          fallbackEnabled = false
+          this.fetchTranslations(fallbackLang)
         }
-        return keys
-      }, scope ? vm.translations[scope] : vm.translations), ...args)
+      })
     }
+
+    // vm for watching i18n
+    watch(`${scope}/lang`, {
+      create (lang) {
+        fallbackEnabled = true
+        fetchTranslations(lang)
+      },
+      change: fetchTranslations
+    })
   }]
 }
