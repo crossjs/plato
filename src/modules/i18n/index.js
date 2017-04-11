@@ -17,13 +17,6 @@ export default ({ Vue }, options = {}) => {
     urlPattern = './i18n/{lang}.json'
   } = options
 
-  // 必须使用 Vue，以实现响应式
-  const vm = new Vue({
-    data: {
-      translations: {}
-    }
-  })
-
   function parseKeys (keys, scope) {
     switch (keys.indexOf('/')) {
       case 0: // 以 `/` 开头，说明是从全局里查找匹配
@@ -55,15 +48,17 @@ export default ({ Vue }, options = {}) => {
       return keys
     }
 
-    const { scope, keyArray } = parseKeys(keys, this.$scope)
+    const parsed = parseKeys(keys, this.$scope)
+
+    const { translations } = this.$store.state[scope]
 
     // keys 以 `.` 作为分隔符
-    return template(keyArray.reduce((res, key) => {
+    return template(parsed.keyArray.reduce((res, key) => {
       if (res && typeof res === 'object' && res.hasOwnProperty(key)) {
         return res[key]
       }
       return keys
-    }, scope ? vm.translations[scope] : vm.translations), ...args)
+    }, parsed.scope ? translations[parsed.scope] : translations), ...args)
   }
 
   return [{
@@ -77,14 +72,14 @@ export default ({ Vue }, options = {}) => {
       document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr'
       // request json data
       request(template(urlPattern, { lang }))
-      .then(value => {
-        vm.translations = value
+      .then(translations => {
+        store.dispatch(`${scope}/setI18n`, { translations })
       })
       .catch(() => {
         if (fallbackEnabled) {
           // 确保只执行一次，避免无限循环
           fallbackEnabled = false
-          this.fetchTranslations(fallbackLang)
+          fetchTranslations(fallbackLang)
         }
       })
     }
