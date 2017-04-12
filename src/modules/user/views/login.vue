@@ -64,19 +64,19 @@ export default {
         validate: {
           required: {
             rule: true,
-            message: this.__('/validator.required', this.__('login.username'))
+            message: this.__('validator/required', this.__('login.username'))
           },
           minlength: {
             rule: 4,
-            message: this.__('/validator.minlength', this.__('login.username'), 4)
+            message: this.__('validator/minlength', this.__('login.username'), 4)
           },
           maxlength: {
             rule: 20,
-            message: this.__('/validator.maxlength', this.__('login.username'), 20)
+            message: this.__('validator/maxlength', this.__('login.username'), 20)
           },
           pattern: {
             rule: '/^[a-z]{4,20}$/',
-            message: this.__('/validator.pattern', this.__('login.username'))
+            message: this.__('validator/pattern', this.__('login.username'))
           }
         }
       },
@@ -86,19 +86,19 @@ export default {
         value: 'password',
         validate: {
           required: {
-            message: this.__('/validator.required', this.__('login.password'))
+            message: this.__('validator/required', this.__('login.password'))
           },
           minlength: {
             rule: 8,
-            message: this.__('/validator.minlength', this.__('login.password'), 8)
+            message: this.__('validator/minlength', this.__('login.password'), 8)
           },
           maxlength: {
             rule: 20,
-            message: this.__('/validator.maxlength', this.__('login.password'), 20)
+            message: this.__('validator/maxlength', this.__('login.password'), 20)
           },
           pattern: {
             rule: '/^[`~!@#$%^&*_+=,.;\'?:"()<>{}\\-\\/\\[\\]\\\\ 0-9a-zA-Z]{8,20}$/',
-            message: this.__('/validator.pattern', this.__('login.password'))
+            message: this.__('validator/pattern', this.__('login.password'))
           }
         }
       }
