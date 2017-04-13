@@ -64,7 +64,7 @@ export default ({ Vue }, options = {}) => {
   return [{
     store: createStore(options),
     options
-  }, ({ store }) => {
+  }, ({ dispatch }) => {
     let fallbackEnabled = false
 
     function fetchTranslations (lang) {
@@ -73,7 +73,7 @@ export default ({ Vue }, options = {}) => {
       // request json data
       request(template(urlPattern, { lang }))
       .then(translations => {
-        store.dispatch(`${scope}/setI18n`, { translations })
+        dispatch('setI18n', { translations })
       })
       .catch(() => {
         if (fallbackEnabled) {
@@ -85,12 +85,9 @@ export default ({ Vue }, options = {}) => {
     }
 
     // vm for watching i18n
-    watch(`${scope}/lang`, {
-      create (lang) {
-        fallbackEnabled = true
-        fetchTranslations(lang)
-      },
-      change: fetchTranslations
+    watch(`${scope}/lang`, lang => {
+      fallbackEnabled = true
+      fetchTranslations(lang)
     })
   }]
 }
