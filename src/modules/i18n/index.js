@@ -1,4 +1,3 @@
-import { watch } from 'platojs/system'
 import request from 'platojs/util/request'
 import template from 'string-template'
 import createStore from './create-store'
@@ -64,7 +63,7 @@ export default ({ Vue }, options = {}) => {
   return [{
     store: createStore(options),
     options
-  }, ({ dispatch }) => {
+  }, ({ dispatch, subscribe }) => {
     let fallbackEnabled = false
 
     function fetchTranslations (lang) {
@@ -85,7 +84,7 @@ export default ({ Vue }, options = {}) => {
     }
 
     // vm for watching i18n
-    watch(`${scope}/lang`, lang => {
+    subscribe('lang', lang => {
       fallbackEnabled = true
       fetchTranslations(lang)
     })

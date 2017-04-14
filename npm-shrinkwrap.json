@@ -6061,9 +6061,9 @@
       "dev": true
     },
     "platojs": {
-      "version": "3.0.0-beta.18",
+      "version": "3.0.0-beta.19",
       "from": "platojs@latest",
-      "resolved": "https://registry.npm.taobao.org/platojs/download/platojs-3.0.0-beta.18.tgz"
+      "resolved": "https://registry.npm.taobao.org/platojs/download/platojs-3.0.0-beta.19.tgz"
     },
     "pleeease-filters": {
       "version": "3.0.1",
