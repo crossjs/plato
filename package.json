@@ -23,7 +23,7 @@
     "clean": "node ./cli/clean",
     "compile": "cross-env NODE_ENV=production DEBUG=PLATO:* node ./cli/compile",
     "build": "npm run test && npm run clean && npm run compile",
-    "docs": "bash ./cli/docs.sh",
+    "demo": "bash ./cli/demo.sh",
     "push": "bash ./cli/push.sh"
   },
   "dependencies": {

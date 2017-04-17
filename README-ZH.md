@@ -96,7 +96,7 @@ npm run build
 npm start
 
 # generate demo site and push to gh-pages
-npm run docs
+npm run demo
 
 # push modifications to github
 npm run push
