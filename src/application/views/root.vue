@@ -34,6 +34,7 @@
 </template>
 
 <script>
+import { checkOptionsSupported } from 'platojs/directives/util'
 import tap from 'platojs/directives/tap'
 import CProgress from 'platojs/components/core/progress'
 import CToast from 'platojs/components/core/toast'
@@ -49,6 +50,18 @@ export default {
     'config/progress',
     'config/toast'
   ],
+
+  mounted () {
+    document.addEventListener('touchmove', e => {
+      if (window.scrollY > 0) {
+        window.scrollTo(0, 0)
+        e.preventDefault()
+      }
+    }, checkOptionsSupported() ? {
+      passive: false,
+      capture: true
+    } : true)
+  },
 
   methods: {
     _back () {
