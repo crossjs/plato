@@ -10,17 +10,18 @@ export default (context, options = {}, register) => {
     // 为统一标准，将 context 与 options 做为数据传入
     store: createStore(context, options),
     options
-  }, context => {
-    // 模块注册完成后的回调
-    const { store, router } = context
-
-    // 此处需要优化 getters key 获取方法
+  }, ({ router, subscribe }) => {
+    let authorized
     router.beforeEach((to, from, next) => {
-      if (to.matched.some(m => m.meta.auth) && !store.getters[`${options.scope}/authorized`]) {
+      if (to.matched.some(m => m.meta.auth) && !authorized) {
         next('/')
       } else {
         next()
       }
+    })
+    // 监听变化
+    subscribe('authorized', value => {
+      authorized = value
     })
   }]
 }
