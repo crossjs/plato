@@ -80,13 +80,62 @@ const webpackConfig = {
         test: /\.vue$/,
         loader: 'vue-loader',
         options: {
+          postcss: pack => {
+            // see: https://github.com/ai/browserslist#queries
+            const browsers = 'Android >= 4, iOS >= 7'
+
+            return [
+              require('postcss-import')({
+                path: paths.src('application/styles')
+              }),
+              require('postcss-url')({
+                basePath: paths.src('static')
+              }),
+              require('postcss-cssnext')({
+                browsers,
+                features: {
+                  customProperties: {
+                    variables: require(paths.src('application/styles/variables'))
+                  },
+                  // 禁用 autoprefixer，在 postcss-rtl 后单独引入
+                  // 否则会跟 postcss-rtl 冲突
+                  autoprefixer: false
+                }
+              }),
+              // 如果不需要 flexible，请移除
+              require('postcss-flexible')({
+                remUnit: 75
+              }),
+              // PostCSS plugin for RTL-optimizations
+              require('postcss-rtl')({
+                // Custom function for adding prefix to selector. Optional.
+                addPrefixToSelector (selector, prefix) {
+                  if (/^html/.test(selector)) {
+                    return selector.replace(/^html/, `html${prefix}`)
+                  }
+                  if (/:root/.test(selector)) {
+                    return selector.replace(/:root/, `${prefix}:root`)
+                  }
+                  // compliant with postcss-flexible
+                  if (/^\[data-dpr(="[1-3]")?]/.test(selector)) {
+                    return `${prefix}${selector}`
+                  }
+                  return `${prefix} ${selector}`
+                }
+              }),
+              require('autoprefixer')({
+                browsers
+              }),
+              require('postcss-browser-reporter')(),
+              require('postcss-reporter')()
+            ]
+          },
+          autoprefixer: false,
           loaders: {
-            css: __PROD__ ? ExtractTextPlugin.extract({
-              use: 'css-loader?sourceMap',
-              fallback: 'vue-style-loader'
-            }) : 'vue-style-loader!css-loader?sourceMap',
             js: 'babel-loader'
-          }
+          },
+          // 必须为 true，否则 vue-loader@12.0.0 会导致 css 加载顺序混乱
+          extractCSS: true
         }
       },
       {
@@ -134,67 +183,15 @@ const webpackConfig = {
       from: paths.src('static')
     }], {
       ignore: ['README.md']
-    })
+    }),
+    // extract css into its own file
+    new ExtractTextPlugin('[name].[contenthash].css')
   ]
 }
 
 // ------------------------------------
 // Plugins
 // ------------------------------------
-
-const vueLoaderOptions = {
-  postcss: pack => {
-    // see: https://github.com/ai/browserslist#queries
-    const browsers = 'Android >= 4, iOS >= 7'
-
-    return [
-      require('postcss-import')({
-        path: paths.src('application/styles')
-      }),
-      require('postcss-url')({
-        basePath: paths.src('static')
-      }),
-      require('postcss-cssnext')({
-        browsers,
-        features: {
-          customProperties: {
-            variables: require(paths.src('application/styles/variables'))
-          },
-          // 禁用 autoprefixer，在 postcss-rtl 后单独引入
-          // 否则会跟 postcss-rtl 冲突
-          autoprefixer: false
-        }
-      }),
-      // 如果不需要 flexible，请移除
-      require('postcss-flexible')({
-        remUnit: 75
-      }),
-      // PostCSS plugin for RTL-optimizations
-      require('postcss-rtl')({
-        // Custom function for adding prefix to selector. Optional.
-        addPrefixToSelector (selector, prefix) {
-          if (/^html/.test(selector)) {
-            return selector.replace(/^html/, `html${prefix}`)
-          }
-          if (/:root/.test(selector)) {
-            return selector.replace(/:root/, `${prefix}:root`)
-          }
-          // compliant with postcss-flexible
-          if (/^\[data-dpr(="[1-3]")?]/.test(selector)) {
-            return `${prefix}${selector}`
-          }
-          return `${prefix} ${selector}`
-        }
-      }),
-      require('autoprefixer')({
-        browsers
-      }),
-      require('postcss-browser-reporter')(),
-      require('postcss-reporter')()
-    ]
-  },
-  autoprefixer: false
-}
 
 if (__PROD__) {
   debug('Enable plugins for production (Dedupe & UglifyJS).')
@@ -203,8 +200,7 @@ if (__PROD__) {
       minimize: true,
       options: {
         context: __dirname
-      },
-      vue: vueLoaderOptions
+      }
     }),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
@@ -213,9 +209,7 @@ if (__PROD__) {
         warnings: false
       },
       sourceMap: true
-    }),
-    // extract css into its own file
-    new ExtractTextPlugin('[name].[contenthash].css')
+    })
   )
 } else {
   debug('Enable plugins for live development (HMR, NoErrors).')
@@ -226,8 +220,7 @@ if (__PROD__) {
       debug: true,
       options: {
         context: __dirname
-      },
-      vue: vueLoaderOptions
+      }
     })
   )
 }

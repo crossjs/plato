@@ -1,4 +1,3 @@
-import { watch } from 'platojs/system'
 import { configure, intercept } from 'platojs/util/request'
 
 /**
@@ -26,9 +25,9 @@ export default ({ Vue, store, name, version }, options = {}) => {
     })
   }
 
-  return () => {
+  return ({ subscribe }) => {
     // 修改全局 Accept-Language
-    watch('i18n/lang', value => configure({
+    subscribe('i18n/lang', value => configure({
       headers: {
         'Accept-Language': value
       }

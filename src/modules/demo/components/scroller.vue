@@ -14,12 +14,13 @@
         <div v-else-if="props.downAwaiting">Refreshing...</div>
       </template>
       <c-button class="primary">Pull down to refresh</c-button>
-      <c-button size="xsmall" v-for="id in ids" :key="id">{{words[(id - 1) % words.length]}}</c-button>
+      <c-button size="xsmall" v-for="id in ids" :key="id">{{id}} : {{words[(id - 1) % words.length]}}</c-button>
       <c-button class="warning" v-tap @tap.native="infinite = !infinite">click to toggle infinite mode</c-button>
       <template slot="pullup" scope="props">
         <div v-if="props.upGo">Release to load</div>
         <div v-else-if="props.upReady">Pull up to load</div>
         <div v-else-if="props.upAwaiting">Loading...</div>
+        <div v-else-if="props.drained">Drained!</div>
       </template>
     </c-scroller>
   </c-pane>
