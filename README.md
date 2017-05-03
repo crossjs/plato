@@ -80,9 +80,6 @@ npm run dev
 # eslint, stylelint, unit and e2e test
 npm test
 
-# generate the performance JSON file
-npm run profile
-
 # compile files for production with minification
 npm run compile
 

@@ -1,6 +1,6 @@
 {
   "name": "PLATO",
-  "version": "3.0.0-beta.13",
+  "version": "3.0.0-beta.14",
   "description": "a Boilerplate for [mobile] SPAs use vue, vuex, vue-router",
   "license": "MIT",
   "main": "src/index.js",
@@ -11,6 +11,7 @@
     "start": "npm run build && serve ./dist",
     "mock": "cross-env NODE_ENV=development DEBUG=PLATO:* json-server --watch --port 3001 ./mock/db.json",
     "dev": "cross-env NODE_ENV=development DEBUG=PLATO:* webpack-dev-server --progress",
+    "mock-dev": "concurrently --kill-others \"npm run mock\" \"npm run dev\"",
     "e2e": "cross-env NODE_ENV=test DEBUG=PLATO:* node ./test/e2e/runner.js",
     "e2e:dev": "cross-env NODE_ENV=test DEBUG=PLATO:* nodemon ./test/e2e/runner.js",
     "unit": "cross-env NODE_ENV=test DEBUG=PLATO:* karma start ./test/unit/runner.js",
@@ -19,7 +20,6 @@
     "lint:fix": "npm run lint -- --fix",
     "lint:css": "stylelint src/**/*.css",
     "test": "npm run lint && npm run lint:css && npm run unit && npm run e2e",
-    "profile": "cross-env NODE_ENV=production DEBUG=PLATO:* webpack --profile --json > stats.json",
     "clean": "node ./cli/clean",
     "compile": "cross-env NODE_ENV=production DEBUG=PLATO:* node ./cli/compile",
     "build": "npm run test && npm run clean && npm run compile",
