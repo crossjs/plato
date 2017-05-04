@@ -10,7 +10,6 @@ const karmaConfig = {
   basePath: '../../', // project root in relation to bin/karma.js
   files: [
     `./${config.dir_src}/polyfills/index.js`,
-    './node_modules/phantomjs-polyfill/bind-polyfill.js',
     './node_modules/sinon/pkg/sinon.js',
     {
       pattern: `./${config.dir_test}/unit/index.js`,
@@ -32,7 +31,7 @@ const karmaConfig = {
   coverageReporter: {
     reporters: config.coverage_reporters
   },
-  browsers: ['PhantomJS'],
+  browsers: ['Chrome'],
   webpack: {
     devtool: webpackConfig.devtool,
     resolve: { ...webpackConfig.resolve, alias },
