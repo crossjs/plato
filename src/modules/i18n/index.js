@@ -1,4 +1,4 @@
-import request from 'platojs/util/request'
+import request from 'platojs/request'
 import template from 'string-template'
 import createStore from './create-store'
 

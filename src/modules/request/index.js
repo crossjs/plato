@@ -1,4 +1,4 @@
-import { configure, intercept } from 'platojs/util/request'
+import { configure, intercept } from 'platojs/request'
 
 /**
  * 修改 request 方法的全局配置
