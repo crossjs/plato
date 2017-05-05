@@ -1,6 +1,6 @@
 import { createAction, handleAction, $inject } from 'vuex-actions'
 import Normalizer from 'platojs/util/normalizer'
-import { get, post, patch, put, del } from 'platojs/util/request'
+import { get, post, patch, put, del } from 'platojs/request'
 import merge from 'platojs/util/cheap-merge'
 
 /**
@@ -26,6 +26,7 @@ export default ({
   const REST = {
     list (query) {
       return get(source, merge({}, options, {
+        method: 'GET',
         query
       }))
     },
