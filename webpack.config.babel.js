@@ -39,6 +39,7 @@ const webpackConfig = {
       }
     }],
     compress: true,
+    disableHostCheck: true,
     hot: true,
     noInfo: true
   },

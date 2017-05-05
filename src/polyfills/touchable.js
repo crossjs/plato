@@ -11,8 +11,8 @@
       // use document.createTouchEvent() instead
       event = new Event(name, originalEvent)
     } catch (e) {
-      event = document.createEvent('CustomEvent')
-      event.initCustomEvent(name, !!originalEvent.bubbles, !!originalEvent.cancelable)
+      event = document.createEvent('HTMLEvents')
+      event.initEvent(name, !!originalEvent.bubbles, !!originalEvent.cancelable)
     }
 
     Object.assign(event, {
