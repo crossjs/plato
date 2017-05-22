@@ -13,7 +13,7 @@
         </router-link>
       </div>
       <div id="history">
-        <c-link v-tap @tap.native="_back">
+        <c-link v-tap @tap.native="$router.back">
           <!-- 为了支持 rtl，这里使用向下的箭头通过旋转 90 度实现 -->
           <c-icon class="rotate90">chevron-down</c-icon>
         </c-link>
@@ -52,6 +52,7 @@ export default {
   ],
 
   mounted () {
+    // 禁用 iOS 的弹性下拉
     document.addEventListener('touchmove', e => {
       if (window.scrollY > 0) {
         window.scrollTo(0, 0)
@@ -61,12 +62,6 @@ export default {
       passive: false,
       capture: true
     } : true)
-  },
-
-  methods: {
-    _back () {
-      this.$router.back()
-    }
   },
 
   components: {
