@@ -13,6 +13,7 @@ import user from 'modules/user'
 import core from 'modules/core'
 
 import Root from './views/root'
+import translations from 'static/i18n/zh.json'
 
 /**
  * 全局配置
@@ -41,7 +42,7 @@ __DEV__ && use(logger)
 * 移除可能会影响部分功能
 */
 use(request)
-use(i18n)
+use(i18n, { translations })
 use(validator)
 
 /**
