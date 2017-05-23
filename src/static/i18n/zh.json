@@ -1,4 +1,5 @@
 {
+  "i18n": {},
   "validator": {
     "required": "请输入 {0}",
     "minlength": "{0} 不能少于 {1} 个字符",
@@ -9,7 +10,6 @@
     "language": "语言",
     "transition": "动画效果"
   },
-  "i18n": {},
   "user": {
     "login": {
       "username": "账号",
