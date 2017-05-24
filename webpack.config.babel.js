@@ -135,7 +135,7 @@ const webpackConfig = {
       {
         test: /\.js$/,
         // platojs 模块需要 babel 处理
-        exclude: /node_modules[/\\](?!platojs)/,
+        exclude: /node_modules[/\\](?!(platojs|nuo))/,
         loader: 'babel-loader'
       },
       {
@@ -179,7 +179,10 @@ const webpackConfig = {
       ignore: ['README.md']
     }),
     // extract css into its own file
-    new ExtractTextPlugin('[name].[contenthash].css')
+    new ExtractTextPlugin({
+      filename: '[name].[contenthash].css',
+      allChunks: true
+    })
   ]
 }
 
