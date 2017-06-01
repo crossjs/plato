@@ -26,6 +26,8 @@
 
 **注意：此仓库是实践示例，请不要直接克隆后用于项目开发，应使用如下方式初始化项目**
 
+- [Vue CLI Template](https://github.com/platojs/template)
+
 ## 版本锁
 
 **此项目尚处于 Beta 阶段，实际应用时请确保使用 `npm-shrinkwrap.json`**
