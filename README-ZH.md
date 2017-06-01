@@ -30,6 +30,8 @@
 
 **此项目尚处于 Beta 阶段，实际应用时请确保使用 `npm-shrinkwrap.json`**
 
+**`npm run mirror:<sdp|tb|npm>` 可切换依赖项的源（registry）至 SDP、淘宝或 NPM**
+
 ## 特性
 
 - [Core](https://github.com/platojs/platojs)
