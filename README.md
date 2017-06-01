@@ -71,17 +71,11 @@ npm run init
 # lock dependencies version
 npm run lock
 
-# start a mocking server at localhost:3001
-npm run mock
-
 # serve with hot reload at localhost:3000
 npm run dev
 
 # eslint, stylelint, unit and e2e test
 npm test
-
-# compile files for production with minification
-npm run compile
 
 # test, clean, and compile
 npm run build

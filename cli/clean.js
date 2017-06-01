@@ -1,13 +1,11 @@
 require('babel-register')
 
-const debug = require('debug')('PLATO:clean')
-
-debug('Clean dist files...')
+console.log('Clean dist files...')
 
 require('rimraf')(require('../config').paths.dist('**'), err => {
   if (err) {
-    debug(err)
+    console.log(err)
   } else {
-    debug('Files cleaned.')
+    console.log('Files cleaned.')
   }
 })

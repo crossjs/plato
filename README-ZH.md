@@ -76,17 +76,11 @@ npm run init
 # 锁定依赖项版本。使用 npm shrinkwrap
 npm run lock
 
-# 启动接口模拟。访问地址：localhost:3001
-npm run mock
-
 # 启动开发服务。访问地址：localhost:3000
 npm run dev
 
 # eslint, stylelint, unit and e2e test
 npm test
-
-# compile files for production with minification
-npm run compile
 
 # test, clean, and compile
 npm run build

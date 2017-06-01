@@ -1342,7 +1342,7 @@
     "cliui": {
       "version": "3.2.0",
       "from": "cliui@>=3.0.3 <4.0.0",
-      "resolved": "http://registry.npm.taobao.org/cliui/download/cliui-3.2.0.tgz",
+      "resolved": "https://registry.npm.taobao.org/cliui/download/cliui-3.2.0.tgz",
       "dev": true
     },
     "clone": {
@@ -1464,7 +1464,7 @@
     "commander": {
       "version": "2.6.0",
       "from": "commander@2.6.0",
-      "resolved": "https://registry.npmjs.org/commander/-/commander-2.6.0.tgz",
+      "resolved": "https://registry.npm.taobao.org/commander/-/commander-2.6.0.tgz",
       "dev": true
     },
     "commondir": {
@@ -2185,7 +2185,7 @@
         "esprima-fb": {
           "version": "15001.1001.0-dev-harmony-fb",
           "from": "esprima-fb@~15001.1001.0-dev-harmony-fb",
-          "resolved": "http://registry.npm.taobao.org/esprima-fb/download/esprima-fb-15001.1001.0-dev-harmony-fb.tgz",
+          "resolved": "https://registry.npm.taobao.org/esprima-fb/download/esprima-fb-15001.1001.0-dev-harmony-fb.tgz",
           "dev": true
         },
         "wordwrap": {
@@ -3291,7 +3291,7 @@
     "friendly-errors-webpack-plugin": {
       "version": "1.6.1",
       "from": "friendly-errors-webpack-plugin@>=1.6.1 <2.0.0",
-      "resolved": "http://registry.npm.taobao.org/friendly-errors-webpack-plugin/download/friendly-errors-webpack-plugin-1.6.1.tgz",
+      "resolved": "https://registry.npm.taobao.org/friendly-errors-webpack-plugin/download/friendly-errors-webpack-plugin-1.6.1.tgz",
       "dev": true
     },
     "from": {
@@ -4469,7 +4469,7 @@
         "lodash": {
           "version": "3.10.1",
           "from": "lodash@^3.8.0",
-          "resolved": "http://registry.npm.taobao.org/lodash/download/lodash-3.10.1.tgz",
+          "resolved": "https://registry.npm.taobao.org/lodash/download/lodash-3.10.1.tgz",
           "dev": true
         }
       }
@@ -4489,7 +4489,7 @@
         "lodash": {
           "version": "3.10.1",
           "from": "lodash@^3.8.0",
-          "resolved": "http://registry.npm.taobao.org/lodash/download/lodash-3.10.1.tgz",
+          "resolved": "https://registry.npm.taobao.org/lodash/download/lodash-3.10.1.tgz",
           "dev": true
         }
       }
@@ -4547,7 +4547,7 @@
         "lodash": {
           "version": "3.10.1",
           "from": "lodash@^3.8.0",
-          "resolved": "http://registry.npm.taobao.org/lodash/download/lodash-3.10.1.tgz",
+          "resolved": "https://registry.npm.taobao.org/lodash/download/lodash-3.10.1.tgz",
           "dev": true
         },
         "source-map": {
@@ -6220,13 +6220,13 @@
     "plato-dev-dependencies": {
       "version": "3.0.0-beta.14",
       "from": "plato-dev-dependencies@latest",
-      "resolved": "http://registry.npm.taobao.org/plato-dev-dependencies/download/plato-dev-dependencies-3.0.0-beta.14.tgz",
+      "resolved": "https://registry.npm.taobao.org/plato-dev-dependencies/download/plato-dev-dependencies-3.0.0-beta.14.tgz",
       "dev": true
     },
     "platojs": {
       "version": "3.0.0-beta.36",
       "from": "platojs@latest",
-      "resolved": "http://registry.npm.taobao.org/platojs/download/platojs-3.0.0-beta.36.tgz"
+      "resolved": "https://registry.npm.taobao.org/platojs/download/platojs-3.0.0-beta.36.tgz"
     },
     "pleeease-filters": {
       "version": "3.0.1",
@@ -7058,7 +7058,7 @@
         "esprima-fb": {
           "version": "15001.1001.0-dev-harmony-fb",
           "from": "esprima-fb@~15001.1001.0-dev-harmony-fb",
-          "resolved": "http://registry.npm.taobao.org/esprima-fb/download/esprima-fb-15001.1001.0-dev-harmony-fb.tgz",
+          "resolved": "https://registry.npm.taobao.org/esprima-fb/download/esprima-fb-15001.1001.0-dev-harmony-fb.tgz",
           "dev": true
         }
       }
@@ -7102,7 +7102,7 @@
         "esprima-fb": {
           "version": "15001.1001.0-dev-harmony-fb",
           "from": "esprima-fb@>=15001.1001.0-dev-harmony-fb <15001.1002.0",
-          "resolved": "http://registry.npm.taobao.org/esprima-fb/download/esprima-fb-15001.1001.0-dev-harmony-fb.tgz",
+          "resolved": "https://registry.npm.taobao.org/esprima-fb/download/esprima-fb-15001.1001.0-dev-harmony-fb.tgz",
           "dev": true
         },
         "regenerator-runtime": {
@@ -7536,7 +7536,7 @@
             "ms": {
               "version": "0.7.3",
               "from": "ms@0.7.3",
-              "resolved": "http://registry.npm.taobao.org/ms/download/ms-0.7.3.tgz",
+              "resolved": "https://registry.npm.taobao.org/ms/download/ms-0.7.3.tgz",
               "dev": true
             }
           }
@@ -7988,7 +7988,7 @@
     "source-map": {
       "version": "0.5.6",
       "from": "source-map@>=0.5.0 <0.6.0",
-      "resolved": "http://registry.npm.taobao.org/source-map/download/source-map-0.5.6.tgz",
+      "resolved": "https://registry.npm.taobao.org/source-map/download/source-map-0.5.6.tgz",
       "dev": true
     },
     "source-map-support": {
@@ -8995,7 +8995,7 @@
             "source-map": {
               "version": "0.5.6",
               "from": "source-map@~0.5.1",
-              "resolved": "http://registry.npm.taobao.org/source-map/download/source-map-0.5.6.tgz",
+              "resolved": "https://registry.npm.taobao.org/source-map/download/source-map-0.5.6.tgz",
               "dev": true
             }
           }
@@ -9220,7 +9220,7 @@
             "cliui": {
               "version": "3.2.0",
               "from": "cliui@>=3.2.0 <4.0.0",
-              "resolved": "http://registry.npm.taobao.org/cliui/download/cliui-3.2.0.tgz",
+              "resolved": "https://registry.npm.taobao.org/cliui/download/cliui-3.2.0.tgz",
               "dev": true
             }
           }
