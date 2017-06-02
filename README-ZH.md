@@ -74,6 +74,9 @@
 ## 使用方法
 
 ```bash
+# 切换 NPM 源
+npm run mirror:<sdp|tb|npm>
+
 # 安装依赖项。通过指定镜像提高安装速度
 npm run init
 

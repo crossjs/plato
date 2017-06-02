@@ -65,6 +65,9 @@
 ## Usage
 
 ```bash
+# switch npm registry mirror
+npm run mirror:<sdp|tb|npm>
+
 # install dependencies with mirrors
 npm run init
 
