@@ -222,7 +222,7 @@ if (__PROD__) {
     })
   )
 
-  if (process.env.SCRIPT !== 'demo') {
+  if (process.env.SCRIPT !== 'demo' && process.env.SCRIPT !== 'start') {
     webpackConfig.plugins.push(
       new BundleAnalyzerPlugin({
         // Can be `server`, `static` or `disabled`.
