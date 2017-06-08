@@ -1,0 +1,50 @@
+/* paddings */
+
+.padding {
+  padding: dpr(20px);
+}
+
+/* font-sizes */
+
+.fs-64 {
+  font-size: dpr(64px);
+}
+
+.fs-48 {
+  font-size: dpr(48px);
+}
+
+.fs-32 {
+  font-size: dpr(32px);
+}
+
+.fs-24 {
+  font-size: dpr(24px);
+}
+
+.fs-16 {
+  font-size: dpr(16px);
+}
+
+/* alignments */
+
+.left {
+  text-align: left;
+}
+
+.center {
+  text-align: center;
+  align-self: center;
+}
+
+.right {
+  text-align: right;
+}
+
+.rotate90 {
+  transform: rotate3d(0, 0, 1, 90deg);
+}
+
+.rotate90n {
+  transform: rotate3d(0, 0, 1, -90deg);
+}

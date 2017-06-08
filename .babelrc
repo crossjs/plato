@@ -6,7 +6,10 @@
         "stage-0"
       ],
       "plugins": [
-        "add-module-exports"
+        "add-module-exports",
+        "syntax-async-functions",
+        "transform-regenerator",
+        "dynamic-import-webpack"
       ],
       "comments": false
     },
@@ -17,7 +20,10 @@
       ],
       "plugins": [
         "add-module-exports",
-        ["__coverage__", { "ignore": "test/" }]
+        "syntax-async-functions",
+        "transform-regenerator",
+        "dynamic-import-webpack",
+        "istanbul"
       ],
       "comments": false
     },
@@ -27,7 +33,10 @@
         "stage-0"
       ],
       "plugins": [
-        "add-module-exports"
+        "add-module-exports",
+        "syntax-async-functions",
+        "transform-regenerator",
+        "dynamic-import-webpack"
       ],
       "comments": false
     }

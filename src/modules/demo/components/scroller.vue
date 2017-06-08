@@ -1,0 +1,101 @@
+<template>
+  <c-pane class="main">
+    <c-scroller
+      :transition="transition"
+      :height="height"
+      :loading="loading"
+      :drained="drained"
+      :infinite="infinite"
+      @pulldown="pulldown"
+      @pullup="pullup">
+      <template slot="pulldown" scope="props">
+        <div v-if="props.downGo">Release to refresh</div>
+        <div v-else-if="props.downReady">Pull down to refresh</div>
+        <div v-else-if="props.downAwaiting">Refreshing...</div>
+      </template>
+      <c-button class="primary">Pull down to refresh</c-button>
+      <c-button size="xsmall" v-for="id in ids" :key="id">{{id}} : {{words[(id - 1) % words.length]}}</c-button>
+      <c-button class="warning" v-tap @tap.native="infinite = !infinite">click to toggle infinite mode</c-button>
+      <template slot="pullup" scope="props">
+        <div v-if="props.upGo">Release to load</div>
+        <div v-else-if="props.upReady">Pull up to load</div>
+        <div v-else-if="props.upAwaiting">Loading...</div>
+        <div v-else-if="props.drained">Drained!</div>
+      </template>
+    </c-scroller>
+  </c-pane>
+</template>
+
+<script>
+import tap from 'platojs/directives/tap'
+import CPane from 'platojs/components/core/pane'
+import CScroller from 'platojs/components/core/scroller'
+import CButton from 'platojs/components/core/button'
+
+export default {
+  data () {
+    return {
+      ids: '',
+      loading: false,
+      drained: false,
+      infinite: false,
+      height: 0,
+      words: [
+        'have slots:',
+        'down-go, down-ready',
+        'up-go, up-ready.',
+        '-',
+        'emit events:',
+        'pulldown, pullup.'
+      ]
+    }
+  },
+
+  mapGetters: ['config/transition'],
+
+  mounted () {
+    this.height =
+      document.documentElement.clientHeight -
+      document.getElementById('header').clientHeight -
+      parseInt(getComputedStyle(this.$el).marginTop, 10) * 2
+  },
+
+  methods: {
+    pulldown () {
+      this.loading = true
+      setTimeout(() => {
+        this.ids = 10
+        this.drained = false
+        this.loading = false
+      }, 1000)
+    },
+    pullup () {
+      this.loading = true
+      setTimeout(() => {
+        if (Math.random() < 0.75) {
+          this.ids = +this.ids + 10
+        } else {
+          this.drained = true
+        }
+        this.loading = false
+      }, 1000)
+    }
+  },
+
+  components: {
+    CPane,
+    CScroller,
+    CButton
+  },
+
+  directives: {
+    tap
+  }
+}
+</script>
+
+<style scoped>
+.c-button {
+  margin: 0.5em 0;
+}
+</style>

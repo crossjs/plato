@@ -1,7 +1,7 @@
 import config from '../../config'
 import webpackConfig from '../../webpack.config.babel.js'
 
-const debug = require('debug')('app:karma')
+const debug = require('debug')('PLATO:karma')
 debug('Create configuration.')
 
 const alias = { ...webpackConfig.resolve.alias, vue: 'vue/dist/vue' }
@@ -9,7 +9,7 @@ const alias = { ...webpackConfig.resolve.alias, vue: 'vue/dist/vue' }
 const karmaConfig = {
   basePath: '../../', // project root in relation to bin/karma.js
   files: [
-    './node_modules/phantomjs-polyfill/bind-polyfill.js',
+    `./${config.dir_src}/polyfills/index.js`,
     './node_modules/sinon/pkg/sinon.js',
     {
       pattern: `./${config.dir_test}/unit/index.js`,
@@ -19,18 +19,19 @@ const karmaConfig = {
     }
   ],
   proxies: {
-    // '/api/': 'http://localhost:3000/api/'
+    // '/api/': 'http://0.0.0.0:3000/api/'
   },
   singleRun: config.coverage_enabled,
   frameworks: ['mocha', 'es6-shim'],
   preprocessors: {
+    [`${config.dir_src}/polyfills/index.js`]: ['webpack'],
     [`${config.dir_test}/unit/index.js`]: ['webpack', 'sourcemap']
   },
   reporters: ['mocha', 'coverage'],
   coverageReporter: {
     reporters: config.coverage_reporters
   },
-  browsers: ['PhantomJS'],
+  browsers: ['Chrome'],
   webpack: {
     devtool: webpackConfig.devtool,
     resolve: { ...webpackConfig.resolve, alias },
@@ -38,7 +39,10 @@ const karmaConfig = {
     module: {
       rules: webpackConfig.module.rules
     },
-    node: webpackConfig.node
+    node: webpackConfig.node,
+    performance: {
+      hints: false
+    }
   },
   webpackMiddleware: {
     noInfo: true

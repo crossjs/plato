@@ -8,7 +8,8 @@ module.exports = {
       .waitForElementVisible('#container', 5000)
       .assert.elementPresent('#logo')
       .assert.containsText('a', 'PLATO')
-      .assert.containsText('#history', '')
+      // chevron-down => &#xe916;
+      .assert.containsText('#history', '')
       // there is no router-view tag in vue 2
       .assert.elementCount('.router-view', 0)
       .end()

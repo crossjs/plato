@@ -1,0 +1,81 @@
+.c-navbar {
+  position: absolute;
+  z-index: 11;
+  width: 100%;
+}
+
+.c-navbar-toggle {
+  position: absolute;
+  z-index: 102;
+  right: 0;
+  width: dpr(88px);
+  font-size: dpr(32px);
+  line-height: dpr(88px);
+  text-align: center;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+
+  &:active {
+    background-color: transparent;
+  }
+
+  &.active {
+    color: var(--primary);
+  }
+}
+
+.c-navbar-menu {
+  position: fixed;
+  z-index: 101;
+  top: 0;
+  right: 0;
+  width: dpr(88px);
+  padding-top: dpr(88px);
+  height: 100%;
+  background-color: white;
+  box-shadow: 0 1px 3px color(white lightness(-20%));
+  transform: translate3d(dpr(88px), 0, 0);
+  transition: transform 0.3s ease-in-out;
+
+  &.opened {
+    transform: translate3d(0, 0, 0);
+  }
+
+  & li {
+    & ul {
+      display: none;
+    }
+
+    & li {
+      display: block;
+
+      & a {
+        display: block;
+      }
+    }
+
+    &:active {
+      & ul {
+        display: block;
+        background-color: color(white lightness(-10%));
+      }
+    }
+  }
+
+  & a {
+    display: block;
+    line-height: dpr(88px);
+    text-decoration: none;
+    text-align: center;
+
+    &:active {
+      background-color: color(white lightness(-5%));
+    }
+
+    &.router-link-active {
+      color: var(--secondary);
+      background-color: color(var(--secondary) lightness(95%));
+    }
+  }
+}

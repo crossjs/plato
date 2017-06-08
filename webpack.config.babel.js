@@ -1,24 +1,76 @@
 import webpack from 'webpack'
 import CopyWebpackPlugin from 'copy-webpack-plugin'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
+import OptimizeCSSPlugin from 'optimize-css-assets-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import FaviconsWebpackPlugin from 'favicons-webpack-plugin'
-import _debug from 'debug'
+import FriendlyErrorsPlugin from 'friendly-errors-webpack-plugin'
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
 import config, { paths } from './config'
 
+const pkg = require('./package.json')
+
 const { __DEV__, __PROD__, __TEST__ } = config.globals
-const debug = _debug('plato:webpack')
+const debug = require('debug')('PLATO:webpack')
 
 debug('Create configuration.')
+
+// see: https://github.com/ai/browserslist#queries
+const browsers = 'Android >= 4, iOS >= 7'
+const postcssOptions = {
+  plugins: [
+    require('postcss-import')({
+      path: paths.src('application/styles')
+    }),
+    require('postcss-url')({
+      basePath: paths.src('static')
+    }),
+    require('postcss-cssnext')({
+      browsers,
+      features: {
+        customProperties: {
+          variables: require(paths.src('application/styles/variables'))
+        },
+        // 禁用 autoprefixer，在 postcss-rtl 后单独引入
+        // 否则会跟 postcss-rtl 冲突
+        autoprefixer: false
+      }
+    }),
+    // 如果不需要 flexible，请移除
+    require('postcss-flexible')({
+      remUnit: 75
+    }),
+    // PostCSS plugin for RTL-optimizations
+    require('postcss-rtl')({
+      // Custom function for adding prefix to selector. Optional.
+      addPrefixToSelector (selector, prefix) {
+        if (/^html/.test(selector)) {
+          return selector.replace(/^html/, `html${prefix}`)
+        }
+        if (/:root/.test(selector)) {
+          return selector.replace(/:root/, `${prefix}:root`)
+        }
+        // compliant with postcss-flexible
+        if (/^\[data-dpr(="[1-3]")?]/.test(selector)) {
+          return `${prefix}${selector}`
+        }
+        return `${prefix} ${selector}`
+      }
+    }),
+    require('autoprefixer')({
+      browsers
+    }),
+    require('postcss-browser-reporter')(),
+    require('postcss-reporter')()
+  ]
+}
 
 const webpackConfig = {
   target: 'web',
   resolve: {
     modules: [paths.src(), 'node_modules'],
     extensions: ['.css', '.js', '.json', '.vue'],
-    alias: {
-      styles: paths.src(`themes/${config.theme}`)
-    }
+    alias: {}
   },
   node: {
     fs: 'empty',
@@ -37,21 +89,24 @@ const webpackConfig = {
       }
     }],
     compress: true,
+    disableHostCheck: true,
     hot: true,
     noInfo: true
   },
   entry: {
     app: [
-      // load the specific polyfills
+      // 加载 polyfills
       paths.src('polyfills/index.js'),
-      paths.src('index.js')],
-    vendor: config.compiler_vendor
+      paths.src('index.js')]
   },
   output: {
     path: paths.dist(),
     publicPath: config.compiler_public_path,
     filename: `[name].[${config.compiler_hash_type}].js`,
     chunkFilename: `[id].[${config.compiler_hash_type}].js`
+  },
+  performance: {
+    hints: __PROD__ ? 'warning' : false
   },
   module: {
     rules: [
@@ -69,23 +124,25 @@ const webpackConfig = {
         test: /\.vue$/,
         loader: 'vue-loader',
         options: {
+          postcss: postcssOptions,
+          autoprefixer: false,
           loaders: {
-            css: __PROD__ ? ExtractTextPlugin.extract({
-              loader: 'css-loader?sourceMap',
-              fallbackLoader: 'vue-style-loader'
-            }) : 'vue-style-loader!css-loader?sourceMap',
             js: 'babel-loader'
-          }
+          },
+          // 必须为 true，否则 vue-loader@12.0.0 会导致 css 加载顺序混乱
+          extractCSS: true
         }
       },
       {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loader: 'babel-loader'
+        test: /\.css$/,
+        loader: 'postcss-loader',
+        options: postcssOptions
       },
       {
-        test: /\.json$/,
-        loader: 'json-loader'
+        test: /\.js$/,
+        // platojs 模块需要 babel 处理
+        exclude: /node_modules[/\\](?!(platojs|nuo))/,
+        loader: 'babel-loader'
       },
       {
         test: /\.html$/,
@@ -114,7 +171,7 @@ const webpackConfig = {
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: paths.src('index.ejs'),
-      title: `${config.pkg.name} - ${config.pkg.description}`,
+      title: `${pkg.name} - ${pkg.description}`,
       hash: false,
       inject: true,
       minify: {
@@ -125,7 +182,12 @@ const webpackConfig = {
     new CopyWebpackPlugin([{
       from: paths.src('static')
     }], {
-      // ignore: ['*.ico', '*.md']
+      ignore: ['README.md']
+    }),
+    // extract css into its own file
+    new ExtractTextPlugin({
+      filename: '[name].[contenthash].css',
+      allChunks: true
     })
   ]
 }
@@ -134,46 +196,14 @@ const webpackConfig = {
 // Plugins
 // ------------------------------------
 
-const vueLoaderOptions = {
-  postcss: pack => {
-    return [
-      require('postcss-import')({
-        path: paths.src(`themes/${config.theme}`),
-        // use webpack context
-        addDependencyTo: pack
-      }),
-      require('postcss-url')({
-        basePath: paths.src('static')
-      }),
-      require('postcss-cssnext')({
-        // see: https://github.com/ai/browserslist#queries
-        browsers: 'Android >= 4, iOS >= 7',
-        features: {
-          customProperties: {
-            variables: require(paths.src(`themes/${config.theme}/variables`))
-          }
-        }
-      }),
-      require('postcss-flexible')({
-        remUnit: 75
-      }),
-      require('postcss-browser-reporter')(),
-      require('postcss-reporter')()
-    ]
-  },
-  autoprefixer: false
-}
-
 if (__PROD__) {
   debug('Enable plugins for production (Dedupe & UglifyJS).')
   webpackConfig.plugins.push(
-    new webpack.optimize.DedupePlugin(),
     new webpack.LoaderOptionsPlugin({
       minimize: true,
       options: {
         context: __dirname
-      },
-      vue: vueLoaderOptions
+      }
     }),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
@@ -183,21 +213,58 @@ if (__PROD__) {
       },
       sourceMap: true
     }),
-    // extract css into its own file
-    new ExtractTextPlugin('[name].[contenthash].css')
+    // Compress extracted CSS. We are using this plugin so that possible
+    // duplicated CSS from different components can be deduped.
+    new OptimizeCSSPlugin({
+      cssProcessorOptions: {
+        safe: true
+      }
+    })
   )
+
+  if (process.env.SCRIPT !== 'demo' && process.env.SCRIPT !== 'start') {
+    webpackConfig.plugins.push(
+      new BundleAnalyzerPlugin({
+        // Can be `server`, `static` or `disabled`.
+        // In `server` mode analyzer will start HTTP server to show bundle report.
+        // In `static` mode single HTML file with bundle report will be generated.
+        // In `disabled` mode you can use this plugin to just generate Webpack Stats JSON file by setting `generateStatsFile` to `true`.
+        analyzerMode: 'server',
+        // Host that will be used in `server` mode to start HTTP server.
+        analyzerHost: '127.0.0.1',
+        // Port that will be used in `server` mode to start HTTP server.
+        analyzerPort: 8888,
+        // Path to bundle report file that will be generated in `static` mode.
+        // Relative to bundles output directory.
+        reportFilename: 'report.html',
+        // Automatically open report in default browser
+        openAnalyzer: true,
+        // If `true`, Webpack Stats JSON file will be generated in bundles output directory
+        generateStatsFile: false,
+        // Name of Webpack Stats JSON file that will be generated if `generateStatsFile` is `true`.
+        // Relative to bundles output directory.
+        statsFilename: 'stats.json',
+        // Options for `stats.toJson()` method.
+        // For example you can exclude sources of your modules from stats file with `source: false` option.
+        // See more options here: https://github.com/webpack/webpack/blob/webpack-1/lib/Stats.js#L21
+        statsOptions: null,
+        // Log level. Can be 'info', 'warn', 'error' or 'silent'.
+        logLevel: 'info'
+      })
+    )
+  }
 } else {
   debug('Enable plugins for live development (HMR, NoErrors).')
   webpackConfig.plugins.push(
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
     new webpack.LoaderOptionsPlugin({
       debug: true,
       options: {
         context: __dirname
-      },
-      vue: vueLoaderOptions
-    })
+      }
+    }),
+    new FriendlyErrorsPlugin()
   )
 }
 
@@ -221,8 +288,12 @@ if (!__TEST__) {
       }
     }),
     new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
-      filename: 'common.js'
+      name: 'plato',
+      minChunks: module => /node_modules[/\\]platojs/.test(module.resource)
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'manifest',
+      minChunks: Infinity
     })
   )
 }

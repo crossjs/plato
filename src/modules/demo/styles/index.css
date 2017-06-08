@@ -1,0 +1,13 @@
+.main {
+  & h3 {
+    padding: dpr(20px);
+    background-color: color(white lightness(-2%));
+  }
+
+  & .c-col {
+    & a {
+      display: block;
+      padding: dpr(20px);
+    }
+  }
+}

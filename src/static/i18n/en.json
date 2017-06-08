@@ -1,32 +1,43 @@
 {
-  "message": {
-    "plato": "{0}, The beginning is the most important part of the work.",
+  "i18n": {},
+  "validator": {
     "required": "Please input {0}",
     "minlength": "{0} must no less then {1} chars",
     "maxlength": "{0} must no more then {1} chars",
     "pattern": "{0} is NOT valid"
   },
-  "views": {
-    "home": {
+  "config": {
+    "language": "Language",
+    "transition": "Transition"
+  },
+  "user": {
+    "login": {
+      "username": "Username",
+      "password": "Password",
+      "submit": "Submit",
+      "confirm": "Submit?"
+    },
+    "logout": {
+      "submit": "Log out",
+      "confirm": "Log out?"
+    }
+  },
+  "faq": {
+    "index": {
       "nothing": "Nothing",
       "delete": "Delete",
       "confirm": "Delete?"
-    },
-    "globe": {
-      "language": "Language",
-      "transition": "Transition"
     },
     "create": {
       "title": "Title",
       "content": "Content",
       "submit": "Submit",
       "confirm": "Submit?"
-    },
-    "login": {
-      "username": "Username",
-      "password": "Password",
-      "submit": "Submit",
-      "confirm": "Submit?"
     }
-  }
+  },
+  "demo": {},
+  "about": {
+    "source": "Source Code"
+  },
+  "core": {}
 }

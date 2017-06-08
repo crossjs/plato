@@ -1,8 +1,0 @@
-.c-pane {
-  margin: dpr(20px);
-
-  &-flex {
-    display: flex;
-    flex-direction: row;
-  }
-}
