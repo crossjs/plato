@@ -31,10 +31,10 @@ export default ({ Vue }, options = {}) => {
           keyArray: keys.split('.')
         }
       default:
-        const arr2 = keys.split('/')
+        const arr2 = keys.match(/(^\w+)\/(.+$)/)
         return {
-          scope: arr2[0],
-          keyArray: arr2[1].split('.')
+          scope: arr2[1],
+          keyArray: arr2[2].split('.')
         }
     }
   }
