@@ -2,3 +2,4 @@ coverage
 dist
 node_modules
 src/static/scripts/lib.flexible.js
+src/static/scripts/lib.viewport.js

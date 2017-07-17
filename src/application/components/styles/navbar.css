@@ -8,9 +8,9 @@
   position: absolute;
   z-index: 102;
   right: 0;
-  width: dpr(88px);
-  font-size: dpr(32px);
-  line-height: dpr(88px);
+  width: 88px;
+  font-size: 32px;
+  line-height: 88px;
   text-align: center;
   background: transparent;
   border: none;
@@ -30,12 +30,12 @@
   z-index: 101;
   top: 0;
   right: 0;
-  width: dpr(88px);
-  padding-top: dpr(88px);
+  width: 88px;
+  padding-top: 88px;
   height: 100%;
   background-color: white;
-  box-shadow: 0 1px 3px color(white lightness(-20%));
-  transform: translate3d(dpr(88px), 0, 0);
+  box-shadow: 0 1PX 3PX color(white lightness(-20%));
+  transform: translate3d(88px, 0, 0);
   transition: transform 0.3s ease-in-out;
 
   &.opened {
@@ -65,7 +65,7 @@
 
   & a {
     display: block;
-    line-height: dpr(88px);
+    line-height: 88px;
     text-decoration: none;
     text-align: center;
 

@@ -3,7 +3,7 @@
 @import "helpers";
 
 #container {
-  padding: dpr(88px) 0 0;
+  padding: 88px 0 0;
   box-sizing: border-box;
   height: 100%;
 }
@@ -21,7 +21,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: dpr(88px);
+  height: 88px;
   background-color: color(white blackness(+5%));
 }
 
@@ -29,9 +29,9 @@
   & .c-link {
     position: absolute;
     z-index: 1;
-    width: dpr(88px);
-    height: dpr(88px);
-    line-height: dpr(88px);
+    width: 88px;
+    height: 88px;
+    line-height: 88px;
     text-align: center;
 
     &:active {
@@ -43,15 +43,15 @@
 #logo {
   position: absolute;
   z-index: 1;
-  left: dpr(132px);
-  right: dpr(132px);
+  left: 132px;
+  right: 132px;
 
   & a {
     display: block;
-    height: dpr(88px);
+    height: 88px;
     color: var(--text);
-    font-size: dpr(32px);
-    line-height: dpr(88px);
+    font-size: 32px;
+    line-height: 88px;
     text-align: center;
     text-decoration: none;
     text-transform: uppercase;
@@ -59,7 +59,7 @@
   }
 
   & sub {
-    font-size: dpr(12px);
+    font-size: 12px;
   }
 }
 

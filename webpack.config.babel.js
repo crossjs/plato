@@ -37,8 +37,8 @@ const postcssOptions = {
       }
     }),
     // 如果不需要 flexible，请移除
-    require('postcss-flexible')({
-      remUnit: 75
+    require('postcss-pxtorem')({
+      rootValue: 100
     }),
     // PostCSS plugin for RTL-optimizations
     require('postcss-rtl')({
