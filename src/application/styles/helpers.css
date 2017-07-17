@@ -1,29 +1,29 @@
 /* paddings */
 
 .padding {
-  padding: dpr(20px);
+  padding: 20px;
 }
 
 /* font-sizes */
 
 .fs-64 {
-  font-size: dpr(64px);
+  font-size: 64px;
 }
 
 .fs-48 {
-  font-size: dpr(48px);
+  font-size: 48px;
 }
 
 .fs-32 {
-  font-size: dpr(32px);
+  font-size: 32px;
 }
 
 .fs-24 {
-  font-size: dpr(24px);
+  font-size: 24px;
 }
 
 .fs-16 {
-  font-size: dpr(16px);
+  font-size: 16px;
 }
 
 /* alignments */
