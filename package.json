@@ -26,7 +26,9 @@
     "clean": "node ./cli/clean",
     "compile": "cross-env NODE_ENV=production DEBUG=PLATO:* node ./cli/compile",
     "build": "npm run test && npm run clean && npm run compile",
-    "demo": "cross-env SCRIPT=demo bash ./cli/demo.sh"
+    "demo": "cross-env SCRIPT=demo bash ./cli/demo.sh",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "dependencies": {
     "core-js": "^2.4.1",
@@ -34,7 +36,8 @@
     "platojs": "latest",
     "string-template": "^1.0.0",
     "vuex-localstorage": "^1.0.0",
-    "whatwg-fetch": "^2.0.3"
+    "whatwg-fetch": "^2.0.3",
+    "snyk": "^1.192.0"
   },
   "devDependencies": {
     "plato-dev-dependencies": "latest"
@@ -42,5 +45,6 @@
   "engines": {
     "node": ">=7.7.4",
     "npm": ">=4.1.2"
-  }
+  },
+  "snyk": true
 }
